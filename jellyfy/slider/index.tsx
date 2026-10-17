@@ -1,6 +1,6 @@
 "use client";
 
-import type { FC, InputHTMLAttributes } from "react";
+import type { CSSProperties, FC, InputHTMLAttributes } from "react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -33,29 +33,57 @@ export const Slider: FC<SliderProps> = ({
 }) => {
   const [uncontrolled, setUncontrolled] = useState(defaultValue);
   const current = value ?? uncontrolled;
-  const fill = ((Number(current) - min) / (max - min)) * 100;
+  const progress = (Number(current) - min) / (max - min);
+  const fill = invalid ? "var(--error)" : "var(--primary)";
+  const handle = invalid ? "var(--error-solid)" : "var(--primary-solid)";
+  const travel = `calc((100% - 1.5rem) * ${progress})`;
 
   return (
     <label className={twMerge("flex w-full max-w-sm flex-col gap-3", className)}>
       <span className="text-sm font-medium text-surface-foreground">{label}</span>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        value={current}
-        disabled={disabled}
-        aria-invalid={invalid}
-        aria-valuetext={`${current}`}
-        data-invalid={invalid ? "" : undefined}
-        style={{ ["--p" as string]: fill / 100 }}
-        className="jellyfy-range disabled:cursor-not-allowed disabled:opacity-60"
-        onChange={(event) => {
-          const next = Number(event.target.value);
-          if (value === undefined) setUncontrolled(next);
-          onValueChange?.(next);
-        }}
-        {...rest}
-      />
+      <span className="relative h-8 w-full">
+        <span
+          className="pointer-events-none absolute top-1/2 h-3 w-full -translate-y-1/2 overflow-hidden rounded-full"
+          style={{
+            backgroundColor: "var(--surface)",
+            boxShadow: "var(--shadow-inset-surface), var(--shadow-drop)",
+          }}
+        >
+          <span
+            className="absolute inset-y-0 left-0"
+            style={{
+              width: `calc(0.75rem + ${travel})`,
+              backgroundColor: fill,
+            }}
+          />
+        </span>
+        <span
+          className="noise pointer-events-none absolute top-1/2 size-6 -translate-y-1/2 rounded-full"
+          style={
+            {
+              left: travel,
+              backgroundColor: handle,
+              boxShadow: "var(--shadow-inset-surface), var(--shadow-drop)",
+            } as CSSProperties
+          }
+        />
+        <input
+          type="range"
+          min={min}
+          max={max}
+          value={current}
+          disabled={disabled}
+          aria-invalid={invalid}
+          aria-valuetext={`${current}`}
+          className="jellyfy-range disabled:cursor-not-allowed"
+          {...rest}
+          onChange={(event) => {
+            const next = Number(event.target.value);
+            if (value === undefined) setUncontrolled(next);
+            onValueChange?.(next);
+          }}
+        />
+      </span>
       {message ? <span className="text-xs text-error-foreground">{message}</span> : null}
     </label>
   );
