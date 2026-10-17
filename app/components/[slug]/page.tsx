@@ -68,7 +68,11 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                 Interactive
               </span>
             </div>
-            <div className="flex min-h-64 items-center justify-center overflow-hidden rounded-3xl border border-dashed border-neutral-200 p-6 shadow-[inset_0_0_10px_rgba(10,10,10,0.1)]">
+            <div
+              className={`flex items-center justify-center overflow-hidden rounded-3xl border border-dashed border-neutral-200 p-6 shadow-[inset_0_0_10px_rgba(10,10,10,0.1)] ${
+                slug === "select" || slug === "dialog" ? "min-h-[32rem]" : "min-h-64"
+              }`}
+            >
               <PreviewComponent />
             </div>
           </div>

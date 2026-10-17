@@ -36,8 +36,8 @@ export const RadioItem: FC<RadioItemProps> = ({ value, children, disabled }) => 
           onChange={() => group.onValueChange?.(value)}
           className="peer absolute inset-0 z-10 cursor-pointer appearance-none rounded-full focus-visible:outline-none"
         />
-        <span className="jellyfy-nub noise peer-focus-visible:ring-ring pointer-events-none flex size-6 items-center justify-center rounded-full p-1.5 backdrop-blur-sm peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2">
-          <span className="jellyfy-radio-dot size-full scale-0 rounded-full bg-primary opacity-0" />
+        <span className="jellyfy-nub noise pointer-events-none flex size-6 items-center justify-center rounded-full backdrop-blur-sm peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2">
+          <span className="jellyfy-radio-dot" />
         </span>
       </motion.span>
       {children}

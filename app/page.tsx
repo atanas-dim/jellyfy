@@ -74,7 +74,7 @@ export default function Home() {
         </motion.section>
 
         <section className="grid gap-4 md:grid-cols-3">
-          <div className="jellyfy-surface jellyfy-tone-surface noise flex min-h-40 flex-col justify-end p-5 backdrop-blur-sm">
+          <div className="jellyfy-panel noise flex min-h-40 flex-col justify-end p-5 backdrop-blur-sm">
             <p className="text-sm font-semibold tracking-wide uppercase">
               Noise
             </p>

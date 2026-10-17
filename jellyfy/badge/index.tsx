@@ -13,7 +13,7 @@ export const Badge: FC<BadgeProps> = ({ tone = "primary", children, className })
   return (
     <span
       className={twMerge(
-        "noise inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide uppercase",
+        "jellyfy-badge noise inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide uppercase backdrop-blur-sm",
         tone === "primary" && "jellyfy-tone-primary",
         tone === "success" && "jellyfy-tone-success",
         tone === "error" && "jellyfy-tone-error",

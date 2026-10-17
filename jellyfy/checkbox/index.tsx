@@ -42,8 +42,8 @@ export const Checkbox: FC<CheckboxProps> = ({
             className="peer absolute inset-0 z-10 cursor-pointer appearance-none rounded-lg focus-visible:outline-none"
             {...rest}
           />
-          <span className="jellyfy-nub noise pointer-events-none flex size-6 items-center justify-center rounded-lg backdrop-blur-sm peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2">
-            <CheckIcon className="jellyfy-mark size-3.5 scale-75 text-primary opacity-0" strokeWidth={3} />
+          <span className="jellyfy-nub jellyfy-check noise pointer-events-none flex size-6 items-center justify-center rounded-lg backdrop-blur-sm peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2">
+            <CheckIcon className="jellyfy-mark size-3.5" strokeWidth={3} />
           </span>
         </motion.span>
         {label}
