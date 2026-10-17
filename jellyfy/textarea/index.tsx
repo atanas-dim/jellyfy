@@ -59,6 +59,7 @@ export const Textarea: FC<TextareaProps> = ({
         state === "error" && "focus-within:ring-ring-error",
         state === "success" && "focus-within:ring-ring-success",
         className,
+        "h-fit w-full self-start",
       )}
     >
       <div className="relative">
