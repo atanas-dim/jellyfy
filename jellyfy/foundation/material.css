@@ -271,16 +271,16 @@
 }
 
 .jellyfy-surface::before {
-  top: 80%;
-  height: 50%;
+  top: 2.75rem;
+  height: 1.75rem;
   width: 70%;
   transform: translate(-50%, -40%);
   background: radial-gradient(var(--jellyfy-highlight), transparent 60%);
 }
 
 .jellyfy-surface::after {
-  top: 40%;
-  height: 60%;
+  top: 1.4rem;
+  height: 2.1rem;
   width: 90%;
   transform: translate(-50%, -75%);
   background: radial-gradient(var(--jellyfy-shade), transparent 60%);
