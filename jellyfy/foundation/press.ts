@@ -73,6 +73,11 @@ export const usePress = (axis: PressAxis, disabled: boolean) => {
     controls,
     play,
     hover:
-      axis === "vertical" && !disabled && !reduceMotion ? { y: -2 } : undefined,
+      axis === "vertical" && !disabled && !reduceMotion
+        ? {
+            y: -2,
+            transition: { type: "tween", duration: 0.2, ease: "easeOut" },
+          }
+        : undefined,
   };
 };
