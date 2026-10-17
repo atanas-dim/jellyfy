@@ -5,17 +5,19 @@ import { motion } from "motion/react";
 import type { FC, InputHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { fieldFocusRing } from "../foundation/color";
+import { choiceStyle, type Color, fieldFocusRing } from "../foundation/color";
 import { usePress } from "../foundation/press";
 
 type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label: string;
+  color?: Color;
   invalid?: boolean;
   message?: string;
 };
 
 export const Checkbox: FC<CheckboxProps> = ({
   label,
+  color = "primary",
   invalid,
   message,
   className,
@@ -27,6 +29,7 @@ export const Checkbox: FC<CheckboxProps> = ({
   return (
     <label
       data-invalid={invalid ? "" : undefined}
+      style={choiceStyle(invalid ? "error" : color)}
       className={twMerge("jellyfy-choice flex flex-col gap-1.5", className)}
     >
       <span className="text-surface-foreground flex items-center gap-3 text-sm font-medium">
@@ -36,7 +39,7 @@ export const Checkbox: FC<CheckboxProps> = ({
           onFocus={(event) => press.play(event.currentTarget)}
           className={twMerge(
             "relative flex size-6 shrink-0 items-center justify-center rounded-lg",
-            fieldFocusRing(invalid ? "error" : "neutral"),
+            fieldFocusRing(invalid ? "error" : color),
           )}
         >
           <input

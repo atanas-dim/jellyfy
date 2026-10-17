@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 export type Color =
   | "primary"
   | "secondary"
@@ -8,7 +10,16 @@ export type Color =
   | "warning";
 
 const fieldRing =
-  "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none";
+  "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none motion-safe:transition-[box-shadow,background-color] motion-safe:duration-300 motion-safe:ease-out";
+
+export const choiceStyle = (color: Color): CSSProperties => {
+  const token = color === "neutral" ? "surface" : color;
+
+  return {
+    "--jellyfy-choice": `var(--${token})`,
+    "--jellyfy-choice-foreground": `var(--${token}-foreground)`,
+  } as CSSProperties;
+};
 
 export const fieldFocusRing = (color: Color, open = false) => {
   if (color === "error") {

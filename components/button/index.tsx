@@ -10,11 +10,13 @@ import { type FC, type PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
 import { type Color, colorClass } from "../foundation/color";
+import { LoadingLights } from "../foundation/loading-lights";
 import { usePress } from "../foundation/press";
 
 type ButtonProps = PropsWithChildren<HTMLMotionProps<"button">> & {
   labelClassName?: string;
   color?: Color;
+  loading?: boolean;
   animateLabel?: boolean;
 };
 
@@ -23,6 +25,7 @@ export const Button: FC<ButtonProps> = ({
   className,
   labelClassName,
   color = "primary",
+  loading = false,
   animateLabel = true,
   ...rest
 }) => {
@@ -31,7 +34,7 @@ export const Button: FC<ButtonProps> = ({
   const press = usePress("vertical", isDisabled);
 
   const labelClasses = twMerge(
-    "z-2 flex items-center justify-center gap-1 text-sm leading-none font-semibold tracking-wide text-current uppercase text-shadow-[0_0px_6px_rgba(10,10,10,0.4)]",
+    "relative z-2 flex items-center justify-center gap-1 text-sm leading-none font-semibold tracking-wide text-current uppercase text-shadow-[0_0px_6px_rgba(10,10,10,0.4)]",
     labelClassName,
   );
 
@@ -40,6 +43,7 @@ export const Button: FC<ButtonProps> = ({
       type="button"
       whileHover={press.hover}
       {...rest}
+      aria-busy={loading || undefined}
       animate={press.controls}
       onPointerDown={(event) => {
         press.play(event.currentTarget);
@@ -51,7 +55,7 @@ export const Button: FC<ButtonProps> = ({
       }}
       className={twMerge(
         "jellyfy-raised noise group inline-flex h-12 min-w-40 items-center justify-center px-6 backdrop-blur-sm select-none",
-        "transition-[box-shadow,background-color] duration-200 ease-out",
+        "transition-[box-shadow,background-color] duration-300 ease-out",
         "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none",
         "cursor-pointer disabled:cursor-not-allowed",
         "disabled:translate-y-0 disabled:scale-100 disabled:hover:translate-y-0 disabled:hover:scale-100 disabled:active:translate-y-0 disabled:active:scale-100",
@@ -59,6 +63,7 @@ export const Button: FC<ButtonProps> = ({
         className,
       )}
     >
+      <LoadingLights loading={loading && !isDisabled} />
       {animateLabel && !isDisabled ? (
         <AnimatePresence mode="wait" initial={false}>
           <motion.span

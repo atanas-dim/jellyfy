@@ -264,6 +264,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .jellyfy-surface,
+  .jellyfy-handle,
   .jellyfy-check,
   .jellyfy-switch,
   .jellyfy-mark,
@@ -310,8 +311,8 @@
 
 .jellyfy-panel {
   border-radius: var(--radius-surface);
-  background-color: var(--panel);
-  color: var(--surface-foreground);
+  background-color: var(--jellyfy-choice, var(--panel));
+  color: var(--jellyfy-choice-foreground, var(--surface-foreground));
   box-shadow: var(--shadow-inset-thin), var(--shadow-drop);
 }
 
@@ -321,8 +322,8 @@
 
 .jellyfy-overlay {
   border-radius: var(--radius-surface);
-  background-color: var(--surface);
-  color: var(--surface-foreground);
+  background-color: var(--jellyfy-choice, var(--surface));
+  color: var(--jellyfy-choice-foreground, var(--surface-foreground));
   box-shadow: var(--shadow-inset-surface), var(--shadow-drop-hover);
 }
 
@@ -333,7 +334,7 @@
 }
 
 .jellyfy-choice:has(:checked) .jellyfy-switch {
-  background-color: var(--primary);
+  background-color: var(--jellyfy-choice, var(--primary));
 }
 
 .jellyfy-check,
@@ -350,8 +351,8 @@
 }
 
 input:checked + .jellyfy-check {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
+  background-color: var(--jellyfy-choice, var(--primary));
+  color: var(--jellyfy-choice-foreground, var(--primary-foreground));
 }
 
 input:checked + .jellyfy-check .jellyfy-mark {
@@ -362,7 +363,7 @@ input:checked + .jellyfy-check .jellyfy-mark {
   width: 0.875rem;
   height: 0.875rem;
   border-radius: 999px;
-  background: var(--primary);
+  background: var(--jellyfy-choice, var(--primary));
   opacity: 0;
   transform: scale(0);
   transition:
@@ -389,6 +390,21 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
 .jellyfy-choice[data-invalid] .jellyfy-radio-dot {
   background-color: var(--error);
   color: var(--error-foreground);
+}
+
+.jellyfy-handle {
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--shadow-inset-surface), var(--shadow-drop);
+  transition:
+    box-shadow 300ms ease-out,
+    background-color 300ms ease-out;
+}
+
+.group:focus-within .jellyfy-handle {
+  box-shadow:
+    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--shadow-inset-surface-focus), var(--shadow-drop);
 }
 
 .jellyfy-range {

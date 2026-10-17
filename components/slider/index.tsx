@@ -5,6 +5,7 @@ import type { CSSProperties, FC, InputHTMLAttributes } from "react";
 import { useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
+import { choiceStyle,type Color } from "../foundation/color";
 import { playPress } from "../foundation/press";
 
 type SliderProps = Omit<
@@ -17,6 +18,7 @@ type SliderProps = Omit<
   onValueChange?: (value: number) => void;
   min?: number;
   max?: number;
+  color?: Color;
   invalid?: boolean;
   message?: string;
 };
@@ -28,6 +30,7 @@ export const Slider: FC<SliderProps> = ({
   onValueChange,
   min = 0,
   max = 100,
+  color = "primary",
   invalid,
   message,
   className,
@@ -39,7 +42,7 @@ export const Slider: FC<SliderProps> = ({
   const reduceMotion = Boolean(useReducedMotion());
   const current = value ?? uncontrolled;
   const progress = (Number(current) - min) / (max - min);
-  const fill = invalid ? "var(--error)" : "var(--primary)";
+  const tone = invalid ? "error" : color;
   const travel = `calc((100% - 1.5rem) * ${progress})`;
 
   const bounce = () => {
@@ -49,6 +52,7 @@ export const Slider: FC<SliderProps> = ({
 
   return (
     <label
+      style={choiceStyle(tone)}
       className={twMerge("flex w-full max-w-sm flex-col gap-3", className)}
     >
       <span className="text-surface-foreground text-sm font-medium">
@@ -66,25 +70,25 @@ export const Slider: FC<SliderProps> = ({
             className="noise absolute inset-y-0 left-0 rounded-full"
             style={{
               width: `calc(0.75rem + ${travel})`,
-              backgroundColor: fill,
+              backgroundColor: "var(--jellyfy-choice)",
             }}
           />
         </span>
         <span
           ref={handleRef}
           className={twMerge(
-            "noise pointer-events-none absolute top-[calc(50%-0.75rem)] z-1 size-6 rounded-full",
+            "jellyfy-handle noise pointer-events-none absolute top-[calc(50%-0.75rem)] z-1 size-6 rounded-full",
             "group-focus-within:ring group-focus-within:ring-offset-2",
-            invalid
-              ? "group-focus-within:ring-ring-error"
-              : "group-focus-within:ring-ring",
+            tone === "error" && "group-focus-within:ring-ring-error",
+            tone === "success" && "group-focus-within:ring-ring-success",
+            tone !== "error" &&
+              tone !== "success" &&
+              "group-focus-within:ring-ring",
           )}
           style={
             {
               left: travel,
-              backgroundColor: fill,
-              boxShadow:
-                "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--shadow-inset-surface), var(--shadow-drop)",
+              backgroundColor: "var(--jellyfy-choice)",
             } as CSSProperties
           }
         />

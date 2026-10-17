@@ -61,7 +61,7 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
         colorClass(color),
       )}
     >
-      <span className="flex min-w-0 flex-col">
+      <span className="relative z-2 flex min-w-0 flex-col">
         {label ? (
           <span className="text-[10px] font-medium tracking-wide text-neutral-500">
             {label}
@@ -69,7 +69,7 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
         ) : null}
         <span className="truncate text-base">{text}</span>
       </span>
-      <ChevronDownIcon className="size-4 shrink-0 text-neutral-400" />
+      <ChevronDownIcon className="relative z-2 size-4 shrink-0 text-neutral-400" />
     </motion.button>
   );
 };

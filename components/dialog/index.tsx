@@ -6,16 +6,24 @@ import { useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
 import { Button } from "../button";
+import { choiceStyle,type Color } from "../foundation/color";
 import { IconButton } from "../icon-button";
 
 type DialogProps = {
   trigger: string;
   title: string;
   description?: string;
+  color?: Color;
   children?: ReactNode;
 };
 
-export const Dialog: FC<DialogProps> = ({ trigger, title, description, children }) => {
+export const Dialog: FC<DialogProps> = ({
+  trigger,
+  title,
+  description,
+  color,
+  children,
+}) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const mounted = useSyncExternalStore(
     () => () => undefined,
@@ -31,7 +39,10 @@ export const Dialog: FC<DialogProps> = ({ trigger, title, description, children 
         if (event.target === dialogRef.current) dialogRef.current?.close();
       }}
     >
-      <div className="jellyfy-overlay noise w-[min(28rem,calc(100vw-2rem))] p-6 backdrop-blur-sm">
+      <div
+        style={color ? choiceStyle(color) : undefined}
+        className="jellyfy-overlay noise w-[min(28rem,calc(100vw-2rem))] p-6 backdrop-blur-sm"
+      >
         <div className="flex items-start justify-between gap-4">
           <h2 className="text-lg font-semibold">{title}</h2>
           <IconButton
