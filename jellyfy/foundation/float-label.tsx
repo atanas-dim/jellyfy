@@ -10,12 +10,6 @@ type FloatLabelProps = {
   children: ReactNode;
 };
 
-const toneClass: Record<FieldTone, string> = {
-  idle: "text-neutral-500",
-  error: "text-error-foreground",
-  success: "text-success-foreground",
-};
-
 export const FloatLabel: FC<FloatLabelProps> = ({
   htmlFor,
   leading = false,
@@ -31,7 +25,8 @@ export const FloatLabel: FC<FloatLabelProps> = ({
         "text-[10px] font-medium text-neutral-500",
         "peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal",
         "ease-out motion-safe:transition-all motion-safe:duration-300",
-        toneClass[tone],
+        tone === "error" && "text-error-foreground",
+        tone === "success" && "text-success-foreground",
       )}
     >
       {children}

@@ -1,29 +1,17 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { FC, ReactNode, TextareaHTMLAttributes } from "react";
 import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
-import { type FieldTone,FloatLabel } from "../foundation/float-label";
-import { pressProps } from "../foundation/press";
+import { type FieldTone, FloatLabel } from "../foundation/float-label";
+import { useMeasuredBox, usePressPlayback } from "../foundation/press";
 
 type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   state?: FieldTone;
   label?: string;
   leading?: ReactNode;
-};
-
-const toneClass: Record<FieldTone, string> = {
-  idle: "jellyfy-tone-surface",
-  error: "jellyfy-tone-error",
-  success: "jellyfy-tone-success",
-};
-
-const ringClass: Record<FieldTone, string> = {
-  idle: "focus-within:ring-ring",
-  error: "focus-within:ring-ring-error",
-  success: "focus-within:ring-ring-success",
 };
 
 export const Textarea: FC<TextareaProps> = ({
@@ -35,20 +23,26 @@ export const Textarea: FC<TextareaProps> = ({
   disabled,
   ...rest
 }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const [measure, box] = useMeasuredBox();
+  const press = usePressPlayback("horizontal", Boolean(disabled), box);
   const autoId = useId();
   const inputId = id ?? `jellyfy-textarea-${autoId}`;
   const { placeholder, ...textareaProps } = rest;
 
   return (
     <motion.div
-      {...pressProps("horizontal", Boolean(disabled), Boolean(shouldReduceMotion))}
+      ref={measure}
+      {...press.gesture}
       className={twMerge(
         "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
         "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
         disabled && "opacity-60",
-        toneClass[state],
-        ringClass[state],
+        state === "idle" && "jellyfy-tone-surface",
+        state === "error" && "jellyfy-tone-error",
+        state === "success" && "jellyfy-tone-success",
+        state === "idle" && "focus-within:ring-ring",
+        state === "error" && "focus-within:ring-ring-error",
+        state === "success" && "focus-within:ring-ring-success",
         className,
       )}
     >
@@ -70,6 +64,10 @@ export const Textarea: FC<TextareaProps> = ({
           disabled={disabled}
           aria-invalid={state === "error"}
           {...textareaProps}
+          onFocus={(event) => {
+            press.play();
+            textareaProps.onFocus?.(event);
+          }}
         />
         {label && (
           <FloatLabel htmlFor={inputId} leading={Boolean(leading)} tone={state}>

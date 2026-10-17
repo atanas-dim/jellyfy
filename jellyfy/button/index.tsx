@@ -6,14 +6,10 @@ import {
   motion,
   useReducedMotion,
 } from "motion/react";
-import {
-  type FC,
-  type PropsWithChildren,
-  useRef,
-} from "react";
+import { type FC, type PropsWithChildren } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
-import { pressProps } from "../foundation/press";
+import { useMeasuredBox, usePressPlayback } from "../foundation/press";
 
 type ProcessingLight = {
   delay: number;
@@ -28,12 +24,6 @@ const PROCESSING_LIGHTS: ProcessingLight[] = [
 ];
 
 export type ButtonState = "idle" | "processing" | "success";
-
-const toneClass: Record<ButtonState, string> = {
-  idle: "jellyfy-tone-primary",
-  processing: "jellyfy-tone-busy",
-  success: "jellyfy-tone-complete",
-};
 
 type ButtonProps = PropsWithChildren<HTMLMotionProps<"button">> & {
   labelClassName?: string;
@@ -50,9 +40,10 @@ export const Button: FC<ButtonProps> = ({
   ...rest
 }) => {
   const shouldReduceMotion = useReducedMotion();
-  const btnRef = useRef<HTMLButtonElement>(null);
   const isProcessing = state === "processing";
   const isDisabled = Boolean(rest.disabled);
+  const [measure, box] = useMeasuredBox();
+  const press = usePressPlayback("vertical", isDisabled, box);
 
   const labelClasses = twMerge(
     "z-2 flex items-center justify-center gap-1 text-sm leading-none font-semibold tracking-wide text-current uppercase text-shadow-[0_0px_6px_rgba(10,10,10,0.4)]",
@@ -61,18 +52,24 @@ export const Button: FC<ButtonProps> = ({
 
   return (
     <motion.button
-      ref={btnRef}
+      ref={measure}
       type="button"
-      {...pressProps("vertical", isDisabled, Boolean(shouldReduceMotion))}
+      {...press.gesture}
       aria-busy={isProcessing}
       {...rest}
+      onFocus={(event) => {
+        press.play();
+        rest.onFocus?.(event);
+      }}
       className={twMerge(
         "jellyfy-raised noise group inline-flex h-12 min-w-40 items-center justify-center px-6 backdrop-blur-sm select-none",
         "transition-[box-shadow,background-color] duration-200 ease-out",
         "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none",
         "cursor-pointer disabled:cursor-not-allowed",
         "disabled:translate-y-0 disabled:scale-100 disabled:hover:translate-y-0 disabled:hover:scale-100 disabled:active:translate-y-0 disabled:active:scale-100",
-        toneClass[state],
+        state === "idle" && "jellyfy-tone-primary",
+        state === "processing" && "jellyfy-tone-busy",
+        state === "success" && "jellyfy-tone-complete",
         className,
       )}
     >

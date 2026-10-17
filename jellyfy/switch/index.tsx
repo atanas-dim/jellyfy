@@ -1,7 +1,10 @@
 "use client";
 
+import { motion } from "motion/react";
 import type { FC, InputHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
+
+import { useMeasuredBox, usePressPlayback } from "../foundation/press";
 
 type SwitchProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label: string;
@@ -14,8 +17,12 @@ export const Switch: FC<SwitchProps> = ({
   invalid,
   message,
   className,
+  disabled,
   ...rest
 }) => {
+  const [measure, box] = useMeasuredBox();
+  const press = usePressPlayback("horizontal", Boolean(disabled), box);
+
   return (
     <label
       data-invalid={invalid ? "" : undefined}
@@ -26,12 +33,27 @@ export const Switch: FC<SwitchProps> = ({
           <input
             type="checkbox"
             role="switch"
+            disabled={disabled}
             aria-invalid={invalid}
             className="peer absolute inset-0 z-10 cursor-pointer appearance-none rounded-full focus-visible:outline-none"
             {...rest}
+            onPointerDown={(event) => {
+              press.play();
+              rest.onPointerDown?.(event);
+            }}
+            onFocus={(event) => {
+              press.play();
+              rest.onFocus?.(event);
+            }}
           />
-          <span className="jellyfy-switch noise pointer-events-none absolute inset-0 rounded-full backdrop-blur-sm transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2" />
-          <span className="jellyfy-switch-thumb pointer-events-none absolute top-1 left-1 size-5 rounded-full bg-white shadow-[var(--shadow-drop)] transition-transform" />
+          <motion.span
+            ref={measure}
+            animate={press.controls}
+            className="pointer-events-none absolute inset-0 rounded-full peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2"
+          >
+            <span className="jellyfy-switch noise absolute inset-0 rounded-full shadow-[var(--shadow-inset-surface),var(--shadow-drop)] backdrop-blur-sm transition-colors" />
+            <span className="jellyfy-switch-thumb jellyfy-nub noise absolute top-1 left-1 size-5 rounded-full transition-transform" />
+          </motion.span>
         </span>
         {label}
       </span>

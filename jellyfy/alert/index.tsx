@@ -4,12 +4,6 @@ import { twMerge } from "tailwind-merge";
 
 type AlertTone = "success" | "error" | "warning";
 
-const toneClass: Record<AlertTone, string> = {
-  success: "jellyfy-tone-success",
-  error: "jellyfy-tone-error",
-  warning: "jellyfy-tone-warning",
-};
-
 const icon: Record<AlertTone, FC<{ className?: string }>> = {
   success: CircleCheckIcon,
   error: CircleAlertIcon,
@@ -31,7 +25,9 @@ export const Alert: FC<AlertProps> = ({ tone = "warning", title, children, class
       role="status"
       className={twMerge(
         "jellyfy-surface noise flex gap-3 px-4 py-3 backdrop-blur-sm",
-        toneClass[tone],
+        tone === "success" && "jellyfy-tone-success",
+        tone === "error" && "jellyfy-tone-error",
+        tone === "warning" && "jellyfy-tone-warning",
         className,
       )}
     >

@@ -1,24 +1,12 @@
 "use client";
 
 import { ChevronDownIcon } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { FC } from "react";
 import { twMerge } from "tailwind-merge";
 
 import type { FieldTone } from "../foundation/float-label";
-import { pressProps } from "../foundation/press";
-
-const toneClass: Record<FieldTone, string> = {
-  idle: "jellyfy-tone-surface",
-  error: "jellyfy-tone-error",
-  success: "jellyfy-tone-success",
-};
-
-const ringClass: Record<FieldTone, string> = {
-  idle: "focus-visible:ring-ring",
-  error: "focus-visible:ring-ring-error",
-  success: "focus-visible:ring-ring-success",
-};
+import { useMeasuredBox, usePressPlayback } from "../foundation/press";
 
 type SelectTriggerProps = {
   id: string;
@@ -41,17 +29,20 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
   disabled,
   onToggle,
 }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const [measure, box] = useMeasuredBox();
+  const press = usePressPlayback("horizontal", Boolean(disabled), box);
 
   return (
     <motion.button
+      ref={measure}
       id={id}
       type="button"
       disabled={disabled}
       aria-haspopup="listbox"
       aria-expanded={open}
       aria-controls={listId}
-      {...pressProps("horizontal", Boolean(disabled), Boolean(shouldReduceMotion))}
+      {...press.gesture}
+      onFocus={press.play}
       onClick={onToggle}
       onKeyDown={(event) => {
         if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
@@ -63,8 +54,12 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
         "jellyfy-surface noise flex h-14 w-full items-center justify-between px-4 text-left backdrop-blur-sm",
         "cursor-pointer focus-visible:ring focus-visible:ring-offset-2 focus-visible:outline-none",
         "disabled:cursor-not-allowed disabled:opacity-60",
-        toneClass[tone],
-        ringClass[tone],
+        tone === "idle" && "jellyfy-tone-surface",
+        tone === "error" && "jellyfy-tone-error",
+        tone === "success" && "jellyfy-tone-success",
+        tone === "idle" && "focus-visible:ring-ring",
+        tone === "error" && "focus-visible:ring-ring-error",
+        tone === "success" && "focus-visible:ring-ring-success",
       )}
     >
       <span className="flex min-w-0 flex-col">

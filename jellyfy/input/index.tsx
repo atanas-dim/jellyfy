@@ -1,12 +1,12 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { FC, InputHTMLAttributes, ReactNode } from "react";
 import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
-import { type FieldTone,FloatLabel } from "../foundation/float-label";
-import { pressProps } from "../foundation/press";
+import { type FieldTone, FloatLabel } from "../foundation/float-label";
+import { useMeasuredBox, usePressPlayback } from "../foundation/press";
 
 export type InputState = FieldTone;
 
@@ -15,18 +15,6 @@ type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
   label?: string;
   leading?: ReactNode;
   trailing?: ReactNode;
-};
-
-const toneClass: Record<InputState, string> = {
-  idle: "jellyfy-tone-surface",
-  error: "jellyfy-tone-error",
-  success: "jellyfy-tone-success",
-};
-
-const ringClass: Record<InputState, string> = {
-  idle: "focus-within:ring-ring",
-  error: "focus-within:ring-ring-error",
-  success: "focus-within:ring-ring-success",
 };
 
 export const Input: FC<InputProps> = ({
@@ -39,21 +27,27 @@ export const Input: FC<InputProps> = ({
   disabled,
   ...rest
 }) => {
-  const shouldReduceMotion = useReducedMotion();
+  const [measure, box] = useMeasuredBox();
+  const press = usePressPlayback("horizontal", Boolean(disabled), box);
   const autoId = useId();
   const inputId = id ?? `jellyfy-input-${autoId}`;
   const { placeholder, ...inputProps } = rest;
 
   return (
     <motion.div
-      {...pressProps("horizontal", Boolean(disabled), Boolean(shouldReduceMotion))}
+      ref={measure}
+      {...press.gesture}
       className={twMerge(
         "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
         "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
         "motion-safe:transition-all motion-safe:duration-300 ease-out",
         disabled && "opacity-60",
-        toneClass[state],
-        ringClass[state],
+        state === "idle" && "jellyfy-tone-surface",
+        state === "error" && "jellyfy-tone-error",
+        state === "success" && "jellyfy-tone-success",
+        state === "idle" && "focus-within:ring-ring",
+        state === "error" && "focus-within:ring-ring-error",
+        state === "success" && "focus-within:ring-ring-success",
         className,
       )}
     >
@@ -78,6 +72,10 @@ export const Input: FC<InputProps> = ({
           aria-invalid={state === "error"}
           aria-disabled={disabled}
           {...inputProps}
+          onFocus={(event) => {
+            press.play();
+            inputProps.onFocus?.(event);
+          }}
         />
 
         {trailing && (
