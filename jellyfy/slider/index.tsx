@@ -35,22 +35,25 @@ export const Slider: FC<SliderProps> = ({
   const current = value ?? uncontrolled;
   const progress = (Number(current) - min) / (max - min);
   const fill = invalid ? "var(--error)" : "var(--primary)";
-  const handle = invalid ? "var(--error-solid)" : "var(--primary-solid)";
   const travel = `calc((100% - 1.5rem) * ${progress})`;
 
   return (
-    <label className={twMerge("flex w-full max-w-sm flex-col gap-3", className)}>
-      <span className="text-sm font-medium text-surface-foreground">{label}</span>
+    <label
+      className={twMerge("flex w-full max-w-sm flex-col gap-3", className)}
+    >
+      <span className="text-surface-foreground text-sm font-medium">
+        {label}
+      </span>
       <span className="relative h-8 w-full">
         <span
-          className="pointer-events-none absolute top-1/2 h-3 w-full -translate-y-1/2 overflow-hidden rounded-full"
+          className="noise pointer-events-none absolute top-1/2 h-3 w-full -translate-y-1/2 overflow-hidden rounded-full"
           style={{
             backgroundColor: "var(--surface)",
             boxShadow: "var(--shadow-inset-surface), var(--shadow-drop)",
           }}
         >
           <span
-            className="absolute inset-y-0 left-0"
+            className="noise absolute inset-y-0 left-0 rounded-full"
             style={{
               width: `calc(0.75rem + ${travel})`,
               backgroundColor: fill,
@@ -58,11 +61,11 @@ export const Slider: FC<SliderProps> = ({
           />
         </span>
         <span
-          className="noise pointer-events-none absolute top-1/2 size-6 -translate-y-1/2 rounded-full"
+          className="noise pointer-events-none absolute top-1/2 z-1 size-6 -translate-y-1/2 rounded-full"
           style={
             {
               left: travel,
-              backgroundColor: handle,
+              backgroundColor: fill,
               boxShadow: "var(--shadow-inset-surface), var(--shadow-drop)",
             } as CSSProperties
           }
@@ -84,7 +87,9 @@ export const Slider: FC<SliderProps> = ({
           }}
         />
       </span>
-      {message ? <span className="text-xs text-error-foreground">{message}</span> : null}
+      {message ? (
+        <span className="text-error-foreground text-xs">{message}</span>
+      ) : null}
     </label>
   );
 };
