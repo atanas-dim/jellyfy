@@ -29,6 +29,23 @@ const scales = (axis: PressAxis, box: Box) => {
   };
 };
 
+export const playPress = (element: HTMLElement, axis: PressAxis) => {
+  const { scaleX, scaleY } = scales(axis, {
+    width: element.offsetWidth,
+    height: element.offsetHeight,
+  });
+
+  element.getAnimations().forEach((animation) => animation.cancel());
+  element.animate(
+    [
+      { transform: "none" },
+      { transform: `scale(${scaleX[1]}, ${scaleY[1]})`, offset: 0.45 },
+      { transform: "none" },
+    ],
+    { duration: 400, easing: "ease-out" },
+  );
+};
+
 export const usePress = (axis: PressAxis, disabled: boolean) => {
   const reduceMotion = Boolean(useReducedMotion());
   const controls = useAnimation();

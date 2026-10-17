@@ -52,7 +52,9 @@
   --warning-shade: color-mix(in oklab, var(--color-amber-900) 10%, transparent);
 
   --surface: color-mix(in oklab, var(--color-neutral-50) 60%, transparent);
-  --panel: color-mix(in oklab, white 88%, transparent);
+  --panel: white;
+  --primary-solid: var(--color-pink-600);
+  --error-solid: var(--color-red-600);
   --surface-focus: color-mix(
     in oklab,
     var(--color-neutral-100) 60%,
@@ -331,8 +333,8 @@ input:checked + .jellyfy-check .jellyfy-mark {
 }
 
 .jellyfy-radio-dot {
-  width: 0.625rem;
-  height: 0.625rem;
+  width: 0.875rem;
+  height: 0.875rem;
   border-radius: 999px;
   background: var(--primary);
   opacity: 0;
@@ -373,8 +375,9 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
   border-radius: var(--radius-control);
   background: linear-gradient(
     to right,
-    var(--primary) var(--fill),
-    var(--surface) var(--fill)
+    var(--primary) 0,
+    var(--primary) calc(0.75rem + (100% - 1.5rem) * var(--p)),
+    var(--surface) calc(0.75rem + (100% - 1.5rem) * var(--p))
   );
   box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
 }
@@ -382,8 +385,9 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
 .jellyfy-range[data-invalid]::-webkit-slider-runnable-track {
   background: linear-gradient(
     to right,
-    var(--error) var(--fill),
-    var(--surface) var(--fill)
+    var(--error) 0,
+    var(--error) calc(0.75rem + (100% - 1.5rem) * var(--p)),
+    var(--surface) calc(0.75rem + (100% - 1.5rem) * var(--p))
   );
 }
 
@@ -394,8 +398,12 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
   margin-top: -0.375rem;
   border: 0;
   border-radius: var(--radius-control);
-  background: var(--surface);
+  background: var(--primary-solid);
   box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+}
+
+.jellyfy-range[data-invalid]::-webkit-slider-thumb {
+  background: var(--error-solid);
 }
 
 .jellyfy-range::-moz-range-track {
@@ -404,8 +412,9 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
   border-radius: var(--radius-control);
   background: linear-gradient(
     to right,
-    var(--primary) var(--fill),
-    var(--surface) var(--fill)
+    var(--primary) 0,
+    var(--primary) calc(0.75rem + (100% - 1.5rem) * var(--p)),
+    var(--surface) calc(0.75rem + (100% - 1.5rem) * var(--p))
   );
   box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
 }
@@ -415,8 +424,12 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
   height: 1.5rem;
   border: 0;
   border-radius: var(--radius-control);
-  background: var(--surface);
+  background: var(--primary-solid);
   box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+}
+
+.jellyfy-range[data-invalid]::-moz-range-thumb {
+  background: var(--error-solid);
 }
 
 .jellyfy-dialog[open] {

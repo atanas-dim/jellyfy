@@ -1,12 +1,12 @@
 "use client";
 
-import { motion } from "motion/react";
-import type { FC, ReactNode, TextareaHTMLAttributes } from "react";
+import { useReducedMotion } from "motion/react";
+import type { FC, PointerEvent, ReactNode, TextareaHTMLAttributes } from "react";
 import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
 import { type FieldTone, FloatLabel } from "../foundation/float-label";
-import { usePress } from "../foundation/press";
+import { playPress } from "../foundation/press";
 
 type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   state?: FieldTone;
@@ -23,16 +23,26 @@ export const Textarea: FC<TextareaProps> = ({
   disabled,
   ...rest
 }) => {
-  const press = usePress("horizontal", Boolean(disabled));
+  const reduceMotion = Boolean(useReducedMotion());
   const autoId = useId();
   const inputId = id ?? `jellyfy-textarea-${autoId}`;
   const { placeholder, ...textareaProps } = rest;
 
+  const onPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const onResizeHandle =
+      rect.right - event.clientX < 18 && rect.bottom - event.clientY < 18;
+    if (onResizeHandle || disabled || reduceMotion) return;
+    playPress(event.currentTarget, "horizontal");
+  };
+
   return (
-    <motion.div
-      animate={press.controls}
-      onPointerDown={(event) => press.play(event.currentTarget)}
-      onFocus={(event) => press.play(event.currentTarget)}
+    <div
+      onPointerDown={onPointerDown}
+      onFocus={(event) => {
+        if (disabled || reduceMotion) return;
+        playPress(event.currentTarget, "horizontal");
+      }}
       className={twMerge(
         "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
         "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
@@ -71,6 +81,6 @@ export const Textarea: FC<TextareaProps> = ({
           </FloatLabel>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 };

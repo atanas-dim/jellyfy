@@ -47,7 +47,7 @@ export const Slider: FC<SliderProps> = ({
         aria-invalid={invalid}
         aria-valuetext={`${current}`}
         data-invalid={invalid ? "" : undefined}
-        style={{ ["--fill" as string]: `${fill}%` }}
+        style={{ ["--p" as string]: fill / 100 }}
         className="jellyfy-range disabled:cursor-not-allowed disabled:opacity-60"
         onChange={(event) => {
           const next = Number(event.target.value);
