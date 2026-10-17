@@ -119,8 +119,6 @@
   --color-ring: var(--ring);
   --color-ring-error: var(--ring-error);
   --color-ring-success: var(--ring-success);
-  --radius-control: var(--radius-control);
-  --radius-surface: var(--radius-surface);
 }
 
 .noise {
