@@ -256,6 +256,15 @@
   box-shadow:
     var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
     var(--shadow-inset-surface), var(--shadow-drop);
+  transition:
+    box-shadow 300ms ease-out,
+    background-color 300ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jellyfy-surface {
+    transition: none;
+  }
 }
 
 .jellyfy-surface:focus-within {
