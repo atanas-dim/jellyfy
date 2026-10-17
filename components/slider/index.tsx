@@ -54,7 +54,12 @@ export const Slider: FC<SliderProps> = ({
       <span className="text-surface-foreground text-sm font-medium">
         {label}
       </span>
-      <span className="relative h-8 w-full">
+      <span
+        className={twMerge(
+          "relative h-8 w-full rounded-full focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
+          invalid ? "focus-within:ring-ring-error" : "focus-within:ring-ring",
+        )}
+      >
         <span
           className="noise pointer-events-none absolute top-1/2 h-3 w-full -translate-y-1/2 overflow-hidden rounded-full"
           style={{

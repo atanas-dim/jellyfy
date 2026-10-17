@@ -55,12 +55,12 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
       }}
       className={twMerge(
         "jellyfy-surface noise flex h-14 w-full items-center justify-between px-4 text-left backdrop-blur-sm",
-        "cursor-pointer focus-visible:ring focus-visible:ring-offset-2 focus-visible:outline-none",
+        "cursor-pointer focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
         "disabled:cursor-not-allowed disabled:opacity-60",
         colorClass(color),
-        color === "error" && "focus-visible:ring-ring-error",
-        color === "success" && "focus-visible:ring-ring-success",
-        color !== "error" && color !== "success" && "focus-visible:ring-ring",
+        color === "error" && "focus-within:ring-ring-error",
+        color === "success" && "focus-within:ring-ring-success",
+        color !== "error" && color !== "success" && "focus-within:ring-ring",
       )}
     >
       <span className="flex min-w-0 flex-col">

@@ -33,7 +33,11 @@ export const Checkbox: FC<CheckboxProps> = ({
           animate={press.controls}
           onPointerDown={(event) => press.play(event.currentTarget)}
           onFocus={(event) => press.play(event.currentTarget)}
-          className="relative flex size-6 shrink-0 items-center justify-center"
+          className={twMerge(
+            "relative flex size-6 shrink-0 items-center justify-center rounded-lg",
+            "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
+            invalid ? "focus-within:ring-ring-error" : "focus-within:ring-ring",
+          )}
         >
           <input
             type="checkbox"
@@ -42,7 +46,7 @@ export const Checkbox: FC<CheckboxProps> = ({
             className="peer absolute inset-0 z-10 cursor-pointer appearance-none rounded-lg focus-visible:outline-none"
             {...rest}
           />
-          <span className="jellyfy-nub jellyfy-check noise pointer-events-none flex size-6 items-center justify-center rounded-lg backdrop-blur-sm peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2">
+          <span className="jellyfy-nub jellyfy-check noise pointer-events-none flex size-6 items-center justify-center rounded-lg backdrop-blur-sm">
             <CheckIcon className="jellyfy-mark size-3.5" strokeWidth={3} />
           </span>
         </motion.span>

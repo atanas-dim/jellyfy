@@ -32,7 +32,11 @@ export const Switch: FC<SwitchProps> = ({
           animate={press.controls}
           onPointerDown={(event) => press.play(event.currentTarget)}
           onFocus={(event) => press.play(event.currentTarget)}
-          className="relative h-7 w-12 shrink-0"
+          className={twMerge(
+            "relative h-7 w-12 shrink-0 rounded-full",
+            "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
+            invalid ? "focus-within:ring-ring-error" : "focus-within:ring-ring",
+          )}
         >
           <input
             type="checkbox"
@@ -42,7 +46,7 @@ export const Switch: FC<SwitchProps> = ({
             className="peer absolute inset-0 z-10 cursor-pointer appearance-none rounded-full focus-visible:outline-none"
             {...rest}
           />
-          <span className="jellyfy-switch noise peer-focus-visible:ring-ring pointer-events-none absolute inset-0 rounded-full shadow-[var(--shadow-inset-surface),var(--shadow-drop)] backdrop-blur-sm transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2" />
+          <span className="jellyfy-switch noise pointer-events-none absolute inset-0 rounded-full shadow-[var(--shadow-inset-surface),var(--shadow-drop)] backdrop-blur-sm transition-colors" />
           <span className="jellyfy-switch-thumb jellyfy-nub noise pointer-events-none absolute top-1 left-1 size-5 rounded-full transition-transform" />
         </motion.span>
         {label}

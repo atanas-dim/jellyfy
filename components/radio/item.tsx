@@ -24,7 +24,7 @@ export const RadioItem: FC<RadioItemProps> = ({ value, children, disabled }) => 
         animate={press.controls}
         onPointerDown={(event) => press.play(event.currentTarget)}
         onFocus={(event) => press.play(event.currentTarget)}
-        className="relative flex size-6 shrink-0 items-center justify-center"
+        className="relative flex size-6 shrink-0 items-center justify-center rounded-full focus-within:ring focus-within:ring-ring focus-within:ring-offset-2 focus-within:outline-none"
       >
         <input
           type="radio"
@@ -36,7 +36,7 @@ export const RadioItem: FC<RadioItemProps> = ({ value, children, disabled }) => 
           onChange={() => group.onValueChange?.(value)}
           className="peer absolute inset-0 z-10 cursor-pointer appearance-none rounded-full focus-visible:outline-none"
         />
-        <span className="jellyfy-nub noise pointer-events-none flex size-6 items-center justify-center rounded-full backdrop-blur-sm peer-focus-visible:ring-2 peer-focus-visible:ring-ring peer-focus-visible:ring-offset-2">
+        <span className="jellyfy-nub noise pointer-events-none flex size-6 items-center justify-center rounded-full backdrop-blur-sm">
           <span className="jellyfy-radio-dot" />
         </span>
       </motion.span>
