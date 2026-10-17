@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import type { FC } from "react";
 import { twMerge } from "tailwind-merge";
 
-import type { FieldTone } from "../foundation/float-label";
+import { type Color, colorClass } from "../foundation/color";
 import { usePress } from "../foundation/press";
 
 type SelectTriggerProps = {
@@ -14,7 +14,7 @@ type SelectTriggerProps = {
   open: boolean;
   label?: string;
   text: string;
-  tone?: FieldTone;
+  color?: Color;
   disabled?: boolean;
   onToggle: () => void;
 };
@@ -25,7 +25,7 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
   open,
   label,
   text,
-  tone = "idle",
+  color = "neutral",
   disabled,
   onToggle,
 }) => {
@@ -57,12 +57,10 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
         "jellyfy-surface noise flex h-14 w-full items-center justify-between px-4 text-left backdrop-blur-sm",
         "cursor-pointer focus-visible:ring focus-visible:ring-offset-2 focus-visible:outline-none",
         "disabled:cursor-not-allowed disabled:opacity-60",
-        tone === "idle" && "jellyfy-tone-surface",
-        tone === "error" && "jellyfy-tone-error",
-        tone === "success" && "jellyfy-tone-success",
-        tone === "idle" && "focus-visible:ring-ring",
-        tone === "error" && "focus-visible:ring-ring-error",
-        tone === "success" && "focus-visible:ring-ring-success",
+        colorClass(color),
+        color === "error" && "focus-visible:ring-ring-error",
+        color === "success" && "focus-visible:ring-ring-success",
+        color !== "error" && color !== "success" && "focus-visible:ring-ring",
       )}
     >
       <span className="flex min-w-0 flex-col">

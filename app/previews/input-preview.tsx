@@ -20,10 +20,10 @@ const InputPreview: FC = () => {
         />
       </div>
       <div className="w-full max-w-sm">
-        <Input placeholder="Nickname" label="Nickname" state="success" />
+        <Input placeholder="Nickname" label="Nickname" color="success" />
       </div>
       <div className="w-full max-w-sm">
-        <Input placeholder="Email" label="Email" state="error" />
+        <Input placeholder="Email" label="Email" color="error" />
       </div>
       <div className="w-full max-w-sm">
         <Input placeholder="Can't edit" label="Disabled" disabled />

@@ -34,7 +34,12 @@ export const Dialog: FC<DialogProps> = ({ trigger, title, description, children 
       <div className="jellyfy-overlay noise w-[min(28rem,calc(100vw-2rem))] p-6 backdrop-blur-sm">
         <div className="flex items-start justify-between gap-4">
           <h2 className="text-lg font-semibold">{title}</h2>
-          <IconButton label="Close" className="size-9" onClick={() => dialogRef.current?.close()}>
+          <IconButton
+            label="Close"
+            color="neutral"
+            className="size-9"
+            onClick={() => dialogRef.current?.close()}
+          >
             <XIcon className="size-4" />
           </IconButton>
         </div>

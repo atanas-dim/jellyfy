@@ -8,23 +8,23 @@
   );
   --primary-shade: color-mix(in oklab, var(--color-pink-900) 35%, transparent);
 
-  --busy: color-mix(in oklab, var(--color-indigo-600) 60%, transparent);
-  --busy-foreground: var(--color-indigo-100);
-  --busy-highlight: color-mix(
+  --secondary: color-mix(in oklab, var(--color-indigo-600) 60%, transparent);
+  --secondary-foreground: var(--color-indigo-100);
+  --secondary-highlight: color-mix(
     in oklab,
     var(--color-indigo-50) 20%,
     transparent
   );
-  --busy-shade: color-mix(in oklab, var(--color-indigo-900) 35%, transparent);
+  --secondary-shade: color-mix(in oklab, var(--color-indigo-900) 35%, transparent);
 
-  --complete: color-mix(in oklab, var(--color-teal-600) 60%, transparent);
-  --complete-foreground: var(--color-teal-50);
-  --complete-highlight: color-mix(
+  --tertiary: color-mix(in oklab, var(--color-teal-600) 60%, transparent);
+  --tertiary-foreground: var(--color-teal-50);
+  --tertiary-highlight: color-mix(
     in oklab,
     var(--color-teal-50) 20%,
     transparent
   );
-  --complete-shade: color-mix(in oklab, var(--color-teal-900) 35%, transparent);
+  --tertiary-shade: color-mix(in oklab, var(--color-teal-900) 35%, transparent);
 
   --success: color-mix(in oklab, var(--color-green-100) 60%, transparent);
   --success-focus: color-mix(in oklab, var(--color-green-200) 60%, transparent);
@@ -101,10 +101,10 @@
 @theme inline {
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-busy: var(--busy);
-  --color-busy-foreground: var(--busy-foreground);
-  --color-complete: var(--complete);
-  --color-complete-foreground: var(--complete-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
   --color-error: var(--error);
@@ -133,28 +133,28 @@
   --jellyfy-shade: var(--primary-shade);
 }
 
-.jellyfy-tone-busy {
-  background-color: var(--busy);
-  color: var(--busy-foreground);
-  --jellyfy-highlight: var(--busy-highlight);
-  --jellyfy-shade: var(--busy-shade);
+.jellyfy-tone-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  --jellyfy-highlight: var(--secondary-highlight);
+  --jellyfy-shade: var(--secondary-shade);
 }
 
-.jellyfy-tone-complete {
-  background-color: var(--complete);
-  color: var(--complete-foreground);
-  --jellyfy-highlight: var(--complete-highlight);
-  --jellyfy-shade: var(--complete-shade);
+.jellyfy-tone-tertiary {
+  background-color: var(--tertiary);
+  color: var(--tertiary-foreground);
+  --jellyfy-highlight: var(--tertiary-highlight);
+  --jellyfy-shade: var(--tertiary-shade);
 }
 
-.jellyfy-tone-surface {
+.jellyfy-tone-neutral {
   background-color: var(--surface);
   color: var(--surface-foreground);
   --jellyfy-highlight: var(--surface-highlight);
   --jellyfy-shade: var(--surface-shade);
 }
 
-.jellyfy-tone-surface:focus-within {
+.jellyfy-tone-neutral:focus-within {
   background-color: var(--surface-focus);
 }
 

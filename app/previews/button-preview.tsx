@@ -1,27 +1,11 @@
 "use client";
 
-import { LoaderIcon, RocketIcon, ThumbsUpIcon } from "lucide-react";
-import { type FC, useState } from "react";
+import { RocketIcon } from "lucide-react";
+import type { FC } from "react";
 
-import { Button, type ButtonState } from "@/components/button";
-
-const delay = (ms: number) =>
-  new Promise<void>((resolve) => {
-    window.setTimeout(resolve, ms);
-  });
+import { Button } from "@/components/button";
 
 const ButtonPreview: FC = () => {
-  const [state, setState] = useState<ButtonState>("idle");
-
-  const handleClick = async () => {
-    if (state !== "idle") return;
-    setState("processing");
-    await delay(2800);
-    setState("success");
-    await delay(1400);
-    setState("idle");
-  };
-
   return (
     <div className="relative z-10 flex flex-col gap-3 perspective-midrange md:flex-row">
       <div className="pointer-events-none absolute inset-0 -z-1 select-none">
@@ -29,28 +13,17 @@ const ButtonPreview: FC = () => {
         <div className="absolute -top-8 left-3/5 -z-1 size-32 rounded-full border-6 border-neutral-700" />
         <div className="absolute -right-10 -bottom-2/10 -z-1 size-22 rounded-sm border-6 border-neutral-700" />
       </div>
-      <Button className="mx-auto min-w-46" state={state} onClick={handleClick}>
-        {state === "idle" && (
-          <>
-            <RocketIcon className="size-4.5" /> Launch
-          </>
-        )}
-        {state === "processing" && (
-          <>
-            <LoaderIcon className="size-4.5 animate-spin" /> Processing...
-          </>
-        )}
-        {state === "success" && (
-          <>
-            <ThumbsUpIcon className="size-4.5 translate-y-0.5 animate-bounce" /> Success!
-          </>
-        )}
+      <Button className="mx-auto min-w-46">
+        <RocketIcon className="size-4.5" /> Primary
       </Button>
-      <Button className="mx-auto min-w-46" state="success" animateLabel={false}>
-        <ThumbsUpIcon className="size-4.5 -translate-y-0.5" /> Success!
+      <Button className="mx-auto min-w-46" color="secondary">
+        Secondary
       </Button>
-      <Button className="mx-auto min-w-46" state={state} onClick={handleClick} disabled>
-        <RocketIcon className="size-4.5" /> Launch
+      <Button className="mx-auto min-w-46" color="tertiary">
+        Tertiary
+      </Button>
+      <Button className="mx-auto min-w-46" color="neutral">
+        Neutral
       </Button>
     </div>
   );

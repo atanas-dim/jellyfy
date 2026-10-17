@@ -3,30 +3,14 @@
 import { RocketIcon } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
-import { useState } from "react";
 
-import { Button, type ButtonState } from "@/components/button";
+import { Button } from "@/components/button";
 import { Input } from "@/components/input";
 import { COMPONENT_LIST } from "@/resources/components-registry";
 
-const delay = (ms: number) =>
-  new Promise<void>((resolve) => {
-    window.setTimeout(resolve, ms);
-  });
-
 export default function Home() {
   const reduceMotion = useReducedMotion();
-  const [state, setState] = useState<ButtonState>("idle");
   const entrance = reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 };
-
-  const launch = async () => {
-    if (state !== "idle") return;
-    setState("processing");
-    await delay(1600);
-    setState("success");
-    await delay(1200);
-    setState("idle");
-  };
 
   return (
     <main className="min-h-screen text-neutral-950">
@@ -51,24 +35,11 @@ export default function Home() {
           </div>
           <form
             className="jellyfy-panel noise flex flex-col gap-4 p-5 backdrop-blur-sm"
-            onSubmit={(event) => {
-              event.preventDefault();
-              void launch();
-            }}
+            onSubmit={(event) => event.preventDefault()}
           >
             <Input label="Work email" placeholder="you@studio.com" />
-            <Button
-              state={state}
-              className="w-full"
-              onClick={() => void launch()}
-            >
-              {state === "processing" && "Sending"}
-              {state === "success" && "Sent"}
-              {state === "idle" && (
-                <>
-                  <RocketIcon className="size-4.5" /> Send
-                </>
-              )}
+            <Button className="w-full">
+              <RocketIcon className="size-4.5" /> Send
             </Button>
           </form>
         </motion.section>
@@ -90,11 +61,11 @@ export default function Home() {
               The inset is the thickness. The drop is the contact.
             </p>
           </div>
-          <div className="jellyfy-raised jellyfy-tone-complete noise flex min-h-40 flex-col justify-end p-5 backdrop-blur-sm">
+          <div className="jellyfy-raised jellyfy-tone-tertiary noise flex min-h-40 flex-col justify-end p-5 backdrop-blur-sm">
             <p className="text-sm font-semibold tracking-wide uppercase">
               Press
             </p>
-            <p className="text-complete-foreground/80 mt-2 text-sm leading-6">
+            <p className="text-tertiary-foreground/80 mt-2 text-sm leading-6">
               Buttons bulge taller. Fields bulge wider.
             </p>
           </div>

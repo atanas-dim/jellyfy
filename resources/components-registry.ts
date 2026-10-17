@@ -15,7 +15,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
       "Raised brand control. Idle, busy, and complete stay on the brand tokens.",
     usage: `import { Button } from "./components/button"
 
-<Button state="idle">Launch</Button>`,
+<Button color="primary">Launch</Button>`,
   },
   [ComponentSlug.IconButton]: {
     slug: ComponentSlug.IconButton,
@@ -35,7 +35,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
       "Field surface with a floating label. Validation uses success and error.",
     usage: `import { Input } from "./components/input"
 
-<Input label="Email" state="error" />`,
+<Input label="Email" color="error" />`,
   },
   [ComponentSlug.Textarea]: {
     slug: ComponentSlug.Textarea,
@@ -100,7 +100,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     description: "Status message. Warning lives here, with success and error.",
     usage: `import { Alert } from "./components/alert"
 
-<Alert tone="warning" title="Check the name" />`,
+<Alert color="warning" title="Check the name" />`,
   },
   [ComponentSlug.Badge]: {
     slug: ComponentSlug.Badge,
@@ -108,7 +108,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     description: "Brand and status colors at a small size.",
     usage: `import { Badge } from "./components/badge"
 
-<Badge tone="success">Ready</Badge>`,
+<Badge color="success">Ready</Badge>`,
   },
   [ComponentSlug.Card]: {
     slug: ComponentSlug.Card,

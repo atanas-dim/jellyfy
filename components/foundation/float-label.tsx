@@ -1,19 +1,19 @@
 import type { FC, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-export type FieldTone = "idle" | "error" | "success";
+import type { Color } from "./color";
 
 type FloatLabelProps = {
   htmlFor: string;
   leading?: boolean;
-  tone?: FieldTone;
+  color?: Color;
   children: ReactNode;
 };
 
 export const FloatLabel: FC<FloatLabelProps> = ({
   htmlFor,
   leading = false,
-  tone = "idle",
+  color = "neutral",
   children,
 }) => {
   return (
@@ -25,8 +25,9 @@ export const FloatLabel: FC<FloatLabelProps> = ({
         "text-[10px] font-medium text-neutral-500",
         "peer-placeholder-shown:top-4.5 peer-placeholder-shown:text-sm peer-placeholder-shown:font-normal",
         "ease-out motion-safe:transition-all motion-safe:duration-300",
-        tone === "error" && "text-error-foreground",
-        tone === "success" && "text-success-foreground",
+        color === "error" && "text-error-foreground",
+        color === "success" && "text-success-foreground",
+        color === "warning" && "text-warning-foreground",
       )}
     >
       {children}

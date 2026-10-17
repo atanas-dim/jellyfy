@@ -8,7 +8,7 @@ const TextareaPreview: FC = () => {
   return (
     <div className="grid w-full max-w-4xl items-start gap-4 md:grid-cols-2">
       <Textarea label="Note" placeholder="Write a note" />
-      <Textarea label="Note" placeholder="Looks good" state="success" />
+      <Textarea label="Note" placeholder="Looks good" color="success" />
     </div>
   );
 };

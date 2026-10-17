@@ -5,7 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
 
-import type { FieldTone } from "../foundation/float-label";
+import type { Color } from "../foundation/color";
 import { nextLayer } from "../foundation/layer";
 import { SelectContext } from "./context";
 import { SelectMenu } from "./menu";
@@ -18,7 +18,7 @@ type SelectProps = {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  tone?: FieldTone;
+  color?: Color;
   disabled?: boolean;
   message?: string;
   children: ReactNode;
@@ -31,7 +31,7 @@ export const Select: FC<SelectProps> = ({
   value,
   defaultValue,
   onValueChange,
-  tone = "idle",
+  color = "neutral",
   disabled,
   message,
   children,
@@ -140,7 +140,7 @@ export const Select: FC<SelectProps> = ({
             open={open}
             label={label}
             text={current ? (labels[current] ?? current) : placeholder}
-            tone={tone}
+            color={color}
             disabled={disabled}
             onToggle={() => {
               if (!open) setLayer(nextLayer());

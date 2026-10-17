@@ -5,20 +5,19 @@ import type { FC, InputHTMLAttributes, ReactNode } from "react";
 import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
-import { type FieldTone, FloatLabel } from "../foundation/float-label";
+import { type Color, colorClass } from "../foundation/color";
+import { FloatLabel } from "../foundation/float-label";
 import { usePress } from "../foundation/press";
 
-export type InputState = FieldTone;
-
 type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
-  state?: InputState;
+  color?: Color;
   label?: string;
   leading?: ReactNode;
   trailing?: ReactNode;
 };
 
 export const Input: FC<InputProps> = ({
-  state = "idle",
+  color = "neutral",
   label,
   leading,
   trailing,
@@ -42,12 +41,10 @@ export const Input: FC<InputProps> = ({
         "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
         "motion-safe:transition-all motion-safe:duration-300 ease-out",
         disabled && "opacity-60",
-        state === "idle" && "jellyfy-tone-surface",
-        state === "error" && "jellyfy-tone-error",
-        state === "success" && "jellyfy-tone-success",
-        state === "idle" && "focus-within:ring-ring",
-        state === "error" && "focus-within:ring-ring-error",
-        state === "success" && "focus-within:ring-ring-success",
+        colorClass(color),
+        color === "error" && "focus-within:ring-ring-error",
+        color === "success" && "focus-within:ring-ring-success",
+        color !== "error" && color !== "success" && "focus-within:ring-ring",
         className,
       )}
     >
@@ -69,7 +66,7 @@ export const Input: FC<InputProps> = ({
           )}
           placeholder={placeholder ?? " "}
           disabled={disabled}
-          aria-invalid={state === "error"}
+          aria-invalid={color === "error"}
           aria-disabled={disabled}
           {...inputProps}
         />
@@ -81,7 +78,7 @@ export const Input: FC<InputProps> = ({
         )}
 
         {label && (
-          <FloatLabel htmlFor={inputId} leading={Boolean(leading)} tone={state}>
+          <FloatLabel htmlFor={inputId} leading={Boolean(leading)} color={color}>
             {label}
           </FloatLabel>
         )}

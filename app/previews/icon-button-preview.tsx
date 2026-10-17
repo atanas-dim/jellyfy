@@ -11,7 +11,7 @@ const IconButtonPreview: FC = () => {
       <IconButton label="Add">
         <PlusIcon className="size-4.5" />
       </IconButton>
-      <IconButton label="Save" state="success">
+      <IconButton label="Save" color="neutral">
         <HeartIcon className="size-4.5" />
       </IconButton>
       <IconButton label="Add" disabled>

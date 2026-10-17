@@ -10,17 +10,18 @@ import type {
 import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
-import { type FieldTone, FloatLabel } from "../foundation/float-label";
+import { type Color, colorClass } from "../foundation/color";
+import { FloatLabel } from "../foundation/float-label";
 import { playPress } from "../foundation/press";
 
 type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  state?: FieldTone;
+  color?: Color;
   label?: string;
   leading?: ReactNode;
 };
 
 export const Textarea: FC<TextareaProps> = ({
-  state = "idle",
+  color = "neutral",
   label,
   leading,
   id,
@@ -52,12 +53,10 @@ export const Textarea: FC<TextareaProps> = ({
         "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
         "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
         disabled && "opacity-60",
-        state === "idle" && "jellyfy-tone-surface",
-        state === "error" && "jellyfy-tone-error",
-        state === "success" && "jellyfy-tone-success",
-        state === "idle" && "focus-within:ring-ring",
-        state === "error" && "focus-within:ring-ring-error",
-        state === "success" && "focus-within:ring-ring-success",
+        colorClass(color),
+        color === "error" && "focus-within:ring-ring-error",
+        color === "success" && "focus-within:ring-ring-success",
+        color !== "error" && color !== "success" && "focus-within:ring-ring",
         className,
         "h-fit w-full self-start",
       )}
@@ -78,11 +77,11 @@ export const Textarea: FC<TextareaProps> = ({
           )}
           placeholder={placeholder ?? " "}
           disabled={disabled}
-          aria-invalid={state === "error"}
+          aria-invalid={color === "error"}
           {...textareaProps}
         />
         {label && (
-          <FloatLabel htmlFor={inputId} leading={Boolean(leading)} tone={state}>
+          <FloatLabel htmlFor={inputId} leading={Boolean(leading)} color={color}>
             {label}
           </FloatLabel>
         )}

@@ -7,27 +7,14 @@ import {
   useReducedMotion,
 } from "motion/react";
 import { type FC, type PropsWithChildren } from "react";
-import { twJoin, twMerge } from "tailwind-merge";
+import { twMerge } from "tailwind-merge";
 
+import { type Color, colorClass } from "../foundation/color";
 import { usePress } from "../foundation/press";
-
-type ProcessingLight = {
-  delay: number;
-  duration: number;
-  className: string;
-};
-
-const PROCESSING_LIGHTS: ProcessingLight[] = [
-  { delay: 0, duration: 1.35, className: "bg-white/40" },
-  { delay: 0.36, duration: 1.65, className: "bg-black/40" },
-  { delay: 0.78, duration: 1.5, className: "bg-white/40" },
-];
-
-export type ButtonState = "idle" | "processing" | "success";
 
 type ButtonProps = PropsWithChildren<HTMLMotionProps<"button">> & {
   labelClassName?: string;
-  state?: ButtonState;
+  color?: Color;
   animateLabel?: boolean;
 };
 
@@ -35,12 +22,11 @@ export const Button: FC<ButtonProps> = ({
   children = "Label",
   className,
   labelClassName,
-  state = "idle",
+  color = "primary",
   animateLabel = true,
   ...rest
 }) => {
   const shouldReduceMotion = useReducedMotion();
-  const isProcessing = state === "processing";
   const isDisabled = Boolean(rest.disabled);
   const press = usePress("vertical", isDisabled);
 
@@ -53,7 +39,6 @@ export const Button: FC<ButtonProps> = ({
     <motion.button
       type="button"
       whileHover={press.hover}
-      aria-busy={isProcessing}
       {...rest}
       animate={press.controls}
       onPointerDown={(event) => {
@@ -70,50 +55,14 @@ export const Button: FC<ButtonProps> = ({
         "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none",
         "cursor-pointer disabled:cursor-not-allowed",
         "disabled:translate-y-0 disabled:scale-100 disabled:hover:translate-y-0 disabled:hover:scale-100 disabled:active:translate-y-0 disabled:active:scale-100",
-        state === "idle" && "jellyfy-tone-primary",
-        state === "processing" && "jellyfy-tone-busy",
-        state === "success" && "jellyfy-tone-complete",
+        colorClass(color),
         className,
       )}
     >
-      {!isDisabled && (
-        <AnimatePresence initial={!animateLabel}>
-          {isProcessing && (
-            <motion.span
-              key="processing-lights"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="pointer-events-none absolute inset-0 overflow-hidden rounded-full motion-reduce:hidden"
-            >
-              {PROCESSING_LIGHTS.map(({ delay, duration, className: lightClass }, index) => (
-                <motion.span
-                  key={index}
-                  className={twJoin(
-                    "absolute top-1/2 block h-2/5 w-3/10 -translate-y-1/2 rounded-full blur-md",
-                    lightClass,
-                  )}
-                  initial={{ x: "-100%" }}
-                  animate={{ x: "300%", opacity: [0, 0.55, 0.3, 0.42, 0] }}
-                  transition={{
-                    duration,
-                    delay,
-                    repeat: Infinity,
-                    ease: "linear",
-                    times: [0, 0.08, 0.55, 0.78, 1],
-                  }}
-                />
-              ))}
-            </motion.span>
-          )}
-        </AnimatePresence>
-      )}
-
       {animateLabel && !isDisabled ? (
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
-            key={state}
+            key={color}
             initial={shouldReduceMotion ? { opacity: 0 } : { y: 14, opacity: 0 }}
             animate={shouldReduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
             exit={shouldReduceMotion ? { opacity: 0 } : { y: -14, opacity: 0 }}

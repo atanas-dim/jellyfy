@@ -5,18 +5,18 @@ import { motion } from "motion/react";
 import type { FC, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-import type { ButtonState } from "../button";
+import { type Color, colorClass } from "../foundation/color";
 import { usePress } from "../foundation/press";
 
 type IconButtonProps = HTMLMotionProps<"button"> & {
   label: string;
-  state?: ButtonState;
+  color?: Color;
   children: ReactNode;
 };
 
 export const IconButton: FC<IconButtonProps> = ({
   label,
-  state = "idle",
+  color = "primary",
   children,
   className,
   ...rest
@@ -43,9 +43,7 @@ export const IconButton: FC<IconButtonProps> = ({
         "jellyfy-raised noise inline-flex size-12 items-center justify-center backdrop-blur-sm",
         "cursor-pointer focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none",
         "disabled:cursor-not-allowed",
-        state === "idle" && "jellyfy-tone-primary",
-        state === "processing" && "jellyfy-tone-busy",
-        state === "success" && "jellyfy-tone-complete",
+        colorClass(color),
         className,
       )}
     >

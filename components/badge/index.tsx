@@ -1,23 +1,20 @@
 import type { FC, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-type BadgeTone = "primary" | "success" | "error" | "warning";
+import { type Color, colorClass } from "../foundation/color";
 
 type BadgeProps = {
-  tone?: BadgeTone;
+  color?: Color;
   children: ReactNode;
   className?: string;
 };
 
-export const Badge: FC<BadgeProps> = ({ tone = "primary", children, className }) => {
+export const Badge: FC<BadgeProps> = ({ color = "primary", children, className }) => {
   return (
     <span
       className={twMerge(
         "jellyfy-badge noise inline-flex items-center rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-wide uppercase backdrop-blur-sm",
-        tone === "primary" && "jellyfy-tone-primary",
-        tone === "success" && "jellyfy-tone-success",
-        tone === "error" && "jellyfy-tone-error",
-        tone === "warning" && "jellyfy-tone-warning",
+        colorClass(color),
         className,
       )}
     >

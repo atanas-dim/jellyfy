@@ -2,32 +2,25 @@ import { CircleAlertIcon, CircleCheckIcon, TriangleAlertIcon } from "lucide-reac
 import type { FC, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-type AlertTone = "success" | "error" | "warning";
-
-const icon: Record<AlertTone, FC<{ className?: string }>> = {
-  success: CircleCheckIcon,
-  error: CircleAlertIcon,
-  warning: TriangleAlertIcon,
-};
+import { type Color, colorClass } from "../foundation/color";
 
 type AlertProps = {
-  tone?: AlertTone;
+  color?: Color;
   title: string;
   children?: ReactNode;
   className?: string;
 };
 
-export const Alert: FC<AlertProps> = ({ tone = "warning", title, children, className }) => {
-  const Icon = icon[tone];
+export const Alert: FC<AlertProps> = ({ color = "warning", title, children, className }) => {
+  const Icon =
+    color === "success" ? CircleCheckIcon : color === "error" ? CircleAlertIcon : TriangleAlertIcon;
 
   return (
     <div
       role="status"
       className={twMerge(
         "jellyfy-surface noise flex gap-3 px-4 py-3 backdrop-blur-sm",
-        tone === "success" && "jellyfy-tone-success",
-        tone === "error" && "jellyfy-tone-error",
-        tone === "warning" && "jellyfy-tone-warning",
+        colorClass(color),
         className,
       )}
     >

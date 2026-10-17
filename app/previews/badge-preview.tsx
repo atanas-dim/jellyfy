@@ -8,9 +8,9 @@ const BadgePreview: FC = () => {
   return (
     <div className="flex flex-wrap gap-2">
       <Badge>Brand</Badge>
-      <Badge tone="success">Ready</Badge>
-      <Badge tone="warning">Review</Badge>
-      <Badge tone="error">Failed</Badge>
+      <Badge color="success">Ready</Badge>
+      <Badge color="warning">Review</Badge>
+      <Badge color="error">Failed</Badge>
     </div>
   );
 };
