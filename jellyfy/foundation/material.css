@@ -262,7 +262,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .jellyfy-surface {
+  .jellyfy-surface,
+  .jellyfy-check,
+  .jellyfy-switch,
+  .jellyfy-mark,
+  .jellyfy-radio-dot {
     transition: none;
   }
 }
@@ -328,8 +332,17 @@
   background-color: var(--primary);
 }
 
+.jellyfy-check,
+.jellyfy-switch {
+  transition:
+    background-color 300ms ease-out,
+    color 300ms ease-out,
+    box-shadow 300ms ease-out;
+}
+
 .jellyfy-mark {
   opacity: 0;
+  transition: opacity 300ms ease-out;
 }
 
 input:checked + .jellyfy-check {
@@ -347,7 +360,10 @@ input:checked + .jellyfy-check .jellyfy-mark {
   border-radius: 999px;
   background: var(--primary);
   opacity: 0;
-  transform: scale(0.6);
+  transform: scale(0);
+  transition:
+    transform 300ms ease-out,
+    opacity 300ms ease-out;
 }
 
 input:checked + .jellyfy-nub .jellyfy-radio-dot {
