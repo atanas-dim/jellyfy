@@ -1,8 +1,11 @@
 "use client";
 
+import { useReducedMotion } from "motion/react";
 import type { CSSProperties, FC, InputHTMLAttributes } from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
+
+import { playPress } from "../foundation/press";
 
 type SliderProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -32,10 +35,17 @@ export const Slider: FC<SliderProps> = ({
   ...rest
 }) => {
   const [uncontrolled, setUncontrolled] = useState(defaultValue);
+  const handleRef = useRef<HTMLSpanElement>(null);
+  const reduceMotion = Boolean(useReducedMotion());
   const current = value ?? uncontrolled;
   const progress = (Number(current) - min) / (max - min);
   const fill = invalid ? "var(--error)" : "var(--primary)";
   const travel = `calc((100% - 1.5rem) * ${progress})`;
+
+  const bounce = () => {
+    if (disabled || reduceMotion || !handleRef.current) return;
+    playPress(handleRef.current, "vertical");
+  };
 
   return (
     <label
@@ -61,7 +71,8 @@ export const Slider: FC<SliderProps> = ({
           />
         </span>
         <span
-          className="noise pointer-events-none absolute top-1/2 z-1 size-6 -translate-y-1/2 rounded-full"
+          ref={handleRef}
+          className="noise pointer-events-none absolute top-[calc(50%-0.75rem)] z-1 size-6 rounded-full"
           style={
             {
               left: travel,
@@ -80,6 +91,14 @@ export const Slider: FC<SliderProps> = ({
           aria-valuetext={`${current}`}
           className="jellyfy-range disabled:cursor-not-allowed"
           {...rest}
+          onPointerDown={(event) => {
+            bounce();
+            rest.onPointerDown?.(event);
+          }}
+          onFocus={(event) => {
+            bounce();
+            rest.onFocus?.(event);
+          }}
           onChange={(event) => {
             const next = Number(event.target.value);
             if (value === undefined) setUncontrolled(next);
