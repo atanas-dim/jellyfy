@@ -12,7 +12,7 @@ export const SelectMenu: FC<SelectMenuProps> = ({ id, children }) => {
     <ul
       id={id}
       role="listbox"
-      className="jellyfy-overlay noise absolute z-20 mt-2 w-full p-1.5 backdrop-blur-sm"
+      className="jellyfy-overlay noise w-full p-1.5 backdrop-blur-sm"
     >
       {children}
     </ul>

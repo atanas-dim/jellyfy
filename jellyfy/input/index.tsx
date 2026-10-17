@@ -6,7 +6,7 @@ import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
 import { type FieldTone, FloatLabel } from "../foundation/float-label";
-import { useMeasuredBox, usePressPlayback } from "../foundation/press";
+import { usePress } from "../foundation/press";
 
 export type InputState = FieldTone;
 
@@ -27,16 +27,16 @@ export const Input: FC<InputProps> = ({
   disabled,
   ...rest
 }) => {
-  const [measure, box] = useMeasuredBox();
-  const press = usePressPlayback("horizontal", Boolean(disabled), box);
+  const press = usePress("horizontal", Boolean(disabled));
   const autoId = useId();
   const inputId = id ?? `jellyfy-input-${autoId}`;
   const { placeholder, ...inputProps } = rest;
 
   return (
     <motion.div
-      ref={measure}
-      {...press.gesture}
+      animate={press.controls}
+      onPointerDown={(event) => press.play(event.currentTarget)}
+      onFocus={(event) => press.play(event.currentTarget)}
       className={twMerge(
         "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
         "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
@@ -72,10 +72,6 @@ export const Input: FC<InputProps> = ({
           aria-invalid={state === "error"}
           aria-disabled={disabled}
           {...inputProps}
-          onFocus={(event) => {
-            press.play();
-            inputProps.onFocus?.(event);
-          }}
         />
 
         {trailing && (

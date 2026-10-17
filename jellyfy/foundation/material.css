@@ -52,6 +52,7 @@
   --warning-shade: color-mix(in oklab, var(--color-amber-900) 10%, transparent);
 
   --surface: color-mix(in oklab, var(--color-neutral-50) 60%, transparent);
+  --panel: color-mix(in oklab, white 88%, transparent);
   --surface-focus: color-mix(
     in oklab,
     var(--color-neutral-100) 60%,
@@ -109,6 +110,7 @@
   --color-warning-foreground: var(--warning-foreground);
   --color-surface: var(--surface);
   --color-surface-foreground: var(--surface-foreground);
+  --color-panel: var(--panel);
   --color-disabled: var(--disabled);
   --color-disabled-foreground: var(--disabled-foreground);
   --color-ring: var(--ring);
@@ -286,6 +288,13 @@
   opacity: 1;
 }
 
+.jellyfy-panel {
+  border-radius: var(--radius-surface);
+  background-color: var(--panel);
+  color: var(--surface-foreground);
+  box-shadow: var(--shadow-drop);
+}
+
 .jellyfy-overlay {
   border-radius: var(--radius-surface);
   background-color: var(--surface);
@@ -296,12 +305,7 @@
 .jellyfy-nub {
   background-color: var(--surface);
   color: var(--surface-foreground);
-  box-shadow: var(--shadow-inset-raised), var(--shadow-drop);
-}
-
-.jellyfy-choice:has(:checked) .jellyfy-check-fill {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
+  box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
 }
 
 .jellyfy-choice:has(:checked) .jellyfy-switch {

@@ -11,7 +11,7 @@ export const Card: FC<CardProps> = ({ title, children, className }) => {
   return (
     <section
       className={twMerge(
-        "jellyfy-surface jellyfy-tone-surface noise px-5 py-4 backdrop-blur-sm",
+        "jellyfy-panel noise px-5 py-4 backdrop-blur-sm",
         className,
       )}
     >

@@ -6,7 +6,7 @@ import type { FC, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 import type { ButtonState } from "../button";
-import { useMeasuredBox, usePressPlayback } from "../foundation/press";
+import { usePress } from "../foundation/press";
 
 type IconButtonProps = HTMLMotionProps<"button"> & {
   label: string;
@@ -22,18 +22,21 @@ export const IconButton: FC<IconButtonProps> = ({
   ...rest
 }) => {
   const isDisabled = Boolean(rest.disabled);
-  const [measure, box] = useMeasuredBox();
-  const press = usePressPlayback("vertical", isDisabled, box);
+  const press = usePress("vertical", isDisabled);
 
   return (
     <motion.button
-      ref={measure}
       type="button"
       aria-label={label}
-      {...press.gesture}
+      whileHover={press.hover}
+      animate={press.controls}
       {...rest}
+      onPointerDown={(event) => {
+        press.play(event.currentTarget);
+        rest.onPointerDown?.(event);
+      }}
       onFocus={(event) => {
-        press.play();
+        press.play(event.currentTarget);
         rest.onFocus?.(event);
       }}
       className={twMerge(

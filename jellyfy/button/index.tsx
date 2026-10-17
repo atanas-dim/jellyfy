@@ -9,7 +9,7 @@ import {
 import { type FC, type PropsWithChildren } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
-import { useMeasuredBox, usePressPlayback } from "../foundation/press";
+import { usePress } from "../foundation/press";
 
 type ProcessingLight = {
   delay: number;
@@ -42,8 +42,7 @@ export const Button: FC<ButtonProps> = ({
   const shouldReduceMotion = useReducedMotion();
   const isProcessing = state === "processing";
   const isDisabled = Boolean(rest.disabled);
-  const [measure, box] = useMeasuredBox();
-  const press = usePressPlayback("vertical", isDisabled, box);
+  const press = usePress("vertical", isDisabled);
 
   const labelClasses = twMerge(
     "z-2 flex items-center justify-center gap-1 text-sm leading-none font-semibold tracking-wide text-current uppercase text-shadow-[0_0px_6px_rgba(10,10,10,0.4)]",
@@ -52,13 +51,17 @@ export const Button: FC<ButtonProps> = ({
 
   return (
     <motion.button
-      ref={measure}
       type="button"
-      {...press.gesture}
+      whileHover={press.hover}
       aria-busy={isProcessing}
       {...rest}
+      animate={press.controls}
+      onPointerDown={(event) => {
+        press.play(event.currentTarget);
+        rest.onPointerDown?.(event);
+      }}
       onFocus={(event) => {
-        press.play();
+        press.play(event.currentTarget);
         rest.onFocus?.(event);
       }}
       className={twMerge(

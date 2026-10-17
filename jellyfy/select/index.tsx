@@ -82,7 +82,7 @@ export const Select: FC<SelectProps> = ({
     window.setTimeout(() => {
       root
         .querySelector<HTMLButtonElement>('[role="option"]:not(:disabled)')
-        ?.focus();
+        ?.focus({ preventScroll: true });
     }, 0);
 
     return () => {
@@ -122,7 +122,7 @@ export const Select: FC<SelectProps> = ({
           disabled={disabled}
           onToggle={() => setOpen((currentOpen) => !currentOpen)}
         />
-        <div hidden={!open}>
+        <div className="absolute top-full right-0 left-0 z-30 mt-2" hidden={!open}>
           <SelectMenu id={listId}>{children}</SelectMenu>
         </div>
         {message ? (

@@ -50,7 +50,7 @@ export default function Home() {
             </p>
           </div>
           <form
-            className="jellyfy-surface jellyfy-tone-surface noise flex flex-col gap-4 p-5 backdrop-blur-sm"
+            className="jellyfy-panel noise flex flex-col gap-4 p-5 backdrop-blur-sm"
             onSubmit={(event) => {
               event.preventDefault();
               void launch();

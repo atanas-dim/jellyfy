@@ -6,7 +6,7 @@ import type { FC } from "react";
 import { twMerge } from "tailwind-merge";
 
 import type { FieldTone } from "../foundation/float-label";
-import { useMeasuredBox, usePressPlayback } from "../foundation/press";
+import { usePress } from "../foundation/press";
 
 type SelectTriggerProps = {
   id: string;
@@ -29,23 +29,26 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
   disabled,
   onToggle,
 }) => {
-  const [measure, box] = useMeasuredBox();
-  const press = usePressPlayback("horizontal", Boolean(disabled), box);
+  const press = usePress("horizontal", Boolean(disabled));
 
   return (
     <motion.button
-      ref={measure}
       id={id}
       type="button"
       disabled={disabled}
       aria-haspopup="listbox"
       aria-expanded={open}
       aria-controls={listId}
-      {...press.gesture}
-      onFocus={press.play}
+      animate={press.controls}
+      onPointerDown={(event) => press.play(event.currentTarget)}
+      onFocus={(event) => press.play(event.currentTarget)}
       onClick={onToggle}
       onKeyDown={(event) => {
-        if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+        if (
+          event.key === "ArrowDown" ||
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
           event.preventDefault();
           if (!open) onToggle();
         }
@@ -64,7 +67,9 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
     >
       <span className="flex min-w-0 flex-col">
         {label ? (
-          <span className="text-[10px] font-medium tracking-wide text-neutral-500">{label}</span>
+          <span className="text-[10px] font-medium tracking-wide text-neutral-500">
+            {label}
+          </span>
         ) : null}
         <span className="truncate text-base">{text}</span>
       </span>

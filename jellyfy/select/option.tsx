@@ -31,7 +31,7 @@ export const SelectOption: FC<SelectOptionProps> = ({
         role="option"
         aria-selected={selected}
         disabled={disabled}
-        className="text-surface-foreground aria-selected:bg-primary aria-selected:text-primary-foreground flex w-full cursor-pointer rounded-xl px-3 py-2 text-left text-sm disabled:cursor-not-allowed disabled:opacity-50"
+        className="text-surface-foreground hover:bg-neutral-950/5 aria-selected:bg-primary aria-selected:text-primary-foreground flex w-full cursor-pointer rounded-xl px-3 py-2 text-left text-sm disabled:cursor-not-allowed disabled:opacity-50"
         onClick={() => select.choose(value)}
       >
         {children}

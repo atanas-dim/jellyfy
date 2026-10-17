@@ -5,7 +5,7 @@ import type { FC, InputHTMLAttributes } from "react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { useMeasuredBox, usePressPlayback } from "../foundation/press";
+import { usePress } from "../foundation/press";
 
 type SliderProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -35,14 +35,17 @@ export const Slider: FC<SliderProps> = ({
   ...rest
 }) => {
   const [uncontrolled, setUncontrolled] = useState(defaultValue);
-  const [measure, box] = useMeasuredBox();
-  const press = usePressPlayback("vertical", Boolean(disabled), box);
+  const press = usePress("vertical", Boolean(disabled));
   const current = value ?? uncontrolled;
   const fill = ((Number(current) - min) / (max - min)) * 100;
 
   return (
-    <label className={twMerge("flex w-full max-w-sm flex-col gap-3", className)}>
-      <span className="text-sm font-medium text-surface-foreground">{label}</span>
+    <label
+      className={twMerge("flex w-full max-w-sm flex-col gap-3", className)}
+    >
+      <span className="text-surface-foreground text-sm font-medium">
+        {label}
+      </span>
       <span className="relative flex h-8 items-center">
         <span className="jellyfy-surface noise relative h-3 w-full overflow-hidden backdrop-blur-sm">
           <span
@@ -54,10 +57,9 @@ export const Slider: FC<SliderProps> = ({
           />
         </span>
         <motion.span
-          ref={measure}
           animate={press.controls}
           aria-hidden
-          className="jellyfy-nub noise absolute size-6 backdrop-blur-sm"
+          className="jellyfy-nub noise pointer-events-none absolute size-6 rounded-full backdrop-blur-sm"
           style={{ left: `calc(${fill}% - 0.75rem)` }}
         />
         <input
@@ -73,11 +75,13 @@ export const Slider: FC<SliderProps> = ({
           className="jellyfy-range absolute inset-0 cursor-pointer opacity-0 disabled:cursor-not-allowed"
           {...rest}
           onPointerDown={(event) => {
-            press.play();
+            const thumb = event.currentTarget.previousElementSibling;
+            if (thumb instanceof HTMLElement) press.play(thumb);
             rest.onPointerDown?.(event);
           }}
           onFocus={(event) => {
-            press.play();
+            const thumb = event.currentTarget.previousElementSibling;
+            if (thumb instanceof HTMLElement) press.play(thumb);
             rest.onFocus?.(event);
           }}
           onChange={(event) => {
@@ -87,7 +91,9 @@ export const Slider: FC<SliderProps> = ({
           }}
         />
       </span>
-      {message ? <span className="text-xs text-error-foreground">{message}</span> : null}
+      {message ? (
+        <span className="text-error-foreground text-xs">{message}</span>
+      ) : null}
     </label>
   );
 };

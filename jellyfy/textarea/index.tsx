@@ -6,7 +6,7 @@ import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
 import { type FieldTone, FloatLabel } from "../foundation/float-label";
-import { useMeasuredBox, usePressPlayback } from "../foundation/press";
+import { usePress } from "../foundation/press";
 
 type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   state?: FieldTone;
@@ -23,16 +23,16 @@ export const Textarea: FC<TextareaProps> = ({
   disabled,
   ...rest
 }) => {
-  const [measure, box] = useMeasuredBox();
-  const press = usePressPlayback("horizontal", Boolean(disabled), box);
+  const press = usePress("horizontal", Boolean(disabled));
   const autoId = useId();
   const inputId = id ?? `jellyfy-textarea-${autoId}`;
   const { placeholder, ...textareaProps } = rest;
 
   return (
     <motion.div
-      ref={measure}
-      {...press.gesture}
+      animate={press.controls}
+      onPointerDown={(event) => press.play(event.currentTarget)}
+      onFocus={(event) => press.play(event.currentTarget)}
       className={twMerge(
         "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
         "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
@@ -64,10 +64,6 @@ export const Textarea: FC<TextareaProps> = ({
           disabled={disabled}
           aria-invalid={state === "error"}
           {...textareaProps}
-          onFocus={(event) => {
-            press.play();
-            textareaProps.onFocus?.(event);
-          }}
         />
         {label && (
           <FloatLabel htmlFor={inputId} leading={Boolean(leading)} tone={state}>
