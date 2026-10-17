@@ -1,4 +1,15 @@
 export enum ComponentSlug {
-  JellyButton = "jelly-button",
-  JellyInput = "jelly-input",
+  Button = "button",
+  IconButton = "icon-button",
+  Input = "input",
+  Textarea = "textarea",
+  Select = "select",
+  Checkbox = "checkbox",
+  Radio = "radio",
+  Switch = "switch",
+  Slider = "slider",
+  Alert = "alert",
+  Badge = "badge",
+  Card = "card",
+  Dialog = "dialog",
 }

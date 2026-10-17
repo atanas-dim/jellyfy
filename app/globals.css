@@ -1,12 +1,14 @@
 @import "tailwindcss";
+@import "../jellyfy/foundation/material.css";
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
 }
 
 body {
-  background-color: var(--color-neurtal-50);
+  background-color: var(--color-neutral-50);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 

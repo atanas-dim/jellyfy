@@ -1,0 +1,97 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
+import type { FC, InputHTMLAttributes, ReactNode } from "react";
+import { useId } from "react";
+import { twJoin, twMerge } from "tailwind-merge";
+
+import { type FieldTone,FloatLabel } from "../foundation/float-label";
+import { pressProps } from "../foundation/press";
+
+export type InputState = FieldTone;
+
+type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
+  state?: InputState;
+  label?: string;
+  leading?: ReactNode;
+  trailing?: ReactNode;
+};
+
+const toneClass: Record<InputState, string> = {
+  idle: "jellyfy-tone-surface",
+  error: "jellyfy-tone-error",
+  success: "jellyfy-tone-success",
+};
+
+const ringClass: Record<InputState, string> = {
+  idle: "focus-within:ring-ring",
+  error: "focus-within:ring-ring-error",
+  success: "focus-within:ring-ring-success",
+};
+
+export const Input: FC<InputProps> = ({
+  state = "idle",
+  label,
+  leading,
+  trailing,
+  id,
+  className,
+  disabled,
+  ...rest
+}) => {
+  const shouldReduceMotion = useReducedMotion();
+  const autoId = useId();
+  const inputId = id ?? `jellyfy-input-${autoId}`;
+  const { placeholder, ...inputProps } = rest;
+
+  return (
+    <motion.div
+      {...pressProps("horizontal", Boolean(disabled), Boolean(shouldReduceMotion))}
+      className={twMerge(
+        "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
+        "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
+        "motion-safe:transition-all motion-safe:duration-300 ease-out",
+        disabled && "opacity-60",
+        toneClass[state],
+        ringClass[state],
+        className,
+      )}
+    >
+      <div className="relative flex items-center">
+        {leading && (
+          <div className="pointer-events-none absolute top-4.5 left-4 z-20 text-neutral-400">
+            {leading}
+          </div>
+        )}
+
+        <input
+          id={inputId}
+          className={twJoin(
+            "peer relative z-10 block w-full border-0 bg-transparent px-4 pt-5.5 pb-2.5 text-base text-current outline-none",
+            "placeholder:text-transparent placeholder-shown:pt-4 placeholder-shown:pb-4",
+            "disabled:cursor-not-allowed",
+            leading && "pl-10",
+            trailing && "pr-10",
+          )}
+          placeholder={placeholder ?? " "}
+          disabled={disabled}
+          aria-invalid={state === "error"}
+          aria-disabled={disabled}
+          {...inputProps}
+        />
+
+        {trailing && (
+          <div className="pointer-events-none absolute top-4.5 right-4 z-20 text-neutral-400">
+            {trailing}
+          </div>
+        )}
+
+        {label && (
+          <FloatLabel htmlFor={inputId} leading={Boolean(leading)} tone={state}>
+            {label}
+          </FloatLabel>
+        )}
+      </div>
+    </motion.div>
+  );
+};

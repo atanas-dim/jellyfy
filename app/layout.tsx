@@ -1,7 +1,7 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import { twJoin } from "tailwind-merge";
 
 const geistSans = Geist({
@@ -14,10 +14,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: "React UI Lab",
+  title: "Jellyfy",
   description:
-    "A clean Next.js showcase of reusable React components built with TypeScript and Tailwind CSS.",
+    "A soft React component set. Brand, status, and surface, from one material.",
 };
 
 export default function RootLayout({
@@ -32,9 +37,12 @@ export default function RootLayout({
         "size-full antialiased",
         geistSans.variable,
         geistMono.variable,
+        fraunces.variable,
       )}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body>
+        <div className="isolate flex min-h-full flex-col">{children}</div>
+      </body>
     </html>
   );
 }

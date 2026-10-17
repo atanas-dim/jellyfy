@@ -3,12 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { codeToHtml } from "shiki";
 
-import { ComponentSlug } from "@/resources/component-slugs";
 import {
   COMPONENT_LIST,
   getComponentBySlug,
 } from "@/resources/components-registry";
-import { loadPreviewComponent, loadUsageExample } from "@/utils/preview-loader";
+import { loadPreviewComponent } from "@/utils/preview-loader";
 
 type ComponentPageProps = {
   params: Promise<{
@@ -24,18 +23,17 @@ export async function generateStaticParams() {
 
 export default async function ComponentPage({ params }: ComponentPageProps) {
   const { slug } = await params;
-  const component = getComponentBySlug(slug as ComponentSlug);
+  const component = getComponentBySlug(slug);
 
   if (!component) {
     notFound();
   }
 
   const { default: PreviewComponent } = await loadPreviewComponent(
-    component.previewPath,
+    component.slug,
   );
-  const usageExample = await loadUsageExample(component.previewPath);
 
-  const highlightedUsageExample = await codeToHtml(usageExample, {
+  const highlightedUsageExample = await codeToHtml(component.usage, {
     lang: "tsx",
     theme: "github-dark",
   });
@@ -51,7 +49,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
             <ChevronLeftIcon /> Back to components
           </Link>
           <div className="space-y-3">
-            <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+            <h1 className="font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight sm:text-5xl">
               {component.name}
             </h1>
             <p className="max-w-md text-base leading-7 whitespace-pre-line text-neutral-600 sm:text-lg">
@@ -85,7 +83,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-medium text-neutral-900 transition-colors hover:text-neutral-600"
-                  href={`https://github.com/atanas-dim/react-ui-lab/tree/main/components/${component.slug}`}
+                  href={`https://github.com/atanas-dim/react-ui-lab/tree/main/jellyfy/${component.slug}`}
                 >
                   <CodeIcon className="size-4" />
                   Open on GitHub
