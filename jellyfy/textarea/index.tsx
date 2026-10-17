@@ -1,7 +1,12 @@
 "use client";
 
 import { useReducedMotion } from "motion/react";
-import type { FC, PointerEvent, ReactNode, TextareaHTMLAttributes } from "react";
+import type {
+  FC,
+  PointerEvent,
+  ReactNode,
+  TextareaHTMLAttributes,
+} from "react";
 import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 

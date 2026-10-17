@@ -72,6 +72,7 @@ export const usePress = (axis: PressAxis, disabled: boolean) => {
   return {
     controls,
     play,
-    hover: axis === "vertical" && !disabled && !reduceMotion ? { y: -2 } : undefined,
+    hover:
+      axis === "vertical" && !disabled && !reduceMotion ? { y: -2 } : undefined,
   };
 };
