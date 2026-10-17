@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 
-import { Checkbox } from "@/jellyfy/checkbox";
+import { Checkbox } from "@/components/checkbox";
 
 const CheckboxPreview: FC = () => {
   return (

@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 
-import { Slider } from "@/jellyfy/slider";
+import { Slider } from "@/components/slider";
 
 const SliderPreview: FC = () => {
   return <Slider label="Volume" defaultValue={62} />;

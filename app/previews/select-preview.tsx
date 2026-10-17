@@ -2,7 +2,7 @@
 
 import { type FC, useState } from "react";
 
-import { Select, SelectOption } from "@/jellyfy/select";
+import { Select, SelectOption } from "@/components/select";
 
 const SelectPreview: FC = () => {
   const [value, setValue] = useState("mint");

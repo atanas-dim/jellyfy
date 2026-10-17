@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "../jellyfy/foundation/material.css";
+@import "../components/foundation/material.css";
 
 @theme inline {
   --font-sans: var(--font-geist-sans);

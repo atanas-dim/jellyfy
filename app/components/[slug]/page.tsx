@@ -87,7 +87,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-medium text-neutral-900 transition-colors hover:text-neutral-600"
-                  href={`https://github.com/atanas-dim/react-ui-lab/tree/main/jellyfy/${component.slug}`}
+                  href={`https://github.com/atanas-dim/react-ui-lab/tree/main/components/${component.slug}`}
                 >
                   <CodeIcon className="size-4" />
                   Open on GitHub

@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 
-import { Alert } from "@/jellyfy/alert";
+import { Alert } from "@/components/alert";
 
 const AlertPreview: FC = () => {
   return (

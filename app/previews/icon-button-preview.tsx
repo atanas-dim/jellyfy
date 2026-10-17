@@ -3,7 +3,7 @@
 import { HeartIcon, PlusIcon } from "lucide-react";
 import type { FC } from "react";
 
-import { IconButton } from "@/jellyfy/icon-button";
+import { IconButton } from "@/components/icon-button";
 
 const IconButtonPreview: FC = () => {
   return (

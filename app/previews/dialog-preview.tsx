@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 
-import { Dialog } from "@/jellyfy/dialog";
+import { Dialog } from "@/components/dialog";
 
 const DialogPreview: FC = () => {
   return (

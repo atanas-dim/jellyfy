@@ -5,8 +5,8 @@ import { motion, useReducedMotion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
 
-import { Button, type ButtonState } from "@/jellyfy/button";
-import { Input } from "@/jellyfy/input";
+import { Button, type ButtonState } from "@/components/button";
+import { Input } from "@/components/input";
 import { COMPONENT_LIST } from "@/resources/components-registry";
 
 const delay = (ms: number) =>

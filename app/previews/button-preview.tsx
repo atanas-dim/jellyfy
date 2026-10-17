@@ -3,7 +3,7 @@
 import { LoaderIcon, RocketIcon, ThumbsUpIcon } from "lucide-react";
 import { type FC, useState } from "react";
 
-import { Button, type ButtonState } from "@/jellyfy/button";
+import { Button, type ButtonState } from "@/components/button";
 
 const delay = (ms: number) =>
   new Promise<void>((resolve) => {

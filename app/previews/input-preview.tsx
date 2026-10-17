@@ -3,7 +3,7 @@
 import { SearchIcon, SendIcon } from "lucide-react";
 import type { FC } from "react";
 
-import { Input } from "@/jellyfy/input";
+import { Input } from "@/components/input";
 
 const InputPreview: FC = () => {
   return (

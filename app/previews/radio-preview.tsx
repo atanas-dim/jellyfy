@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 
-import { Radio, RadioItem } from "@/jellyfy/radio";
+import { Radio, RadioItem } from "@/components/radio";
 
 const RadioPreview: FC = () => {
   return (

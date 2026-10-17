@@ -6,6 +6,7 @@ import { useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
 import { Button } from "../button";
+import { IconButton } from "../icon-button";
 
 type DialogProps = {
   trigger: string;
@@ -33,14 +34,9 @@ export const Dialog: FC<DialogProps> = ({ trigger, title, description, children 
       <div className="jellyfy-overlay noise w-[min(28rem,calc(100vw-2rem))] p-6 backdrop-blur-sm">
         <div className="flex items-start justify-between gap-4">
           <h2 className="text-lg font-semibold">{title}</h2>
-          <button
-            type="button"
-            aria-label="Close"
-            className="cursor-pointer text-neutral-500"
-            onClick={() => dialogRef.current?.close()}
-          >
+          <IconButton label="Close" className="size-9" onClick={() => dialogRef.current?.close()}>
             <XIcon className="size-4" />
-          </button>
+          </IconButton>
         </div>
         {description ? (
           <p className="mt-2 text-sm leading-6 text-neutral-600">{description}</p>

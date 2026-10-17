@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 
-import { Badge } from "@/jellyfy/badge";
+import { Badge } from "@/components/badge";
 
 const BadgePreview: FC = () => {
   return (

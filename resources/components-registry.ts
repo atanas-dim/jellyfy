@@ -13,7 +13,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     name: "Button",
     description:
       "Raised brand control. Idle, busy, and complete stay on the brand tokens.",
-    usage: `import { Button } from "./jellyfy/button"
+    usage: `import { Button } from "./components/button"
 
 <Button state="idle">Launch</Button>`,
   },
@@ -22,7 +22,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     name: "Icon button",
     description:
       "The same raised press, with an accessible name and no text label.",
-    usage: `import { IconButton } from "./jellyfy/icon-button"
+    usage: `import { IconButton } from "./components/icon-button"
 
 <IconButton label="Add">
   <PlusIcon />
@@ -33,7 +33,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     name: "Input",
     description:
       "Field surface with a floating label. Validation uses success and error.",
-    usage: `import { Input } from "./jellyfy/input"
+    usage: `import { Input } from "./components/input"
 
 <Input label="Email" state="error" />`,
   },
@@ -42,7 +42,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     name: "Textarea",
     description:
       "The input's surface and floating label, for more than one line.",
-    usage: `import { Textarea } from "./jellyfy/textarea"
+    usage: `import { Textarea } from "./components/textarea"
 
 <Textarea label="Note" />`,
   },
@@ -51,7 +51,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     name: "Select",
     description:
       "A field trigger and a menu. The menu uses the surface inset and the hover drop.",
-    usage: `import { Select, SelectOption } from "./jellyfy/select"
+    usage: `import { Select, SelectOption } from "./components/select"
 
 <Select label="Flavor" value={value} onValueChange={setValue}>
   <SelectOption value="mint">Mint</SelectOption>
@@ -62,7 +62,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     name: "Checkbox",
     description:
       "A native checkbox. Chosen uses the brand color. Invalid uses error.",
-    usage: `import { Checkbox } from "./jellyfy/checkbox"
+    usage: `import { Checkbox } from "./components/checkbox"
 
 <Checkbox label="Remember this device" />`,
   },
@@ -70,7 +70,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Radio,
     name: "Radio",
     description: "A native radio group. One choice takes the brand color.",
-    usage: `import { Radio, RadioItem } from "./jellyfy/radio"
+    usage: `import { Radio, RadioItem } from "./components/radio"
 
 <Radio label="Delivery" defaultValue="standard">
   <RadioItem value="standard">Standard</RadioItem>
@@ -81,7 +81,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     name: "Switch",
     description:
       "A native checkbox presented as a switch. On uses the brand color.",
-    usage: `import { Switch } from "./jellyfy/switch"
+    usage: `import { Switch } from "./components/switch"
 
 <Switch label="Notifications" defaultChecked />`,
   },
@@ -90,7 +90,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     name: "Slider",
     description:
       "A native range. The track is the surface. The fill is the brand color.",
-    usage: `import { Slider } from "./jellyfy/slider"
+    usage: `import { Slider } from "./components/slider"
 
 <Slider label="Volume" defaultValue={62} />`,
   },
@@ -98,7 +98,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Alert,
     name: "Alert",
     description: "Status message. Warning lives here, with success and error.",
-    usage: `import { Alert } from "./jellyfy/alert"
+    usage: `import { Alert } from "./components/alert"
 
 <Alert tone="warning" title="Check the name" />`,
   },
@@ -106,7 +106,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Badge,
     name: "Badge",
     description: "Brand and status colors at a small size.",
-    usage: `import { Badge } from "./jellyfy/badge"
+    usage: `import { Badge } from "./components/badge"
 
 <Badge tone="success">Ready</Badge>`,
   },
@@ -115,7 +115,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     name: "Card",
     description:
       "A resting surface. The field radius and inset, without a press.",
-    usage: `import { Card } from "./jellyfy/card"
+    usage: `import { Card } from "./components/card"
 
 <Card title="Studio notes">A quiet surface.</Card>`,
   },
@@ -123,7 +123,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Dialog,
     name: "Dialog",
     description: "A native dialog. The panel uses the overlay shadow.",
-    usage: `import { Dialog } from "./jellyfy/dialog"
+    usage: `import { Dialog } from "./components/dialog"
 
 <Dialog trigger="Open dialog" title="Publish this draft" />`,
   },

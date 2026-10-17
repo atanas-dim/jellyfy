@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 
-import { Card } from "@/jellyfy/card";
+import { Card } from "@/components/card";
 
 const CardPreview: FC = () => {
   return (

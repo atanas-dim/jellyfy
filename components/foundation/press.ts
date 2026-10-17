@@ -76,7 +76,11 @@ export const usePress = (axis: PressAxis, disabled: boolean) => {
       axis === "vertical" && !disabled && !reduceMotion
         ? {
             y: -2,
-            transition: { type: "tween" as const, duration: 0.2, ease: "easeOut" as const },
+            transition: {
+              type: "tween" as const,
+              duration: 0.2,
+              ease: "easeOut" as const,
+            },
           }
         : undefined,
   };

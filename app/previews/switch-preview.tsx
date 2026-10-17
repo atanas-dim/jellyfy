@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 
-import { Switch } from "@/jellyfy/switch";
+import { Switch } from "@/components/switch";
 
 const SwitchPreview: FC = () => {
   return (

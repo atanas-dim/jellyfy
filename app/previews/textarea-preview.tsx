@@ -2,7 +2,7 @@
 
 import type { FC } from "react";
 
-import { Textarea } from "@/jellyfy/textarea";
+import { Textarea } from "@/components/textarea";
 
 const TextareaPreview: FC = () => {
   return (
