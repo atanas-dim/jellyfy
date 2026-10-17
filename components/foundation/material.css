@@ -154,7 +154,8 @@
   --jellyfy-shade: var(--surface-shade);
 }
 
-.jellyfy-tone-neutral:focus-within {
+.jellyfy-tone-neutral:focus-within,
+.jellyfy-tone-neutral[data-open] {
   background-color: var(--surface-focus);
 }
 
@@ -165,7 +166,8 @@
   --jellyfy-shade: var(--error-shade);
 }
 
-.jellyfy-tone-error:focus-within {
+.jellyfy-tone-error:focus-within,
+.jellyfy-tone-error[data-open] {
   background-color: var(--error-focus);
 }
 
@@ -176,7 +178,8 @@
   --jellyfy-shade: var(--success-shade);
 }
 
-.jellyfy-tone-success:focus-within {
+.jellyfy-tone-success:focus-within,
+.jellyfy-tone-success[data-open] {
   background-color: var(--success-focus);
 }
 
@@ -269,7 +272,8 @@
   }
 }
 
-.jellyfy-surface:focus-within {
+.jellyfy-surface:focus-within,
+.jellyfy-surface[data-open] {
   box-shadow:
     var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
     var(--shadow-inset-surface-focus), var(--shadow-drop);
@@ -298,7 +302,9 @@
 }
 
 .jellyfy-surface:focus-within::before,
-.jellyfy-surface:focus-within::after {
+.jellyfy-surface:focus-within::after,
+.jellyfy-surface[data-open]::before,
+.jellyfy-surface[data-open]::after {
   opacity: 1;
 }
 

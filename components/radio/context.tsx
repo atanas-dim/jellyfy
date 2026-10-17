@@ -7,6 +7,7 @@ export type RadioContextValue = {
   value?: string;
   defaultValue?: string;
   disabled?: boolean;
+  invalid?: boolean;
   onValueChange?: (value: string) => void;
 };
 

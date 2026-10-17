@@ -7,6 +7,27 @@ export type Color =
   | "error"
   | "warning";
 
+const fieldRing =
+  "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none";
+
+export const fieldFocusRing = (color: Color, open = false) => {
+  if (color === "error") {
+    return open
+      ? `${fieldRing} focus-within:ring-ring-error ring ring-offset-2 outline-none ring-ring-error`
+      : `${fieldRing} focus-within:ring-ring-error`;
+  }
+
+  if (color === "success") {
+    return open
+      ? `${fieldRing} focus-within:ring-ring-success ring ring-offset-2 outline-none ring-ring-success`
+      : `${fieldRing} focus-within:ring-ring-success`;
+  }
+
+  return open
+    ? `${fieldRing} focus-within:ring-ring ring ring-offset-2 outline-none ring-ring`
+    : `${fieldRing} focus-within:ring-ring`;
+};
+
 export const colorClass = (color: Color) => {
   if (color === "secondary") return "jellyfy-tone-secondary";
   if (color === "tertiary") return "jellyfy-tone-tertiary";

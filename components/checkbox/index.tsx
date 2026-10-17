@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import type { FC, InputHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
+import { fieldFocusRing } from "../foundation/color";
 import { usePress } from "../foundation/press";
 
 type CheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, "type"> & {
@@ -35,8 +36,7 @@ export const Checkbox: FC<CheckboxProps> = ({
           onFocus={(event) => press.play(event.currentTarget)}
           className={twMerge(
             "relative flex size-6 shrink-0 items-center justify-center rounded-lg",
-            "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
-            invalid ? "focus-within:ring-ring-error" : "focus-within:ring-ring",
+            fieldFocusRing(invalid ? "error" : "neutral"),
           )}
         >
           <input
@@ -52,7 +52,9 @@ export const Checkbox: FC<CheckboxProps> = ({
         </motion.span>
         {label}
       </span>
-      {message ? <span className="text-error-foreground text-xs">{message}</span> : null}
+      {message ? (
+        <span className="text-error-foreground text-xs">{message}</span>
+      ) : null}
     </label>
   );
 };

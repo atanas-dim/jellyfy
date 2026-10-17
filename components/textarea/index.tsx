@@ -10,7 +10,7 @@ import type {
 import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
-import { type Color, colorClass } from "../foundation/color";
+import { type Color, colorClass, fieldFocusRing } from "../foundation/color";
 import { FloatLabel } from "../foundation/float-label";
 import { playPress } from "../foundation/press";
 
@@ -51,12 +51,9 @@ export const Textarea: FC<TextareaProps> = ({
       }}
       className={twMerge(
         "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
-        "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
+        fieldFocusRing(color),
         disabled && "opacity-60",
         colorClass(color),
-        color === "error" && "focus-within:ring-ring-error",
-        color === "success" && "focus-within:ring-ring-success",
-        color !== "error" && color !== "success" && "focus-within:ring-ring",
         className,
         "h-fit w-full self-start",
       )}

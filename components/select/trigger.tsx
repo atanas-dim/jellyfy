@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 import type { FC } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { type Color, colorClass } from "../foundation/color";
+import { type Color, colorClass, fieldFocusRing } from "../foundation/color";
 import { usePress } from "../foundation/press";
 
 type SelectTriggerProps = {
@@ -39,6 +39,7 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
       aria-haspopup="listbox"
       aria-expanded={open}
       aria-controls={listId}
+      data-open={open ? "" : undefined}
       animate={press.controls}
       onPointerDown={(event) => press.play(event.currentTarget)}
       onFocus={(event) => press.play(event.currentTarget)}
@@ -55,12 +56,9 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
       }}
       className={twMerge(
         "jellyfy-surface noise flex h-14 w-full items-center justify-between px-4 text-left backdrop-blur-sm",
-        "cursor-pointer focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
-        "disabled:cursor-not-allowed disabled:opacity-60",
+        "cursor-pointer disabled:cursor-not-allowed disabled:opacity-60",
+        fieldFocusRing(color, open),
         colorClass(color),
-        color === "error" && "focus-within:ring-ring-error",
-        color === "success" && "focus-within:ring-ring-success",
-        color !== "error" && color !== "success" && "focus-within:ring-ring",
       )}
     >
       <span className="flex min-w-0 flex-col">

@@ -33,7 +33,9 @@ export const Radio: FC<RadioProps> = ({
   const name = useId();
 
   return (
-    <RadioContext value={{ name, value, defaultValue, disabled, onValueChange }}>
+    <RadioContext
+      value={{ name, value, defaultValue, disabled, invalid, onValueChange }}
+    >
       <fieldset
         data-invalid={invalid ? "" : undefined}
         disabled={disabled}

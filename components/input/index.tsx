@@ -5,7 +5,7 @@ import type { FC, InputHTMLAttributes, ReactNode } from "react";
 import { useId } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
-import { type Color, colorClass } from "../foundation/color";
+import { type Color, colorClass, fieldFocusRing } from "../foundation/color";
 import { FloatLabel } from "../foundation/float-label";
 import { usePress } from "../foundation/press";
 
@@ -38,13 +38,10 @@ export const Input: FC<InputProps> = ({
       onFocus={(event) => press.play(event.currentTarget)}
       className={twMerge(
         "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
-        "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
+        fieldFocusRing(color),
         "motion-safe:transition-all motion-safe:duration-300 ease-out",
         disabled && "opacity-60",
         colorClass(color),
-        color === "error" && "focus-within:ring-ring-error",
-        color === "success" && "focus-within:ring-ring-success",
-        color !== "error" && color !== "success" && "focus-within:ring-ring",
         className,
       )}
     >

@@ -54,12 +54,7 @@ export const Slider: FC<SliderProps> = ({
       <span className="text-surface-foreground text-sm font-medium">
         {label}
       </span>
-      <span
-        className={twMerge(
-          "relative h-8 w-full rounded-full focus-within:ring focus-within:ring-offset-2 focus-within:outline-none",
-          invalid ? "focus-within:ring-ring-error" : "focus-within:ring-ring",
-        )}
-      >
+      <span className="group relative h-8 w-full">
         <span
           className="noise pointer-events-none absolute top-1/2 h-3 w-full -translate-y-1/2 overflow-hidden rounded-full"
           style={{
@@ -77,12 +72,19 @@ export const Slider: FC<SliderProps> = ({
         </span>
         <span
           ref={handleRef}
-          className="noise pointer-events-none absolute top-[calc(50%-0.75rem)] z-1 size-6 rounded-full"
+          className={twMerge(
+            "noise pointer-events-none absolute top-[calc(50%-0.75rem)] z-1 size-6 rounded-full",
+            "group-focus-within:ring group-focus-within:ring-offset-2",
+            invalid
+              ? "group-focus-within:ring-ring-error"
+              : "group-focus-within:ring-ring",
+          )}
           style={
             {
               left: travel,
               backgroundColor: fill,
-              boxShadow: "var(--shadow-inset-surface), var(--shadow-drop)",
+              boxShadow:
+                "var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--shadow-inset-surface), var(--shadow-drop)",
             } as CSSProperties
           }
         />

@@ -3,7 +3,9 @@
 import { motion } from "motion/react";
 import type { FC, ReactNode } from "react";
 import { use } from "react";
+import { twMerge } from "tailwind-merge";
 
+import { fieldFocusRing } from "../foundation/color";
 import { usePress } from "../foundation/press";
 import { RadioContext } from "./context";
 
@@ -13,7 +15,11 @@ type RadioItemProps = {
   disabled?: boolean;
 };
 
-export const RadioItem: FC<RadioItemProps> = ({ value, children, disabled }) => {
+export const RadioItem: FC<RadioItemProps> = ({
+  value,
+  children,
+  disabled,
+}) => {
   const group = use(RadioContext);
   const isDisabled = disabled ?? group.disabled;
   const press = usePress("vertical", Boolean(isDisabled));
@@ -24,13 +30,18 @@ export const RadioItem: FC<RadioItemProps> = ({ value, children, disabled }) => 
         animate={press.controls}
         onPointerDown={(event) => press.play(event.currentTarget)}
         onFocus={(event) => press.play(event.currentTarget)}
-        className="relative flex size-6 shrink-0 items-center justify-center rounded-full focus-within:ring focus-within:ring-ring focus-within:ring-offset-2 focus-within:outline-none"
+        className={twMerge(
+          "relative flex size-6 shrink-0 items-center justify-center rounded-full",
+          fieldFocusRing(group.invalid ? "error" : "neutral"),
+        )}
       >
         <input
           type="radio"
           name={group.name}
           value={value}
-          checked={group.value === undefined ? undefined : group.value === value}
+          checked={
+            group.value === undefined ? undefined : group.value === value
+          }
           defaultChecked={group.defaultValue === value}
           disabled={isDisabled}
           onChange={() => group.onValueChange?.(value)}
