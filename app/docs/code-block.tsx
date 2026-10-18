@@ -10,7 +10,7 @@ export const CodeBlock = async ({
   const html = await codeToHtml(code, { lang, theme: "github-dark" });
   return (
     <div
-      className="code-block mt-4 overflow-x-auto overscroll-none rounded-2xl border border-neutral-800/80 bg-neutral-800"
+      className="code-block mt-4 rounded-2xl border border-neutral-800/80 bg-neutral-800"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

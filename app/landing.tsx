@@ -441,13 +441,15 @@ export const Landing = () => {
             Every color on one page
           </Link>
         </div>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          data-rise
+        >
           {COMPONENT_LIST.map((component) => (
             <Link
               key={component.slug}
               href={`/set#${component.slug}`}
               className="card squish block transition-transform duration-200 hover:-translate-y-0.5"
-              data-rise
             >
               <h3 className="text-xl font-semibold tracking-tight">
                 {component.name}

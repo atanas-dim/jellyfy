@@ -40,7 +40,7 @@ export default function ColorsPage() {
         <code className="font-mono text-base">--color-secondary</code>, or any
         of the eight, to replace one.
       </p>
-      <div className="mt-8 overflow-x-auto">
+      <div className="mt-8 overflow-x-auto overflow-y-hidden overscroll-x-contain overscroll-y-auto">
         <table className="w-full text-left text-sm">
           <thead>
             <tr className="border-b border-neutral-200 text-neutral-500">

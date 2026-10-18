@@ -41,12 +41,15 @@ h6 {
 
 .code-block {
   overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
 }
 
 .code-block pre {
   margin: 0;
   min-width: max-content;
-  overflow-x: auto !important;
+  overflow: visible !important;
   padding: 1.25rem !important;
 }
 
