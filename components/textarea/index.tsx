@@ -51,8 +51,8 @@ export const Textarea: FC<TextareaProps> = ({
       }}
       className={twMerge(
         "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
-        fieldFocusRing(color),
-        "motion-safe:transition-all motion-safe:duration-300 ease-out",
+        fieldFocusRing(),
+        "ease-out motion-safe:transition-all motion-safe:duration-300",
         disabled && "opacity-60",
         colorClass(color),
         className,
@@ -79,7 +79,11 @@ export const Textarea: FC<TextareaProps> = ({
           {...textareaProps}
         />
         {label && (
-          <FloatLabel htmlFor={inputId} leading={Boolean(leading)} color={color}>
+          <FloatLabel
+            htmlFor={inputId}
+            leading={Boolean(leading)}
+            color={color}
+          >
             {label}
           </FloatLabel>
         )}

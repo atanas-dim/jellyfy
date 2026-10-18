@@ -38,7 +38,7 @@ export const Switch: FC<SwitchProps> = ({
           onFocus={(event) => press.play(event.currentTarget)}
           className={twMerge(
             "relative h-7 w-12 shrink-0 rounded-full",
-            fieldFocusRing(invalid ? "error" : color),
+            fieldFocusRing(),
           )}
         >
           <input

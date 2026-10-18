@@ -1,12 +1,12 @@
 "use client";
 
+import { LoaderIcon } from "lucide-react";
 import type { HTMLMotionProps } from "motion/react";
 import { motion } from "motion/react";
 import type { FC, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { type Color, colorClass } from "../foundation/color";
-import { LoadingLights } from "../foundation/loading-lights";
+import { type Color, colorClass, fieldFocusRing } from "../foundation/color";
 import { usePress } from "../foundation/press";
 
 type IconButtonProps = HTMLMotionProps<"button"> & {
@@ -45,15 +45,20 @@ export const IconButton: FC<IconButtonProps> = ({
       }}
       className={twMerge(
         "jellyfy-raised noise inline-flex size-12 items-center justify-center backdrop-blur-sm",
-        "transition-[box-shadow,background-color] duration-300 ease-out",
-        "cursor-pointer focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none",
+        "cursor-pointer transition-[box-shadow,background-color,outline-color] duration-300 ease-out",
+        fieldFocusRing(),
         "disabled:cursor-not-allowed",
         colorClass(color),
         className,
       )}
     >
-      <LoadingLights loading={loading && !isDisabled} />
-      <span className="relative z-2">{children}</span>
+      <span className="relative z-2">
+        {loading && !isDisabled ? (
+          <LoaderIcon className="size-4.5 motion-safe:animate-spin" />
+        ) : (
+          children
+        )}
+      </span>
     </motion.button>
   );
 };

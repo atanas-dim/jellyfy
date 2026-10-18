@@ -1,21 +1,21 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import { Figtree, Geist_Mono, Rubik } from "next/font/google";
 import { twJoin } from "tailwind-merge";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const figtree = Figtree({
+  variable: "--font-figtree",
+  subsets: ["latin"],
+});
+
+const rubik = Rubik({
+  variable: "--font-rubik",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
   subsets: ["latin"],
 });
 
@@ -35,9 +35,9 @@ export default function RootLayout({
       lang="en"
       className={twJoin(
         "size-full antialiased",
-        geistSans.variable,
+        figtree.variable,
+        rubik.variable,
         geistMono.variable,
-        fraunces.variable,
       )}
     >
       <body>

@@ -9,8 +9,15 @@ export type Color =
   | "error"
   | "warning";
 
-const fieldRing =
-  "focus-within:ring focus-within:ring-offset-2 focus-within:outline-none motion-safe:transition-[box-shadow,background-color] motion-safe:duration-300 motion-safe:ease-out";
+const ringToken: Record<Color, string> = {
+  primary: "--color-pink-600",
+  secondary: "--color-indigo-600",
+  tertiary: "--color-teal-600",
+  neutral: "--color-neutral-400",
+  success: "--color-green-600",
+  error: "--color-red-600",
+  warning: "--color-amber-600",
+};
 
 export const choiceStyle = (color: Color): CSSProperties => {
   const token = color === "neutral" ? "surface" : color;
@@ -18,26 +25,12 @@ export const choiceStyle = (color: Color): CSSProperties => {
   return {
     "--jellyfy-choice": `var(--${token})`,
     "--jellyfy-choice-foreground": `var(--${token}-foreground)`,
+    "--jellyfy-ring": `var(${ringToken[color]})`,
   } as CSSProperties;
 };
 
-export const fieldFocusRing = (color: Color, open = false) => {
-  if (color === "error") {
-    return open
-      ? `${fieldRing} focus-within:ring-ring-error ring ring-offset-2 outline-none ring-ring-error`
-      : `${fieldRing} focus-within:ring-ring-error`;
-  }
-
-  if (color === "success") {
-    return open
-      ? `${fieldRing} focus-within:ring-ring-success ring ring-offset-2 outline-none ring-ring-success`
-      : `${fieldRing} focus-within:ring-ring-success`;
-  }
-
-  return open
-    ? `${fieldRing} focus-within:ring-ring ring ring-offset-2 outline-none ring-ring`
-    : `${fieldRing} focus-within:ring-ring`;
-};
+export const fieldFocusRing = () =>
+  "jellyfy-focus motion-safe:transition-[box-shadow,background-color,outline-color] motion-safe:duration-300 motion-safe:ease-out";
 
 export const colorClass = (color: Color) => {
   if (color === "secondary") return "jellyfy-tone-secondary";

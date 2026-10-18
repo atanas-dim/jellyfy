@@ -26,30 +26,34 @@
   );
   --tertiary-shade: color-mix(in oklab, var(--color-teal-900) 35%, transparent);
 
-  --success: color-mix(in oklab, var(--color-green-100) 60%, transparent);
-  --success-focus: color-mix(in oklab, var(--color-green-200) 60%, transparent);
-  --success-foreground: var(--color-green-700);
+  --success: color-mix(in oklab, var(--color-green-600) 60%, transparent);
+  --success-focus: color-mix(in oklab, var(--color-green-500) 60%, transparent);
+  --success-foreground: var(--color-green-100);
   --success-highlight: color-mix(
     in oklab,
-    var(--color-green-100) 70%,
+    var(--color-green-100) 20%,
     transparent
   );
-  --success-shade: color-mix(in oklab, var(--color-green-900) 10%, transparent);
+  --success-shade: color-mix(in oklab, var(--color-green-900) 35%, transparent);
 
-  --error: color-mix(in oklab, var(--color-red-100) 60%, transparent);
-  --error-focus: color-mix(in oklab, var(--color-red-200) 60%, transparent);
-  --error-foreground: var(--color-red-700);
-  --error-highlight: color-mix(in oklab, var(--color-red-100) 70%, transparent);
-  --error-shade: color-mix(in oklab, var(--color-red-900) 10%, transparent);
+  --error: color-mix(in oklab, var(--color-red-600) 60%, transparent);
+  --error-focus: color-mix(in oklab, var(--color-red-500) 60%, transparent);
+  --error-foreground: var(--color-red-100);
+  --error-highlight: color-mix(
+    in oklab,
+    var(--color-red-100) 20%,
+    transparent
+  );
+  --error-shade: color-mix(in oklab, var(--color-red-900) 35%, transparent);
 
-  --warning: color-mix(in oklab, var(--color-amber-100) 60%, transparent);
-  --warning-foreground: var(--color-amber-700);
+  --warning: color-mix(in oklab, var(--color-amber-600) 60%, transparent);
+  --warning-foreground: var(--color-amber-50);
   --warning-highlight: color-mix(
     in oklab,
-    var(--color-amber-100) 70%,
+    var(--color-amber-50) 20%,
     transparent
   );
-  --warning-shade: color-mix(in oklab, var(--color-amber-900) 10%, transparent);
+  --warning-shade: color-mix(in oklab, var(--color-amber-900) 35%, transparent);
 
   --surface: color-mix(in oklab, var(--color-neutral-50) 60%, transparent);
   --panel: white;
@@ -131,6 +135,7 @@
   color: var(--primary-foreground);
   --jellyfy-highlight: var(--primary-highlight);
   --jellyfy-shade: var(--primary-shade);
+  --jellyfy-ring: var(--color-pink-600);
 }
 
 .jellyfy-tone-secondary {
@@ -138,6 +143,7 @@
   color: var(--secondary-foreground);
   --jellyfy-highlight: var(--secondary-highlight);
   --jellyfy-shade: var(--secondary-shade);
+  --jellyfy-ring: var(--color-indigo-600);
 }
 
 .jellyfy-tone-tertiary {
@@ -145,6 +151,7 @@
   color: var(--tertiary-foreground);
   --jellyfy-highlight: var(--tertiary-highlight);
   --jellyfy-shade: var(--tertiary-shade);
+  --jellyfy-ring: var(--color-teal-600);
 }
 
 .jellyfy-tone-neutral {
@@ -152,6 +159,7 @@
   color: var(--surface-foreground);
   --jellyfy-highlight: var(--surface-highlight);
   --jellyfy-shade: var(--surface-shade);
+  --jellyfy-ring: var(--color-neutral-400);
 }
 
 .jellyfy-tone-neutral:focus-within,
@@ -164,6 +172,7 @@
   color: var(--error-foreground);
   --jellyfy-highlight: var(--error-highlight);
   --jellyfy-shade: var(--error-shade);
+  --jellyfy-ring: var(--color-red-600);
 }
 
 .jellyfy-tone-error:focus-within,
@@ -176,6 +185,7 @@
   color: var(--success-foreground);
   --jellyfy-highlight: var(--success-highlight);
   --jellyfy-shade: var(--success-shade);
+  --jellyfy-ring: var(--color-green-600);
 }
 
 .jellyfy-tone-success:focus-within,
@@ -188,6 +198,17 @@
   color: var(--warning-foreground);
   --jellyfy-highlight: var(--warning-highlight);
   --jellyfy-shade: var(--warning-shade);
+  --jellyfy-ring: var(--color-amber-600);
+}
+
+.jellyfy-focus {
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+}
+
+.jellyfy-focus:focus-within,
+.jellyfy-focus[data-open] {
+  outline-color: var(--jellyfy-ring, var(--color-neutral-400));
 }
 
 .jellyfy-raised,
@@ -259,11 +280,13 @@
     var(--shadow-inset-surface), var(--shadow-drop);
   transition:
     box-shadow 300ms ease-out,
-    background-color 300ms ease-out;
+    background-color 300ms ease-out,
+    outline-color 300ms ease-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .jellyfy-surface,
+  .jellyfy-focus,
   .jellyfy-handle,
   .jellyfy-check,
   .jellyfy-switch,
@@ -312,7 +335,7 @@
 .jellyfy-panel {
   border-radius: var(--radius-surface);
   background-color: var(--jellyfy-choice, var(--panel));
-  color: var(--jellyfy-choice-foreground, var(--surface-foreground));
+  color: var(--surface-foreground);
   box-shadow: var(--shadow-inset-thin), var(--shadow-drop);
 }
 
@@ -323,7 +346,7 @@
 .jellyfy-overlay {
   border-radius: var(--radius-surface);
   background-color: var(--jellyfy-choice, var(--surface));
-  color: var(--jellyfy-choice-foreground, var(--surface-foreground));
+  color: var(--surface-foreground);
   box-shadow: var(--shadow-inset-surface), var(--shadow-drop-hover);
 }
 
@@ -393,18 +416,18 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
 }
 
 .jellyfy-handle {
-  box-shadow:
-    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--shadow-inset-surface), var(--shadow-drop);
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+  box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
   transition:
     box-shadow 300ms ease-out,
-    background-color 300ms ease-out;
+    background-color 300ms ease-out,
+    outline-color 300ms ease-out;
 }
 
 .group:focus-within .jellyfy-handle {
-  box-shadow:
-    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--shadow-inset-surface-focus), var(--shadow-drop);
+  outline-color: var(--jellyfy-ring, var(--color-neutral-400));
+  box-shadow: var(--shadow-inset-surface-focus), var(--shadow-drop);
 }
 
 .jellyfy-range {

@@ -39,7 +39,7 @@ export const Checkbox: FC<CheckboxProps> = ({
           onFocus={(event) => press.play(event.currentTarget)}
           className={twMerge(
             "relative flex size-6 shrink-0 items-center justify-center rounded-lg",
-            fieldFocusRing(invalid ? "error" : color),
+            fieldFocusRing(),
           )}
         >
           <input

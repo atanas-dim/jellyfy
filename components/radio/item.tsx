@@ -32,7 +32,7 @@ export const RadioItem: FC<RadioItemProps> = ({
         onFocus={(event) => press.play(event.currentTarget)}
         className={twMerge(
           "relative flex size-6 shrink-0 items-center justify-center rounded-full",
-          fieldFocusRing(group.invalid ? "error" : (group.color ?? "primary")),
+          fieldFocusRing(),
         )}
       >
         <input

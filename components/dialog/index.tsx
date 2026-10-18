@@ -6,7 +6,7 @@ import { useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 
 import { Button } from "../button";
-import { choiceStyle,type Color } from "../foundation/color";
+import { choiceStyle, type Color } from "../foundation/color";
 import { IconButton } from "../icon-button";
 
 type DialogProps = {
@@ -49,13 +49,19 @@ export const Dialog: FC<DialogProps> = ({
             label="Close"
             color="neutral"
             className="size-9"
+            style={{
+              backgroundColor: "var(--panel)",
+              color: "var(--surface-foreground)",
+            }}
             onClick={() => dialogRef.current?.close()}
           >
             <XIcon className="size-4" />
           </IconButton>
         </div>
         {description ? (
-          <p className="mt-2 text-sm leading-6 text-neutral-600">{description}</p>
+          <p className="mt-2 text-sm leading-6 text-neutral-600">
+            {description}
+          </p>
         ) : null}
         {children ? <div className="mt-4">{children}</div> : null}
       </div>

@@ -5,7 +5,7 @@ import type { CSSProperties, FC, InputHTMLAttributes } from "react";
 import { useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { choiceStyle,type Color } from "../foundation/color";
+import { choiceStyle, type Color } from "../foundation/color";
 import { playPress } from "../foundation/press";
 
 type SliderProps = Omit<
@@ -78,12 +78,6 @@ export const Slider: FC<SliderProps> = ({
           ref={handleRef}
           className={twMerge(
             "jellyfy-handle noise pointer-events-none absolute top-[calc(50%-0.75rem)] z-1 size-6 rounded-full",
-            "group-focus-within:ring group-focus-within:ring-offset-2",
-            tone === "error" && "group-focus-within:ring-ring-error",
-            tone === "success" && "group-focus-within:ring-ring-success",
-            tone !== "error" &&
-              tone !== "success" &&
-              "group-focus-within:ring-ring",
           )}
           style={
             {
