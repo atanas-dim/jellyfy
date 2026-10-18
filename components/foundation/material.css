@@ -77,8 +77,22 @@
   }
 
   .jellyfy-sweep {
+    position: absolute;
     top: 50%;
+    display: block;
+    width: 30%;
+    height: 40%;
+    border-radius: 999px;
+    filter: blur(12px);
     animation: jellyfy-sweep linear infinite;
+  }
+
+  .jellyfy-sweep-light {
+    background-color: rgb(255 255 255 / 0.4);
+  }
+
+  .jellyfy-sweep-shade {
+    background-color: rgb(0 0 0 / 0.4);
   }
 
   @keyframes jellyfy-orbit {
@@ -87,14 +101,50 @@
     }
   }
 
+  .jellyfy-orbit-arm {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
   .jellyfy-orbit {
+    position: absolute;
+    inset: 0;
     animation: jellyfy-orbit linear infinite;
+  }
+
+  .jellyfy-orbit-light,
+  .jellyfy-orbit-shade {
+    position: absolute;
+    top: 0.125rem;
+    left: 50%;
+    display: block;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 999px;
+    filter: blur(4px);
+    translate: -50% 0;
+  }
+
+  .jellyfy-orbit-light {
+    background-color: rgb(255 255 255 / 0.15);
+  }
+
+  .jellyfy-orbit-shade {
+    background-color: rgb(0 0 0 / 0.1);
+  }
+
+  @keyframes jellyfy-spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .jellyfy-spinner {
     width: 1.125rem;
     height: 1.125rem;
     flex: none;
+    animation: jellyfy-spin 1s linear infinite;
   }
 
   .jellyfy-lights {
@@ -109,6 +159,7 @@
   @media (prefers-reduced-motion: reduce) {
     .jellyfy-sweep,
     .jellyfy-orbit,
+    .jellyfy-spinner,
     .jellyfy-button,
     .jellyfy-icon-button,
     .jellyfy-checkbox-box,
@@ -883,16 +934,8 @@
   }
 
   .jellyfy-surface-button {
-    --jellyfy-highlight: color-mix(
-      in oklab,
-      white 78%,
-      var(--jellyfy-solid, white)
-    );
-    --jellyfy-shade: color-mix(
-      in oklab,
-      var(--jellyfy-solid, var(--color-neutral-900)) 34%,
-      transparent
-    );
+    --jellyfy-highlight: var(--surface-highlight);
+    --jellyfy-shade: var(--surface-shade);
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
@@ -925,7 +968,7 @@
     border-radius: 999px;
     pointer-events: none;
     translate: -50% 0;
-    transition: top 200ms ease-out;
+    transition: background 200ms ease-out;
   }
 
   .jellyfy-surface-button::before {
@@ -939,16 +982,28 @@
   }
 
   .jellyfy-surface-button:active::before {
-    top: 0.85rem;
+    background: radial-gradient(var(--jellyfy-shade), transparent 70%);
   }
 
   .jellyfy-surface-button:active::after {
-    top: 0.15rem;
+    background: radial-gradient(var(--jellyfy-highlight), transparent 70%);
   }
 
   .jellyfy-surface-button:focus-visible {
     outline-color: var(--jellyfy-solid, var(--color-neutral-400));
     box-shadow: var(--focus-gap);
+  }
+
+  .jellyfy-primary .jellyfy-surface-button,
+  .jellyfy-secondary .jellyfy-surface-button,
+  .jellyfy-tertiary .jellyfy-surface-button,
+  .jellyfy-neutral .jellyfy-surface-button,
+  .jellyfy-success .jellyfy-surface-button,
+  .jellyfy-error .jellyfy-surface-button,
+  .jellyfy-warning .jellyfy-surface-button {
+    --jellyfy-highlight: color-mix(in oklab, white 78%, var(--jellyfy-solid));
+    --jellyfy-shade: color-mix(in oklab, var(--jellyfy-solid) 34%, transparent);
+    color: color-mix(in oklab, var(--jellyfy-solid) 62%, black);
   }
 
   .jellyfy-primary {

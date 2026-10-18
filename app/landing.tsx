@@ -517,7 +517,7 @@ export const Landing = () => {
             <Link
               key={component.slug}
               href={`/set#${component.slug}`}
-              className="jellyfy-card block transition-transform duration-200 hover:-translate-y-0.5"
+              className="jellyfy-card squish block transition-transform duration-200 hover:-translate-y-0.5"
             >
               <h3 className="text-xl font-semibold tracking-tight">
                 {component.name}

@@ -3,6 +3,13 @@ const PRESS_MS = 480;
 const RELEASE_MS = 300;
 const PEAK_PX = 8;
 
+export const squishRule = {
+  peakPx: PEAK_PX,
+  pressMs: PRESS_MS,
+  releaseMs: RELEASE_MS,
+  peakAt: 0.42,
+} as const;
+
 const along = (pixels: number, size: number) =>
   size <= 0 ? 1 : 1 + pixels / size;
 
@@ -117,19 +124,19 @@ const lights = (spin: boolean) => {
     return `<span class="jellyfy-lights">${[1.35, 1.65, 1.5]
       .map(
         (duration, index) =>
-          `<span class="jellyfy-sweep absolute block h-2/5 w-3/10 rounded-full blur-md ${index === 1 ? "bg-black/40" : "bg-white/40"}" style="animation-duration:${duration}s;animation-delay:${[0, 0.36, 0.78][index]}s"></span>`,
+          `<span class="jellyfy-sweep ${index === 1 ? "jellyfy-sweep-shade" : "jellyfy-sweep-light"}" style="animation-duration:${duration}s;animation-delay:${[0, 0.36, 0.78][index]}s"></span>`,
       )
       .join("")}</span>`;
   }
 
   return `<span class="jellyfy-lights">${[
-    { angle: 0, duration: 1.35, tone: "bg-white/15" },
-    { angle: 130, duration: 2.2, tone: "bg-black/10" },
-    { angle: 240, duration: 1.6, tone: "bg-white/15" },
+    { angle: 0, duration: 1.35, tone: "jellyfy-orbit-light" },
+    { angle: 130, duration: 2.2, tone: "jellyfy-orbit-shade" },
+    { angle: 240, duration: 1.6, tone: "jellyfy-orbit-light" },
   ]
     .map(
       ({ angle, duration, tone }) =>
-        `<span class="pointer-events-none absolute inset-0" style="transform:rotate(${angle}deg)"><span class="jellyfy-orbit absolute inset-0" style="animation-duration:${duration}s"><span class="absolute top-0.5 left-1/2 block size-3.5 -translate-x-1/2 rounded-full blur-[4px] ${tone}"></span></span></span>`,
+        `<span class="jellyfy-orbit-arm" style="transform:rotate(${angle}deg)"><span class="jellyfy-orbit" style="animation-duration:${duration}s"><span class="${tone}"></span></span></span>`,
     )
     .join("")}</span>`;
 };
@@ -142,7 +149,7 @@ const mountLoading = (root: ParentNode) => {
     if (!element.querySelector(".jellyfy-spinner")) {
       element.insertAdjacentHTML(
         "beforeend",
-        `<svg class="jellyfy-spinner animate-spin motion-reduce:animate-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>`,
+        `<svg class="jellyfy-spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>`,
       );
     }
   });

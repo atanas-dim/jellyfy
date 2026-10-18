@@ -12,7 +12,7 @@ The component rules live in `@layer components`, so a Tailwind utility on the sa
 
 The goal is Tailwind-compatible, not Tailwind-dependent. This is not a DaisyUI-style requirement. DaisyUI does not run without Tailwind. Jellyfy should.
 
-With Tailwind, a utility on the same element overrides one property, and a later `@theme` replaces a solid. Without Tailwind, the file still paints. The script is the same call either way.
+With Tailwind, a utility on the same element overrides one property, and a later `@theme` replaces a solid. Without Tailwind, the file still paints. The script is the same call either way. Loading lights are library classes, not Tailwind utilities, so the sweep and the spinner still run when Tailwind is absent.
 
 The library carries the gray scale and the spacing unit as fallbacks. It does not assign `--color-neutral-50` or the other Tailwind names. That assignment would replace Tailwind. Each hex is written once, on a Jellyfy name, and that name reads the Tailwind variable first:
 
@@ -109,12 +109,12 @@ There are three sizes. The current regular size is the default. It has no extra 
 
 1. Add the aliases above once, and point the material at the `--jellyfy-*` names. Do not assign Tailwind's `--color-neutral-*` names.
 2. Drop `jellyfy-` from the public classes. Do this before the sizes, so the new names are only written once.
-3. Add `btn-sm` and `btn-lg`, and the same pair on the other controls, beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step.
+3. Add the three sizes. First, `/design-system` states the visual rules: radii, inset thickness, the press, focus, color, the public knobs, and the three sizes. That page is served only when `NODE_ENV` is `development`. Any other environment calls `notFound()`. Then add `btn-sm` and `btn-lg`, and the same pair on the other controls, beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step. The regular size stays as it is.
 4. Rebuild `/set` as a responsive grid, not a narrow column. Every component is on the page at once, with its colors and states, including the three sizes. This is the display. It does not explain how to use the classes.
 5. Write the docs pages on this site, at `/docs`. That is the classic guide, separate from the display. It shows the class on the element, the three sizes, the single `startJellyfy()` call, the Tailwind install, and which file to import. It also shows how to replace the select mark: keep the `jellyfy-chevron` class on your own SVG. The default mark is the rounded chevron. This is a usage guide, not an API. The only variables it teaches people to set are the public ones below.
 6. Give the site a real header and footer once those pages exist. The header links to the set and the docs. The footer has a short line about Jellyfy and the copyright. Class names in this site are built with `twJoin` and `twMerge`, not string templates. Use `twMerge` when Tailwind utilities can override each other. Use `twJoin` otherwise.
 7. Put the stylesheet and the script in `packages/jellyfy`, so they can be installed without this Next app. Do not set `0.1.0` yet, and do not publish.
-8. Prepare the marketing site for search engines and for agents that read pages. Each public page gets a title and a description, and the pages a crawler should find are easy to reach.
+8. Prepare the marketing site for search engines and for agents that read pages. Each public page gets a title and a description. Add a sitemap, JSON-LD, and an llms file, and make the pages a crawler should find easy to reach.
 9. Install that folder into a plain HTML page, a Vue app, and a Vite React app. Do not set `0.1.0`. Do not publish.
 10. Only after that trial is confirmed: set `0.1.0` and publish to npm.
 

@@ -2,10 +2,14 @@
 
 const DialogPreview = () => (
   <>
-    <button className="jellyfy-button" type="button" onClick={() => {
-      const dialog = document.getElementById("preview-dialog");
-      if (dialog instanceof HTMLDialogElement) dialog.showModal();
-    }}>
+    <button
+      className="jellyfy-button"
+      type="button"
+      onClick={() => {
+        const dialog = document.getElementById("preview-dialog");
+        if (dialog instanceof HTMLDialogElement) dialog.showModal();
+      }}
+    >
       <span>Open dialog</span>
     </button>
     <dialog id="preview-dialog" className="jellyfy-dialog">
