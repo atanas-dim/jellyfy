@@ -69,7 +69,7 @@ const sizeClass = (prefix: string, size: (typeof SIZES)[number]) =>
 
 export default function SetPage() {
   return (
-    <main className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-x-8 gap-y-12 px-6 py-12 sm:grid-cols-2 xl:grid-cols-3">
+    <main className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-x-8 gap-y-12 px-6 py-12 sm:grid-cols-2 sm:px-10 xl:grid-cols-3">
       <Tile id="button" title="Button" wide>
         <div className="flex flex-wrap items-center gap-3">
           {COLORS.map((color) => (

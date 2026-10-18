@@ -369,7 +369,7 @@ export const Landing = () => {
       <section className="border-y border-white/70 bg-white/40 py-8">
         <p
           data-rise
-          className="px-6 text-center text-sm font-medium tracking-[0.18em] text-neutral-500 uppercase"
+          className="px-6 text-center text-sm font-medium tracking-[0.18em] text-neutral-500 uppercase sm:px-10"
         >
           Every color, the same press
         </p>
