@@ -234,8 +234,8 @@ export const Landing = () => {
               data-hero-item
               className="mt-6 max-w-md text-lg leading-8 text-neutral-600"
             >
-              Class names on your own HTML. Set seven solid colors, and the
-              raised fill, the pale field, and the ring are mixed from them.
+              Soft controls for the HTML you already write. Pick seven colors.
+              The rest of the set follows.
             </p>
 
             <div data-hero-item className="mt-8">
@@ -406,7 +406,7 @@ export const Landing = () => {
           data-rise
           className="px-6 text-center text-sm font-medium tracking-[0.18em] text-neutral-500 uppercase"
         >
-          Same press, seven solids
+          Every color, the same press
         </p>
         <div className="mt-6 overflow-hidden pt-8 pb-16">
           <div data-marquee className="flex w-max">
@@ -436,20 +436,21 @@ export const Landing = () => {
       <section className="mx-auto w-full max-w-6xl px-6 py-20 sm:px-10">
         <div data-rise className="max-w-xl">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            How you use it
+            Drop it on your markup
           </h2>
           <p className="mt-4 text-lg leading-8 text-neutral-600">
-            The class is the component. The stylesheet is the material. A short
-            script handles the squish.
+            One stylesheet, then a class on the element. Press it and it gives.
           </p>
         </div>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
           <article data-rise className="jellyfy-card flex flex-col gap-4">
-            <h3 className="text-xl font-semibold tracking-tight">The class</h3>
+            <h3 className="text-xl font-semibold tracking-tight">
+              Your button
+            </h3>
             <p className="text-sm leading-6 text-neutral-600">
-              A button stays a button. You add the class, and the press, the
-              gloss, and the type come with it.
+              Keep the element. Add the class. It comes back with a soft face
+              and a press.
             </p>
             <button type="button" className="jellyfy-button jellyfy-primary">
               <span>Launch</span>
@@ -460,10 +461,12 @@ export const Landing = () => {
           </article>
 
           <article data-rise className="jellyfy-card flex flex-col gap-4">
-            <h3 className="text-xl font-semibold tracking-tight">The colors</h3>
+            <h3 className="text-xl font-semibold tracking-tight">
+              Your colors
+            </h3>
             <p className="text-sm leading-6 text-neutral-600">
-              Seven solids in the theme. Fields stay pale. Raised controls take
-              the stronger mix.
+              Name seven colors once. Buttons, fields, and badges in that color
+              stay in the same material.
             </p>
             <label className="jellyfy-input jellyfy-success">
               <input placeholder=" " defaultValue="Ready" />
@@ -476,17 +479,17 @@ export const Landing = () => {
 
           <article data-rise className="jellyfy-card flex flex-col gap-4">
             <h3 className="text-xl font-semibold tracking-tight">
-              The utility
+              Your utilities
             </h3>
             <p className="text-sm leading-6 text-neutral-600">
-              Add a Tailwind utility on the same element. That one property
-              changes. The jelly stays.
+              Tailwind still applies. Widen it, pad it, or lay it out. The press
+              stays.
             </p>
             <button
               type="button"
               className="jellyfy-button jellyfy-tertiary w-full"
             >
-              <span>Across the card</span>
+              <span>Continue</span>
             </button>
             <p className="font-mono text-xs leading-5 text-neutral-500">
               jellyfy-button w-full
@@ -532,7 +535,7 @@ export const Landing = () => {
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3">
           <p className="font-display font-semibold">Jellyfy</p>
           <p className="text-sm text-neutral-500">
-            Press a control. That squish is the script.
+            Press one. The whole set gives the same way.
           </p>
         </div>
       </footer>
@@ -552,7 +555,7 @@ export const Landing = () => {
             </form>
           </div>
           <p className="mt-2 text-sm leading-6">
-            Native dialog. The panel takes the solid you picked.
+            Keep this note, or send it on.
           </p>
           <div className="mt-4 flex flex-col gap-2">
             <label className={`jellyfy-radio ${tone}`}>

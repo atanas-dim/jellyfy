@@ -40,6 +40,7 @@
   --jellyfy-noise-size: 360px;
 
   --shadow-inset-thin: inset 0 -6px 8px rgb(10 10 10 / 0.12);
+  --shadow-inset-mark: inset 0 -1px 5px rgb(10 10 10 / 0.35);
   --shadow-inset-surface: inset 0 -10px 16px rgb(10 10 10 / 0.2);
   --shadow-inset-surface-focus: inset 0 -6px 10px rgb(10 10 10 / 0.15);
   --shadow-inset-raised: inset 0 -16px 16px rgb(10 10 10 / 0.6);
@@ -516,7 +517,7 @@
     flex: none;
     background-color: var(--surface);
     color: var(--surface-foreground);
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+    box-shadow: var(--shadow-inset-mark), var(--shadow-drop);
     backdrop-filter: blur(4px);
     outline: 1px solid transparent;
     outline-offset: 2px;
@@ -579,7 +580,11 @@
   }
 
   .jellyfy-checkbox:focus-within .jellyfy-checkbox-box,
-  .jellyfy-radio:focus-within .jellyfy-radio-ring,
+  .jellyfy-radio:focus-within .jellyfy-radio-ring {
+    outline-color: var(--jellyfy-solid);
+    box-shadow: var(--focus-gap), var(--shadow-inset-mark), var(--shadow-drop);
+  }
+
   .jellyfy-switch:focus-within .jellyfy-switch-track,
   .jellyfy-slider:focus-within .jellyfy-slider-handle {
     outline-color: var(--jellyfy-solid);
