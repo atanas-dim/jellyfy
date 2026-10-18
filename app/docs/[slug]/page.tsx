@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { COMPONENT_DOCS, getComponentDoc } from "@/resources/component-docs";
@@ -41,12 +40,6 @@ export default async function ComponentDocPage({ params }: DocPageProps) {
       </p>
       <div className="mt-3 flex flex-wrap items-end justify-between gap-3">
         <h1 className="text-4xl font-semibold tracking-tight">{doc.name}</h1>
-        <Link
-          href={`/set#${doc.slug}`}
-          className="text-sm font-medium text-neutral-500 underline decoration-neutral-300 underline-offset-4 hover:text-neutral-950"
-        >
-          See it in the set
-        </Link>
       </div>
       <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
         {doc.description}

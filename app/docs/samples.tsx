@@ -357,14 +357,14 @@ export const Sample = ({ id }: { id: string }) => {
       return (
         <div className="flex flex-col gap-3">
           <label className="radio primary">
-            <input type="radio" name="docs-delivery" defaultChecked />
+            <input type="radio" name="docs-note" defaultChecked />
             <span className="radio-ring" />
-            Soft
+            Keep
           </label>
           <label className="radio primary">
-            <input type="radio" name="docs-delivery" />
+            <input type="radio" name="docs-note" />
             <span className="radio-ring" />
-            Firm
+            Send
           </label>
         </div>
       );

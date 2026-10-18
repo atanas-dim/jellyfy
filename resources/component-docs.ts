@@ -465,14 +465,14 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         id: "radio-basic",
         title: "A group",
         code: `<label class="radio primary">
-  <input type="radio" name="delivery" checked>
+  <input type="radio" name="note" checked>
   <span class="radio-ring"></span>
-  Soft
+  Keep
 </label>
 <label class="radio primary">
-  <input type="radio" name="delivery">
+  <input type="radio" name="note">
   <span class="radio-ring"></span>
-  Firm
+  Send
 </label>`,
         note: "Share a name so the group is one choice.",
       },

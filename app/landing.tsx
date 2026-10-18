@@ -475,14 +475,14 @@ export const Landing = () => {
           </p>
           <div className="mt-4 flex flex-col gap-2">
             <label className={twJoin("radio", tone)}>
-              <input type="radio" name="landing-delivery" defaultChecked />
+              <input type="radio" name="landing-note" defaultChecked />
               <span className="radio-ring" />
-              Soft
+              Keep
             </label>
             <label className={twJoin("radio", tone)}>
-              <input type="radio" name="landing-delivery" />
+              <input type="radio" name="landing-note" />
               <span className="radio-ring" />
-              Firm
+              Send
             </label>
           </div>
         </div>

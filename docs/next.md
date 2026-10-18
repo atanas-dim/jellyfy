@@ -115,7 +115,7 @@ There are three sizes. The current regular size is the default. It has no extra 
 6. Give the site a real header and footer once those pages exist. The header links to the set and the docs. The footer has a short line about Jellyfy and the copyright. Class names in this site are built with `twJoin` and `twMerge`, not string templates. Use `twMerge` when Tailwind utilities can override each other. Use `twJoin` otherwise.
 7. Put the stylesheet and the script in `packages/jellyfy`, so they can be installed without this Next app. Do not set `0.1.0` yet, and do not publish.
 8. Prepare the marketing site for search engines and for agents that read pages. Each public page gets a title and a description. Add a sitemap, JSON-LD, and an llms file, and make the pages a crawler should find easy to reach.
-9. Install that folder into a plain HTML page, a Vue app, and a Vite React app. Do not set `0.1.0`. Do not publish. After those apps exist, add a "Call it once" example for each of them on the install docs page, next to the current `startJellyfy()` sample: plain HTML, Vue, and Vite React.
+9. Done. The three apps live in `examples/html`, `examples/vue`, and `examples/react`, and the install page shows the call for each. Do not set `0.1.0`. Do not publish.
 10. Only after that trial is confirmed: set `0.1.0` and publish to npm.
 
 ## Package shape

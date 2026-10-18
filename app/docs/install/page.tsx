@@ -35,7 +35,7 @@ export default function InstallPage() {
       <CodeBlock
         lang="css"
         code={`@import "tailwindcss";
-@import "jellyfy.css";`}
+@import "jellyfy/jellyfy.css";`}
       />
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
@@ -46,8 +46,12 @@ export default function InstallPage() {
       </p>
       <CodeBlock
         lang="html"
-        code={`<link rel="stylesheet" href="jellyfy.css" />`}
+        code={`<link rel="stylesheet" href="./node_modules/jellyfy/jellyfy.css" />`}
       />
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+        A bundler imports that same file.
+      </p>
+      <CodeBlock lang="js" code={`import "jellyfy/jellyfy.css";`} />
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         Call it once
@@ -55,13 +59,61 @@ export default function InstallPage() {
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
         Call <code className="font-mono text-sm">startJellyfy()</code> once,
         after the controls are on the page. A pointer press squashes the control
-        under the pointer. A later call is ignored.
+        under the pointer. A later call is ignored. The full pages are in{" "}
+        <code className="font-mono text-sm">examples</code>.
+      </p>
+
+      <h3 className="mt-8 text-lg font-semibold tracking-tight">Plain HTML</h3>
+      <CodeBlock
+        lang="html"
+        code={`<script type="module">
+  import { startJellyfy } from "./node_modules/jellyfy/jellyfy.js";
+
+  startJellyfy();
+</script>`}
+      />
+
+      <h3 className="mt-8 text-lg font-semibold tracking-tight">Vue</h3>
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+        Import the stylesheet in the entry. Call the function when the app is
+        mounted.
       </p>
       <CodeBlock
         lang="js"
-        code={`import { startJellyfy } from "jellyfy.js";
+        code={`import { createApp } from "vue";
 
-startJellyfy();`}
+import App from "./App.vue";
+import "jellyfy/jellyfy.css";
+
+createApp(App).mount("#app");`}
+      />
+      <CodeBlock
+        lang="vue"
+        code={`<script setup>
+import { startJellyfy } from "jellyfy";
+import { onMounted } from "vue";
+
+onMounted(() => {
+  startJellyfy();
+});
+</script>`}
+      />
+
+      <h3 className="mt-8 text-lg font-semibold tracking-tight">Vite React</h3>
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+        Import the stylesheet after Tailwind. Call the function once from the
+        root component.
+      </p>
+      <CodeBlock
+        lang="jsx"
+        code={`import { startJellyfy } from "jellyfy";
+import { useEffect } from "react";
+
+export default function App() {
+  useEffect(() => {
+    startJellyfy();
+  }, []);
+}`}
       />
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
