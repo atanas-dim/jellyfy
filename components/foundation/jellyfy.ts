@@ -10,45 +10,25 @@ const pose = (element: HTMLElement) => {
   const height = element.offsetHeight;
   return {
     peakX: along(PEAK_PX, width),
-    peakY: along(-PEAK_PX * (0.02 / 0.07), height),
-    endX: along(PEAK_PX * (0.01 / 0.07), width),
-    endY: along(PEAK_PX * (0.02 / 0.07), height),
+    peakY: along((-PEAK_PX * 2) / 7, height),
+    endX: along(PEAK_PX / 7, width),
+    endY: along((PEAK_PX * 2) / 7, height),
   };
-};
-
-const easeOut = (time: number) => {
-  let start = 0;
-  let end = 1;
-  for (let step = 0; step < 10; step += 1) {
-    const mid = (start + end) / 2;
-    const x =
-      3 * (1 - mid) ** 2 * mid * 0.58 + 3 * (1 - mid) * mid ** 2 + mid ** 3;
-    if (x < time) start = mid;
-    else end = mid;
-  }
-  const mid = (start + end) / 2;
-  return 3 * (1 - mid) * mid ** 2 + mid ** 3;
-};
-
-const mix = (from: number, to: number, amount: number) =>
-  from + (to - from) * amount;
-
-const scalesAt = (element: HTMLElement, progress: number) => {
-  const { peakX, peakY, endX, endY } = pose(element);
-  if (progress <= 0) return [1, 1] as const;
-  if (progress >= 1) return [endX, endY] as const;
-  if (progress <= 0.65) {
-    const amount = easeOut(progress / 0.65);
-    return [mix(1, peakX, amount), mix(1, peakY, amount)] as const;
-  }
-  const amount = easeOut((progress - 0.65) / 0.35);
-  return [mix(peakX, endX, amount), mix(peakY, endY, amount)] as const;
 };
 
 const stopSquish = (element: HTMLElement) => {
   element.getAnimations().forEach((animation) => {
     if (animation.id === SQUISH) animation.cancel();
   });
+};
+
+const scaleNow = (element: HTMLElement) => {
+  const value = getComputedStyle(element).transform;
+  if (!value || value === "none") return [1, 1] as const;
+  const match = value.match(/matrix\(([^)]+)\)/);
+  if (!match) return [1, 1] as const;
+  const [a, , , d] = match[1].split(",").map((part) => Number(part));
+  return [a || 1, d || 1] as const;
 };
 
 const canSquish = (element: HTMLElement) =>
@@ -59,6 +39,7 @@ const canSquish = (element: HTMLElement) =>
 const press = (element: HTMLElement) => {
   if (!canSquish(element)) return;
   const { peakX, peakY, endX, endY } = pose(element);
+  element.style.transform = "";
   stopSquish(element);
   const animation = element.animate(
     [
@@ -76,15 +57,8 @@ const press = (element: HTMLElement) => {
 };
 
 const release = (element: HTMLElement) => {
-  const running = element
-    .getAnimations()
-    .find((animation) => animation.id === SQUISH);
-  const elapsed =
-    typeof running?.currentTime === "number" ? running.currentTime : PRESS_MS;
-  const [x, y] = scalesAt(
-    element,
-    Math.min(1, Math.max(0, elapsed / PRESS_MS)),
-  );
+  const [x, y] = scaleNow(element);
+  element.style.transform = `scale(${x}, ${y})`;
   stopSquish(element);
   const animation = element.animate(
     [
@@ -94,6 +68,10 @@ const release = (element: HTMLElement) => {
     { duration: PRESS_MS, fill: "forwards" },
   );
   animation.id = SQUISH;
+  animation.onfinish = () => {
+    element.style.transform = "";
+    animation.cancel();
+  };
 };
 
 const face = (node: Element): HTMLElement | null => {
