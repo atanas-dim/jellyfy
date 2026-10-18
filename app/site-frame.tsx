@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
+import { SiteFooter } from "./site-footer";
+
 const LINKS = [
   { href: "/set", label: "Set" },
   { href: "/docs", label: "Docs" },
@@ -47,14 +49,7 @@ export const SiteFrame = ({ children }: { children: ReactNode }) => {
         </div>
       </header>
       <div className="flex-1">{children}</div>
-      <footer className="border-t border-neutral-200/80 py-8">
-        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-6 sm:px-10">
-          <p className="font-display font-semibold">Jellyfy</p>
-          <p className="text-sm text-neutral-500">
-            Press one. The whole set gives the same way. © 2026
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 };

@@ -30,7 +30,6 @@ const openNote = () => {
 
 export const Landing = () => {
   const page = useRef<HTMLElement>(null);
-  const tilt = useRef<HTMLDivElement>(null);
   const [tone, setTone] = useState<Tone>("primary");
   const toneLabel = TONES.find((item) => item.id === tone)?.label ?? "Primary";
 
@@ -40,7 +39,6 @@ export const Landing = () => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
-    let removePointer: (() => void) | undefined;
     let alive = true;
     const track = root.querySelector<HTMLElement>("[data-marquee]");
     const group = track?.querySelector<HTMLElement>("[data-marquee-group]");
@@ -121,36 +119,6 @@ export const Landing = () => {
           scrollTrigger: { trigger: element, start: "top 86%" },
         });
       });
-
-      const stage = root.querySelector<HTMLElement>("[data-stage]");
-      const plate = tilt.current;
-      if (stage && plate && window.matchMedia("(pointer: fine)").matches) {
-        const xTo = gsap.quickTo(plate, "x", {
-          duration: 2,
-          ease: "power3.out",
-        });
-        const yTo = gsap.quickTo(plate, "y", {
-          duration: 2,
-          ease: "power3.out",
-        });
-        const onMove = (event: PointerEvent) => {
-          const rect = stage.getBoundingClientRect();
-          const px = (event.clientX - rect.left) / rect.width - 0.5;
-          const py = (event.clientY - rect.top) / rect.height - 0.5;
-          xTo(px * 18);
-          yTo(py * 12);
-        };
-        const onLeave = () => {
-          xTo(0);
-          yTo(0);
-        };
-        stage.addEventListener("pointermove", onMove);
-        stage.addEventListener("pointerleave", onLeave);
-        removePointer = () => {
-          stage.removeEventListener("pointermove", onMove);
-          stage.removeEventListener("pointerleave", onLeave);
-        };
-      }
     }, root);
 
     document.fonts?.ready.then(() => {
@@ -159,7 +127,6 @@ export const Landing = () => {
 
     return () => {
       alive = false;
-      removePointer?.();
       track
         ?.querySelectorAll("[data-marquee-clone]")
         .forEach((node) => node.remove());
@@ -260,9 +227,9 @@ export const Landing = () => {
             </div>
           </div>
 
-          <div data-stage>
+          <div>
             <div data-desk-in>
-              <div ref={tilt} className="relative">
+              <div className="relative">
                 <div
                   data-float
                   className={twJoin(
@@ -372,7 +339,7 @@ export const Landing = () => {
         >
           Every color, the same press
         </p>
-        <div className="mt-6 overflow-hidden pt-8 pb-16">
+        <div data-rise className="mt-6 overflow-hidden pt-8 pb-16">
           <div data-marquee className="flex w-max">
             {[0, 1].map((copy) => (
               <div
@@ -480,6 +447,7 @@ export const Landing = () => {
               key={component.slug}
               href={`/set#${component.slug}`}
               className="card squish block transition-transform duration-200 hover:-translate-y-0.5"
+              data-rise
             >
               <h3 className="text-xl font-semibold tracking-tight">
                 {component.name}
