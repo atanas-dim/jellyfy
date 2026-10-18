@@ -237,10 +237,11 @@ export const Landing = () => {
                     key={item.id}
                     type="button"
                     className={twJoin(
-                      "jellyfy-icon-button",
+                      "jellyfy-icon-button outline-2 outline-offset-2 transition-all duration-400",
                       item.id,
-                      tone === item.id &&
-                        "outline-2 outline-offset-4 outline-neutral-950",
+                      tone === item.id
+                        ? "outline-neutral-950"
+                        : "outline-transparent",
                     )}
                     aria-label={item.label}
                     aria-pressed={tone === item.id}
@@ -293,7 +294,9 @@ export const Landing = () => {
                     <h2 className="text-lg font-semibold tracking-tight">
                       Studio note
                     </h2>
-                    <span className={twJoin("jellyfy-badge", tone)}>{toneLabel}</span>
+                    <span className={twJoin("jellyfy-badge", tone)}>
+                      {toneLabel}
+                    </span>
                   </div>
 
                   <label className={twJoin("jellyfy-input", tone)}>
@@ -341,7 +344,10 @@ export const Landing = () => {
                   </label>
 
                   <div className="flex flex-wrap items-center gap-3">
-                    <button type="button" className={twJoin("jellyfy-button", tone)}>
+                    <button
+                      type="button"
+                      className={twJoin("jellyfy-button", tone)}
+                    >
                       <span>Send</span>
                     </button>
                     <button
@@ -535,18 +541,16 @@ export const Landing = () => {
 
       <dialog id="landing-note" className="jellyfy-dialog">
         <div className={twJoin("jellyfy-dialog-panel", tone)}>
-          <div className="flex items-start justify-between gap-4">
-            <h2 className="text-lg font-semibold">A note</h2>
-            <form method="dialog">
-              <button
-                className="jellyfy-dialog-close"
-                type="submit"
-                aria-label="Close"
-              >
-                ×
-              </button>
-            </form>
-          </div>
+          <form method="dialog">
+            <button
+              className="jellyfy-surface-button"
+              type="submit"
+              aria-label="Close"
+            >
+              ×
+            </button>
+          </form>
+          <h2 className="pe-8 text-lg font-semibold">A note</h2>
           <p className="mt-2 text-sm leading-6">
             Keep this note, or send it on.
           </p>

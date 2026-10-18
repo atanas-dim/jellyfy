@@ -77,7 +77,9 @@ The package name is Jellyfy, with two y's. `jellyfy` is free on npm. `jellify` i
 
 The public classes drop the `jellyfy-` prefix before the sizes are added. They follow DaisyUI's short names, not the HTML tag. A button is `btn`. A small one is `btn-sm`. A large one is `btn-lg`. The size is not a lone `sm` class.
 
-The same idea for the rest of the set: `input`, `textarea`, `select`, `checkbox`, `radio`, `toggle`, `range`, `alert`, `badge`, `card`, `modal`. An icon button is `btn-square`. These are the vocabulary. They are not written to avoid every existing `.card` in someone else's app. They must not reuse a Tailwind utility name such as `flex`.
+The same idea for the rest of the set: `input`, `textarea`, `select`, `checkbox`, `radio`, `toggle`, `range`, `alert`, `badge`, `card`, `modal`. An icon button is `btn-square`. A button that sits on a surface, with the bump under its icon, is `btn-surface`. These are the vocabulary. They are not written to avoid every existing `.card` in someone else's app. They must not reuse a Tailwind utility name such as `flex`.
+
+`squish` opts any element into the press. It is already the public word. Cards do not get it unless someone adds it. One press still moves one element. On a Jellyfy control, that element is the face the control already uses, so the class does not start a second animation.
 
 Internal variables stay `--jellyfy-*`. Those are not what a developer types on an element. The code still has the prefix until that rename.
 
@@ -112,8 +114,9 @@ There are three sizes. The current regular size is the default. It has no extra 
 5. Write the docs pages on this site, at `/docs`. That is the classic guide, separate from the display. It shows the class on the element, the three sizes, the single `startJellyfy()` call, the Tailwind install, and which file to import. It also shows how to replace the select mark: keep the `jellyfy-chevron` class on your own SVG. The default mark is the rounded chevron. This is a usage guide, not an API. The only variables it teaches people to set are the public ones below.
 6. Give the site a real header and footer once those pages exist. The header links to the set and the docs. The footer has a short line about Jellyfy and the copyright. Class names in this site are built with `twJoin` and `twMerge`, not string templates. Use `twMerge` when Tailwind utilities can override each other. Use `twJoin` otherwise.
 7. Put the stylesheet and the script in `packages/jellyfy`, so they can be installed without this Next app. Do not set `0.1.0` yet, and do not publish.
-8. Install that folder into a plain HTML page, a Vue app, and a Vite React app. Do not set `0.1.0`. Do not publish.
-9. Only after that trial is confirmed: set `0.1.0` and publish to npm.
+8. Prepare the marketing site for search engines and for agents that read pages. Each public page gets a title and a description, and the pages a crawler should find are easy to reach.
+9. Install that folder into a plain HTML page, a Vue app, and a Vite React app. Do not set `0.1.0`. Do not publish.
+10. Only after that trial is confirmed: set `0.1.0` and publish to npm.
 
 ## Package shape
 
@@ -139,7 +142,7 @@ The Chrome select picker is styled where `appearance: base-select` exists. Other
 
 ## Leave for later
 
-Dark theme comes after the sizes. A press on cards stays out. The orbit light uses the same full turn as Tailwind's spin; the sweep does not. Leave the orbit unless we choose to switch it.
+Dark theme comes after the sizes. A press on cards stays out unless the card wears `squish`. The orbit light uses the same full turn as Tailwind's spin; the sweep does not. Leave the orbit unless we choose to switch it.
 
 ## What a developer can customize
 

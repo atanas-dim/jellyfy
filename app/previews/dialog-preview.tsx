@@ -11,11 +11,15 @@ const DialogPreview = () => (
     <dialog id="preview-dialog" className="jellyfy-dialog">
       <div className="jellyfy-dialog-panel">
         <form method="dialog">
-          <button className="jellyfy-dialog-close" type="submit">
-            Close
+          <button
+            className="jellyfy-surface-button"
+            type="submit"
+            aria-label="Close"
+          >
+            ×
           </button>
         </form>
-        <h2 className="text-lg font-semibold">Publish this draft</h2>
+        <h2 className="pe-8 text-lg font-semibold">Publish this draft</h2>
       </div>
     </dialog>
   </>

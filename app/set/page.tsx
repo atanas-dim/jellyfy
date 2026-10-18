@@ -265,18 +265,16 @@ export default function DevPage() {
         </button>
         <dialog id="plain-dialog" className="jellyfy-dialog">
           <div className="jellyfy-dialog-panel">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg font-semibold">A note</h2>
-              <form method="dialog">
-                <button
-                  className="jellyfy-dialog-close"
-                  type="submit"
-                  aria-label="Close"
-                >
-                  ×
-                </button>
-              </form>
-            </div>
+            <form method="dialog">
+              <button
+                className="jellyfy-surface-button"
+                type="submit"
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </form>
+            <h2 className="pe-8 text-lg font-semibold">A note</h2>
             <p className="mt-2 text-sm leading-6">
               Native dialog, surface panel.
             </p>
@@ -284,18 +282,16 @@ export default function DevPage() {
         </dialog>
         <dialog id="tinted-dialog" className="jellyfy-dialog">
           <div className="jellyfy-dialog-panel jellyfy-tertiary">
-            <div className="flex items-start justify-between gap-4">
-              <h2 className="text-lg font-semibold">Tinted</h2>
-              <form method="dialog">
-                <button
-                  className="jellyfy-dialog-close"
-                  type="submit"
-                  aria-label="Close"
-                >
-                  ×
-                </button>
-              </form>
-            </div>
+            <form method="dialog">
+              <button
+                className="jellyfy-surface-button"
+                type="submit"
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </form>
+            <h2 className="pe-8 text-lg font-semibold">Tinted</h2>
             <p className="mt-2 text-sm leading-6">
               Same light tint as the card.
             </p>

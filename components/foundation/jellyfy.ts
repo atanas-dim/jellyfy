@@ -104,9 +104,12 @@ const face = (node: Element): HTMLElement | null => {
       (sw as HTMLElement)
     );
 
-  return node.closest(
-    ".jellyfy-button, .jellyfy-icon-button, .jellyfy-input, .jellyfy-textarea, .jellyfy-select",
-  ) as HTMLElement | null;
+  const control = node.closest(
+    ".jellyfy-button, .jellyfy-icon-button, .jellyfy-surface-button, .jellyfy-input, .jellyfy-textarea, .jellyfy-select",
+  );
+  if (control) return control as HTMLElement;
+
+  return node.closest(".squish") as HTMLElement | null;
 };
 
 const lights = (spin: boolean) => {
