@@ -486,6 +486,49 @@
     transform: translateY(-50%);
   }
 
+  @supports (appearance: base-select) {
+    .jellyfy-select select,
+    .jellyfy-select select::picker(select) {
+      appearance: base-select;
+    }
+
+    .jellyfy-select select::picker-icon {
+      display: none;
+    }
+
+    .jellyfy-select select::picker(select) {
+      margin-top: 0.35rem;
+      padding: 0.35rem;
+      border: 0;
+      border-radius: var(--radius-surface);
+      background: white;
+      color: var(--surface-foreground);
+      box-shadow: var(--shadow-inset-thin), var(--shadow-drop-hover);
+      font: inherit;
+    }
+
+    .jellyfy-select select option {
+      border-radius: 0.65rem;
+      padding: 0.55rem 0.75rem;
+      background: transparent;
+      color: inherit;
+    }
+
+    .jellyfy-select select option:hover,
+    .jellyfy-select select option:focus {
+      background: color-mix(in oklab, var(--jellyfy-solid) 16%, white);
+    }
+
+    .jellyfy-select select option:checked {
+      background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+      color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
+    }
+
+    .jellyfy-select select option::checkmark {
+      color: currentColor;
+    }
+  }
+
   .jellyfy-checkbox,
   .jellyfy-radio,
   .jellyfy-switch {

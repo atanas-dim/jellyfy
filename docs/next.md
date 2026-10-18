@@ -108,9 +108,27 @@ There are three sizes. The current regular size is the default. It has no extra 
 1. Add the aliases above once, and point the material at the `--jellyfy-*` names. Do not assign Tailwind's `--color-neutral-*` names.
 2. Drop `jellyfy-` from the public classes. Do this before the sizes, so the new names are only written once.
 3. Add `btn-sm` and `btn-lg`, and the same pair on the other controls, beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step.
-4. Write the usage guide after the sizes exist, so it is written once. Show the class on the element, the seven colors, all three sizes, and the single `startJellyfy()` call. Show the Tailwind install and the optional `:root` overrides. This is a usage guide, not an API.
+4. Decide the package shape, then write the docs pages in this site. The guide shows the class on the element, the seven colors, all three sizes, and the single `startJellyfy()` call. It shows the Tailwind install and the optional `:root` overrides. It also shows the install itself: what file to import, and from where. This is a usage guide, not an API.
 5. Package the stylesheet and the script so someone can use them without this Next app. Version it `0.1.0`.
 6. Install that package into a plain HTML page, a Vue app, and a Vite React app. Publish to npm only after those three pass.
+
+## Package shape
+
+What a person installs should not be this Next app. Today the library is three files inside `components/foundation`: `material.css`, `jellyfy.ts`, and an empty `plugin.js`. The demo lives in `app` (landing, `/set`, previews, and one page per component). `resources` is only the demo’s list of components. `docs/next.md` is this plan, not a guide. `public` still has leftover framework icons.
+
+That mix is fine while building. It is a poor install. A user should import one stylesheet and one script, not a path through `components/foundation`.
+
+Proposed shape, when we package:
+
+```
+jellyfy.css
+jellyfy.js
+plugin.js
+```
+
+Those three sit at the root of the published package. This repo can keep the Next app as the website: the landing, the set, and a docs section at `/docs`. The guide pages are part of that site, not a second folder of markdown that nobody renders. Move the library files to the package root, or to `src`, only when the package step starts. Do not rename them in the middle of the size work.
+
+The Chrome select picker is styled where `appearance: base-select` exists. Other browsers keep the system menu. That is intentional.
 
 ## Leave for later
 
