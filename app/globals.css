@@ -1,23 +1,55 @@
 @import "tailwindcss";
+@plugin "jellyfy/plugin.js";
+@import "jellyfy/jellyfy.css";
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-figtree);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-rubik);
 }
 
 body {
-  background-color: var(--color-neurtal-50);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  background-color: var(--color-neutral-50);
+  font-family: var(--font-figtree), Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-rubik), Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .jellyfy-rise {
+    animation: jellyfy-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@keyframes jellyfy-rise {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
 }
 
 .code-block {
   overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
 }
 
 .code-block pre {
   margin: 0;
   min-width: max-content;
-  overflow-x: auto !important;
+  overflow: visible !important;
   padding: 1.25rem !important;
 }
 

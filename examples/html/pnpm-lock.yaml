@@ -1,0 +1,22 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      jellyfy:
+        specifier: file:../../packages/jellyfy
+        version: file:../../packages/jellyfy
+
+packages:
+
+  jellyfy@file:../../packages/jellyfy:
+    resolution: {directory: ../../packages/jellyfy, type: directory}
+
+snapshots:
+
+  jellyfy@file:../../packages/jellyfy: {}

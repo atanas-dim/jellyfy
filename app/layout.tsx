@@ -1,11 +1,21 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Figtree, Geist_Mono, Rubik } from "next/font/google";
 import { twJoin } from "tailwind-merge";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+import { site } from "@/resources/site";
+
+import { JellyfyBoot } from "./jellyfy-boot";
+import { SiteFrame } from "./site-frame";
+
+const figtree = Figtree({
+  variable: "--font-figtree",
+  subsets: ["latin"],
+});
+
+const rubik = Rubik({
+  variable: "--font-rubik",
   subsets: ["latin"],
 });
 
@@ -15,9 +25,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "React UI Lab",
-  description:
-    "A clean Next.js showcase of reusable React components built with TypeScript and Tailwind CSS.",
+  metadataBase: site.url,
+  title: {
+    default: site.name,
+    template: `%s · ${site.name}`,
+  },
+  description: site.description,
+  openGraph: {
+    title: site.name,
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -30,11 +50,17 @@ export default function RootLayout({
       lang="en"
       className={twJoin(
         "size-full antialiased",
-        geistSans.variable,
+        figtree.variable,
+        rubik.variable,
         geistMono.variable,
       )}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body>
+        <JellyfyBoot />
+        <div className="isolate flex min-h-full flex-col">
+          <SiteFrame>{children}</SiteFrame>
+        </div>
+      </body>
     </html>
   );
 }

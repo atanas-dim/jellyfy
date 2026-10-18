@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jellyfy HTML trial</title>
+    <link rel="stylesheet" href="./node_modules/jellyfy/jellyfy.css" />
+    <style>
+      body { margin: 0; color: #171717; background: #fff; font-family: ui-sans-serif, system-ui, sans-serif; }
+      main { display: grid; gap: 3rem; max-width: 72rem; margin: 0 auto; padding: 3rem 1.5rem; }
+      section { display: grid; gap: 1rem; }
+      h1 { margin: 0; font-size: 1.875rem; font-weight: 600; letter-spacing: -0.02em; }
+      h2 { margin: 0; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #737373; }
+      h3 { margin: 0; font-weight: 600; }
+      .panel-title { margin: 0; padding-inline-end: 2rem; font-size: 1.125rem; letter-spacing: 0; text-transform: none; color: inherit; }
+      .row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+      .row.end { align-items: flex-end; row-gap: 2rem; }
+      .grid { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+      .stack { display: flex; flex-direction: column; gap: 0.75rem; }
+      .stack.tight { gap: 0; }
+      .strong, p { margin: 0; }
+      .strong { font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Jellyfy</h1>
+      <section>
+        <h2>Button</h2>
+        <div class="row">
+        <button class="btn primary" type="button"><span>Primary</span></button>
+        <button class="btn secondary" type="button"><span>Secondary</span></button>
+        <button class="btn tertiary" type="button"><span>Tertiary</span></button>
+        <button class="btn neutral" type="button"><span>Neutral</span></button>
+        <button class="btn success" type="button"><span>Success</span></button>
+        <button class="btn error" type="button"><span>Error</span></button>
+        <button class="btn warning" type="button"><span>Warning</span></button>
+        <button class="btn info" type="button"><span>Info</span></button>
+        </div>
+        <div class="row end">
+        <button class="btn btn-sm" type="button"><span>Small</span></button>
+        <button class="btn " type="button"><span>Regular</span></button>
+        <button class="btn btn-lg" type="button"><span>Large</span></button>
+        </div>
+        <div class="row">
+          <button class="btn primary loading" type="button"><span>Loading</span></button>
+          <button class="btn" type="button" disabled><span>Disabled</span></button>
+        </div>
+      </section>
+      <section>
+        <h2>Icon button</h2>
+        <div class="row">
+        <button class="btn-square primary" type="button" aria-label="Primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="btn-square secondary" type="button" aria-label="Secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="btn-square tertiary" type="button" aria-label="Tertiary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="btn-square neutral" type="button" aria-label="Neutral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="btn-square success" type="button" aria-label="Success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="btn-square error" type="button" aria-label="Error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="btn-square warning" type="button" aria-label="Warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="btn-square info" type="button" aria-label="Info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <div class="row end">
+        <button class="btn-square btn-sm" type="button" aria-label="Small"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="btn-square " type="button" aria-label="Regular"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        <button class="btn-square btn-lg" type="button" aria-label="Large"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+        <button class="btn-square secondary loading" type="button" aria-label="Loading"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+      </section>
+      <section>
+        <h2>Badge</h2>
+        <div class="row">
+        <span class="badge primary">Primary</span>
+        <span class="badge secondary">Secondary</span>
+        <span class="badge tertiary">Tertiary</span>
+        <span class="badge neutral">Neutral</span>
+        <span class="badge success">Success</span>
+        <span class="badge error">Error</span>
+        <span class="badge warning">Warning</span>
+        <span class="badge info">Info</span>
+        </div>
+        <div class="row">
+        <span class="badge badge-sm">Small</span>
+        <span class="badge ">Regular</span>
+        <span class="badge badge-lg">Large</span>
+        </div>
+      </section>
+      <section>
+        <h2>Input</h2>
+        <div class="grid">
+        <label class="input primary"><input placeholder=" " value="Primary" /><span>Primary</span></label>
+        <label class="input secondary"><input placeholder=" " value="Secondary" /><span>Secondary</span></label>
+        <label class="input tertiary"><input placeholder=" " value="Tertiary" /><span>Tertiary</span></label>
+        <label class="input neutral"><input placeholder=" " value="" /><span>Neutral</span></label>
+        <label class="input success"><input placeholder=" " value="Success" /><span>Success</span></label>
+        <label class="input error"><input placeholder=" " value="Error" /><span>Error</span></label>
+        <label class="input warning"><input placeholder=" " value="Warning" /><span>Warning</span></label>
+        <label class="input info"><input placeholder=" " value="Info" /><span>Info</span></label>
+        </div>
+        <div class="grid">
+        <label class="input input-sm"><input placeholder=" " /><span>Small</span></label>
+        <label class="input "><input placeholder=" " /><span>Regular</span></label>
+        <label class="input input-lg"><input placeholder=" " /><span>Large</span></label>
+        </div>
+        <label class="input">
+          <span class="input-start" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+          <input placeholder=" " />
+          <span>Search</span>
+          <span class="input-end" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </label>
+      </section>
+      <section>
+        <h2>Textarea</h2>
+        <div class="grid">
+        <label class="textarea primary"><textarea placeholder=" ">Primary</textarea><span>Note</span></label>
+        <label class="textarea secondary"><textarea placeholder=" ">Secondary</textarea><span>Note</span></label>
+        <label class="textarea tertiary"><textarea placeholder=" ">Tertiary</textarea><span>Note</span></label>
+        <label class="textarea neutral"><textarea placeholder=" "></textarea><span>Note</span></label>
+        <label class="textarea success"><textarea placeholder=" ">Success</textarea><span>Note</span></label>
+        <label class="textarea error"><textarea placeholder=" ">Error</textarea><span>Note</span></label>
+        <label class="textarea warning"><textarea placeholder=" ">Warning</textarea><span>Note</span></label>
+        <label class="textarea info"><textarea placeholder=" ">Info</textarea><span>Note</span></label>
+        </div>
+        <div class="grid">
+        <label class="textarea textarea-sm"><textarea placeholder=" "></textarea><span>Small</span></label>
+        <label class="textarea "><textarea placeholder=" "></textarea><span>Regular</span></label>
+        <label class="textarea textarea-lg"><textarea placeholder=" "></textarea><span>Large</span></label>
+        </div>
+      </section>
+      <section>
+        <h2>Select</h2>
+        <div class="grid">
+        <label class="select primary"><select><option>Mint</option><option selected>Rose</option></select><span>Primary</span><i class="picker-icon"></i></label>
+        <label class="select secondary"><select><option>Mint</option><option selected>Rose</option></select><span>Secondary</span><i class="picker-icon"></i></label>
+        <label class="select tertiary"><select><option>Mint</option><option selected>Rose</option></select><span>Tertiary</span><i class="picker-icon"></i></label>
+        <label class="select neutral"><select><option>Mint</option><option selected>Rose</option></select><span>Neutral</span><i class="picker-icon"></i></label>
+        <label class="select success"><select><option>Mint</option><option selected>Rose</option></select><span>Success</span><i class="picker-icon"></i></label>
+        <label class="select error"><select><option>Mint</option><option selected>Rose</option></select><span>Error</span><i class="picker-icon"></i></label>
+        <label class="select warning"><select><option>Mint</option><option selected>Rose</option></select><span>Warning</span><i class="picker-icon"></i></label>
+        <label class="select info"><select><option>Mint</option><option selected>Rose</option></select><span>Info</span><i class="picker-icon"></i></label>
+        </div>
+        <div class="grid">
+        <label class="select select-sm"><select><option selected>Rose</option></select><span>Small</span><i class="picker-icon"></i></label>
+        <label class="select "><select><option selected>Rose</option></select><span>Regular</span><i class="picker-icon"></i></label>
+        <label class="select select-lg"><select><option selected>Rose</option></select><span>Large</span><i class="picker-icon"></i></label>
+        </div>
+      </section>
+      <section>
+        <h2>Checkbox</h2>
+        <div class="stack">
+        <label class="checkbox primary"><input type="checkbox" checked /><span class="checkbox-box"></span>Primary</label>
+        <label class="checkbox secondary"><input type="checkbox" checked /><span class="checkbox-box"></span>Secondary</label>
+        <label class="checkbox tertiary"><input type="checkbox" checked /><span class="checkbox-box"></span>Tertiary</label>
+        <label class="checkbox neutral"><input type="checkbox" checked /><span class="checkbox-box"></span>Neutral</label>
+        <label class="checkbox success"><input type="checkbox" checked /><span class="checkbox-box"></span>Success</label>
+        <label class="checkbox error"><input type="checkbox" checked /><span class="checkbox-box"></span>Error</label>
+        <label class="checkbox warning"><input type="checkbox" checked /><span class="checkbox-box"></span>Warning</label>
+        <label class="checkbox info"><input type="checkbox" checked /><span class="checkbox-box"></span>Info</label>
+        </div>
+        <div class="row">
+        <label class="checkbox checkbox-sm"><input type="checkbox" checked /><span class="checkbox-box"></span>Small</label>
+        <label class="checkbox "><input type="checkbox" checked /><span class="checkbox-box"></span>Regular</label>
+        <label class="checkbox checkbox-lg"><input type="checkbox" checked /><span class="checkbox-box"></span>Large</label>
+        </div>
+        <label class="checkbox"><input type="checkbox" /><span class="checkbox-box"></span>Unchecked</label>
+      </section>
+      <section>
+        <h2>Message</h2>
+        <div class="stack tight">
+          <p class="message">Required</p>
+        <p class="message primary">Primary</p>
+        <p class="message secondary">Secondary</p>
+        <p class="message tertiary">Tertiary</p>
+        <p class="message neutral">Neutral</p>
+        <p class="message success">Success</p>
+        <p class="message error">Error</p>
+        <p class="message warning">Warning</p>
+        <p class="message info">Info</p>
+        </div>
+        <div class="stack tight">
+        <p class="message message-sm">Small</p>
+        <p class="message ">Regular</p>
+        <p class="message message-lg">Large</p>
+        </div>
+      </section>
+      <section>
+        <h2>Radio</h2>
+        <div class="stack">
+        <label class="radio primary"><input type="radio" name="primary" checked /><span class="radio-ring"></span>Primary</label>
+        <label class="radio secondary"><input type="radio" name="secondary" checked /><span class="radio-ring"></span>Secondary</label>
+        <label class="radio tertiary"><input type="radio" name="tertiary" checked /><span class="radio-ring"></span>Tertiary</label>
+        <label class="radio neutral"><input type="radio" name="neutral" checked /><span class="radio-ring"></span>Neutral</label>
+        <label class="radio success"><input type="radio" name="success" checked /><span class="radio-ring"></span>Success</label>
+        <label class="radio error"><input type="radio" name="error" checked /><span class="radio-ring"></span>Error</label>
+        <label class="radio warning"><input type="radio" name="warning" checked /><span class="radio-ring"></span>Warning</label>
+        <label class="radio info"><input type="radio" name="info" checked /><span class="radio-ring"></span>Info</label>
+        </div>
+        <div class="row">
+        <label class="radio radio-sm"><input type="radio" name="size-Small" checked /><span class="radio-ring"></span>Small</label>
+        <label class="radio "><input type="radio" name="size-Regular" checked /><span class="radio-ring"></span>Regular</label>
+        <label class="radio radio-lg"><input type="radio" name="size-Large" checked /><span class="radio-ring"></span>Large</label>
+        </div>
+      </section>
+      <section>
+        <h2>Switch</h2>
+        <div class="stack">
+        <label class="toggle primary"><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Primary</label>
+        <label class="toggle secondary"><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Secondary</label>
+        <label class="toggle tertiary"><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Tertiary</label>
+        <label class="toggle neutral"><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Neutral</label>
+        <label class="toggle success"><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Success</label>
+        <label class="toggle error"><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Error</label>
+        <label class="toggle warning"><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Warning</label>
+        <label class="toggle info"><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Info</label>
+        </div>
+        <div class="row">
+        <label class="toggle toggle-sm"><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Small</label>
+        <label class="toggle "><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Regular</label>
+        <label class="toggle toggle-lg"><input type="checkbox" role="switch" checked /><span class="toggle-track"><span class="toggle-thumb"></span></span>Large</label>
+        </div>
+        <label class="toggle"><input type="checkbox" role="switch" /><span class="toggle-track"><span class="toggle-thumb"></span></span>Off</label>
+      </section>
+      <section>
+        <h2>Slider</h2>
+        <div class="grid">
+        <label class="range primary">Primary<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="62" /></span></label>
+        <label class="range secondary">Secondary<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="62" /></span></label>
+        <label class="range tertiary">Tertiary<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="62" /></span></label>
+        <label class="range neutral">Neutral<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="62" /></span></label>
+        <label class="range success">Success<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="62" /></span></label>
+        <label class="range error">Error<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="62" /></span></label>
+        <label class="range warning">Warning<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="62" /></span></label>
+        <label class="range info">Info<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="62" /></span></label>
+        </div>
+        <div class="grid">
+        <label class="range range-sm">Small<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="40" /></span></label>
+        <label class="range ">Regular<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="40" /></span></label>
+        <label class="range range-lg">Large<span class="range-box"><span class="range-track"><span class="range-fill"></span></span><span class="range-thumb"></span><input type="range" value="40" /></span></label>
+        </div>
+      </section>
+      <section>
+        <h2>Alert</h2>
+        <div class="grid">
+        <div class="alert primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Primary</p><p>A light surface with dark text.</p></div></div>
+        <div class="alert secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Secondary</p><p>A light surface with dark text.</p></div></div>
+        <div class="alert tertiary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Tertiary</p><p>A light surface with dark text.</p></div></div>
+        <div class="alert neutral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Neutral</p><p>A light surface with dark text.</p></div></div>
+        <div class="alert success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Success</p><p>A light surface with dark text.</p></div></div>
+        <div class="alert error"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Error</p><p>A light surface with dark text.</p></div></div>
+        <div class="alert warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Warning</p><p>A light surface with dark text.</p></div></div>
+        <div class="alert info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Info</p><p>A light surface with dark text.</p></div></div>
+        </div>
+        <div class="grid">
+        <div class="alert alert-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Small</p><p>A light surface with dark text.</p></div></div>
+        <div class="alert "><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Regular</p><p>A light surface with dark text.</p></div></div>
+        <div class="alert alert-lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 8h.01"/></svg><div><p class="strong">Large</p><p>A light surface with dark text.</p></div></div>
+        </div>
+      </section>
+      <section>
+        <h2>Card</h2>
+        <div class="grid">
+          <section class="card"><h3>Plain</h3><p>A white jelly panel.</p></section>
+          <section class="card squish"><h3>Press</h3><p>The same panel, with a press.</p></section>
+        <section class="card primary"><h3>Primary</h3></section>
+        <section class="card secondary"><h3>Secondary</h3></section>
+        <section class="card tertiary"><h3>Tertiary</h3></section>
+        <section class="card neutral"><h3>Neutral</h3></section>
+        <section class="card success"><h3>Success</h3></section>
+        <section class="card error"><h3>Error</h3></section>
+        <section class="card warning"><h3>Warning</h3></section>
+        <section class="card info"><h3>Info</h3></section>
+        </div>
+        <div class="grid">
+        <section class="card card-sm"><h3>Small</h3></section>
+        <section class="card "><h3>Regular</h3></section>
+        <section class="card card-lg"><h3>Large</h3></section>
+        </div>
+      </section>
+      <section>
+        <h2>Dialog</h2>
+        <div class="row">
+          <button class="btn" type="button" data-open="dialog-plain"><span>Plain</span></button>
+        <button class="btn primary" type="button" data-open="dialog-primary"><span>Primary</span></button>
+        <button class="btn secondary" type="button" data-open="dialog-secondary"><span>Secondary</span></button>
+        <button class="btn tertiary" type="button" data-open="dialog-tertiary"><span>Tertiary</span></button>
+        <button class="btn neutral" type="button" data-open="dialog-neutral"><span>Neutral</span></button>
+        <button class="btn success" type="button" data-open="dialog-success"><span>Success</span></button>
+        <button class="btn error" type="button" data-open="dialog-error"><span>Error</span></button>
+        <button class="btn warning" type="button" data-open="dialog-warning"><span>Warning</span></button>
+        <button class="btn info" type="button" data-open="dialog-info"><span>Info</span></button>
+        </div>
+      <dialog id="dialog-plain" class="modal"><div class="modal-panel"><form method="dialog"><button class="btn-surface" type="submit" aria-label="Close">×</button></form><h2 class="panel-title">Plain</h2><p>A white panel.</p></div></dialog>
+      <dialog id="dialog-primary" class="modal"><div class="modal-panel primary"><form method="dialog"><button class="btn-surface" type="submit" aria-label="Close">×</button></form><h2 class="panel-title">Primary</h2><p>The same light tint as the card.</p></div></dialog>
+      <dialog id="dialog-secondary" class="modal"><div class="modal-panel secondary"><form method="dialog"><button class="btn-surface" type="submit" aria-label="Close">×</button></form><h2 class="panel-title">Secondary</h2><p>The same light tint as the card.</p></div></dialog>
+      <dialog id="dialog-tertiary" class="modal"><div class="modal-panel tertiary"><form method="dialog"><button class="btn-surface" type="submit" aria-label="Close">×</button></form><h2 class="panel-title">Tertiary</h2><p>The same light tint as the card.</p></div></dialog>
+      <dialog id="dialog-neutral" class="modal"><div class="modal-panel neutral"><form method="dialog"><button class="btn-surface" type="submit" aria-label="Close">×</button></form><h2 class="panel-title">Neutral</h2><p>The same light tint as the card.</p></div></dialog>
+      <dialog id="dialog-success" class="modal"><div class="modal-panel success"><form method="dialog"><button class="btn-surface" type="submit" aria-label="Close">×</button></form><h2 class="panel-title">Success</h2><p>The same light tint as the card.</p></div></dialog>
+      <dialog id="dialog-error" class="modal"><div class="modal-panel error"><form method="dialog"><button class="btn-surface" type="submit" aria-label="Close">×</button></form><h2 class="panel-title">Error</h2><p>The same light tint as the card.</p></div></dialog>
+      <dialog id="dialog-warning" class="modal"><div class="modal-panel warning"><form method="dialog"><button class="btn-surface" type="submit" aria-label="Close">×</button></form><h2 class="panel-title">Warning</h2><p>The same light tint as the card.</p></div></dialog>
+      <dialog id="dialog-info" class="modal"><div class="modal-panel info"><form method="dialog"><button class="btn-surface" type="submit" aria-label="Close">×</button></form><h2 class="panel-title">Info</h2><p>The same light tint as the card.</p></div></dialog>
+      </section>
+    </main>
+    <script type="module">
+      import { startJellyfy } from "./node_modules/jellyfy/jellyfy.js";
+
+      startJellyfy();
+      document.querySelectorAll("[data-open]").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.getElementById(button.dataset.open)?.showModal();
+        });
+      });
+    </script>
+  </body>
+</html>
