@@ -731,7 +731,7 @@
     gap: 0.75rem;
     border-radius: var(--radius-surface);
     padding: 0.75rem 1rem;
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+    box-shadow: var(--shadow-inset-thin), var(--shadow-drop);
     backdrop-filter: blur(4px);
   }
 
@@ -794,7 +794,7 @@
     background: var(--surface);
     color: var(--surface-foreground);
     padding: 1.5rem;
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop-hover);
+    box-shadow: var(--shadow-inset-thin), var(--shadow-drop-hover);
     backdrop-filter: blur(4px);
   }
 
