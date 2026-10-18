@@ -25,6 +25,11 @@ export default function InstallPage() {
       </p>
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
+        Install the package
+      </h2>
+      <CodeBlock lang="bash" code={`npm install jellyfy`} />
+
+      <h2 className="mt-12 text-xl font-semibold tracking-tight">
         With Tailwind
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
