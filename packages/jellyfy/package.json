@@ -1,0 +1,25 @@
+{
+  "name": "jellyfy",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Soft controls from one material.",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./jellyfy.d.ts",
+      "default": "./jellyfy.js"
+    },
+    "./jellyfy.css": "./jellyfy.css",
+    "./plugin.js": "./plugin.js"
+  },
+  "files": [
+    "jellyfy.css",
+    "jellyfy.js",
+    "jellyfy.d.ts",
+    "plugin.js"
+  ],
+  "sideEffects": [
+    "./jellyfy.css",
+    "./plugin.js"
+  ]
+}

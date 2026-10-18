@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-import { startJellyfy } from "@/components/foundation/jellyfy";
+import { startJellyfy } from "jellyfy";
 
 export const JellyfyBoot = () => {
   const pathname = usePathname();

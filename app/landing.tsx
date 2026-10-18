@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { twJoin } from "tailwind-merge";
 
-import { startJellyfy } from "@/components/foundation/jellyfy";
+import { startJellyfy } from "jellyfy";
 import { COMPONENT_LIST } from "@/resources/components-registry";
 
 const TONES = [

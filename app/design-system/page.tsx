@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import type { CSSProperties, ReactNode } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
 
-import { squishRule } from "@/components/foundation/jellyfy";
+import { squishRule } from "jellyfy";
 
 import { TokenValue } from "./token-value";
 

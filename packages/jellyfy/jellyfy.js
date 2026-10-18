@@ -8,12 +8,12 @@ export const squishRule = {
   pressMs: PRESS_MS,
   releaseMs: RELEASE_MS,
   peakAt: 0.42,
-} as const;
+};
 
-const along = (pixels: number, size: number) =>
+const along = (pixels, size) =>
   size <= 0 ? 1 : 1 + pixels / size;
 
-const pose = (element: HTMLElement) => {
+const pose = (element) => {
   const width = element.offsetWidth;
   const height = element.offsetHeight;
   return {
@@ -24,27 +24,27 @@ const pose = (element: HTMLElement) => {
   };
 };
 
-const stopSquish = (element: HTMLElement) => {
+const stopSquish = (element) => {
   element.getAnimations().forEach((animation) => {
     if (animation.id === SQUISH) animation.cancel();
   });
 };
 
-const scaleNow = (element: HTMLElement) => {
+const scaleNow = (element) => {
   const value = getComputedStyle(element).transform;
-  if (!value || value === "none") return [1, 1] as const;
+  if (!value || value === "none") return [1, 1];
   const match = value.match(/matrix\(([^)]+)\)/);
-  if (!match) return [1, 1] as const;
+  if (!match) return [1, 1];
   const [a, , , d] = match[1].split(",").map((part) => Number(part));
-  return [a || 1, d || 1] as const;
+  return [a || 1, d || 1];
 };
 
-const canSquish = (element: HTMLElement) =>
+const canSquish = (element) =>
   !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
   !element.closest(":disabled") &&
   !element.matches(":disabled");
 
-const press = (element: HTMLElement) => {
+const press = (element) => {
   if (!canSquish(element)) return;
   const { peakX, peakY, endX, endY } = pose(element);
   element.style.transform = "";
@@ -64,7 +64,7 @@ const press = (element: HTMLElement) => {
   animation.id = SQUISH;
 };
 
-const release = (element: HTMLElement) => {
+const release = (element) => {
   const [x, y] = scaleNow(element);
   element.style.transform = `scale(${x}, ${y})`;
   stopSquish(element);
@@ -82,44 +82,44 @@ const release = (element: HTMLElement) => {
   };
 };
 
-const face = (node: Element): HTMLElement | null => {
+const face = (node) => {
   const checkbox = node.closest(".checkbox");
   if (checkbox)
     return (
-      checkbox.querySelector<HTMLElement>(".checkbox-box") ??
-      (checkbox as HTMLElement)
+      checkbox.querySelector(".checkbox-box") ??
+      (checkbox)
     );
 
   const radio = node.closest(".radio");
   if (radio)
     return (
-      radio.querySelector<HTMLElement>(".radio-ring") ??
-      (radio as HTMLElement)
+      radio.querySelector(".radio-ring") ??
+      (radio)
     );
 
   const slider = node.closest(".range");
   if (slider)
     return (
-      slider.querySelector<HTMLElement>(".range-thumb") ??
-      (slider as HTMLElement)
+      slider.querySelector(".range-thumb") ??
+      (slider)
     );
 
   const sw = node.closest(".toggle");
   if (sw)
     return (
-      sw.querySelector<HTMLElement>(".toggle-track") ??
-      (sw as HTMLElement)
+      sw.querySelector(".toggle-track") ??
+      (sw)
     );
 
   const control = node.closest(
     ".btn, .btn-square, .btn-surface, .input, .textarea, .select",
   );
-  if (control) return control as HTMLElement;
+  if (control) return control;
 
-  return node.closest(".squish") as HTMLElement | null;
+  return node.closest(".squish");
 };
 
-const lights = (spin: boolean) => {
+const lights = (spin) => {
   if (!spin) {
     return `<span class="jellyfy-lights">${[1.35, 1.65, 1.5]
       .map(
@@ -141,8 +141,8 @@ const lights = (spin: boolean) => {
     .join("")}</span>`;
 };
 
-const mountLoading = (root: ParentNode) => {
-  root.querySelectorAll<HTMLElement>(".loading").forEach((element) => {
+const mountLoading = (root) => {
+  root.querySelectorAll(".loading").forEach((element) => {
     if (element.querySelector(".jellyfy-lights")) return;
     const spin = element.classList.contains("btn-square");
     element.insertAdjacentHTML("afterbegin", lights(spin));
@@ -155,8 +155,8 @@ const mountLoading = (root: ParentNode) => {
   });
 };
 
-const syncSlider = (input: HTMLInputElement) => {
-  const box = input.closest<HTMLElement>(".range");
+const syncSlider = (input) => {
+  const box = input.closest(".range");
   if (!box) return;
   const min = Number(input.min || 0);
   const max = Number(input.max || 100);
@@ -169,12 +169,12 @@ const syncSlider = (input: HTMLInputElement) => {
 
 const syncSliders = () => {
   document
-    .querySelectorAll<HTMLInputElement>(".range input")
+    .querySelectorAll(".range input")
     .forEach(syncSlider);
 };
 
 let listening = false;
-let held: HTMLElement | null = null;
+let held = null;
 
 const letGo = () => {
   if (!held) return;
@@ -190,7 +190,7 @@ export const startJellyfy = () => {
   listening = true;
 
   document.addEventListener("pointerdown", (event) => {
-    const hit = face(event.target as Element);
+    const hit = face(event.target);
     if (!hit) return;
     if (held && held !== hit) release(held);
     held = hit;

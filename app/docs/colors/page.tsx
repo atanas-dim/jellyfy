@@ -35,8 +35,8 @@ export default function ColorsPage() {
         A color is one word on the element:{" "}
         <code className="font-mono text-base">btn primary</code>, not{" "}
         <code className="font-mono text-base">btn-primary</code>. The same word
-        works on every control. Indigo, pink, teal, gray, green, red, amber,
-        and sky are the defaults. Set{" "}
+        works on every control. Indigo, pink, teal, gray, green, red, amber, and
+        sky are the defaults. Set{" "}
         <code className="font-mono text-base">--color-secondary</code>, or any
         of the eight, to replace one.
       </p>

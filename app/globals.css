@@ -1,6 +1,6 @@
 @import "tailwindcss";
-@plugin "../components/foundation/plugin.js";
-@import "../components/foundation/material.css";
+@plugin "jellyfy/plugin.js";
+@import "jellyfy/jellyfy.css";
 
 @theme inline {
   --font-sans: var(--font-figtree);
