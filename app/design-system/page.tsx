@@ -1,3 +1,4 @@
+import { SearchIcon, SendIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { CSSProperties, ReactNode } from "react";
@@ -387,27 +388,12 @@ export default function DesignSystemPage() {
         </div>
         <label className="input mt-6 max-w-sm">
           <span className="input-start" aria-hidden="true">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <circle cx="11" cy="11" r="7" />
-              <path d="m20 20-3.5-3.5" />
-            </svg>
+            <SearchIcon />
           </span>
           <input placeholder=" " />
           <span>Search</span>
           <span className="input-end" aria-hidden="true">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="m22 2-7 20-4-9-9-4Z" />
-            </svg>
+            <SendIcon />
           </span>
         </label>
         <div className="mt-8">

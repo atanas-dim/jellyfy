@@ -136,11 +136,11 @@
   .jellyfy-orbit-light,
   .jellyfy-orbit-shade {
     position: absolute;
-    top: 0.125rem;
+    top: calc(var(--spacing, 0.25rem) * 0.5);
     left: 50%;
     display: block;
-    width: 0.875rem;
-    height: 0.875rem;
+    width: calc(var(--spacing, 0.25rem) * 3.5);
+    height: calc(var(--spacing, 0.25rem) * 3.5);
     border-radius: 999px;
     filter: blur(4px);
     translate: -50% 0;
@@ -215,7 +215,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: calc(var(--spacing, 0.25rem) * 2);
     overflow: hidden;
     border: 0;
     border-radius: var(--radius-control);
@@ -246,10 +246,10 @@
   }
 
   .btn {
-    height: 3rem;
-    min-width: 10rem;
-    padding-inline: 1.5rem;
-    font-size: 0.875rem;
+    height: calc(var(--spacing, 0.25rem) * 12);
+    min-width: calc(var(--spacing, 0.25rem) * 40);
+    padding-inline: calc(var(--spacing, 0.25rem) * 6);
+    font-size: calc(var(--spacing, 0.25rem) * 3.5);
     font-weight: 600;
     line-height: 1;
     letter-spacing: 0.04em;
@@ -258,14 +258,14 @@
   }
 
   .btn-square {
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.5rem;
+    width: calc(var(--spacing, 0.25rem) * 12);
+    height: calc(var(--spacing, 0.25rem) * 12);
+    font-size: calc(var(--spacing, 0.25rem) * 6);
   }
 
   .btn-square > svg {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: calc(var(--spacing, 0.25rem) * 6);
+    height: calc(var(--spacing, 0.25rem) * 6);
   }
 
   .btn.neutral,
@@ -342,7 +342,7 @@
     z-index: 2;
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: calc(var(--spacing, 0.25rem) * 1);
   }
 
   .btn-square.loading > svg:not(.jellyfy-spinner) {
@@ -468,8 +468,8 @@
   .textarea::before,
   .select::before {
     top: auto;
-    bottom: -1rem;
-    height: 1.75rem;
+    bottom: -calc(var(--spacing, 0.25rem) * 4);
+    height: calc(var(--spacing, 0.25rem) * 7);
     width: 70%;
     transform: translate(-50%, -40%);
     background: radial-gradient(var(--jellyfy-highlight), transparent 60%);
@@ -506,28 +506,30 @@
     color: inherit;
     outline: none;
     font: inherit;
-    font-size: 1rem;
+    font-size: calc(var(--spacing, 0.25rem) * 4);
     line-height: 1.5;
   }
 
   .input input,
   .select select {
-    padding: 1.375rem 1rem 0.625rem;
+    padding: 1.375rem calc(var(--spacing, 0.25rem) * 4)
+      calc(var(--spacing, 0.25rem) * 2.5);
   }
 
   .input:not(:focus-within) input:placeholder-shown {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: calc(var(--spacing, 0.25rem) * 4);
+    padding-bottom: calc(var(--spacing, 0.25rem) * 4);
   }
 
   .textarea textarea {
-    min-height: 7rem;
+    min-height: calc(var(--spacing, 0.25rem) * 28);
     resize: vertical;
-    padding: 1.375rem 1rem 0.75rem;
+    padding: 1.375rem calc(var(--spacing, 0.25rem) * 4)
+      calc(var(--spacing, 0.25rem) * 3);
   }
 
   .textarea:not(:focus-within) textarea:placeholder-shown {
-    padding-top: 1rem;
+    padding-top: calc(var(--spacing, 0.25rem) * 4);
   }
 
   .textarea {
@@ -539,8 +541,8 @@
   .textarea > span:not(.input-start):not(.input-end),
   .select span {
     position: absolute;
-    top: 0.75rem;
-    left: 1rem;
+    top: calc(var(--spacing, 0.25rem) * 3);
+    left: calc(var(--spacing, 0.25rem) * 4);
     z-index: 2;
     font-size: 10px;
     font-weight: 500;
@@ -550,15 +552,17 @@
     transition:
       top 300ms ease-out,
       font-size 300ms ease-out,
-      line-height 300ms ease-out;
+      line-height 300ms ease-out,
+      color 300ms ease-out;
   }
 
   .input:not(:focus-within) input:placeholder-shown + span,
   .textarea:not(:focus-within) textarea:placeholder-shown + span {
-    top: 1rem;
-    font-size: 1rem;
+    top: calc(var(--spacing, 0.25rem) * 4);
+    font-size: calc(var(--spacing, 0.25rem) * 4);
     font-weight: 400;
     line-height: 1.5;
+    color: color-mix(in oklab, currentColor 70%, transparent);
   }
 
   .input .input-start,
@@ -566,22 +570,22 @@
   .textarea .input-start,
   .textarea .input-end {
     position: absolute;
-    top: 1.25rem;
+    top: calc(var(--spacing, 0.25rem) * 5);
     z-index: 2;
     display: grid;
-    width: 1rem;
-    height: 1rem;
+    width: calc(var(--spacing, 0.25rem) * 4);
+    height: calc(var(--spacing, 0.25rem) * 4);
     place-items: center;
     color: var(--jellyfy-neutral-400);
     pointer-events: none;
   }
 
   .input-start {
-    left: 1rem;
+    left: calc(var(--spacing, 0.25rem) * 4);
   }
 
   .input-end {
-    right: 1rem;
+    right: calc(var(--spacing, 0.25rem) * 4);
   }
 
   .input-start > svg,
@@ -592,23 +596,23 @@
 
   .input:has(.input-start) input,
   .textarea:has(.input-start) textarea {
-    padding-left: 2.5rem;
+    padding-left: calc(var(--spacing, 0.25rem) * 10);
   }
 
   .input:has(.input-end) input,
   .textarea:has(.input-end) textarea {
-    padding-right: 2.5rem;
+    padding-right: calc(var(--spacing, 0.25rem) * 10);
   }
 
   .input:has(.input-start) > span:not(.input-start):not(.input-end),
   .textarea:has(.input-start) > span:not(.input-start):not(.input-end) {
-    left: 2.5rem;
+    left: calc(var(--spacing, 0.25rem) * 10);
   }
 
   .select select {
     appearance: none;
-    height: 3.5rem;
-    padding-right: 2.5rem;
+    height: calc(var(--spacing, 0.25rem) * 14);
+    padding-right: calc(var(--spacing, 0.25rem) * 10);
   }
 
   .select::marker {
@@ -618,15 +622,15 @@
   .chevron {
     position: absolute;
     top: 50%;
-    right: 1rem;
+    right: calc(var(--spacing, 0.25rem) * 4);
     z-index: 2;
     pointer-events: none;
     color: currentColor;
   }
 
   .chevron:not(svg) {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: calc(var(--spacing, 0.25rem) * 5);
+    height: calc(var(--spacing, 0.25rem) * 5);
     background: currentColor;
     transform: translateY(-50%);
     -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
@@ -636,8 +640,8 @@
   }
 
   svg.chevron {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: calc(var(--spacing, 0.25rem) * 5);
+    height: calc(var(--spacing, 0.25rem) * 5);
     transform: translateY(-50%);
   }
 
@@ -664,7 +668,7 @@
 
     .select select option {
       border-radius: 0.65rem;
-      padding: 0.55rem 0.75rem;
+      padding: 0.55rem calc(var(--spacing, 0.25rem) * 3);
       background: transparent;
       color: inherit;
     }
@@ -690,9 +694,9 @@
     --jellyfy-solid: var(--jellyfy-primary);
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: calc(var(--spacing, 0.25rem) * 3);
     color: var(--surface-foreground);
-    font-size: 0.875rem;
+    font-size: calc(var(--spacing, 0.25rem) * 3.5);
     font-weight: 500;
     cursor: pointer;
   }
@@ -710,8 +714,8 @@
     position: relative;
     display: grid;
     place-items: center;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: calc(var(--spacing, 0.25rem) * 6);
+    height: calc(var(--spacing, 0.25rem) * 6);
     flex: none;
     background-color: var(--surface);
     color: var(--surface-foreground);
@@ -727,7 +731,7 @@
   }
 
   .checkbox-box {
-    border-radius: 0.5rem;
+    border-radius: calc(var(--spacing, 0.25rem) * 2);
   }
   .radio-ring {
     border-radius: 999px;
@@ -735,19 +739,19 @@
 
   .checkbox-box::after {
     content: "";
-    width: 0.7rem;
-    height: 0.35rem;
+    width: 46%;
+    height: 22%;
     border-left: 2px solid currentColor;
     border-bottom: 2px solid currentColor;
-    transform: translateY(-1px) rotate(-45deg);
+    transform: translateY(-20%) rotate(-45deg);
     opacity: 0;
     transition: opacity 300ms ease-out;
   }
 
   .radio-ring::after {
     content: "";
-    width: 0.875rem;
-    height: 0.875rem;
+    width: calc(var(--spacing, 0.25rem) * 3.5);
+    height: calc(var(--spacing, 0.25rem) * 3.5);
     border-radius: 999px;
     background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
     transform: scale(0);
@@ -771,7 +775,6 @@
   .checkbox:has(:checked) .checkbox-box::after,
   .radio:has(:checked) .radio-ring::after {
     opacity: 1;
-    transform: translateY(-1px) rotate(-45deg);
   }
 
   .radio:has(:checked) .radio-ring::after {
@@ -793,8 +796,8 @@
 
   .toggle-track {
     position: relative;
-    width: 3rem;
-    height: 1.75rem;
+    width: calc(var(--spacing, 0.25rem) * 12);
+    height: calc(var(--spacing, 0.25rem) * 7);
     flex: none;
     border-radius: 999px;
     background: var(--surface);
@@ -809,10 +812,10 @@
 
   .toggle-thumb {
     position: absolute;
-    top: 0.25rem;
-    left: 0.25rem;
-    width: 1.25rem;
-    height: 1.25rem;
+    top: calc(var(--spacing, 0.25rem) * 1);
+    left: calc(var(--spacing, 0.25rem) * 1);
+    width: calc(var(--spacing, 0.25rem) * 5);
+    height: calc(var(--spacing, 0.25rem) * 5);
     border-radius: 999px;
     background: color-mix(in oklab, var(--jellyfy-neutral-500) 55%, white);
     box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
@@ -833,21 +836,21 @@
     width: 100%;
     max-width: 24rem;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: calc(var(--spacing, 0.25rem) * 3);
     color: var(--surface-foreground);
-    font-size: 0.875rem;
+    font-size: calc(var(--spacing, 0.25rem) * 3.5);
     font-weight: 500;
   }
 
   .range-box {
     position: relative;
-    height: 2rem;
+    height: calc(var(--spacing, 0.25rem) * 8);
   }
 
   .range-track {
     position: absolute;
     top: 50%;
-    height: 0.75rem;
+    height: calc(var(--spacing, 0.25rem) * 3);
     width: 100%;
     overflow: hidden;
     translate: 0 -50%;
@@ -860,7 +863,10 @@
     position: absolute;
     inset-block: 0;
     left: 0;
-    width: calc(0.75rem + (100% - 1.5rem) * var(--jellyfy-pct));
+    width: calc(
+      calc(var(--spacing, 0.25rem) * 3) +
+        (100% - calc(var(--spacing, 0.25rem) * 6)) * var(--jellyfy-pct)
+    );
     border-radius: 999px;
     background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
     transition: background-color 300ms ease-out;
@@ -868,11 +874,11 @@
 
   .range-thumb {
     position: absolute;
-    top: calc(50% - 0.75rem);
-    left: calc((100% - 1.5rem) * var(--jellyfy-pct));
+    top: calc(50% - calc(var(--spacing, 0.25rem) * 3));
+    left: calc((100% - calc(var(--spacing, 0.25rem) * 6)) * var(--jellyfy-pct));
     z-index: 1;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: calc(var(--spacing, 0.25rem) * 6);
+    height: calc(var(--spacing, 0.25rem) * 6);
     border-radius: 999px;
     background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
     box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
@@ -898,9 +904,13 @@
   }
 
   .message {
-    margin-top: 0.375rem;
-    color: color-mix(in oklab, var(--jellyfy-error) 62%, black);
-    font-size: 0.75rem;
+    margin-top: calc(var(--spacing, 0.25rem) * 1.5);
+    color: color-mix(
+      in oklab,
+      var(--jellyfy-solid, var(--jellyfy-error)) 62%,
+      black
+    );
+    font-size: calc(var(--spacing, 0.25rem) * 3);
   }
 
   .alert,
@@ -929,17 +939,31 @@
   .alert {
     --jellyfy-solid: var(--jellyfy-warning);
     display: flex;
-    gap: 0.75rem;
+    align-items: flex-start;
+    gap: calc(var(--spacing, 0.25rem) * 3);
     border-radius: var(--radius-surface);
-    padding: 0.75rem 1rem;
+    padding: calc(var(--spacing, 0.25rem) * 3) calc(var(--spacing, 0.25rem) * 4);
     box-shadow: var(--shadow-inset-thin), var(--shadow-drop);
     backdrop-filter: blur(4px);
     outline: 1px solid transparent;
     outline-offset: 2px;
+    font-size: calc(var(--spacing, 0.25rem) * 4);
+    line-height: 1.5;
     transition:
       background-color 300ms ease-out,
       color 300ms ease-out,
       outline-color 300ms ease-out;
+  }
+
+  .alert > svg {
+    width: calc(var(--spacing, 0.25rem) * 5);
+    height: calc(var(--spacing, 0.25rem) * 5);
+    flex: none;
+    margin-top: calc((1.5em - calc(var(--spacing, 0.25rem) * 5)) / 2);
+  }
+
+  .alert > :last-child {
+    min-width: 0;
   }
 
   .badge {
@@ -953,7 +977,8 @@
       transparent
     );
     color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
-    padding: 0.25rem 0.625rem;
+    padding: calc(var(--spacing, 0.25rem) * 1)
+      calc(var(--spacing, 0.25rem) * 2.5);
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.04em;
@@ -972,7 +997,8 @@
     border-radius: var(--radius-surface);
     background: var(--panel);
     color: var(--surface-foreground);
-    padding: 1rem 1.25rem;
+    padding: calc(var(--spacing, 0.25rem) * 4) calc(var(--spacing, 0.25rem) * 5);
+    font-size: calc(var(--spacing, 0.25rem) * 4);
     box-shadow: var(--shadow-inset-thin), var(--shadow-drop);
     backdrop-filter: blur(4px);
     outline: 1px solid transparent;
@@ -1022,11 +1048,11 @@
 
   .modal-panel {
     position: relative;
-    width: min(28rem, calc(100vw - 2rem));
+    width: min(28rem, calc(100vw - calc(var(--spacing, 0.25rem) * 8)));
     border-radius: var(--radius-surface);
     background: var(--surface);
     color: var(--surface-foreground);
-    padding: 1.5rem;
+    padding: calc(var(--spacing, 0.25rem) * 6);
     box-shadow: var(--shadow-inset-thin), var(--shadow-drop-hover);
     backdrop-filter: blur(4px);
     transition:
@@ -1038,21 +1064,21 @@
     --jellyfy-highlight: var(--surface-highlight);
     --jellyfy-shade: var(--surface-shade);
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
+    top: calc(var(--spacing, 0.25rem) * 3);
+    right: calc(var(--spacing, 0.25rem) * 3);
     z-index: 2;
     isolation: isolate;
     display: grid;
     place-items: center;
-    width: 2rem;
-    height: 2rem;
+    width: calc(var(--spacing, 0.25rem) * 8);
+    height: calc(var(--spacing, 0.25rem) * 8);
     padding: 0;
     border: 0;
     border-radius: 999px;
     background: transparent;
     color: inherit;
     cursor: pointer;
-    font-size: 1.25rem;
+    font-size: calc(var(--spacing, 0.25rem) * 5);
     line-height: 1;
     outline: 1px solid transparent;
     outline-offset: 2px;
@@ -1067,8 +1093,8 @@
     position: absolute;
     left: 50%;
     z-index: -1;
-    width: 1.75rem;
-    height: 1rem;
+    width: calc(var(--spacing, 0.25rem) * 7);
+    height: calc(var(--spacing, 0.25rem) * 4);
     border-radius: 999px;
     pointer-events: none;
     translate: -50% 0;
@@ -1253,6 +1279,7 @@
     top: calc(var(--spacing, 0.25rem) * 3);
     font-size: calc(var(--spacing, 0.25rem) * 3.5);
     line-height: 1.5;
+    color: color-mix(in oklab, currentColor 70%, transparent);
   }
 
   .input-lg:not(:focus-within) input:placeholder-shown + span,
@@ -1260,6 +1287,7 @@
     top: calc(var(--spacing, 0.25rem) * 5);
     font-size: calc(var(--spacing, 0.25rem) * 5);
     line-height: 1.5;
+    color: color-mix(in oklab, currentColor 70%, transparent);
   }
 
   .input-sm .input-start,
@@ -1339,13 +1367,16 @@
   }
 
   .select-sm select {
-    height: calc(var(--spacing, 0.25rem) * 12);
-    padding-right: calc(var(--spacing, 0.25rem) * 8);
+    height: auto;
+    padding: calc(var(--spacing, 0.25rem) * 4) calc(var(--spacing, 0.25rem) * 9)
+      calc(var(--spacing, 0.25rem) * 2) calc(var(--spacing, 0.25rem) * 3);
   }
 
   .select-lg select {
-    height: calc(var(--spacing, 0.25rem) * 16);
-    padding-right: calc(var(--spacing, 0.25rem) * 12);
+    height: auto;
+    padding: calc(var(--spacing, 0.25rem) * 7)
+      calc(var(--spacing, 0.25rem) * 12) calc(var(--spacing, 0.25rem) * 3)
+      calc(var(--spacing, 0.25rem) * 5);
   }
 
   .select-sm .chevron {
@@ -1382,16 +1413,6 @@
   .radio-lg .radio-ring {
     width: calc(var(--spacing, 0.25rem) * 8);
     height: calc(var(--spacing, 0.25rem) * 8);
-  }
-
-  .checkbox-sm .checkbox-box::after {
-    width: calc(var(--spacing, 0.25rem) * 2.5);
-    height: calc(var(--spacing, 0.25rem) * 1.5);
-  }
-
-  .checkbox-lg .checkbox-box::after {
-    width: calc(var(--spacing, 0.25rem) * 3.5);
-    height: calc(var(--spacing, 0.25rem) * 2);
   }
 
   .radio-sm .radio-ring::after {
@@ -1505,13 +1526,33 @@
   .alert-sm {
     gap: calc(var(--spacing, 0.25rem) * 2);
     padding: calc(var(--spacing, 0.25rem) * 2) calc(var(--spacing, 0.25rem) * 3);
-    font-size: calc(var(--spacing, 0.25rem) * 3);
+    font-size: calc(var(--spacing, 0.25rem) * 3.5);
+  }
+
+  .alert-sm > svg {
+    width: calc(var(--spacing, 0.25rem) * 4);
+    height: calc(var(--spacing, 0.25rem) * 4);
+    margin-top: calc((1.5em - calc(var(--spacing, 0.25rem) * 4)) / 2);
   }
 
   .alert-lg {
     gap: calc(var(--spacing, 0.25rem) * 4);
     padding: calc(var(--spacing, 0.25rem) * 4) calc(var(--spacing, 0.25rem) * 5);
-    font-size: calc(var(--spacing, 0.25rem) * 4);
+    font-size: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .alert-lg > svg {
+    width: calc(var(--spacing, 0.25rem) * 6);
+    height: calc(var(--spacing, 0.25rem) * 6);
+    margin-top: calc((1.5em - calc(var(--spacing, 0.25rem) * 6)) / 2);
+  }
+
+  .message-sm {
+    font-size: calc(var(--spacing, 0.25rem) * 2.5);
+  }
+
+  .message-lg {
+    font-size: calc(var(--spacing, 0.25rem) * 3.5);
   }
 
   .badge-sm {
@@ -1528,10 +1569,12 @@
 
   .card-sm {
     padding: calc(var(--spacing, 0.25rem) * 3) calc(var(--spacing, 0.25rem) * 4);
+    font-size: calc(var(--spacing, 0.25rem) * 3.5);
   }
 
   .card-lg {
     padding: calc(var(--spacing, 0.25rem) * 5) calc(var(--spacing, 0.25rem) * 6);
+    font-size: calc(var(--spacing, 0.25rem) * 5);
   }
 
   .modal-sm {
