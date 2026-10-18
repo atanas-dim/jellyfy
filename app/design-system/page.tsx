@@ -46,7 +46,7 @@ const THICKNESS = [
   {
     name: "Surface",
     token: "--shadow-inset-surface",
-    use: "Fields, the switch track, and the slider track.",
+    use: "Fields. The switch and the slider use this inset with the small drop.",
     shadow: "var(--shadow-inset-surface), var(--shadow-drop)",
     className: "h-16",
     fill: "var(--surface)",
@@ -54,7 +54,7 @@ const THICKNESS = [
   {
     name: "Thin",
     token: "--shadow-inset-thin",
-    use: "Cards, alerts, badges, and the dialog panel.",
+    use: "Cards, alerts, and the dialog. Badges use this inset with the small drop.",
     shadow: "var(--shadow-inset-thin), var(--shadow-drop)",
     className: "h-16",
     fill: "var(--panel)",
@@ -63,14 +63,18 @@ const THICKNESS = [
     name: "Mark",
     token: "--shadow-inset-mark",
     use: "Checkbox box and radio ring. A short, darker lip.",
-    shadow: "var(--shadow-inset-mark), var(--shadow-drop)",
+    shadow: "var(--shadow-inset-mark), var(--shadow-drop-sm)",
     className: "size-10",
     fill: "var(--surface)",
   },
 ] as const;
 
-const DROPS = [
-  ["Rest", "--shadow-drop"],
+const DROP_SIZES = [
+  ["Small", "--shadow-drop-sm"],
+  ["Regular", "--shadow-drop"],
+] as const;
+
+const DROP_STATES = [
   ["Hover", "--shadow-drop-hover"],
   ["Disabled", "--shadow-drop-disabled"],
 ] as const;
@@ -231,8 +235,22 @@ export default function DesignSystemPage() {
             </figure>
           ))}
         </div>
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          {DROPS.map(([label, token]) => (
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {DROP_SIZES.map(([label, token]) => (
+            <figure key={token}>
+              <div
+                className="h-16 rounded-[var(--radius-surface)] bg-white"
+                style={{ boxShadow: `var(${token})` }}
+              />
+              <figcaption className="mt-3">
+                <p className="font-semibold">{label}</p>
+                <TokenValue name={token} />
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {DROP_STATES.map(([label, token]) => (
             <figure key={token}>
               <div
                 className="h-16 rounded-[var(--radius-surface)] bg-white"
@@ -246,9 +264,11 @@ export default function DesignSystemPage() {
           ))}
         </div>
         <p className="mt-4 max-w-2xl text-sm leading-6 text-neutral-600">
-          The dialog keeps the thin inset and uses the hover drop, so the panel
-          lifts off the page. Focus on a field swaps the surface inset for a
-          shallower one, <TokenValue name="--shadow-inset-surface-focus" />.
+          Small is the drop for a mark, a switch, a slider, and a badge. Regular
+          is the drop for a button, a field, a card, and an alert. Hover and
+          disabled are states of the regular drop. The dialog uses the hover
+          drop. Focus on a field swaps the surface inset for a shallower one,{" "}
+          <TokenValue name="--shadow-inset-surface-focus" />.
         </p>
       </Section>
 

@@ -63,7 +63,8 @@
   --shadow-inset-mark: inset 0 -1px 5px rgb(10 10 10 / 0.35);
   --shadow-inset-surface: inset 0 -10px 16px rgb(10 10 10 / 0.2);
   --shadow-inset-surface-focus: inset 0 -6px 10px rgb(10 10 10 / 0.15);
-  --shadow-inset-raised: inset 0 -16px 16px rgb(10 10 10 / 0.6);
+  --shadow-inset-raised: inset 0 -16px 16px rgb(10 10 10 / 0.5);
+  --shadow-drop-sm: 0 4px 6px -3px rgb(10 10 10 / 0.55);
   --shadow-drop: 0 12px 16px -14px rgb(10 10 10 / 0.55);
   --shadow-drop-hover: 0 16px 36px -14px rgb(10 10 10 / 0.55);
   --shadow-drop-disabled: 0 12px 12px -12px rgb(10 10 10 / 0.25);
@@ -719,7 +720,7 @@
     flex: none;
     background-color: var(--surface);
     color: var(--surface-foreground);
-    box-shadow: var(--shadow-inset-mark), var(--shadow-drop);
+    box-shadow: var(--shadow-inset-mark), var(--shadow-drop-sm);
     backdrop-filter: blur(4px);
     outline: 1px solid transparent;
     outline-offset: 2px;
@@ -753,7 +754,11 @@
     width: calc(var(--spacing, 0.25rem) * 3.5);
     height: calc(var(--spacing, 0.25rem) * 3.5);
     border-radius: 999px;
-    background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+    background-color: color-mix(
+      in oklab,
+      var(--jellyfy-solid) 60%,
+      transparent
+    );
     transform: scale(0);
     opacity: 0;
     transition:
@@ -784,14 +789,15 @@
   .checkbox:has(:focus-visible) .checkbox-box,
   .radio:has(:focus-visible) .radio-ring {
     outline-color: var(--jellyfy-solid);
-    box-shadow: var(--focus-gap), var(--shadow-inset-mark), var(--shadow-drop);
+    box-shadow:
+      var(--focus-gap), var(--shadow-inset-mark), var(--shadow-drop-sm);
   }
 
   .toggle:has(:focus-visible) .toggle-track,
   .range:has(:focus-visible) .range-thumb {
     outline-color: var(--jellyfy-solid);
     box-shadow:
-      var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop);
+      var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop-sm);
   }
 
   .toggle-track {
@@ -801,7 +807,7 @@
     flex: none;
     border-radius: 999px;
     background: var(--surface);
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+    box-shadow: var(--shadow-inset-surface), var(--shadow-drop-sm);
     outline: 1px solid transparent;
     outline-offset: 2px;
     transition:
@@ -817,8 +823,12 @@
     width: calc(var(--spacing, 0.25rem) * 5);
     height: calc(var(--spacing, 0.25rem) * 5);
     border-radius: 999px;
-    background: color-mix(in oklab, var(--jellyfy-neutral-500) 55%, white);
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+    background-color: color-mix(
+      in oklab,
+      var(--jellyfy-neutral-500) 55%,
+      white
+    );
+    box-shadow: var(--shadow-inset-surface), var(--shadow-drop-sm);
     transition:
       transform 300ms ease-out,
       background-color 300ms ease-out;
@@ -826,7 +836,7 @@
 
   .toggle:has(:checked) .toggle-thumb {
     transform: translateX(1.15rem);
-    background: white;
+    background-color: white;
   }
 
   .range {
@@ -856,7 +866,7 @@
     translate: 0 -50%;
     border-radius: 999px;
     background: var(--surface);
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+    box-shadow: var(--shadow-inset-surface), var(--shadow-drop-sm);
   }
 
   .range-fill {
@@ -881,7 +891,7 @@
     height: calc(var(--spacing, 0.25rem) * 6);
     border-radius: 999px;
     background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+    box-shadow: var(--shadow-inset-surface), var(--shadow-drop-sm);
     outline: 1px solid transparent;
     outline-offset: 2px;
     transition:
@@ -983,7 +993,7 @@
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    box-shadow: var(--shadow-inset-thin), var(--shadow-drop);
+    box-shadow: var(--shadow-inset-thin), var(--shadow-drop-sm);
     backdrop-filter: blur(4px);
     outline: 1px solid transparent;
     outline-offset: 2px;
@@ -1014,7 +1024,8 @@
   .alert:focus-visible,
   .badge:focus-visible {
     outline-color: var(--jellyfy-solid, var(--jellyfy-neutral-400));
-    box-shadow: var(--focus-gap), var(--shadow-inset-thin), var(--shadow-drop);
+    box-shadow:
+      var(--focus-gap), var(--shadow-inset-thin), var(--shadow-drop-sm);
   }
 
   .modal {
@@ -1592,6 +1603,7 @@
   .select,
   .checkbox-box,
   .radio-ring,
+  .radio-ring::after,
   .toggle-track,
   .toggle-thumb,
   .range-track,
