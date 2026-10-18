@@ -334,7 +334,7 @@ export default function DesignSystemPage() {
       <Section
         id="size"
         title="Size"
-        lede="Three sizes. Regular is the control as it is now, and it has no extra class. Small and large are modifiers, btn-sm and btn-lg, and the same pair on the other controls. They are not the screen prefixes sm: and lg:. New measurements come from this ramp, including the half steps. The regular size is not redrawn to fit it."
+        lede="Three sizes. Regular has no extra class. Small and large are btn-sm and btn-lg, and the same pair on the other controls. New measurements come from this ramp, including the half steps."
       >
         <div className="grid gap-4 lg:grid-cols-3">
           <SizeSlot
@@ -505,7 +505,7 @@ export default function DesignSystemPage() {
       <Section
         id="knobs"
         title="Public knobs"
-        lede="These are the only variables a developer is meant to set. Inset shadows, derived mixes, and the noise image stay internal."
+        lede="These are the variables you can set."
       >
         <div className="overflow-x-auto">
           <table className="w-full min-w-[36rem] text-left text-sm">

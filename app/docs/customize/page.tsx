@@ -17,7 +17,6 @@ export default function CustomizePage() {
       <h1 className="mt-3 text-4xl font-semibold tracking-tight">Customize</h1>
       <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
         Set only the names you want to change. The hexes below are the defaults.
-        Inset shadows, the derived mixes, and the noise image stay internal.
       </p>
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         Without Tailwind
@@ -46,10 +45,15 @@ export default function CustomizePage() {
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
         Put the eight solids in{" "}
-        <code className="font-mono text-sm">@theme</code> so Tailwind and
-        Jellyfy share them. The radii and the grain are not Tailwind names, so
-        they stay on <code className="font-mono text-sm">:root</code>. Tailwind
-        already sets <code className="font-mono text-sm">--spacing</code>.
+        <code className="font-mono text-sm">@theme</code>. That is Tailwind’s
+        token list, and Jellyfy reads those names. Radius and grain are set on{" "}
+        <code className="font-mono text-sm">:root</code> in the stylesheet. A{" "}
+        <code className="font-mono text-sm">@theme</code> value sits in
+        Tailwind's theme layer, and that{" "}
+        <code className="font-mono text-sm">:root</code> rule wins, so a change
+        to those three goes on <code className="font-mono text-sm">:root</code>{" "}
+        as well. Tailwind already sets{" "}
+        <code className="font-mono text-sm">--spacing</code>.
       </p>
       <CodeBlock
         lang="css"
@@ -79,9 +83,9 @@ export default function CustomizePage() {
         </li>
         <li>
           <code className="font-mono text-sm">--radius-control</code> is the
-          pill on buttons, the switch, the slider handle, and badges. It stays{" "}
-          <code className="font-mono text-sm">999px</code> so the corner is
-          fully round, not a measured size.
+          pill on buttons, the switch, the slider handle, and badges.{" "}
+          <code className="font-mono text-sm">999px</code> keeps that corner
+          fully round.
         </li>
         <li>
           <code className="font-mono text-sm">--radius-surface</code> is the

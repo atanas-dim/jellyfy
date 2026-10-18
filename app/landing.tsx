@@ -2,12 +2,12 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { startJellyfy } from "jellyfy";
 import { ChevronDownIcon, MinusIcon, PlusIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { twJoin } from "tailwind-merge";
 
-import { startJellyfy } from "jellyfy";
 import { COMPONENT_LIST } from "@/resources/components-registry";
 
 const TONES = [
@@ -213,8 +213,7 @@ export const Landing = () => {
               data-hero-item
               className="mt-6 max-w-md text-lg leading-8 text-neutral-600"
             >
-              Soft controls for the HTML you already write. Pick eight colors.
-              The rest of the set follows.
+              Soft controls. Pick eight colors. The rest of the set follows.
             </p>
 
             <div data-hero-item className="mt-8">

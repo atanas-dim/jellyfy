@@ -80,8 +80,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   {
     slug: "button",
     name: "Button",
-    description:
-      "The main action. A pointer press squashes it. Keyboard focus does not.",
+    description: "The main action, with a soft press.",
     classes: [
       { name: "btn", kind: "Component", note: "The button." },
       ...sizes("btn").slice(1),
@@ -111,14 +110,14 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         code: `<button class="btn btn-sm" type="button"><span>Small</span></button>
 <button class="btn" type="button"><span>Regular</span></button>
 <button class="btn btn-lg" type="button"><span>Large</span></button>`,
-        note: "Regular is btn alone. btn-sm and btn-lg are the other two. These are not screen sizes.",
+        note: "Regular is btn alone. btn-sm and btn-lg are the other sizes.",
       },
       {
         id: "button-states",
         title: "Loading and disabled",
         code: `<button class="btn primary loading" type="button"><span>Loading</span></button>
 <button class="btn" type="button" disabled><span>Disabled</span></button>`,
-        note: "Disabled is the attribute, not a class. The words sit in a span so the press lights stay behind them.",
+        note: "Use the disabled attribute. Put the words in a span so the press lights stay behind them.",
       },
     ],
     notes: [
@@ -153,7 +152,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
     <path d="M12 5v14M5 12h14" />
   </svg>
 </button>`,
-        note: "Give it an accessible name. The button sizes the svg. Do not add a size class to the icon, or that utility wins over the component.",
+        note: "Give it an accessible name. Leave the svg without a size class. The button sets the icon size.",
       },
       {
         id: "icon-sizes",
@@ -266,7 +265,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         id: "message-colors",
         title: "Colors",
         code: hues((name, label) => `<p class="message ${name}">${label}</p>`),
-        note: "No color class is the same red as error. Add a color when the note is not an error.",
+        note: "With no color class, the note is red, the same as error. Use another color for a confirmation or a warning.",
       },
       {
         id: "message-sizes",
@@ -295,7 +294,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         name: "input-start",
         kind: "Part",
-        note: "An icon. On a textarea it sits with the first line, not the vertical center.",
+        note: "An icon. On a textarea it sits with the first line.",
       },
       {
         name: "input-end",
@@ -312,7 +311,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   <textarea placeholder=" "></textarea>
   <span>Note</span>
 </label>`,
-        note: "Same empty placeholder as the input. The shell hugs the textarea instead of stretching to a grid cell.",
+        note: "Same empty placeholder as the input. The shell hugs the textarea.",
       },
       {
         id: "textarea-colors",
@@ -386,7 +385,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         code: `<svg class="picker-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
   <path d="m6 9 6 6 6-6" />
 </svg>`,
-        note: "Any svg with the class picker-icon replaces the default mark. The class also places it in the field, so it is not a general icon.",
+        note: "Any svg with the class picker-icon replaces the default mark and sits in the field.",
       },
       {
         id: "select-sizes",
@@ -662,7 +661,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         code: `<div class="alert alert-sm">...</div>
 <div class="alert">...</div>
 <div class="alert alert-lg">...</div>`,
-        note: "All three sizes change the type, not only the padding.",
+        note: "Each size sets the type as well as the padding: 14px, 16px, and 20px.",
       },
     ],
     notes: ["No color class means warning."],
@@ -699,23 +698,23 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   {
     slug: "card",
     name: "Card",
-    description: "A quiet panel. It does not press unless you add squish.",
+    description: "A quiet panel. Add squish when it should press.",
     classes: [
       {
         name: "card",
         kind: "Component",
-        note: "The panel. No color class leaves it white.",
+        note: "The panel. A plain card is white.",
       },
       ...sizes("card").slice(1),
       ...color("primary").map((row) =>
         row.name === "primary"
-          ? { ...row, note: "A tint. A card does not default to primary." }
+          ? { ...row, note: "A tint. A plain card is white." }
           : row,
       ),
       {
         name: "squish",
         kind: "State",
-        note: "Opt the card into the press. It is off until you add this.",
+        note: "Adds the press to the card.",
       },
     ],
     examples: [
@@ -779,7 +778,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         row.name === "primary"
           ? {
               ...row,
-              note: "Put the color on the panel. It tints the panel and the close control. No color keeps both neutral.",
+              note: "Put the color on the panel. It tints the panel and the close control. With no color, both use the neutral surface.",
             }
           : row,
       ),
@@ -798,7 +797,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
     <p>Surface panel.</p>
   </div>
 </dialog>`,
-        note: 'Open it with showModal() on the dialog element. The form method="dialog" closes it. A panel with no color keeps a neutral close button.',
+        note: 'Open it with showModal() on the dialog element. The form method="dialog" closes it. With no color, the close control uses the neutral surface.',
       },
       {
         id: "dialog-colors",

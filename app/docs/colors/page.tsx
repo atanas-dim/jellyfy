@@ -6,7 +6,7 @@ import { Pager } from "../pager";
 export const metadata: Metadata = {
   title: "Colors",
   description:
-    "The eight Jellyfy color classes, and what happens when you leave one off.",
+    "The eight Jellyfy color classes, and which controls use each one by default.",
 };
 
 const ROWS = [
@@ -32,9 +32,8 @@ export default function ColorsPage() {
       </p>
       <h1 className="mt-3 text-4xl font-semibold tracking-tight">Colors</h1>
       <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
-        A color is one word on the element:{" "}
-        <code className="font-mono text-base">btn primary</code>, not{" "}
-        <code className="font-mono text-base">btn-primary</code>. The same word
+        The color is its own class, as in{" "}
+        <code className="font-mono text-base">btn primary</code>. The same word
         works on every control. Indigo, pink, teal, gray, green, red, amber, and
         sky are the defaults. Set{" "}
         <code className="font-mono text-base">--color-secondary</code>, or any

@@ -27,10 +27,9 @@ export default function InstallPage() {
         With Tailwind
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
-        Import the stylesheet after Tailwind. You do not need a plugin. A
-        utility on the same element changes only the property it sets, so{" "}
-        <code className="font-mono text-sm">px-4</code> changes the padding and
-        the press stays.
+        Import the stylesheet after Tailwind. A utility such as{" "}
+        <code className="font-mono text-sm">px-4</code> sets that padding. The
+        press stays.
       </p>
       <CodeBlock
         lang="css"
@@ -42,8 +41,7 @@ export default function InstallPage() {
         Without Tailwind
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
-        Link the same stylesheet. The controls still paint. Nothing in the file
-        asks Tailwind to exist.
+        Link the stylesheet on its own. The controls paint the same way.
       </p>
       <CodeBlock
         lang="html"
@@ -55,9 +53,8 @@ export default function InstallPage() {
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
         Call <code className="font-mono text-sm">startJellyfy()</code> once,
-        after the controls are in the page. A pointer press squashes the control
-        under the pointer. Keyboard focus does not. Calling it again does not
-        add a second listener.
+        after the controls are on the page. A pointer press squashes the
+        control under the pointer. A later call is ignored.
       </p>
       <CodeBlock
         lang="js"
@@ -70,11 +67,9 @@ startJellyfy();`}
         Press any element
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
-        <code className="font-mono text-sm">squish</code> on any element opts
-        that element into the same press. A Jellyfy control already has a face,
-        so adding <code className="font-mono text-sm">squish</code> there does
-        not start a second animation. A card does not press unless it wears the
-        class.
+        Add <code className="font-mono text-sm">squish</code> to give any
+        element the same press. On a Jellyfy control it uses the face that
+        control already has. Add it to a card when the card should press.
       </p>
       <CodeBlock
         lang="html"
