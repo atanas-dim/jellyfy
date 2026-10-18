@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { twJoin } from "tailwind-merge";
 
 const COLORS = [
   "jellyfy-primary",
@@ -51,7 +52,7 @@ export default function DevPage() {
         {COLORS.map((color) => (
           <button
             key={color}
-            className={`jellyfy-button ${color}`}
+            className={twJoin("jellyfy-button", color)}
             type="button"
           >
             <span>{NAME[color]}</span>
@@ -73,7 +74,7 @@ export default function DevPage() {
           {COLORS.map((color) => (
             <button
               key={color}
-              className={`jellyfy-icon-button ${color}`}
+              className={twJoin("jellyfy-icon-button", color)}
               type="button"
               aria-label={NAME[color]}
             >
@@ -108,7 +109,7 @@ export default function DevPage() {
 
       <Block id="input" title="Input">
         {COLORS.map((color) => (
-          <label key={color} className={`jellyfy-input ${color}`}>
+          <label key={color} className={twJoin("jellyfy-input", color)}>
             <input
               placeholder=" "
               defaultValue={color === "jellyfy-neutral" ? "" : NAME[color]}
@@ -120,7 +121,7 @@ export default function DevPage() {
 
       <Block id="textarea" title="Textarea">
         {COLORS.map((color) => (
-          <label key={color} className={`jellyfy-textarea ${color}`}>
+          <label key={color} className={twJoin("jellyfy-textarea", color)}>
             <textarea
               placeholder=" "
               defaultValue={color === "jellyfy-neutral" ? "" : NAME[color]}
@@ -132,7 +133,7 @@ export default function DevPage() {
 
       <Block id="select" title="Select">
         {COLORS.map((color) => (
-          <label key={color} className={`jellyfy-select ${color}`}>
+          <label key={color} className={twJoin("jellyfy-select", color)}>
             <select defaultValue="rose">
               <option value="mint">Mint</option>
               <option value="rose">Rose</option>
@@ -145,7 +146,7 @@ export default function DevPage() {
 
       <Block id="checkbox" title="Checkbox">
         {COLORS.map((color) => (
-          <label key={color} className={`jellyfy-checkbox ${color}`}>
+          <label key={color} className={twJoin("jellyfy-checkbox", color)}>
             <input type="checkbox" defaultChecked />
             <span className="jellyfy-checkbox-box" />
             {NAME[color]}
@@ -163,12 +164,12 @@ export default function DevPage() {
         {COLORS.map((color) => (
           <fieldset key={color} className="flex flex-col gap-2">
             <legend className="text-sm font-medium">{NAME[color]}</legend>
-            <label className={`jellyfy-radio ${color}`}>
+            <label className={twJoin("jellyfy-radio", color)}>
               <input type="radio" name={color} defaultChecked />
               <span className="jellyfy-radio-ring" />
               One
             </label>
-            <label className={`jellyfy-radio ${color}`}>
+            <label className={twJoin("jellyfy-radio", color)}>
               <input type="radio" name={color} />
               <span className="jellyfy-radio-ring" />
               Two
@@ -179,7 +180,7 @@ export default function DevPage() {
 
       <Block id="switch" title="Switch">
         {COLORS.map((color) => (
-          <label key={color} className={`jellyfy-switch ${color}`}>
+          <label key={color} className={twJoin("jellyfy-switch", color)}>
             <input type="checkbox" role="switch" defaultChecked />
             <span className="jellyfy-switch-track">
               <span className="jellyfy-switch-thumb" />
@@ -198,7 +199,7 @@ export default function DevPage() {
 
       <Block id="slider" title="Slider">
         {COLORS.map((color) => (
-          <label key={color} className={`jellyfy-slider ${color}`}>
+          <label key={color} className={twJoin("jellyfy-slider", color)}>
             {NAME[color]}
             <span className="jellyfy-slider-box">
               <span className="jellyfy-slider-track">
@@ -213,7 +214,7 @@ export default function DevPage() {
 
       <Block id="alert" title="Alert">
         {COLORS.map((color) => (
-          <div key={color} className={`jellyfy-alert ${color}`}>
+          <div key={color} className={twJoin("jellyfy-alert", color)}>
             <div>
               <p className="text-sm font-semibold">{NAME[color]}</p>
               <p className="mt-1 text-sm leading-6">
@@ -227,7 +228,7 @@ export default function DevPage() {
       <Block id="badge" title="Badge">
         <div className="flex flex-wrap gap-2">
           {COLORS.map((color) => (
-            <span key={color} className={`jellyfy-badge ${color}`}>
+            <span key={color} className={twJoin("jellyfy-badge", color)}>
               {NAME[color]}
             </span>
           ))}
@@ -240,7 +241,7 @@ export default function DevPage() {
           <p className="mt-2 text-sm leading-6">A white jelly panel.</p>
         </section>
         {COLORS.map((color) => (
-          <section key={color} className={`jellyfy-card ${color}`}>
+          <section key={color} className={twJoin("jellyfy-card", color)}>
             <h3 className="text-base font-semibold">{NAME[color]}</h3>
             <p className="mt-2 text-sm leading-6">Tinted like the alert.</p>
           </section>

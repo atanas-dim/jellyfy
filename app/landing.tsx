@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { twJoin } from "tailwind-merge";
 
 import { startJellyfy } from "@/components/foundation/jellyfy";
 import { COMPONENT_LIST } from "@/resources/components-registry";
@@ -235,11 +236,12 @@ export const Landing = () => {
                   <button
                     key={item.id}
                     type="button"
-                    className={`jellyfy-icon-button ${item.id} ${
-                      tone === item.id
-                        ? "outline-2 outline-offset-4 outline-neutral-950"
-                        : ""
-                    }`}
+                    className={twJoin(
+                      "jellyfy-icon-button",
+                      item.id,
+                      tone === item.id &&
+                        "outline-2 outline-offset-4 outline-neutral-950",
+                    )}
                     aria-label={item.label}
                     aria-pressed={tone === item.id}
                     onClick={() => setTone(item.id)}
@@ -273,7 +275,10 @@ export const Landing = () => {
               <div ref={tilt} className="relative">
                 <div
                   data-float
-                  className={`jellyfy-alert ${tone} mb-4 lg:absolute lg:-top-10 lg:-left-8 lg:mb-0 lg:w-60`}
+                  className={twJoin(
+                    "jellyfy-alert mb-4 lg:absolute lg:-top-10 lg:-left-8 lg:mb-0 lg:w-60",
+                    tone,
+                  )}
                 >
                   <div>
                     <p className="text-sm font-semibold">Still on the desk</p>
@@ -288,15 +293,15 @@ export const Landing = () => {
                     <h2 className="text-lg font-semibold tracking-tight">
                       Studio note
                     </h2>
-                    <span className={`jellyfy-badge ${tone}`}>{toneLabel}</span>
+                    <span className={twJoin("jellyfy-badge", tone)}>{toneLabel}</span>
                   </div>
 
-                  <label className={`jellyfy-input ${tone}`}>
+                  <label className={twJoin("jellyfy-input", tone)}>
                     <input placeholder=" " defaultValue="studio@jellyfy.dev" />
                     <span>Email</span>
                   </label>
 
-                  <label className={`jellyfy-select ${tone}`}>
+                  <label className={twJoin("jellyfy-select", tone)}>
                     <select defaultValue="rose">
                       <option value="mint">Mint</option>
                       <option value="rose">Rose</option>
@@ -310,21 +315,21 @@ export const Landing = () => {
                   </label>
 
                   <div className="flex flex-wrap items-center justify-between gap-4">
-                    <label className={`jellyfy-switch ${tone}`}>
+                    <label className={twJoin("jellyfy-switch", tone)}>
                       <input type="checkbox" role="switch" defaultChecked />
                       <span className="jellyfy-switch-track">
                         <span className="jellyfy-switch-thumb" />
                       </span>
                       Soft press
                     </label>
-                    <label className={`jellyfy-checkbox ${tone}`}>
+                    <label className={twJoin("jellyfy-checkbox", tone)}>
                       <input type="checkbox" defaultChecked />
                       <span className="jellyfy-checkbox-box" />
                       Remember
                     </label>
                   </div>
 
-                  <label className={`jellyfy-slider ${tone}`}>
+                  <label className={twJoin("jellyfy-slider", tone)}>
                     Pressure
                     <span className="jellyfy-slider-box">
                       <span className="jellyfy-slider-track">
@@ -336,7 +341,7 @@ export const Landing = () => {
                   </label>
 
                   <div className="flex flex-wrap items-center gap-3">
-                    <button type="button" className={`jellyfy-button ${tone}`}>
+                    <button type="button" className={twJoin("jellyfy-button", tone)}>
                       <span>Send</span>
                     </button>
                     <button
@@ -354,7 +359,7 @@ export const Landing = () => {
                 >
                   <button
                     type="button"
-                    className={`jellyfy-icon-button ${tone}`}
+                    className={twJoin("jellyfy-icon-button", tone)}
                     aria-label="Add"
                   >
                     <svg
@@ -410,7 +415,7 @@ export const Landing = () => {
                     key={`${copy}-${item.id}`}
                     type="button"
                     tabIndex={copy === 1 ? -1 : undefined}
-                    className={`jellyfy-button ${item.id}`}
+                    className={twJoin("jellyfy-button", item.id)}
                   >
                     <span>{item.label}</span>
                   </button>
@@ -529,7 +534,7 @@ export const Landing = () => {
       </footer>
 
       <dialog id="landing-note" className="jellyfy-dialog">
-        <div className={`jellyfy-dialog-panel ${tone}`}>
+        <div className={twJoin("jellyfy-dialog-panel", tone)}>
           <div className="flex items-start justify-between gap-4">
             <h2 className="text-lg font-semibold">A note</h2>
             <form method="dialog">
@@ -546,12 +551,12 @@ export const Landing = () => {
             Keep this note, or send it on.
           </p>
           <div className="mt-4 flex flex-col gap-2">
-            <label className={`jellyfy-radio ${tone}`}>
+            <label className={twJoin("jellyfy-radio", tone)}>
               <input type="radio" name="landing-delivery" defaultChecked />
               <span className="jellyfy-radio-ring" />
               Soft
             </label>
-            <label className={`jellyfy-radio ${tone}`}>
+            <label className={twJoin("jellyfy-radio", tone)}>
               <input type="radio" name="landing-delivery" />
               <span className="jellyfy-radio-ring" />
               Firm

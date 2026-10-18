@@ -2,6 +2,7 @@ import { ChevronLeftIcon, CodeIcon } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { codeToHtml } from "shiki";
+import { twMerge } from "tailwind-merge";
 
 import {
   COMPONENT_LIST,
@@ -69,9 +70,10 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
               </span>
             </div>
             <div
-              className={`flex items-center justify-center overflow-hidden rounded-3xl border border-dashed border-neutral-200 p-6 shadow-[inset_0_0_10px_rgba(10,10,10,0.1)] ${
-                slug === "select" || slug === "dialog" ? "min-h-[32rem]" : "min-h-64"
-              }`}
+              className={twMerge(
+                "flex items-center justify-center overflow-hidden rounded-3xl border border-dashed border-neutral-200 p-6 shadow-[inset_0_0_10px_rgba(10,10,10,0.1)] min-h-64",
+                (slug === "select" || slug === "dialog") && "min-h-[32rem]",
+              )}
             >
               <PreviewComponent />
             </div>
