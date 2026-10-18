@@ -6,6 +6,7 @@ import { Pager } from "../pager";
 export const metadata: Metadata = {
   title: "Customize",
   description: "The Jellyfy variables a developer is meant to set.",
+  alternates: { canonical: "/docs/customize" },
 };
 
 export default function CustomizePage() {

@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Colors",
   description:
     "The eight Jellyfy color classes, and which controls use each one by default.",
+  alternates: { canonical: "/docs/colors" },
 };
 
 const ROWS = [

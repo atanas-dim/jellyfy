@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Figtree, Geist_Mono, Rubik } from "next/font/google";
 import { twJoin } from "tailwind-merge";
 
+import { site } from "@/resources/site";
+
 import { JellyfyBoot } from "./jellyfy-boot";
 import { SiteFrame } from "./site-frame";
 
@@ -23,12 +25,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: site.url,
   title: {
-    default: "Jellyfy",
-    template: "%s · Jellyfy",
+    default: site.name,
+    template: `%s · ${site.name}`,
   },
-  description:
-    "Soft controls from one material. Set the solid colors, and the jelly tones follow.",
+  description: site.description,
+  openGraph: {
+    title: site.name,
+    description: site.description,
+    url: site.url,
+    siteName: site.name,
+    type: "website",
+  },
 };
 
 export default function RootLayout({

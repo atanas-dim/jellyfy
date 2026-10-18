@@ -6,6 +6,7 @@ import { Pager } from "../pager";
 export const metadata: Metadata = {
   title: "Install",
   description: "Add the Jellyfy stylesheet and call startJellyfy() once.",
+  alternates: { canonical: "/docs/install" },
 };
 
 export default function InstallPage() {
@@ -53,8 +54,8 @@ export default function InstallPage() {
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
         Call <code className="font-mono text-sm">startJellyfy()</code> once,
-        after the controls are on the page. A pointer press squashes the
-        control under the pointer. A later call is ignored.
+        after the controls are on the page. A pointer press squashes the control
+        under the pointer. A later call is ignored.
       </p>
       <CodeBlock
         lang="js"

@@ -9,6 +9,7 @@ export const metadata: Metadata = {
   title: "Docs",
   description:
     "Soft controls. Add a class, pick a color, and call startJellyfy() once.",
+  alternates: { canonical: "/docs" },
 };
 
 export default function DocsPage() {
