@@ -1,6 +1,6 @@
 @theme {
-  --color-primary: var(--color-pink-600);
-  --color-secondary: var(--color-indigo-600);
+  --color-primary: var(--color-indigo-600);
+  --color-secondary: var(--color-pink-600);
   --color-tertiary: var(--color-teal-600);
   --color-neutral: var(--color-neutral-400);
   --color-success: var(--color-green-600);
@@ -90,17 +90,10 @@
     animation: jellyfy-orbit linear infinite;
   }
 
-  @keyframes jellyfy-spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
   .jellyfy-spinner {
     width: 1.125rem;
     height: 1.125rem;
     flex: none;
-    animation: jellyfy-spin 1.1s linear infinite;
   }
 
   .jellyfy-lights {
@@ -115,7 +108,6 @@
   @media (prefers-reduced-motion: reduce) {
     .jellyfy-sweep,
     .jellyfy-orbit,
-    .jellyfy-spinner,
     .jellyfy-button,
     .jellyfy-icon-button,
     .jellyfy-checkbox-box,

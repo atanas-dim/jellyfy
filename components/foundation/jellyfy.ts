@@ -86,7 +86,7 @@ const mountLoading = (root: ParentNode) => {
     if (!element.querySelector(".jellyfy-spinner")) {
       element.insertAdjacentHTML(
         "beforeend",
-        `<svg class="jellyfy-spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>`,
+        `<svg class="jellyfy-spinner animate-spin motion-reduce:animate-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>`,
       );
     }
   });
@@ -104,8 +104,19 @@ const syncSlider = (input: HTMLInputElement) => {
   );
 };
 
+const syncSliders = () => {
+  document
+    .querySelectorAll<HTMLInputElement>(".jellyfy-slider input")
+    .forEach(syncSlider);
+};
+
+let listening = false;
+
 export const startJellyfy = () => {
   mountLoading(document);
+  syncSliders();
+  if (listening) return;
+  listening = true;
 
   document.addEventListener("pointerdown", (event) => {
     const hit = face(event.target as Element);
@@ -117,10 +128,13 @@ export const startJellyfy = () => {
     if (hit) squish(hit);
   });
 
-  document
-    .querySelectorAll<HTMLInputElement>(".jellyfy-slider input")
-    .forEach((input) => {
-      syncSlider(input);
-      input.addEventListener("input", () => syncSlider(input));
-    });
+  document.addEventListener("input", (event) => {
+    const target = event.target;
+    if (
+      target instanceof HTMLInputElement &&
+      target.closest(".jellyfy-slider")
+    ) {
+      syncSlider(target);
+    }
+  });
 };
