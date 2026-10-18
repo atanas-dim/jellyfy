@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "../components/foundation/plugin.js";
 @import "../components/foundation/material.css";
 
 @theme inline {
