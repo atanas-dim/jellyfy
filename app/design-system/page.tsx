@@ -317,8 +317,12 @@ export default function DesignSystemPage() {
         <div className="grid gap-4 lg:grid-cols-3">
           <SizeSlot
             name="Small"
-            note="The sm modifier. Not on the controls yet. It will be a shorter step on the ramp."
-          />
+            note="btn-sm, and the same -sm pair on the other controls."
+          >
+            <button type="button" className="btn btn-sm">
+              <span>Small</span>
+            </button>
+          </SizeSlot>
           <SizeSlot
             name="Regular"
             note="No extra class. This is the size the set uses today."
@@ -329,13 +333,87 @@ export default function DesignSystemPage() {
           </SizeSlot>
           <SizeSlot
             name="Large"
-            note="The lg modifier. Not on the controls yet. It will be a taller step on the ramp."
-          />
+            note="btn-lg, and the same -lg pair on the other controls."
+          >
+            <button type="button" className="btn btn-lg">
+              <span>Large</span>
+            </button>
+          </SizeSlot>
         </div>
+        <div className="mt-6 flex flex-wrap items-end gap-3">
+          <button
+            type="button"
+            className="btn-square btn-sm"
+            aria-label="Small"
+          >
+            <span>+</span>
+          </button>
+          <button type="button" className="btn-square" aria-label="Regular">
+            <span>+</span>
+          </button>
+          <button
+            type="button"
+            className="btn-square btn-lg"
+            aria-label="Large"
+          >
+            <span>+</span>
+          </button>
+          <label className="input input-sm w-40">
+            <input placeholder=" " />
+            <span>Small</span>
+          </label>
+          <label className="input w-44">
+            <input placeholder=" " />
+            <span>Regular</span>
+          </label>
+          <label className="input input-lg w-52">
+            <input placeholder=" " />
+            <span>Large</span>
+          </label>
+        </div>
+        <div className="mt-6 grid items-start gap-4 lg:grid-cols-3">
+          <label className="textarea textarea-sm">
+            <textarea placeholder=" " />
+            <span>Small</span>
+          </label>
+          <label className="textarea">
+            <textarea placeholder=" " />
+            <span>Regular</span>
+          </label>
+          <label className="textarea textarea-lg">
+            <textarea placeholder=" " />
+            <span>Large</span>
+          </label>
+        </div>
+        <label className="input mt-6 max-w-sm">
+          <span className="input-start" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+          </span>
+          <input placeholder=" " />
+          <span>Search</span>
+          <span className="input-end" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="m22 2-7 20-4-9-9-4Z" />
+            </svg>
+          </span>
+        </label>
         <div className="mt-8">
           <p className="text-sm font-medium text-neutral-500">
-            Spacing ramp. One step is <TokenValue name="--spacing" />. The
-            button height is 12 steps, marked in black.
+            Spacing ramp. One step is <TokenValue name="--spacing" />. Button
+            heights are 10, 12, and 14. Regular, 12, is marked in black.
           </p>
           <div className="mt-4 flex items-end gap-2 overflow-x-auto pb-2">
             {STEPS.map((step) => (

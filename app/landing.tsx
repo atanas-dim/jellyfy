@@ -294,9 +294,7 @@ export const Landing = () => {
                     <h2 className="text-lg font-semibold tracking-tight">
                       Studio note
                     </h2>
-                    <span className={twJoin("badge", tone)}>
-                      {toneLabel}
-                    </span>
+                    <span className={twJoin("badge", tone)}>{toneLabel}</span>
                   </div>
 
                   <label className={twJoin("input", tone)}>
@@ -311,10 +309,7 @@ export const Landing = () => {
                       <option value="ink">Ink</option>
                     </select>
                     <span>Flavor</span>
-                    <ChevronDownIcon
-                      className="chevron"
-                      aria-hidden="true"
-                    />
+                    <ChevronDownIcon className="chevron" aria-hidden="true" />
                   </label>
 
                   <div className="flex flex-wrap items-center justify-between gap-4">
@@ -344,16 +339,10 @@ export const Landing = () => {
                   </label>
 
                   <div className="flex flex-wrap items-center gap-3">
-                    <button
-                      type="button"
-                      className={twJoin("btn", tone)}
-                    >
+                    <button type="button" className={twJoin("btn", tone)}>
                       <span>Send</span>
                     </button>
-                    <button
-                      type="button"
-                      className="btn secondary loading"
-                    >
+                    <button type="button" className="btn secondary loading">
                       <span>Saving</span>
                     </button>
                   </div>
@@ -370,7 +359,6 @@ export const Landing = () => {
                   >
                     <svg
                       viewBox="0 0 24 24"
-                      className="size-4.5"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
@@ -385,7 +373,6 @@ export const Landing = () => {
                   >
                     <svg
                       viewBox="0 0 24 24"
-                      className="size-4.5"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
@@ -484,10 +471,7 @@ export const Landing = () => {
               Tailwind still applies. Widen it, pad it, or lay it out. The press
               stays.
             </p>
-            <button
-              type="button"
-              className="btn tertiary w-full"
-            >
+            <button type="button" className="btn tertiary w-full">
               <span>Continue</span>
             </button>
             <p className="font-mono text-xs leading-5 text-neutral-500">
@@ -542,11 +526,7 @@ export const Landing = () => {
       <dialog id="landing-note" className="modal">
         <div className={twJoin("modal-panel", tone)}>
           <form method="dialog">
-            <button
-              className="btn-surface"
-              type="submit"
-              aria-label="Close"
-            >
+            <button className="btn-surface" type="submit" aria-label="Close">
               ×
             </button>
           </form>

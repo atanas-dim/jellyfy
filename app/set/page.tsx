@@ -14,13 +14,13 @@ const COLORS = [
 ] as const;
 
 const NAME: Record<(typeof COLORS)[number], string> = {
-  "primary": "Primary",
-  "secondary": "Secondary",
-  "tertiary": "Tertiary",
-  "neutral": "Neutral",
-  "success": "Success",
-  "error": "Error",
-  "warning": "Warning",
+  primary: "Primary",
+  secondary: "Secondary",
+  tertiary: "Tertiary",
+  neutral: "Neutral",
+  success: "Success",
+  error: "Error",
+  warning: "Warning",
 };
 
 const Block = ({
@@ -50,18 +50,11 @@ export default function DevPage() {
     <main className="mx-auto flex w-full max-w-lg flex-col gap-10 px-6 py-12">
       <Block id="button" title="Button">
         {COLORS.map((color) => (
-          <button
-            key={color}
-            className={twJoin("btn", color)}
-            type="button"
-          >
+          <button key={color} className={twJoin("btn", color)} type="button">
             <span>{NAME[color]}</span>
           </button>
         ))}
-        <button
-          className="btn primary loading"
-          type="button"
-        >
+        <button className="btn primary loading" type="button">
           <span>Loading</span>
         </button>
         <button className="btn" type="button" disabled>
@@ -80,7 +73,6 @@ export default function DevPage() {
             >
               <svg
                 viewBox="0 0 24 24"
-                className="size-4.5"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -96,7 +88,6 @@ export default function DevPage() {
           >
             <svg
               viewBox="0 0 24 24"
-              className="size-4.5"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
@@ -266,11 +257,7 @@ export default function DevPage() {
         <dialog id="plain-dialog" className="modal">
           <div className="modal-panel">
             <form method="dialog">
-              <button
-                className="btn-surface"
-                type="submit"
-                aria-label="Close"
-              >
+              <button className="btn-surface" type="submit" aria-label="Close">
                 ×
               </button>
             </form>
@@ -283,11 +270,7 @@ export default function DevPage() {
         <dialog id="tinted-dialog" className="modal">
           <div className="modal-panel tertiary">
             <form method="dialog">
-              <button
-                className="btn-surface"
-                type="submit"
-                aria-label="Close"
-              >
+              <button className="btn-surface" type="submit" aria-label="Close">
                 ×
               </button>
             </form>

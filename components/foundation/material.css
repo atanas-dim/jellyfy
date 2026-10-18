@@ -234,6 +234,7 @@
       translate 0.2s ease-out,
       box-shadow 0.3s ease-out,
       background-color 0.3s ease-out,
+      color 0.3s ease-out,
       outline-color 0.3s ease-out;
   }
 
@@ -259,6 +260,12 @@
   .btn-square {
     width: 3rem;
     height: 3rem;
+    font-size: 1.5rem;
+  }
+
+  .btn-square > svg {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   .btn.neutral,
@@ -363,6 +370,7 @@
     transition:
       box-shadow 300ms ease-out,
       background-color 300ms ease-out,
+      color 300ms ease-out,
       outline-color 300ms ease-out;
   }
 
@@ -498,6 +506,8 @@
     color: inherit;
     outline: none;
     font: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
   .input input,
@@ -505,7 +515,7 @@
     padding: 1.375rem 1rem 0.625rem;
   }
 
-  .input input:placeholder-shown {
+  .input:not(:focus-within) input:placeholder-shown {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
@@ -516,31 +526,83 @@
     padding: 1.375rem 1rem 0.75rem;
   }
 
-  .textarea textarea:placeholder-shown {
+  .textarea:not(:focus-within) textarea:placeholder-shown {
     padding-top: 1rem;
   }
 
-  .input span,
-  .textarea span,
+  .textarea {
+    height: fit-content;
+    align-self: start;
+  }
+
+  .input > span:not(.input-start):not(.input-end),
+  .textarea > span:not(.input-start):not(.input-end),
   .select span {
     position: absolute;
-    top: 0.5rem;
+    top: 0.75rem;
     left: 1rem;
     z-index: 2;
     font-size: 10px;
     font-weight: 500;
+    line-height: 1;
     letter-spacing: 0.04em;
     pointer-events: none;
     transition:
       top 300ms ease-out,
-      font-size 300ms ease-out;
+      font-size 300ms ease-out,
+      line-height 300ms ease-out;
   }
 
-  .input input:placeholder-shown + span,
-  .textarea textarea:placeholder-shown + span {
-    top: 1.125rem;
+  .input:not(:focus-within) input:placeholder-shown + span,
+  .textarea:not(:focus-within) textarea:placeholder-shown + span {
+    top: 1rem;
     font-size: 1rem;
     font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .input .input-start,
+  .input .input-end,
+  .textarea .input-start,
+  .textarea .input-end {
+    position: absolute;
+    top: 1.25rem;
+    z-index: 2;
+    display: grid;
+    width: 1rem;
+    height: 1rem;
+    place-items: center;
+    color: var(--jellyfy-neutral-400);
+    pointer-events: none;
+  }
+
+  .input-start {
+    left: 1rem;
+  }
+
+  .input-end {
+    right: 1rem;
+  }
+
+  .input-start > svg,
+  .input-end > svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .input:has(.input-start) input,
+  .textarea:has(.input-start) textarea {
+    padding-left: 2.5rem;
+  }
+
+  .input:has(.input-end) input,
+  .textarea:has(.input-end) textarea {
+    padding-right: 2.5rem;
+  }
+
+  .input:has(.input-start) > span:not(.input-start):not(.input-end),
+  .textarea:has(.input-start) > span:not(.input-start):not(.input-end) {
+    left: 2.5rem;
   }
 
   .select select {
@@ -692,7 +754,8 @@
     opacity: 0;
     transition:
       transform 300ms ease-out,
-      opacity 300ms ease-out;
+      opacity 300ms ease-out,
+      background-color 300ms ease-out;
   }
 
   .checkbox:has(:checked) .checkbox-box,
@@ -800,6 +863,7 @@
     width: calc(0.75rem + (100% - 1.5rem) * var(--jellyfy-pct));
     border-radius: 999px;
     background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+    transition: background-color 300ms ease-out;
   }
 
   .range-thumb {
@@ -816,6 +880,7 @@
     outline-offset: 2px;
     transition:
       box-shadow 300ms ease-out,
+      background-color 300ms ease-out,
       outline-color 300ms ease-out;
   }
 
@@ -871,6 +936,10 @@
     backdrop-filter: blur(4px);
     outline: 1px solid transparent;
     outline-offset: 2px;
+    transition:
+      background-color 300ms ease-out,
+      color 300ms ease-out,
+      outline-color 300ms ease-out;
   }
 
   .badge {
@@ -893,6 +962,10 @@
     backdrop-filter: blur(4px);
     outline: 1px solid transparent;
     outline-offset: 2px;
+    transition:
+      background-color 300ms ease-out,
+      color 300ms ease-out,
+      outline-color 300ms ease-out;
   }
 
   .card {
@@ -904,6 +977,11 @@
     backdrop-filter: blur(4px);
     outline: 1px solid transparent;
     outline-offset: 2px;
+    transition:
+      background-color 300ms ease-out,
+      color 300ms ease-out,
+      box-shadow 300ms ease-out,
+      outline-color 300ms ease-out;
   }
 
   .card:focus-visible,
@@ -951,6 +1029,9 @@
     padding: 1.5rem;
     box-shadow: var(--shadow-inset-thin), var(--shadow-drop-hover);
     backdrop-filter: blur(4px);
+    transition:
+      background-color 300ms ease-out,
+      color 300ms ease-out;
   }
 
   .btn-surface {
@@ -975,6 +1056,9 @@
     line-height: 1;
     outline: 1px solid transparent;
     outline-offset: 2px;
+    transition:
+      color 300ms ease-out,
+      outline-color 300ms ease-out;
   }
 
   .btn-surface::before,
@@ -1046,6 +1130,416 @@
   }
   .warning {
     --jellyfy-solid: var(--jellyfy-warning);
+  }
+
+  .btn-sm {
+    height: calc(var(--spacing, 0.25rem) * 10);
+    min-width: calc(var(--spacing, 0.25rem) * 32);
+    padding-inline: calc(var(--spacing, 0.25rem) * 5);
+    font-size: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .btn-lg {
+    height: calc(var(--spacing, 0.25rem) * 14);
+    min-width: calc(var(--spacing, 0.25rem) * 48);
+    padding-inline: calc(var(--spacing, 0.25rem) * 8);
+    font-size: calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .btn-square.btn-sm {
+    width: calc(var(--spacing, 0.25rem) * 10);
+    min-width: 0;
+    padding-inline: 0;
+    font-size: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .btn-square.btn-sm > svg {
+    width: calc(var(--spacing, 0.25rem) * 5);
+    height: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .btn-square.btn-lg {
+    width: calc(var(--spacing, 0.25rem) * 14);
+    min-width: 0;
+    padding-inline: 0;
+    font-size: calc(var(--spacing, 0.25rem) * 7);
+  }
+
+  .btn-square.btn-lg > svg {
+    width: calc(var(--spacing, 0.25rem) * 7);
+    height: calc(var(--spacing, 0.25rem) * 7);
+  }
+
+  .btn-surface-sm {
+    width: calc(var(--spacing, 0.25rem) * 6);
+    height: calc(var(--spacing, 0.25rem) * 6);
+    font-size: calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .btn-surface-lg {
+    width: calc(var(--spacing, 0.25rem) * 10);
+    height: calc(var(--spacing, 0.25rem) * 10);
+    font-size: calc(var(--spacing, 0.25rem) * 6);
+  }
+
+  .input-sm input,
+  .textarea-sm textarea,
+  .select-sm select {
+    font-size: calc(var(--spacing, 0.25rem) * 3.5);
+  }
+
+  .input-lg input,
+  .textarea-lg textarea,
+  .select-lg select {
+    font-size: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .input-sm input {
+    padding: calc(var(--spacing, 0.25rem) * 4) calc(var(--spacing, 0.25rem) * 3)
+      calc(var(--spacing, 0.25rem) * 2);
+  }
+
+  .input-sm:not(:focus-within) input:placeholder-shown {
+    padding-top: calc(var(--spacing, 0.25rem) * 3);
+    padding-bottom: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .input-lg input {
+    padding: calc(var(--spacing, 0.25rem) * 7) calc(var(--spacing, 0.25rem) * 5)
+      calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .input-lg:not(:focus-within) input:placeholder-shown {
+    padding-top: calc(var(--spacing, 0.25rem) * 5);
+    padding-bottom: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .textarea-sm textarea {
+    padding: calc(var(--spacing, 0.25rem) * 4) calc(var(--spacing, 0.25rem) * 3)
+      calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .textarea-sm:not(:focus-within) textarea:placeholder-shown {
+    padding-top: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .textarea-lg textarea {
+    padding: calc(var(--spacing, 0.25rem) * 7) calc(var(--spacing, 0.25rem) * 5)
+      calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .textarea-lg:not(:focus-within) textarea:placeholder-shown {
+    padding-top: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .input-sm > span:not(.input-start):not(.input-end),
+  .textarea-sm > span:not(.input-start):not(.input-end),
+  .select-sm span {
+    top: calc(var(--spacing, 0.25rem) * 1.5);
+    left: calc(var(--spacing, 0.25rem) * 3);
+    font-size: calc(var(--spacing, 0.25rem) * 2.5);
+  }
+
+  .input-lg > span:not(.input-start):not(.input-end),
+  .textarea-lg > span:not(.input-start):not(.input-end),
+  .select-lg span {
+    top: calc(var(--spacing, 0.25rem) * 3.5);
+    left: calc(var(--spacing, 0.25rem) * 5);
+    font-size: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .input-sm:not(:focus-within) input:placeholder-shown + span,
+  .textarea-sm:not(:focus-within) textarea:placeholder-shown + span {
+    top: calc(var(--spacing, 0.25rem) * 3);
+    font-size: calc(var(--spacing, 0.25rem) * 3.5);
+    line-height: 1.5;
+  }
+
+  .input-lg:not(:focus-within) input:placeholder-shown + span,
+  .textarea-lg:not(:focus-within) textarea:placeholder-shown + span {
+    top: calc(var(--spacing, 0.25rem) * 5);
+    font-size: calc(var(--spacing, 0.25rem) * 5);
+    line-height: 1.5;
+  }
+
+  .input-sm .input-start,
+  .textarea-sm .input-start,
+  .input-sm .input-end,
+  .textarea-sm .input-end {
+    top: calc(var(--spacing, 0.25rem) * 3.75);
+    width: calc(var(--spacing, 0.25rem) * 3.5);
+    height: calc(var(--spacing, 0.25rem) * 3.5);
+  }
+
+  .input-sm .input-start,
+  .textarea-sm .input-start {
+    left: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .input-sm .input-end,
+  .textarea-sm .input-end {
+    right: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .input-lg .input-start,
+  .textarea-lg .input-start,
+  .input-lg .input-end,
+  .textarea-lg .input-end {
+    top: calc(var(--spacing, 0.25rem) * 6.25);
+    width: calc(var(--spacing, 0.25rem) * 5);
+    height: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .input-lg .input-start,
+  .textarea-lg .input-start {
+    left: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .input-lg .input-end,
+  .textarea-lg .input-end {
+    right: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .input-sm:has(.input-start) input,
+  .textarea-sm:has(.input-start) textarea {
+    padding-left: calc(var(--spacing, 0.25rem) * 8);
+  }
+
+  .input-sm:has(.input-end) input,
+  .textarea-sm:has(.input-end) textarea {
+    padding-right: calc(var(--spacing, 0.25rem) * 8);
+  }
+
+  .input-lg:has(.input-start) input,
+  .textarea-lg:has(.input-start) textarea {
+    padding-left: calc(var(--spacing, 0.25rem) * 12);
+  }
+
+  .input-lg:has(.input-end) input,
+  .textarea-lg:has(.input-end) textarea {
+    padding-right: calc(var(--spacing, 0.25rem) * 12);
+  }
+
+  .input-sm:has(.input-start) > span:not(.input-start):not(.input-end),
+  .textarea-sm:has(.input-start) > span:not(.input-start):not(.input-end) {
+    left: calc(var(--spacing, 0.25rem) * 8);
+  }
+
+  .input-lg:has(.input-start) > span:not(.input-start):not(.input-end),
+  .textarea-lg:has(.input-start) > span:not(.input-start):not(.input-end) {
+    left: calc(var(--spacing, 0.25rem) * 12);
+  }
+
+  .textarea-sm textarea {
+    min-height: calc(var(--spacing, 0.25rem) * 20);
+  }
+
+  .textarea-lg textarea {
+    min-height: calc(var(--spacing, 0.25rem) * 36);
+  }
+
+  .select-sm select {
+    height: calc(var(--spacing, 0.25rem) * 12);
+    padding-right: calc(var(--spacing, 0.25rem) * 8);
+  }
+
+  .select-lg select {
+    height: calc(var(--spacing, 0.25rem) * 16);
+    padding-right: calc(var(--spacing, 0.25rem) * 12);
+  }
+
+  .select-sm .chevron {
+    right: calc(var(--spacing, 0.25rem) * 3);
+    width: calc(var(--spacing, 0.25rem) * 4);
+    height: calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .select-lg .chevron {
+    right: calc(var(--spacing, 0.25rem) * 4);
+    width: calc(var(--spacing, 0.25rem) * 6);
+    height: calc(var(--spacing, 0.25rem) * 6);
+  }
+
+  .checkbox-sm,
+  .radio-sm {
+    gap: calc(var(--spacing, 0.25rem) * 2);
+    font-size: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .checkbox-lg,
+  .radio-lg {
+    gap: calc(var(--spacing, 0.25rem) * 4);
+    font-size: calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .checkbox-sm .checkbox-box,
+  .radio-sm .radio-ring {
+    width: calc(var(--spacing, 0.25rem) * 5);
+    height: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .checkbox-lg .checkbox-box,
+  .radio-lg .radio-ring {
+    width: calc(var(--spacing, 0.25rem) * 8);
+    height: calc(var(--spacing, 0.25rem) * 8);
+  }
+
+  .checkbox-sm .checkbox-box::after {
+    width: calc(var(--spacing, 0.25rem) * 2.5);
+    height: calc(var(--spacing, 0.25rem) * 1.5);
+  }
+
+  .checkbox-lg .checkbox-box::after {
+    width: calc(var(--spacing, 0.25rem) * 3.5);
+    height: calc(var(--spacing, 0.25rem) * 2);
+  }
+
+  .radio-sm .radio-ring::after {
+    width: calc(var(--spacing, 0.25rem) * 3);
+    height: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .radio-lg .radio-ring::after {
+    width: calc(var(--spacing, 0.25rem) * 5);
+    height: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .toggle-sm {
+    gap: calc(var(--spacing, 0.25rem) * 2);
+    font-size: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .toggle-lg {
+    gap: calc(var(--spacing, 0.25rem) * 4);
+    font-size: calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .toggle-sm .toggle-track {
+    width: calc(var(--spacing, 0.25rem) * 10);
+    height: calc(var(--spacing, 0.25rem) * 6);
+  }
+
+  .toggle-lg .toggle-track {
+    width: calc(var(--spacing, 0.25rem) * 14);
+    height: calc(var(--spacing, 0.25rem) * 8);
+  }
+
+  .toggle-sm .toggle-thumb,
+  .toggle-lg .toggle-thumb {
+    top: calc(var(--spacing, 0.25rem) * 1);
+    left: calc(var(--spacing, 0.25rem) * 1);
+  }
+
+  .toggle-sm .toggle-thumb {
+    width: calc(var(--spacing, 0.25rem) * 4);
+    height: calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .toggle-lg .toggle-thumb {
+    width: calc(var(--spacing, 0.25rem) * 6);
+    height: calc(var(--spacing, 0.25rem) * 6);
+  }
+
+  .toggle-sm:has(:checked) .toggle-thumb {
+    transform: translateX(calc(var(--spacing, 0.25rem) * 4));
+  }
+
+  .toggle-lg:has(:checked) .toggle-thumb {
+    transform: translateX(calc(var(--spacing, 0.25rem) * 6));
+  }
+
+  .range-sm {
+    gap: calc(var(--spacing, 0.25rem) * 2);
+    font-size: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .range-lg {
+    gap: calc(var(--spacing, 0.25rem) * 4);
+    font-size: calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .range-sm .range-box {
+    height: calc(var(--spacing, 0.25rem) * 7);
+  }
+
+  .range-lg .range-box {
+    height: calc(var(--spacing, 0.25rem) * 10);
+  }
+
+  .range-sm .range-track {
+    height: calc(var(--spacing, 0.25rem) * 2);
+  }
+
+  .range-lg .range-track {
+    height: calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .range-sm .range-fill {
+    width: calc(
+      var(--spacing, 0.25rem) * 2 + (100% - var(--spacing, 0.25rem) * 5) *
+        var(--jellyfy-pct)
+    );
+  }
+
+  .range-lg .range-fill {
+    width: calc(
+      var(--spacing, 0.25rem) * 4 + (100% - var(--spacing, 0.25rem) * 8) *
+        var(--jellyfy-pct)
+    );
+  }
+
+  .range-sm .range-thumb {
+    top: calc(50% - var(--spacing, 0.25rem) * 2.5);
+    left: calc((100% - var(--spacing, 0.25rem) * 5) * var(--jellyfy-pct));
+    width: calc(var(--spacing, 0.25rem) * 5);
+    height: calc(var(--spacing, 0.25rem) * 5);
+  }
+
+  .range-lg .range-thumb {
+    top: calc(50% - var(--spacing, 0.25rem) * 4);
+    left: calc((100% - var(--spacing, 0.25rem) * 8) * var(--jellyfy-pct));
+    width: calc(var(--spacing, 0.25rem) * 8);
+    height: calc(var(--spacing, 0.25rem) * 8);
+  }
+
+  .alert-sm {
+    gap: calc(var(--spacing, 0.25rem) * 2);
+    padding: calc(var(--spacing, 0.25rem) * 2) calc(var(--spacing, 0.25rem) * 3);
+    font-size: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .alert-lg {
+    gap: calc(var(--spacing, 0.25rem) * 4);
+    padding: calc(var(--spacing, 0.25rem) * 4) calc(var(--spacing, 0.25rem) * 5);
+    font-size: calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .badge-sm {
+    padding: calc(var(--spacing, 0.25rem) * 0.5)
+      calc(var(--spacing, 0.25rem) * 2);
+    font-size: calc(var(--spacing, 0.25rem) * 2);
+  }
+
+  .badge-lg {
+    padding: calc(var(--spacing, 0.25rem) * 1.5)
+      calc(var(--spacing, 0.25rem) * 3);
+    font-size: calc(var(--spacing, 0.25rem) * 3);
+  }
+
+  .card-sm {
+    padding: calc(var(--spacing, 0.25rem) * 3) calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .card-lg {
+    padding: calc(var(--spacing, 0.25rem) * 5) calc(var(--spacing, 0.25rem) * 6);
+  }
+
+  .modal-sm {
+    padding: calc(var(--spacing, 0.25rem) * 4);
+  }
+
+  .modal-lg {
+    padding: calc(var(--spacing, 0.25rem) * 8);
   }
 
   .btn,
