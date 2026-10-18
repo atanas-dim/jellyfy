@@ -74,6 +74,39 @@
 }
 
 @layer components {
+  .btn,
+  .btn-square,
+  .btn-surface,
+  .input,
+  .input input,
+  .textarea,
+  .textarea textarea,
+  .select,
+  .select select,
+  .checkbox,
+  .checkbox-box,
+  .radio,
+  .radio-ring,
+  .toggle,
+  .toggle-track,
+  .toggle-thumb,
+  .range,
+  .range-box,
+  .range-track,
+  .range-fill,
+  .range-thumb,
+  .alert,
+  .badge,
+  .card,
+  .modal,
+  .modal-panel,
+  .message,
+  .picker-icon,
+  .input-start,
+  .input-end {
+    box-sizing: border-box;
+  }
+
   .noise {
     background-image: none, var(--jellyfy-noise);
     background-size: auto, var(--noise-size);

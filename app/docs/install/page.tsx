@@ -59,7 +59,8 @@ export default function InstallPage() {
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
         Call <code className="font-mono text-sm">startJellyfy()</code> once,
         after the controls are on the page. A pointer press squashes the control
-        under the pointer. A later call is ignored. The full pages are in{" "}
+        under the pointer. Controls that appear later, including after a page
+        change, are included. A later call is ignored. The full pages are in{" "}
         <code className="font-mono text-sm">examples</code>.
       </p>
 
@@ -99,7 +100,7 @@ onMounted(() => {
 </script>`}
       />
 
-      <h3 className="mt-8 text-lg font-semibold tracking-tight">Vite React</h3>
+      <h3 className="mt-8 text-lg font-semibold tracking-tight">React</h3>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
         Import the stylesheet after Tailwind. Call the function once from the
         root component.

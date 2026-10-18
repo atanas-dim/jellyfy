@@ -2,7 +2,6 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { startJellyfy } from "jellyfy";
 import { ChevronDownIcon, MinusIcon, PlusIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -133,10 +132,6 @@ export const Landing = () => {
       ctx.revert();
     };
   }, []);
-
-  useEffect(() => {
-    startJellyfy();
-  }, [tone]);
 
   return (
     <main ref={page}>

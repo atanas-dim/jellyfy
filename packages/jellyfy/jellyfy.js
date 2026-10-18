@@ -10,8 +10,7 @@ export const squishRule = {
   peakAt: 0.42,
 };
 
-const along = (pixels, size) =>
-  size <= 0 ? 1 : 1 + pixels / size;
+const along = (pixels, size) => (size <= 0 ? 1 : 1 + pixels / size);
 
 const pose = (element) => {
   const width = element.offsetWidth;
@@ -84,32 +83,16 @@ const release = (element) => {
 
 const face = (node) => {
   const checkbox = node.closest(".checkbox");
-  if (checkbox)
-    return (
-      checkbox.querySelector(".checkbox-box") ??
-      (checkbox)
-    );
+  if (checkbox) return checkbox.querySelector(".checkbox-box") ?? checkbox;
 
   const radio = node.closest(".radio");
-  if (radio)
-    return (
-      radio.querySelector(".radio-ring") ??
-      (radio)
-    );
+  if (radio) return radio.querySelector(".radio-ring") ?? radio;
 
   const slider = node.closest(".range");
-  if (slider)
-    return (
-      slider.querySelector(".range-thumb") ??
-      (slider)
-    );
+  if (slider) return slider.querySelector(".range-thumb") ?? slider;
 
   const sw = node.closest(".toggle");
-  if (sw)
-    return (
-      sw.querySelector(".toggle-track") ??
-      (sw)
-    );
+  if (sw) return sw.querySelector(".toggle-track") ?? sw;
 
   const control = node.closest(
     ".btn, .btn-square, .btn-surface, .input, .textarea, .select",
@@ -168,13 +151,12 @@ const syncSlider = (input) => {
 };
 
 const syncSliders = () => {
-  document
-    .querySelectorAll(".range input")
-    .forEach(syncSlider);
+  document.querySelectorAll(".range input").forEach(syncSlider);
 };
 
 let listening = false;
 let held = null;
+let scheduled = false;
 
 const letGo = () => {
   if (!held) return;
@@ -183,11 +165,29 @@ const letGo = () => {
   release(element);
 };
 
-export const startJellyfy = () => {
+const refresh = () => {
   mountLoading(document);
   syncSliders();
+};
+
+const scheduleRefresh = () => {
+  if (scheduled) return;
+  scheduled = true;
+  requestAnimationFrame(() => {
+    scheduled = false;
+    refresh();
+  });
+};
+
+export const startJellyfy = () => {
+  refresh();
   if (listening) return;
   listening = true;
+
+  new MutationObserver(scheduleRefresh).observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+  });
 
   document.addEventListener("pointerdown", (event) => {
     const hit = face(event.target);
@@ -202,10 +202,7 @@ export const startJellyfy = () => {
 
   document.addEventListener("input", (event) => {
     const target = event.target;
-    if (
-      target instanceof HTMLInputElement &&
-      target.closest(".range")
-    ) {
+    if (target instanceof HTMLInputElement && target.closest(".range")) {
       syncSlider(target);
     }
   });
