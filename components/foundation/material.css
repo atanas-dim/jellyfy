@@ -468,7 +468,7 @@
   .textarea::before,
   .select::before {
     top: auto;
-    bottom: -calc(var(--spacing, 0.25rem) * 4);
+    bottom: calc(var(--spacing, 0.25rem) * -4);
     height: calc(var(--spacing, 0.25rem) * 7);
     width: 70%;
     transform: translate(-50%, -40%);
