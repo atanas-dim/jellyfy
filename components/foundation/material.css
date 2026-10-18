@@ -149,6 +149,7 @@
   --shadow-drop: 0 12px 16px -14px rgb(10 10 10 / 0.55);
   --shadow-drop-hover: 0 16px 36px -14px rgb(10 10 10 / 0.55);
   --shadow-drop-disabled: 0 12px 12px -12px rgb(10 10 10 / 0.25);
+  --focus-gap: 0 0 0 2px rgb(255 255 255 / 0.5);
 }
 
 @theme inline {
@@ -377,6 +378,7 @@
 .jellyfy-focus:focus-within,
 .jellyfy-focus[data-open] {
   outline-color: var(--jellyfy-ring, var(--color-neutral-400));
+  box-shadow: var(--focus-gap);
 }
 
 .jellyfy-raised,
@@ -467,6 +469,7 @@
 .jellyfy-surface:focus-within,
 .jellyfy-surface[data-open] {
   box-shadow:
+    var(--focus-gap),
     var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
     var(--shadow-inset-surface-focus), var(--shadow-drop);
 }
@@ -478,7 +481,8 @@
 }
 
 .jellyfy-surface::before {
-  top: 2.75rem;
+  top: auto;
+  bottom: -1rem;
   height: 1.75rem;
   width: 70%;
   transform: translate(-50%, -40%);
@@ -595,7 +599,7 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
 
 .group:focus-within .jellyfy-handle {
   outline-color: var(--jellyfy-ring, var(--color-neutral-400));
-  box-shadow: var(--shadow-inset-surface-focus), var(--shadow-drop);
+  box-shadow: var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop);
 }
 
 .jellyfy-range {
