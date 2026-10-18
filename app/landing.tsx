@@ -207,7 +207,7 @@ export const Landing = () => {
             >
               One material
             </p>
-            <h1 className="mt-4 text-6xl leading-none font-semibold tracking-tight sm:text-7xl">
+            <h1 className="mt-4 text-6xl leading-none font-bold tracking-tight sm:text-7xl">
               <span className="block overflow-hidden pt-1 pb-3">
                 <span data-line className="block">
                   The control

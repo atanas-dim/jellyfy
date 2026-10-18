@@ -9,28 +9,48 @@
 }
 
 :root {
-  --surface: color-mix(in oklab, var(--color-neutral-50) 60%, transparent);
+  --jellyfy-neutral-50: var(--color-neutral-50, #fafafa);
+  --jellyfy-neutral-100: var(--color-neutral-100, #f5f5f5);
+  --jellyfy-neutral-200: var(--color-neutral-200, #e5e5e5);
+  --jellyfy-neutral-300: var(--color-neutral-300, #d4d4d4);
+  --jellyfy-neutral-400: var(--color-neutral-400, #a3a3a3);
+  --jellyfy-neutral-500: var(--color-neutral-500, #737373);
+  --jellyfy-neutral-600: var(--color-neutral-600, #525252);
+  --jellyfy-neutral-700: var(--color-neutral-700, #404040);
+  --jellyfy-neutral-800: var(--color-neutral-800, #262626);
+  --jellyfy-neutral-900: var(--color-neutral-900, #171717);
+  --jellyfy-neutral-950: var(--color-neutral-950, #0a0a0a);
+
+  --jellyfy-primary: var(--color-primary, #4f46e5);
+  --jellyfy-secondary: var(--color-secondary, #db2777);
+  --jellyfy-tertiary: var(--color-tertiary, #0d9488);
+  --jellyfy-neutral: var(--color-neutral, var(--jellyfy-neutral-400));
+  --jellyfy-success: var(--color-success, #16a34a);
+  --jellyfy-error: var(--color-error, #dc2626);
+  --jellyfy-warning: var(--color-warning, #d97706);
+
+  --surface: color-mix(in oklab, var(--jellyfy-neutral-50) 60%, transparent);
   --surface-focus: color-mix(
     in oklab,
-    var(--color-neutral-100) 60%,
+    var(--jellyfy-neutral-100) 60%,
     transparent
   );
-  --surface-foreground: var(--color-neutral-800);
+  --surface-foreground: var(--jellyfy-neutral-800);
   --surface-highlight: color-mix(
     in oklab,
-    var(--color-neutral-100) 70%,
+    var(--jellyfy-neutral-100) 70%,
     transparent
   );
   --surface-shade: color-mix(
     in oklab,
-    var(--color-neutral-900) 10%,
+    var(--jellyfy-neutral-900) 10%,
     transparent
   );
   --panel: white;
-  --disabled: color-mix(in oklab, var(--color-neutral-400) 60%, transparent);
+  --disabled: color-mix(in oklab, var(--jellyfy-neutral-400) 60%, transparent);
   --disabled-foreground: color-mix(
     in oklab,
-    var(--color-neutral-50) 70%,
+    var(--jellyfy-neutral-50) 70%,
     transparent
   );
 
@@ -179,7 +199,7 @@
 
   .jellyfy-button,
   .jellyfy-icon-button {
-    --jellyfy-solid: var(--color-primary);
+    --jellyfy-solid: var(--jellyfy-primary);
     --jellyfy-highlight: color-mix(
       in oklab,
       color-mix(in oklab, white 75%, var(--jellyfy-solid)) 22%,
@@ -325,10 +345,10 @@
   .jellyfy-input,
   .jellyfy-textarea,
   .jellyfy-select {
-    --jellyfy-solid: var(--color-neutral);
+    --jellyfy-solid: var(--jellyfy-neutral);
     --jellyfy-highlight: var(--surface-highlight);
     --jellyfy-shade: var(--surface-shade);
-    --jellyfy-ring: var(--color-neutral-400);
+    --jellyfy-ring: var(--jellyfy-neutral-400);
     position: relative;
     display: block;
     width: 100%;
@@ -605,7 +625,7 @@
   .jellyfy-checkbox,
   .jellyfy-radio,
   .jellyfy-switch {
-    --jellyfy-solid: var(--color-primary);
+    --jellyfy-solid: var(--jellyfy-primary);
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
@@ -731,7 +751,7 @@
     width: 1.25rem;
     height: 1.25rem;
     border-radius: 999px;
-    background: color-mix(in oklab, var(--color-neutral-500) 55%, white);
+    background: color-mix(in oklab, var(--jellyfy-neutral-500) 55%, white);
     box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
     transition:
       transform 300ms ease-out,
@@ -744,7 +764,7 @@
   }
 
   .jellyfy-slider {
-    --jellyfy-solid: var(--color-primary);
+    --jellyfy-solid: var(--jellyfy-primary);
     --jellyfy-pct: 0.4;
     display: flex;
     width: 100%;
@@ -814,7 +834,7 @@
 
   .jellyfy-message {
     margin-top: 0.375rem;
-    color: color-mix(in oklab, var(--color-error) 62%, black);
+    color: color-mix(in oklab, var(--jellyfy-error) 62%, black);
     font-size: 0.75rem;
   }
 
@@ -842,7 +862,7 @@
   }
 
   .jellyfy-alert {
-    --jellyfy-solid: var(--color-warning);
+    --jellyfy-solid: var(--jellyfy-warning);
     display: flex;
     gap: 0.75rem;
     border-radius: var(--radius-surface);
@@ -854,7 +874,7 @@
   }
 
   .jellyfy-badge {
-    --jellyfy-solid: var(--color-primary);
+    --jellyfy-solid: var(--jellyfy-primary);
     display: inline-flex;
     align-items: center;
     border-radius: 999px;
@@ -889,7 +909,7 @@
   .jellyfy-card:focus-visible,
   .jellyfy-alert:focus-visible,
   .jellyfy-badge:focus-visible {
-    outline-color: var(--jellyfy-solid, var(--color-neutral-400));
+    outline-color: var(--jellyfy-solid, var(--jellyfy-neutral-400));
     box-shadow: var(--focus-gap), var(--shadow-inset-thin), var(--shadow-drop);
   }
 
@@ -990,7 +1010,7 @@
   }
 
   .jellyfy-surface-button:focus-visible {
-    outline-color: var(--jellyfy-solid, var(--color-neutral-400));
+    outline-color: var(--jellyfy-solid, var(--jellyfy-neutral-400));
     box-shadow: var(--focus-gap);
   }
 
@@ -1007,25 +1027,25 @@
   }
 
   .jellyfy-primary {
-    --jellyfy-solid: var(--color-primary);
+    --jellyfy-solid: var(--jellyfy-primary);
   }
   .jellyfy-secondary {
-    --jellyfy-solid: var(--color-secondary);
+    --jellyfy-solid: var(--jellyfy-secondary);
   }
   .jellyfy-tertiary {
-    --jellyfy-solid: var(--color-tertiary);
+    --jellyfy-solid: var(--jellyfy-tertiary);
   }
   .jellyfy-neutral {
-    --jellyfy-solid: var(--color-neutral);
+    --jellyfy-solid: var(--jellyfy-neutral);
   }
   .jellyfy-success {
-    --jellyfy-solid: var(--color-success);
+    --jellyfy-solid: var(--jellyfy-success);
   }
   .jellyfy-error {
-    --jellyfy-solid: var(--color-error);
+    --jellyfy-solid: var(--jellyfy-error);
   }
   .jellyfy-warning {
-    --jellyfy-solid: var(--color-warning);
+    --jellyfy-solid: var(--jellyfy-warning);
   }
 
   .jellyfy-button,

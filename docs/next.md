@@ -4,7 +4,7 @@
 
 Jellyfy is class names on ordinary HTML, plus one script, `startJellyfy()`. The Next app is the demo. It is not the package.
 
-The component rules live in `@layer components`, so a Tailwind utility on the same element overrides only the property it sets. The seven solids are declared in `@theme`, and today they point at Tailwind's palette (`--color-indigo-600` and the rest). Sizes are plain lengths such as `3rem`. They do not use `--spacing`.
+The component rules live in `@layer components`, so a Tailwind utility on the same element overrides only the property it sets. The seven solids are declared in `@theme`, so a later `@theme` can replace one. Components read the `--jellyfy-*` aliases, which use that variable or a hex. Sizes are plain lengths such as `3rem`. They do not use `--spacing`.
 
 `app/jellyfy-boot.tsx` is only how this demo calls `startJellyfy()` after each route. Any other app calls that same function once.
 
