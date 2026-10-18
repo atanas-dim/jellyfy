@@ -108,9 +108,11 @@ There are three sizes. The current regular size is the default. It has no extra 
 1. Add the aliases above once, and point the material at the `--jellyfy-*` names. Do not assign Tailwind's `--color-neutral-*` names.
 2. Drop `jellyfy-` from the public classes. Do this before the sizes, so the new names are only written once.
 3. Add `btn-sm` and `btn-lg`, and the same pair on the other controls, beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step.
-4. Write the docs pages on this site, at `/docs`. The guide shows the class on the element, the three sizes, the single `startJellyfy()` call, the Tailwind install, and which file to import. It also shows how to replace the select mark: keep the `jellyfy-chevron` class on your own SVG. The default mark is the rounded chevron. This is a usage guide, not an API. The only variables it teaches people to set are the public ones below.
-5. Put the stylesheet and the script in `packages/jellyfy`, so they can be installed without this Next app. Do not set `0.1.0` yet, and do not publish.
-6. Install that folder into a plain HTML page, a Vue app, and a Vite React app. Set `0.1.0` and publish to npm only after that trial is confirmed.
+4. Rebuild `/set` as a responsive grid, not a narrow column. Every component is on the page at once, with its colors and states, including the three sizes. This is the display. It does not explain how to use the classes.
+5. Write the docs pages on this site, at `/docs`. That is the classic guide, separate from the display. It shows the class on the element, the three sizes, the single `startJellyfy()` call, the Tailwind install, and which file to import. It also shows how to replace the select mark: keep the `jellyfy-chevron` class on your own SVG. The default mark is the rounded chevron. This is a usage guide, not an API. The only variables it teaches people to set are the public ones below.
+6. Put the stylesheet and the script in `packages/jellyfy`, so they can be installed without this Next app. Do not set `0.1.0` yet, and do not publish.
+7. Install that folder into a plain HTML page, a Vue app, and a Vite React app. Do not set `0.1.0`. Do not publish.
+8. Only after that trial is confirmed: set `0.1.0` and publish to npm.
 
 ## Package shape
 

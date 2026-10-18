@@ -29,7 +29,6 @@ const openNote = () => {
 export const Landing = () => {
   const page = useRef<HTMLElement>(null);
   const tilt = useRef<HTMLDivElement>(null);
-  const skipTone = useRef(true);
   const [tone, setTone] = useState<Tone>("jellyfy-primary");
   const toneLabel = TONES.find((item) => item.id === tone)?.label ?? "Primary";
 
@@ -168,17 +167,6 @@ export const Landing = () => {
 
   useEffect(() => {
     startJellyfy();
-    if (skipTone.current) {
-      skipTone.current = false;
-      return;
-    }
-    if (!tilt.current) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    gsap.fromTo(
-      tilt.current,
-      { scale: 0.98 },
-      { scale: 1, duration: 0.45, ease: "power2.out" },
-    );
   }, [tone]);
 
   return (
