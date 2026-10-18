@@ -6,6 +6,7 @@
   --color-success: var(--color-green-600);
   --color-error: var(--color-red-600);
   --color-warning: var(--color-amber-600);
+  --color-info: var(--color-sky-600);
 }
 
 :root {
@@ -28,6 +29,7 @@
   --jellyfy-success: var(--color-success, #16a34a);
   --jellyfy-error: var(--color-error, #dc2626);
   --jellyfy-warning: var(--color-warning, #d97706);
+  --jellyfy-info: var(--color-info, #0284c7);
 
   --surface: color-mix(in oklab, var(--jellyfy-neutral-50) 60%, transparent);
   --surface-focus: color-mix(
@@ -57,14 +59,14 @@
   --radius-control: 999px;
   --radius-surface: 1rem;
   --jellyfy-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' opacity='0.2'%3E%3C/rect%3E%3C/svg%3E");
-  --jellyfy-noise-size: 360px;
+  --noise-size: 22.5rem;
 
   --shadow-inset-thin: inset 0 -6px 8px rgb(10 10 10 / 0.12);
   --shadow-inset-mark: inset 0 -1px 5px rgb(10 10 10 / 0.35);
   --shadow-inset-surface: inset 0 -10px 16px rgb(10 10 10 / 0.2);
   --shadow-inset-surface-focus: inset 0 -6px 10px rgb(10 10 10 / 0.15);
   --shadow-inset-raised: inset 0 -16px 16px rgb(10 10 10 / 0.5);
-  --shadow-drop-sm: 0 4px 6px -3px rgb(10 10 10 / 0.55);
+  --shadow-drop-sm: 0 4px 6px -3px rgb(10 10 10 / 0.45);
   --shadow-drop: 0 12px 16px -14px rgb(10 10 10 / 0.55);
   --shadow-drop-hover: 0 16px 36px -14px rgb(10 10 10 / 0.55);
   --shadow-drop-disabled: 0 12px 12px -12px rgb(10 10 10 / 0.25);
@@ -74,7 +76,7 @@
 @layer components {
   .noise {
     background-image: none, var(--jellyfy-noise);
-    background-size: auto, var(--jellyfy-noise-size);
+    background-size: auto, var(--noise-size);
   }
 
   @keyframes jellyfy-sweep {
@@ -190,6 +192,7 @@
     .input,
     .textarea,
     .select,
+    .picker-icon,
     .btn-surface,
     .btn-surface::before,
     .btn-surface::after {
@@ -381,18 +384,21 @@
   .input.success,
   .input.error,
   .input.warning,
+  .input.info,
   .textarea.primary,
   .textarea.secondary,
   .textarea.tertiary,
   .textarea.success,
   .textarea.error,
   .textarea.warning,
+  .textarea.info,
   .select.primary,
   .select.secondary,
   .select.tertiary,
   .select.success,
   .select.error,
-  .select.warning {
+  .select.warning,
+  .select.info {
     background-color: color-mix(
       in oklab,
       color-mix(in oklab, white 86%, var(--jellyfy-solid)) 60%,
@@ -423,18 +429,21 @@
   .input.success:focus-within,
   .input.error:focus-within,
   .input.warning:focus-within,
+  .input.info:focus-within,
   .textarea.primary:focus-within,
   .textarea.secondary:focus-within,
   .textarea.tertiary:focus-within,
   .textarea.success:focus-within,
   .textarea.error:focus-within,
   .textarea.warning:focus-within,
+  .textarea.info:focus-within,
   .select.primary:focus-within,
   .select.secondary:focus-within,
   .select.tertiary:focus-within,
   .select.success:focus-within,
   .select.error:focus-within,
-  .select.warning:focus-within {
+  .select.warning:focus-within,
+  .select.info:focus-within {
     background-color: color-mix(
       in oklab,
       color-mix(in oklab, white 78%, var(--jellyfy-solid)) 60%,
@@ -620,7 +629,7 @@
     content: "";
   }
 
-  .chevron {
+  .picker-icon {
     position: absolute;
     top: 50%;
     right: calc(var(--spacing, 0.25rem) * 4);
@@ -629,7 +638,7 @@
     color: currentColor;
   }
 
-  .chevron:not(svg) {
+  .picker-icon:not(svg) {
     width: calc(var(--spacing, 0.25rem) * 5);
     height: calc(var(--spacing, 0.25rem) * 5);
     background: currentColor;
@@ -640,7 +649,7 @@
       center / contain no-repeat;
   }
 
-  svg.chevron {
+  svg.picker-icon {
     width: calc(var(--spacing, 0.25rem) * 5);
     height: calc(var(--spacing, 0.25rem) * 5);
     transform: translateY(-50%);
@@ -654,6 +663,14 @@
 
     .select select::picker-icon {
       display: none;
+    }
+
+    .select .picker-icon {
+      transition: transform 200ms ease-out;
+    }
+
+    .select select:open ~ .picker-icon {
+      transform: translateY(-50%) rotate(180deg);
     }
 
     .select select::picker(select) {
@@ -793,11 +810,16 @@
       var(--focus-gap), var(--shadow-inset-mark), var(--shadow-drop-sm);
   }
 
-  .toggle:has(:focus-visible) .toggle-track,
-  .range:has(:focus-visible) .range-thumb {
+  .toggle:has(:focus-visible) .toggle-track {
     outline-color: var(--jellyfy-solid);
     box-shadow:
       var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop-sm);
+  }
+
+  .range:has(:focus-visible) .range-thumb {
+    outline-color: var(--jellyfy-solid);
+    box-shadow:
+      var(--focus-gap), var(--shadow-inset-mark), var(--shadow-drop-sm);
   }
 
   .toggle-track {
@@ -828,7 +850,7 @@
       var(--jellyfy-neutral-500) 55%,
       white
     );
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop-sm);
+    box-shadow: var(--shadow-inset-mark), var(--shadow-drop-sm);
     transition:
       transform 300ms ease-out,
       background-color 300ms ease-out;
@@ -891,7 +913,7 @@
     height: calc(var(--spacing, 0.25rem) * 6);
     border-radius: 999px;
     background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop-sm);
+    box-shadow: var(--shadow-inset-mark), var(--shadow-drop-sm);
     outline: 1px solid transparent;
     outline-offset: 2px;
     transition:
@@ -931,13 +953,15 @@
   .card.success,
   .card.error,
   .card.warning,
+  .card.info,
   .modal-panel.primary,
   .modal-panel.secondary,
   .modal-panel.tertiary,
   .modal-panel.neutral,
   .modal-panel.success,
   .modal-panel.error,
-  .modal-panel.warning {
+  .modal-panel.warning,
+  .modal-panel.info {
     background-color: color-mix(
       in oklab,
       color-mix(in oklab, white 86%, var(--jellyfy-solid)) 60%,
@@ -1141,7 +1165,8 @@
   .neutral .btn-surface,
   .success .btn-surface,
   .error .btn-surface,
-  .warning .btn-surface {
+  .warning .btn-surface,
+  .info .btn-surface {
     --jellyfy-highlight: color-mix(in oklab, white 78%, var(--jellyfy-solid));
     --jellyfy-shade: color-mix(in oklab, var(--jellyfy-solid) 34%, transparent);
     color: color-mix(in oklab, var(--jellyfy-solid) 62%, black);
@@ -1167,6 +1192,9 @@
   }
   .warning {
     --jellyfy-solid: var(--jellyfy-warning);
+  }
+  .info {
+    --jellyfy-solid: var(--jellyfy-info);
   }
 
   .btn-sm {
@@ -1390,13 +1418,13 @@
       calc(var(--spacing, 0.25rem) * 5);
   }
 
-  .select-sm .chevron {
+  .select-sm .picker-icon {
     right: calc(var(--spacing, 0.25rem) * 3);
     width: calc(var(--spacing, 0.25rem) * 4);
     height: calc(var(--spacing, 0.25rem) * 4);
   }
 
-  .select-lg .chevron {
+  .select-lg .picker-icon {
     right: calc(var(--spacing, 0.25rem) * 4);
     width: calc(var(--spacing, 0.25rem) * 6);
     height: calc(var(--spacing, 0.25rem) * 6);
@@ -1614,6 +1642,6 @@
   .card,
   .modal-panel {
     background-image: none, var(--jellyfy-noise);
-    background-size: auto, var(--jellyfy-noise-size);
+    background-size: auto, var(--noise-size);
   }
 }

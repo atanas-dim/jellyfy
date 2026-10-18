@@ -12,6 +12,7 @@ const COLORS = [
   "success",
   "error",
   "warning",
+  "info",
 ] as const;
 
 const NAME: Record<(typeof COLORS)[number], string> = {
@@ -22,6 +23,7 @@ const NAME: Record<(typeof COLORS)[number], string> = {
   success: "Success",
   error: "Error",
   warning: "Warning",
+  info: "Info",
 };
 
 const SIZES = ["sm", "", "lg"] as const;
@@ -46,7 +48,7 @@ const Tile = ({
   <section
     id={id}
     className={twJoin(
-      "flex scroll-mt-8 flex-col gap-4",
+      "flex scroll-mt-24 flex-col gap-4",
       wide && "sm:col-span-2",
     )}
   >
@@ -222,7 +224,7 @@ export default function SetPage() {
                 <option value="rose">Rose</option>
               </select>
               <span>{NAME[color]}</span>
-              <i className="chevron" />
+              <i className="picker-icon" />
             </label>
           ))}
         </div>
@@ -236,7 +238,7 @@ export default function SetPage() {
                 <option value="rose">Rose</option>
               </select>
               <span>{SIZE_NAME[size]}</span>
-              <i className="chevron" />
+              <i className="picker-icon" />
             </label>
           ))}
         </div>

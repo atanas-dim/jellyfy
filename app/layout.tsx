@@ -5,6 +5,7 @@ import { Figtree, Geist_Mono, Rubik } from "next/font/google";
 import { twJoin } from "tailwind-merge";
 
 import { JellyfyBoot } from "./jellyfy-boot";
+import { SiteFrame } from "./site-frame";
 
 const figtree = Figtree({
   variable: "--font-figtree",
@@ -22,7 +23,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jellyfy",
+  title: {
+    default: "Jellyfy",
+    template: "%s · Jellyfy",
+  },
   description:
     "Soft controls from one material. Set the solid colors, and the jelly tones follow.",
 };
@@ -44,7 +48,9 @@ export default function RootLayout({
     >
       <body>
         <JellyfyBoot />
-        <div className="isolate flex min-h-full flex-col">{children}</div>
+        <div className="isolate flex min-h-full flex-col">
+          <SiteFrame>{children}</SiteFrame>
+        </div>
       </body>
     </html>
   );

@@ -4,7 +4,7 @@
 
 Jellyfy is class names on ordinary HTML, plus one script, `startJellyfy()`. The Next app is the demo. It is not the package.
 
-The component rules live in `@layer components`, so a Tailwind utility on the same element overrides only the property it sets. The seven solids are declared in `@theme`, so a later `@theme` can replace one. Components read the `--jellyfy-*` aliases, which use that variable or a hex. A size that lands on a spacing step uses `var(--spacing, 0.25rem)`. A length that is not a step stays as written.
+The component rules live in `@layer components`, so a Tailwind utility on the same element overrides only the property it sets. The eight solids are declared in `@theme`, so a later `@theme` can replace one. Components read the `--jellyfy-*` aliases, which use that variable or a hex. A size that lands on a spacing step uses `var(--spacing, 0.25rem)`. A length that is not a step stays as written.
 
 `app/jellyfy-boot.tsx` is only how this demo calls `startJellyfy()` after each route. Any other app calls that same function once.
 
@@ -22,9 +22,9 @@ The library carries the gray scale and the spacing unit as fallbacks. It does no
 }
 ```
 
-Surfaces use `var(--jellyfy-neutral-50)` only. The hex is not repeated. When Tailwind or the developer has set `--color-neutral-50`, that value is used. When nobody has, the hex is used. The same shape fits the seven solids: `--jellyfy-primary: var(--color-primary, #4f46e5)`. A developer who wants a different primary still sets `--color-primary` only.
+Surfaces use `var(--jellyfy-neutral-50)` only. The hex is not repeated. When Tailwind or the developer has set `--color-neutral-50`, that value is used. When nobody has, the hex is used. The same shape fits the eight solids: `--jellyfy-primary: var(--color-primary, #4f46e5)`. A developer who wants a different primary still sets `--color-primary` only.
 
-Ship the full neutral scale, 50 through 950, as those fallbacks, even though the material uses only 50, 100, 400, 500, 800, and 900 today. A short list looks unfinished, and the next shade would otherwise be a new requirement. Do not ship the rest of Tailwind's hues. Indigo, pink, teal, green, red, and amber exist only as the default values of the seven names.
+Ship the full neutral scale, 50 through 950, as those fallbacks, even though the material uses only 50, 100, 400, 500, 800, and 900 today. A short list looks unfinished, and the next shade would otherwise be a new requirement. Do not ship the rest of Tailwind's hues. Indigo, pink, teal, green, red, amber, and sky exist only as the default values of the eight names.
 
 Do not ask anyone to set `--spacing`, and do not set it ourselves on `:root`. At each size, write `var(--spacing, 0.25rem)`. Tailwind's value wins when it exists. `0.25rem` is used when it does not. That is Tailwind's own default.
 
@@ -97,7 +97,7 @@ The cost of Jellyfy is the double y. People will type jellyfish or jellify. That
 
 ## Version and a trial install
 
-Versions follow semantic versioning. `0.1.0` is the first public version, and it is not used until a local install has been tried and confirmed. The public contract is the class names, the seven color variables, and `startJellyfy()`. A break in any of those is a major version after `1.0.0`. Before that, `0.x` may break. One package does not need a release tool.
+Versions follow semantic versioning. `0.1.0` is the first public version, and it is not used until a local install has been tried and confirmed. The public contract is the class names, the eight color variables, and `startJellyfy()`. A break in any of those is a major version after `1.0.0`. Before that, `0.x` may break. One package does not need a release tool.
 
 Nothing is published to npm until that confirmation. A local trial does not need a release. Pack the library folder into a tarball, or point a test app at it with a `file:` dependency. Use a plain HTML page, a Vue app, and a Vite React app. Remix is optional, because it is still React. In each one, confirm three things: the classes paint with no Tailwind, a Tailwind utility such as `px-4` changes only that property, and `startJellyfy()` is called once. Set `0.1.0` and publish only after that trial looks right.
 
@@ -111,7 +111,7 @@ There are three sizes. The current regular size is the default. It has no extra 
 2. Drop `jellyfy-` from the public classes. Do this before the sizes, so the new names are only written once.
 3. Add the three sizes. First, `/design-system` states the visual rules: radii, inset thickness, the press, focus, color, the public knobs, and the three sizes. That page is served only when `NODE_ENV` is `development`. Any other environment calls `notFound()`. Then add `btn-sm` and `btn-lg`, and the same pair on the other controls, beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step. The regular size stays as it is.
 4. Rebuild `/set` as a responsive grid - tetris-like, not a narrow column. Every component is on the page at once, with its colors and states, including the three sizes. This is the display. It does not explain how to use the classes.
-5. Write the docs pages on this site, at `/docs`. That is the classic guide, separate from the display. It shows the class on the element, the three sizes, the single `startJellyfy()` call, the Tailwind install, and which file to import. It also shows how to replace the select mark: keep the `chevron` class on your own SVG. The default mark is the rounded chevron. This is a usage guide, not an API. The only variables it teaches people to set are the public ones below. The landing, the set, and the docs are one public site. They should share one layout and one brand, not three page styles. The shared header and footer are the next step, so these pages should be ready to sit in that frame.
+5. Write the docs pages on this site, at `/docs`. That is the classic guide, separate from the display. It shows the class on the element, the three sizes, the single `startJellyfy()` call, the Tailwind install, and which file to import. It also shows how to replace the select mark: keep the `picker-icon` class on your own SVG. The default mark is the rounded picker icon. This is a usage guide, not an API. The only variables it teaches people to set are the public ones below. The landing, the set, and the docs are one public site. They should share one layout and one brand, not three page styles. The shared header and footer are the next step, so these pages should be ready to sit in that frame.
 6. Give the site a real header and footer once those pages exist. The header links to the set and the docs. The footer has a short line about Jellyfy and the copyright. Class names in this site are built with `twJoin` and `twMerge`, not string templates. Use `twMerge` when Tailwind utilities can override each other. Use `twJoin` otherwise.
 7. Put the stylesheet and the script in `packages/jellyfy`, so they can be installed without this Next app. Do not set `0.1.0` yet, and do not publish.
 8. Prepare the marketing site for search engines and for agents that read pages. Each public page gets a title and a description. Add a sitemap, JSON-LD, and an llms file, and make the pages a crawler should find easy to reach.
@@ -157,10 +157,11 @@ These are the public variables. Everything else, including `--jellyfy-solid`, th
   --color-success: #16a34a;
   --color-error: #dc2626;
   --color-warning: #d97706;
+  --color-info: #0284c7;
 
   --radius-control: 999px;
   --radius-surface: 1rem;
-  --jellyfy-noise-size: 360px;
+  --noise-size: 22.5rem;
 
   --spacing: 0.25rem;
 }
@@ -168,8 +169,8 @@ These are the public variables. Everything else, including `--jellyfy-solid`, th
 
 `--spacing` is optional. Tailwind already sets it. Someone without Tailwind can set it to change the size scale. They do not have to.
 
-The select mark is part of the same guide. An empty element with the class `chevron` is the rounded chevron. An SVG with that same class replaces it. The landing page does that with Lucide. The set page keeps the default.
+The select mark is part of the same guide. An empty element with the class `picker-icon` is the default mark. An SVG with that same class replaces it. The landing page does that with Lucide. The set page keeps the default.
 
 ## Select mark
 
-`.chevron` positions the mark and gives it the field color. The default element is an empty `<i>`, painted with the rounded chevron path. An SVG with the same class replaces that shape. The landing page select uses Lucide that way.
+`.picker-icon` positions the mark and gives it the field color. CSS calls the native control `::picker-icon`, and the library hides that one. The default element is an empty `<i>`, painted with the rounded path. An SVG with the same class replaces that shape. The landing page select uses Lucide that way.

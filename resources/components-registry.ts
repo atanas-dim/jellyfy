@@ -97,7 +97,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
   [ComponentSlug.Badge]: {
     slug: ComponentSlug.Badge,
     name: "Badge",
-    description: "A small label in any of the seven colors.",
+    description: "A small label in any of the eight colors.",
     usage: `<span class="badge success">Ready</span>`,
   },
   [ComponentSlug.Card]: {

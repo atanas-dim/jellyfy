@@ -18,6 +18,7 @@ const TONES = [
   { id: "success", label: "Success" },
   { id: "error", label: "Error" },
   { id: "warning", label: "Warning" },
+  { id: "info", label: "Info" },
 ] as const;
 
 type Tone = (typeof TONES)[number]["id"];
@@ -171,18 +172,7 @@ export const Landing = () => {
   }, [tone]);
 
   return (
-    <main ref={page} className="text-neutral-950">
-      <header className="sticky top-0 z-30 border-b border-white/70 bg-neutral-50/75 backdrop-blur-md">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-4 sm:px-10">
-          <p className="font-display text-lg font-semibold tracking-tight">
-            Jellyfy
-          </p>
-          <Link href="/set" className="btn">
-            <span>The set</span>
-          </Link>
-        </div>
-      </header>
-
+    <main ref={page}>
       <section className="relative">
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <div
@@ -223,7 +213,7 @@ export const Landing = () => {
               data-hero-item
               className="mt-6 max-w-md text-lg leading-8 text-neutral-600"
             >
-              Soft controls for the HTML you already write. Pick seven colors.
+              Soft controls for the HTML you already write. Pick eight colors.
               The rest of the set follows.
             </p>
 
@@ -309,7 +299,10 @@ export const Landing = () => {
                       <option value="ink">Ink</option>
                     </select>
                     <span>Flavor</span>
-                    <ChevronDownIcon className="chevron" aria-hidden="true" />
+                    <ChevronDownIcon
+                      className="picker-icon"
+                      aria-hidden="true"
+                    />
                   </label>
 
                   <div className="flex flex-wrap items-center justify-between gap-4">
@@ -437,7 +430,7 @@ export const Landing = () => {
               Your colors
             </h3>
             <p className="text-sm leading-6 text-neutral-600">
-              Name seven colors once. Buttons, fields, and badges in that color
+              Name eight colors once. Buttons, fields, and badges in that color
               stay in the same material.
             </p>
             <label className="input success">
@@ -499,15 +492,6 @@ export const Landing = () => {
           ))}
         </div>
       </section>
-
-      <footer className="border-t border-neutral-200/80 px-6 py-8 sm:px-10">
-        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3">
-          <p className="font-display font-semibold">Jellyfy</p>
-          <p className="text-sm text-neutral-500">
-            Press one. The whole set gives the same way.
-          </p>
-        </div>
-      </footer>
 
       <dialog id="landing-note" className="modal">
         <div className={twJoin("modal-panel", tone)}>

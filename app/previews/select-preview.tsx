@@ -5,7 +5,7 @@ const SelectPreview = () => (
       <option value="rose">Rose</option>
     </select>
     <span>Flavor</span>
-    <i className="chevron" />
+    <i className="picker-icon" />
   </label>
 );
 

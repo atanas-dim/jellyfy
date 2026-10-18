@@ -1,0 +1,47 @@
+"use client";
+
+const open = (id: string) => {
+  const dialog = document.getElementById(id);
+  if (dialog instanceof HTMLDialogElement) dialog.showModal();
+};
+
+export const DialogSample = () => (
+  <div className="flex flex-wrap gap-3">
+    <button className="btn" type="button" onClick={() => open("docs-dialog")}>
+      <span>Open</span>
+    </button>
+    <button
+      className="btn tertiary"
+      type="button"
+      onClick={() => open("docs-dialog-tinted")}
+    >
+      <span>Tinted</span>
+    </button>
+    <dialog id="docs-dialog" className="modal">
+      <div className="modal-panel">
+        <form method="dialog">
+          <button className="btn-surface" type="submit" aria-label="Close">
+            ×
+          </button>
+        </form>
+        <h2 className="pe-8 text-lg font-semibold">A note</h2>
+        <p className="mt-2 text-sm leading-6">
+          No color on the panel. The close control stays neutral.
+        </p>
+      </div>
+    </dialog>
+    <dialog id="docs-dialog-tinted" className="modal">
+      <div className="modal-panel tertiary">
+        <form method="dialog">
+          <button className="btn-surface" type="submit" aria-label="Close">
+            ×
+          </button>
+        </form>
+        <h2 className="pe-8 text-lg font-semibold">Tinted</h2>
+        <p className="mt-2 text-sm leading-6">
+          tertiary on the panel tints the close control too.
+        </p>
+      </div>
+    </dialog>
+  </div>
+);

@@ -21,6 +21,7 @@ const COLORS = [
   ["success", "Success"],
   ["error", "Error"],
   ["warning", "Warning"],
+  ["info", "Info"],
 ] as const;
 
 const CONTENTS = [
@@ -89,7 +90,7 @@ const KNOBS = [
     "Pills: buttons, switch, slider handle, badge.",
   ],
   ["--radius-surface", "1rem", "Fields, cards, alerts, dialog panel."],
-  ["--jellyfy-noise-size", "360px", "The grain tile."],
+  ["--noise-size", "22.5rem", "The grain tile."],
   ["--spacing", "0.25rem", "Optional. Tailwind already sets it."],
 ] as const;
 
@@ -121,7 +122,7 @@ export default function DesignSystemPage() {
       <Section
         id="color"
         title="Color"
-        lede="Seven solids. Everything else is mixed from the solid on that element. A developer overrides a solid by setting --color-primary, or whichever of the seven they want to change."
+        lede="Eight solids. Everything else is mixed from the solid on that element. A developer overrides a solid by setting --color-primary, or whichever of the eight they want to change."
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {COLORS.map(([id, label]) => (
@@ -533,7 +534,7 @@ export default function DesignSystemPage() {
           style={{ boxShadow: "var(--shadow-inset-thin), var(--shadow-drop)" }}
         />
         <p className="mt-3 text-sm leading-6 text-neutral-600">
-          The grain, at <TokenValue name="--jellyfy-noise-size" />.
+          The grain, at <TokenValue name="--noise-size" />.
         </p>
       </Section>
     </main>
