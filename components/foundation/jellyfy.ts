@@ -1,25 +1,99 @@
-const PRESS_PEAK = 3.36;
-const CROSS_PEAK = -3.2;
+const SQUISH = "jellyfy-squish";
+const PRESS_MS = 300;
+const PEAK_PX = 14;
 
-const ratio = (pixels: number, size: number) =>
+const along = (pixels: number, size: number) =>
   size <= 0 ? 1 : 1 + pixels / size;
 
-const squish = (element: HTMLElement) => {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  if (element.closest(":disabled") || element.matches(":disabled")) return;
+const pose = (element: HTMLElement) => {
+  const width = element.offsetWidth;
+  const height = element.offsetHeight;
+  return {
+    peakX: along(PEAK_PX, width),
+    peakY: along(-PEAK_PX * (0.02 / 0.07), height),
+    endX: along(PEAK_PX * (0.01 / 0.07), width),
+    endY: along(PEAK_PX * (0.02 / 0.07), height),
+  };
+};
 
-  const scaleX = ratio(PRESS_PEAK, element.offsetWidth);
-  const scaleY = ratio(CROSS_PEAK, element.offsetHeight);
+const easeOut = (time: number) => {
+  let start = 0;
+  let end = 1;
+  for (let step = 0; step < 10; step += 1) {
+    const mid = (start + end) / 2;
+    const x =
+      3 * (1 - mid) ** 2 * mid * 0.58 + 3 * (1 - mid) * mid ** 2 + mid ** 3;
+    if (x < time) start = mid;
+    else end = mid;
+  }
+  const mid = (start + end) / 2;
+  return 3 * (1 - mid) * mid ** 2 + mid ** 3;
+};
 
-  element.getAnimations().forEach((animation) => animation.cancel());
-  element.animate(
+const mix = (from: number, to: number, amount: number) =>
+  from + (to - from) * amount;
+
+const scalesAt = (element: HTMLElement, progress: number) => {
+  const { peakX, peakY, endX, endY } = pose(element);
+  if (progress <= 0) return [1, 1] as const;
+  if (progress >= 1) return [endX, endY] as const;
+  if (progress <= 0.65) {
+    const amount = easeOut(progress / 0.65);
+    return [mix(1, peakX, amount), mix(1, peakY, amount)] as const;
+  }
+  const amount = easeOut((progress - 0.65) / 0.35);
+  return [mix(peakX, endX, amount), mix(peakY, endY, amount)] as const;
+};
+
+const stopSquish = (element: HTMLElement) => {
+  element.getAnimations().forEach((animation) => {
+    if (animation.id === SQUISH) animation.cancel();
+  });
+};
+
+const canSquish = (element: HTMLElement) =>
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+  !element.closest(":disabled") &&
+  !element.matches(":disabled");
+
+const press = (element: HTMLElement) => {
+  if (!canSquish(element)) return;
+  const { peakX, peakY, endX, endY } = pose(element);
+  stopSquish(element);
+  const animation = element.animate(
     [
-      { transform: "none" },
-      { transform: `scale(${scaleX}, ${scaleY})`, offset: 0.45 },
-      { transform: "none" },
+      { transform: "scale(1, 1)", offset: 0, easing: "ease-out" },
+      {
+        transform: `scale(${peakX}, ${peakY})`,
+        offset: 0.65,
+        easing: "ease-out",
+      },
+      { transform: `scale(${endX}, ${endY})`, offset: 1 },
     ],
-    { duration: 400, easing: "ease-out" },
+    { duration: PRESS_MS, fill: "forwards" },
   );
+  animation.id = SQUISH;
+};
+
+const release = (element: HTMLElement) => {
+  const running = element
+    .getAnimations()
+    .find((animation) => animation.id === SQUISH);
+  const elapsed =
+    typeof running?.currentTime === "number" ? running.currentTime : PRESS_MS;
+  const [x, y] = scalesAt(
+    element,
+    Math.min(1, Math.max(0, elapsed / PRESS_MS)),
+  );
+  stopSquish(element);
+  const animation = element.animate(
+    [
+      { transform: `scale(${x}, ${y})`, easing: "ease-out" },
+      { transform: "scale(1, 1)" },
+    ],
+    { duration: PRESS_MS, fill: "forwards" },
+  );
+  animation.id = SQUISH;
 };
 
 const face = (node: Element): HTMLElement | null => {
@@ -111,6 +185,14 @@ const syncSliders = () => {
 };
 
 let listening = false;
+let held: HTMLElement | null = null;
+
+const letGo = () => {
+  if (!held) return;
+  const element = held;
+  held = null;
+  release(element);
+};
 
 export const startJellyfy = () => {
   mountLoading(document);
@@ -120,13 +202,14 @@ export const startJellyfy = () => {
 
   document.addEventListener("pointerdown", (event) => {
     const hit = face(event.target as Element);
-    if (hit) squish(hit);
+    if (!hit) return;
+    if (held && held !== hit) release(held);
+    held = hit;
+    press(hit);
   });
 
-  document.addEventListener("focusin", (event) => {
-    const hit = face(event.target as Element);
-    if (hit) squish(hit);
-  });
+  document.addEventListener("pointerup", letGo);
+  document.addEventListener("pointercancel", letGo);
 
   document.addEventListener("input", (event) => {
     const target = event.target;

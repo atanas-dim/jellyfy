@@ -71,16 +71,44 @@ Nothing, until they want a different solid. Then only the names they are changin
 }
 ```
 
+## Name
+
+The package name is Jellyfy, with two y's. `jellyfy` is free on npm. `jellify` is also free there, but it is already a music app, so that spelling stays unused. JellyCSS is a description of the file, and `jelly-css` is already an npm package, so that name is not safe. `jlf` is taken. The classes do not use a `jlf-` abbreviation.
+
+The public classes drop the `jellyfy-` prefix before the sizes are added. A button is `button`. A small one is `button-sm`, a large one is `button-lg`, in the same spirit as DaisyUI's `btn` and `btn-sm`. The size is not a lone `sm` class. The names are the vocabulary. They are not written to avoid every existing `.card` in someone else's app. They must not reuse a Tailwind utility name such as `flex`.
+
+Internal variables stay `--jellyfy-*`. Those are not what a developer types on an element. The code still has the prefix until that rename.
+
+Other names taken from jelly, and why they lose:
+
+- Jellify. Easier to spell, and it is the same verb with one y. It drops the mark that makes Jellyfy a name rather than a typo.
+- Jellyfied, or jellified. A past tense of a word that is not an ordinary verb. Harder to say and to search.
+- Jellyfish. The animal. Already used by other projects, and it does not mean a control that gives.
+- Jellybean, or Jellybean UI. A theme pack. The “UI” ending pulls it back toward a component kit.
+- Jelly. Too short, and already generic.
+- Jellypress. Names the press and loses the material.
+- Jellycss. Names the file format, not the feel.
+
+The cost of Jellyfy is the double y. People will type jellyfish or jellify. That is accepted.
+
+## Version and a trial install
+
+Versions follow semantic versioning, starting at `0.1.0`. The public contract is the class names, the seven color variables, and `startJellyfy()`. A break in any of those is a major version after `1.0.0`. Before that, `0.x` may break. One package does not need a release tool.
+
+Do not publish to npm until the packed folder has been installed, as a tarball or a `file:` dependency, into apps that are not this Next demo. Use a plain HTML page, a Vue app, and a Vite React app. Remix is optional, because it is still React. In each one, confirm three things: the classes paint with no Tailwind, a Tailwind utility such as `px-4` changes only that property, and `startJellyfy()` is called once.
+
 ## Sizes
 
-There are three sizes. The current regular size is the default. It has no extra class. `jellyfy-sm` is the smaller one. `jellyfy-lg` is the larger one. A button with only `jellyfy-button` stays the size it is now.
+There are three sizes. The current regular size is the default. It has no extra class. `button-sm` is the smaller one. `button-lg` is the larger one. A button with only `button` stays the size it is now. These are component sizes, not Tailwind's `sm:` and `lg:` screen prefixes.
 
 ## Do these next, in this order
 
 1. Add the aliases above once, and point the material at the `--jellyfy-*` names. Do not assign Tailwind's `--color-neutral-*` names.
-2. Add `jellyfy-sm` and `jellyfy-lg` beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step. These class names are component sizes, not Tailwind's `sm:` and `lg:` screen prefixes.
-3. Write the usage guide after the sizes exist, so it is written once. Show the class on the element, the seven colors, all three sizes, and the single `startJellyfy()` call. Show the Tailwind install and the optional `:root` overrides. This is a usage guide, not an API.
-4. Package the stylesheet and the script so someone can use them without this Next app.
+2. Drop `jellyfy-` from the public classes. Do this before the sizes, so the new names are only written once.
+3. Add `button-sm` and `button-lg`, and the same pair on the other controls, beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step.
+4. Write the usage guide after the sizes exist, so it is written once. Show the class on the element, the seven colors, all three sizes, and the single `startJellyfy()` call. Show the Tailwind install and the optional `:root` overrides. This is a usage guide, not an API.
+5. Package the stylesheet and the script so someone can use them without this Next app. Version it `0.1.0`.
+6. Install that package into a plain HTML page, a Vue app, and a Vite React app. Publish to npm only after those three pass.
 
 ## Leave for later
 
