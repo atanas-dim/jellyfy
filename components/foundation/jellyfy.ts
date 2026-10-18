@@ -1,21 +1,15 @@
 const PRESS_PEAK = 3.36;
 const CROSS_PEAK = -3.2;
 
-type Axis = "vertical" | "horizontal";
-
 const ratio = (pixels: number, size: number) =>
   size <= 0 ? 1 : 1 + pixels / size;
 
-const squish = (element: HTMLElement, axis: Axis) => {
+const squish = (element: HTMLElement) => {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   if (element.closest(":disabled") || element.matches(":disabled")) return;
 
-  const pressSize = axis === "vertical" ? element.offsetHeight : element.offsetWidth;
-  const crossSize = axis === "vertical" ? element.offsetWidth : element.offsetHeight;
-  const press = ratio(PRESS_PEAK, pressSize);
-  const cross = ratio(CROSS_PEAK, crossSize);
-  const scaleX = axis === "vertical" ? cross : press;
-  const scaleY = axis === "vertical" ? press : cross;
+  const scaleX = ratio(PRESS_PEAK, element.offsetWidth);
+  const scaleY = ratio(CROSS_PEAK, element.offsetHeight);
 
   element.getAnimations().forEach((animation) => animation.cancel());
   element.animate(
@@ -28,46 +22,38 @@ const squish = (element: HTMLElement, axis: Axis) => {
   );
 };
 
-const face = (node: Element): { element: HTMLElement; axis: Axis } | null => {
+const face = (node: Element): HTMLElement | null => {
   const checkbox = node.closest(".jellyfy-checkbox");
-  if (checkbox) {
-    return {
-      element: checkbox.querySelector<HTMLElement>(".jellyfy-checkbox-box") ?? (checkbox as HTMLElement),
-      axis: "vertical",
-    };
-  }
+  if (checkbox)
+    return (
+      checkbox.querySelector<HTMLElement>(".jellyfy-checkbox-box") ??
+      (checkbox as HTMLElement)
+    );
 
   const radio = node.closest(".jellyfy-radio");
-  if (radio) {
-    return {
-      element: radio.querySelector<HTMLElement>(".jellyfy-radio-ring") ?? (radio as HTMLElement),
-      axis: "vertical",
-    };
-  }
+  if (radio)
+    return (
+      radio.querySelector<HTMLElement>(".jellyfy-radio-ring") ??
+      (radio as HTMLElement)
+    );
 
   const slider = node.closest(".jellyfy-slider");
-  if (slider) {
-    return {
-      element: slider.querySelector<HTMLElement>(".jellyfy-slider-handle") ?? (slider as HTMLElement),
-      axis: "horizontal",
-    };
-  }
+  if (slider)
+    return (
+      slider.querySelector<HTMLElement>(".jellyfy-slider-handle") ??
+      (slider as HTMLElement)
+    );
 
   const sw = node.closest(".jellyfy-switch");
-  if (sw) {
-    return {
-      element: sw.querySelector<HTMLElement>(".jellyfy-switch-track") ?? (sw as HTMLElement),
-      axis: "horizontal",
-    };
-  }
+  if (sw)
+    return (
+      sw.querySelector<HTMLElement>(".jellyfy-switch-track") ??
+      (sw as HTMLElement)
+    );
 
-  const control = node.closest(
+  return node.closest(
     ".jellyfy-button, .jellyfy-icon-button, .jellyfy-input, .jellyfy-textarea, .jellyfy-select",
-  );
-  if (!control) return null;
-
-  const vertical = control.classList.contains("jellyfy-button") || control.classList.contains("jellyfy-icon-button");
-  return { element: control as HTMLElement, axis: vertical ? "vertical" : "horizontal" };
+  ) as HTMLElement | null;
 };
 
 const lights = (spin: boolean) => {
@@ -98,7 +84,10 @@ const mountLoading = (root: ParentNode) => {
     const spin = element.classList.contains("jellyfy-icon-button");
     element.insertAdjacentHTML("afterbegin", lights(spin));
     if (!element.querySelector(".jellyfy-spinner")) {
-      element.insertAdjacentHTML("beforeend", `<span class="jellyfy-spinner"></span>`);
+      element.insertAdjacentHTML(
+        "beforeend",
+        `<svg class="jellyfy-spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v4"/><path d="m16.2 7.8 2.9-2.9"/><path d="M18 12h4"/><path d="m16.2 16.2 2.9 2.9"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/></svg>`,
+      );
     }
   });
 };
@@ -109,7 +98,10 @@ const syncSlider = (input: HTMLInputElement) => {
   const min = Number(input.min || 0);
   const max = Number(input.max || 100);
   const span = max - min || 1;
-  box.style.setProperty("--jellyfy-pct", String((Number(input.value) - min) / span));
+  box.style.setProperty(
+    "--jellyfy-pct",
+    String((Number(input.value) - min) / span),
+  );
 };
 
 export const startJellyfy = () => {
@@ -117,16 +109,18 @@ export const startJellyfy = () => {
 
   document.addEventListener("pointerdown", (event) => {
     const hit = face(event.target as Element);
-    if (hit) squish(hit.element, hit.axis);
+    if (hit) squish(hit);
   });
 
   document.addEventListener("focusin", (event) => {
     const hit = face(event.target as Element);
-    if (hit) squish(hit.element, hit.axis);
+    if (hit) squish(hit);
   });
 
-  document.querySelectorAll<HTMLInputElement>(".jellyfy-slider input").forEach((input) => {
-    syncSlider(input);
-    input.addEventListener("input", () => syncSlider(input));
-  });
+  document
+    .querySelectorAll<HTMLInputElement>(".jellyfy-slider input")
+    .forEach((input) => {
+      syncSlider(input);
+      input.addEventListener("input", () => syncSlider(input));
+    });
 };
