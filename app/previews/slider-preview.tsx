@@ -1,11 +1,14 @@
-"use client";
-
-import type { FC } from "react";
-
-import { Slider } from "@/components/slider";
-
-const SliderPreview: FC = () => {
-  return <Slider label="Volume" defaultValue={62} />;
-};
+const SliderPreview = () => (
+  <label className="jellyfy-slider">
+    Volume
+    <span className="jellyfy-slider-box">
+      <span className="jellyfy-slider-track">
+        <span className="jellyfy-slider-fill" />
+      </span>
+      <span className="jellyfy-slider-handle" />
+      <input type="range" defaultValue={62} />
+    </span>
+  </label>
+);
 
 export default SliderPreview;

@@ -1,15 +1,8 @@
-"use client";
-
-import type { FC } from "react";
-
-import { Card } from "@/components/card";
-
-const CardPreview: FC = () => {
-  return (
-    <Card title="Studio notes" className="max-w-sm">
-      A resting surface. Same inset and radius as a field, without the press.
-    </Card>
-  );
-};
+const CardPreview = () => (
+  <section className="jellyfy-card">
+    <h3 className="text-base font-semibold">Studio notes</h3>
+    <p className="mt-2 text-sm leading-6">A quiet surface.</p>
+  </section>
+);
 
 export default CardPreview;

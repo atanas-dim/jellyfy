@@ -1,144 +1,23 @@
 :root {
-  --primary: color-mix(in oklab, var(--color-pink-600) 60%, transparent);
-  --primary-foreground: var(--color-pink-100);
-  --primary-highlight: color-mix(
-    in oklab,
-    var(--color-pink-100) 20%,
-    transparent
-  );
-  --primary-shade: color-mix(in oklab, var(--color-pink-900) 35%, transparent);
-
-  --secondary: color-mix(in oklab, var(--color-indigo-600) 60%, transparent);
-  --secondary-foreground: var(--color-indigo-100);
-  --secondary-highlight: color-mix(
-    in oklab,
-    var(--color-indigo-50) 20%,
-    transparent
-  );
-  --secondary-shade: color-mix(
-    in oklab,
-    var(--color-indigo-900) 35%,
-    transparent
-  );
-
-  --tertiary: color-mix(in oklab, var(--color-teal-600) 60%, transparent);
-  --tertiary-foreground: var(--color-teal-50);
-  --tertiary-highlight: color-mix(
-    in oklab,
-    var(--color-teal-50) 20%,
-    transparent
-  );
-  --tertiary-shade: color-mix(in oklab, var(--color-teal-900) 35%, transparent);
-
-  --success: color-mix(in oklab, var(--color-green-600) 60%, transparent);
-  --success-focus: color-mix(in oklab, var(--color-green-500) 60%, transparent);
-  --success-foreground: var(--color-green-100);
-  --success-highlight: color-mix(
-    in oklab,
-    var(--color-green-100) 20%,
-    transparent
-  );
-  --success-shade: color-mix(in oklab, var(--color-green-900) 35%, transparent);
-
-  --error: color-mix(in oklab, var(--color-red-600) 60%, transparent);
-  --error-focus: color-mix(in oklab, var(--color-red-500) 60%, transparent);
-  --error-foreground: var(--color-red-100);
-  --error-highlight: color-mix(in oklab, var(--color-red-100) 20%, transparent);
-  --error-shade: color-mix(in oklab, var(--color-red-900) 35%, transparent);
-
-  --warning: color-mix(in oklab, var(--color-amber-600) 60%, transparent);
-  --warning-foreground: var(--color-amber-50);
-  --warning-highlight: color-mix(
-    in oklab,
-    var(--color-amber-50) 20%,
-    transparent
-  );
-  --warning-shade: color-mix(in oklab, var(--color-amber-900) 35%, transparent);
-
-  --success-field: color-mix(in oklab, var(--color-green-100) 60%, transparent);
-  --success-field-focus: color-mix(
-    in oklab,
-    var(--color-green-200) 60%,
-    transparent
-  );
-  --success-field-foreground: var(--color-green-700);
-  --success-field-highlight: color-mix(
-    in oklab,
-    var(--color-green-100) 70%,
-    transparent
-  );
-  --success-field-shade: color-mix(
-    in oklab,
-    var(--color-green-900) 10%,
-    transparent
-  );
-
-  --error-field: color-mix(in oklab, var(--color-red-100) 60%, transparent);
-  --error-field-focus: color-mix(
-    in oklab,
-    var(--color-red-200) 60%,
-    transparent
-  );
-  --error-field-foreground: var(--color-red-700);
-  --error-field-highlight: color-mix(
-    in oklab,
-    var(--color-red-100) 70%,
-    transparent
-  );
-  --error-field-shade: color-mix(
-    in oklab,
-    var(--color-red-900) 10%,
-    transparent
-  );
-
-  --warning-field: color-mix(in oklab, var(--color-amber-100) 60%, transparent);
-  --warning-field-foreground: var(--color-amber-700);
-  --warning-field-highlight: color-mix(
-    in oklab,
-    var(--color-amber-100) 70%,
-    transparent
-  );
-  --warning-field-shade: color-mix(
-    in oklab,
-    var(--color-amber-900) 10%,
-    transparent
-  );
+  --color-primary: var(--color-pink-600);
+  --color-secondary: var(--color-indigo-600);
+  --color-tertiary: var(--color-teal-600);
+  --color-neutral: var(--color-neutral-400);
+  --color-success: var(--color-green-600);
+  --color-error: var(--color-red-600);
+  --color-warning: var(--color-amber-600);
 
   --surface: color-mix(in oklab, var(--color-neutral-50) 60%, transparent);
-  --panel: white;
-  --primary-solid: var(--color-pink-600);
-  --error-solid: var(--color-red-600);
-  --surface-focus: color-mix(
-    in oklab,
-    var(--color-neutral-100) 60%,
-    transparent
-  );
+  --surface-focus: color-mix(in oklab, var(--color-neutral-100) 60%, transparent);
   --surface-foreground: var(--color-neutral-800);
-  --surface-highlight: color-mix(
-    in oklab,
-    var(--color-neutral-100) 70%,
-    transparent
-  );
-  --surface-shade: color-mix(
-    in oklab,
-    var(--color-neutral-900) 10%,
-    transparent
-  );
-
+  --surface-highlight: color-mix(in oklab, var(--color-neutral-100) 70%, transparent);
+  --surface-shade: color-mix(in oklab, var(--color-neutral-900) 10%, transparent);
+  --panel: white;
   --disabled: color-mix(in oklab, var(--color-neutral-400) 60%, transparent);
-  --disabled-foreground: color-mix(
-    in oklab,
-    var(--color-neutral-50) 70%,
-    transparent
-  );
-
-  --ring: var(--color-neutral-400);
-  --ring-error: var(--color-red-400);
-  --ring-success: var(--color-green-400);
+  --disabled-foreground: color-mix(in oklab, var(--color-neutral-50) 70%, transparent);
 
   --radius-control: 999px;
   --radius-surface: 1rem;
-
   --jellyfy-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' opacity='0.2'%3E%3C/rect%3E%3C/svg%3E");
   --jellyfy-noise-size: 360px;
 
@@ -152,364 +31,273 @@
   --focus-gap: 0 0 0 2px rgb(255 255 255 / 0.5);
 }
 
-@theme inline {
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-tertiary: var(--tertiary);
-  --color-tertiary-foreground: var(--tertiary-foreground);
-  --color-success: var(--success);
-  --color-success-foreground: var(--success-foreground);
-  --color-error: var(--error);
-  --color-error-foreground: var(--error-foreground);
-  --color-error-text: var(--color-red-700);
-  --color-warning: var(--warning);
-  --color-warning-foreground: var(--warning-foreground);
-  --color-warning-text: var(--color-amber-700);
-  --color-success-text: var(--color-green-700);
-  --color-surface: var(--surface);
-  --color-surface-foreground: var(--surface-foreground);
-  --color-panel: var(--panel);
-  --color-disabled: var(--disabled);
-  --color-disabled-foreground: var(--disabled-foreground);
-  --color-ring: var(--ring);
-  --color-ring-error: var(--ring-error);
-  --color-ring-success: var(--ring-success);
-}
-
 .noise {
   background-image: none, var(--jellyfy-noise);
   background-size: auto, var(--jellyfy-noise-size);
 }
 
-.jellyfy-tone-primary {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-  --jellyfy-highlight: var(--primary-highlight);
-  --jellyfy-shade: var(--primary-shade);
-  --jellyfy-ring: var(--color-pink-600);
-}
-
-.jellyfy-tone-secondary {
-  background-color: var(--secondary);
-  color: var(--secondary-foreground);
-  --jellyfy-highlight: var(--secondary-highlight);
-  --jellyfy-shade: var(--secondary-shade);
-  --jellyfy-ring: var(--color-indigo-600);
-}
-
-.jellyfy-tone-tertiary {
-  background-color: var(--tertiary);
-  color: var(--tertiary-foreground);
-  --jellyfy-highlight: var(--tertiary-highlight);
-  --jellyfy-shade: var(--tertiary-shade);
-  --jellyfy-ring: var(--color-teal-600);
-}
-
-.jellyfy-tone-neutral {
-  background-color: var(--surface);
-  color: var(--surface-foreground);
-  --jellyfy-highlight: var(--surface-highlight);
-  --jellyfy-shade: var(--surface-shade);
-  --jellyfy-ring: var(--color-neutral-400);
-}
-
-.jellyfy-tone-neutral:focus-within,
-.jellyfy-tone-neutral[data-open] {
-  background-color: var(--surface-focus);
-}
-
-.jellyfy-tone-error {
-  background-color: var(--error);
-  color: var(--error-foreground);
-  --jellyfy-highlight: var(--error-highlight);
-  --jellyfy-shade: var(--error-shade);
-  --jellyfy-ring: var(--color-red-600);
-}
-
-.jellyfy-tone-error:focus-within,
-.jellyfy-tone-error[data-open] {
-  background-color: var(--error-focus);
-}
-
-.jellyfy-tone-success {
-  background-color: var(--success);
-  color: var(--success-foreground);
-  --jellyfy-highlight: var(--success-highlight);
-  --jellyfy-shade: var(--success-shade);
-  --jellyfy-ring: var(--color-green-600);
-}
-
-.jellyfy-tone-success:focus-within,
-.jellyfy-tone-success[data-open] {
-  background-color: var(--success-focus);
-}
-
-.jellyfy-tone-warning {
-  background-color: var(--warning);
-  color: var(--warning-foreground);
-  --jellyfy-highlight: var(--warning-highlight);
-  --jellyfy-shade: var(--warning-shade);
-  --jellyfy-ring: var(--color-amber-600);
-}
-
-.jellyfy-field.jellyfy-tone-error {
-  background-color: var(--error-field);
-  color: var(--error-field-foreground);
-  --jellyfy-highlight: var(--error-field-highlight);
-  --jellyfy-shade: var(--error-field-shade);
-  --jellyfy-ring: var(--color-red-400);
-}
-
-.jellyfy-field.jellyfy-tone-error:focus-within,
-.jellyfy-field.jellyfy-tone-error[data-open] {
-  background-color: var(--error-field-focus);
-}
-
-.jellyfy-field.jellyfy-tone-success {
-  background-color: var(--success-field);
-  color: var(--success-field-foreground);
-  --jellyfy-highlight: var(--success-field-highlight);
-  --jellyfy-shade: var(--success-field-shade);
-  --jellyfy-ring: var(--color-green-400);
-}
-
-.jellyfy-field.jellyfy-tone-success:focus-within,
-.jellyfy-field.jellyfy-tone-success[data-open] {
-  background-color: var(--success-field-focus);
-}
-
-.jellyfy-field.jellyfy-tone-warning {
-  background-color: var(--warning-field);
-  color: var(--warning-field-foreground);
-  --jellyfy-highlight: var(--warning-field-highlight);
-  --jellyfy-shade: var(--warning-field-shade);
-  --jellyfy-ring: var(--color-amber-400);
-}
-
-.jellyfy-soft.jellyfy-tone-primary {
-  background-color: color-mix(in oklab, var(--color-pink-100) 60%, transparent);
-  color: var(--color-pink-700);
-  --jellyfy-highlight: color-mix(
-    in oklab,
-    var(--color-pink-100) 70%,
-    transparent
-  );
-  --jellyfy-shade: color-mix(in oklab, var(--color-pink-900) 10%, transparent);
-}
-
-.jellyfy-soft.jellyfy-tone-secondary {
-  background-color: color-mix(
-    in oklab,
-    var(--color-indigo-100) 60%,
-    transparent
-  );
-  color: var(--color-indigo-700);
-  --jellyfy-highlight: color-mix(
-    in oklab,
-    var(--color-indigo-100) 70%,
-    transparent
-  );
-  --jellyfy-shade: color-mix(
-    in oklab,
-    var(--color-indigo-900) 10%,
-    transparent
-  );
-}
-
-.jellyfy-soft.jellyfy-tone-tertiary {
-  background-color: color-mix(in oklab, var(--color-teal-100) 60%, transparent);
-  color: var(--color-teal-800);
-  --jellyfy-highlight: color-mix(
-    in oklab,
-    var(--color-teal-100) 70%,
-    transparent
-  );
-  --jellyfy-shade: color-mix(in oklab, var(--color-teal-900) 10%, transparent);
-}
-
-.jellyfy-soft.jellyfy-tone-success {
-  background-color: var(--success-field);
-  color: var(--success-field-foreground);
-  --jellyfy-highlight: var(--success-field-highlight);
-  --jellyfy-shade: var(--success-field-shade);
-}
-
-.jellyfy-soft.jellyfy-tone-error {
-  background-color: var(--error-field);
-  color: var(--error-field-foreground);
-  --jellyfy-highlight: var(--error-field-highlight);
-  --jellyfy-shade: var(--error-field-shade);
-}
-
-.jellyfy-soft.jellyfy-tone-warning {
-  background-color: var(--warning-field);
-  color: var(--warning-field-foreground);
-  --jellyfy-highlight: var(--warning-field-highlight);
-  --jellyfy-shade: var(--warning-field-shade);
-}
-
-.jellyfy-soft.jellyfy-tone-neutral {
-  background-color: var(--surface);
-  color: var(--surface-foreground);
-  --jellyfy-highlight: var(--surface-highlight);
-  --jellyfy-shade: var(--surface-shade);
-}
-
 @keyframes jellyfy-sweep {
-  0% {
-    transform: translate3d(-100%, -50%, 0);
-    opacity: 0;
-  }
-  8% {
-    opacity: 0.55;
-  }
-  55% {
-    opacity: 0.3;
-  }
-  78% {
-    opacity: 0.42;
-  }
-  100% {
-    transform: translate3d(300%, -50%, 0);
-    opacity: 0;
-  }
+  0% { transform: translate3d(-100%, -50%, 0); opacity: 0; }
+  8% { opacity: 0.55; }
+  55% { opacity: 0.3; }
+  78% { opacity: 0.42; }
+  100% { transform: translate3d(300%, -50%, 0); opacity: 0; }
 }
 
 .jellyfy-sweep {
   top: 50%;
-  animation-name: jellyfy-sweep;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation: jellyfy-sweep linear infinite;
 }
 
 @keyframes jellyfy-orbit {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
 .jellyfy-orbit {
-  animation-name: jellyfy-orbit;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation: jellyfy-orbit linear infinite;
 }
 
-.jellyfy-orbit-light {
-  animation-name: jellyfy-light-fade;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+@keyframes jellyfy-spin {
+  to { transform: rotate(360deg); }
 }
 
-@keyframes jellyfy-light-fade {
-  0% {
-    opacity: 0.45;
-  }
-  8% {
-    opacity: 1;
-  }
-  55% {
-    opacity: 0.7;
-  }
-  78% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0.45;
-  }
+.jellyfy-spinner {
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 999px;
+  animation: jellyfy-spin 0.7s linear infinite;
 }
 
-.jellyfy-option-selected {
-  background-color: color-mix(in oklab, var(--jellyfy-option) 28%, transparent);
-  color: var(--jellyfy-option-text);
-}
-
-.jellyfy-option-selected[data-color="primary"] {
-  --jellyfy-option: var(--color-pink-600);
-  --jellyfy-option-text: var(--color-pink-800);
-}
-
-.jellyfy-option-selected[data-color="secondary"] {
-  --jellyfy-option: var(--color-indigo-600);
-  --jellyfy-option-text: var(--color-indigo-800);
-}
-
-.jellyfy-option-selected[data-color="tertiary"] {
-  --jellyfy-option: var(--color-teal-600);
-  --jellyfy-option-text: var(--color-teal-800);
-}
-
-.jellyfy-option-selected[data-color="neutral"] {
-  --jellyfy-option: var(--color-neutral-500);
-  --jellyfy-option-text: var(--color-neutral-800);
-}
-
-.jellyfy-option-selected[data-color="success"] {
-  --jellyfy-option: var(--color-green-600);
-  --jellyfy-option-text: var(--color-green-800);
-}
-
-.jellyfy-option-selected[data-color="error"] {
-  --jellyfy-option: var(--color-red-600);
-  --jellyfy-option-text: var(--color-red-800);
-}
-
-.jellyfy-option-selected[data-color="warning"] {
-  --jellyfy-option: var(--color-amber-600);
-  --jellyfy-option-text: var(--color-amber-800);
+.jellyfy-lights {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .jellyfy-sweep,
   .jellyfy-orbit,
-  .jellyfy-orbit-light {
+  .jellyfy-spinner,
+  .jellyfy-button,
+  .jellyfy-icon-button,
+  .jellyfy-checkbox-box,
+  .jellyfy-switch-track,
+  .jellyfy-switch-thumb,
+  .jellyfy-radio-dot,
+  .jellyfy-input,
+  .jellyfy-textarea,
+  .jellyfy-select {
     animation: none;
+    transition: none;
   }
 }
 
-.jellyfy-focus {
-  outline: 1px solid transparent;
-  outline-offset: 2px;
-}
-
-.jellyfy-focus:focus-within,
-.jellyfy-focus[data-open] {
-  outline-color: var(--jellyfy-ring, var(--color-neutral-400));
-  box-shadow: var(--focus-gap);
-}
-
-.jellyfy-raised,
-.jellyfy-surface,
-.jellyfy-overlay {
+.jellyfy-button,
+.jellyfy-icon-button {
+  --jellyfy-solid: var(--color-primary);
+  --jellyfy-highlight: color-mix(in oklab, color-mix(in oklab, white 75%, var(--jellyfy-solid)) 22%, transparent);
+  --jellyfy-shade: color-mix(in oklab, color-mix(in oklab, black 45%, var(--jellyfy-solid)) 40%, transparent);
   position: relative;
-}
-
-.jellyfy-raised {
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 0;
   border-radius: var(--radius-control);
-  box-shadow:
-    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--shadow-inset-raised), var(--shadow-drop);
+  background-color: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+  color: color-mix(in oklab, white 78%, var(--jellyfy-solid));
+  box-shadow: var(--shadow-inset-raised), var(--shadow-drop);
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: translate 0.2s ease-out, box-shadow 0.3s ease-out, background-color 0.3s ease-out;
 }
 
-.jellyfy-raised:hover:not(:disabled) {
-  box-shadow:
-    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--shadow-inset-raised), var(--shadow-drop-hover);
+.jellyfy-button {
+  height: 3rem;
+  min-width: 10rem;
+  padding-inline: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px rgb(10 10 10 / 0.4);
 }
 
-.jellyfy-raised:disabled {
+.jellyfy-icon-button {
+  width: 3rem;
+  height: 3rem;
+}
+
+.jellyfy-button.jellyfy-neutral,
+.jellyfy-icon-button.jellyfy-neutral,
+.jellyfy-badge.jellyfy-neutral {
+  background-color: var(--surface);
+  color: var(--surface-foreground);
+  --jellyfy-highlight: var(--surface-highlight);
+  --jellyfy-shade: var(--surface-shade);
+}
+
+.jellyfy-button:hover:not(:disabled),
+.jellyfy-icon-button:hover:not(:disabled) {
+  translate: 0 -2px;
+  box-shadow: var(--shadow-inset-raised), var(--shadow-drop-hover);
+}
+
+.jellyfy-button:disabled,
+.jellyfy-icon-button:disabled {
   background-color: var(--disabled);
   color: var(--disabled-foreground);
-  box-shadow:
-    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--shadow-inset-raised), var(--shadow-drop-disabled);
+  box-shadow: var(--shadow-inset-raised), var(--shadow-drop-disabled);
+  cursor: not-allowed;
+  translate: 0 0;
 }
 
-.jellyfy-raised::before,
-.jellyfy-raised::after,
-.jellyfy-surface::before,
-.jellyfy-surface::after {
+.jellyfy-button::before,
+.jellyfy-button::after,
+.jellyfy-icon-button::before,
+.jellyfy-icon-button::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  z-index: 1;
+  width: 90%;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms;
+}
+
+.jellyfy-button::before,
+.jellyfy-icon-button::before {
+  top: 60%;
+  height: 60%;
+  transform: translate(-50%, -40%);
+  background: radial-gradient(var(--jellyfy-highlight), transparent 60%);
+}
+
+.jellyfy-button::after,
+.jellyfy-icon-button::after {
+  top: 42.86%;
+  height: 50%;
+  transform: translate(-50%, -75%);
+  background: radial-gradient(var(--jellyfy-shade), transparent 60%);
+}
+
+.jellyfy-button:active:not(:disabled)::before,
+.jellyfy-button:active:not(:disabled)::after,
+.jellyfy-icon-button:active:not(:disabled)::before,
+.jellyfy-icon-button:active:not(:disabled)::after {
+  opacity: 1;
+}
+
+.jellyfy-button > :not(.jellyfy-lights),
+.jellyfy-icon-button > :not(.jellyfy-lights) {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.jellyfy-icon-button.jellyfy-loading > svg {
+  display: none;
+}
+
+.jellyfy-input,
+.jellyfy-textarea,
+.jellyfy-select {
+  --jellyfy-solid: var(--color-neutral);
+  --jellyfy-highlight: var(--surface-highlight);
+  --jellyfy-shade: var(--surface-shade);
+  --jellyfy-ring: var(--color-neutral-400);
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-surface);
+  background-color: var(--surface);
+  color: var(--surface-foreground);
+  box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+  backdrop-filter: blur(4px);
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+  transition: box-shadow 300ms ease-out, background-color 300ms ease-out, outline-color 300ms ease-out;
+}
+
+.jellyfy-input.jellyfy-primary,
+.jellyfy-input.jellyfy-secondary,
+.jellyfy-input.jellyfy-tertiary,
+.jellyfy-input.jellyfy-success,
+.jellyfy-input.jellyfy-error,
+.jellyfy-input.jellyfy-warning,
+.jellyfy-textarea.jellyfy-primary,
+.jellyfy-textarea.jellyfy-secondary,
+.jellyfy-textarea.jellyfy-tertiary,
+.jellyfy-textarea.jellyfy-success,
+.jellyfy-textarea.jellyfy-error,
+.jellyfy-textarea.jellyfy-warning,
+.jellyfy-select.jellyfy-primary,
+.jellyfy-select.jellyfy-secondary,
+.jellyfy-select.jellyfy-tertiary,
+.jellyfy-select.jellyfy-success,
+.jellyfy-select.jellyfy-error,
+.jellyfy-select.jellyfy-warning {
+  background-color: color-mix(in oklab, color-mix(in oklab, white 86%, var(--jellyfy-solid)) 60%, transparent);
+  color: color-mix(in oklab, var(--jellyfy-solid) 62%, black);
+  --jellyfy-highlight: color-mix(in oklab, color-mix(in oklab, white 80%, var(--jellyfy-solid)) 70%, transparent);
+  --jellyfy-shade: color-mix(in oklab, var(--jellyfy-solid) 12%, transparent);
+  --jellyfy-ring: var(--jellyfy-solid);
+}
+
+.jellyfy-input:focus-within,
+.jellyfy-textarea:focus-within,
+.jellyfy-select:focus-within {
+  background-color: var(--surface-focus);
+  box-shadow: var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop);
+  outline-color: var(--jellyfy-ring);
+}
+
+.jellyfy-input.jellyfy-primary:focus-within,
+.jellyfy-input.jellyfy-secondary:focus-within,
+.jellyfy-input.jellyfy-tertiary:focus-within,
+.jellyfy-input.jellyfy-success:focus-within,
+.jellyfy-input.jellyfy-error:focus-within,
+.jellyfy-input.jellyfy-warning:focus-within,
+.jellyfy-textarea.jellyfy-primary:focus-within,
+.jellyfy-textarea.jellyfy-secondary:focus-within,
+.jellyfy-textarea.jellyfy-tertiary:focus-within,
+.jellyfy-textarea.jellyfy-success:focus-within,
+.jellyfy-textarea.jellyfy-error:focus-within,
+.jellyfy-textarea.jellyfy-warning:focus-within,
+.jellyfy-select.jellyfy-primary:focus-within,
+.jellyfy-select.jellyfy-secondary:focus-within,
+.jellyfy-select.jellyfy-tertiary:focus-within,
+.jellyfy-select.jellyfy-success:focus-within,
+.jellyfy-select.jellyfy-error:focus-within,
+.jellyfy-select.jellyfy-warning:focus-within {
+  background-color: color-mix(in oklab, color-mix(in oklab, white 78%, var(--jellyfy-solid)) 60%, transparent);
+}
+
+.jellyfy-input:has(:disabled),
+.jellyfy-textarea:has(:disabled),
+.jellyfy-select:has(:disabled) {
+  opacity: 0.6;
+  box-shadow: var(--shadow-inset-surface), var(--shadow-drop-disabled);
+}
+
+.jellyfy-input::before,
+.jellyfy-input::after,
+.jellyfy-textarea::before,
+.jellyfy-textarea::after,
+.jellyfy-select::before,
+.jellyfy-select::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -520,65 +308,9 @@
   transition: opacity 300ms;
 }
 
-.jellyfy-raised::before {
-  top: 60%;
-  height: 60%;
-  width: 90%;
-  transform: translate(-50%, -40%);
-  background: radial-gradient(var(--jellyfy-highlight), transparent 60%);
-}
-
-.jellyfy-raised::after {
-  top: 42.86%;
-  height: 50%;
-  width: 90%;
-  transform: translate(-50%, -75%);
-  background: radial-gradient(var(--jellyfy-shade), transparent 60%);
-}
-
-.jellyfy-raised:active:not(:disabled)::before,
-.jellyfy-raised:active:not(:disabled)::after {
-  opacity: 1;
-}
-
-.jellyfy-surface {
-  border-radius: var(--radius-surface);
-  box-shadow:
-    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--shadow-inset-surface), var(--shadow-drop);
-  transition:
-    box-shadow 300ms ease-out,
-    background-color 300ms ease-out,
-    outline-color 300ms ease-out;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .jellyfy-surface,
-  .jellyfy-focus,
-  .jellyfy-handle,
-  .jellyfy-check,
-  .jellyfy-switch,
-  .jellyfy-mark,
-  .jellyfy-radio-dot {
-    transition: none;
-  }
-}
-
-.jellyfy-surface:focus-within,
-.jellyfy-surface[data-open] {
-  box-shadow:
-    var(--focus-gap), var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--shadow-inset-surface-focus),
-    var(--shadow-drop);
-}
-
-.jellyfy-surface:has(:disabled) {
-  box-shadow:
-    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--shadow-inset-surface), var(--shadow-drop-disabled);
-}
-
-.jellyfy-surface::before {
+.jellyfy-input::before,
+.jellyfy-textarea::before,
+.jellyfy-select::before {
   top: auto;
   bottom: -1rem;
   height: 1.75rem;
@@ -587,7 +319,9 @@
   background: radial-gradient(var(--jellyfy-highlight), transparent 60%);
 }
 
-.jellyfy-surface::after {
+.jellyfy-input::after,
+.jellyfy-textarea::after,
+.jellyfy-select::after {
   top: 1.4rem;
   height: 2.1rem;
   width: 90%;
@@ -595,113 +329,263 @@
   background: radial-gradient(var(--jellyfy-shade), transparent 60%);
 }
 
-.jellyfy-surface:focus-within::before,
-.jellyfy-surface:focus-within::after,
-.jellyfy-surface[data-open]::before,
-.jellyfy-surface[data-open]::after {
+.jellyfy-input:focus-within::before,
+.jellyfy-input:focus-within::after,
+.jellyfy-textarea:focus-within::before,
+.jellyfy-textarea:focus-within::after,
+.jellyfy-select:focus-within::before,
+.jellyfy-select:focus-within::after {
   opacity: 1;
 }
 
-.jellyfy-panel {
-  border-radius: var(--radius-surface);
-  background-color: var(--jellyfy-choice, var(--panel));
+.jellyfy-input input,
+.jellyfy-textarea textarea,
+.jellyfy-select select {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  outline: none;
+  font: inherit;
+}
+
+.jellyfy-input input,
+.jellyfy-select select {
+  padding: 1.375rem 1rem 0.625rem;
+}
+
+.jellyfy-input input:placeholder-shown {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.jellyfy-textarea textarea {
+  min-height: 7rem;
+  resize: vertical;
+  padding: 1.375rem 1rem 0.75rem;
+}
+
+.jellyfy-textarea textarea:placeholder-shown {
+  padding-top: 1rem;
+}
+
+.jellyfy-input span,
+.jellyfy-textarea span,
+.jellyfy-select span {
+  position: absolute;
+  top: 0.5rem;
+  left: 1rem;
+  z-index: 2;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  transition: top 300ms ease-out, font-size 300ms ease-out;
+}
+
+.jellyfy-input input:placeholder-shown + span,
+.jellyfy-textarea textarea:placeholder-shown + span {
+  top: 1.125rem;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.jellyfy-select select {
+  appearance: none;
+  height: 3.5rem;
+  padding-right: 2.5rem;
+}
+
+.jellyfy-select::marker { content: ""; }
+
+.jellyfy-chevron {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  z-index: 2;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+.jellyfy-checkbox,
+.jellyfy-radio,
+.jellyfy-switch {
+  --jellyfy-solid: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
   color: var(--surface-foreground);
-  box-shadow: var(--shadow-inset-thin), var(--shadow-drop);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
 }
 
-.jellyfy-badge {
-  box-shadow: var(--shadow-inset-thin), var(--shadow-drop);
+.jellyfy-checkbox input,
+.jellyfy-radio input,
+.jellyfy-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
-.jellyfy-overlay {
-  border-radius: var(--radius-surface);
-  background-color: var(--jellyfy-choice, var(--surface));
-  color: var(--surface-foreground);
-  box-shadow: var(--shadow-inset-surface), var(--shadow-drop-hover);
-}
-
-.jellyfy-nub {
+.jellyfy-checkbox-box,
+.jellyfy-radio-ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
   background-color: var(--surface);
   color: var(--surface-foreground);
   box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+  backdrop-filter: blur(4px);
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+  transition: background-color 300ms ease-out, color 300ms ease-out, box-shadow 300ms ease-out, outline-color 300ms ease-out;
 }
 
-.jellyfy-choice:has(:checked) .jellyfy-switch {
-  background-color: var(--jellyfy-choice, var(--primary));
-}
+.jellyfy-checkbox-box { border-radius: 0.5rem; }
+.jellyfy-radio-ring { border-radius: 999px; }
 
-.jellyfy-check,
-.jellyfy-switch {
-  transition:
-    background-color 300ms ease-out,
-    color 300ms ease-out,
-    box-shadow 300ms ease-out;
-}
-
-.jellyfy-mark {
+.jellyfy-checkbox-box::after {
+  content: "";
+  width: 0.7rem;
+  height: 0.35rem;
+  border-left: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-1px) rotate(-45deg);
   opacity: 0;
   transition: opacity 300ms ease-out;
 }
 
-input:checked + .jellyfy-check {
-  background-color: var(--jellyfy-choice, var(--primary));
-  color: var(--jellyfy-choice-foreground, var(--primary-foreground));
-}
-
-input:checked + .jellyfy-check .jellyfy-mark {
-  opacity: 1;
-}
-
-.jellyfy-radio-dot {
+.jellyfy-radio-ring::after {
+  content: "";
   width: 0.875rem;
   height: 0.875rem;
   border-radius: 999px;
-  background: var(--jellyfy-choice, var(--primary));
-  opacity: 0;
+  background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
   transform: scale(0);
-  transition:
-    transform 300ms ease-out,
-    opacity 300ms ease-out;
+  opacity: 0;
+  transition: transform 300ms ease-out, opacity 300ms ease-out;
 }
 
-input:checked + .jellyfy-nub .jellyfy-radio-dot {
+.jellyfy-checkbox:has(:checked) .jellyfy-checkbox-box,
+.jellyfy-switch:has(:checked) .jellyfy-switch-track {
+  background-color: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+  color: color-mix(in oklab, white 78%, var(--jellyfy-solid));
+}
+
+.jellyfy-checkbox:has(:checked) .jellyfy-checkbox-box::after,
+.jellyfy-radio:has(:checked) .jellyfy-radio-ring::after {
   opacity: 1;
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+.jellyfy-radio:has(:checked) .jellyfy-radio-ring::after {
   transform: scale(1);
 }
 
-[data-invalid] input:checked + .jellyfy-check {
-  background-color: var(--error);
-  color: var(--error-foreground);
+.jellyfy-checkbox:focus-within .jellyfy-checkbox-box,
+.jellyfy-radio:focus-within .jellyfy-radio-ring,
+.jellyfy-switch:focus-within .jellyfy-switch-track,
+.jellyfy-slider:focus-within .jellyfy-slider-handle {
+  outline-color: var(--jellyfy-solid);
+  box-shadow: var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop);
 }
 
-.jellyfy-choice:has(:checked) .jellyfy-switch-thumb {
-  transform: translateX(1.15rem);
-}
-
-.jellyfy-choice[data-invalid] .jellyfy-check-fill,
-.jellyfy-choice[data-invalid] .jellyfy-switch,
-.jellyfy-choice[data-invalid] .jellyfy-radio-dot {
-  background-color: var(--error);
-  color: var(--error-foreground);
-}
-
-.jellyfy-handle {
+.jellyfy-switch-track {
+  position: relative;
+  width: 3rem;
+  height: 1.75rem;
+  flex: none;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
   outline: 1px solid transparent;
   outline-offset: 2px;
+  transition: background-color 300ms ease-out, box-shadow 300ms ease-out, outline-color 300ms ease-out;
+}
+
+.jellyfy-switch-thumb {
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-neutral-500) 55%, white);
   box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
-  transition:
-    box-shadow 300ms ease-out,
-    background-color 300ms ease-out,
-    outline-color 300ms ease-out;
+  transition: transform 300ms ease-out, background-color 300ms ease-out;
 }
 
-.group:focus-within .jellyfy-handle {
-  outline-color: var(--jellyfy-ring, var(--color-neutral-400));
-  box-shadow:
-    var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop);
+.jellyfy-switch:has(:checked) .jellyfy-switch-thumb {
+  transform: translateX(1.15rem);
+  background: white;
 }
 
-.jellyfy-range {
+.jellyfy-slider {
+  --jellyfy-solid: var(--color-primary);
+  --jellyfy-pct: 0.4;
+  display: flex;
+  width: 100%;
+  max-width: 24rem;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: var(--surface-foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.jellyfy-slider-box {
+  position: relative;
+  height: 2rem;
+}
+
+.jellyfy-slider-track {
+  position: absolute;
+  top: 50%;
+  height: 0.75rem;
+  width: 100%;
+  overflow: hidden;
+  translate: 0 -50%;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+}
+
+.jellyfy-slider-fill {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: calc(0.75rem + (100% - 1.5rem) * var(--jellyfy-pct));
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+}
+
+.jellyfy-slider-handle {
+  position: absolute;
+  top: calc(50% - 0.75rem);
+  left: calc((100% - 1.5rem) * var(--jellyfy-pct));
+  z-index: 1;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+  box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+  outline: 1px solid transparent;
+  outline-offset: 2px;
+  transition: box-shadow 300ms ease-out, outline-color 300ms ease-out;
+}
+
+.jellyfy-slider input {
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -709,45 +593,69 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
   height: 100%;
   margin: 0;
   appearance: none;
-  cursor: pointer;
   background: transparent;
   opacity: 0;
+  cursor: pointer;
 }
 
-.jellyfy-range::-webkit-slider-runnable-track {
-  height: 1.5rem;
-  background: transparent;
+.jellyfy-message {
+  margin-top: 0.375rem;
+  color: color-mix(in oklab, var(--color-error) 62%, black);
+  font-size: 0.75rem;
 }
 
-.jellyfy-range::-webkit-slider-thumb {
-  appearance: none;
-  width: 1.5rem;
-  height: 1.5rem;
+.jellyfy-alert,
+.jellyfy-card.jellyfy-primary,
+.jellyfy-card.jellyfy-secondary,
+.jellyfy-card.jellyfy-tertiary,
+.jellyfy-card.jellyfy-neutral,
+.jellyfy-card.jellyfy-success,
+.jellyfy-card.jellyfy-error,
+.jellyfy-card.jellyfy-warning,
+.jellyfy-dialog-panel.jellyfy-primary,
+.jellyfy-dialog-panel.jellyfy-secondary,
+.jellyfy-dialog-panel.jellyfy-tertiary,
+.jellyfy-dialog-panel.jellyfy-neutral,
+.jellyfy-dialog-panel.jellyfy-success,
+.jellyfy-dialog-panel.jellyfy-error,
+.jellyfy-dialog-panel.jellyfy-warning {
+  --jellyfy-solid: var(--color-warning);
+  background-color: color-mix(in oklab, color-mix(in oklab, white 86%, var(--jellyfy-solid)) 60%, transparent);
+  color: color-mix(in oklab, var(--jellyfy-solid) 62%, black);
 }
 
-.jellyfy-range::-moz-range-track {
-  height: 1.5rem;
-  background: transparent;
-  border: 0;
-}
-
-.jellyfy-range::-moz-range-thumb {
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 0;
-}
-
-.jellyfy-dialog[open] {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-  margin: 0;
+.jellyfy-alert {
   display: flex;
+  gap: 0.75rem;
+  border-radius: var(--radius-surface);
+  padding: 0.75rem 1rem;
+  box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
+  backdrop-filter: blur(4px);
+}
+
+.jellyfy-badge {
+  --jellyfy-solid: var(--color-primary);
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  border-radius: 999px;
+  background-color: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+  color: color-mix(in oklab, white 78%, var(--jellyfy-solid));
+  padding: 0.25rem 0.625rem;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-inset-thin), var(--shadow-drop);
+  backdrop-filter: blur(4px);
+}
+
+.jellyfy-card {
+  border-radius: var(--radius-surface);
+  background: var(--panel);
+  color: var(--surface-foreground);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-inset-thin), var(--shadow-drop);
+  backdrop-filter: blur(4px);
 }
 
 .jellyfy-dialog {
@@ -757,6 +665,66 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
   color: inherit;
 }
 
+.jellyfy-dialog[open] {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+}
+
 .jellyfy-dialog::backdrop {
   background: rgb(10 10 10 / 0.4);
+}
+
+.jellyfy-dialog-panel {
+  width: min(28rem, calc(100vw - 2rem));
+  border-radius: var(--radius-surface);
+  background: var(--surface);
+  color: var(--surface-foreground);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-inset-surface), var(--shadow-drop-hover);
+  backdrop-filter: blur(4px);
+}
+
+.jellyfy-dialog-close {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.jellyfy-primary { --jellyfy-solid: var(--color-primary); }
+.jellyfy-secondary { --jellyfy-solid: var(--color-secondary); }
+.jellyfy-tertiary { --jellyfy-solid: var(--color-tertiary); }
+.jellyfy-neutral { --jellyfy-solid: var(--color-neutral); }
+.jellyfy-success { --jellyfy-solid: var(--color-success); }
+.jellyfy-error { --jellyfy-solid: var(--color-error); }
+.jellyfy-warning { --jellyfy-solid: var(--color-warning); }
+
+.jellyfy-button,
+.jellyfy-icon-button,
+.jellyfy-input,
+.jellyfy-textarea,
+.jellyfy-select,
+.jellyfy-checkbox-box,
+.jellyfy-radio-ring,
+.jellyfy-switch-track,
+.jellyfy-switch-thumb,
+.jellyfy-slider-track,
+.jellyfy-slider-fill,
+.jellyfy-slider-handle,
+.jellyfy-alert,
+.jellyfy-badge,
+.jellyfy-card,
+.jellyfy-dialog-panel {
+  background-image: none, var(--jellyfy-noise);
+  background-size: auto, var(--jellyfy-noise-size);
 }

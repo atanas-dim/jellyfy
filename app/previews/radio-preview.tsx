@@ -1,16 +1,9 @@
-"use client";
-
-import type { FC } from "react";
-
-import { Radio, RadioItem } from "@/components/radio";
-
-const RadioPreview: FC = () => {
-  return (
-    <Radio label="Delivery" defaultValue="standard">
-      <RadioItem value="standard">Standard</RadioItem>
-      <RadioItem value="express">Express</RadioItem>
-    </Radio>
-  );
-};
+const RadioPreview = () => (
+  <label className="jellyfy-radio">
+    <input type="radio" name="delivery" defaultChecked />
+    <span className="jellyfy-radio-ring" />
+    Standard
+  </label>
+);
 
 export default RadioPreview;

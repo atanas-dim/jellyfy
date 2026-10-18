@@ -1,24 +1,9 @@
-"use client";
-
-import { HeartIcon, PlusIcon } from "lucide-react";
-import type { FC } from "react";
-
-import { IconButton } from "@/components/icon-button";
-
-const IconButtonPreview: FC = () => {
-  return (
-    <div className="flex items-center gap-3">
-      <IconButton label="Add">
-        <PlusIcon className="size-4.5" />
-      </IconButton>
-      <IconButton label="Save" color="neutral">
-        <HeartIcon className="size-4.5" />
-      </IconButton>
-      <IconButton label="Add" disabled>
-        <PlusIcon className="size-4.5" />
-      </IconButton>
-    </div>
-  );
-};
+const IconButtonPreview = () => (
+  <button className="jellyfy-icon-button" type="button" aria-label="Add">
+    <svg viewBox="0 0 24 24" className="size-4.5" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  </button>
+);
 
 export default IconButtonPreview;

@@ -1,17 +1,9 @@
-"use client";
-
-import type { FC } from "react";
-
-import { Checkbox } from "@/components/checkbox";
-
-const CheckboxPreview: FC = () => {
-  return (
-    <div className="flex flex-col gap-4">
-      <Checkbox label="Remember this device" defaultChecked />
-      <Checkbox label="Email me the receipt" />
-      <Checkbox label="Accept the terms" invalid message="Required" />
-    </div>
-  );
-};
+const CheckboxPreview = () => (
+  <label className="jellyfy-checkbox">
+    <input type="checkbox" defaultChecked />
+    <span className="jellyfy-checkbox-box" />
+    Remember this device
+  </label>
+);
 
 export default CheckboxPreview;

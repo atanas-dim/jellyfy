@@ -1,155 +1,242 @@
 "use client";
 
-import { PlusIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
-import { Alert } from "@/components/alert";
-import { Badge } from "@/components/badge";
-import { Button } from "@/components/button";
-import { Card } from "@/components/card";
-import { Checkbox } from "@/components/checkbox";
-import { Dialog } from "@/components/dialog";
-import { IconButton } from "@/components/icon-button";
-import { Input } from "@/components/input";
-import { Radio, RadioItem } from "@/components/radio";
-import { Select, SelectOption } from "@/components/select";
-import { Slider } from "@/components/slider";
-import { Switch } from "@/components/switch";
-import { Textarea } from "@/components/textarea";
+const COLORS = [
+  "jellyfy-primary",
+  "jellyfy-secondary",
+  "jellyfy-tertiary",
+  "jellyfy-neutral",
+  "jellyfy-success",
+  "jellyfy-error",
+  "jellyfy-warning",
+] as const;
+
+const NAME: Record<(typeof COLORS)[number], string> = {
+  "jellyfy-primary": "Primary",
+  "jellyfy-secondary": "Secondary",
+  "jellyfy-tertiary": "Tertiary",
+  "jellyfy-neutral": "Neutral",
+  "jellyfy-success": "Success",
+  "jellyfy-error": "Error",
+  "jellyfy-warning": "Warning",
+};
 
 const Block = ({ title, children }: { title: string; children: ReactNode }) => (
   <section className="flex flex-col gap-3">
-    <h2 className="text-sm font-semibold tracking-wide text-neutral-500 uppercase">
-      {title}
-    </h2>
+    <h2 className="text-sm font-semibold tracking-wide text-neutral-500 uppercase">{title}</h2>
     {children}
   </section>
 );
 
+const openDialog = (id: string) => {
+  const dialog = document.getElementById(id);
+  if (dialog instanceof HTMLDialogElement) dialog.showModal();
+};
+
 export default function DevPage() {
   return (
     <main className="mx-auto flex w-full max-w-lg flex-col gap-10 px-6 py-12">
-      <h1 className="font-[family-name:var(--font-display)] text-4xl font-semibold">
-        Components
-      </h1>
+      <h1 className="text-4xl font-semibold">Components</h1>
 
       <Block title="Button">
-        <Button>Primary</Button>
-        <Button color="secondary">Secondary</Button>
-        <Button color="tertiary">Tertiary</Button>
-        <Button color="neutral">Neutral</Button>
-        <Button color="success">Success</Button>
-        <Button color="error">Error</Button>
-        <Button loading>Loading</Button>
+        {COLORS.map((color) => (
+          <button key={color} className={`jellyfy-button ${color}`} type="button">
+            <span>{NAME[color]}</span>
+          </button>
+        ))}
+        <button className="jellyfy-button jellyfy-primary jellyfy-loading" type="button">
+          <span>Loading</span>
+        </button>
+        <button className="jellyfy-button" type="button" disabled>
+          <span>Disabled</span>
+        </button>
       </Block>
 
       <Block title="Icon button">
-        <div className="flex items-center gap-3">
-          <IconButton label="Add">
-            <PlusIcon className="size-4.5" />
-          </IconButton>
-          <IconButton label="Add" color="neutral">
-            <PlusIcon className="size-4.5" />
-          </IconButton>
-          <IconButton label="Add" color="secondary" loading>
-            <PlusIcon className="size-4.5" />
-          </IconButton>
+        <div className="flex flex-wrap items-center gap-3">
+          {COLORS.map((color) => (
+            <button key={color} className={`jellyfy-icon-button ${color}`} type="button" aria-label={NAME[color]}>
+              <svg viewBox="0 0 24 24" className="size-4.5" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </button>
+          ))}
+          <button className="jellyfy-icon-button jellyfy-secondary jellyfy-loading" type="button" aria-label="Loading">
+            <svg viewBox="0 0 24 24" className="size-4.5" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
         </div>
       </Block>
 
       <Block title="Input">
-        <Input label="Name" placeholder="Name" />
-        <Input label="Nickname" placeholder="Nickname" color="success" />
-        <Input label="Email" placeholder="Email" color="error" />
+        {COLORS.map((color) => (
+          <label key={color} className={`jellyfy-input ${color}`}>
+            <input placeholder=" " defaultValue={color === "jellyfy-neutral" ? "" : NAME[color]} />
+            <span>{NAME[color]}</span>
+          </label>
+        ))}
       </Block>
 
       <Block title="Textarea">
-        <Textarea label="Note" placeholder="Note" />
-        <Textarea label="Note" placeholder="Note" color="warning" />
+        {COLORS.map((color) => (
+          <label key={color} className={`jellyfy-textarea ${color}`}>
+            <textarea placeholder=" " defaultValue={color === "jellyfy-neutral" ? "" : NAME[color]} />
+            <span>Note</span>
+          </label>
+        ))}
       </Block>
 
       <Block title="Select">
-        <Select label="Flavor" defaultValue="mint">
-          <SelectOption value="mint">Mint</SelectOption>
-          <SelectOption value="rose">Rose</SelectOption>
-        </Select>
-        <Select label="Flavor" color="error" defaultValue="rose">
-          <SelectOption value="mint">Mint</SelectOption>
-          <SelectOption value="rose">Rose</SelectOption>
-        </Select>
+        {COLORS.map((color) => (
+          <label key={color} className={`jellyfy-select ${color}`}>
+            <select defaultValue="rose">
+              <option value="mint">Mint</option>
+              <option value="rose">Rose</option>
+            </select>
+            <span>{NAME[color]}</span>
+            <i className="jellyfy-chevron" />
+          </label>
+        ))}
       </Block>
 
       <Block title="Checkbox">
-        <Checkbox label="Primary" defaultChecked />
-        <Checkbox label="Success" color="success" defaultChecked />
-        <Checkbox label="Error" color="error" />
-        <Checkbox label="Invalid" invalid message="Required" />
+        {COLORS.map((color) => (
+          <label key={color} className={`jellyfy-checkbox ${color}`}>
+            <input type="checkbox" defaultChecked />
+            <span className="jellyfy-checkbox-box" />
+            {NAME[color]}
+          </label>
+        ))}
+        <label className="jellyfy-checkbox">
+          <input type="checkbox" />
+          <span className="jellyfy-checkbox-box" />
+          Unchecked
+        </label>
+        <p className="jellyfy-message">Required</p>
       </Block>
 
       <Block title="Radio">
-        <Radio label="Delivery" defaultValue="standard">
-          <RadioItem value="standard">Standard</RadioItem>
-          <RadioItem value="express">Express</RadioItem>
-        </Radio>
-        <Radio label="Plan" color="tertiary" defaultValue="plus">
-          <RadioItem value="plus">Plus</RadioItem>
-          <RadioItem value="pro">Pro</RadioItem>
-        </Radio>
+        {COLORS.map((color) => (
+          <fieldset key={color} className="flex flex-col gap-2">
+            <legend className="text-sm font-medium">{NAME[color]}</legend>
+            <label className={`jellyfy-radio ${color}`}>
+              <input type="radio" name={color} defaultChecked />
+              <span className="jellyfy-radio-ring" />
+              One
+            </label>
+            <label className={`jellyfy-radio ${color}`}>
+              <input type="radio" name={color} />
+              <span className="jellyfy-radio-ring" />
+              Two
+            </label>
+          </fieldset>
+        ))}
       </Block>
 
       <Block title="Switch">
-        <Switch label="Notifications" defaultChecked />
-        <Switch label="Digest" color="secondary" defaultChecked />
-        <Switch label="Invalid" invalid message="Turn this on" />
+        {COLORS.map((color) => (
+          <label key={color} className={`jellyfy-switch ${color}`}>
+            <input type="checkbox" role="switch" defaultChecked />
+            <span className="jellyfy-switch-track">
+              <span className="jellyfy-switch-thumb" />
+            </span>
+            {NAME[color]}
+          </label>
+        ))}
+        <label className="jellyfy-switch">
+          <input type="checkbox" role="switch" />
+          <span className="jellyfy-switch-track">
+            <span className="jellyfy-switch-thumb" />
+          </span>
+          Off
+        </label>
       </Block>
 
       <Block title="Slider">
-        <Slider label="Volume" defaultValue={62} />
-        <Slider label="Warmth" color="warning" defaultValue={30} />
-        <Slider label="Level" color="error" defaultValue={80} />
+        {COLORS.map((color) => (
+          <label key={color} className={`jellyfy-slider ${color}`}>
+            {NAME[color]}
+            <span className="jellyfy-slider-box">
+              <span className="jellyfy-slider-track">
+                <span className="jellyfy-slider-fill" />
+              </span>
+              <span className="jellyfy-slider-handle" />
+              <input type="range" defaultValue={62} />
+            </span>
+          </label>
+        ))}
       </Block>
 
       <Block title="Alert">
-        <Alert color="warning" title="Check the date">
-          This offer ends tonight.
-        </Alert>
-        <Alert color="success" title="Saved">
-          The draft is stored.
-        </Alert>
-        <Alert color="error" title="Missing name">
-          Add a name before continuing.
-        </Alert>
+        {COLORS.map((color) => (
+          <div key={color} className={`jellyfy-alert ${color}`}>
+            <div>
+              <p className="text-sm font-semibold">{NAME[color]}</p>
+              <p className="mt-1 text-sm leading-6">A light surface with dark text.</p>
+            </div>
+          </div>
+        ))}
       </Block>
 
       <Block title="Badge">
         <div className="flex flex-wrap gap-2">
-          <Badge>Primary</Badge>
-          <Badge color="secondary">Secondary</Badge>
-          <Badge color="success">Success</Badge>
-          <Badge color="neutral">Neutral</Badge>
+          {COLORS.map((color) => (
+            <span key={color} className={`jellyfy-badge ${color}`}>
+              {NAME[color]}
+            </span>
+          ))}
         </div>
       </Block>
 
       <Block title="Card">
-        <Card title="Plain">A white jelly panel.</Card>
-        <Card title="Tinted" color="secondary">
-          The same panel in secondary.
-        </Card>
+        <section className="jellyfy-card">
+          <h3 className="text-base font-semibold">Plain</h3>
+          <p className="mt-2 text-sm leading-6">A white jelly panel.</p>
+        </section>
+        {COLORS.map((color) => (
+          <section key={color} className={`jellyfy-card ${color}`}>
+            <h3 className="text-base font-semibold">{NAME[color]}</h3>
+            <p className="mt-2 text-sm leading-6">Tinted like the alert.</p>
+          </section>
+        ))}
       </Block>
 
       <Block title="Dialog">
-        <Dialog
-          trigger="Open dialog"
-          title="A note"
-          description="The panel can take a color. This one stays on the surface."
-        />
-        <Dialog
-          trigger="Open tinted"
-          title="Tinted"
-          color="tertiary"
-          description="Tertiary panel."
-        />
+        <button className="jellyfy-button" type="button" onClick={() => openDialog("plain-dialog")}>
+          <span>Open dialog</span>
+        </button>
+        <button className="jellyfy-button jellyfy-tertiary" type="button" onClick={() => openDialog("tinted-dialog")}>
+          <span>Open tinted</span>
+        </button>
+        <dialog id="plain-dialog" className="jellyfy-dialog">
+          <div className="jellyfy-dialog-panel">
+            <div className="flex items-start justify-between gap-4">
+              <h2 className="text-lg font-semibold">A note</h2>
+              <form method="dialog">
+                <button className="jellyfy-dialog-close" type="submit" aria-label="Close">
+                  ×
+                </button>
+              </form>
+            </div>
+            <p className="mt-2 text-sm leading-6">Native dialog, surface panel.</p>
+          </div>
+        </dialog>
+        <dialog id="tinted-dialog" className="jellyfy-dialog">
+          <div className="jellyfy-dialog-panel jellyfy-tertiary">
+            <div className="flex items-start justify-between gap-4">
+              <h2 className="text-lg font-semibold">Tinted</h2>
+              <form method="dialog">
+                <button className="jellyfy-dialog-close" type="submit" aria-label="Close">
+                  ×
+                </button>
+              </form>
+            </div>
+            <p className="mt-2 text-sm leading-6">Same light tint as the card.</p>
+          </div>
+        </dialog>
       </Block>
     </main>
   );
-}
+};

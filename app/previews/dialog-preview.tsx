@@ -1,17 +1,24 @@
 "use client";
 
-import type { FC } from "react";
-
-import { Dialog } from "@/components/dialog";
-
-const DialogPreview: FC = () => {
-  return (
-    <Dialog
-      trigger="Open dialog"
-      title="Publish this draft"
-      description="The dialog uses the page's native dialog, so Escape and the focus trap belong to the browser."
-    />
-  );
-};
+const DialogPreview = () => (
+  <>
+    <button className="jellyfy-button" type="button" onClick={() => {
+      const dialog = document.getElementById("preview-dialog");
+      if (dialog instanceof HTMLDialogElement) dialog.showModal();
+    }}>
+      <span>Open dialog</span>
+    </button>
+    <dialog id="preview-dialog" className="jellyfy-dialog">
+      <div className="jellyfy-dialog-panel">
+        <form method="dialog">
+          <button className="jellyfy-dialog-close" type="submit">
+            Close
+          </button>
+        </form>
+        <h2 className="text-lg font-semibold">Publish this draft</h2>
+      </div>
+    </dialog>
+  </>
+);
 
 export default DialogPreview;
