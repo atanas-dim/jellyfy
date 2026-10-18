@@ -1,6 +1,7 @@
 const SQUISH = "jellyfy-squish";
-const PRESS_MS = 300;
-const PEAK_PX = 14;
+const PRESS_MS = 480;
+const RELEASE_MS = 300;
+const PEAK_PX = 8;
 
 const along = (pixels: number, size: number) =>
   size <= 0 ? 1 : 1 + pixels / size;
@@ -46,8 +47,8 @@ const press = (element: HTMLElement) => {
       { transform: "scale(1, 1)", offset: 0, easing: "ease-out" },
       {
         transform: `scale(${peakX}, ${peakY})`,
-        offset: 0.65,
-        easing: "ease-out",
+        offset: 0.42,
+        easing: "ease-in-out",
       },
       { transform: `scale(${endX}, ${endY})`, offset: 1 },
     ],
@@ -65,7 +66,7 @@ const release = (element: HTMLElement) => {
       { transform: `scale(${x}, ${y})`, easing: "ease-out" },
       { transform: "scale(1, 1)" },
     ],
-    { duration: PRESS_MS, fill: "forwards" },
+    { duration: RELEASE_MS, fill: "forwards" },
   );
   animation.id = SQUISH;
   animation.onfinish = () => {

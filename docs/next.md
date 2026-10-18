@@ -75,7 +75,9 @@ Nothing, until they want a different solid. Then only the names they are changin
 
 The package name is Jellyfy, with two y's. `jellyfy` is free on npm. `jellify` is also free there, but it is already a music app, so that spelling stays unused. JellyCSS is a description of the file, and `jelly-css` is already an npm package, so that name is not safe. `jlf` is taken. The classes do not use a `jlf-` abbreviation.
 
-The public classes drop the `jellyfy-` prefix before the sizes are added. A button is `button`. A small one is `button-sm`, a large one is `button-lg`, in the same spirit as DaisyUI's `btn` and `btn-sm`. The size is not a lone `sm` class. The names are the vocabulary. They are not written to avoid every existing `.card` in someone else's app. They must not reuse a Tailwind utility name such as `flex`.
+The public classes drop the `jellyfy-` prefix before the sizes are added. They follow DaisyUI's short names, not the HTML tag. A button is `btn`. A small one is `btn-sm`. A large one is `btn-lg`. The size is not a lone `sm` class.
+
+The same idea for the rest of the set: `input`, `textarea`, `select`, `checkbox`, `radio`, `toggle`, `range`, `alert`, `badge`, `card`, `modal`. An icon button is `btn-square`. These are the vocabulary. They are not written to avoid every existing `.card` in someone else's app. They must not reuse a Tailwind utility name such as `flex`.
 
 Internal variables stay `--jellyfy-*`. Those are not what a developer types on an element. The code still has the prefix until that rename.
 
@@ -99,13 +101,13 @@ Do not publish to npm until the packed folder has been installed, as a tarball o
 
 ## Sizes
 
-There are three sizes. The current regular size is the default. It has no extra class. `button-sm` is the smaller one. `button-lg` is the larger one. A button with only `button` stays the size it is now. These are component sizes, not Tailwind's `sm:` and `lg:` screen prefixes.
+There are three sizes. The current regular size is the default. It has no extra class. `btn-sm` is the smaller one. `btn-lg` is the larger one. A button with only `btn` stays the size it is now. These are component sizes, not Tailwind's `sm:` and `lg:` screen prefixes.
 
 ## Do these next, in this order
 
 1. Add the aliases above once, and point the material at the `--jellyfy-*` names. Do not assign Tailwind's `--color-neutral-*` names.
 2. Drop `jellyfy-` from the public classes. Do this before the sizes, so the new names are only written once.
-3. Add `button-sm` and `button-lg`, and the same pair on the other controls, beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step.
+3. Add `btn-sm` and `btn-lg`, and the same pair on the other controls, beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step.
 4. Write the usage guide after the sizes exist, so it is written once. Show the class on the element, the seven colors, all three sizes, and the single `startJellyfy()` call. Show the Tailwind install and the optional `:root` overrides. This is a usage guide, not an API.
 5. Package the stylesheet and the script so someone can use them without this Next app. Version it `0.1.0`.
 6. Install that package into a plain HTML page, a Vue app, and a Vite React app. Publish to npm only after those three pass.
