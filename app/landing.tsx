@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
@@ -314,7 +315,10 @@ export const Landing = () => {
                       <option value="ink">Ink</option>
                     </select>
                     <span>Flavor</span>
-                    <i className="jellyfy-chevron" />
+                    <ChevronDownIcon
+                      className="jellyfy-chevron"
+                      aria-hidden="true"
+                    />
                   </label>
 
                   <div className="flex flex-wrap items-center justify-between gap-4">
