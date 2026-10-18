@@ -69,7 +69,7 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
         ) : null}
         <span className="truncate text-base">{text}</span>
       </span>
-      <ChevronDownIcon className="relative z-2 size-4 shrink-0 text-neutral-400" />
+      <ChevronDownIcon className="relative z-2 size-4 shrink-0 text-current" />
     </motion.button>
   );
 };

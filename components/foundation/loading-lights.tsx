@@ -11,9 +11,9 @@ const LIGHTS = [
 ];
 
 const ORBITS = [
-  { angle: 0, delay: 0, duration: 1.35, className: "bg-white/40" },
-  { angle: 140, delay: 0.36, duration: 1.65, className: "bg-black/40" },
-  { angle: 250, delay: 0.78, duration: 1.5, className: "bg-white/40" },
+  { angle: 0, duration: 1.35, className: "bg-white/15" },
+  { angle: 130, duration: 2.2, className: "bg-black/10" },
+  { angle: 240, duration: 1.6, className: "bg-white/15" },
 ];
 
 type LoadingLightsProps = {
@@ -34,7 +34,7 @@ export const LoadingLights: FC<LoadingLightsProps> = ({ loading, spin }) => {
           className="pointer-events-none absolute inset-0 z-1 overflow-hidden rounded-full"
         >
           {spin
-            ? ORBITS.map(({ angle, delay, duration, className }, index) => (
+            ? ORBITS.map(({ angle, duration, className }, index) => (
                 <span
                   key={index}
                   className="pointer-events-none absolute inset-0"
@@ -46,13 +46,9 @@ export const LoadingLights: FC<LoadingLightsProps> = ({ loading, spin }) => {
                   >
                     <span
                       className={twJoin(
-                        "jellyfy-orbit-light absolute top-0 left-1/2 block h-2/5 w-3/10 -translate-x-1/2 rounded-full blur-md",
+                        "absolute top-0.5 left-1/2 block size-3.5 -translate-x-1/2 rounded-full blur-[4px]",
                         className,
                       )}
-                      style={{
-                        animationDelay: `${delay}s`,
-                        animationDuration: `${duration}s`,
-                      }}
                     />
                   </span>
                 </span>
