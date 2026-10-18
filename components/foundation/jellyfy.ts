@@ -83,36 +83,36 @@ const release = (element: HTMLElement) => {
 };
 
 const face = (node: Element): HTMLElement | null => {
-  const checkbox = node.closest(".jellyfy-checkbox");
+  const checkbox = node.closest(".checkbox");
   if (checkbox)
     return (
-      checkbox.querySelector<HTMLElement>(".jellyfy-checkbox-box") ??
+      checkbox.querySelector<HTMLElement>(".checkbox-box") ??
       (checkbox as HTMLElement)
     );
 
-  const radio = node.closest(".jellyfy-radio");
+  const radio = node.closest(".radio");
   if (radio)
     return (
-      radio.querySelector<HTMLElement>(".jellyfy-radio-ring") ??
+      radio.querySelector<HTMLElement>(".radio-ring") ??
       (radio as HTMLElement)
     );
 
-  const slider = node.closest(".jellyfy-slider");
+  const slider = node.closest(".range");
   if (slider)
     return (
-      slider.querySelector<HTMLElement>(".jellyfy-slider-handle") ??
+      slider.querySelector<HTMLElement>(".range-thumb") ??
       (slider as HTMLElement)
     );
 
-  const sw = node.closest(".jellyfy-switch");
+  const sw = node.closest(".toggle");
   if (sw)
     return (
-      sw.querySelector<HTMLElement>(".jellyfy-switch-track") ??
+      sw.querySelector<HTMLElement>(".toggle-track") ??
       (sw as HTMLElement)
     );
 
   const control = node.closest(
-    ".jellyfy-button, .jellyfy-icon-button, .jellyfy-surface-button, .jellyfy-input, .jellyfy-textarea, .jellyfy-select",
+    ".btn, .btn-square, .btn-surface, .input, .textarea, .select",
   );
   if (control) return control as HTMLElement;
 
@@ -142,9 +142,9 @@ const lights = (spin: boolean) => {
 };
 
 const mountLoading = (root: ParentNode) => {
-  root.querySelectorAll<HTMLElement>(".jellyfy-loading").forEach((element) => {
+  root.querySelectorAll<HTMLElement>(".loading").forEach((element) => {
     if (element.querySelector(".jellyfy-lights")) return;
-    const spin = element.classList.contains("jellyfy-icon-button");
+    const spin = element.classList.contains("btn-square");
     element.insertAdjacentHTML("afterbegin", lights(spin));
     if (!element.querySelector(".jellyfy-spinner")) {
       element.insertAdjacentHTML(
@@ -156,7 +156,7 @@ const mountLoading = (root: ParentNode) => {
 };
 
 const syncSlider = (input: HTMLInputElement) => {
-  const box = input.closest<HTMLElement>(".jellyfy-slider");
+  const box = input.closest<HTMLElement>(".range");
   if (!box) return;
   const min = Number(input.min || 0);
   const max = Number(input.max || 100);
@@ -169,7 +169,7 @@ const syncSlider = (input: HTMLInputElement) => {
 
 const syncSliders = () => {
   document
-    .querySelectorAll<HTMLInputElement>(".jellyfy-slider input")
+    .querySelectorAll<HTMLInputElement>(".range input")
     .forEach(syncSlider);
 };
 
@@ -204,7 +204,7 @@ export const startJellyfy = () => {
     const target = event.target;
     if (
       target instanceof HTMLInputElement &&
-      target.closest(".jellyfy-slider")
+      target.closest(".range")
     ) {
       syncSlider(target);
     }

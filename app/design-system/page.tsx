@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 };
 
 const COLORS = [
-  ["jellyfy-primary", "Primary"],
-  ["jellyfy-secondary", "Secondary"],
-  ["jellyfy-tertiary", "Tertiary"],
-  ["jellyfy-neutral", "Neutral"],
-  ["jellyfy-success", "Success"],
-  ["jellyfy-error", "Error"],
-  ["jellyfy-warning", "Warning"],
+  ["primary", "Primary"],
+  ["secondary", "Secondary"],
+  ["tertiary", "Tertiary"],
+  ["neutral", "Neutral"],
+  ["success", "Success"],
+  ["error", "Error"],
+  ["warning", "Warning"],
 ] as const;
 
 const CONTENTS = [
@@ -39,7 +39,7 @@ const THICKNESS = [
     token: "--shadow-inset-raised",
     use: "Buttons and icon buttons. The thickest jelly.",
     shadow: "var(--shadow-inset-raised), var(--shadow-drop)",
-    className: "jellyfy-primary h-16",
+    className: "primary h-16",
     fill: "color-mix(in oklab, var(--jellyfy-solid) 60%, transparent)",
   },
   {
@@ -120,7 +120,7 @@ export default function DesignSystemPage() {
       >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {COLORS.map(([id, label]) => (
-            <figure key={id} className={twJoin("jellyfy-card", id)}>
+            <figure key={id} className={twJoin("card", id)}>
               <div
                 className="h-16 rounded-[var(--radius-control)]"
                 style={{ background: "var(--jellyfy-solid)" }}
@@ -128,7 +128,7 @@ export default function DesignSystemPage() {
               <figcaption className="mt-3">
                 <p className="font-semibold">{label}</p>
                 <span className="font-mono text-xs leading-5 text-neutral-500">
-                  {`--color-${id.replace("jellyfy-", "")}`}
+                  {`--color-${id}`}
                 </span>
               </figcaption>
             </figure>
@@ -139,7 +139,7 @@ export default function DesignSystemPage() {
             title="Raised face"
             detail="Buttons, icon buttons, badges, checked marks."
           >
-            <button type="button" className="jellyfy-button jellyfy-primary">
+            <button type="button" className="btn primary">
               <span>Primary</span>
             </button>
             <p className="text-sm leading-6 text-neutral-600">
@@ -151,7 +151,7 @@ export default function DesignSystemPage() {
             title="Field"
             detail="Inputs, textarea, and select default to neutral."
           >
-            <label className="jellyfy-input">
+            <label className="input">
               <input placeholder=" " />
               <span>Note</span>
             </label>
@@ -164,7 +164,7 @@ export default function DesignSystemPage() {
             title="Quiet surface"
             detail="An untinted card is a white panel. An alert defaults to warning."
           >
-            <div className="jellyfy-alert">
+            <div className="alert">
               <p>Nothing has been sent yet.</p>
             </div>
           </Rule>
@@ -262,13 +262,13 @@ export default function DesignSystemPage() {
             detail="Light pool and dark pool. On a button they appear while the pointer is down, dark above light, so the face reads as pushed in. On a field they appear with focus and pin to the bottom. On a surface button they stay put: light on top, dark below, and on press those two colors swap."
           >
             <div className="flex flex-wrap items-center gap-3">
-              <button type="button" className="jellyfy-button">
+              <button type="button" className="btn">
                 <span>Hold</span>
               </button>
-              <div className="jellyfy-dialog-panel relative h-24 w-40">
+              <div className="modal-panel relative h-24 w-40">
                 <button
                   type="button"
-                  className="jellyfy-surface-button"
+                  className="btn-surface"
                   aria-label="Surface"
                 >
                   ×
@@ -281,19 +281,16 @@ export default function DesignSystemPage() {
             detail={`The bulge is ${squishRule.peakPx}px, not a percentage, so a radio and a wide button stretch by the same amount. Horizontal peak is that many pixels outward. Vertical peak is two sevenths of it, inward. The settle is one seventh outward in width and two sevenths outward in height. Both axes move together. The press takes ${squishRule.pressMs}ms, reaches the peak at ${Math.round(squishRule.peakAt * 100)}%, then eases into the settle and holds while the pointer is down. Release takes ${squishRule.releaseMs}ms from the scale already on screen. Keyboard focus does not squish.`}
           >
             <div className="flex flex-wrap items-center gap-4">
-              <button
-                type="button"
-                className="jellyfy-button jellyfy-secondary"
-              >
+              <button type="button" className="btn secondary">
                 <span>Wide</span>
               </button>
-              <label className="jellyfy-radio">
+              <label className="radio">
                 <input
                   type="radio"
                   name="design-system-squish"
                   defaultChecked
                 />
-                <span className="jellyfy-radio-ring" />
+                <span className="radio-ring" />
                 Round
               </label>
               <button
@@ -326,7 +323,7 @@ export default function DesignSystemPage() {
             name="Regular"
             note="No extra class. This is the size the set uses today."
           >
-            <button type="button" className="jellyfy-button">
+            <button type="button" className="btn">
               <span>Regular</span>
             </button>
           </SizeSlot>
@@ -379,7 +376,7 @@ export default function DesignSystemPage() {
             title="Keyboard"
             detail="Tab to this button. A click does not leave the ring."
           >
-            <button type="button" className="jellyfy-button jellyfy-tertiary">
+            <button type="button" className="btn tertiary">
               <span>Tab here</span>
             </button>
           </Rule>
@@ -387,7 +384,7 @@ export default function DesignSystemPage() {
             title="Field"
             detail="Click or tab. The ring and the gloss both come on."
           >
-            <label className="jellyfy-input jellyfy-primary">
+            <label className="input primary">
               <input placeholder=" " />
               <span>Label</span>
             </label>
@@ -401,20 +398,20 @@ export default function DesignSystemPage() {
         lede="Disabled is a flatter drop and no lift. Loading is a soft sweep on a wide button, and small rim lights plus a spinner on an icon button."
       >
         <div className="flex flex-wrap items-center gap-4">
-          <button type="button" className="jellyfy-button" disabled>
+          <button type="button" className="btn" disabled>
             <span>Disabled</span>
           </button>
-          <button type="button" className="jellyfy-button jellyfy-loading">
+          <button type="button" className="btn loading">
             <span>Sending</span>
           </button>
           <button
             type="button"
-            className="jellyfy-icon-button jellyfy-loading"
+            className="btn-square loading"
             aria-label="Loading"
           />
-          <label className="jellyfy-checkbox jellyfy-success">
+          <label className="checkbox success">
             <input type="checkbox" defaultChecked />
-            <span className="jellyfy-checkbox-box" />
+            <span className="checkbox-box" />
             Checked
           </label>
         </div>

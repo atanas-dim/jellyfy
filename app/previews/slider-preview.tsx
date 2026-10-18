@@ -1,11 +1,11 @@
 const SliderPreview = () => (
-  <label className="jellyfy-slider">
+  <label className="range">
     Volume
-    <span className="jellyfy-slider-box">
-      <span className="jellyfy-slider-track">
-        <span className="jellyfy-slider-fill" />
+    <span className="range-box">
+      <span className="range-track">
+        <span className="range-fill" />
       </span>
-      <span className="jellyfy-slider-handle" />
+      <span className="range-thumb" />
       <input type="range" defaultValue={62} />
     </span>
   </label>

@@ -12,19 +12,19 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Button,
     name: "Button",
     description: "The main action, with a soft raised press.",
-    usage: `<button class="jellyfy-button jellyfy-primary">Launch</button>`,
+    usage: `<button class="btn primary">Launch</button>`,
   },
   [ComponentSlug.IconButton]: {
     slug: ComponentSlug.IconButton,
     name: "Icon button",
     description: "The same press, for an icon alone.",
-    usage: `<button class="jellyfy-icon-button jellyfy-primary" aria-label="Add">+</button>`,
+    usage: `<button class="btn-square primary" aria-label="Add">+</button>`,
   },
   [ComponentSlug.Input]: {
     slug: ComponentSlug.Input,
     name: "Input",
     description: "A soft field. The label rises as you type.",
-    usage: `<label class="jellyfy-input jellyfy-error">
+    usage: `<label class="input error">
   <input placeholder=" ">
   <span>Email</span>
 </label>`,
@@ -33,7 +33,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Textarea,
     name: "Textarea",
     description: "The same field, when one line is not enough.",
-    usage: `<label class="jellyfy-textarea">
+    usage: `<label class="textarea">
   <textarea placeholder=" "></textarea>
   <span>Note</span>
 </label>`,
@@ -42,7 +42,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Select,
     name: "Select",
     description: "A native menu, wrapped in the same soft field.",
-    usage: `<label class="jellyfy-select jellyfy-neutral">
+    usage: `<label class="select neutral">
   <select>
     <option>Mint</option>
   </select>
@@ -53,9 +53,9 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Checkbox,
     name: "Checkbox",
     description: "A small mark that fills when it is chosen.",
-    usage: `<label class="jellyfy-checkbox jellyfy-primary">
+    usage: `<label class="checkbox primary">
   <input type="checkbox">
-  <span class="jellyfy-checkbox-box"></span>
+  <span class="checkbox-box"></span>
   Remember this device
 </label>`,
   },
@@ -63,9 +63,9 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Radio,
     name: "Radio",
     description: "One choice in a group, in the color you set.",
-    usage: `<label class="jellyfy-radio jellyfy-primary">
+    usage: `<label class="radio primary">
   <input type="radio" name="delivery">
-  <span class="jellyfy-radio-ring"></span>
+  <span class="radio-ring"></span>
   Standard
 </label>`,
   },
@@ -73,9 +73,9 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Switch,
     name: "Switch",
     description: "On and off, with the same soft travel.",
-    usage: `<label class="jellyfy-switch jellyfy-primary">
+    usage: `<label class="toggle primary">
   <input type="checkbox" role="switch" checked>
-  <span class="jellyfy-switch-track"><span class="jellyfy-switch-thumb"></span></span>
+  <span class="toggle-track"><span class="toggle-thumb"></span></span>
   Notifications
 </label>`,
   },
@@ -83,7 +83,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Slider,
     name: "Slider",
     description: "Drag along a soft track. The fill is your color.",
-    usage: `<label class="jellyfy-slider jellyfy-primary">
+    usage: `<label class="range primary">
   Volume
   <input type="range" value="62">
 </label>`,
@@ -92,26 +92,26 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.Alert,
     name: "Alert",
     description: "A status line that stays easy to read.",
-    usage: `<div class="jellyfy-alert jellyfy-warning">Check the name</div>`,
+    usage: `<div class="alert warning">Check the name</div>`,
   },
   [ComponentSlug.Badge]: {
     slug: ComponentSlug.Badge,
     name: "Badge",
     description: "A small label in any of the seven colors.",
-    usage: `<span class="jellyfy-badge jellyfy-success">Ready</span>`,
+    usage: `<span class="badge success">Ready</span>`,
   },
   [ComponentSlug.Card]: {
     slug: ComponentSlug.Card,
     name: "Card",
     description: "A quiet panel for grouping what sits together.",
-    usage: `<section class="jellyfy-card">Studio notes</section>`,
+    usage: `<section class="card">Studio notes</section>`,
   },
   [ComponentSlug.Dialog]: {
     slug: ComponentSlug.Dialog,
     name: "Dialog",
     description: "A real dialog, with a jelly panel inside.",
-    usage: `<dialog class="jellyfy-dialog">
-  <div class="jellyfy-dialog-panel">Publish this draft</div>
+    usage: `<dialog class="modal">
+  <div class="modal-panel">Publish this draft</div>
 </dialog>`,
   },
 };

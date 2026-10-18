@@ -180,25 +180,25 @@
     .jellyfy-sweep,
     .jellyfy-orbit,
     .jellyfy-spinner,
-    .jellyfy-button,
-    .jellyfy-icon-button,
-    .jellyfy-checkbox-box,
-    .jellyfy-switch-track,
-    .jellyfy-switch-thumb,
-    .jellyfy-radio-dot,
-    .jellyfy-input,
-    .jellyfy-textarea,
-    .jellyfy-select,
-    .jellyfy-surface-button,
-    .jellyfy-surface-button::before,
-    .jellyfy-surface-button::after {
+    .btn,
+    .btn-square,
+    .checkbox-box,
+    .toggle-track,
+    .toggle-thumb,
+    .radio-dot,
+    .input,
+    .textarea,
+    .select,
+    .btn-surface,
+    .btn-surface::before,
+    .btn-surface::after {
       animation: none;
       transition: none;
     }
   }
 
-  .jellyfy-button,
-  .jellyfy-icon-button {
+  .btn,
+  .btn-square {
     --jellyfy-solid: var(--jellyfy-primary);
     --jellyfy-highlight: color-mix(
       in oklab,
@@ -237,14 +237,14 @@
       outline-color 0.3s ease-out;
   }
 
-  .jellyfy-button:focus-visible:not(:disabled),
-  .jellyfy-icon-button:focus-visible:not(:disabled) {
+  .btn:focus-visible:not(:disabled),
+  .btn-square:focus-visible:not(:disabled) {
     outline-color: var(--jellyfy-solid);
     box-shadow:
       var(--focus-gap), var(--shadow-inset-raised), var(--shadow-drop);
   }
 
-  .jellyfy-button {
+  .btn {
     height: 3rem;
     min-width: 10rem;
     padding-inline: 1.5rem;
@@ -256,34 +256,34 @@
     text-shadow: 0 0 6px rgb(10 10 10 / 0.4);
   }
 
-  .jellyfy-icon-button {
+  .btn-square {
     width: 3rem;
     height: 3rem;
   }
 
-  .jellyfy-button.jellyfy-neutral,
-  .jellyfy-icon-button.jellyfy-neutral,
-  .jellyfy-badge.jellyfy-neutral {
+  .btn.neutral,
+  .btn-square.neutral,
+  .badge.neutral {
     background-color: var(--surface);
     color: var(--surface-foreground);
     --jellyfy-highlight: var(--surface-highlight);
     --jellyfy-shade: var(--surface-shade);
   }
 
-  .jellyfy-button:hover:not(:disabled),
-  .jellyfy-icon-button:hover:not(:disabled) {
+  .btn:hover:not(:disabled),
+  .btn-square:hover:not(:disabled) {
     translate: 0 -2px;
     box-shadow: var(--shadow-inset-raised), var(--shadow-drop-hover);
   }
 
-  .jellyfy-button:hover:focus-visible:not(:disabled),
-  .jellyfy-icon-button:hover:focus-visible:not(:disabled) {
+  .btn:hover:focus-visible:not(:disabled),
+  .btn-square:hover:focus-visible:not(:disabled) {
     box-shadow:
       var(--focus-gap), var(--shadow-inset-raised), var(--shadow-drop-hover);
   }
 
-  .jellyfy-button:disabled,
-  .jellyfy-icon-button:disabled {
+  .btn:disabled,
+  .btn-square:disabled {
     background-color: var(--disabled);
     color: var(--disabled-foreground);
     box-shadow: var(--shadow-inset-raised), var(--shadow-drop-disabled);
@@ -291,10 +291,10 @@
     translate: 0 0;
   }
 
-  .jellyfy-button::before,
-  .jellyfy-button::after,
-  .jellyfy-icon-button::before,
-  .jellyfy-icon-button::after {
+  .btn::before,
+  .btn::after,
+  .btn-square::before,
+  .btn-square::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -306,31 +306,31 @@
     transition: opacity 300ms;
   }
 
-  .jellyfy-button::before,
-  .jellyfy-icon-button::before {
+  .btn::before,
+  .btn-square::before {
     top: 60%;
     height: 60%;
     transform: translate(-50%, -40%);
     background: radial-gradient(var(--jellyfy-highlight), transparent 60%);
   }
 
-  .jellyfy-button::after,
-  .jellyfy-icon-button::after {
+  .btn::after,
+  .btn-square::after {
     top: 42.86%;
     height: 50%;
     transform: translate(-50%, -75%);
     background: radial-gradient(var(--jellyfy-shade), transparent 60%);
   }
 
-  .jellyfy-button:active:not(:disabled)::before,
-  .jellyfy-button:active:not(:disabled)::after,
-  .jellyfy-icon-button:active:not(:disabled)::before,
-  .jellyfy-icon-button:active:not(:disabled)::after {
+  .btn:active:not(:disabled)::before,
+  .btn:active:not(:disabled)::after,
+  .btn-square:active:not(:disabled)::before,
+  .btn-square:active:not(:disabled)::after {
     opacity: 1;
   }
 
-  .jellyfy-button > :not(.jellyfy-lights),
-  .jellyfy-icon-button > :not(.jellyfy-lights) {
+  .btn > :not(.jellyfy-lights),
+  .btn-square > :not(.jellyfy-lights) {
     position: relative;
     z-index: 2;
     display: inline-flex;
@@ -338,13 +338,13 @@
     gap: 0.25rem;
   }
 
-  .jellyfy-icon-button.jellyfy-loading > svg:not(.jellyfy-spinner) {
+  .btn-square.loading > svg:not(.jellyfy-spinner) {
     display: none;
   }
 
-  .jellyfy-input,
-  .jellyfy-textarea,
-  .jellyfy-select {
+  .input,
+  .textarea,
+  .select {
     --jellyfy-solid: var(--jellyfy-neutral);
     --jellyfy-highlight: var(--surface-highlight);
     --jellyfy-shade: var(--surface-shade);
@@ -366,24 +366,24 @@
       outline-color 300ms ease-out;
   }
 
-  .jellyfy-input.jellyfy-primary,
-  .jellyfy-input.jellyfy-secondary,
-  .jellyfy-input.jellyfy-tertiary,
-  .jellyfy-input.jellyfy-success,
-  .jellyfy-input.jellyfy-error,
-  .jellyfy-input.jellyfy-warning,
-  .jellyfy-textarea.jellyfy-primary,
-  .jellyfy-textarea.jellyfy-secondary,
-  .jellyfy-textarea.jellyfy-tertiary,
-  .jellyfy-textarea.jellyfy-success,
-  .jellyfy-textarea.jellyfy-error,
-  .jellyfy-textarea.jellyfy-warning,
-  .jellyfy-select.jellyfy-primary,
-  .jellyfy-select.jellyfy-secondary,
-  .jellyfy-select.jellyfy-tertiary,
-  .jellyfy-select.jellyfy-success,
-  .jellyfy-select.jellyfy-error,
-  .jellyfy-select.jellyfy-warning {
+  .input.primary,
+  .input.secondary,
+  .input.tertiary,
+  .input.success,
+  .input.error,
+  .input.warning,
+  .textarea.primary,
+  .textarea.secondary,
+  .textarea.tertiary,
+  .textarea.success,
+  .textarea.error,
+  .textarea.warning,
+  .select.primary,
+  .select.secondary,
+  .select.tertiary,
+  .select.success,
+  .select.error,
+  .select.warning {
     background-color: color-mix(
       in oklab,
       color-mix(in oklab, white 86%, var(--jellyfy-solid)) 60%,
@@ -399,33 +399,33 @@
     --jellyfy-ring: var(--jellyfy-solid);
   }
 
-  .jellyfy-input:focus-within,
-  .jellyfy-textarea:focus-within,
-  .jellyfy-select:focus-within {
+  .input:focus-within,
+  .textarea:focus-within,
+  .select:focus-within {
     background-color: var(--surface-focus);
     box-shadow:
       var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop);
     outline-color: var(--jellyfy-ring);
   }
 
-  .jellyfy-input.jellyfy-primary:focus-within,
-  .jellyfy-input.jellyfy-secondary:focus-within,
-  .jellyfy-input.jellyfy-tertiary:focus-within,
-  .jellyfy-input.jellyfy-success:focus-within,
-  .jellyfy-input.jellyfy-error:focus-within,
-  .jellyfy-input.jellyfy-warning:focus-within,
-  .jellyfy-textarea.jellyfy-primary:focus-within,
-  .jellyfy-textarea.jellyfy-secondary:focus-within,
-  .jellyfy-textarea.jellyfy-tertiary:focus-within,
-  .jellyfy-textarea.jellyfy-success:focus-within,
-  .jellyfy-textarea.jellyfy-error:focus-within,
-  .jellyfy-textarea.jellyfy-warning:focus-within,
-  .jellyfy-select.jellyfy-primary:focus-within,
-  .jellyfy-select.jellyfy-secondary:focus-within,
-  .jellyfy-select.jellyfy-tertiary:focus-within,
-  .jellyfy-select.jellyfy-success:focus-within,
-  .jellyfy-select.jellyfy-error:focus-within,
-  .jellyfy-select.jellyfy-warning:focus-within {
+  .input.primary:focus-within,
+  .input.secondary:focus-within,
+  .input.tertiary:focus-within,
+  .input.success:focus-within,
+  .input.error:focus-within,
+  .input.warning:focus-within,
+  .textarea.primary:focus-within,
+  .textarea.secondary:focus-within,
+  .textarea.tertiary:focus-within,
+  .textarea.success:focus-within,
+  .textarea.error:focus-within,
+  .textarea.warning:focus-within,
+  .select.primary:focus-within,
+  .select.secondary:focus-within,
+  .select.tertiary:focus-within,
+  .select.success:focus-within,
+  .select.error:focus-within,
+  .select.warning:focus-within {
     background-color: color-mix(
       in oklab,
       color-mix(in oklab, white 78%, var(--jellyfy-solid)) 60%,
@@ -433,19 +433,19 @@
     );
   }
 
-  .jellyfy-input:has(:disabled),
-  .jellyfy-textarea:has(:disabled),
-  .jellyfy-select:has(:disabled) {
+  .input:has(:disabled),
+  .textarea:has(:disabled),
+  .select:has(:disabled) {
     opacity: 0.6;
     box-shadow: var(--shadow-inset-surface), var(--shadow-drop-disabled);
   }
 
-  .jellyfy-input::before,
-  .jellyfy-input::after,
-  .jellyfy-textarea::before,
-  .jellyfy-textarea::after,
-  .jellyfy-select::before,
-  .jellyfy-select::after {
+  .input::before,
+  .input::after,
+  .textarea::before,
+  .textarea::after,
+  .select::before,
+  .select::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -456,9 +456,9 @@
     transition: opacity 300ms;
   }
 
-  .jellyfy-input::before,
-  .jellyfy-textarea::before,
-  .jellyfy-select::before {
+  .input::before,
+  .textarea::before,
+  .select::before {
     top: auto;
     bottom: -1rem;
     height: 1.75rem;
@@ -467,9 +467,9 @@
     background: radial-gradient(var(--jellyfy-highlight), transparent 60%);
   }
 
-  .jellyfy-input::after,
-  .jellyfy-textarea::after,
-  .jellyfy-select::after {
+  .input::after,
+  .textarea::after,
+  .select::after {
     top: 1.4rem;
     height: 2.1rem;
     width: 90%;
@@ -477,18 +477,18 @@
     background: radial-gradient(var(--jellyfy-shade), transparent 60%);
   }
 
-  .jellyfy-input:focus-within::before,
-  .jellyfy-input:focus-within::after,
-  .jellyfy-textarea:focus-within::before,
-  .jellyfy-textarea:focus-within::after,
-  .jellyfy-select:focus-within::before,
-  .jellyfy-select:focus-within::after {
+  .input:focus-within::before,
+  .input:focus-within::after,
+  .textarea:focus-within::before,
+  .textarea:focus-within::after,
+  .select:focus-within::before,
+  .select:focus-within::after {
     opacity: 1;
   }
 
-  .jellyfy-input input,
-  .jellyfy-textarea textarea,
-  .jellyfy-select select {
+  .input input,
+  .textarea textarea,
+  .select select {
     position: relative;
     z-index: 2;
     display: block;
@@ -500,29 +500,29 @@
     font: inherit;
   }
 
-  .jellyfy-input input,
-  .jellyfy-select select {
+  .input input,
+  .select select {
     padding: 1.375rem 1rem 0.625rem;
   }
 
-  .jellyfy-input input:placeholder-shown {
+  .input input:placeholder-shown {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
 
-  .jellyfy-textarea textarea {
+  .textarea textarea {
     min-height: 7rem;
     resize: vertical;
     padding: 1.375rem 1rem 0.75rem;
   }
 
-  .jellyfy-textarea textarea:placeholder-shown {
+  .textarea textarea:placeholder-shown {
     padding-top: 1rem;
   }
 
-  .jellyfy-input span,
-  .jellyfy-textarea span,
-  .jellyfy-select span {
+  .input span,
+  .textarea span,
+  .select span {
     position: absolute;
     top: 0.5rem;
     left: 1rem;
@@ -536,24 +536,24 @@
       font-size 300ms ease-out;
   }
 
-  .jellyfy-input input:placeholder-shown + span,
-  .jellyfy-textarea textarea:placeholder-shown + span {
+  .input input:placeholder-shown + span,
+  .textarea textarea:placeholder-shown + span {
     top: 1.125rem;
     font-size: 1rem;
     font-weight: 400;
   }
 
-  .jellyfy-select select {
+  .select select {
     appearance: none;
     height: 3.5rem;
     padding-right: 2.5rem;
   }
 
-  .jellyfy-select::marker {
+  .select::marker {
     content: "";
   }
 
-  .jellyfy-chevron {
+  .chevron {
     position: absolute;
     top: 50%;
     right: 1rem;
@@ -562,7 +562,7 @@
     color: currentColor;
   }
 
-  .jellyfy-chevron:not(svg) {
+  .chevron:not(svg) {
     width: 1.25rem;
     height: 1.25rem;
     background: currentColor;
@@ -573,23 +573,23 @@
       center / contain no-repeat;
   }
 
-  svg.jellyfy-chevron {
+  svg.chevron {
     width: 1.25rem;
     height: 1.25rem;
     transform: translateY(-50%);
   }
 
   @supports (appearance: base-select) {
-    .jellyfy-select select,
-    .jellyfy-select select::picker(select) {
+    .select select,
+    .select select::picker(select) {
       appearance: base-select;
     }
 
-    .jellyfy-select select::picker-icon {
+    .select select::picker-icon {
       display: none;
     }
 
-    .jellyfy-select select::picker(select) {
+    .select select::picker(select) {
       margin-top: 0.35rem;
       padding: 0.35rem;
       border: 0;
@@ -600,31 +600,31 @@
       font: inherit;
     }
 
-    .jellyfy-select select option {
+    .select select option {
       border-radius: 0.65rem;
       padding: 0.55rem 0.75rem;
       background: transparent;
       color: inherit;
     }
 
-    .jellyfy-select select option:hover,
-    .jellyfy-select select option:focus {
+    .select select option:hover,
+    .select select option:focus {
       background: color-mix(in oklab, var(--jellyfy-solid) 16%, white);
     }
 
-    .jellyfy-select select option:checked {
+    .select select option:checked {
       background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
       color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
     }
 
-    .jellyfy-select select option::checkmark {
+    .select select option::checkmark {
       color: currentColor;
     }
   }
 
-  .jellyfy-checkbox,
-  .jellyfy-radio,
-  .jellyfy-switch {
+  .checkbox,
+  .radio,
+  .toggle {
     --jellyfy-solid: var(--jellyfy-primary);
     display: inline-flex;
     align-items: center;
@@ -635,16 +635,16 @@
     cursor: pointer;
   }
 
-  .jellyfy-checkbox input,
-  .jellyfy-radio input,
-  .jellyfy-switch input {
+  .checkbox input,
+  .radio input,
+  .toggle input {
     position: absolute;
     opacity: 0;
     pointer-events: none;
   }
 
-  .jellyfy-checkbox-box,
-  .jellyfy-radio-ring {
+  .checkbox-box,
+  .radio-ring {
     position: relative;
     display: grid;
     place-items: center;
@@ -664,14 +664,14 @@
       outline-color 300ms ease-out;
   }
 
-  .jellyfy-checkbox-box {
+  .checkbox-box {
     border-radius: 0.5rem;
   }
-  .jellyfy-radio-ring {
+  .radio-ring {
     border-radius: 999px;
   }
 
-  .jellyfy-checkbox-box::after {
+  .checkbox-box::after {
     content: "";
     width: 0.7rem;
     height: 0.35rem;
@@ -682,7 +682,7 @@
     transition: opacity 300ms ease-out;
   }
 
-  .jellyfy-radio-ring::after {
+  .radio-ring::after {
     content: "";
     width: 0.875rem;
     height: 0.875rem;
@@ -695,8 +695,8 @@
       opacity 300ms ease-out;
   }
 
-  .jellyfy-checkbox:has(:checked) .jellyfy-checkbox-box,
-  .jellyfy-switch:has(:checked) .jellyfy-switch-track {
+  .checkbox:has(:checked) .checkbox-box,
+  .toggle:has(:checked) .toggle-track {
     background-color: color-mix(
       in oklab,
       var(--jellyfy-solid) 60%,
@@ -705,30 +705,30 @@
     color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
   }
 
-  .jellyfy-checkbox:has(:checked) .jellyfy-checkbox-box::after,
-  .jellyfy-radio:has(:checked) .jellyfy-radio-ring::after {
+  .checkbox:has(:checked) .checkbox-box::after,
+  .radio:has(:checked) .radio-ring::after {
     opacity: 1;
     transform: translateY(-1px) rotate(-45deg);
   }
 
-  .jellyfy-radio:has(:checked) .jellyfy-radio-ring::after {
+  .radio:has(:checked) .radio-ring::after {
     transform: scale(1);
   }
 
-  .jellyfy-checkbox:has(:focus-visible) .jellyfy-checkbox-box,
-  .jellyfy-radio:has(:focus-visible) .jellyfy-radio-ring {
+  .checkbox:has(:focus-visible) .checkbox-box,
+  .radio:has(:focus-visible) .radio-ring {
     outline-color: var(--jellyfy-solid);
     box-shadow: var(--focus-gap), var(--shadow-inset-mark), var(--shadow-drop);
   }
 
-  .jellyfy-switch:has(:focus-visible) .jellyfy-switch-track,
-  .jellyfy-slider:has(:focus-visible) .jellyfy-slider-handle {
+  .toggle:has(:focus-visible) .toggle-track,
+  .range:has(:focus-visible) .range-thumb {
     outline-color: var(--jellyfy-solid);
     box-shadow:
       var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop);
   }
 
-  .jellyfy-switch-track {
+  .toggle-track {
     position: relative;
     width: 3rem;
     height: 1.75rem;
@@ -744,7 +744,7 @@
       outline-color 300ms ease-out;
   }
 
-  .jellyfy-switch-thumb {
+  .toggle-thumb {
     position: absolute;
     top: 0.25rem;
     left: 0.25rem;
@@ -758,12 +758,12 @@
       background-color 300ms ease-out;
   }
 
-  .jellyfy-switch:has(:checked) .jellyfy-switch-thumb {
+  .toggle:has(:checked) .toggle-thumb {
     transform: translateX(1.15rem);
     background: white;
   }
 
-  .jellyfy-slider {
+  .range {
     --jellyfy-solid: var(--jellyfy-primary);
     --jellyfy-pct: 0.4;
     display: flex;
@@ -776,12 +776,12 @@
     font-weight: 500;
   }
 
-  .jellyfy-slider-box {
+  .range-box {
     position: relative;
     height: 2rem;
   }
 
-  .jellyfy-slider-track {
+  .range-track {
     position: absolute;
     top: 50%;
     height: 0.75rem;
@@ -793,7 +793,7 @@
     box-shadow: var(--shadow-inset-surface), var(--shadow-drop);
   }
 
-  .jellyfy-slider-fill {
+  .range-fill {
     position: absolute;
     inset-block: 0;
     left: 0;
@@ -802,7 +802,7 @@
     background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
   }
 
-  .jellyfy-slider-handle {
+  .range-thumb {
     position: absolute;
     top: calc(50% - 0.75rem);
     left: calc((100% - 1.5rem) * var(--jellyfy-pct));
@@ -819,7 +819,7 @@
       outline-color 300ms ease-out;
   }
 
-  .jellyfy-slider input {
+  .range input {
     position: absolute;
     inset: 0;
     z-index: 2;
@@ -832,27 +832,27 @@
     cursor: pointer;
   }
 
-  .jellyfy-message {
+  .message {
     margin-top: 0.375rem;
     color: color-mix(in oklab, var(--jellyfy-error) 62%, black);
     font-size: 0.75rem;
   }
 
-  .jellyfy-alert,
-  .jellyfy-card.jellyfy-primary,
-  .jellyfy-card.jellyfy-secondary,
-  .jellyfy-card.jellyfy-tertiary,
-  .jellyfy-card.jellyfy-neutral,
-  .jellyfy-card.jellyfy-success,
-  .jellyfy-card.jellyfy-error,
-  .jellyfy-card.jellyfy-warning,
-  .jellyfy-dialog-panel.jellyfy-primary,
-  .jellyfy-dialog-panel.jellyfy-secondary,
-  .jellyfy-dialog-panel.jellyfy-tertiary,
-  .jellyfy-dialog-panel.jellyfy-neutral,
-  .jellyfy-dialog-panel.jellyfy-success,
-  .jellyfy-dialog-panel.jellyfy-error,
-  .jellyfy-dialog-panel.jellyfy-warning {
+  .alert,
+  .card.primary,
+  .card.secondary,
+  .card.tertiary,
+  .card.neutral,
+  .card.success,
+  .card.error,
+  .card.warning,
+  .modal-panel.primary,
+  .modal-panel.secondary,
+  .modal-panel.tertiary,
+  .modal-panel.neutral,
+  .modal-panel.success,
+  .modal-panel.error,
+  .modal-panel.warning {
     background-color: color-mix(
       in oklab,
       color-mix(in oklab, white 86%, var(--jellyfy-solid)) 60%,
@@ -861,7 +861,7 @@
     color: color-mix(in oklab, var(--jellyfy-solid) 62%, black);
   }
 
-  .jellyfy-alert {
+  .alert {
     --jellyfy-solid: var(--jellyfy-warning);
     display: flex;
     gap: 0.75rem;
@@ -873,7 +873,7 @@
     outline-offset: 2px;
   }
 
-  .jellyfy-badge {
+  .badge {
     --jellyfy-solid: var(--jellyfy-primary);
     display: inline-flex;
     align-items: center;
@@ -895,7 +895,7 @@
     outline-offset: 2px;
   }
 
-  .jellyfy-card {
+  .card {
     border-radius: var(--radius-surface);
     background: var(--panel);
     color: var(--surface-foreground);
@@ -906,26 +906,26 @@
     outline-offset: 2px;
   }
 
-  .jellyfy-card:focus-visible,
-  .jellyfy-alert:focus-visible,
-  .jellyfy-badge:focus-visible {
+  .card:focus-visible,
+  .alert:focus-visible,
+  .badge:focus-visible {
     outline-color: var(--jellyfy-solid, var(--jellyfy-neutral-400));
     box-shadow: var(--focus-gap), var(--shadow-inset-thin), var(--shadow-drop);
   }
 
-  .jellyfy-dialog {
+  .modal {
     border: 0;
     padding: 0;
     background: transparent;
     color: inherit;
   }
 
-  .jellyfy-dialog:focus,
-  .jellyfy-dialog:focus-visible {
+  .modal:focus,
+  .modal:focus-visible {
     outline: none;
   }
 
-  .jellyfy-dialog[open] {
+  .modal[open] {
     position: fixed;
     inset: 0;
     display: flex;
@@ -938,11 +938,11 @@
     justify-content: center;
   }
 
-  .jellyfy-dialog::backdrop {
+  .modal::backdrop {
     background: rgb(10 10 10 / 0.4);
   }
 
-  .jellyfy-dialog-panel {
+  .modal-panel {
     position: relative;
     width: min(28rem, calc(100vw - 2rem));
     border-radius: var(--radius-surface);
@@ -953,7 +953,7 @@
     backdrop-filter: blur(4px);
   }
 
-  .jellyfy-surface-button {
+  .btn-surface {
     --jellyfy-highlight: var(--surface-highlight);
     --jellyfy-shade: var(--surface-shade);
     position: absolute;
@@ -977,8 +977,8 @@
     outline-offset: 2px;
   }
 
-  .jellyfy-surface-button::before,
-  .jellyfy-surface-button::after {
+  .btn-surface::before,
+  .btn-surface::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -991,79 +991,79 @@
     transition: background 200ms ease-out;
   }
 
-  .jellyfy-surface-button::before {
+  .btn-surface::before {
     top: 0.15rem;
     background: radial-gradient(var(--jellyfy-highlight), transparent 70%);
   }
 
-  .jellyfy-surface-button::after {
+  .btn-surface::after {
     top: 0.85rem;
     background: radial-gradient(var(--jellyfy-shade), transparent 70%);
   }
 
-  .jellyfy-surface-button:active::before {
+  .btn-surface:active::before {
     background: radial-gradient(var(--jellyfy-shade), transparent 70%);
   }
 
-  .jellyfy-surface-button:active::after {
+  .btn-surface:active::after {
     background: radial-gradient(var(--jellyfy-highlight), transparent 70%);
   }
 
-  .jellyfy-surface-button:focus-visible {
+  .btn-surface:focus-visible {
     outline-color: var(--jellyfy-solid, var(--jellyfy-neutral-400));
     box-shadow: var(--focus-gap);
   }
 
-  .jellyfy-primary .jellyfy-surface-button,
-  .jellyfy-secondary .jellyfy-surface-button,
-  .jellyfy-tertiary .jellyfy-surface-button,
-  .jellyfy-neutral .jellyfy-surface-button,
-  .jellyfy-success .jellyfy-surface-button,
-  .jellyfy-error .jellyfy-surface-button,
-  .jellyfy-warning .jellyfy-surface-button {
+  .primary .btn-surface,
+  .secondary .btn-surface,
+  .tertiary .btn-surface,
+  .neutral .btn-surface,
+  .success .btn-surface,
+  .error .btn-surface,
+  .warning .btn-surface {
     --jellyfy-highlight: color-mix(in oklab, white 78%, var(--jellyfy-solid));
     --jellyfy-shade: color-mix(in oklab, var(--jellyfy-solid) 34%, transparent);
     color: color-mix(in oklab, var(--jellyfy-solid) 62%, black);
   }
 
-  .jellyfy-primary {
+  .primary {
     --jellyfy-solid: var(--jellyfy-primary);
   }
-  .jellyfy-secondary {
+  .secondary {
     --jellyfy-solid: var(--jellyfy-secondary);
   }
-  .jellyfy-tertiary {
+  .tertiary {
     --jellyfy-solid: var(--jellyfy-tertiary);
   }
-  .jellyfy-neutral {
+  .neutral {
     --jellyfy-solid: var(--jellyfy-neutral);
   }
-  .jellyfy-success {
+  .success {
     --jellyfy-solid: var(--jellyfy-success);
   }
-  .jellyfy-error {
+  .error {
     --jellyfy-solid: var(--jellyfy-error);
   }
-  .jellyfy-warning {
+  .warning {
     --jellyfy-solid: var(--jellyfy-warning);
   }
 
-  .jellyfy-button,
-  .jellyfy-icon-button,
-  .jellyfy-input,
-  .jellyfy-textarea,
-  .jellyfy-select,
-  .jellyfy-checkbox-box,
-  .jellyfy-radio-ring,
-  .jellyfy-switch-track,
-  .jellyfy-switch-thumb,
-  .jellyfy-slider-track,
-  .jellyfy-slider-fill,
-  .jellyfy-slider-handle,
-  .jellyfy-alert,
-  .jellyfy-badge,
-  .jellyfy-card,
-  .jellyfy-dialog-panel {
+  .btn,
+  .btn-square,
+  .input,
+  .textarea,
+  .select,
+  .checkbox-box,
+  .radio-ring,
+  .toggle-track,
+  .toggle-thumb,
+  .range-track,
+  .range-fill,
+  .range-thumb,
+  .alert,
+  .badge,
+  .card,
+  .modal-panel {
     background-image: none, var(--jellyfy-noise);
     background-size: auto, var(--jellyfy-noise-size);
   }

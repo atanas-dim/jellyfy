@@ -1,5 +1,5 @@
 const TextareaPreview = () => (
-  <label className="jellyfy-textarea">
+  <label className="textarea">
     <textarea placeholder=" " />
     <span>Note</span>
   </label>

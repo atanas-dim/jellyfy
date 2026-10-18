@@ -3,7 +3,7 @@
 const DialogPreview = () => (
   <>
     <button
-      className="jellyfy-button"
+      className="btn"
       type="button"
       onClick={() => {
         const dialog = document.getElementById("preview-dialog");
@@ -12,11 +12,11 @@ const DialogPreview = () => (
     >
       <span>Open dialog</span>
     </button>
-    <dialog id="preview-dialog" className="jellyfy-dialog">
-      <div className="jellyfy-dialog-panel">
+    <dialog id="preview-dialog" className="modal">
+      <div className="modal-panel">
         <form method="dialog">
           <button
-            className="jellyfy-surface-button"
+            className="btn-surface"
             type="submit"
             aria-label="Close"
           >

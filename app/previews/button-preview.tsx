@@ -1,5 +1,5 @@
 const ButtonPreview = () => (
-  <button className="jellyfy-button" type="button">
+  <button className="btn" type="button">
     <span>Primary</span>
   </button>
 );

@@ -81,7 +81,7 @@ The same idea for the rest of the set: `input`, `textarea`, `select`, `checkbox`
 
 `squish` opts any element into the press. It is already the public word. Cards do not get it unless someone adds it. One press still moves one element. On a Jellyfy control, that element is the face the control already uses, so the class does not start a second animation.
 
-Internal variables stay `--jellyfy-*`. Those are not what a developer types on an element. The code still has the prefix until that rename.
+Internal variables stay `--jellyfy-*`. Those are not what a developer types on an element. The public classes no longer use the prefix.
 
 Other names taken from jelly, and why they lose:
 
@@ -111,7 +111,7 @@ There are three sizes. The current regular size is the default. It has no extra 
 2. Drop `jellyfy-` from the public classes. Do this before the sizes, so the new names are only written once.
 3. Add the three sizes. First, `/design-system` states the visual rules: radii, inset thickness, the press, focus, color, the public knobs, and the three sizes. That page is served only when `NODE_ENV` is `development`. Any other environment calls `notFound()`. Then add `btn-sm` and `btn-lg`, and the same pair on the other controls, beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step. The regular size stays as it is.
 4. Rebuild `/set` as a responsive grid, not a narrow column. Every component is on the page at once, with its colors and states, including the three sizes. This is the display. It does not explain how to use the classes.
-5. Write the docs pages on this site, at `/docs`. That is the classic guide, separate from the display. It shows the class on the element, the three sizes, the single `startJellyfy()` call, the Tailwind install, and which file to import. It also shows how to replace the select mark: keep the `jellyfy-chevron` class on your own SVG. The default mark is the rounded chevron. This is a usage guide, not an API. The only variables it teaches people to set are the public ones below.
+5. Write the docs pages on this site, at `/docs`. That is the classic guide, separate from the display. It shows the class on the element, the three sizes, the single `startJellyfy()` call, the Tailwind install, and which file to import. It also shows how to replace the select mark: keep the `chevron` class on your own SVG. The default mark is the rounded chevron. This is a usage guide, not an API. The only variables it teaches people to set are the public ones below.
 6. Give the site a real header and footer once those pages exist. The header links to the set and the docs. The footer has a short line about Jellyfy and the copyright. Class names in this site are built with `twJoin` and `twMerge`, not string templates. Use `twMerge` when Tailwind utilities can override each other. Use `twJoin` otherwise.
 7. Put the stylesheet and the script in `packages/jellyfy`, so they can be installed without this Next app. Do not set `0.1.0` yet, and do not publish.
 8. Prepare the marketing site for search engines and for agents that read pages. Each public page gets a title and a description. Add a sitemap, JSON-LD, and an llms file, and make the pages a crawler should find easy to reach.
@@ -168,8 +168,8 @@ These are the public variables. Everything else, including `--jellyfy-solid`, th
 
 `--spacing` is optional. Tailwind already sets it. Someone without Tailwind can set it to change the size scale. They do not have to.
 
-The select mark is part of the same guide. An empty element with the class `jellyfy-chevron` is the rounded chevron. An SVG with that same class replaces it. The landing page does that with Lucide. The set page keeps the default.
+The select mark is part of the same guide. An empty element with the class `chevron` is the rounded chevron. An SVG with that same class replaces it. The landing page does that with Lucide. The set page keeps the default.
 
 ## Select mark
 
-`.jellyfy-chevron` positions the mark and gives it the field color. The default element is an empty `<i>`, painted with the rounded chevron path. An SVG with the same class replaces that shape. The landing page select uses Lucide that way.
+`.chevron` positions the mark and gives it the field color. The default element is an empty `<i>`, painted with the rounded chevron path. An SVG with the same class replaces that shape. The landing page select uses Lucide that way.

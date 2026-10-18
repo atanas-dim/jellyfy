@@ -1,11 +1,11 @@
 const SelectPreview = () => (
-  <label className="jellyfy-select">
+  <label className="select">
     <select defaultValue="mint">
       <option value="mint">Mint</option>
       <option value="rose">Rose</option>
     </select>
     <span>Flavor</span>
-    <i className="jellyfy-chevron" />
+    <i className="chevron" />
   </label>
 );
 

@@ -11,13 +11,13 @@ import { startJellyfy } from "@/components/foundation/jellyfy";
 import { COMPONENT_LIST } from "@/resources/components-registry";
 
 const TONES = [
-  { id: "jellyfy-primary", label: "Primary" },
-  { id: "jellyfy-secondary", label: "Secondary" },
-  { id: "jellyfy-tertiary", label: "Tertiary" },
-  { id: "jellyfy-neutral", label: "Neutral" },
-  { id: "jellyfy-success", label: "Success" },
-  { id: "jellyfy-error", label: "Error" },
-  { id: "jellyfy-warning", label: "Warning" },
+  { id: "primary", label: "Primary" },
+  { id: "secondary", label: "Secondary" },
+  { id: "tertiary", label: "Tertiary" },
+  { id: "neutral", label: "Neutral" },
+  { id: "success", label: "Success" },
+  { id: "error", label: "Error" },
+  { id: "warning", label: "Warning" },
 ] as const;
 
 type Tone = (typeof TONES)[number]["id"];
@@ -30,7 +30,7 @@ const openNote = () => {
 export const Landing = () => {
   const page = useRef<HTMLElement>(null);
   const tilt = useRef<HTMLDivElement>(null);
-  const [tone, setTone] = useState<Tone>("jellyfy-primary");
+  const [tone, setTone] = useState<Tone>("primary");
   const toneLabel = TONES.find((item) => item.id === tone)?.label ?? "Primary";
 
   useLayoutEffect(() => {
@@ -177,7 +177,7 @@ export const Landing = () => {
           <p className="font-display text-lg font-semibold tracking-tight">
             Jellyfy
           </p>
-          <Link href="/set" className="jellyfy-button">
+          <Link href="/set" className="btn">
             <span>The set</span>
           </Link>
         </div>
@@ -237,7 +237,7 @@ export const Landing = () => {
                     key={item.id}
                     type="button"
                     className={twJoin(
-                      "jellyfy-icon-button outline-2 outline-offset-2 transition-all duration-400",
+                      "btn-square outline-2 outline-offset-2 transition-all duration-400",
                       item.id,
                       tone === item.id
                         ? "outline-neutral-950"
@@ -258,12 +258,12 @@ export const Landing = () => {
               data-hero-item
               className="mt-8 flex flex-wrap items-center gap-3"
             >
-              <Link href="/set" className="jellyfy-button">
+              <Link href="/set" className="btn">
                 <span>Open the set</span>
               </Link>
               <button
                 type="button"
-                className="jellyfy-button jellyfy-secondary"
+                className="btn secondary"
                 onClick={openNote}
               >
                 <span>Open a note</span>
@@ -277,7 +277,7 @@ export const Landing = () => {
                 <div
                   data-float
                   className={twJoin(
-                    "jellyfy-alert mb-4 lg:absolute lg:-top-10 lg:-left-8 lg:mb-0 lg:w-60",
+                    "alert mb-4 lg:absolute lg:-top-10 lg:-left-8 lg:mb-0 lg:w-60",
                     tone,
                   )}
                 >
@@ -289,22 +289,22 @@ export const Landing = () => {
                   </div>
                 </div>
 
-                <section className="jellyfy-card relative flex flex-col gap-4 lg:ml-8">
+                <section className="card relative flex flex-col gap-4 lg:ml-8">
                   <div className="flex items-center justify-between gap-3">
                     <h2 className="text-lg font-semibold tracking-tight">
                       Studio note
                     </h2>
-                    <span className={twJoin("jellyfy-badge", tone)}>
+                    <span className={twJoin("badge", tone)}>
                       {toneLabel}
                     </span>
                   </div>
 
-                  <label className={twJoin("jellyfy-input", tone)}>
+                  <label className={twJoin("input", tone)}>
                     <input placeholder=" " defaultValue="studio@jellyfy.dev" />
                     <span>Email</span>
                   </label>
 
-                  <label className={twJoin("jellyfy-select", tone)}>
+                  <label className={twJoin("select", tone)}>
                     <select defaultValue="rose">
                       <option value="mint">Mint</option>
                       <option value="rose">Rose</option>
@@ -312,33 +312,33 @@ export const Landing = () => {
                     </select>
                     <span>Flavor</span>
                     <ChevronDownIcon
-                      className="jellyfy-chevron"
+                      className="chevron"
                       aria-hidden="true"
                     />
                   </label>
 
                   <div className="flex flex-wrap items-center justify-between gap-4">
-                    <label className={twJoin("jellyfy-switch", tone)}>
+                    <label className={twJoin("toggle", tone)}>
                       <input type="checkbox" role="switch" defaultChecked />
-                      <span className="jellyfy-switch-track">
-                        <span className="jellyfy-switch-thumb" />
+                      <span className="toggle-track">
+                        <span className="toggle-thumb" />
                       </span>
                       Soft press
                     </label>
-                    <label className={twJoin("jellyfy-checkbox", tone)}>
+                    <label className={twJoin("checkbox", tone)}>
                       <input type="checkbox" defaultChecked />
-                      <span className="jellyfy-checkbox-box" />
+                      <span className="checkbox-box" />
                       Remember
                     </label>
                   </div>
 
-                  <label className={twJoin("jellyfy-slider", tone)}>
+                  <label className={twJoin("range", tone)}>
                     Pressure
-                    <span className="jellyfy-slider-box">
-                      <span className="jellyfy-slider-track">
-                        <span className="jellyfy-slider-fill" />
+                    <span className="range-box">
+                      <span className="range-track">
+                        <span className="range-fill" />
                       </span>
-                      <span className="jellyfy-slider-handle" />
+                      <span className="range-thumb" />
                       <input type="range" defaultValue={64} />
                     </span>
                   </label>
@@ -346,13 +346,13 @@ export const Landing = () => {
                   <div className="flex flex-wrap items-center gap-3">
                     <button
                       type="button"
-                      className={twJoin("jellyfy-button", tone)}
+                      className={twJoin("btn", tone)}
                     >
                       <span>Send</span>
                     </button>
                     <button
                       type="button"
-                      className="jellyfy-button jellyfy-secondary jellyfy-loading"
+                      className="btn secondary loading"
                     >
                       <span>Saving</span>
                     </button>
@@ -365,7 +365,7 @@ export const Landing = () => {
                 >
                   <button
                     type="button"
-                    className={twJoin("jellyfy-icon-button", tone)}
+                    className={twJoin("btn-square", tone)}
                     aria-label="Add"
                   >
                     <svg
@@ -380,7 +380,7 @@ export const Landing = () => {
                   </button>
                   <button
                     type="button"
-                    className="jellyfy-icon-button jellyfy-neutral"
+                    className="btn-square neutral"
                     aria-label="More"
                   >
                     <svg
@@ -421,7 +421,7 @@ export const Landing = () => {
                     key={`${copy}-${item.id}`}
                     type="button"
                     tabIndex={copy === 1 ? -1 : undefined}
-                    className={twJoin("jellyfy-button", item.id)}
+                    className={twJoin("btn", item.id)}
                   >
                     <span>{item.label}</span>
                   </button>
@@ -443,7 +443,7 @@ export const Landing = () => {
         </div>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-3">
-          <article data-rise className="jellyfy-card flex flex-col gap-4">
+          <article data-rise className="card flex flex-col gap-4">
             <h3 className="text-xl font-semibold tracking-tight">
               Your button
             </h3>
@@ -451,15 +451,15 @@ export const Landing = () => {
               Keep the element. Add the class. It comes back with a soft face
               and a press.
             </p>
-            <button type="button" className="jellyfy-button jellyfy-primary">
+            <button type="button" className="btn primary">
               <span>Launch</span>
             </button>
             <p className="font-mono text-xs leading-5 text-neutral-500">
-              class=&quot;jellyfy-button&quot;
+              class=&quot;btn&quot;
             </p>
           </article>
 
-          <article data-rise className="jellyfy-card flex flex-col gap-4">
+          <article data-rise className="card flex flex-col gap-4">
             <h3 className="text-xl font-semibold tracking-tight">
               Your colors
             </h3>
@@ -467,7 +467,7 @@ export const Landing = () => {
               Name seven colors once. Buttons, fields, and badges in that color
               stay in the same material.
             </p>
-            <label className="jellyfy-input jellyfy-success">
+            <label className="input success">
               <input placeholder=" " defaultValue="Ready" />
               <span>Status</span>
             </label>
@@ -476,7 +476,7 @@ export const Landing = () => {
             </p>
           </article>
 
-          <article data-rise className="jellyfy-card flex flex-col gap-4">
+          <article data-rise className="card flex flex-col gap-4">
             <h3 className="text-xl font-semibold tracking-tight">
               Your utilities
             </h3>
@@ -486,12 +486,12 @@ export const Landing = () => {
             </p>
             <button
               type="button"
-              className="jellyfy-button jellyfy-tertiary w-full"
+              className="btn tertiary w-full"
             >
               <span>Continue</span>
             </button>
             <p className="font-mono text-xs leading-5 text-neutral-500">
-              jellyfy-button w-full
+              btn w-full
             </p>
           </article>
         </div>
@@ -517,7 +517,7 @@ export const Landing = () => {
             <Link
               key={component.slug}
               href={`/set#${component.slug}`}
-              className="jellyfy-card squish block transition-transform duration-200 hover:-translate-y-0.5"
+              className="card squish block transition-transform duration-200 hover:-translate-y-0.5"
             >
               <h3 className="text-xl font-semibold tracking-tight">
                 {component.name}
@@ -539,11 +539,11 @@ export const Landing = () => {
         </div>
       </footer>
 
-      <dialog id="landing-note" className="jellyfy-dialog">
-        <div className={twJoin("jellyfy-dialog-panel", tone)}>
+      <dialog id="landing-note" className="modal">
+        <div className={twJoin("modal-panel", tone)}>
           <form method="dialog">
             <button
-              className="jellyfy-surface-button"
+              className="btn-surface"
               type="submit"
               aria-label="Close"
             >
@@ -555,14 +555,14 @@ export const Landing = () => {
             Keep this note, or send it on.
           </p>
           <div className="mt-4 flex flex-col gap-2">
-            <label className={twJoin("jellyfy-radio", tone)}>
+            <label className={twJoin("radio", tone)}>
               <input type="radio" name="landing-delivery" defaultChecked />
-              <span className="jellyfy-radio-ring" />
+              <span className="radio-ring" />
               Soft
             </label>
-            <label className={twJoin("jellyfy-radio", tone)}>
+            <label className={twJoin("radio", tone)}>
               <input type="radio" name="landing-delivery" />
-              <span className="jellyfy-radio-ring" />
+              <span className="radio-ring" />
               Firm
             </label>
           </div>

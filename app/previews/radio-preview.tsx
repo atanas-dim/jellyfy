@@ -1,7 +1,7 @@
 const RadioPreview = () => (
-  <label className="jellyfy-radio">
+  <label className="radio">
     <input type="radio" name="delivery" defaultChecked />
-    <span className="jellyfy-radio-ring" />
+    <span className="radio-ring" />
     Standard
   </label>
 );

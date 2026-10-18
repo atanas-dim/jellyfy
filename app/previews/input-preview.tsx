@@ -1,5 +1,5 @@
 const InputPreview = () => (
-  <label className="jellyfy-input">
+  <label className="input">
     <input placeholder=" " />
     <span>Full name</span>
   </label>

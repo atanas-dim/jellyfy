@@ -1,8 +1,8 @@
 const SwitchPreview = () => (
-  <label className="jellyfy-switch">
+  <label className="toggle">
     <input type="checkbox" role="switch" defaultChecked />
-    <span className="jellyfy-switch-track">
-      <span className="jellyfy-switch-thumb" />
+    <span className="toggle-track">
+      <span className="toggle-thumb" />
     </span>
     Notifications
   </label>

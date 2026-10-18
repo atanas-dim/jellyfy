@@ -4,23 +4,23 @@ import type { ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
 const COLORS = [
-  "jellyfy-primary",
-  "jellyfy-secondary",
-  "jellyfy-tertiary",
-  "jellyfy-neutral",
-  "jellyfy-success",
-  "jellyfy-error",
-  "jellyfy-warning",
+  "primary",
+  "secondary",
+  "tertiary",
+  "neutral",
+  "success",
+  "error",
+  "warning",
 ] as const;
 
 const NAME: Record<(typeof COLORS)[number], string> = {
-  "jellyfy-primary": "Primary",
-  "jellyfy-secondary": "Secondary",
-  "jellyfy-tertiary": "Tertiary",
-  "jellyfy-neutral": "Neutral",
-  "jellyfy-success": "Success",
-  "jellyfy-error": "Error",
-  "jellyfy-warning": "Warning",
+  "primary": "Primary",
+  "secondary": "Secondary",
+  "tertiary": "Tertiary",
+  "neutral": "Neutral",
+  "success": "Success",
+  "error": "Error",
+  "warning": "Warning",
 };
 
 const Block = ({
@@ -52,19 +52,19 @@ export default function DevPage() {
         {COLORS.map((color) => (
           <button
             key={color}
-            className={twJoin("jellyfy-button", color)}
+            className={twJoin("btn", color)}
             type="button"
           >
             <span>{NAME[color]}</span>
           </button>
         ))}
         <button
-          className="jellyfy-button jellyfy-primary jellyfy-loading"
+          className="btn primary loading"
           type="button"
         >
           <span>Loading</span>
         </button>
-        <button className="jellyfy-button" type="button" disabled>
+        <button className="btn" type="button" disabled>
           <span>Disabled</span>
         </button>
       </Block>
@@ -74,7 +74,7 @@ export default function DevPage() {
           {COLORS.map((color) => (
             <button
               key={color}
-              className={twJoin("jellyfy-icon-button", color)}
+              className={twJoin("btn-square", color)}
               type="button"
               aria-label={NAME[color]}
             >
@@ -90,7 +90,7 @@ export default function DevPage() {
             </button>
           ))}
           <button
-            className="jellyfy-icon-button jellyfy-secondary jellyfy-loading"
+            className="btn-square secondary loading"
             type="button"
             aria-label="Loading"
           >
@@ -109,10 +109,10 @@ export default function DevPage() {
 
       <Block id="input" title="Input">
         {COLORS.map((color) => (
-          <label key={color} className={twJoin("jellyfy-input", color)}>
+          <label key={color} className={twJoin("input", color)}>
             <input
               placeholder=" "
-              defaultValue={color === "jellyfy-neutral" ? "" : NAME[color]}
+              defaultValue={color === "neutral" ? "" : NAME[color]}
             />
             <span>{NAME[color]}</span>
           </label>
@@ -121,10 +121,10 @@ export default function DevPage() {
 
       <Block id="textarea" title="Textarea">
         {COLORS.map((color) => (
-          <label key={color} className={twJoin("jellyfy-textarea", color)}>
+          <label key={color} className={twJoin("textarea", color)}>
             <textarea
               placeholder=" "
-              defaultValue={color === "jellyfy-neutral" ? "" : NAME[color]}
+              defaultValue={color === "neutral" ? "" : NAME[color]}
             />
             <span>Note</span>
           </label>
@@ -133,45 +133,45 @@ export default function DevPage() {
 
       <Block id="select" title="Select">
         {COLORS.map((color) => (
-          <label key={color} className={twJoin("jellyfy-select", color)}>
+          <label key={color} className={twJoin("select", color)}>
             <select defaultValue="rose">
               <option value="mint">Mint</option>
               <option value="rose">Rose</option>
             </select>
             <span>{NAME[color]}</span>
-            <i className="jellyfy-chevron" />
+            <i className="chevron" />
           </label>
         ))}
       </Block>
 
       <Block id="checkbox" title="Checkbox">
         {COLORS.map((color) => (
-          <label key={color} className={twJoin("jellyfy-checkbox", color)}>
+          <label key={color} className={twJoin("checkbox", color)}>
             <input type="checkbox" defaultChecked />
-            <span className="jellyfy-checkbox-box" />
+            <span className="checkbox-box" />
             {NAME[color]}
           </label>
         ))}
-        <label className="jellyfy-checkbox">
+        <label className="checkbox">
           <input type="checkbox" />
-          <span className="jellyfy-checkbox-box" />
+          <span className="checkbox-box" />
           Unchecked
         </label>
-        <p className="jellyfy-message">Required</p>
+        <p className="message">Required</p>
       </Block>
 
       <Block id="radio" title="Radio">
         {COLORS.map((color) => (
           <fieldset key={color} className="flex flex-col gap-2">
             <legend className="text-sm font-medium">{NAME[color]}</legend>
-            <label className={twJoin("jellyfy-radio", color)}>
+            <label className={twJoin("radio", color)}>
               <input type="radio" name={color} defaultChecked />
-              <span className="jellyfy-radio-ring" />
+              <span className="radio-ring" />
               One
             </label>
-            <label className={twJoin("jellyfy-radio", color)}>
+            <label className={twJoin("radio", color)}>
               <input type="radio" name={color} />
-              <span className="jellyfy-radio-ring" />
+              <span className="radio-ring" />
               Two
             </label>
           </fieldset>
@@ -180,18 +180,18 @@ export default function DevPage() {
 
       <Block id="switch" title="Switch">
         {COLORS.map((color) => (
-          <label key={color} className={twJoin("jellyfy-switch", color)}>
+          <label key={color} className={twJoin("toggle", color)}>
             <input type="checkbox" role="switch" defaultChecked />
-            <span className="jellyfy-switch-track">
-              <span className="jellyfy-switch-thumb" />
+            <span className="toggle-track">
+              <span className="toggle-thumb" />
             </span>
             {NAME[color]}
           </label>
         ))}
-        <label className="jellyfy-switch">
+        <label className="toggle">
           <input type="checkbox" role="switch" />
-          <span className="jellyfy-switch-track">
-            <span className="jellyfy-switch-thumb" />
+          <span className="toggle-track">
+            <span className="toggle-thumb" />
           </span>
           Off
         </label>
@@ -199,13 +199,13 @@ export default function DevPage() {
 
       <Block id="slider" title="Slider">
         {COLORS.map((color) => (
-          <label key={color} className={twJoin("jellyfy-slider", color)}>
+          <label key={color} className={twJoin("range", color)}>
             {NAME[color]}
-            <span className="jellyfy-slider-box">
-              <span className="jellyfy-slider-track">
-                <span className="jellyfy-slider-fill" />
+            <span className="range-box">
+              <span className="range-track">
+                <span className="range-fill" />
               </span>
-              <span className="jellyfy-slider-handle" />
+              <span className="range-thumb" />
               <input type="range" defaultValue={62} />
             </span>
           </label>
@@ -214,7 +214,7 @@ export default function DevPage() {
 
       <Block id="alert" title="Alert">
         {COLORS.map((color) => (
-          <div key={color} className={twJoin("jellyfy-alert", color)}>
+          <div key={color} className={twJoin("alert", color)}>
             <div>
               <p className="text-sm font-semibold">{NAME[color]}</p>
               <p className="mt-1 text-sm leading-6">
@@ -228,7 +228,7 @@ export default function DevPage() {
       <Block id="badge" title="Badge">
         <div className="flex flex-wrap gap-2">
           {COLORS.map((color) => (
-            <span key={color} className={twJoin("jellyfy-badge", color)}>
+            <span key={color} className={twJoin("badge", color)}>
               {NAME[color]}
             </span>
           ))}
@@ -236,12 +236,12 @@ export default function DevPage() {
       </Block>
 
       <Block id="card" title="Card">
-        <section className="jellyfy-card">
+        <section className="card">
           <h3 className="text-base font-semibold">Plain</h3>
           <p className="mt-2 text-sm leading-6">A white jelly panel.</p>
         </section>
         {COLORS.map((color) => (
-          <section key={color} className={twJoin("jellyfy-card", color)}>
+          <section key={color} className={twJoin("card", color)}>
             <h3 className="text-base font-semibold">{NAME[color]}</h3>
             <p className="mt-2 text-sm leading-6">Tinted like the alert.</p>
           </section>
@@ -250,24 +250,24 @@ export default function DevPage() {
 
       <Block id="dialog" title="Dialog">
         <button
-          className="jellyfy-button"
+          className="btn"
           type="button"
           onClick={() => openDialog("plain-dialog")}
         >
           <span>Open dialog</span>
         </button>
         <button
-          className="jellyfy-button jellyfy-tertiary"
+          className="btn tertiary"
           type="button"
           onClick={() => openDialog("tinted-dialog")}
         >
           <span>Open tinted</span>
         </button>
-        <dialog id="plain-dialog" className="jellyfy-dialog">
-          <div className="jellyfy-dialog-panel">
+        <dialog id="plain-dialog" className="modal">
+          <div className="modal-panel">
             <form method="dialog">
               <button
-                className="jellyfy-surface-button"
+                className="btn-surface"
                 type="submit"
                 aria-label="Close"
               >
@@ -280,11 +280,11 @@ export default function DevPage() {
             </p>
           </div>
         </dialog>
-        <dialog id="tinted-dialog" className="jellyfy-dialog">
-          <div className="jellyfy-dialog-panel jellyfy-tertiary">
+        <dialog id="tinted-dialog" className="modal">
+          <div className="modal-panel tertiary">
             <form method="dialog">
               <button
-                className="jellyfy-surface-button"
+                className="btn-surface"
                 type="submit"
                 aria-label="Close"
               >

@@ -1,3 +1,3 @@
-const BadgePreview = () => <span className="jellyfy-badge">Ready</span>;
+const BadgePreview = () => <span className="badge">Ready</span>;
 
 export default BadgePreview;

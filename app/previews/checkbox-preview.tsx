@@ -1,7 +1,7 @@
 const CheckboxPreview = () => (
-  <label className="jellyfy-checkbox">
+  <label className="checkbox">
     <input type="checkbox" defaultChecked />
-    <span className="jellyfy-checkbox-box" />
+    <span className="checkbox-box" />
     Remember this device
   </label>
 );
