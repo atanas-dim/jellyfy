@@ -55,7 +55,7 @@ export const Switch: FC<SwitchProps> = ({
         {label}
       </span>
       {message ? (
-        <span className="text-error-foreground text-xs">{message}</span>
+        <span className="text-error-text text-xs">{message}</span>
       ) : null}
     </label>
   );

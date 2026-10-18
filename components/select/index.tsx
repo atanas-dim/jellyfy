@@ -166,7 +166,7 @@ export const Select: FC<SelectProps> = ({
             )
           : null}
         {message ? (
-          <p className="text-error-foreground mt-1.5 text-xs">{message}</p>
+          <p className="text-error-text mt-1.5 text-xs">{message}</p>
         ) : null}
       </div>
     </SelectContext>

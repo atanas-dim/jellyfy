@@ -58,7 +58,7 @@ export const Radio: FC<RadioProps> = ({
         </legend>
         <div className="flex flex-col gap-2">{children}</div>
         {message ? (
-          <p className="text-error-foreground text-xs">{message}</p>
+          <p className="text-error-text text-xs">{message}</p>
         ) : null}
       </fieldset>
     </RadioContext>

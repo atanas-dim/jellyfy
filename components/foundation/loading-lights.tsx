@@ -5,9 +5,9 @@ import type { FC } from "react";
 import { twJoin } from "tailwind-merge";
 
 const LIGHTS = [
-  { delay: 0, duration: 1.35, className: "bg-white/70" },
-  { delay: 0.36, duration: 1.65, className: "bg-black/35" },
-  { delay: 0.78, duration: 1.5, className: "bg-white/70" },
+  { delay: 0, duration: 1.35, className: "bg-white/40" },
+  { delay: 0.36, duration: 1.65, className: "bg-black/40" },
+  { delay: 0.78, duration: 1.5, className: "bg-white/40" },
 ];
 
 type LoadingLightsProps = {
@@ -30,7 +30,7 @@ export const LoadingLights: FC<LoadingLightsProps> = ({ loading }) => {
             <span
               key={index}
               className={twJoin(
-                "jellyfy-sweep absolute block h-3/5 w-2/5 rounded-full blur-md",
+                "jellyfy-sweep absolute block h-2/5 w-3/10 rounded-full blur-md",
                 className,
               )}
               style={{

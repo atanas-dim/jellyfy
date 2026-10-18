@@ -15,7 +15,11 @@
     var(--color-indigo-50) 20%,
     transparent
   );
-  --secondary-shade: color-mix(in oklab, var(--color-indigo-900) 35%, transparent);
+  --secondary-shade: color-mix(
+    in oklab,
+    var(--color-indigo-900) 35%,
+    transparent
+  );
 
   --tertiary: color-mix(in oklab, var(--color-teal-600) 60%, transparent);
   --tertiary-foreground: var(--color-teal-50);
@@ -39,11 +43,7 @@
   --error: color-mix(in oklab, var(--color-red-600) 60%, transparent);
   --error-focus: color-mix(in oklab, var(--color-red-500) 60%, transparent);
   --error-foreground: var(--color-red-100);
-  --error-highlight: color-mix(
-    in oklab,
-    var(--color-red-100) 20%,
-    transparent
-  );
+  --error-highlight: color-mix(in oklab, var(--color-red-100) 20%, transparent);
   --error-shade: color-mix(in oklab, var(--color-red-900) 35%, transparent);
 
   --warning: color-mix(in oklab, var(--color-amber-600) 60%, transparent);
@@ -85,7 +85,11 @@
     var(--color-red-100) 70%,
     transparent
   );
-  --error-field-shade: color-mix(in oklab, var(--color-red-900) 10%, transparent);
+  --error-field-shade: color-mix(
+    in oklab,
+    var(--color-red-900) 10%,
+    transparent
+  );
 
   --warning-field: color-mix(in oklab, var(--color-amber-100) 60%, transparent);
   --warning-field-foreground: var(--color-amber-700);
@@ -158,8 +162,11 @@
   --color-success-foreground: var(--success-foreground);
   --color-error: var(--error);
   --color-error-foreground: var(--error-foreground);
+  --color-error-text: var(--color-red-700);
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
+  --color-warning-text: var(--color-amber-700);
+  --color-success-text: var(--color-green-700);
   --color-surface: var(--surface);
   --color-surface-foreground: var(--surface-foreground);
   --color-panel: var(--panel);
@@ -280,12 +287,72 @@
   --jellyfy-ring: var(--color-amber-400);
 }
 
+.jellyfy-soft.jellyfy-tone-primary {
+  background-color: color-mix(in oklab, var(--color-pink-100) 60%, transparent);
+  color: var(--color-pink-700);
+  --jellyfy-highlight: color-mix(in oklab, var(--color-pink-100) 70%, transparent);
+  --jellyfy-shade: color-mix(in oklab, var(--color-pink-900) 10%, transparent);
+}
+
+.jellyfy-soft.jellyfy-tone-secondary {
+  background-color: color-mix(in oklab, var(--color-indigo-100) 60%, transparent);
+  color: var(--color-indigo-700);
+  --jellyfy-highlight: color-mix(in oklab, var(--color-indigo-100) 70%, transparent);
+  --jellyfy-shade: color-mix(in oklab, var(--color-indigo-900) 10%, transparent);
+}
+
+.jellyfy-soft.jellyfy-tone-tertiary {
+  background-color: color-mix(in oklab, var(--color-teal-100) 60%, transparent);
+  color: var(--color-teal-800);
+  --jellyfy-highlight: color-mix(in oklab, var(--color-teal-100) 70%, transparent);
+  --jellyfy-shade: color-mix(in oklab, var(--color-teal-900) 10%, transparent);
+}
+
+.jellyfy-soft.jellyfy-tone-success {
+  background-color: var(--success-field);
+  color: var(--success-field-foreground);
+  --jellyfy-highlight: var(--success-field-highlight);
+  --jellyfy-shade: var(--success-field-shade);
+}
+
+.jellyfy-soft.jellyfy-tone-error {
+  background-color: var(--error-field);
+  color: var(--error-field-foreground);
+  --jellyfy-highlight: var(--error-field-highlight);
+  --jellyfy-shade: var(--error-field-shade);
+}
+
+.jellyfy-soft.jellyfy-tone-warning {
+  background-color: var(--warning-field);
+  color: var(--warning-field-foreground);
+  --jellyfy-highlight: var(--warning-field-highlight);
+  --jellyfy-shade: var(--warning-field-shade);
+}
+
+.jellyfy-soft.jellyfy-tone-neutral {
+  background-color: var(--surface);
+  color: var(--surface-foreground);
+  --jellyfy-highlight: var(--surface-highlight);
+  --jellyfy-shade: var(--surface-shade);
+}
+
 @keyframes jellyfy-sweep {
-  from {
-    transform: translate3d(-120%, -50%, 0);
+  0% {
+    transform: translate3d(-100%, -50%, 0);
+    opacity: 0;
   }
-  to {
-    transform: translate3d(280%, -50%, 0);
+  8% {
+    opacity: 0.55;
+  }
+  55% {
+    opacity: 0.3;
+  }
+  78% {
+    opacity: 0.42;
+  }
+  100% {
+    transform: translate3d(300%, -50%, 0);
+    opacity: 0;
   }
 }
 
