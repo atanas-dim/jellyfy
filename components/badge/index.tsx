@@ -9,7 +9,11 @@ type BadgeProps = {
   className?: string;
 };
 
-export const Badge: FC<BadgeProps> = ({ color = "primary", children, className }) => {
+export const Badge: FC<BadgeProps> = ({
+  color = "primary",
+  children,
+  className,
+}) => {
   return (
     <span
       className={twMerge(

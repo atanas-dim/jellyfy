@@ -39,7 +39,7 @@ export const Input: FC<InputProps> = ({
       className={twMerge(
         "jellyfy-field jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
         fieldFocusRing(),
-        "motion-safe:transition-all motion-safe:duration-300 ease-out",
+        "ease-out motion-safe:transition-all motion-safe:duration-300",
         disabled && "opacity-60",
         colorClass(color),
         className,
@@ -75,7 +75,11 @@ export const Input: FC<InputProps> = ({
         )}
 
         {label && (
-          <FloatLabel htmlFor={inputId} leading={Boolean(leading)} color={color}>
+          <FloatLabel
+            htmlFor={inputId}
+            leading={Boolean(leading)}
+            color={color}
+          >
             {label}
           </FloatLabel>
         )}

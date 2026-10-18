@@ -122,6 +122,7 @@ export const Select: FC<SelectProps> = ({
     <SelectContext
       value={{
         value: current,
+        color,
         register: (optionValue, optionLabel) => {
           setLabels((currentLabels) =>
             currentLabels[optionValue] === optionLabel

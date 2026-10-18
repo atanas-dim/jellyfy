@@ -4,9 +4,10 @@ import { XIcon } from "lucide-react";
 import type { FC, ReactNode } from "react";
 import { useRef, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
+import { twMerge } from "tailwind-merge";
 
 import { Button } from "../button";
-import { choiceStyle, type Color } from "../foundation/color";
+import { type Color, colorClass } from "../foundation/color";
 
 type DialogProps = {
   trigger: string;
@@ -39,8 +40,11 @@ export const Dialog: FC<DialogProps> = ({
       }}
     >
       <div
-        style={color ? choiceStyle(color) : undefined}
-        className="jellyfy-overlay noise w-[min(28rem,calc(100vw-2rem))] p-6 backdrop-blur-sm"
+        className={twMerge(
+          "jellyfy-overlay noise w-[min(28rem,calc(100vw-2rem))] p-6 backdrop-blur-sm",
+          color && "jellyfy-soft",
+          color && colorClass(color),
+        )}
       >
         <div className="flex items-start justify-between gap-4">
           <h2 className="text-lg font-semibold">{title}</h2>
@@ -54,9 +58,7 @@ export const Dialog: FC<DialogProps> = ({
           </button>
         </div>
         {description ? (
-          <p className="mt-2 text-sm leading-6 text-neutral-600">
-            {description}
-          </p>
+          <p className="mt-2 text-sm leading-6">{description}</p>
         ) : null}
         {children ? <div className="mt-4">{children}</div> : null}
       </div>

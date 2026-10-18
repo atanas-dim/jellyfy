@@ -291,21 +291,41 @@
 .jellyfy-soft.jellyfy-tone-primary {
   background-color: color-mix(in oklab, var(--color-pink-100) 60%, transparent);
   color: var(--color-pink-700);
-  --jellyfy-highlight: color-mix(in oklab, var(--color-pink-100) 70%, transparent);
+  --jellyfy-highlight: color-mix(
+    in oklab,
+    var(--color-pink-100) 70%,
+    transparent
+  );
   --jellyfy-shade: color-mix(in oklab, var(--color-pink-900) 10%, transparent);
 }
 
 .jellyfy-soft.jellyfy-tone-secondary {
-  background-color: color-mix(in oklab, var(--color-indigo-100) 60%, transparent);
+  background-color: color-mix(
+    in oklab,
+    var(--color-indigo-100) 60%,
+    transparent
+  );
   color: var(--color-indigo-700);
-  --jellyfy-highlight: color-mix(in oklab, var(--color-indigo-100) 70%, transparent);
-  --jellyfy-shade: color-mix(in oklab, var(--color-indigo-900) 10%, transparent);
+  --jellyfy-highlight: color-mix(
+    in oklab,
+    var(--color-indigo-100) 70%,
+    transparent
+  );
+  --jellyfy-shade: color-mix(
+    in oklab,
+    var(--color-indigo-900) 10%,
+    transparent
+  );
 }
 
 .jellyfy-soft.jellyfy-tone-tertiary {
   background-color: color-mix(in oklab, var(--color-teal-100) 60%, transparent);
   color: var(--color-teal-800);
-  --jellyfy-highlight: color-mix(in oklab, var(--color-teal-100) 70%, transparent);
+  --jellyfy-highlight: color-mix(
+    in oklab,
+    var(--color-teal-100) 70%,
+    transparent
+  );
   --jellyfy-shade: color-mix(in oklab, var(--color-teal-900) 10%, transparent);
 }
 
@@ -364,8 +384,86 @@
   animation-iteration-count: infinite;
 }
 
+@keyframes jellyfy-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.jellyfy-orbit {
+  animation-name: jellyfy-orbit;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.jellyfy-orbit-light {
+  animation-name: jellyfy-light-fade;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes jellyfy-light-fade {
+  0% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.55;
+  }
+  55% {
+    opacity: 0.3;
+  }
+  78% {
+    opacity: 0.42;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.jellyfy-option-selected {
+  background-color: color-mix(in oklab, var(--jellyfy-option) 28%, transparent);
+  color: var(--jellyfy-option-text);
+}
+
+.jellyfy-option-selected[data-color="primary"] {
+  --jellyfy-option: var(--color-pink-600);
+  --jellyfy-option-text: var(--color-pink-800);
+}
+
+.jellyfy-option-selected[data-color="secondary"] {
+  --jellyfy-option: var(--color-indigo-600);
+  --jellyfy-option-text: var(--color-indigo-800);
+}
+
+.jellyfy-option-selected[data-color="tertiary"] {
+  --jellyfy-option: var(--color-teal-600);
+  --jellyfy-option-text: var(--color-teal-800);
+}
+
+.jellyfy-option-selected[data-color="neutral"] {
+  --jellyfy-option: var(--color-neutral-500);
+  --jellyfy-option-text: var(--color-neutral-800);
+}
+
+.jellyfy-option-selected[data-color="success"] {
+  --jellyfy-option: var(--color-green-600);
+  --jellyfy-option-text: var(--color-green-800);
+}
+
+.jellyfy-option-selected[data-color="error"] {
+  --jellyfy-option: var(--color-red-600);
+  --jellyfy-option-text: var(--color-red-800);
+}
+
+.jellyfy-option-selected[data-color="warning"] {
+  --jellyfy-option: var(--color-amber-600);
+  --jellyfy-option-text: var(--color-amber-800);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .jellyfy-sweep {
+  .jellyfy-sweep,
+  .jellyfy-orbit,
+  .jellyfy-orbit-light {
     animation: none;
   }
 }
@@ -469,9 +567,9 @@
 .jellyfy-surface:focus-within,
 .jellyfy-surface[data-open] {
   box-shadow:
-    var(--focus-gap),
-    var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
-    var(--shadow-inset-surface-focus), var(--shadow-drop);
+    var(--focus-gap), var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--shadow-inset-surface-focus),
+    var(--shadow-drop);
 }
 
 .jellyfy-surface:has(:disabled) {
@@ -599,7 +697,8 @@ input:checked + .jellyfy-nub .jellyfy-radio-dot {
 
 .group:focus-within .jellyfy-handle {
   outline-color: var(--jellyfy-ring, var(--color-neutral-400));
-  box-shadow: var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop);
+  box-shadow:
+    var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop);
 }
 
 .jellyfy-range {

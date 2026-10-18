@@ -52,7 +52,7 @@ export const IconButton: FC<IconButtonProps> = ({
         className,
       )}
     >
-      <LoadingLights loading={loading && !isDisabled} />
+      <LoadingLights spin loading={loading && !isDisabled} />
       <span className="relative z-2">
         {loading && !isDisabled ? (
           <LoaderIcon className="size-4.5 motion-safe:animate-spin" />

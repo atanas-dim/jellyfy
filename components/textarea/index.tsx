@@ -68,8 +68,8 @@ export const Textarea: FC<TextareaProps> = ({
         <textarea
           id={inputId}
           className={twJoin(
-            "peer relative z-10 block min-h-28 w-full resize-y border-0 bg-transparent px-4 pt-6 pb-3 text-base text-current outline-none",
-            "placeholder:text-transparent placeholder-shown:pt-5 placeholder-shown:pb-3",
+            "peer relative z-10 block min-h-28 w-full resize-y border-0 bg-transparent px-4 pt-5.5 pb-3 text-base text-current outline-none",
+            "placeholder:text-transparent placeholder-shown:pt-4 placeholder-shown:pb-3",
             "disabled:cursor-not-allowed",
             leading && "pl-10",
           )}
