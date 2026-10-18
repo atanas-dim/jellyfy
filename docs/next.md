@@ -95,9 +95,9 @@ The cost of Jellyfy is the double y. People will type jellyfish or jellify. That
 
 ## Version and a trial install
 
-Versions follow semantic versioning, starting at `0.1.0`. The public contract is the class names, the seven color variables, and `startJellyfy()`. A break in any of those is a major version after `1.0.0`. Before that, `0.x` may break. One package does not need a release tool.
+Versions follow semantic versioning. `0.1.0` is the first public version, and it is not used until a local install has been tried and confirmed. The public contract is the class names, the seven color variables, and `startJellyfy()`. A break in any of those is a major version after `1.0.0`. Before that, `0.x` may break. One package does not need a release tool.
 
-Do not publish to npm until the packed folder has been installed, as a tarball or a `file:` dependency, into apps that are not this Next demo. Use a plain HTML page, a Vue app, and a Vite React app. Remix is optional, because it is still React. In each one, confirm three things: the classes paint with no Tailwind, a Tailwind utility such as `px-4` changes only that property, and `startJellyfy()` is called once.
+Nothing is published to npm until that confirmation. A local trial does not need a release. Pack the library folder into a tarball, or point a test app at it with a `file:` dependency. Use a plain HTML page, a Vue app, and a Vite React app. Remix is optional, because it is still React. In each one, confirm three things: the classes paint with no Tailwind, a Tailwind utility such as `px-4` changes only that property, and `startJellyfy()` is called once. Set `0.1.0` and publish only after that trial looks right.
 
 ## Sizes
 
@@ -108,9 +108,9 @@ There are three sizes. The current regular size is the default. It has no extra 
 1. Add the aliases above once, and point the material at the `--jellyfy-*` names. Do not assign Tailwind's `--color-neutral-*` names.
 2. Drop `jellyfy-` from the public classes. Do this before the sizes, so the new names are only written once.
 3. Add `btn-sm` and `btn-lg`, and the same pair on the other controls, beside the current default. Use `var(--spacing, 0.25rem)` at each step. Pick steps that already exist, including half steps such as 1.5 and 2.5. Skip measurements that are not a step.
-4. Decide the package shape, then write the docs pages in this site. The guide shows the class on the element, the seven colors, all three sizes, and the single `startJellyfy()` call. It shows the Tailwind install and the optional `:root` overrides. It also shows the install itself: what file to import, and from where. This is a usage guide, not an API.
-5. Package the stylesheet and the script so someone can use them without this Next app. Version it `0.1.0`.
-6. Install that package into a plain HTML page, a Vue app, and a Vite React app. Publish to npm only after those three pass.
+4. Write the docs pages on this site, at `/docs`. The guide shows the class on the element, the three sizes, the single `startJellyfy()` call, the Tailwind install, and which file to import. It also shows how to replace the select mark: keep the `jellyfy-chevron` class on your own SVG. The default mark is the rounded chevron. This is a usage guide, not an API. The only variables it teaches people to set are the public ones below.
+5. Put the stylesheet and the script in `packages/jellyfy`, so they can be installed without this Next app. Do not set `0.1.0` yet, and do not publish.
+6. Install that folder into a plain HTML page, a Vue app, and a Vite React app. Set `0.1.0` and publish to npm only after that trial is confirmed.
 
 ## Package shape
 
@@ -118,15 +118,19 @@ What a person installs should not be this Next app. Today the library is three f
 
 That mix is fine while building. It is a poor install. A user should import one stylesheet and one script, not a path through `components/foundation`.
 
-Proposed shape, when we package:
+Do not name that folder `package`. The usual place is `packages/jellyfy`, with its own `package.json`. The Next app stays at the repo root and is the website: the landing, the set, and `/docs`. It is not what gets published.
 
 ```
-jellyfy.css
-jellyfy.js
-plugin.js
+packages/jellyfy/
+  package.json
+  jellyfy.css
+  jellyfy.js
+  plugin.js
 ```
 
-Those three sit at the root of the published package. This repo can keep the Next app as the website: the landing, the set, and a docs section at `/docs`. The guide pages are part of that site, not a second folder of markdown that nobody renders. Move the library files to the package root, or to `src`, only when the package step starts. Do not rename them in the middle of the size work.
+`pnpm pack` inside that folder builds a tarball without uploading it. A test app installs the tarball, or `"jellyfy": "file:../packages/jellyfy"`. Publishing is a later command, `npm publish`, run only after the trial is confirmed, and that is when the version becomes `0.1.0`.
+
+Move the library files there only when the package step starts. Do not rename them in the middle of the size work.
 
 The Chrome select picker is styled where `appearance: base-select` exists. Other browsers keep the system menu. That is intentional.
 
@@ -134,6 +138,32 @@ The Chrome select picker is styled where `appearance: base-select` exists. Other
 
 Dark theme comes after the sizes. A press on cards stays out. The orbit light uses the same full turn as Tailwind's spin; the sweep does not. Leave the orbit unless we choose to switch it.
 
+## What a developer can customize
+
+These are the public variables. Everything else, including `--jellyfy-solid`, the derived surfaces, and the shadow tokens, stays internal.
+
+```css
+:root {
+  --color-primary: #4f46e5;
+  --color-secondary: #db2777;
+  --color-tertiary: #0d9488;
+  --color-neutral: #a3a3a3;
+  --color-success: #16a34a;
+  --color-error: #dc2626;
+  --color-warning: #d97706;
+
+  --radius-control: 999px;
+  --radius-surface: 1rem;
+  --jellyfy-noise-size: 360px;
+
+  --spacing: 0.25rem;
+}
+```
+
+`--spacing` is optional. Tailwind already sets it. Someone without Tailwind can set it to change the size scale. They do not have to.
+
+The select mark is part of the same guide. An empty element with the class `jellyfy-chevron` is the rounded chevron. An SVG with that same class replaces it. The landing page does that with Lucide. The set page keeps the default.
+
 ## Select mark
 
-`.jellyfy-chevron` is the positioned mark. An empty `<i class="jellyfy-chevron">` is drawn with two borders. Replacing that element with an SVG, and keeping the class, uses the icon instead. The landing page select uses Lucide's chevron that way. The set page still uses the drawn default.
+`.jellyfy-chevron` positions the mark and gives it the field color. The default element is an empty `<i>`, painted with the rounded chevron path. An SVG with the same class replaces that shape. The landing page select uses Lucide that way.

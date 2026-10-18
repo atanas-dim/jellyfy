@@ -125,11 +125,11 @@ export const Landing = () => {
       const plate = tilt.current;
       if (stage && plate && window.matchMedia("(pointer: fine)").matches) {
         const xTo = gsap.quickTo(plate, "x", {
-          duration: 1.2,
+          duration: 2,
           ease: "power3.out",
         });
         const yTo = gsap.quickTo(plate, "y", {
-          duration: 1.2,
+          duration: 2,
           ease: "power3.out",
         });
         const onMove = (event: PointerEvent) => {
