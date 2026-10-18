@@ -55,7 +55,7 @@ export const SelectTrigger: FC<SelectTriggerProps> = ({
         }
       }}
       className={twMerge(
-        "jellyfy-surface noise flex h-14 w-full items-center justify-between px-4 text-left backdrop-blur-sm",
+        "jellyfy-field jellyfy-surface noise flex h-14 w-full items-center justify-between px-4 text-left backdrop-blur-sm",
         "cursor-pointer disabled:cursor-not-allowed disabled:opacity-60",
         fieldFocusRing(),
         colorClass(color),

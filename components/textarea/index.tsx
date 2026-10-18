@@ -50,7 +50,7 @@ export const Textarea: FC<TextareaProps> = ({
         playPress(event.currentTarget, "horizontal");
       }}
       className={twMerge(
-        "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
+        "jellyfy-field jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
         fieldFocusRing(),
         "ease-out motion-safe:transition-all motion-safe:duration-300",
         disabled && "opacity-60",

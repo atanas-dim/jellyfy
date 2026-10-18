@@ -10,7 +10,8 @@ import {
 import { type FC, type PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { type Color, colorClass, fieldFocusRing } from "../foundation/color";
+import { type Color, colorClass } from "../foundation/color";
+import { LoadingLights } from "../foundation/loading-lights";
 import { usePress } from "../foundation/press";
 
 type ButtonProps = PropsWithChildren<HTMLMotionProps<"button">> & {
@@ -54,15 +55,15 @@ export const Button: FC<ButtonProps> = ({
         rest.onFocus?.(event);
       }}
       className={twMerge(
-        "jellyfy-raised noise group inline-flex h-12 min-w-40 items-center justify-center px-6 backdrop-blur-sm select-none",
-        "transition-[box-shadow,background-color,outline-color] duration-300 ease-out",
-        fieldFocusRing(),
+        "jellyfy-raised noise group inline-flex h-12 min-w-40 items-center justify-center overflow-hidden px-6 backdrop-blur-sm select-none",
+        "transition-[box-shadow,background-color] duration-300 ease-out",
         "cursor-pointer disabled:cursor-not-allowed",
         "disabled:translate-y-0 disabled:scale-100 disabled:hover:translate-y-0 disabled:hover:scale-100 disabled:active:translate-y-0 disabled:active:scale-100",
         colorClass(color),
         className,
       )}
     >
+      <LoadingLights loading={loading && !isDisabled} />
       {animateLabel && !isDisabled ? (
         <AnimatePresence mode="wait" initial={false}>
           <motion.span

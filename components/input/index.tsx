@@ -37,7 +37,7 @@ export const Input: FC<InputProps> = ({
       onPointerDown={(event) => press.play(event.currentTarget)}
       onFocus={(event) => press.play(event.currentTarget)}
       className={twMerge(
-        "jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
+        "jellyfy-field jellyfy-surface noise w-full overflow-hidden backdrop-blur-sm",
         fieldFocusRing(),
         "motion-safe:transition-all motion-safe:duration-300 ease-out",
         disabled && "opacity-60",

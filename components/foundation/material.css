@@ -55,6 +55,51 @@
   );
   --warning-shade: color-mix(in oklab, var(--color-amber-900) 35%, transparent);
 
+  --success-field: color-mix(in oklab, var(--color-green-100) 60%, transparent);
+  --success-field-focus: color-mix(
+    in oklab,
+    var(--color-green-200) 60%,
+    transparent
+  );
+  --success-field-foreground: var(--color-green-700);
+  --success-field-highlight: color-mix(
+    in oklab,
+    var(--color-green-100) 70%,
+    transparent
+  );
+  --success-field-shade: color-mix(
+    in oklab,
+    var(--color-green-900) 10%,
+    transparent
+  );
+
+  --error-field: color-mix(in oklab, var(--color-red-100) 60%, transparent);
+  --error-field-focus: color-mix(
+    in oklab,
+    var(--color-red-200) 60%,
+    transparent
+  );
+  --error-field-foreground: var(--color-red-700);
+  --error-field-highlight: color-mix(
+    in oklab,
+    var(--color-red-100) 70%,
+    transparent
+  );
+  --error-field-shade: color-mix(in oklab, var(--color-red-900) 10%, transparent);
+
+  --warning-field: color-mix(in oklab, var(--color-amber-100) 60%, transparent);
+  --warning-field-foreground: var(--color-amber-700);
+  --warning-field-highlight: color-mix(
+    in oklab,
+    var(--color-amber-100) 70%,
+    transparent
+  );
+  --warning-field-shade: color-mix(
+    in oklab,
+    var(--color-amber-900) 10%,
+    transparent
+  );
+
   --surface: color-mix(in oklab, var(--color-neutral-50) 60%, transparent);
   --panel: white;
   --primary-solid: var(--color-pink-600);
@@ -199,6 +244,62 @@
   --jellyfy-highlight: var(--warning-highlight);
   --jellyfy-shade: var(--warning-shade);
   --jellyfy-ring: var(--color-amber-600);
+}
+
+.jellyfy-field.jellyfy-tone-error {
+  background-color: var(--error-field);
+  color: var(--error-field-foreground);
+  --jellyfy-highlight: var(--error-field-highlight);
+  --jellyfy-shade: var(--error-field-shade);
+  --jellyfy-ring: var(--color-red-400);
+}
+
+.jellyfy-field.jellyfy-tone-error:focus-within,
+.jellyfy-field.jellyfy-tone-error[data-open] {
+  background-color: var(--error-field-focus);
+}
+
+.jellyfy-field.jellyfy-tone-success {
+  background-color: var(--success-field);
+  color: var(--success-field-foreground);
+  --jellyfy-highlight: var(--success-field-highlight);
+  --jellyfy-shade: var(--success-field-shade);
+  --jellyfy-ring: var(--color-green-400);
+}
+
+.jellyfy-field.jellyfy-tone-success:focus-within,
+.jellyfy-field.jellyfy-tone-success[data-open] {
+  background-color: var(--success-field-focus);
+}
+
+.jellyfy-field.jellyfy-tone-warning {
+  background-color: var(--warning-field);
+  color: var(--warning-field-foreground);
+  --jellyfy-highlight: var(--warning-field-highlight);
+  --jellyfy-shade: var(--warning-field-shade);
+  --jellyfy-ring: var(--color-amber-400);
+}
+
+@keyframes jellyfy-sweep {
+  from {
+    transform: translate3d(-120%, -50%, 0);
+  }
+  to {
+    transform: translate3d(280%, -50%, 0);
+  }
+}
+
+.jellyfy-sweep {
+  top: 50%;
+  animation-name: jellyfy-sweep;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jellyfy-sweep {
+    animation: none;
+  }
 }
 
 .jellyfy-focus {

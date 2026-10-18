@@ -7,7 +7,6 @@ import { createPortal } from "react-dom";
 
 import { Button } from "../button";
 import { choiceStyle, type Color } from "../foundation/color";
-import { IconButton } from "../icon-button";
 
 type DialogProps = {
   trigger: string;
@@ -45,18 +44,14 @@ export const Dialog: FC<DialogProps> = ({
       >
         <div className="flex items-start justify-between gap-4">
           <h2 className="text-lg font-semibold">{title}</h2>
-          <IconButton
-            label="Close"
-            color="neutral"
-            className="size-9"
-            style={{
-              backgroundColor: "var(--panel)",
-              color: "var(--surface-foreground)",
-            }}
+          <button
+            type="button"
+            aria-label="Close"
+            className="text-surface-foreground cursor-pointer"
             onClick={() => dialogRef.current?.close()}
           >
             <XIcon className="size-4" />
-          </IconButton>
+          </button>
         </div>
         {description ? (
           <p className="mt-2 text-sm leading-6 text-neutral-600">
