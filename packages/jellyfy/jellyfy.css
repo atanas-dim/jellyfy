@@ -915,6 +915,10 @@
       color: inherit;
     }
 
+    .select select option + option {
+      margin-block-start: 4px;
+    }
+
     .select select option:hover,
     .select select option:focus {
       background: color-mix(
