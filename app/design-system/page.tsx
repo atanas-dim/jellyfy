@@ -41,12 +41,12 @@ const THICKNESS = [
     use: "Buttons and icon buttons. The thickest jelly.",
     shadow: "var(--shadow-inset-raised), var(--shadow-drop)",
     className: "primary h-16",
-    fill: "color-mix(in oklab, var(--jellyfy-solid) var(--jellyfy-solid-strength), transparent)",
+    fill: "color-mix(in oklab, var(--jellyfy-solid) var(--jellyfy-surface-alpha), transparent)",
   },
   {
     name: "Surface",
     token: "--shadow-inset-surface",
-    use: "Fields. The switch and the slider use this inset with the small drop.",
+    use: "Fields. A deep inset along the bottom.",
     shadow: "var(--shadow-inset-surface), var(--shadow-drop)",
     className: "h-16",
     fill: "var(--surface)",
@@ -57,12 +57,12 @@ const THICKNESS = [
     use: "Cards, alerts, and the dialog. Badges use this inset with the small drop.",
     shadow: "var(--shadow-inset-thin), var(--shadow-drop)",
     className: "h-16",
-    fill: "var(--panel)",
+    fill: "var(--surface)",
   },
   {
     name: "Mark",
     token: "--shadow-inset-mark",
-    use: "Checkbox box and radio ring. A short, darker lip.",
+    use: "Checkbox, radio, switch track, and slider track. A short lip.",
     shadow: "var(--shadow-inset-mark), var(--shadow-drop-sm)",
     className: "size-10",
     fill: "var(--surface)",
@@ -188,7 +188,7 @@ export default function DesignSystemPage() {
             style={{
               borderRadius: "var(--radius-control)",
               background:
-                "color-mix(in oklab, var(--color-primary) var(--jellyfy-solid-strength), transparent)",
+                "color-mix(in oklab, var(--color-primary) var(--jellyfy-surface-alpha), transparent)",
             }}
           />
           <Plate
@@ -196,7 +196,7 @@ export default function DesignSystemPage() {
             token="--radius-surface"
             style={{
               borderRadius: "var(--radius-surface)",
-              background: "var(--panel)",
+              background: "var(--surface)",
               boxShadow: "var(--shadow-inset-thin), var(--shadow-drop)",
             }}
           />

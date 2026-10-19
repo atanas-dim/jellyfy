@@ -27,6 +27,44 @@ body {
   color: var(--color-neutral-100);
 }
 
+.set-stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    #d7e3f0 0px,
+    #d7e3f0 20px,
+    #b9cadd 20px,
+    #b9cadd 40px,
+    #f4f5f2 40px,
+    #f4f5f2 60px
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .set-stripes {
+    background: repeating-linear-gradient(
+      -45deg,
+      #0d1b2a 0px,
+      #0d1b2a 20px,
+      #1c3854 20px,
+      #1c3854 40px,
+      #151c1b 40px,
+      #151c1b 60px
+    );
+  }
+}
+
+:root[data-theme="dark"] .set-stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    #0d1b2a 0px,
+    #0d1b2a 20px,
+    #1c3854 20px,
+    #1c3854 40px,
+    #151c1b 40px,
+    #151c1b 60px
+  );
+}
+
 .dark .text-neutral-950 {
   color: var(--color-neutral-100);
 }
