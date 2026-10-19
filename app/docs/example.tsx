@@ -18,7 +18,7 @@ export const Example = async ({
     {note ? (
       <p className="mt-2 max-w-2xl leading-7 text-neutral-600">{note}</p>
     ) : null}
-    <div className="mt-4 rounded-2xl border border-neutral-200 bg-white p-6">
+    <div className="mt-4 rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
       {children}
     </div>
     <CodeBlock code={code} />

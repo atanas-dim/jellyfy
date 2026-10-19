@@ -130,12 +130,12 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
     description: "The same press, for an icon alone.",
     classes: [
       {
-        name: "btn-square",
+        name: "btn-icon",
         kind: "Component",
         note: "A square button. Pair it with btn-sm or btn-lg for the other sizes.",
       },
-      { name: "btn-sm", kind: "Size", note: "Small. Use it with btn-square." },
-      { name: "btn-lg", kind: "Size", note: "Large. Use it with btn-square." },
+      { name: "btn-sm", kind: "Size", note: "Small. Use it with btn-icon." },
+      { name: "btn-lg", kind: "Size", note: "Large. Use it with btn-icon." },
       ...color("primary"),
       {
         name: "loading",
@@ -147,7 +147,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         id: "icon-colors",
         title: "Colors",
-        code: `<button class="btn-square primary" type="button" aria-label="Add">
+        code: `<button class="btn-icon primary" type="button" aria-label="Add">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
     <path d="M12 5v14M5 12h14" />
   </svg>
@@ -157,9 +157,9 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         id: "icon-sizes",
         title: "Sizes",
-        code: `<button class="btn-square btn-sm" type="button" aria-label="Add small"></button>
-<button class="btn-square" type="button" aria-label="Add"></button>
-<button class="btn-square btn-lg" type="button" aria-label="Add large"></button>`,
+        code: `<button class="btn-icon btn-sm" type="button" aria-label="Add small"></button>
+<button class="btn-icon" type="button" aria-label="Add"></button>
+<button class="btn-icon btn-lg" type="button" aria-label="Add large"></button>`,
       },
     ],
     notes: [],

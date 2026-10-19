@@ -2,6 +2,8 @@
 @plugin "jellyfy/plugin.js";
 @import "jellyfy/jellyfy.css";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --font-sans: var(--font-figtree);
   --font-mono: var(--font-geist-mono);
@@ -11,6 +13,33 @@
 body {
   background-color: var(--color-neutral-50);
   font-family: var(--font-figtree), Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body {
+    background-color: var(--color-neutral-950);
+    color: var(--color-neutral-100);
+  }
+}
+
+:root[data-theme="dark"] body {
+  background-color: var(--color-neutral-950);
+  color: var(--color-neutral-100);
+}
+
+.dark .text-neutral-950 {
+  color: var(--color-neutral-100);
+}
+.dark .text-neutral-800 {
+  color: var(--color-neutral-200);
+}
+.dark .text-neutral-700,
+.dark .text-neutral-600 {
+  color: var(--color-neutral-300);
+}
+.dark .text-neutral-500,
+.dark .text-neutral-400 {
+  color: var(--color-neutral-400);
 }
 
 h1,

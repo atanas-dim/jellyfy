@@ -26,7 +26,7 @@ export const DialogSample = () => (
         </form>
         <h2 className="pe-8 text-lg font-semibold">A note</h2>
         <p className="mt-2 text-sm leading-6">
-          No color on the panel. The close control stays neutral.
+          No color on the panel. The close control follows that surface.
         </p>
       </div>
     </dialog>

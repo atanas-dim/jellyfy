@@ -28,7 +28,7 @@ export default function CustomizePage() {
   --color-primary: #4f46e5;
   --color-secondary: #db2777;
   --color-tertiary: #0d9488;
-  --color-neutral: #a3a3a3;
+  --color-neutral: #525252;
   --color-success: #16a34a;
   --color-error: #dc2626;
   --color-warning: #d97706;
@@ -62,7 +62,7 @@ export default function CustomizePage() {
   --color-primary: #4f46e5;
   --color-secondary: #db2777;
   --color-tertiary: #0d9488;
-  --color-neutral: #a3a3a3;
+  --color-neutral: #525252;
   --color-success: #16a34a;
   --color-error: #dc2626;
   --color-warning: #d97706;
@@ -102,6 +102,26 @@ export default function CustomizePage() {
           sizes use <code className="font-mono text-sm">0.25rem</code>.
         </li>
       </ul>
+
+      <h2 className="mt-12 text-xl font-semibold tracking-tight">Dark</h2>
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+        Jellyfy follows the operating system. The eight colours stay the ones
+        you set. In the dark, the paper behind a control goes near black and the
+        writing goes light. The default gray is lighter in the dark theme so a
+        neutral control still sits clear of that page. Set
+        <code className="font-mono text-sm">--color-neutral</code> in that same
+        dark rule to replace it, the same way as the other colours. The press on
+        a field is still that colour: a brighter pool of it along the bottom,
+        and the same colour mixed toward black along the top.
+      </p>
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+        To choose for the page, set{" "}
+        <code className="font-mono text-sm">data-theme</code> on the root
+        element. <code className="font-mono text-sm">dark</code> forces the dark
+        paper. <code className="font-mono text-sm">light</code> keeps the light
+        paper even when the system is dark.
+      </p>
+      <CodeBlock lang="html" code={`<html data-theme="dark">`} />
       <Pager href="/docs/customize" />
     </article>
   );
