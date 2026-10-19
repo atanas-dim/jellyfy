@@ -41,13 +41,21 @@
   --jellyfy-wash: 86%;
   --jellyfy-wash-focus: 78%;
   --jellyfy-wash-alpha: 60%;
-  --jellyfy-solid-strength: 60%;
 
-  --jellyfy-well: var(--surface);
-  --surface: color-mix(in oklab, var(--jellyfy-neutral-50) 60%, transparent);
+  --jellyfy-surface-color: var(--jellyfy-neutral-50);
+  --jellyfy-surface-alpha: 60%;
+  --jellyfy-field-gloss: 80%;
+  --jellyfy-field-gloss-strength: 70%;
+  --jellyfy-field-shade: 80%;
+  --jellyfy-field-shade-strength: 12%;
+  --surface: color-mix(
+    in oklab,
+    var(--jellyfy-surface-color) var(--jellyfy-surface-alpha),
+    transparent
+  );
   --surface-focus: color-mix(
     in oklab,
-    var(--jellyfy-neutral-100) 60%,
+    var(--jellyfy-neutral-100) var(--jellyfy-surface-alpha),
     transparent
   );
   --surface-foreground: var(--jellyfy-neutral-800);
@@ -61,7 +69,6 @@
     var(--jellyfy-neutral-900) 10%,
     transparent
   );
-  --panel: var(--jellyfy-paper);
   --disabled: color-mix(in oklab, var(--jellyfy-neutral-400) 60%, transparent);
   --disabled-foreground: color-mix(
     in oklab,
@@ -99,31 +106,36 @@
     --jellyfy-mark-shade-amount: 55%;
     --jellyfy-wash: 76%;
     --jellyfy-wash-focus: 70%;
-    --jellyfy-wash-alpha: 100%;
-    --jellyfy-solid-strength: 45%;
+    --jellyfy-surface-color: var(--jellyfy-neutral-700);
+    --jellyfy-field-gloss: 60%;
+    --jellyfy-field-gloss-strength: 10%;
+    --jellyfy-field-shade: 80%;
+    --jellyfy-field-shade-strength: 20%;
     --jellyfy-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' fill='%23fff' opacity='0.06'%3E%3C/rect%3E%3C/svg%3E");
-    --jellyfy-well: var(--jellyfy-neutral-700);
-    --surface: color-mix(in oklab, var(--jellyfy-neutral-900) 92%, transparent);
+    --surface: color-mix(
+      in oklab,
+      var(--jellyfy-surface-color) var(--jellyfy-surface-alpha),
+      transparent
+    );
     --surface-focus: color-mix(
       in oklab,
-      var(--jellyfy-neutral-800) 92%,
+      var(--jellyfy-neutral-600) var(--jellyfy-surface-alpha),
       transparent
     );
     --surface-foreground: var(--jellyfy-neutral-100);
     --surface-highlight: color-mix(in oklab, white 46%, transparent);
     --surface-shade: color-mix(in oklab, black 70%, transparent);
-    --panel: var(--jellyfy-neutral-900);
     --disabled: color-mix(
       in oklab,
-      var(--jellyfy-neutral-600) 55%,
+      var(--jellyfy-neutral-600) 60%,
       transparent
     );
     --disabled-foreground: color-mix(
       in oklab,
-      var(--jellyfy-neutral-300) 75%,
+      var(--jellyfy-neutral-300) 70%,
       transparent
     );
-    --focus-gap: 0 0 0 2px var(--jellyfy-neutral-950);
+    --focus-gap: 0 0 0 2px rgb(from var(--jellyfy-neutral-950) r g b / 0.5);
     --shadow-inset-thin: inset 0 -6px 8px rgb(0 0 0 / 0.32);
     --shadow-inset-mark: inset 0 -1px 5px rgb(0 0 0 / 0.65);
     --shadow-inset-surface: inset 0 -10px 16px rgb(0 0 0 / 0.55);
@@ -149,27 +161,32 @@
   --jellyfy-mark-shade-amount: 55%;
   --jellyfy-wash: 76%;
   --jellyfy-wash-focus: 70%;
-  --jellyfy-wash-alpha: 100%;
-  --jellyfy-solid-strength: 45%;
+  --jellyfy-surface-color: var(--jellyfy-neutral-700);
+  --jellyfy-field-gloss: 60%;
+  --jellyfy-field-gloss-strength: 10%;
+  --jellyfy-field-shade: 80%;
+  --jellyfy-field-shade-strength: 20%;
   --jellyfy-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' fill='%23fff' opacity='0.06'%3E%3C/rect%3E%3C/svg%3E");
-  --jellyfy-well: var(--jellyfy-neutral-700);
-  --surface: color-mix(in oklab, var(--jellyfy-neutral-900) 92%, transparent);
+  --surface: color-mix(
+    in oklab,
+    var(--jellyfy-surface-color) var(--jellyfy-surface-alpha),
+    transparent
+  );
   --surface-focus: color-mix(
     in oklab,
-    var(--jellyfy-neutral-800) 92%,
+    var(--jellyfy-neutral-600) var(--jellyfy-surface-alpha),
     transparent
   );
   --surface-foreground: var(--jellyfy-neutral-100);
   --surface-highlight: color-mix(in oklab, white 46%, transparent);
   --surface-shade: color-mix(in oklab, black 70%, transparent);
-  --panel: var(--jellyfy-neutral-900);
-  --disabled: color-mix(in oklab, var(--jellyfy-neutral-600) 55%, transparent);
+  --disabled: color-mix(in oklab, var(--jellyfy-neutral-600) 60%, transparent);
   --disabled-foreground: color-mix(
     in oklab,
-    var(--jellyfy-neutral-300) 75%,
+    var(--jellyfy-neutral-300) 70%,
     transparent
   );
-  --focus-gap: 0 0 0 2px var(--jellyfy-neutral-950);
+  --focus-gap: 0 0 0 2px rgb(from var(--jellyfy-neutral-950) r g b / 0.5);
   --shadow-inset-thin: inset 0 -6px 8px rgb(0 0 0 / 0.32);
   --shadow-inset-mark: inset 0 -1px 5px rgb(0 0 0 / 0.65);
   --shadow-inset-surface: inset 0 -10px 16px rgb(0 0 0 / 0.55);
@@ -419,7 +436,7 @@
     );
     background-color: color-mix(
       in oklab,
-      var(--jellyfy-solid) var(--jellyfy-solid-strength),
+      var(--jellyfy-solid) var(--jellyfy-surface-alpha),
       transparent
     );
     color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
@@ -530,8 +547,27 @@
   .input,
   .textarea,
   .select {
-    --jellyfy-highlight: var(--surface-highlight);
-    --jellyfy-shade: var(--surface-shade);
+    --jellyfy-solid: var(--jellyfy-surface-color);
+    --jellyfy-highlight: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          white var(--jellyfy-field-gloss),
+          var(--jellyfy-solid)
+        )
+        var(--jellyfy-field-gloss-strength),
+      transparent
+    );
+    --jellyfy-shade: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          black var(--jellyfy-field-shade),
+          var(--jellyfy-solid)
+        )
+        var(--jellyfy-field-shade-strength),
+      transparent
+    );
     --jellyfy-ring: var(--jellyfy-neutral-400);
     position: relative;
     display: block;
@@ -586,12 +622,6 @@
       transparent
     );
     color: color-mix(in oklab, var(--jellyfy-solid) 62%, var(--jellyfy-ink));
-    --jellyfy-highlight: color-mix(
-      in oklab,
-      color-mix(in oklab, white 80%, var(--jellyfy-solid)) 70%,
-      transparent
-    );
-    --jellyfy-shade: color-mix(in oklab, var(--jellyfy-solid) 12%, transparent);
     --jellyfy-ring: var(--jellyfy-solid);
   }
 
@@ -932,7 +962,7 @@
       option:checked {
       background: color-mix(
         in oklab,
-        var(--jellyfy-solid) var(--jellyfy-solid-strength),
+        var(--jellyfy-solid) var(--jellyfy-surface-alpha),
         transparent
       );
       color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
@@ -971,7 +1001,7 @@
     width: calc(var(--spacing, 0.25rem) * 6);
     height: calc(var(--spacing, 0.25rem) * 6);
     flex: none;
-    background-color: var(--jellyfy-well);
+    background-color: var(--surface);
     color: var(--surface-foreground);
     box-shadow: var(--shadow-inset-mark), var(--shadow-drop-sm);
     backdrop-filter: blur(4px);
@@ -1042,7 +1072,7 @@
     .toggle-track {
     background-color: color-mix(
       in oklab,
-      var(--jellyfy-solid) var(--jellyfy-solid-strength),
+      var(--jellyfy-solid) var(--jellyfy-surface-alpha),
       transparent
     );
     color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
@@ -1061,7 +1091,7 @@
     .radio-ring::after {
     background-color: color-mix(
       in oklab,
-      var(--jellyfy-solid) var(--jellyfy-solid-strength),
+      var(--jellyfy-solid) var(--jellyfy-surface-alpha),
       transparent
     );
   }
@@ -1089,7 +1119,7 @@
   .toggle:has(:focus-visible) .toggle-track {
     outline-color: var(--jellyfy-solid, var(--surface-foreground));
     box-shadow:
-      var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop-sm);
+      var(--focus-gap), var(--shadow-inset-mark), var(--shadow-drop-sm);
   }
 
   .range:has(:focus-visible) .range-thumb {
@@ -1104,8 +1134,8 @@
     height: calc(var(--spacing, 0.25rem) * 7);
     flex: none;
     border-radius: 999px;
-    background: var(--jellyfy-well);
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop-sm);
+    background: var(--surface);
+    box-shadow: var(--shadow-inset-mark), var(--shadow-drop-sm);
     outline: 1px solid transparent;
     outline-offset: 2px;
     transition:
@@ -1162,8 +1192,8 @@
     overflow: hidden;
     translate: 0 -50%;
     border-radius: 999px;
-    background: var(--jellyfy-well);
-    box-shadow: var(--shadow-inset-surface), var(--shadow-drop-sm);
+    background: var(--surface);
+    box-shadow: var(--shadow-inset-mark), var(--shadow-drop-sm);
   }
 
   .range-fill {
@@ -1177,7 +1207,7 @@
     border-radius: 999px;
     background: color-mix(
       in oklab,
-      var(--surface-foreground) var(--jellyfy-solid-strength),
+      var(--surface-foreground) var(--jellyfy-surface-alpha),
       transparent
     );
     transition: background-color 300ms ease-out;
@@ -1207,7 +1237,7 @@
     .range-thumb {
     background: color-mix(
       in oklab,
-      var(--jellyfy-solid) var(--jellyfy-solid-strength),
+      var(--jellyfy-solid) var(--jellyfy-surface-alpha),
       transparent
     );
   }
@@ -1222,7 +1252,7 @@
     border-radius: 999px;
     background: color-mix(
       in oklab,
-      var(--surface-foreground) var(--jellyfy-solid-strength),
+      var(--surface-foreground) var(--jellyfy-surface-alpha),
       transparent
     );
     box-shadow: var(--shadow-inset-mark), var(--shadow-drop-sm);
@@ -1368,7 +1398,7 @@
   ) {
     background-color: color-mix(
       in oklab,
-      var(--jellyfy-solid) var(--jellyfy-solid-strength),
+      var(--jellyfy-solid) var(--jellyfy-surface-alpha),
       transparent
     );
     color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
@@ -1376,7 +1406,7 @@
 
   .card {
     border-radius: var(--radius-surface);
-    background: var(--panel);
+    background: var(--surface);
     color: var(--surface-foreground);
     padding: calc(var(--spacing, 0.25rem) * 4) calc(var(--spacing, 0.25rem) * 5);
     font-size: calc(var(--spacing, 0.25rem) * 4);
@@ -1980,34 +2010,6 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) :is(.input, .textarea, .select) {
-      --jellyfy-face: color-mix(
-        in oklab,
-        var(--jellyfy-neutral-800) 92%,
-        var(--jellyfy-paper)
-      );
-      --jellyfy-highlight: color-mix(in oklab, white 8%, var(--jellyfy-face));
-      --jellyfy-shade: color-mix(in oklab, black 20%, var(--jellyfy-face));
-    }
-
-    :root:not([data-theme="light"])
-      :is(.input, .textarea, .select):is(
-        .primary,
-        .secondary,
-        .tertiary,
-        .neutral,
-        .success,
-        .error,
-        .warning,
-        .info
-      ) {
-      --jellyfy-face: color-mix(
-        in oklab,
-        var(--jellyfy-paper) var(--jellyfy-wash-focus),
-        var(--jellyfy-solid)
-      );
-    }
-
     :root:not([data-theme="light"])
       :is(.btn, .btn-icon):not(
         :is(
@@ -2070,34 +2072,6 @@
       --jellyfy-highlight: color-mix(in oklab, white 8%, var(--jellyfy-face));
       --jellyfy-shade: color-mix(in oklab, black 20%, var(--jellyfy-face));
     }
-  }
-
-  :root[data-theme="dark"] :is(.input, .textarea, .select) {
-    --jellyfy-face: color-mix(
-      in oklab,
-      var(--jellyfy-neutral-800) 92%,
-      var(--jellyfy-paper)
-    );
-    --jellyfy-highlight: color-mix(in oklab, white 8%, var(--jellyfy-face));
-    --jellyfy-shade: color-mix(in oklab, black 20%, var(--jellyfy-face));
-  }
-
-  :root[data-theme="dark"]
-    :is(.input, .textarea, .select):is(
-      .primary,
-      .secondary,
-      .tertiary,
-      .neutral,
-      .success,
-      .error,
-      .warning,
-      .info
-    ) {
-    --jellyfy-face: color-mix(
-      in oklab,
-      var(--jellyfy-paper) var(--jellyfy-wash-focus),
-      var(--jellyfy-solid)
-    );
   }
 
   :root[data-theme="dark"]
