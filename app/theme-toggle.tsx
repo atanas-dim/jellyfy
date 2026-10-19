@@ -1,0 +1,45 @@
+"use client";
+
+import { MoonIcon, SunIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+
+type Theme = "light" | "dark";
+
+const storageKey = "jellyfy-theme";
+
+const applyTheme = (theme: Theme) => {
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.classList.toggle("dark", theme === "dark");
+  localStorage.setItem(storageKey, theme);
+};
+
+export const ThemeToggle = () => {
+  const [theme, setTheme] = useState<Theme>("light");
+
+  useEffect(() => {
+    setTheme(
+      document.documentElement.dataset.theme === "dark" ? "dark" : "light",
+    );
+  }, []);
+
+  return (
+    <label className="toggle">
+      <SunIcon aria-hidden="true" className="size-4" />
+      <input
+        type="checkbox"
+        role="switch"
+        aria-label="Dark theme"
+        checked={theme === "dark"}
+        onChange={() => {
+          const next = theme === "dark" ? "light" : "dark";
+          applyTheme(next);
+          setTheme(next);
+        }}
+      />
+      <span className="toggle-track">
+        <span className="toggle-thumb" />
+      </span>
+      <MoonIcon aria-hidden="true" className="size-4" />
+    </label>
+  );
+};

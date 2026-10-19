@@ -104,7 +104,7 @@ export default function SetPage() {
           {COLORS.map((color) => (
             <button
               key={color}
-              className={twJoin("btn-square", color)}
+              className={twJoin("btn-icon", color)}
               type="button"
               aria-label={NAME[color]}
             >
@@ -116,7 +116,7 @@ export default function SetPage() {
           {SIZES.map((size) => (
             <button
               key={size || "regular"}
-              className={twJoin("btn-square", size && `btn-${size}`)}
+              className={twJoin("btn-icon", size && `btn-${size}`)}
               type="button"
               aria-label={SIZE_NAME[size]}
             >
@@ -126,7 +126,7 @@ export default function SetPage() {
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <button
-            className="btn-square secondary loading"
+            className="btn-icon secondary loading"
             type="button"
             aria-label="Loading"
           >

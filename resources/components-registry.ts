@@ -18,7 +18,7 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     slug: ComponentSlug.IconButton,
     name: "Icon button",
     description: "The same press, for an icon alone.",
-    usage: `<button class="btn-square primary" aria-label="Add">+</button>`,
+    usage: `<button class="btn-icon primary" aria-label="Add">+</button>`,
   },
   [ComponentSlug.Input]: {
     slug: ComponentSlug.Input,

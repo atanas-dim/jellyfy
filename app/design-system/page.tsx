@@ -1,10 +1,9 @@
+import { squishRule } from "jellyfy";
 import { SearchIcon, SendIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { CSSProperties, ReactNode } from "react";
 import { twJoin, twMerge } from "tailwind-merge";
-
-import { squishRule } from "jellyfy";
 
 import { TokenValue } from "./token-value";
 
@@ -42,7 +41,7 @@ const THICKNESS = [
     use: "Buttons and icon buttons. The thickest jelly.",
     shadow: "var(--shadow-inset-raised), var(--shadow-drop)",
     className: "primary h-16",
-    fill: "color-mix(in oklab, var(--jellyfy-solid) 60%, transparent)",
+    fill: "color-mix(in oklab, var(--jellyfy-solid) var(--jellyfy-solid-strength), transparent)",
   },
   {
     name: "Surface",
@@ -83,7 +82,7 @@ const DROP_STATES = [
 const STEPS = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10, 12, 14, 16] as const;
 
 const KNOBS = [
-  ["--color-primary", "#4f46e5", "And the other six solids, the same way."],
+  ["--color-primary", "#4f46e5", "And the other seven solids, the same way."],
   [
     "--radius-control",
     "999px",
@@ -112,7 +111,7 @@ export default function DesignSystemPage() {
           <a
             key={id}
             href={`#${id}`}
-            className="rounded-full bg-white px-3 py-1.5 text-sm font-medium text-neutral-700 shadow-[var(--shadow-drop)]"
+            className="rounded-full bg-white px-3 py-1.5 text-sm font-medium text-neutral-700 shadow-[var(--shadow-drop)] dark:bg-neutral-900 dark:text-neutral-200"
           >
             {label}
           </a>
@@ -149,13 +148,13 @@ export default function DesignSystemPage() {
               <span>Primary</span>
             </button>
             <p className="text-sm leading-6 text-neutral-600">
-              Fill is the solid at 60%. Light text is white at 94%, mixed with
-              the solid. Neutral buttons stay on the gray field with dark text.
+              Fill is the solid at the loud mix. Light text is white at 94%,
+              mixed with the solid. Neutral uses that same mix.
             </p>
           </Rule>
           <Rule
             title="Field"
-            detail="Inputs, textarea, and select default to neutral."
+            detail="A field with no color class stays the plain surface."
           >
             <label className="input">
               <input placeholder=" " />
@@ -168,7 +167,7 @@ export default function DesignSystemPage() {
           </Rule>
           <Rule
             title="Quiet surface"
-            detail="An untinted card is a white panel. An alert defaults to warning."
+            detail="A card with no color stays the panel. An alert with no color stays the plain surface."
           >
             <div className="alert">
               <p>Nothing has been sent yet.</p>
@@ -189,7 +188,7 @@ export default function DesignSystemPage() {
             style={{
               borderRadius: "var(--radius-control)",
               background:
-                "color-mix(in oklab, var(--color-primary) 60%, transparent)",
+                "color-mix(in oklab, var(--color-primary) var(--jellyfy-solid-strength), transparent)",
             }}
           />
           <Plate
@@ -240,7 +239,7 @@ export default function DesignSystemPage() {
           {DROP_SIZES.map(([label, token]) => (
             <figure key={token}>
               <div
-                className="h-16 rounded-[var(--radius-surface)] bg-white"
+                className="h-16 rounded-[var(--radius-surface)] bg-white dark:bg-neutral-900"
                 style={{ boxShadow: `var(${token})` }}
               />
               <figcaption className="mt-3">
@@ -254,7 +253,7 @@ export default function DesignSystemPage() {
           {DROP_STATES.map(([label, token]) => (
             <figure key={token}>
               <div
-                className="h-16 rounded-[var(--radius-surface)] bg-white"
+                className="h-16 rounded-[var(--radius-surface)] bg-white dark:bg-neutral-900"
                 style={{ boxShadow: `var(${token})` }}
               />
               <figcaption className="mt-3">
@@ -317,7 +316,7 @@ export default function DesignSystemPage() {
               </label>
               <button
                 type="button"
-                className="squish rounded-[var(--radius-surface)] bg-white px-4 py-3 text-sm font-medium shadow-[var(--shadow-drop)]"
+                className="squish rounded-[var(--radius-surface)] bg-white px-4 py-3 text-sm font-medium shadow-[var(--shadow-drop)] dark:bg-neutral-900"
               >
                 Plain element
               </button>
@@ -363,21 +362,13 @@ export default function DesignSystemPage() {
           </SizeSlot>
         </div>
         <div className="mt-6 flex flex-wrap items-end gap-3">
-          <button
-            type="button"
-            className="btn-square btn-sm"
-            aria-label="Small"
-          >
+          <button type="button" className="btn-icon btn-sm" aria-label="Small">
             <span>+</span>
           </button>
-          <button type="button" className="btn-square" aria-label="Regular">
+          <button type="button" className="btn-icon" aria-label="Regular">
             <span>+</span>
           </button>
-          <button
-            type="button"
-            className="btn-square btn-lg"
-            aria-label="Large"
-          >
+          <button type="button" className="btn-icon btn-lg" aria-label="Large">
             <span>+</span>
           </button>
           <label className="input input-sm w-40">
@@ -420,7 +411,7 @@ export default function DesignSystemPage() {
         <div className="mt-8">
           <p className="text-sm font-medium text-neutral-500">
             Spacing ramp. One step is <TokenValue name="--spacing" />. Button
-            heights are 10, 12, and 14. Regular, 12, is marked in black.
+            heights are 10, 12, and 14. Regular, 12, is the ink bar.
           </p>
           <div className="mt-4 flex items-end gap-2 overflow-x-auto pb-2">
             {STEPS.map((step) => (
@@ -431,7 +422,9 @@ export default function DesignSystemPage() {
                 <div
                   className={twJoin(
                     "w-full rounded-sm",
-                    step === 12 ? "bg-neutral-800" : "bg-neutral-300",
+                    step === 12
+                      ? "bg-neutral-950 dark:bg-neutral-100"
+                      : "bg-neutral-300 dark:bg-neutral-700",
                   )}
                   style={{ height: `calc(var(--spacing, 0.25rem) * ${step})` }}
                 />
@@ -454,7 +447,7 @@ export default function DesignSystemPage() {
       <Section
         id="focus"
         title="Focus"
-        lede="The ring is a 1px outline in the control’s color, 2px outside the edge, with a white gap at 50% between them. Buttons, marks, cards, and the surface button show it only for keyboard focus. Fields show it whenever they are focused, including a click, because that is the typing state."
+        lede="The ring is a 1px outline in the control’s color, 2px outside the edge, with a gap in the page color between them. Buttons, marks, cards, and the surface button show it only for keyboard focus. Fields show it whenever they are focused, including a click, because that is the typing state."
       >
         <div className="grid gap-4 lg:grid-cols-2">
           <Rule
@@ -491,7 +484,7 @@ export default function DesignSystemPage() {
           </button>
           <button
             type="button"
-            className="btn-square loading"
+            className="btn-icon loading"
             aria-label="Loading"
           />
           <label className="checkbox success">
@@ -518,7 +511,10 @@ export default function DesignSystemPage() {
             </thead>
             <tbody>
               {KNOBS.map(([name, fallback, role]) => (
-                <tr key={name} className="border-t border-neutral-200/80">
+                <tr
+                  key={name}
+                  className="border-t border-neutral-200/80 dark:border-neutral-800"
+                >
                   <td className="py-3 pr-4 font-mono text-xs">{name}</td>
                   <td className="py-3 pr-4 font-mono text-xs text-neutral-500">
                     {fallback}
@@ -530,7 +526,7 @@ export default function DesignSystemPage() {
           </table>
         </div>
         <div
-          className="noise mt-6 h-24 rounded-[var(--radius-surface)] bg-white"
+          className="noise mt-6 h-24 rounded-[var(--radius-surface)] bg-white dark:bg-neutral-900"
           style={{ boxShadow: "var(--shadow-inset-thin), var(--shadow-drop)" }}
         />
         <p className="mt-3 text-sm leading-6 text-neutral-600">
@@ -555,7 +551,7 @@ function Section({
   return (
     <section
       id={id}
-      className="scroll-mt-10 border-t border-neutral-200/80 py-14"
+      className="scroll-mt-10 border-t border-neutral-200/80 py-14 dark:border-neutral-800"
     >
       <h2 className="text-3xl font-semibold tracking-tight">{title}</h2>
       <p className="mt-3 max-w-2xl text-sm leading-7 text-neutral-600">
@@ -576,7 +572,7 @@ function Rule({
   children: ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-4 rounded-[var(--radius-surface)] bg-white p-5">
+    <div className="flex flex-col gap-4 rounded-[var(--radius-surface)] bg-white p-5 dark:bg-neutral-900">
       <div>
         <h3 className="text-lg font-semibold">{title}</h3>
         <p className="mt-2 text-sm leading-6 text-neutral-600">{detail}</p>
@@ -616,7 +612,7 @@ function SizeSlot({
   children?: ReactNode;
 }) {
   return (
-    <div className="flex min-h-40 flex-col justify-between gap-4 rounded-[var(--radius-surface)] bg-white p-5">
+    <div className="flex min-h-40 flex-col justify-between gap-4 rounded-[var(--radius-surface)] bg-white p-5 dark:bg-neutral-900">
       <div>
         <h3 className="text-lg font-semibold">{name}</h3>
         <p className="mt-2 text-sm leading-6 text-neutral-600">{note}</p>

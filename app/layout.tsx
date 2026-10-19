@@ -2,6 +2,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Figtree, Geist_Mono, Rubik } from "next/font/google";
+import Script from "next/script";
 import { twJoin } from "tailwind-merge";
 
 import { site } from "@/resources/site";
@@ -48,6 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={twJoin(
         "size-full antialiased",
         figtree.variable,
@@ -56,6 +58,9 @@ export default function RootLayout({
       )}
     >
       <body>
+        <Script id="jellyfy-theme" strategy="beforeInteractive">
+          {`(function(){try{var saved=localStorage.getItem("jellyfy-theme");var theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=theme;document.documentElement.classList.toggle("dark",theme==="dark");}catch(e){}})();`}
+        </Script>
         <JellyfyBoot />
         <div className="isolate flex min-h-full flex-col">
           <SiteFrame>{children}</SiteFrame>

@@ -11,11 +11,16 @@ const MAX_FONT_SIZE = 240;
 const MIN_FONT_SIZE = 6;
 const WIDTH_FIT_RATIO = 0.985;
 
-const createDefaultFontSizes = (paragraphs: FooterDisplayParagraph[]): number[][] => {
+const createDefaultFontSizes = (
+  paragraphs: FooterDisplayParagraph[],
+): number[][] => {
   return paragraphs.map((paragraph) => paragraph.map(() => DEFAULT_FONT_SIZE));
 };
 
-const areFontSizesEqual = (currentFontSizes: number[][], nextFontSizes: number[][]): boolean => {
+const areFontSizesEqual = (
+  currentFontSizes: number[][],
+  nextFontSizes: number[][],
+): boolean => {
   if (currentFontSizes.length !== nextFontSizes.length) {
     return false;
   }
@@ -49,7 +54,9 @@ const FooterDisplayText = ({
   const [hasMeasured, setHasMeasured] = useState(false);
 
   const paragraphsSignature = useMemo(() => {
-    return paragraphs.map((paragraph) => paragraph.join("\u0000")).join("\u0001");
+    return paragraphs
+      .map((paragraph) => paragraph.join("\u0000"))
+      .join("\u0001");
   }, [paragraphs]);
 
   useLayoutEffect(() => {
@@ -83,7 +90,9 @@ const FooterDisplayText = ({
 
       const computedStyles = window.getComputedStyle(container);
       const letterSpacing = Number.parseFloat(computedStyles.letterSpacing);
-      const resolvedLetterSpacing = Number.isFinite(letterSpacing) ? letterSpacing : 0;
+      const resolvedLetterSpacing = Number.isFinite(letterSpacing)
+        ? letterSpacing
+        : 0;
 
       context.font = `${computedStyles.fontStyle} normal ${computedStyles.fontWeight} ${BASE_FONT_SIZE}px ${computedStyles.fontFamily}`;
 
@@ -93,13 +102,15 @@ const FooterDisplayText = ({
           const measuredTextWidth = context.measureText(resolvedLine).width;
           const measuredLineWidth =
             measuredTextWidth +
-            Math.max(0, resolvedLine.length - 1) * Math.max(0, resolvedLetterSpacing);
+            Math.max(0, resolvedLine.length - 1) *
+              Math.max(0, resolvedLetterSpacing);
 
           if (measuredLineWidth <= 0) {
             return DEFAULT_FONT_SIZE;
           }
 
-          const fittedFontSize = (availableWidth / measuredLineWidth) * BASE_FONT_SIZE;
+          const fittedFontSize =
+            (availableWidth / measuredLineWidth) * BASE_FONT_SIZE;
 
           return roundFontSize(
             Math.min(MAX_FONT_SIZE, Math.max(MIN_FONT_SIZE, fittedFontSize)),
@@ -156,7 +167,7 @@ const FooterDisplayText = ({
   return (
     <div
       ref={containerRef}
-      className="w-full max-w-xs font-display font-black text-neutral-950 md:min-h-0"
+      className="font-display w-full max-w-xs font-black text-neutral-950 md:min-h-0"
     >
       {hasMeasured ? (
         <div className="flex w-full flex-col gap-2">
@@ -166,7 +177,8 @@ const FooterDisplayText = ({
               className="flex flex-col gap-0 leading-[0.9]"
             >
               {paragraph.map((line, lineIndex) => {
-                const fontSize = fontSizes[paragraphIndex]?.[lineIndex] ?? DEFAULT_FONT_SIZE;
+                const fontSize =
+                  fontSizes[paragraphIndex]?.[lineIndex] ?? DEFAULT_FONT_SIZE;
 
                 return (
                   <span
@@ -198,7 +210,7 @@ export const SiteFooter = ({ className }: { className?: string }) => {
   return (
     <footer
       className={twMerge(
-        "relative mx-auto flex min-h-[460px] w-full flex-col items-center justify-center gap-6 overflow-hidden border-t border-neutral-200/80 bg-white px-6 py-14 md:min-h-[376px] sm:px-10",
+        "relative mx-auto flex min-h-[460px] w-full flex-col items-center justify-center gap-6 overflow-hidden border-t border-neutral-200/80 bg-white px-6 py-14 sm:px-10 md:min-h-[376px] dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-100",
         className,
       )}
     >

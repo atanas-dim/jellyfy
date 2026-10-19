@@ -91,7 +91,7 @@ export const Sample = ({ id }: { id: string }) => {
           {COLORS.map((color) => (
             <button
               key={color}
-              className={twJoin("btn-square", color)}
+              className={twJoin("btn-icon", color)}
               type="button"
               aria-label={NAME[color]}
             >
@@ -104,17 +104,17 @@ export const Sample = ({ id }: { id: string }) => {
       return (
         <div className="flex flex-wrap items-end gap-3">
           <button
-            className="btn-square btn-sm"
+            className="btn-icon btn-sm"
             type="button"
             aria-label="Small"
           >
             <Mark />
           </button>
-          <button className="btn-square" type="button" aria-label="Regular">
+          <button className="btn-icon" type="button" aria-label="Regular">
             <Mark />
           </button>
           <button
-            className="btn-square btn-lg"
+            className="btn-icon btn-lg"
             type="button"
             aria-label="Large"
           >

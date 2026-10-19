@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
 import { SiteFooter } from "./site-footer";
+import { ThemeToggle } from "./theme-toggle";
 
 const LINKS = [
   { href: "/set", label: "Set" },
@@ -16,8 +17,8 @@ export const SiteFrame = ({ children }: { children: ReactNode }) => {
   const pathname = usePathname();
 
   return (
-    <div className="flex min-h-full flex-1 flex-col text-neutral-950">
-      <header className="sticky top-0 z-30 border-b border-white/70 bg-neutral-50/75 backdrop-blur-md">
+    <div className="flex min-h-full flex-1 flex-col text-neutral-950 dark:text-neutral-100">
+      <header className="sticky top-0 z-30 border-b border-white/70 bg-neutral-50/75 backdrop-blur-md dark:border-white/10 dark:bg-neutral-950/75">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4 sm:px-10">
           <Link
             href="/"
@@ -37,14 +38,15 @@ export const SiteFrame = ({ children }: { children: ReactNode }) => {
                   className={twJoin(
                     "text-sm font-medium",
                     active
-                      ? "text-neutral-950"
-                      : "text-neutral-500 hover:text-neutral-950",
+                      ? "text-neutral-950 dark:text-neutral-100"
+                      : "text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-100",
                   )}
                 >
                   {link.label}
                 </Link>
               );
             })}
+            <ThemeToggle />
           </nav>
         </div>
       </header>

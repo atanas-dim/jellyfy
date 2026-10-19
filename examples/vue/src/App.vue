@@ -75,7 +75,7 @@ onMounted(() => {
         <button
           v-for="color in colors"
           :key="color"
-          :class="['btn-square', color]"
+          :class="['btn-icon', color]"
           type="button"
           :aria-label="name[color]"
         >
@@ -88,7 +88,7 @@ onMounted(() => {
         <button
           v-for="size in sizes"
           :key="size.label"
-          :class="['btn-square', sizeClass('btn', size.id)]"
+          :class="['btn-icon', sizeClass('btn', size.id)]"
           type="button"
           :aria-label="size.label"
         >
@@ -97,7 +97,7 @@ onMounted(() => {
           </svg>
         </button>
       </div>
-      <button class="btn-square secondary loading" type="button" aria-label="Loading">
+      <button class="btn-icon secondary loading" type="button" aria-label="Loading">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M12 5v14M5 12h14" />
         </svg>

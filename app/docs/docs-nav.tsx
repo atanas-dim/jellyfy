@@ -56,8 +56,8 @@ const Item = ({
       className={twJoin(
         "block rounded-lg px-3 py-1.5 text-sm",
         active
-          ? "bg-white font-medium text-neutral-950 shadow-sm"
-          : "text-neutral-600 hover:text-neutral-950",
+          ? "bg-white font-medium text-neutral-950 shadow-sm dark:bg-neutral-800 dark:text-neutral-100"
+          : "text-neutral-600 hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-100",
       )}
     >
       {children}
@@ -74,11 +74,11 @@ export const DocsNav = () => {
 
   return (
     <>
-      <details className="mb-8 rounded-2xl border border-neutral-200 bg-white lg:hidden">
+      <details className="mb-8 rounded-2xl border border-neutral-200 bg-white lg:hidden dark:border-neutral-800 dark:bg-neutral-900">
         <summary className="cursor-pointer px-4 py-3 text-sm font-medium">
           {current}
         </summary>
-        <div className="border-t border-neutral-100 px-2 py-3">
+        <div className="border-t border-neutral-100 px-2 py-3 dark:border-neutral-800">
           <Links pathname={pathname} />
         </div>
       </details>
