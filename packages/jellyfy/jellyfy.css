@@ -36,7 +36,7 @@
   --jellyfy-btn-shade: 45%;
   --jellyfy-btn-shade-strength: 40%;
   --jellyfy-mark-highlight: 78%;
-  --jellyfy-mark-highlight-strength: 100%;
+  --jellyfy-mark-highlight-strength: 22%;
   --jellyfy-mark-shade: 78%;
   --jellyfy-mark-shade-strength: 34%;
   --jellyfy-wash: 86%;
@@ -96,7 +96,7 @@
     --jellyfy-btn-shade: 62%;
     --jellyfy-btn-shade-strength: 70%;
     --jellyfy-mark-highlight: 24%;
-    --jellyfy-mark-highlight-strength: 100%;
+    --jellyfy-mark-highlight-strength: 32%;
     --jellyfy-mark-shade: 80%;
     --jellyfy-mark-shade-strength: 55%;
     --jellyfy-wash: 76%;
@@ -154,7 +154,7 @@
   --jellyfy-btn-shade: 62%;
   --jellyfy-btn-shade-strength: 70%;
   --jellyfy-mark-highlight: 24%;
-  --jellyfy-mark-highlight-strength: 100%;
+  --jellyfy-mark-highlight-strength: 32%;
   --jellyfy-mark-shade: 80%;
   --jellyfy-mark-shade-strength: 55%;
   --jellyfy-wash: 76%;
