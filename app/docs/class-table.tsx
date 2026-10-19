@@ -4,7 +4,7 @@ export const ClassTable = ({ rows }: { rows: ClassRow[] }) => (
   <div className="mt-6 overflow-x-auto overflow-y-hidden overscroll-x-contain overscroll-y-auto">
     <table className="w-full text-left text-sm">
       <thead>
-        <tr className="border-b border-neutral-200 text-neutral-500">
+        <tr className="border-b border-neutral-200 text-neutral-500 dark:border-neutral-800">
           <th className="py-2 pr-4 font-medium">Class</th>
           <th className="py-2 pr-4 font-medium">Type</th>
           <th className="py-2 font-medium"> </th>
@@ -14,7 +14,7 @@ export const ClassTable = ({ rows }: { rows: ClassRow[] }) => (
         {rows.map((row) => (
           <tr
             key={`${row.kind}-${row.name}`}
-            className="border-b border-neutral-100"
+            className="border-b border-neutral-100 dark:border-neutral-800"
           >
             <td className="py-2 pr-4 font-mono text-[13px] text-neutral-950">
               {row.name}

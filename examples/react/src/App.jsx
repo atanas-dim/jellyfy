@@ -114,7 +114,7 @@ export default function App() {
           {COLORS.map((color) => (
             <button
               key={color}
-              className={`btn-square ${color}`}
+              className={`btn-icon ${color}`}
               type="button"
               aria-label={NAME[color]}
             >
@@ -126,7 +126,7 @@ export default function App() {
           {SIZES.map((size) => (
             <button
               key={size.label}
-              className={`btn-square ${sizeClass("btn", size.id)}`}
+              className={`btn-icon ${sizeClass("btn", size.id)}`}
               type="button"
               aria-label={size.label}
             >
@@ -134,7 +134,7 @@ export default function App() {
             </button>
           ))}
         </div>
-        <button className="btn-square secondary loading" type="button" aria-label="Loading">
+        <button className="btn-icon secondary loading" type="button" aria-label="Loading">
           <Plus />
         </button>
       </Section>

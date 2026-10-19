@@ -2,7 +2,7 @@
   --color-primary: var(--color-indigo-600);
   --color-secondary: var(--color-pink-600);
   --color-tertiary: var(--color-teal-600);
-  --color-neutral: var(--color-neutral-400);
+  --color-neutral: var(--color-neutral-600);
   --color-success: var(--color-green-600);
   --color-error: var(--color-red-600);
   --color-warning: var(--color-amber-600);
@@ -25,12 +25,25 @@
   --jellyfy-primary: var(--color-primary, #4f46e5);
   --jellyfy-secondary: var(--color-secondary, #db2777);
   --jellyfy-tertiary: var(--color-tertiary, #0d9488);
-  --jellyfy-neutral: var(--color-neutral, var(--jellyfy-neutral-400));
+  --jellyfy-neutral: var(--color-neutral, var(--jellyfy-neutral-600));
   --jellyfy-success: var(--color-success, #16a34a);
   --jellyfy-error: var(--color-error, #dc2626);
   --jellyfy-warning: var(--color-warning, #d97706);
   --jellyfy-info: var(--color-info, #0284c7);
+  --jellyfy-paper: white;
+  --jellyfy-ink: black;
+  --jellyfy-btn-gloss: 75%;
+  --jellyfy-btn-gloss-strength: 22%;
+  --jellyfy-btn-cast: 45%;
+  --jellyfy-btn-cast-strength: 40%;
+  --jellyfy-mark-gloss: 78%;
+  --jellyfy-mark-shade-amount: 34%;
+  --jellyfy-wash: 86%;
+  --jellyfy-wash-focus: 78%;
+  --jellyfy-wash-alpha: 60%;
+  --jellyfy-solid-strength: 60%;
 
+  --jellyfy-well: var(--surface);
   --surface: color-mix(in oklab, var(--jellyfy-neutral-50) 60%, transparent);
   --surface-focus: color-mix(
     in oklab,
@@ -48,7 +61,7 @@
     var(--jellyfy-neutral-900) 10%,
     transparent
   );
-  --panel: white;
+  --panel: var(--jellyfy-paper);
   --disabled: color-mix(in oklab, var(--jellyfy-neutral-400) 60%, transparent);
   --disabled-foreground: color-mix(
     in oklab,
@@ -73,9 +86,105 @@
   --focus-gap: 0 0 0 2px rgb(255 255 255 / 0.5);
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --jellyfy-paper: var(--jellyfy-neutral-950);
+    --jellyfy-ink: white;
+    --color-neutral: var(--jellyfy-neutral-300);
+    --jellyfy-btn-gloss: 16%;
+    --jellyfy-btn-gloss-strength: 32%;
+    --jellyfy-btn-cast: 62%;
+    --jellyfy-btn-cast-strength: 70%;
+    --jellyfy-mark-gloss: 24%;
+    --jellyfy-mark-shade-amount: 55%;
+    --jellyfy-wash: 76%;
+    --jellyfy-wash-focus: 70%;
+    --jellyfy-wash-alpha: 100%;
+    --jellyfy-solid-strength: 45%;
+    --jellyfy-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' fill='%23fff' opacity='0.06'%3E%3C/rect%3E%3C/svg%3E");
+    --jellyfy-well: var(--jellyfy-neutral-700);
+    --surface: color-mix(in oklab, var(--jellyfy-neutral-900) 92%, transparent);
+    --surface-focus: color-mix(
+      in oklab,
+      var(--jellyfy-neutral-800) 92%,
+      transparent
+    );
+    --surface-foreground: var(--jellyfy-neutral-100);
+    --surface-highlight: color-mix(in oklab, white 46%, transparent);
+    --surface-shade: color-mix(in oklab, black 70%, transparent);
+    --panel: var(--jellyfy-neutral-900);
+    --disabled: color-mix(
+      in oklab,
+      var(--jellyfy-neutral-600) 55%,
+      transparent
+    );
+    --disabled-foreground: color-mix(
+      in oklab,
+      var(--jellyfy-neutral-300) 75%,
+      transparent
+    );
+    --focus-gap: 0 0 0 2px var(--jellyfy-neutral-950);
+    --shadow-inset-thin: inset 0 -6px 8px rgb(0 0 0 / 0.32);
+    --shadow-inset-mark: inset 0 -1px 5px rgb(0 0 0 / 0.65);
+    --shadow-inset-surface: inset 0 -10px 16px rgb(0 0 0 / 0.55);
+    --shadow-inset-surface-focus: inset 0 -6px 10px rgb(0 0 0 / 0.4);
+    --shadow-inset-raised: inset 0 -10px 16px rgb(0 0 0 / 0.72);
+    --shadow-drop-sm: 0 4px 6px -3px rgb(0 0 0 / 0.7);
+    --shadow-drop: 0 12px 16px -14px rgb(0 0 0 / 0.75);
+    --shadow-drop-hover: 0 16px 36px -14px rgb(0 0 0 / 0.82);
+    --shadow-drop-disabled: 0 12px 12px -12px rgb(0 0 0 / 0.5);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --jellyfy-paper: var(--jellyfy-neutral-950);
+  --jellyfy-ink: white;
+  --color-neutral: var(--jellyfy-neutral-300);
+  --jellyfy-btn-gloss: 16%;
+  --jellyfy-btn-gloss-strength: 32%;
+  --jellyfy-btn-cast: 62%;
+  --jellyfy-btn-cast-strength: 70%;
+  --jellyfy-mark-gloss: 24%;
+  --jellyfy-mark-shade-amount: 55%;
+  --jellyfy-wash: 76%;
+  --jellyfy-wash-focus: 70%;
+  --jellyfy-wash-alpha: 100%;
+  --jellyfy-solid-strength: 45%;
+  --jellyfy-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' fill='%23fff' opacity='0.06'%3E%3C/rect%3E%3C/svg%3E");
+  --jellyfy-well: var(--jellyfy-neutral-700);
+  --surface: color-mix(in oklab, var(--jellyfy-neutral-900) 92%, transparent);
+  --surface-focus: color-mix(
+    in oklab,
+    var(--jellyfy-neutral-800) 92%,
+    transparent
+  );
+  --surface-foreground: var(--jellyfy-neutral-100);
+  --surface-highlight: color-mix(in oklab, white 46%, transparent);
+  --surface-shade: color-mix(in oklab, black 70%, transparent);
+  --panel: var(--jellyfy-neutral-900);
+  --disabled: color-mix(in oklab, var(--jellyfy-neutral-600) 55%, transparent);
+  --disabled-foreground: color-mix(
+    in oklab,
+    var(--jellyfy-neutral-300) 75%,
+    transparent
+  );
+  --focus-gap: 0 0 0 2px var(--jellyfy-neutral-950);
+  --shadow-inset-thin: inset 0 -6px 8px rgb(0 0 0 / 0.32);
+  --shadow-inset-mark: inset 0 -1px 5px rgb(0 0 0 / 0.65);
+  --shadow-inset-surface: inset 0 -10px 16px rgb(0 0 0 / 0.55);
+  --shadow-inset-surface-focus: inset 0 -6px 10px rgb(0 0 0 / 0.4);
+  --shadow-inset-raised: inset 0 -10px 16px rgb(0 0 0 / 0.72);
+  --shadow-drop-sm: 0 4px 6px -3px rgb(0 0 0 / 0.7);
+  --shadow-drop: 0 12px 16px -14px rgb(0 0 0 / 0.75);
+  --shadow-drop-hover: 0 16px 36px -14px rgb(0 0 0 / 0.82);
+  --shadow-drop-disabled: 0 12px 12px -12px rgb(0 0 0 / 0.5);
+  color-scheme: dark;
+}
+
 @layer components {
   .btn,
-  .btn-square,
+  .btn-icon,
   .btn-surface,
   .input,
   .input input,
@@ -140,7 +249,8 @@
     height: 40%;
     border-radius: 999px;
     filter: blur(12px);
-    animation: jellyfy-sweep linear infinite;
+    opacity: 0;
+    animation: jellyfy-sweep linear infinite backwards;
   }
 
   .jellyfy-sweep-light {
@@ -180,6 +290,17 @@
     border-radius: 999px;
     filter: blur(4px);
     translate: -50% 0;
+    opacity: 0;
+    animation: jellyfy-light-in 400ms ease-out forwards;
+  }
+
+  @keyframes jellyfy-light-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   .jellyfy-orbit-light {
@@ -217,11 +338,13 @@
     .jellyfy-orbit,
     .jellyfy-spinner,
     .btn,
-    .btn-square,
+    .btn-icon,
     .checkbox-box,
+    .checkbox-box::after,
     .toggle-track,
     .toggle-thumb,
-    .radio-dot,
+    .radio-ring,
+    .radio-ring::after,
     .input,
     .textarea,
     .select,
@@ -235,18 +358,9 @@
   }
 
   .btn,
-  .btn-square {
-    --jellyfy-solid: var(--jellyfy-primary);
-    --jellyfy-highlight: color-mix(
-      in oklab,
-      color-mix(in oklab, white 75%, var(--jellyfy-solid)) 22%,
-      transparent
-    );
-    --jellyfy-shade: color-mix(
-      in oklab,
-      color-mix(in oklab, black 45%, var(--jellyfy-solid)) 40%,
-      transparent
-    );
+  .btn-icon {
+    --jellyfy-highlight: var(--surface-highlight);
+    --jellyfy-shade: var(--surface-shade);
     position: relative;
     isolation: isolate;
     display: inline-flex;
@@ -256,12 +370,8 @@
     overflow: hidden;
     border: 0;
     border-radius: var(--radius-control);
-    background-color: color-mix(
-      in oklab,
-      var(--jellyfy-solid) 60%,
-      transparent
-    );
-    color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
+    background-color: var(--surface);
+    color: var(--surface-foreground);
     box-shadow: var(--shadow-inset-raised), var(--shadow-drop);
     backdrop-filter: blur(4px);
     cursor: pointer;
@@ -275,9 +385,49 @@
       outline-color 0.3s ease-out;
   }
 
+  .btn:is(
+    .primary,
+    .secondary,
+    .tertiary,
+    .neutral,
+    .success,
+    .error,
+    .warning,
+    .info
+  ),
+  .btn-icon:is(
+    .primary,
+    .secondary,
+    .tertiary,
+    .neutral,
+    .success,
+    .error,
+    .warning,
+    .info
+  ) {
+    --jellyfy-highlight: color-mix(
+      in oklab,
+      color-mix(in oklab, white var(--jellyfy-btn-gloss), var(--jellyfy-solid))
+        var(--jellyfy-btn-gloss-strength),
+      transparent
+    );
+    --jellyfy-shade: color-mix(
+      in oklab,
+      color-mix(in oklab, black var(--jellyfy-btn-cast), var(--jellyfy-solid))
+        var(--jellyfy-btn-cast-strength),
+      transparent
+    );
+    background-color: color-mix(
+      in oklab,
+      var(--jellyfy-solid) var(--jellyfy-solid-strength),
+      transparent
+    );
+    color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
+  }
+
   .btn:focus-visible:not(:disabled),
-  .btn-square:focus-visible:not(:disabled) {
-    outline-color: var(--jellyfy-solid);
+  .btn-icon:focus-visible:not(:disabled) {
+    outline-color: var(--jellyfy-solid, var(--surface-foreground));
     box-shadow:
       var(--focus-gap), var(--shadow-inset-raised), var(--shadow-drop);
   }
@@ -294,40 +444,31 @@
     text-shadow: 0 0 6px rgb(10 10 10 / 0.4);
   }
 
-  .btn-square {
+  .btn-icon {
     width: calc(var(--spacing, 0.25rem) * 12);
     height: calc(var(--spacing, 0.25rem) * 12);
     font-size: calc(var(--spacing, 0.25rem) * 6);
   }
 
-  .btn-square > svg {
+  .btn-icon > svg {
     width: calc(var(--spacing, 0.25rem) * 6);
     height: calc(var(--spacing, 0.25rem) * 6);
   }
 
-  .btn.neutral,
-  .btn-square.neutral,
-  .badge.neutral {
-    background-color: var(--surface);
-    color: var(--surface-foreground);
-    --jellyfy-highlight: var(--surface-highlight);
-    --jellyfy-shade: var(--surface-shade);
-  }
-
   .btn:hover:not(:disabled),
-  .btn-square:hover:not(:disabled) {
+  .btn-icon:hover:not(:disabled) {
     translate: 0 -2px;
     box-shadow: var(--shadow-inset-raised), var(--shadow-drop-hover);
   }
 
   .btn:hover:focus-visible:not(:disabled),
-  .btn-square:hover:focus-visible:not(:disabled) {
+  .btn-icon:hover:focus-visible:not(:disabled) {
     box-shadow:
       var(--focus-gap), var(--shadow-inset-raised), var(--shadow-drop-hover);
   }
 
   .btn:disabled,
-  .btn-square:disabled {
+  .btn-icon:disabled {
     background-color: var(--disabled);
     color: var(--disabled-foreground);
     box-shadow: var(--shadow-inset-raised), var(--shadow-drop-disabled);
@@ -337,8 +478,8 @@
 
   .btn::before,
   .btn::after,
-  .btn-square::before,
-  .btn-square::after {
+  .btn-icon::before,
+  .btn-icon::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -351,7 +492,7 @@
   }
 
   .btn::before,
-  .btn-square::before {
+  .btn-icon::before {
     top: 60%;
     height: 60%;
     transform: translate(-50%, -40%);
@@ -359,7 +500,7 @@
   }
 
   .btn::after,
-  .btn-square::after {
+  .btn-icon::after {
     top: 42.86%;
     height: 50%;
     transform: translate(-50%, -75%);
@@ -368,13 +509,13 @@
 
   .btn:active:not(:disabled)::before,
   .btn:active:not(:disabled)::after,
-  .btn-square:active:not(:disabled)::before,
-  .btn-square:active:not(:disabled)::after {
+  .btn-icon:active:not(:disabled)::before,
+  .btn-icon:active:not(:disabled)::after {
     opacity: 1;
   }
 
   .btn > :not(.jellyfy-lights),
-  .btn-square > :not(.jellyfy-lights) {
+  .btn-icon > :not(.jellyfy-lights) {
     position: relative;
     z-index: 2;
     display: inline-flex;
@@ -382,14 +523,13 @@
     gap: calc(var(--spacing, 0.25rem) * 1);
   }
 
-  .btn-square.loading > svg:not(.jellyfy-spinner) {
+  .btn-icon.loading > svg:not(.jellyfy-spinner) {
     display: none;
   }
 
   .input,
   .textarea,
   .select {
-    --jellyfy-solid: var(--jellyfy-neutral);
     --jellyfy-highlight: var(--surface-highlight);
     --jellyfy-shade: var(--surface-shade);
     --jellyfy-ring: var(--jellyfy-neutral-400);
@@ -414,6 +554,7 @@
   .input.primary,
   .input.secondary,
   .input.tertiary,
+  .input.neutral,
   .input.success,
   .input.error,
   .input.warning,
@@ -421,6 +562,7 @@
   .textarea.primary,
   .textarea.secondary,
   .textarea.tertiary,
+  .textarea.neutral,
   .textarea.success,
   .textarea.error,
   .textarea.warning,
@@ -428,16 +570,22 @@
   .select.primary,
   .select.secondary,
   .select.tertiary,
+  .select.neutral,
   .select.success,
   .select.error,
   .select.warning,
   .select.info {
     background-color: color-mix(
       in oklab,
-      color-mix(in oklab, white 86%, var(--jellyfy-solid)) 60%,
+      color-mix(
+          in oklab,
+          var(--jellyfy-paper) var(--jellyfy-wash),
+          var(--jellyfy-solid)
+        )
+        var(--jellyfy-wash-alpha),
       transparent
     );
-    color: color-mix(in oklab, var(--jellyfy-solid) 62%, black);
+    color: color-mix(in oklab, var(--jellyfy-solid) 62%, var(--jellyfy-ink));
     --jellyfy-highlight: color-mix(
       in oklab,
       color-mix(in oklab, white 80%, var(--jellyfy-solid)) 70%,
@@ -459,6 +607,7 @@
   .input.primary:focus-within,
   .input.secondary:focus-within,
   .input.tertiary:focus-within,
+  .input.neutral:focus-within,
   .input.success:focus-within,
   .input.error:focus-within,
   .input.warning:focus-within,
@@ -466,6 +615,7 @@
   .textarea.primary:focus-within,
   .textarea.secondary:focus-within,
   .textarea.tertiary:focus-within,
+  .textarea.neutral:focus-within,
   .textarea.success:focus-within,
   .textarea.error:focus-within,
   .textarea.warning:focus-within,
@@ -473,13 +623,19 @@
   .select.primary:focus-within,
   .select.secondary:focus-within,
   .select.tertiary:focus-within,
+  .select.neutral:focus-within,
   .select.success:focus-within,
   .select.error:focus-within,
   .select.warning:focus-within,
   .select.info:focus-within {
     background-color: color-mix(
       in oklab,
-      color-mix(in oklab, white 78%, var(--jellyfy-solid)) 60%,
+      color-mix(
+          in oklab,
+          var(--jellyfy-paper) var(--jellyfy-wash-focus),
+          var(--jellyfy-solid)
+        )
+        var(--jellyfy-wash-alpha),
       transparent
     );
   }
@@ -711,7 +867,7 @@
       padding: 0.35rem;
       border: 0;
       border-radius: var(--radius-surface);
-      background: white;
+      background: var(--jellyfy-paper);
       color: var(--surface-foreground);
       box-shadow: var(--shadow-inset-thin), var(--shadow-drop-hover);
       font: inherit;
@@ -725,12 +881,60 @@
     }
 
     .select select option:hover,
-    .select select option:focus {
-      background: color-mix(in oklab, var(--jellyfy-solid) 16%, white);
+    .select select option:focus,
+    .select select option:checked {
+      background: var(--surface-focus);
+      color: inherit;
     }
 
-    .select select option:checked {
-      background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+    .select:is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .error,
+        .warning,
+        .info
+      )
+      select
+      option:hover,
+    .select:is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .error,
+        .warning,
+        .info
+      )
+      select
+      option:focus {
+      background: color-mix(
+        in oklab,
+        var(--jellyfy-solid) 16%,
+        var(--jellyfy-paper)
+      );
+    }
+
+    .select:is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .error,
+        .warning,
+        .info
+      )
+      select
+      option:checked {
+      background: color-mix(
+        in oklab,
+        var(--jellyfy-solid) var(--jellyfy-solid-strength),
+        transparent
+      );
       color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
     }
 
@@ -742,7 +946,6 @@
   .checkbox,
   .radio,
   .toggle {
-    --jellyfy-solid: var(--jellyfy-primary);
     display: inline-flex;
     align-items: center;
     gap: calc(var(--spacing, 0.25rem) * 3);
@@ -768,7 +971,7 @@
     width: calc(var(--spacing, 0.25rem) * 6);
     height: calc(var(--spacing, 0.25rem) * 6);
     flex: none;
-    background-color: var(--surface);
+    background-color: var(--jellyfy-well);
     color: var(--surface-foreground);
     box-shadow: var(--shadow-inset-mark), var(--shadow-drop-sm);
     backdrop-filter: blur(4px);
@@ -794,9 +997,11 @@
     height: 22%;
     border-left: 2px solid currentColor;
     border-bottom: 2px solid currentColor;
-    transform: translateY(-20%) rotate(-45deg);
+    transform: translateY(-20%) rotate(-45deg) scale(0.4);
     opacity: 0;
-    transition: opacity 300ms ease-out;
+    transition:
+      transform 300ms ease-out,
+      opacity 300ms ease-out;
   }
 
   .radio-ring::after {
@@ -804,11 +1009,7 @@
     width: calc(var(--spacing, 0.25rem) * 3.5);
     height: calc(var(--spacing, 0.25rem) * 3.5);
     border-radius: 999px;
-    background-color: color-mix(
-      in oklab,
-      var(--jellyfy-solid) 60%,
-      transparent
-    );
+    background-color: var(--surface-foreground);
     transform: scale(0);
     opacity: 0;
     transition:
@@ -817,19 +1018,61 @@
       background-color 300ms ease-out;
   }
 
-  .checkbox:has(:checked) .checkbox-box,
-  .toggle:has(:checked) .toggle-track {
+  .checkbox:is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .error,
+      .warning,
+      .info
+    ):has(:checked)
+    .checkbox-box,
+  .toggle:is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .error,
+      .warning,
+      .info
+    ):has(:checked)
+    .toggle-track {
     background-color: color-mix(
       in oklab,
-      var(--jellyfy-solid) 60%,
+      var(--jellyfy-solid) var(--jellyfy-solid-strength),
       transparent
     );
     color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
   }
 
+  .radio:is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .error,
+      .warning,
+      .info
+    )
+    .radio-ring::after {
+    background-color: color-mix(
+      in oklab,
+      var(--jellyfy-solid) var(--jellyfy-solid-strength),
+      transparent
+    );
+  }
+
   .checkbox:has(:checked) .checkbox-box::after,
   .radio:has(:checked) .radio-ring::after {
     opacity: 1;
+  }
+
+  .checkbox:has(:checked) .checkbox-box::after {
+    transform: translateY(-20%) rotate(-45deg) scale(1);
   }
 
   .radio:has(:checked) .radio-ring::after {
@@ -838,19 +1081,19 @@
 
   .checkbox:has(:focus-visible) .checkbox-box,
   .radio:has(:focus-visible) .radio-ring {
-    outline-color: var(--jellyfy-solid);
+    outline-color: var(--jellyfy-solid, var(--surface-foreground));
     box-shadow:
       var(--focus-gap), var(--shadow-inset-mark), var(--shadow-drop-sm);
   }
 
   .toggle:has(:focus-visible) .toggle-track {
-    outline-color: var(--jellyfy-solid);
+    outline-color: var(--jellyfy-solid, var(--surface-foreground));
     box-shadow:
       var(--focus-gap), var(--shadow-inset-surface-focus), var(--shadow-drop-sm);
   }
 
   .range:has(:focus-visible) .range-thumb {
-    outline-color: var(--jellyfy-solid);
+    outline-color: var(--jellyfy-solid, var(--surface-foreground));
     box-shadow:
       var(--focus-gap), var(--shadow-inset-mark), var(--shadow-drop-sm);
   }
@@ -861,7 +1104,7 @@
     height: calc(var(--spacing, 0.25rem) * 7);
     flex: none;
     border-radius: 999px;
-    background: var(--surface);
+    background: var(--jellyfy-well);
     box-shadow: var(--shadow-inset-surface), var(--shadow-drop-sm);
     outline: 1px solid transparent;
     outline-offset: 2px;
@@ -895,7 +1138,6 @@
   }
 
   .range {
-    --jellyfy-solid: var(--jellyfy-primary);
     --jellyfy-pct: 0.4;
     display: flex;
     width: 100%;
@@ -920,7 +1162,7 @@
     overflow: hidden;
     translate: 0 -50%;
     border-radius: 999px;
-    background: var(--surface);
+    background: var(--jellyfy-well);
     box-shadow: var(--shadow-inset-surface), var(--shadow-drop-sm);
   }
 
@@ -933,8 +1175,41 @@
         (100% - calc(var(--spacing, 0.25rem) * 6)) * var(--jellyfy-pct)
     );
     border-radius: 999px;
-    background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+    background: color-mix(
+      in oklab,
+      var(--surface-foreground) var(--jellyfy-solid-strength),
+      transparent
+    );
     transition: background-color 300ms ease-out;
+  }
+
+  .range:is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .error,
+      .warning,
+      .info
+    )
+    .range-fill,
+  .range:is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .error,
+      .warning,
+      .info
+    )
+    .range-thumb {
+    background: color-mix(
+      in oklab,
+      var(--jellyfy-solid) var(--jellyfy-solid-strength),
+      transparent
+    );
   }
 
   .range-thumb {
@@ -945,7 +1220,11 @@
     width: calc(var(--spacing, 0.25rem) * 6);
     height: calc(var(--spacing, 0.25rem) * 6);
     border-radius: 999px;
-    background: color-mix(in oklab, var(--jellyfy-solid) 60%, transparent);
+    background: color-mix(
+      in oklab,
+      var(--surface-foreground) var(--jellyfy-solid-strength),
+      transparent
+    );
     box-shadow: var(--shadow-inset-mark), var(--shadow-drop-sm);
     outline: 1px solid transparent;
     outline-offset: 2px;
@@ -970,15 +1249,31 @@
 
   .message {
     margin-top: calc(var(--spacing, 0.25rem) * 1.5);
-    color: color-mix(
-      in oklab,
-      var(--jellyfy-solid, var(--jellyfy-error)) 62%,
-      black
-    );
+    color: var(--surface-foreground);
     font-size: calc(var(--spacing, 0.25rem) * 3);
   }
 
-  .alert,
+  .message:is(
+    .primary,
+    .secondary,
+    .tertiary,
+    .neutral,
+    .success,
+    .error,
+    .warning,
+    .info
+  ) {
+    color: color-mix(in oklab, var(--jellyfy-solid) 62%, var(--jellyfy-ink));
+  }
+
+  .alert.primary,
+  .alert.secondary,
+  .alert.tertiary,
+  .alert.neutral,
+  .alert.success,
+  .alert.error,
+  .alert.warning,
+  .alert.info,
   .card.primary,
   .card.secondary,
   .card.tertiary,
@@ -997,15 +1292,21 @@
   .modal-panel.info {
     background-color: color-mix(
       in oklab,
-      color-mix(in oklab, white 86%, var(--jellyfy-solid)) 60%,
+      color-mix(
+          in oklab,
+          var(--jellyfy-paper) var(--jellyfy-wash),
+          var(--jellyfy-solid)
+        )
+        var(--jellyfy-wash-alpha),
       transparent
     );
-    color: color-mix(in oklab, var(--jellyfy-solid) 62%, black);
+    color: color-mix(in oklab, var(--jellyfy-solid) 62%, var(--jellyfy-ink));
   }
 
   .alert {
-    --jellyfy-solid: var(--jellyfy-warning);
     display: flex;
+    background-color: var(--surface);
+    color: var(--surface-foreground);
     align-items: flex-start;
     gap: calc(var(--spacing, 0.25rem) * 3);
     border-radius: var(--radius-surface);
@@ -1034,16 +1335,11 @@
   }
 
   .badge {
-    --jellyfy-solid: var(--jellyfy-primary);
     display: inline-flex;
     align-items: center;
     border-radius: 999px;
-    background-color: color-mix(
-      in oklab,
-      var(--jellyfy-solid) 60%,
-      transparent
-    );
-    color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
+    background-color: var(--surface);
+    color: var(--surface-foreground);
     padding: calc(var(--spacing, 0.25rem) * 1)
       calc(var(--spacing, 0.25rem) * 2.5);
     font-size: 10px;
@@ -1058,6 +1354,24 @@
       background-color 300ms ease-out,
       color 300ms ease-out,
       outline-color 300ms ease-out;
+  }
+
+  .badge:is(
+    .primary,
+    .secondary,
+    .tertiary,
+    .neutral,
+    .success,
+    .error,
+    .warning,
+    .info
+  ) {
+    background-color: color-mix(
+      in oklab,
+      var(--jellyfy-solid) var(--jellyfy-solid-strength),
+      transparent
+    );
+    color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
   }
 
   .card {
@@ -1200,9 +1514,17 @@
   .error .btn-surface,
   .warning .btn-surface,
   .info .btn-surface {
-    --jellyfy-highlight: color-mix(in oklab, white 78%, var(--jellyfy-solid));
-    --jellyfy-shade: color-mix(in oklab, var(--jellyfy-solid) 34%, transparent);
-    color: color-mix(in oklab, var(--jellyfy-solid) 62%, black);
+    --jellyfy-highlight: color-mix(
+      in oklab,
+      white var(--jellyfy-mark-gloss),
+      var(--jellyfy-solid)
+    );
+    --jellyfy-shade: color-mix(
+      in oklab,
+      var(--jellyfy-solid) var(--jellyfy-mark-shade-amount),
+      transparent
+    );
+    color: color-mix(in oklab, var(--jellyfy-solid) 62%, var(--jellyfy-ink));
   }
 
   .primary {
@@ -1244,26 +1566,26 @@
     font-size: calc(var(--spacing, 0.25rem) * 4);
   }
 
-  .btn-square.btn-sm {
+  .btn-icon.btn-sm {
     width: calc(var(--spacing, 0.25rem) * 10);
     min-width: 0;
     padding-inline: 0;
     font-size: calc(var(--spacing, 0.25rem) * 5);
   }
 
-  .btn-square.btn-sm > svg {
+  .btn-icon.btn-sm > svg {
     width: calc(var(--spacing, 0.25rem) * 5);
     height: calc(var(--spacing, 0.25rem) * 5);
   }
 
-  .btn-square.btn-lg {
+  .btn-icon.btn-lg {
     width: calc(var(--spacing, 0.25rem) * 14);
     min-width: 0;
     padding-inline: 0;
     font-size: calc(var(--spacing, 0.25rem) * 7);
   }
 
-  .btn-square.btn-lg > svg {
+  .btn-icon.btn-lg > svg {
     width: calc(var(--spacing, 0.25rem) * 7);
     height: calc(var(--spacing, 0.25rem) * 7);
   }
@@ -1657,8 +1979,192 @@
     padding: calc(var(--spacing, 0.25rem) * 8);
   }
 
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) :is(.input, .textarea, .select) {
+      --jellyfy-face: color-mix(
+        in oklab,
+        var(--jellyfy-neutral-800) 92%,
+        var(--jellyfy-paper)
+      );
+      --jellyfy-highlight: color-mix(in oklab, white 8%, var(--jellyfy-face));
+      --jellyfy-shade: color-mix(in oklab, black 20%, var(--jellyfy-face));
+    }
+
+    :root:not([data-theme="light"])
+      :is(.input, .textarea, .select):is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .error,
+        .warning,
+        .info
+      ) {
+      --jellyfy-face: color-mix(
+        in oklab,
+        var(--jellyfy-paper) var(--jellyfy-wash-focus),
+        var(--jellyfy-solid)
+      );
+    }
+
+    :root:not([data-theme="light"])
+      :is(.btn, .btn-icon):not(
+        :is(
+          .primary,
+          .secondary,
+          .tertiary,
+          .neutral,
+          .success,
+          .error,
+          .warning,
+          .info
+        )
+      ) {
+      --jellyfy-face: color-mix(
+        in oklab,
+        var(--jellyfy-neutral-900) 92%,
+        var(--jellyfy-paper)
+      );
+      --jellyfy-highlight: color-mix(
+        in oklab,
+        color-mix(in oklab, white var(--jellyfy-btn-gloss), var(--jellyfy-face))
+          var(--jellyfy-btn-gloss-strength),
+        transparent
+      );
+      --jellyfy-shade: color-mix(
+        in oklab,
+        color-mix(in oklab, black var(--jellyfy-btn-cast), var(--jellyfy-face))
+          var(--jellyfy-btn-cast-strength),
+        transparent
+      );
+    }
+
+    :root:not([data-theme="light"]) .btn-surface {
+      --jellyfy-face: color-mix(
+        in oklab,
+        var(--jellyfy-neutral-900) 92%,
+        var(--jellyfy-paper)
+      );
+      --jellyfy-highlight: color-mix(in oklab, white 8%, var(--jellyfy-face));
+      --jellyfy-shade: color-mix(in oklab, black 20%, var(--jellyfy-face));
+    }
+
+    :root:not([data-theme="light"])
+      :is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .error,
+        .warning,
+        .info
+      )
+      .btn-surface {
+      --jellyfy-face: color-mix(
+        in oklab,
+        var(--jellyfy-paper) var(--jellyfy-wash),
+        var(--jellyfy-solid)
+      );
+      --jellyfy-highlight: color-mix(in oklab, white 8%, var(--jellyfy-face));
+      --jellyfy-shade: color-mix(in oklab, black 20%, var(--jellyfy-face));
+    }
+  }
+
+  :root[data-theme="dark"] :is(.input, .textarea, .select) {
+    --jellyfy-face: color-mix(
+      in oklab,
+      var(--jellyfy-neutral-800) 92%,
+      var(--jellyfy-paper)
+    );
+    --jellyfy-highlight: color-mix(in oklab, white 8%, var(--jellyfy-face));
+    --jellyfy-shade: color-mix(in oklab, black 20%, var(--jellyfy-face));
+  }
+
+  :root[data-theme="dark"]
+    :is(.input, .textarea, .select):is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .error,
+      .warning,
+      .info
+    ) {
+    --jellyfy-face: color-mix(
+      in oklab,
+      var(--jellyfy-paper) var(--jellyfy-wash-focus),
+      var(--jellyfy-solid)
+    );
+  }
+
+  :root[data-theme="dark"]
+    :is(.btn, .btn-icon):not(
+      :is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .error,
+        .warning,
+        .info
+      )
+    ) {
+    --jellyfy-face: color-mix(
+      in oklab,
+      var(--jellyfy-neutral-900) 92%,
+      var(--jellyfy-paper)
+    );
+    --jellyfy-highlight: color-mix(
+      in oklab,
+      color-mix(in oklab, white var(--jellyfy-btn-gloss), var(--jellyfy-face))
+        var(--jellyfy-btn-gloss-strength),
+      transparent
+    );
+    --jellyfy-shade: color-mix(
+      in oklab,
+      color-mix(in oklab, black var(--jellyfy-btn-cast), var(--jellyfy-face))
+        var(--jellyfy-btn-cast-strength),
+      transparent
+    );
+  }
+
+  :root[data-theme="dark"] .btn-surface {
+    --jellyfy-face: color-mix(
+      in oklab,
+      var(--jellyfy-neutral-900) 92%,
+      var(--jellyfy-paper)
+    );
+    --jellyfy-highlight: color-mix(in oklab, white 8%, var(--jellyfy-face));
+    --jellyfy-shade: color-mix(in oklab, black 20%, var(--jellyfy-face));
+  }
+
+  :root[data-theme="dark"]
+    :is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .error,
+      .warning,
+      .info
+    )
+    .btn-surface {
+    --jellyfy-face: color-mix(
+      in oklab,
+      var(--jellyfy-paper) var(--jellyfy-wash),
+      var(--jellyfy-solid)
+    );
+    --jellyfy-highlight: color-mix(in oklab, white 8%, var(--jellyfy-face));
+    --jellyfy-shade: color-mix(in oklab, black 20%, var(--jellyfy-face));
+  }
+
   .btn,
-  .btn-square,
+  .btn-icon,
   .input,
   .textarea,
   .select,

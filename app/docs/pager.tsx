@@ -9,11 +9,11 @@ export const Pager = ({ href }: { href: string }) => {
   const next = index >= 0 ? DOC_LINKS[index + 1] : undefined;
 
   return (
-    <nav className="mt-16 grid gap-3 border-t border-neutral-200 pt-6 sm:grid-cols-2">
+    <nav className="mt-16 grid gap-3 border-t border-neutral-200 pt-6 sm:grid-cols-2 dark:border-neutral-800">
       {previous ? (
         <Link
           href={previous.href}
-          className="rounded-2xl border border-neutral-200 px-4 py-3 hover:border-neutral-300"
+          className="rounded-2xl border border-neutral-200 px-4 py-3 hover:border-neutral-300 dark:border-neutral-800 dark:hover:border-neutral-700"
         >
           <span className="flex items-center gap-1 text-xs text-neutral-500">
             <ChevronLeftIcon className="size-3.5" aria-hidden="true" />
@@ -27,7 +27,7 @@ export const Pager = ({ href }: { href: string }) => {
       {next ? (
         <Link
           href={next.href}
-          className="rounded-2xl border border-neutral-200 px-4 py-3 text-right hover:border-neutral-300"
+          className="rounded-2xl border border-neutral-200 px-4 py-3 text-right hover:border-neutral-300 dark:border-neutral-800 dark:hover:border-neutral-700"
         >
           <span className="flex items-center justify-end gap-1 text-xs text-neutral-500">
             Next

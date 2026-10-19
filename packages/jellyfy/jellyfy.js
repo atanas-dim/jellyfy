@@ -95,7 +95,7 @@ const face = (node) => {
   if (sw) return sw.querySelector(".toggle-track") ?? sw;
 
   const control = node.closest(
-    ".btn, .btn-square, .btn-surface, .input, .textarea, .select",
+    ".btn, .btn-icon, .btn-surface, .input, .textarea, .select",
   );
   if (control) return control;
 
@@ -127,7 +127,7 @@ const lights = (spin) => {
 const mountLoading = (root) => {
   root.querySelectorAll(".loading").forEach((element) => {
     if (element.querySelector(".jellyfy-lights")) return;
-    const spin = element.classList.contains("btn-square");
+    const spin = element.classList.contains("btn-icon");
     element.insertAdjacentHTML("afterbegin", lights(spin));
     if (!element.querySelector(".jellyfy-spinner")) {
       element.insertAdjacentHTML(

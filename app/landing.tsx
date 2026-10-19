@@ -139,15 +139,15 @@ export const Landing = () => {
         <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
           <div
             data-blob
-            className="absolute -top-24 -left-16 size-[28rem] rounded-full bg-pink-300/45 blur-3xl"
+            className="absolute -top-24 -left-16 size-[28rem] rounded-full bg-pink-300/45 blur-3xl dark:bg-pink-800/35"
           />
           <div
             data-blob
-            className="absolute top-16 -right-20 size-[34rem] rounded-full bg-indigo-300/40 blur-3xl"
+            className="absolute top-16 -right-20 size-[34rem] rounded-full bg-indigo-300/40 blur-3xl dark:bg-indigo-800/30"
           />
           <div
             data-blob
-            className="absolute bottom-0 left-1/3 size-[22rem] rounded-full bg-teal-200/50 blur-3xl"
+            className="absolute bottom-0 left-1/3 size-[22rem] rounded-full bg-teal-200/50 blur-3xl dark:bg-teal-800/35"
           />
         </div>
 
@@ -188,10 +188,10 @@ export const Landing = () => {
                     key={item.id}
                     type="button"
                     className={twJoin(
-                      "btn-square outline-2 outline-offset-2 transition-all duration-400",
+                      "btn-icon outline-2 outline-offset-2 transition-all duration-400",
                       item.id,
                       tone === item.id
-                        ? "outline-neutral-950"
+                        ? "outline-neutral-950 dark:outline-neutral-100"
                         : "outline-transparent",
                     )}
                     aria-label={item.label}
@@ -209,7 +209,7 @@ export const Landing = () => {
               data-hero-item
               className="mt-8 flex flex-wrap items-center gap-3"
             >
-              <Link href="/set" className="btn">
+              <Link href="/set" className="btn neutral">
                 <span>Open the set</span>
               </Link>
               <button
@@ -308,14 +308,14 @@ export const Landing = () => {
                 >
                   <button
                     type="button"
-                    className={twJoin("btn-square", tone)}
+                    className={twJoin("btn-icon", tone)}
                     aria-label="Add"
                   >
                     <PlusIcon />
                   </button>
                   <button
                     type="button"
-                    className="btn-square neutral"
+                    className="btn-icon neutral"
                     aria-label="More"
                   >
                     <MinusIcon />
@@ -327,7 +327,7 @@ export const Landing = () => {
         </div>
       </section>
 
-      <section className="border-y border-white/70 bg-white/40 py-8">
+      <section className="border-y border-white/70 bg-white/40 py-8 dark:border-white/10 dark:bg-neutral-900/50">
         <p
           data-rise
           className="px-6 text-center text-sm font-medium tracking-[0.18em] text-neutral-500 uppercase sm:px-10"
