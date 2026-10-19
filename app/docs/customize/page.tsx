@@ -107,10 +107,12 @@ export default function CustomizePage() {
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
         Jellyfy follows the operating system. The eight colours stay the ones
         you set. In the dark, the paper behind a control goes near black and the
-        writing goes light. The gray is lifted so a neutral control still sits
-        clear of that page. The press on a field is still that colour: a
-        brighter pool of it along the bottom, and the same colour mixed toward
-        black along the top.
+        writing goes light. The default gray is lighter in the dark theme so a
+        neutral control still sits clear of that page. Set
+        <code className="font-mono text-sm">--color-neutral</code> in that same
+        dark rule to replace it, the same way as the other colours. The press on
+        a field is still that colour: a brighter pool of it along the bottom,
+        and the same colour mixed toward black along the top.
       </p>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
         To choose for the page, set{" "}

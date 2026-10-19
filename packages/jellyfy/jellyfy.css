@@ -90,11 +90,7 @@
   :root:not([data-theme="light"]) {
     --jellyfy-paper: var(--jellyfy-neutral-950);
     --jellyfy-ink: white;
-    --jellyfy-neutral: color-mix(
-      in oklab,
-      white 62%,
-      var(--color-neutral, var(--jellyfy-neutral-600))
-    );
+    --color-neutral: var(--jellyfy-neutral-300);
     --jellyfy-btn-gloss: 16%;
     --jellyfy-btn-gloss-strength: 32%;
     --jellyfy-btn-cast: 62%;
@@ -144,11 +140,7 @@
 :root[data-theme="dark"] {
   --jellyfy-paper: var(--jellyfy-neutral-950);
   --jellyfy-ink: white;
-  --jellyfy-neutral: color-mix(
-    in oklab,
-    white 62%,
-    var(--color-neutral, var(--jellyfy-neutral-600))
-  );
+  --color-neutral: var(--jellyfy-neutral-300);
   --jellyfy-btn-gloss: 16%;
   --jellyfy-btn-gloss-strength: 32%;
   --jellyfy-btn-cast: 62%;
