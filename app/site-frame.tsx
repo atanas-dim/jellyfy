@@ -18,7 +18,7 @@ export const SiteFrame = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="flex min-h-full flex-1 flex-col text-neutral-950 dark:text-neutral-100">
-      <header className="sticky top-0 z-30 border-b border-white/70 bg-neutral-50/75 backdrop-blur-md dark:border-white/10 dark:bg-neutral-950/75">
+      <header className="sticky top-0 z-30 border-b border-neutral-200/80 bg-neutral-50/75 backdrop-blur-md dark:border-neutral-800 dark:bg-neutral-950/75">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-6 py-4 sm:px-10">
           <Link
             href="/"
