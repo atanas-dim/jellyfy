@@ -1327,7 +1327,7 @@
       in oklab,
       color-mix(
           in oklab,
-          var(--jellyfy-paper) var(--jellyfy-wash),
+          var(--jellyfy-surface-color) var(--jellyfy-wash),
           var(--jellyfy-solid)
         )
         var(--jellyfy-wash-alpha),
