@@ -45,6 +45,8 @@
 
   --jellyfy-surface-color: var(--jellyfy-neutral-50);
   --jellyfy-menu: var(--jellyfy-neutral-100);
+  --jellyfy-menu-highlight: 14%;
+  --jellyfy-menu-selected: 28%;
   --jellyfy-surface-alpha: 60%;
   --jellyfy-field-highlight: 80%;
   --jellyfy-field-highlight-strength: 70%;
@@ -102,6 +104,8 @@
     --jellyfy-wash-alpha: 40%;
     --jellyfy-surface-color: var(--jellyfy-neutral-700);
     --jellyfy-menu: var(--jellyfy-neutral-800);
+    --jellyfy-menu-highlight: 10%;
+    --jellyfy-menu-selected: 18%;
     --jellyfy-field-highlight: 60%;
     --jellyfy-field-highlight-strength: 10%;
     --jellyfy-field-shade: 80%;
@@ -158,6 +162,8 @@
   --jellyfy-wash-alpha: 40%;
   --jellyfy-surface-color: var(--jellyfy-neutral-700);
   --jellyfy-menu: var(--jellyfy-neutral-800);
+  --jellyfy-menu-highlight: 10%;
+  --jellyfy-menu-selected: 18%;
   --jellyfy-field-highlight: 60%;
   --jellyfy-field-highlight-strength: 10%;
   --jellyfy-field-shade: 80%;
@@ -547,13 +553,12 @@
   .input,
   .textarea,
   .select {
-    --jellyfy-solid: var(--jellyfy-surface-color);
     --jellyfy-highlight: color-mix(
       in oklab,
       color-mix(
           in oklab,
           white var(--jellyfy-field-highlight),
-          var(--jellyfy-solid)
+          var(--jellyfy-solid, var(--jellyfy-surface-color))
         )
         var(--jellyfy-field-highlight-strength),
       transparent
@@ -563,7 +568,7 @@
       color-mix(
           in oklab,
           black var(--jellyfy-field-shade),
-          var(--jellyfy-solid)
+          var(--jellyfy-solid, var(--jellyfy-surface-color))
         )
         var(--jellyfy-field-shade-strength),
       transparent
@@ -911,61 +916,24 @@
     }
 
     .select select option:hover,
-    .select select option:focus,
-    .select select option:checked {
-      background: var(--surface-focus);
-      color: inherit;
-    }
-
-    .select:is(
-        .primary,
-        .secondary,
-        .tertiary,
-        .neutral,
-        .success,
-        .error,
-        .warning,
-        .info
-      )
-      select
-      option:hover,
-    .select:is(
-        .primary,
-        .secondary,
-        .tertiary,
-        .neutral,
-        .success,
-        .error,
-        .warning,
-        .info
-      )
-      select
-      option:focus {
+    .select select option:focus {
       background: color-mix(
         in oklab,
-        var(--jellyfy-solid) 16%,
+        var(--jellyfy-solid, var(--surface-foreground))
+          var(--jellyfy-menu-highlight),
         var(--jellyfy-menu)
       );
+      color: var(--surface-foreground);
     }
 
-    .select:is(
-        .primary,
-        .secondary,
-        .tertiary,
-        .neutral,
-        .success,
-        .error,
-        .warning,
-        .info
-      )
-      select
-      option:checked {
+    .select select option:checked {
       background: color-mix(
         in oklab,
-        var(--jellyfy-solid) var(--jellyfy-surface-alpha),
-        transparent
+        var(--jellyfy-solid, var(--surface-foreground))
+          var(--jellyfy-menu-selected),
+        var(--jellyfy-menu)
       );
-      color: color-mix(in oklab, white 94%, var(--jellyfy-solid));
+      color: var(--surface-foreground);
     }
 
     .select select option::checkmark {
