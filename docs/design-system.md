@@ -16,7 +16,7 @@ Color is quiet on surfaces and fields, and stronger on controls. That difference
 
 The typeface belongs to the app. Jellyfy inherits it.
 
-Small marks use a shallower inset than buttons, because the button inset collapses at checkbox and handle size. The radio bullet is the one flat solid. It still carries the grain.
+Small marks use a shallower inset than buttons, because the button inset collapses at checkbox and handle size. The radio bullet is jelly with the grain. It is opaque, and it has no blur and no thickness.
 
 ### Implementation notes
 
@@ -26,21 +26,23 @@ Jellyfy is a CSS component library. It is inspired by Tailwind and daisyUI. It d
 
 Every object uses one role. Custom components use the same roles. Size and role are different axes: a large input is still a field.
 
-| Role    | What it is                                                                                        | Thickness | Color strength                      | Radius                                         |
-| ------- | ------------------------------------------------------------------------------------------------- | --------- | ----------------------------------- | ---------------------------------------------- |
-| Surface | A container: card, alert, modal panel, badge                                                      | Thin      | Quiet wash when tinted              | Surface                                        |
-| Field   | A place to type or choose: input, textarea, select                                                | Mid       | Quiet wash when tinted              | Field                                          |
-| Control | A press that takes an action: button, icon button                                                 | Thick     | Solid glass                         | Control                                        |
-| Mark    | A small indicator: checkbox box, radio ring, toggle track, toggle thumb, range track, range thumb | Mark      | Solid glass when selected or filled | Control. The checkbox box uses the mark radius |
-| Overlay | Something floating above the page: modal panel, select menu                                       | Thin      | The surface or menu tone            | Surface                                        |
+| Role    | What it is                                                                                        | Thickness | Color strength                                                     | Radius                                         |
+| ------- | ------------------------------------------------------------------------------------------------- | --------- | ------------------------------------------------------------------ | ---------------------------------------------- |
+| Surface | A container: card, alert, modal panel, badge                                                      | Thin      | Surface tone. Wash with a slot.                                    | Surface                                        |
+| Field   | A place to type or choose: input, textarea, select                                                | Mid       | Surface tone. Wash with a slot.                                    | Field                                          |
+| Control | A press that takes an action: button, icon button                                                 | Thick     | Surface tone. Control fill with a slot.                            | Control                                        |
+| Mark    | A small indicator: checkbox box, radio ring, toggle track, toggle thumb, range track, range thumb | Mark      | Surface tone. Control fill when selected or filled.                | Control. The checkbox box uses the mark radius |
+| Overlay | Modal panel, select menu                                                                          | Thin      | Modal panel uses the surface fill. Select menu uses the menu tone. | Surface                                        |
 
-The surface button, used to close a modal, is not a fifth thickness. It is a bump: mark-strength light on a transparent control, with no fill and no drop shadow.
+A modal panel follows the surface fill rules. A select menu uses the menu tone for its panel. A hovered option and a selected option mix the solid into that menu tone at the menu mixes.
 
-A custom component picks a role the way it picks the squish behavior. The four thickness utilities are `surface`, `field`, `control`, and `mark`. Squish is one utility, because it is one behavior.
+The bump button, used to close a modal, is not a fifth thickness. It is a transparent control with the bump light, no fill, and no drop shadow.
+
+A custom component picks a role the way it picks the squish behavior. The thickness classes are `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. Squish is one utility, because it is one behavior.
 
 ### Implementation notes
 
-Suggested utility names: `jelly-surface`, `jelly-field`, `jelly-control`, `jelly-mark`, and `squish`. Do not name thickness `sm`, `md`, or `lg`. Those names are the size scale.
+The thickness classes are `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The squish class is `squish`. Size classes stay `sm` and `lg`.
 
 ## 3. Color
 
@@ -77,18 +79,20 @@ The neutral ramp is available in full, from 50 through 950, even where a compone
 
 An object with no slot uses the base tones. A slot replaces the solid. The user applies a slot, including Error, with their own logic. Error does not add a second invalid style.
 
+Every slot, including Neutral, uses the same wash, control fill, content color, press light, and menu mixes. A component with no slot uses those same mixes, with the surface tone as its solid. No slot has a mix of its own.
+
 ### Base tones
 
-| Tone                         | Step               |
-| ---------------------------- | ------------------ |
-| Surface and uncolored fill   | Neutral 50         |
-| Menu                         | Neutral 100        |
-| Field focus ground           | Neutral 100        |
-| Text on an uncolored surface | Neutral 800        |
-| Start and end icons          | Neutral 400        |
-| Disabled fill                | Neutral 400 at 60% |
-| Disabled text                | Neutral 50 at 70%  |
-| Shadow color                 | Neutral 950        |
+| Tone                | Step               |
+| ------------------- | ------------------ |
+| Surface fill        | Neutral 50         |
+| Menu                | Neutral 100        |
+| Field focus ground  | Neutral 100        |
+| Text on a surface   | Neutral 800        |
+| Start and end icons | Neutral 400        |
+| Disabled fill       | Neutral 400 at 60% |
+| Disabled text       | Neutral 50 at 70%  |
+| Shadow color        | Neutral 950        |
 
 Black and white are shared values, stored once and reused by every mix that needs them. They are not color slots.
 
@@ -101,7 +105,7 @@ Two recipes produce the defaults.
 - On a control fill, the content color is 94% white and 6% of the solid.
 - On a wash, the content color is 62% of the solid and 38% black. The dark theme uses 38% white. The 62% stays the same.
 
-Uncolored text uses the surface text tone, Neutral 800.
+Text with no slot uses the surface text tone, Neutral 800.
 
 Text on a control or a wash meets WCAG AA, 4.5:1, against the painted fill. The focus outline meets 3:1 against the ground next to it. A saturated solid that cannot reach 4.5:1 with either the control or the wash recipe needs a hand-set content color. The library does not pick black or white at runtime.
 
@@ -109,14 +113,14 @@ Text on a control or a wash meets WCAG AA, 4.5:1, against the painted fill. The 
 
 Strength is separate from the solid. The same solid is quiet on a surface or field and firm on a control.
 
-| Application     | Mix                                                                                  |
-| --------------- | ------------------------------------------------------------------------------------ |
-| Uncolored glass | Surface tone at the material opacity, 60%                                            |
-| Wash, resting   | 86% surface tone and 14% solid, shown at 80% opacity [DARK ADAPTATION MAY BE NEEDED] |
-| Wash, focused   | 78% surface tone and 22% solid, shown at 80% opacity [DARK ADAPTATION MAY BE NEEDED] |
-| Control glass   | Solid at the material opacity, 60%                                                   |
+| Application   | Mix                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------ |
+| Surface tone  | Neutral 50 at the material opacity, 60%                                              |
+| Wash, resting | 86% surface tone and 14% solid, shown at 80% opacity [DARK ADAPTATION MAY BE NEEDED] |
+| Wash, focused | 78% surface tone and 22% solid, shown at 80% opacity [DARK ADAPTATION MAY BE NEEDED] |
+| Control fill  | Solid at the material opacity, 60%                                                   |
 
-Surfaces and fields use the wash when a slot is applied. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control glass.
+The control fill is still jelly. The slot color is at 60% opacity, with the shared blur and the shared grain. Surfaces and fields use the wash with a slot. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
 
 ### Menu mixes
 
@@ -143,7 +147,7 @@ Wash percentages, wash opacity, and the menu mixes are variables. The dark theme
 
 ## 4. Material
 
-Every jelly object is the same material: grain, one opacity, one blur, and a thickness. The radio bullet is the exception. It is a flat solid with the grain, and it has no thickness, no blur of its own, and no press light.
+Every part of a checkbox, radio, switch, and slider is jelly. The radio bullet keeps the grain and is opaque, with no blur and no thickness. Every other part has the grain, the blur, and its thickness.
 
 ### Grain
 
@@ -161,15 +165,15 @@ The 80% wash amount in the color section is a color mix. It is not a second mate
 
 Thickness is an inset shadow in Neutral 950. The shadow falls upward, so the bottom edge reads as the thick part of the pour.
 
-| Thickness      | Shadow                                   | Used by                                                                        |
-| -------------- | ---------------------------------------- | ------------------------------------------------------------------------------ |
-| Surface        | `inset 0 -6px 8px`, Neutral 950 at 12%   | Card, alert, modal panel, badge, select menu                                   |
-| Field, resting | `inset 0 -10px 16px`, Neutral 950 at 20% | Input, textarea, select                                                        |
-| Field, focused | `inset 0 -6px 10px`, Neutral 950 at 15%  | Input, textarea, select while focused                                          |
-| Control        | `inset 0 -16px 16px`, Neutral 950 at 50% | Button, icon button                                                            |
-| Mark           | `inset 0 -1px 5px`, Neutral 950 at 35%   | Checkbox box, radio ring, toggle track, toggle thumb, range track, range thumb |
+| Thickness      | Shadow                                   | Used by                                                                                    |
+| -------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Surface        | `inset 0 -6px 8px`, Neutral 950 at 12%   | Card, alert, modal panel, badge, select menu                                               |
+| Field, resting | `inset 0 -10px 16px`, Neutral 950 at 20% | Input, textarea, select                                                                    |
+| Field, focused | `inset 0 -6px 10px`, Neutral 950 at 15%  | Input, textarea, select while focused                                                      |
+| Control        | `inset 0 -16px 16px`, Neutral 950 at 50% | Button, icon button                                                                        |
+| Mark           | `inset 0 -1px 5px`, Neutral 950 at 35%   | Checkbox box, radio ring, toggle track, toggle thumb, range track, range fill, range thumb |
 
-Range track, range fill, range thumb, and toggle thumb use this material, including the blur and the grain.
+The track and the fill of a slider are both jelly. Only the color differs. The same is true of a switch track and thumb, and of a radio ring.
 
 ### Press light
 
@@ -183,7 +187,7 @@ Press light is a pair of soft ellipses, derived from the solid. The lower ellips
 - Shade: black mixed at 45% into the solid, then shown at 40%.
 - Both ellipses are 90% of the control width, centered, and fade out at 60% of the gradient radius.
 - The highlight starts at 60% of the height, is 60% tall, and is shifted up by 40% of its own height.
-- The shade starts at 42.86% of the height, is 50% tall, and is shifted up by 75% of its own height.
+- The shade starts at 42% of the height, is 50% tall, and is shifted up by 75% of its own height.
 
 **Field light** uses a different strength, because a field is a recess. It is hidden at rest and fully visible while the field is focused, including when focus arrives by click. The transition is 300ms. [DARK ADAPTATION MAY BE NEEDED]
 
@@ -192,13 +196,13 @@ Press light is a pair of soft ellipses, derived from the solid. The lower ellips
 - The highlight is 70% of the field width, 1.75rem tall, and sits 1rem below the bottom edge so only the top of it shows.
 - The shade is 90% of the field width, 2.1rem tall, and starts 1.4rem from the top.
 
-An uncolored object builds the same mixes from the surface tone instead of a slot solid.
+An object with no slot builds the same mixes from the surface tone.
 
 ### Bump
 
 [DARK ADAPTATION MAY BE NEEDED]
 
-The surface button is always lit. It uses the mark light, not the control light.
+The bump button is always lit. It uses the mark light, not the control light.
 
 - Highlight: white mixed at 78% into the solid, then shown at 22%.
 - Shade: black mixed at 78% into the solid, then shown at 34%.
@@ -248,12 +252,12 @@ The dark theme can override the shadow opacity. That override is marked `[DARK A
 
 Four radius tokens. The names are roles. A product can change the values.
 
-| Token   | Default | Used by                                                                                                             |
-| ------- | ------- | ------------------------------------------------------------------------------------------------------------------- |
-| Surface | 1rem    | Card, alert, modal panel, select menu                                                                               |
-| Field   | 1rem    | Input, textarea, select                                                                                             |
-| Control | 999px   | Button, icon button, surface button, toggle track, toggle thumb, range track, range thumb, radio ring, radio bullet |
-| Mark    | 0.5rem  | Checkbox box                                                                                                        |
+| Token   | Default | Used by                                                                                                          |
+| ------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| Surface | 1rem    | Card, alert, modal panel, select menu                                                                            |
+| Field   | 1rem    | Input, textarea, select                                                                                          |
+| Control | 999px   | Button, icon button, bump button, toggle track, toggle thumb, range track, range thumb, radio ring, radio bullet |
+| Mark    | 0.5rem  | Checkbox box                                                                                                     |
 
 Field and surface both default to 1rem. They stay separate so a field inside a card can be tightened without changing the card. A nested corner should be smaller than the corner that contains it.
 
@@ -308,7 +312,7 @@ Read `--spacing` and fall back to `0.25rem`. Author component lengths as multipl
 
 ## 9. Motion
 
-Motion is feedback. It is short, it eases out of the gesture, and it turns off when the person prefers reduced motion. Reduced motion removes squish, loading lights, the spinner, and state transitions.
+Motion is feedback. It is short, it eases out of the gesture, and it turns off when the person prefers reduced motion. Reduced motion removes squish, loading lights, and state transitions.
 
 ### Squish
 
@@ -316,18 +320,19 @@ Squish is the press deformation. It is measured in pixels so a radio and a wide 
 
 The pointer triggers it. Keyboard focus does not. A disabled control does not squish.
 
-The press lasts 480ms and holds the settled pose while the pointer is down. The peak is at 42% of that time. Release lasts 300ms and returns to the scale already on screen, then to the identity scale.
+The press lasts 480ms. It has three shapes. Release lasts 300ms and returns from the scale already on screen to the normal size.
 
-The peak distance is 8px.
+| Pose                                   | Width                   | Height                     |
+| -------------------------------------- | ----------------------- | -------------------------- |
+| Normal                                 | The control's own size  | The control's own size     |
+| Peak, at 42% of the press              | 8px wider               | 2/7 of 8px shorter, 16/7px |
+| Settle, held while the pointer is down | 1/7 of 8px wider, 8/7px | 2/7 of 8px taller, 16/7px  |
 
-| Pose   | Width                        | Height                        |
-| ------ | ---------------------------- | ----------------------------- |
-| Peak   | 8px outward                  | 16/7 px inward, about 2.29px  |
-| Settle | 8/7 px outward, about 1.14px | 16/7 px outward, about 2.29px |
+The 8px is the total change on that axis, stored as one value. Scale is centered, so the peak adds 4px on the left and 4px on the right. The height uses a smaller distance because a control is shorter than it is wide: an equal pixel cut on the height would collapse it. That height ratio is 2/7 of the 8px. The settle width is 1/7 of the 8px. The settle height uses the same 2/7, outward. These three numbers are named constants.
 
 The way to the peak eases out. The way from the peak to the settle eases in and out. Release eases out.
 
-Squish applies to the button, the icon button, the surface button, the field, the checkbox box, the radio ring, the toggle track, and the range thumb. Any other element can opt in.
+Squish applies to the button, the icon button, the bump button, the field, the checkbox box, the radio ring, the toggle track, and the range thumb. Any other element can opt in.
 
 ### Hover rise
 
@@ -356,7 +361,7 @@ A button carries three sheens that sweep across it. Two are lights and one is a 
 
 Opacity along that sweep is 0 at the start, 0.55 at 8%, 0.30 at 55%, 0.42 at 78%, and 0 at the end.
 
-An icon button hides its icon and shows a spinner plus three orbiting dots. The spinner is 1.125rem and turns once per second, linearly. The dots fade in over 400ms, eased out. Each dot is 0.875rem, blurred by 4px, and sits 0.125rem from the top edge of the button.
+An icon button keeps the icon the product placed inside it and shows three orbiting dots. The library does not supply a loading icon. The dots fade in over 400ms, eased out. Each dot is 0.875rem, blurred by 4px, and sits 0.125rem from the top edge of the button.
 
 | Dot | Tone  | Start angle | Duration | Opacity |
 | --- | ----- | ----------- | -------- | ------- |
@@ -372,7 +377,7 @@ Color, shadow, and outline changes take 300ms, eased out. The select chevron tur
 
 ### Implementation notes
 
-Squish is applied in script to the painted face of the control, not to the invisible input inside a checkbox, radio, toggle, or range. The opt-in class is `squish`. Peak, press, and release are the constants in the squish rule: 8px, 480ms, 300ms, peak at 0.42.
+Squish is applied in script to the painted face of the control, not to the invisible input inside a checkbox, radio, toggle, or range. The opt-in class is `squish`. The named constants are the total width change `8`, the height ratio `2/7`, the settle-width ratio `1/7`, the press `480ms`, the release `300ms`, and the peak at `0.42`. Scale on an axis is `1 + pixels / size` on that axis.
 
 Loading light and loading shade are variables that read `--white` and `--black`. The dark theme can override them. That override is marked `[DARK ADAPTATION MAY BE NEEDED]`.
 
@@ -384,7 +389,7 @@ States stack. A selected, focused control shows both treatments. Disabled wins o
 
 ### Rest
 
-The role's fill, thickness, elevation, and content color. Press light is hidden, except on the surface button, whose bump is always visible.
+The role's fill, thickness, elevation, and content color. Press light is hidden. The bump button's lights stay visible.
 
 ### Hover
 
@@ -392,23 +397,23 @@ Buttons and icon buttons use the hover elevation and rise 2px. Select options us
 
 ### Press
 
-Buttons and icon buttons show the control press light and squish. Fields do not show the control press light. The surface button swaps its bump. Keyboard activation does not squish.
+Buttons and icon buttons show the control press light and squish. A field squishes and shows the field light: the radial highlight along the bottom and the shade along the top, at the field strengths. It does not use the control press light. The field light stays while the field is focused, including after a click. The bump button exchanges its highlight and shade. Keyboard activation does not squish.
 
 ### Focus
 
-The focus mark is a 1px outline in the object's solid, 2px outside the object, with a 2px gap. In the light theme the gap is white at 50%. In the dark theme the gap is Neutral 950 at 50%. The gap has to separate the outline from a glassy edge in either theme.
+The focus mark is a 1px outline in the object's solid, 2px outside the object, with a 2px gap. In the light theme the gap is white at 50%. In the dark theme the gap is Neutral 950 at 50%. The gap separates the outline from the jelly edge.
 
 An object with no slot uses the surface text color for the outline.
 
-Buttons, icon buttons, the surface button, marks, and the range thumb show this on keyboard focus only. Fields show it whenever they contain focus, including after a click, and they also show the field light and the focused thickness. The modal shell itself has no focus outline.
+Buttons, icon buttons, the bump button, marks, and the range thumb show this on keyboard focus only. Fields show it whenever they contain focus, including after a click, and they also show the field light and the focused thickness. The modal shell itself has no focus outline.
 
 ### Selected
 
 Selected means the value is on. It is not the press.
 
-- A checked checkbox draws its glyph and, when a slot is applied, fills the box with the control glass.
+- A checked checkbox draws its glyph and, when a slot is applied, fills the box with the control fill.
 - A checked radio shows its bullet.
-- An on toggle moves the thumb to the end of the track. A slotted track uses the control glass. The thumb becomes white.
+- An on toggle moves the thumb to the end of the track. A slotted track uses the control fill. The thumb becomes white.
 - A selected select option uses the 28% menu mix.
 
 A normal button has no selected style.
@@ -421,11 +426,11 @@ A disabled field keeps its fill and is drawn at 60% opacity, with the disabled e
 
 ### Error
 
-Error is the Error slot, applied by the product. It uses the same wash, content recipe, and field light as any other slot. The field and its message choose slots independently. A message may use Error while the field is uncolored, or the field may use Error while the message uses another slot.
+Error is the Error slot, applied by the product. It uses the same wash, content recipe, and field light as any other slot. The field and its message choose slots independently. A message may use Error while the field has no slot. A field may use Error while the message uses another slot.
 
 ### Loading
 
-A button or icon button with loading shows the loading lights from the motion section. The button keeps its fill and thickness. The icon button replaces its icon with the spinner.
+A button or icon button with loading shows the loading lights from the motion section. The button keeps its fill, thickness, and label. The icon button keeps the icon the product placed inside it. The library does not add an icon.
 
 ### Implementation notes
 
@@ -435,20 +440,30 @@ The focus gap is a 2px spread shadow drawn before the thickness and the drop sha
 
 ## 11. Themes
 
-The dark theme uses the same mixes, the same thicknesses, the same elevations, the same motion, and the same opacity and blur. It changes the neutral steps, the wash-text endpoint, the focus-gap tone, and the grain.
+The dark theme uses the same mixes, the same thicknesses, the same elevations, the same motion, and the same opacity and blur. Every slot, including Neutral, keeps those mixes. A plain element, one with no slot, keeps them too, and uses the surface tone as its solid.
 
-| Token              | Light              | Dark               | Reason                                                                |
-| ------------------ | ------------------ | ------------------ | --------------------------------------------------------------------- |
-| Neutral slot       | Neutral 600        | Neutral 300        | A dark ground needs a lighter neutral or a neutral control disappears |
-| Surface tone       | Neutral 50         | Neutral 700        | The surface stays a step off the page                                 |
-| Menu tone          | Neutral 100        | Neutral 800        | The menu stays close to the surface, one step deeper                  |
-| Field focus ground | Neutral 100        | Neutral 600        | Focus stays a small step from the resting field                       |
-| Surface text       | Neutral 800        | Neutral 100        | Text stays at the far end of the ramp from the surface                |
-| Disabled fill step | Neutral 400 at 60% | Neutral 600 at 60% | The same fade, on a step that stays quiet in that theme               |
-| Disabled text step | Neutral 50 at 70%  | Neutral 300 at 70% | The same fade, on a light step of that theme                          |
-| Wash text endpoint | Black              | White              | Wash text leans toward the readable end                               |
-| Focus gap          | White at 50%       | Neutral 950 at 50% | The gap has to read on both grounds                                   |
-| Grain              | Dark, stronger     | Light, fainter     | The same turbulence has to stay visible                               |
+Dark changes only the neutral step fed into a recipe, the wash-text endpoint, the focus-gap tone, and the grain.
+
+The Neutral slot is one of the eight colors. Light uses Neutral 600 as its solid. Dark uses Neutral 300. It then uses the same wash, control fill, and content mix as primary.
+
+The plain element uses the surface tone, the menu tone, the field focus ground, and the surface text. Those are not a second color and not the Neutral slot.
+
+Disabled is a state. The fade stays 60% for the fill and 70% for the text. Dark changes the ramp step that is faded.
+
+The wash-text endpoint, the focus gap, and the grain apply to every component, with a slot and without one.
+
+| Token              | What it is                    | Light          | Dark               |
+| ------------------ | ----------------------------- | -------------- | ------------------ |
+| Neutral slot       | One of the eight colors       | Neutral 600    | Neutral 300        |
+| Surface tone       | Plain element fill            | Neutral 50     | Neutral 700        |
+| Menu tone          | Plain menu fill               | Neutral 100    | Neutral 800        |
+| Field focus ground | Plain field while focused     | Neutral 100    | Neutral 600        |
+| Surface text       | Plain element text            | Neutral 800    | Neutral 100        |
+| Disabled fill      | Disabled state, 60% fade      | Neutral 400    | Neutral 600        |
+| Disabled text      | Disabled state, 70% fade      | Neutral 50     | Neutral 300        |
+| Wash text endpoint | Shared by every wash          | Black          | White              |
+| Focus gap          | Shared by every focus ring    | White at 50%   | Neutral 950 at 50% |
+| Grain              | Shared by every jelly surface | Dark, stronger | Light, fainter     |
 
 A recipe marked `[DARK ADAPTATION MAY BE NEEDED]` uses the value in this document in both themes. That value is a CSS variable. The dark theme may override it.
 
@@ -458,13 +473,13 @@ A recipe marked `[DARK ADAPTATION MAY BE NEEDED]` uses the value in this documen
 
 ## 12. Components
 
-Every component has three sizes: small, medium, and large. Medium is the default and has no size name. The medium mark meets a 24px target. Small marks are 20px.
+Every component has three sizes: small, medium, and large. Medium is the default and has no size name.
 
-The component list is Button, Icon Button, Surface Button, Input, Textarea, Select, Checkbox, Radio, Toggle, Range, Alert, Badge, Card, Modal, and Message.
+The component list is Button, Icon Button, Bump Button, Input, Textarea, Select, Checkbox, Radio, Toggle, Range, Alert, Badge, Card, Modal, and Message.
 
 ### Button
 
-A control. Control thickness, control radius, control glass when a slot is applied, rest elevation, control press light, squish, and the hover rise.
+A control. Control thickness, control radius, control fill when a slot is applied, rest elevation, control press light, squish, and the hover rise.
 
 |                | Small   | Medium   | Large  |
 | -------------- | ------- | -------- | ------ |
@@ -487,11 +502,11 @@ A button with no label. Its box is square. Width, height, and icon size:
 
 The shape comes from the control radius. There is no square variant and no circle variant.
 
-While loading, the icon is hidden and the spinner and orbit from the motion section are shown.
+While loading, the icon stays and the orbit from the motion section is shown.
 
-### Surface Button
+### Bump Button
 
-The quiet close control on a modal. Transparent, no elevation, bump light, control radius. It sits 0.75rem from the top and the trailing edge of the panel.
+The close control on a modal. Transparent, no elevation, bump light, control radius. It sits 0.75rem from the top and the trailing edge of the panel.
 
 |      | Small  | Medium  | Large  |
 | ---- | ------ | ------- | ------ |
@@ -545,22 +560,22 @@ The closed control reserves trailing space for the chevron: 2.25rem at small, 2.
 
 ### Checkbox
 
-A mark plus a label. The box uses mark thickness, the mark elevation, and the mark radius. The gap between box and label is 0.75rem at medium, 0.5rem at small, and 1rem at large.
+A mark plus a label. The box uses mark thickness, the mark elevation, and the mark radius. The gap between box and label is 0.75rem at medium, 0.5rem at small, and 1rem at large. The box is the hit target: 24px at medium and 20px at small.
 
 |       | Small   | Medium   | Large |
 | ----- | ------- | -------- | ----- |
 | Box   | 1.25rem | 1.5rem   | 2rem  |
 | Label | 0.75rem | 0.875rem | 1rem  |
 
-The check is two strokes of the current color, 2px thick, 46% of the box wide and 22% tall, rotated −45°. It is invisible and scaled to 0.4 when off, and fully visible at scale 1 when on. A slotted checked box uses the control glass and the control content color.
+The check is two strokes of the current color, 2px thick, 46% of the box wide and 22% tall, rotated −45°. It is invisible and scaled to 0.4 when off, and fully visible at scale 1 when on. A slotted checked box uses the control fill and the control content color.
 
 ### Radio
 
-A mark plus a label. The ring matches the checkbox sizes and uses the control radius, so it is a circle in the default theme. The bullet is a flat solid with the grain and no thickness. It is 0.75rem, 0.875rem, and 1.25rem at small, medium, and large. It scales from 0 to 1 when selected. Uncolored, the bullet is the surface text color. With a slot, the bullet is the control glass.
+A mark plus a label. The ring is jelly: grain, blur, and mark thickness. It matches the checkbox sizes, including the 24px medium and 20px small hit target, and uses the control radius, so it is a circle in the default theme. The bullet is jelly with the grain. It is opaque, with no blur and no thickness. It is 0.75rem, 0.875rem, and 1.25rem at small, medium, and large. It scales from 0 to 1 when selected. With no slot, the bullet is the surface text color. With a slot, the bullet is the control fill.
 
 ### Toggle
 
-A mark plus a label. The track and the thumb use mark thickness, mark elevation, and the control radius.
+A mark plus a label. The track and the thumb are both jelly: grain, blur, and mark thickness. Only the color differs. Both use the control radius.
 
 |                | Small            | Medium          | Large          |
 | -------------- | ---------------- | --------------- | -------------- |
@@ -569,11 +584,11 @@ A mark plus a label. The track and the thumb use mark thickness, mark elevation,
 | Thumb inset    | 0.25rem          | 0.25rem         | 0.25rem        |
 | Travel when on | 1rem             | 1.15rem         | 1.5rem         |
 
-The resting thumb is Neutral 500 mixed at 55% into white. The on thumb is white. A slotted on track uses the control glass. The thumb moves over 300ms, eased out.
+The resting thumb is Neutral 500 mixed at 55% into white. The on thumb is white. A slotted on track uses the control fill. The thumb moves over 300ms, eased out.
 
 ### Range
 
-A mark. The track, the fill, and the thumb all use the jelly material. The track and the thumb use mark thickness and the control radius. The fill uses the control color strength and the grain, and it is clipped to the track. An uncolored fill and thumb use the surface text color at the material opacity. A slot replaces both with the control glass.
+A mark. The track, the fill, and the thumb are jelly: grain, blur, and mark thickness. Only the color differs. The fill is clipped to the track. With no slot, the track uses the surface tone and the fill uses the surface text tone, both at the material opacity. A slot sets the fill to the control fill. The thumb uses the fill's color. All three use the control radius.
 
 The thumb position and the fill width follow the current value between the minimum and the maximum.
 
@@ -598,7 +613,7 @@ A surface. Surface thickness, surface radius, rest elevation. A slot uses the wa
 
 ### Badge
 
-A compact surface. Surface thickness, mark elevation, control radius, so the default badge is a capsule. A slot uses the control glass and the control content color, not the wash. The label is uppercase, weight 600, tracking 0.04em.
+A compact surface. Surface thickness, mark elevation, control radius, so the default badge is a capsule. A slot uses the control fill and the control content color, not the wash. The label is uppercase, weight 600, tracking 0.04em.
 
 |         | Small           | Medium           | Large            |
 | ------- | --------------- | ---------------- | ---------------- |
@@ -618,7 +633,7 @@ A surface. Surface thickness, surface radius, rest elevation. A slot uses the wa
 
 An overlay. The shell covers the viewport and centers the panel. The veil is Neutral 950 at 40%. The shell has no fill and no focus outline.
 
-The panel is a surface with surface thickness, surface radius, and the overlay elevation. It is at most 28rem wide, with 1rem of space on each side of the viewport. A slot uses the wash. The surface button sits in the panel.
+The panel is a surface with surface thickness, surface radius, and the overlay elevation. It is at most 28rem wide, with 1rem of space on each side of the viewport. A slot uses the wash. The bump button sits in the panel.
 
 |               | Small | Medium | Large |
 | ------------- | ----- | ------ | ----- |
@@ -634,9 +649,9 @@ The caption under a field. It is not an error style. It has its own slot, indepe
 
 ### Implementation notes
 
-Medium classes have no size suffix. Small and large use `-sm` and `-lg` on the component class: `btn-sm`, `input-lg`, `btn-surface-sm`.
+Medium classes have no size suffix. Small and large use `-sm` and `-lg` on the component class: `btn-sm`, `input-lg`, `btn-bump-sm`.
 
-The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, and `modal-panel`. The radio bullet is `radio-ring::after`: grain, no blur, no inset.
+The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, and `modal-panel`. The radio bullet, `radio-ring::after`, receives the grain only. It is opaque and has no blur and no inset.
 
 Start and end slots are `input-start` and `input-end` inside both `input` and `textarea`. The select chevron is `picker-icon`. The built-in chevron is a masked element. A custom icon is an SVG with the same class.
 
@@ -674,4 +689,22 @@ Shade, highlight, wash, menu mixes, thickness, and drop shadows stay internal va
 
 Jellyfy styles its own components and anything that opts into a role or into squish. It does not set the page font, and it does not require Tailwind. Defaults follow Tailwind's color variables, spacing variable, and neutral ramp when they exist.
 
-Class names are `btn`, `btn-icon`, `btn-surface`, `input`, `textarea`, `select`, `checkbox`, `radio`, `toggle`, `range`, `alert`, `badge`, `card`, `modal`, `modal-panel`, and `message`. Slots and sizes are extra classes on the same element.
+Class names are `btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox`, `radio`, `toggle`, `range`, `alert`, `badge`, `card`, `modal`, `modal-panel`, and `message`. Slots and sizes are extra classes on the same element.
+
+## 15. Shipping
+
+Jellyfy is not a Tailwind plugin. It stays compatible with Tailwind. Color and spacing read Tailwind's variables when those variables are defined, and use the fallbacks in this document when they are not.
+
+The material recipes are variables in one material file: opacity, blur, grain, the four thicknesses, the press lights, and black and white. The dark theme overrides those variables. It does not restyle each component.
+
+One rule in that file paints the jelly material. It sets the grain, the blur, and `box-shadow: var(--jelly-thickness)`. The selectors are the component faces and the thickness classes: `btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, `modal-panel`, `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The radio bullet is not in this rule. It uses the grain, it is opaque, and it has no blur and no thickness.
+
+Each component is its own stylesheet. A product imports the components it uses. A component file that is not imported is not in the build. The material file ships once. A component name left in the shared selector does nothing when that component's file is absent.
+
+A component file does not repeat the grain, the blur, or the shadow. It sets `--jelly-thickness` to the thickness for its role. `.btn` sets the control thickness, so `<button class="btn">` has the jelly material.
+
+`thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark` are for a custom element. They set `--jelly-thickness` to the matching thickness. The same class on a component replaces that component's thickness and nothing else. `class="btn thickness-surface"` keeps the button's size, radius, type, fill, and press light, and uses the surface thickness. The thickness classes sit in the utilities layer, after the component rules, so the tie goes to the thickness class.
+
+### Implementation notes
+
+The shared rule uses `:where(...)`, so it adds no specificity. Component files only assign `--jelly-thickness`. When browsers support native CSS mixins, that shared selector will be replaced by a mixin applied inside each component. The variables will stay.
