@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "jellyfy/material.css";
 @import "jellyfy/motion.css";
+@import "jellyfy/button.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

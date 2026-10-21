@@ -820,16 +820,6 @@ const Plus = ({ size }: { size: string }) => (
   </svg>
 );
 
-const buttonLabel: CSSProperties = {
-  fontSize: "0.875rem",
-  fontWeight: 600,
-  letterSpacing: "0.04em",
-  lineHeight: 1,
-  textTransform: "uppercase",
-  textShadow:
-    "0 0 6px color-mix(in oklab, var(--color-neutral-950, #0a0a0a) 40%, transparent)",
-};
-
 const controlStyle: CSSProperties = {
   backgroundColor: CONTROL_FILL,
   borderRadius: "var(--radius-control)",
@@ -859,14 +849,22 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Button
           </figcaption>
-          <div
-            className={twJoin(
-              "primary thickness-control flex h-12 min-w-40 items-center justify-center px-6",
-              pairEdge[theme],
-            )}
-            style={{ ...controlStyle, ...buttonLabel }}
-          >
-            Save
+          <div className="flex flex-wrap items-end gap-3">
+            <button className="btn btn-sm primary" type="button">
+              <span>Small</span>
+            </button>
+            <button className="btn primary" type="button">
+              <span>Save</span>
+            </button>
+            <button className="btn btn-lg primary" type="button">
+              <span>Large</span>
+            </button>
+            <button className="btn primary" type="button" disabled>
+              <span>Disabled</span>
+            </button>
+            <button className="btn primary loading" type="button">
+              <span>Loading</span>
+            </button>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">

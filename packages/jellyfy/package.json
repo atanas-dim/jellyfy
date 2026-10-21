@@ -7,15 +7,18 @@
   "exports": {
     ".": "./index.js",
     "./material.css": "./material.css",
-    "./motion.css": "./motion.css"
+    "./motion.css": "./motion.css",
+    "./button.css": "./button.css"
   },
   "files": [
     "index.js",
     "material.css",
-    "motion.css"
+    "motion.css",
+    "button.css"
   ],
   "sideEffects": [
     "./material.css",
-    "./motion.css"
+    "./motion.css",
+    "./button.css"
   ]
 }

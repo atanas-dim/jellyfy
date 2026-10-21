@@ -206,6 +206,7 @@
       var(--color-neutral-50, #fafafa),
       var(--color-neutral-300, #d4d4d4)
     );
+    --focus-color: var(--color-plain-content);
   }
 
   .primary {
@@ -246,6 +247,19 @@
   .info {
     --solid: var(--color-info);
     --content: var(--color-info-content);
+  }
+
+  :is(
+    .primary,
+    .secondary,
+    .tertiary,
+    .neutral,
+    .success,
+    .warning,
+    .error,
+    .info
+  ) {
+    --focus-color: var(--solid);
   }
 
   :root,
@@ -301,6 +315,7 @@
 
 @layer utilities {
   :where(
+    .btn,
     .thickness-surface,
     .thickness-field,
     .thickness-control,
@@ -308,13 +323,15 @@
   ) {
     background-color: color-mix(
       in oklab,
-      var(--color-plain) var(--material-opacity),
+      var(--solid) var(--material-opacity),
       transparent
     );
     background-image: var(--noise);
     background-size: var(--noise-size);
     backdrop-filter: blur(var(--material-blur));
-    box-shadow: var(--jelly-thickness);
+    box-shadow:
+      var(--jelly-focus, 0 0 0 0 transparent), var(--jelly-thickness),
+      var(--jelly-elevation, 0 0 0 0 transparent);
   }
 
   .thickness-surface {
