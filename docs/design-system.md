@@ -191,7 +191,7 @@ Press light is a pair of soft ellipses, derived from the solid. The lower ellips
 
 **Control light** is hidden at rest and fully visible while the control is pressed. The transition is 300ms.
 
-- Highlight: white mixed at 75% into the solid, then shown at 22%.
+- Highlight: white mixed at 92% into the solid, then shown at 36%.
 - Shade: black mixed at 45% into the solid, then shown at 40%.
 - Both ellipses are 90% of the control width, centered, and fade out at 60% of the gradient radius.
 - The highlight starts at 60% of the height, is 60% tall, and is shifted up by 40% of its own height.
@@ -199,7 +199,7 @@ Press light is a pair of soft ellipses, derived from the solid. The lower ellips
 
 **Field light** uses a different strength, because a field is a recess. It is hidden at rest and fully visible while the field is focused, including when focus arrives by click. The transition is 300ms. [DARK ADAPTATION MAY BE NEEDED]
 
-- Highlight: white mixed at 80% into the solid, then shown at 70%.
+- Highlight: white mixed at 86% into the solid, then shown at 78%.
 - Shade: black mixed at 80% into the solid, then shown at 12%.
 - The highlight is 70% of the field width, 1.75rem tall, and sits 1rem below the bottom edge so only the top of it shows.
 - The shade is 90% of the field width, 2.1rem tall, and starts 1.4rem from the top.
@@ -212,8 +212,8 @@ An object with no slot builds the same mixes from the surface tone.
 
 The bump button is always lit. It uses the mark light, not the control light.
 
-- Highlight: white mixed at 78% into the solid, then shown at 22%.
-- Shade: black mixed at 78% into the solid, then shown at 34%.
+- Highlight: white mixed at 92% into the solid, then shown at 88%.
+- Shade: black mixed at 78% into the solid, then shown at 16%.
 - Each ellipse is 1.75rem wide and 1rem tall, centered, fading out at 70% of the gradient radius.
 - The highlight sits 0.15rem from the top. The shade sits 0.85rem from the top.
 - While pressed, the two ellipses exchange places. The exchange takes 200ms.

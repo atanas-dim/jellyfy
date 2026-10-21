@@ -33,10 +33,13 @@
     rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.12);
   --thickness-field: inset 0 -10px 16px
     rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.2);
+  --thickness-field-focus: inset 0 -6px 10px
+    rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.15);
   --thickness-control: inset 0 -16px 16px
     rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.5);
   --thickness-mark: inset 0 -1px 5px
     rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.35);
+  --solid: var(--color-plain);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -109,6 +112,47 @@
 }
 
 @layer components {
+  :root,
+  .primary,
+  .secondary,
+  .tertiary,
+  .neutral,
+  .success,
+  .warning,
+  .error,
+  .info {
+    --control-highlight: color-mix(
+      in oklab,
+      color-mix(in oklab, var(--color-white) 92%, var(--solid)) 36%,
+      transparent
+    );
+    --control-shade: color-mix(
+      in oklab,
+      color-mix(in oklab, var(--color-black) 45%, var(--solid)) 40%,
+      transparent
+    );
+    --field-highlight: color-mix(
+      in oklab,
+      color-mix(in oklab, var(--color-white) 86%, var(--solid)) 78%,
+      transparent
+    );
+    --field-shade: color-mix(
+      in oklab,
+      color-mix(in oklab, var(--color-black) 80%, var(--solid)) 12%,
+      transparent
+    );
+    --bump-highlight: color-mix(
+      in oklab,
+      color-mix(in oklab, var(--color-white) 92%, var(--solid)) 88%,
+      transparent
+    );
+    --bump-shade: color-mix(
+      in oklab,
+      color-mix(in oklab, var(--color-black) 78%, var(--solid)) 16%,
+      transparent
+    );
+  }
+
   .primary {
     --solid: var(--color-primary);
     --content: var(--color-primary-content);
