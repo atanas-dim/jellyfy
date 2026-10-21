@@ -37,6 +37,10 @@
     "./select.css": {
       "style": "./select.css",
       "default": "./select.css"
+    },
+    "./checkbox.css": {
+      "style": "./checkbox.css",
+      "default": "./checkbox.css"
     }
   },
   "files": [
@@ -48,7 +52,8 @@
     "bump-button.css",
     "input.css",
     "textarea.css",
-    "select.css"
+    "select.css",
+    "checkbox.css"
   ],
   "sideEffects": [
     "./material.css",
@@ -58,6 +63,7 @@
     "./bump-button.css",
     "./input.css",
     "./textarea.css",
-    "./select.css"
+    "./select.css",
+    "./checkbox.css"
   ]
 }

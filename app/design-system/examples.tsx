@@ -1054,33 +1054,37 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Checkbox
           </figcaption>
-          <div className="flex items-center gap-3">
-            <div
-              className={twJoin(
-                "primary thickness-mark flex size-6 items-center justify-center",
-                pairEdge[theme],
-              )}
-              style={{
-                backgroundColor: CONTROL_FILL,
-                borderRadius: "var(--radius-mark)",
-                boxShadow: "var(--thickness-mark), var(--elevation-mark)",
-                color: "var(--color-primary-content)",
-              }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-                className="size-3.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path d="M5 12.5 10 17 19 7" />
-              </svg>
-            </div>
-            <span style={{ fontSize: "0.875rem", fontWeight: 500 }}>
-              Remember me
-            </span>
+          <div className="flex flex-col items-start gap-3">
+            <label className="checkbox checkbox-sm primary">
+              <span className="checkbox-box">
+                <input type="checkbox" defaultChecked />
+              </span>
+              <span>Small</span>
+            </label>
+            <label className="checkbox primary">
+              <span className="checkbox-box">
+                <input type="checkbox" defaultChecked />
+              </span>
+              <span>Remember me</span>
+            </label>
+            <label className="checkbox checkbox-lg primary">
+              <span className="checkbox-box">
+                <input type="checkbox" />
+              </span>
+              <span>Large</span>
+            </label>
+            <label className="checkbox">
+              <span className="checkbox-box">
+                <input type="checkbox" defaultChecked />
+              </span>
+              <span>Plain</span>
+            </label>
+            <label className="checkbox primary">
+              <span className="checkbox-box">
+                <input type="checkbox" defaultChecked disabled />
+              </span>
+              <span>Disabled</span>
+            </label>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">

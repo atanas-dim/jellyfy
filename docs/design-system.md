@@ -565,7 +565,7 @@ A mark plus a label. The box uses mark thickness, the mark elevation, and the ma
 | Box   | 1.25rem | 1.5rem   | 2rem  |
 | Label | 0.75rem | 0.875rem | 1rem  |
 
-The check is two strokes of the current color, 2px thick, 46% of the box wide and 22% tall, rotated −45°. It is invisible and scaled to 0.4 when off, and fully visible at scale 1 when on. A slotted checked box uses the control fill and the control content color.
+The check is a masked copy of the Lucide check, in the current color, centered in the box. It is invisible and scaled to 0.4 when off, and fully visible at scale 1 when on. A slotted checked box uses the control fill and the control content color.
 
 ### Radio
 
