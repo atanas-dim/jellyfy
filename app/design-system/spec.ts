@@ -1,18 +1,11 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-import { remark } from "remark";
-import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
-
 export type SpecSection = {
   id: string;
   title: string;
-  html: string;
+  markdown: string;
 };
-
-const toHtml = async (markdown: string) =>
-  String(await remark().use(remarkGfm).use(remarkHtml).process(markdown));
 
 const sectionId = (title: string) =>
   title
@@ -21,7 +14,7 @@ const sectionId = (title: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/(^-|-$)/g, "");
 
-export const readSpec = async () => {
+export const readSpec = () => {
   const file = readFileSync(
     path.join(process.cwd(), "docs/design-system.md"),
     "utf8",
@@ -30,20 +23,15 @@ export const readSpec = async () => {
   const title = preamble.match(/^# (.+)$/m)?.[1] ?? "Jellyfy Design System";
   const intro = preamble.replace(/^# .+\n+/, "").trim();
 
-  const sections: SpecSection[] = [];
-  for (const part of parts) {
+  const sections: SpecSection[] = parts.map((part) => {
     const [heading, ...body] = part.split("\n");
     const sectionTitle = heading.trim();
-    sections.push({
+    return {
       id: sectionId(sectionTitle),
       title: sectionTitle,
-      html: await toHtml(body.join("\n").trim()),
-    });
-  }
+      markdown: body.join("\n").trim(),
+    };
+  });
 
-  return {
-    title,
-    introHtml: await toHtml(intro),
-    sections,
-  };
+  return { title, intro, sections };
 };
