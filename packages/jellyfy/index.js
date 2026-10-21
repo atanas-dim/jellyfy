@@ -101,7 +101,41 @@ const attachSquish = (face) => {
   face.addEventListener("pointercancel", () => releaseSquish(face));
 };
 
-export const startJellyfy = () => {
+const syncLights = () => {
   document.querySelectorAll(".btn.loading").forEach(addLights);
+  document
+    .querySelectorAll(".btn:not(.loading) > .jelly-lights")
+    .forEach((lights) => {
+      lights.remove();
+    });
+};
+
+let listening = false;
+let scheduled = false;
+
+const refresh = () => {
+  syncLights();
   document.querySelectorAll(".btn, .squish").forEach(attachSquish);
+};
+
+const scheduleRefresh = () => {
+  if (scheduled) return;
+  scheduled = true;
+  requestAnimationFrame(() => {
+    scheduled = false;
+    refresh();
+  });
+};
+
+export const startJellyfy = () => {
+  refresh();
+  if (listening) return;
+  listening = true;
+
+  new MutationObserver(scheduleRefresh).observe(document.documentElement, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 };
