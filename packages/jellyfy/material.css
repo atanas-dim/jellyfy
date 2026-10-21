@@ -35,6 +35,14 @@
   --radius-field: 1rem;
   --radius-control: 999px;
   --radius-mark: 0.5rem;
+  --squish-distance: 8px;
+  --squish-height-ratio: calc(2 / 7);
+  --squish-settle-ratio: calc(1 / 7);
+  --squish-press: 480ms;
+  --squish-release: 300ms;
+  --squish-peak: 0.42;
+  --motion-rise: 2px;
+  --motion-rise-time: 200ms;
 }
 
 .light {
@@ -186,6 +194,8 @@
         transparent
       )
     );
+    --loading-light: color-mix(in oklab, var(--color-white) 40%, var(--solid));
+    --loading-shade: color-mix(in oklab, var(--color-black) 40%, var(--solid));
   }
 
   .primary {

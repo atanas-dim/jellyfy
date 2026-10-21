@@ -6,13 +6,16 @@
   "type": "module",
   "exports": {
     ".": "./index.js",
-    "./material.css": "./material.css"
+    "./material.css": "./material.css",
+    "./motion.css": "./motion.css"
   },
   "files": [
     "index.js",
-    "material.css"
+    "material.css",
+    "motion.css"
   ],
   "sideEffects": [
-    "./material.css"
+    "./material.css",
+    "./motion.css"
   ]
 }

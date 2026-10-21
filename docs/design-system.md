@@ -350,8 +350,8 @@ The floating label moves and changes size over 300ms, eased out.
 
 Loading light is derived from the solid. It is not the press light.
 
-- The light sheen is white mixed into the solid, shown at 40% opacity.
-- The shade sheen is black mixed into the solid, shown at 40% opacity.
+- The light sheen is a light variation of the solid, shown at 40% opacity.
+- The shade sheen is a dark variation of the solid, shown at 40% opacity.
 
 A button carries three sheens that sweep across it. Two are lights and one is a shade. Each sheen is a capsule, 30% of the button width and 40% of its height, blurred by 12px. It travels from fully off the left side to three widths past the right, vertically centered. The sweep is linear and repeats.
 

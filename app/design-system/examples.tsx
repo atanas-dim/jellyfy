@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
 import { ThemeFrame } from "@/app/stripe-switch";
+import { MotionFace, SquishControl } from "@/app/motion-demo";
 
 const THICKNESS = [
   ["--thickness-surface", "Surface", "size-full"],
@@ -541,6 +542,80 @@ const SpacingSamples = () => (
   </div>
 );
 
+const SHEENS = [
+  ["jelly-sheen-light", "1.35s", "0s"],
+  ["jelly-sheen-shade", "1.65s", "0.36s"],
+  ["jelly-sheen-light", "1.5s", "0.78s"],
+] as const;
+
+const ORBITS = [
+  ["jelly-orbit-light", "0deg", "1.35s"],
+  ["jelly-orbit-shade", "130deg", "2.2s"],
+  ["jelly-orbit-light", "240deg", "1.6s"],
+] as const;
+
+const MotionSamples = () => (
+  <ThemePair
+    render={(theme) => (
+      <div className="grid grid-cols-2 gap-6">
+        <figure className="flex flex-col items-center gap-3">
+          <SquishControl className={pairEdge[theme]} />
+          <figcaption className={captionClass[theme]}>
+            Press and hold
+          </figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <MotionFace className={twJoin("jelly-rise", pairEdge[theme])}>
+            Hover
+          </MotionFace>
+          <figcaption className={captionClass[theme]}>Rises 2px</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <MotionFace className={twJoin("primary", pairEdge[theme])}>
+            <span className="jelly-lights">
+              {SHEENS.map(([tone, duration, delay]) => (
+                <span
+                  key={`${duration}-${delay}`}
+                  className={twJoin("jelly-sheen", tone)}
+                  style={
+                    {
+                      "--sheen-duration": duration,
+                      "--sheen-delay": delay,
+                    } as CSSProperties
+                  }
+                />
+              ))}
+            </span>
+          </MotionFace>
+          <figcaption className={captionClass[theme]}>Loading sweep</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <MotionFace
+            className={twJoin("primary mx-auto", pairEdge[theme])}
+            style={{ width: "calc(12 * var(--spacing, 0.25rem))" }}
+          >
+            {ORBITS.map(([tone, angle, duration]) => (
+              <span
+                key={angle}
+                className="jelly-orbit-arm"
+                style={{ transform: `rotate(${angle})` }}
+              >
+                <span
+                  className="jelly-orbit"
+                  style={{ "--orbit-duration": duration } as CSSProperties}
+                >
+                  <span className={twJoin("jelly-orbit-dot", tone)} />
+                </span>
+              </span>
+            ))}
+          </MotionFace>
+          <figcaption className={captionClass[theme]}>Loading orbit</figcaption>
+        </figure>
+      </div>
+    )}
+  />
+);
+
 export const examples: Record<string, ReactNode> = {
   roles: <RoleSwatches />,
   color: <ColorSamples />,
@@ -549,4 +624,5 @@ export const examples: Record<string, ReactNode> = {
   shape: <ShapeSamples />,
   typography: <TypeSamples />,
   spacing: <SpacingSamples />,
+  motion: <MotionSamples />,
 };

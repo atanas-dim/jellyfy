@@ -19,6 +19,7 @@ const SHOWN = [
   "shape",
   "typography",
   "spacing",
+  "motion",
 ];
 
 export default function DesignSystemPage() {
