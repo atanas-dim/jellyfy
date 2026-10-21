@@ -447,36 +447,98 @@ const TYPE: {
   },
 ];
 
+const PAGE_CAPTION = "text-sm text-neutral-600 dark:text-neutral-300";
+
 const TypeSamples = () => (
-  <ThemePair
-    render={(theme) => (
-      <div className="flex flex-col gap-5">
-        <div className="flex items-center justify-between gap-6">
-          <p className={captionClass[theme]}>Icon button icon</p>
-          <svg
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            style={{ width: "1.5rem", height: "1.5rem" }}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.75"
-          >
-            <circle cx="12" cy="12" r="8" />
-            <path d="M12 8v8M8 12h8" />
-          </svg>
-        </div>
-        {TYPE.map((row) => (
-          <div
-            key={row.label}
-            className="flex items-baseline justify-between gap-6"
-          >
-            <p className={captionClass[theme]}>{row.label}</p>
-            <p style={row.style}>{row.text}</p>
-          </div>
-        ))}
+  <div className="mt-8 flex max-w-3xl flex-col gap-5">
+    <div className="flex items-center justify-between gap-6">
+      <p className={PAGE_CAPTION}>Icon button icon</p>
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        style={{ width: "1.5rem", height: "1.5rem" }}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+      >
+        <circle cx="12" cy="12" r="8" />
+        <path d="M12 8v8M8 12h8" />
+      </svg>
+    </div>
+    {TYPE.map((row) => (
+      <div
+        key={row.label}
+        className="flex items-baseline justify-between gap-6"
+      >
+        <p className={PAGE_CAPTION}>{row.label}</p>
+        <p style={row.style}>{row.text}</p>
       </div>
-    )}
-  />
+    ))}
+  </div>
+);
+
+const SPACING = "var(--spacing, 0.25rem)";
+
+const SpacingSamples = () => (
+  <div className="mt-8 grid max-w-3xl grid-cols-3 items-end gap-6">
+    <figure className="flex flex-col items-center gap-3">
+      <div className="flex h-24 w-full items-end justify-center">
+        <div
+          className={twJoin("w-full", SWATCH_EDGE)}
+          style={{
+            height: `calc(1 * ${SPACING})`,
+            backgroundColor: "var(--color-plain)",
+          }}
+        />
+      </div>
+      <figcaption className={twJoin(PAGE_CAPTION, "text-center")}>
+        1 unit tall
+      </figcaption>
+    </figure>
+    <figure className="flex flex-col items-center gap-3">
+      <div className="flex h-24 w-full items-end justify-center">
+        <div
+          className={twJoin("w-full", SWATCH_EDGE)}
+          style={{
+            height: `calc(12 * ${SPACING})`,
+            borderRadius: "var(--radius-control)",
+            backgroundColor: "var(--color-plain)",
+          }}
+        />
+      </div>
+      <figcaption className={twJoin(PAGE_CAPTION, "text-center")}>
+        12 units tall
+      </figcaption>
+    </figure>
+    <figure className="flex flex-col items-center gap-3">
+      <div className="flex h-24 w-full items-end justify-center">
+        <div
+          className={twJoin("relative w-full", SWATCH_EDGE)}
+          style={{
+            height: `calc(12 * ${SPACING})`,
+            borderRadius: "var(--radius-field)",
+            backgroundColor: "var(--color-plain)",
+          }}
+        >
+          <span
+            className="absolute left-3"
+            style={{
+              top: `calc(3 * ${SPACING})`,
+              fontSize: "10px",
+              fontWeight: 500,
+              letterSpacing: "0.04em",
+              lineHeight: 1,
+            }}
+          >
+            Email
+          </span>
+        </div>
+      </div>
+      <figcaption className={twJoin(PAGE_CAPTION, "text-center")}>
+        3 units from the top
+      </figcaption>
+    </figure>
+  </div>
 );
 
 export const examples: Record<string, ReactNode> = {
@@ -486,4 +548,5 @@ export const examples: Record<string, ReactNode> = {
   elevation: <ElevationSamples />,
   shape: <ShapeSamples />,
   typography: <TypeSamples />,
+  spacing: <SpacingSamples />,
 };

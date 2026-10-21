@@ -18,6 +18,7 @@ const SHOWN = [
   "elevation",
   "shape",
   "typography",
+  "spacing",
 ];
 
 export default function DesignSystemPage() {
