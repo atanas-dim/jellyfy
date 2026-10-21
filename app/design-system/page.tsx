@@ -21,6 +21,7 @@ const SHOWN = [
   "spacing",
   "motion",
   "interaction-states",
+  "themes",
 ];
 
 export default function DesignSystemPage() {

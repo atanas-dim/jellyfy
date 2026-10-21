@@ -760,6 +760,53 @@ const InteractionSamples = () => (
   />
 );
 
+const THEME_SWATCHES = [
+  ["Neutral slot", "var(--color-neutral)"],
+  ["Surface", "var(--color-plain)"],
+  ["Menu", "var(--color-menu)"],
+  ["Plain content", "var(--color-plain-content)"],
+  [
+    "Disabled fill",
+    "color-mix(in oklab, var(--color-disabled) 60%, transparent)",
+  ],
+  [
+    "Disabled text",
+    "color-mix(in oklab, var(--color-disabled-content) 70%, transparent)",
+  ],
+  ["Focus gap", "var(--focus-gap)"],
+] as const;
+
+const ThemeSamples = () => (
+  <ThemePair
+    render={(theme) => (
+      <div className="flex flex-col gap-8">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {THEME_SWATCHES.map(([label, fill]) => (
+            <figure key={label} className="flex flex-col items-center gap-2">
+              <div className="flex h-16 w-full items-center justify-center">
+                <div
+                  className={twJoin("size-full rounded-2xl", pairEdge[theme])}
+                  style={{ backgroundColor: fill }}
+                />
+              </div>
+              <figcaption className={captionClass[theme]}>{label}</figcaption>
+            </figure>
+          ))}
+          <figure className="flex flex-col items-center gap-2">
+            <div className="flex h-16 w-full items-center justify-center">
+              <div
+                className="thickness-surface size-full rounded-2xl"
+                style={{ backgroundColor: "var(--color-plain)" }}
+              />
+            </div>
+            <figcaption className={captionClass[theme]}>Grain</figcaption>
+          </figure>
+        </div>
+      </div>
+    )}
+  />
+);
+
 export const examples: Record<string, ReactNode> = {
   roles: <RoleSwatches />,
   color: <ColorSamples />,
@@ -770,4 +817,5 @@ export const examples: Record<string, ReactNode> = {
   spacing: <SpacingSamples />,
   motion: <MotionSamples />,
   "interaction-states": <InteractionSamples />,
+  themes: <ThemeSamples />,
 };
