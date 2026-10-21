@@ -11,6 +11,7 @@ Material
 - press effect achieved with the use of radial gradients positioned absolute close to top edge and to bottom edge of element/componnets - the bottom one is the light/highlight, the top one is the shadow - they are derived colors fromm the solid applied to the component
 - the material opacity should be consistent for all components and should originate from one single css var, same is for the blur level
 - drop-shadows - they are diff for normal state, for hover and for press - so describe the logic for them please and are we also use -sm, -md, -lg pattern for them is is this not the case?
+- secondary controls like the dialog close button use the bump-like effect achieved again with radial gradients - this needs to be explain and also the exact values of tone/color mixes etc have to be defined in the appropriate part of this doc if it's not this Material section
 
 The intention
 
