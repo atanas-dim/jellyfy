@@ -320,8 +320,41 @@ const MaterialSamples = () => (
   />
 );
 
+const ELEVATION = [
+  ["--elevation-rest", "Rest", "h-16 w-full", false],
+  ["--elevation-hover", "Hover", "h-16 w-full", true],
+  ["--elevation-mark", "Mark", "size-16", false],
+  ["--elevation-overlay", "Overlay", "h-16 w-full", false],
+  ["--elevation-disabled", "Disabled", "h-16 w-full", false],
+] as const;
+
+const ElevationSamples = () => (
+  <ThemePair
+    render={(theme) => (
+      <div className="grid grid-cols-2 gap-8 sm:grid-cols-5">
+        {ELEVATION.map(([variable, label, size, risen]) => (
+          <figure key={variable} className="flex flex-col items-center gap-3">
+            <div className="flex h-24 w-full items-end justify-center pb-2">
+              <div
+                className={twJoin(size, "rounded-2xl", pairEdge[theme])}
+                style={{
+                  backgroundColor: "var(--color-plain)",
+                  boxShadow: `var(${variable})`,
+                  transform: risen ? "translateY(-2px)" : undefined,
+                }}
+              />
+            </div>
+            <figcaption className={captionClass[theme]}>{label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    )}
+  />
+);
+
 export const examples: Record<string, ReactNode> = {
   roles: <RoleSwatches />,
   color: <ColorSamples />,
   material: <MaterialSamples />,
+  elevation: <ElevationSamples />,
 };
