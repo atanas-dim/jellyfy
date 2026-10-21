@@ -23,6 +23,7 @@ const SHOWN = [
   "interaction-states",
   "themes",
   "components",
+  "customization",
 ];
 
 export default function DesignSystemPage() {

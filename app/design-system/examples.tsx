@@ -1247,6 +1247,94 @@ const ComponentSamples = () => (
   />
 );
 
+const CUSTOM_FACE =
+  "primary thickness-control flex h-12 min-w-40 items-center justify-center px-6 text-sm font-semibold tracking-[0.04em] uppercase";
+
+const customStyle: CSSProperties = {
+  backgroundColor: CONTROL_FILL,
+  borderRadius: "var(--radius-control)",
+  color: "var(--color-primary-content)",
+  boxShadow: "var(--thickness-control), var(--elevation-rest)",
+};
+
+const CustomizationSamples = () => (
+  <ThemePair
+    render={(theme) => (
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+        <figure className="flex flex-col items-center gap-3">
+          <div className={CUSTOM_FACE} style={customStyle}>
+            Save
+          </div>
+          <figcaption className={captionClass[theme]}>Default</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={CUSTOM_FACE}
+            style={
+              {
+                ...customStyle,
+                "--color-primary":
+                  "light-dark(var(--color-teal-100, #ccfbf1), var(--color-teal-950, #042f2e))",
+              } as CSSProperties
+            }
+          >
+            Save
+          </div>
+          <figcaption className={captionClass[theme]}>
+            Solid changes. Text color stays.
+          </figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={CUSTOM_FACE}
+            style={
+              {
+                ...customStyle,
+                "--radius-control": "0.25rem",
+              } as CSSProperties
+            }
+          >
+            Save
+          </div>
+          <figcaption className={captionClass[theme]}>
+            Radius 0.25rem
+          </figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={CUSTOM_FACE}
+            style={
+              {
+                ...customStyle,
+                "--material-opacity": "20%",
+              } as CSSProperties
+            }
+          >
+            Save
+          </div>
+          <figcaption className={captionClass[theme]}>Opacity 20%</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={CUSTOM_FACE}
+            style={
+              {
+                ...customStyle,
+                "--elevation": "2",
+                boxShadow:
+                  "var(--thickness-control), 0 12px 16px -14px rgb(from var(--color-neutral-950, #0a0a0a) r g b / calc(0.55 * var(--elevation)))",
+              } as CSSProperties
+            }
+          >
+            Save
+          </div>
+          <figcaption className={captionClass[theme]}>Elevation 2</figcaption>
+        </figure>
+      </div>
+    )}
+  />
+);
+
 export const examples: Record<string, ReactNode> = {
   roles: <RoleSwatches />,
   color: <ColorSamples />,
@@ -1259,4 +1347,5 @@ export const examples: Record<string, ReactNode> = {
   "interaction-states": <InteractionSamples />,
   themes: <ThemeSamples />,
   components: <ComponentSamples />,
+  customization: <CustomizationSamples />,
 };
