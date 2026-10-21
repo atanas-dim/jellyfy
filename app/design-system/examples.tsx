@@ -1,6 +1,8 @@
 import type { CSSProperties, ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
+import { ThemeFrame } from "@/app/stripe-switch";
+
 const THICKNESS = [
   ["--thickness-surface", "Surface", "size-full"],
   ["--thickness-field", "Field", "size-full"],
@@ -22,18 +24,8 @@ const pairEdge = {
 
 const ThemePair = ({ render }: { render: (theme: ThemeName) => ReactNode }) => (
   <div className="mt-8 flex max-w-3xl flex-col gap-8">
-    <div className="light rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-950">
-      <p className="mb-4 text-xs font-semibold tracking-[0.16em] text-neutral-400 uppercase">
-        Light
-      </p>
-      {render("light")}
-    </div>
-    <div className="dark rounded-2xl border border-neutral-700 bg-neutral-900 p-6 text-neutral-100">
-      <p className="mb-4 text-xs font-semibold tracking-[0.16em] text-neutral-400 uppercase">
-        Dark
-      </p>
-      {render("dark")}
-    </div>
+    <ThemeFrame theme="light">{render("light")}</ThemeFrame>
+    <ThemeFrame theme="dark">{render("dark")}</ThemeFrame>
   </div>
 );
 

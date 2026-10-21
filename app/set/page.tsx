@@ -4,6 +4,8 @@ import { InfoIcon, PlusIcon, SearchIcon, SendIcon } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
+import { StripeSwitch, STRIPES_CLASS } from "@/app/stripe-switch";
+
 const COLORS = [
   "primary",
   "secondary",
@@ -71,20 +73,13 @@ export default function SetPage() {
   const [striped, setStriped] = useState(false);
 
   return (
-    <main className={twJoin("w-full", striped && "set-stripes")}>
+    <main className={twJoin("w-full", striped && STRIPES_CLASS)}>
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-x-8 gap-y-12 px-6 py-12 sm:grid-cols-2 sm:px-10 xl:grid-cols-3">
-        <label className="toggle sm:col-span-2 xl:col-span-3">
-          <input
-            type="checkbox"
-            role="switch"
-            checked={striped}
-            onChange={(event) => setStriped(event.target.checked)}
-          />
-          <span className="toggle-track">
-            <span className="toggle-thumb" />
-          </span>
-          Striped background
-        </label>
+        <StripeSwitch
+          className="sm:col-span-2 xl:col-span-3"
+          checked={striped}
+          onChange={setStriped}
+        />
         <Tile id="button" title="Button" wide>
           <div className="flex flex-wrap items-center gap-3">
             {COLORS.map((color) => (
