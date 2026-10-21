@@ -155,7 +155,6 @@
     );
   }
 
-  .range:has(:disabled) .range-track,
   .range:has(:disabled) .range-fill {
     background-color: color-mix(
       in oklab,

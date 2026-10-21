@@ -420,7 +420,7 @@ A normal button has no selected style.
 
 ### Disabled
 
-A disabled control replaces its fill with the disabled fill and its text with the disabled text. It does not keep its slot color. Buttons, icon buttons, and fields keep their own thickness and use the disabled elevation. Marks and the range keep the mark thickness and the mark elevation. A disabled control loses the hover rise, and it does not squish or show press light. The cursor shows that it cannot be used.
+A disabled control replaces its fill with the disabled fill and its text with the disabled text. It does not keep its slot color. Buttons, icon buttons, and fields keep their own thickness and use the disabled elevation. Marks and the range keep the mark thickness and the mark elevation. The range track keeps its own color. The bump button has no fill. It fades to 60%, its icon uses the plain content color, and its lights use the plain tone. A disabled control loses the hover rise, and it does not squish or show press light. The cursor shows that it cannot be used.
 
 ### Error
 

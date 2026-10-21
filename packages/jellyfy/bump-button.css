@@ -82,20 +82,18 @@
   }
 
   .btn-bump:disabled {
-    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    color: var(--color-plain-content);
+    opacity: 0.6;
     cursor: not-allowed;
   }
 
   .btn-bump:disabled::before {
-    background: radial-gradient(
-      color-mix(in oklab, var(--color-disabled-content) 70%, transparent),
-      transparent 70%
-    );
+    background: radial-gradient(var(--color-plain), transparent 70%);
   }
 
   .btn-bump:disabled::after {
     background: radial-gradient(
-      color-mix(in oklab, var(--color-disabled) 60%, transparent),
+      color-mix(in oklab, var(--color-black) 35%, var(--color-plain)),
       transparent 70%
     );
   }
