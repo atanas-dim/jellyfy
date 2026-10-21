@@ -186,8 +186,26 @@
         transparent
       )
     );
-    --loading-light: color-mix(in oklab, var(--color-white) 40%, var(--solid));
-    --loading-shade: color-mix(in oklab, var(--color-black) 40%, var(--solid));
+    --loading-light: light-dark(
+      color-mix(in oklab, var(--color-white) 60%, var(--solid)),
+      color-mix(in oklab, var(--color-white) 40%, var(--solid))
+    );
+    --loading-shade: light-dark(
+      color-mix(in oklab, var(--color-black) 40%, var(--solid)),
+      color-mix(in oklab, var(--color-black) 60%, var(--solid))
+    );
+    --focus-gap: light-dark(
+      color-mix(in oklab, var(--color-white) 50%, transparent),
+      color-mix(in oklab, var(--color-neutral-950, #0a0a0a) 50%, transparent)
+    );
+    --color-disabled: light-dark(
+      var(--color-neutral-400, #a3a3a3),
+      var(--color-neutral-600, #525252)
+    );
+    --color-disabled-content: light-dark(
+      var(--color-neutral-50, #fafafa),
+      var(--color-neutral-300, #d4d4d4)
+    );
   }
 
   .primary {

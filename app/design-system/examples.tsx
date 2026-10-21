@@ -616,6 +616,150 @@ const MotionSamples = () => (
   />
 );
 
+const STATE_FACE =
+  "primary relative flex h-12 w-full items-center justify-center overflow-hidden text-sm font-semibold tracking-[0.04em] uppercase";
+
+const stateFill = {
+  backgroundColor: CONTROL_FILL,
+  borderRadius: "var(--radius-control)",
+  color: "var(--color-primary-content)",
+} as const;
+
+const InteractionSamples = () => (
+  <ThemePair
+    render={(theme) => (
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={twJoin(STATE_FACE, pairEdge[theme])}
+            style={{ ...stateFill, boxShadow: "var(--elevation-rest)" }}
+          >
+            Rest
+          </div>
+          <figcaption className={captionClass[theme]}>Rest</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={twJoin(STATE_FACE, pairEdge[theme])}
+            style={{
+              ...stateFill,
+              boxShadow: "var(--elevation-hover)",
+              transform: "translateY(-2px)",
+            }}
+          >
+            Hover
+          </div>
+          <figcaption className={captionClass[theme]}>Hover</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={twJoin(STATE_FACE, pairEdge[theme])}
+            style={{ ...stateFill, boxShadow: "var(--elevation-rest)" }}
+          >
+            <span
+              className="pointer-events-none absolute top-[60%] left-1/2 h-[60%] w-[90%] rounded-full"
+              style={{
+                background:
+                  "radial-gradient(var(--control-highlight), transparent 60%)",
+                transform: "translate(-50%, -40%)",
+              }}
+            />
+            <span
+              className="pointer-events-none absolute top-[42%] left-1/2 h-1/2 w-[90%] rounded-full"
+              style={{
+                background:
+                  "radial-gradient(var(--control-shade), transparent 60%)",
+                transform: "translate(-50%, -75%)",
+              }}
+            />
+            Press
+          </div>
+          <figcaption className={captionClass[theme]}>Press</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={twJoin(STATE_FACE, pairEdge[theme])}
+            style={{
+              ...stateFill,
+              outline: "1px solid var(--solid)",
+              outlineOffset: "2px",
+              boxShadow: "0 0 0 2px var(--focus-gap), var(--elevation-rest)",
+            }}
+          >
+            Focus
+          </div>
+          <figcaption className={captionClass[theme]}>Focus</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={twJoin(STATE_FACE, pairEdge[theme])}
+            style={{ ...stateFill, boxShadow: "var(--elevation-rest)" }}
+          >
+            On
+          </div>
+          <figcaption className={captionClass[theme]}>Selected</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={twJoin(
+              "relative flex h-12 w-full items-center justify-center text-sm font-semibold tracking-[0.04em] uppercase",
+              pairEdge[theme],
+            )}
+            style={{
+              borderRadius: "var(--radius-control)",
+              backgroundColor:
+                "color-mix(in oklab, var(--color-disabled) 60%, transparent)",
+              color:
+                "color-mix(in oklab, var(--color-disabled-content) 70%, transparent)",
+              boxShadow: "var(--elevation-disabled)",
+              cursor: "not-allowed",
+            }}
+          >
+            Off
+          </div>
+          <figcaption className={captionClass[theme]}>Disabled</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className={twJoin(
+              "error flex h-12 w-full items-center justify-center text-sm",
+              pairEdge[theme],
+            )}
+            style={{
+              borderRadius: "var(--radius-field)",
+              backgroundColor: WASH,
+              color: "var(--color-plain-content)",
+            }}
+          >
+            Error
+          </div>
+          <figcaption className={captionClass[theme]}>Error</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <MotionFace className={twJoin("primary", pairEdge[theme])}>
+            <span className="jelly-lights">
+              {SHEENS.map(([tone, duration, delay]) => (
+                <span
+                  key={`${tone}-${delay}`}
+                  className={twJoin("jelly-sheen", tone)}
+                  style={
+                    {
+                      "--sheen-duration": duration,
+                      "--sheen-delay": delay,
+                    } as CSSProperties
+                  }
+                />
+              ))}
+            </span>
+            Load
+          </MotionFace>
+          <figcaption className={captionClass[theme]}>Loading</figcaption>
+        </figure>
+      </div>
+    )}
+  />
+);
+
 export const examples: Record<string, ReactNode> = {
   roles: <RoleSwatches />,
   color: <ColorSamples />,
@@ -625,4 +769,5 @@ export const examples: Record<string, ReactNode> = {
   typography: <TypeSamples />,
   spacing: <SpacingSamples />,
   motion: <MotionSamples />,
+  "interaction-states": <InteractionSamples />,
 };

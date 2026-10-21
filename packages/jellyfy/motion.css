@@ -67,11 +67,11 @@
 }
 
 .jelly-sheen-light {
-  background-color: color-mix(in oklab, var(--loading-light) 40%, transparent);
+  background-color: color-mix(in oklab, var(--loading-light) 60%, transparent);
 }
 
 .jelly-sheen-shade {
-  background-color: color-mix(in oklab, var(--loading-shade) 40%, transparent);
+  background-color: color-mix(in oklab, var(--loading-shade) 60%, transparent);
 }
 
 .jelly-orbit-arm {
