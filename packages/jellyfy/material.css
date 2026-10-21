@@ -3,7 +3,6 @@
   --color-white: white;
   --color-plain: var(--color-neutral-50, #fafafa);
   --color-plain-content: var(--color-neutral-800, #262626);
-  --color-plain-focus: var(--color-neutral-100, #f5f5f5);
   --color-menu: var(--color-neutral-100, #f5f5f5);
   --color-primary: var(--color-indigo-600, #4f46e5);
   --color-primary-content: var(--color-indigo-50, #eef2ff);
@@ -44,7 +43,6 @@
   :root:not([data-theme="light"]) {
     --color-plain: var(--color-neutral-700, #404040);
     --color-plain-content: var(--color-neutral-100, #f5f5f5);
-    --color-plain-focus: var(--color-neutral-600, #525252);
     --color-menu: var(--color-neutral-800, #262626);
     --color-neutral: var(--color-neutral-300, #d4d4d4);
     --color-primary-content: var(--color-indigo-950, #1e1b4b);
@@ -62,7 +60,6 @@
 :root[data-theme="dark"] {
   --color-plain: var(--color-neutral-700, #404040);
   --color-plain-content: var(--color-neutral-100, #f5f5f5);
-  --color-plain-focus: var(--color-neutral-600, #525252);
   --color-menu: var(--color-neutral-800, #262626);
   --color-neutral: var(--color-neutral-300, #d4d4d4);
   --color-primary-content: var(--color-indigo-950, #1e1b4b);

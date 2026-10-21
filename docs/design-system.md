@@ -81,15 +81,14 @@ Every slot, including Neutral, uses the same wash, control fill, content color, 
 
 ### Base tones
 
-| Tone               | Step               |
-| ------------------ | ------------------ |
-| Surface fill       | Neutral 50         |
-| Menu               | Neutral 100        |
-| Field focus ground | Neutral 100        |
-| Plain content      | Neutral 800        |
-| Disabled fill      | Neutral 400 at 60% |
-| Disabled text      | Neutral 50 at 70%  |
-| Shadow color       | Neutral 950        |
+| Tone          | Step               |
+| ------------- | ------------------ |
+| Surface fill  | Neutral 50         |
+| Menu          | Neutral 100        |
+| Plain content | Neutral 800        |
+| Disabled fill | Neutral 400 at 60% |
+| Disabled text | Neutral 50 at 70%  |
+| Shadow color  | Neutral 950        |
 
 Black and white are shared values, stored once and reused by every mix that needs them. They are not color slots.
 
@@ -99,16 +98,16 @@ Each slot has a content color, stored explicitly. Replacing a solid does not rec
 
 The content color is the text on a control. Light uses the 50 step of the solid's hue. Dark uses the 950 step. The hex fallback is that same step.
 
-| Slot      | Light            | Dark              |
-| --------- | ---------------- | ----------------- |
-| Primary   | TW Indigo 50     | TW Indigo 950     |
-| Secondary | TW Pink 50       | TW Pink 950       |
-| Tertiary  | TW Teal 50       | TW Teal 950       |
-| Neutral   | Neutral 50       | Neutral 950       |
-| Success   | TW Green 50      | TW Green 950      |
-| Warning   | TW Amber 50      | TW Amber 950      |
-| Error     | TW Red 50        | TW Red 950        |
-| Info      | TW Sky 50        | TW Sky 950        |
+| Slot      | Light        | Dark          |
+| --------- | ------------ | ------------- |
+| Primary   | TW Indigo 50 | TW Indigo 950 |
+| Secondary | TW Pink 50   | TW Pink 950   |
+| Tertiary  | TW Teal 50   | TW Teal 950   |
+| Neutral   | Neutral 50   | Neutral 950   |
+| Success   | TW Green 50  | TW Green 950  |
+| Warning   | TW Amber 50  | TW Amber 950  |
+| Error     | TW Red 50    | TW Red 950    |
+| Info      | TW Sky 50    | TW Sky 950    |
 
 Text on a surface or a field is the plain content color, with a slot and without one. Plain content is Neutral 800 in light and Neutral 100 in dark.
 
@@ -127,7 +126,7 @@ Strength is separate from the solid. The same solid is quiet on a surface or fie
 | Wash, focused | 78% surface tone and 22% solid, shown at 80% opacity [DARK ADAPTATION MAY BE NEEDED] |
 | Control fill  | Solid at the material opacity, 60%                                                   |
 
-The control fill is still jelly. The slot color is at 60% opacity, with the shared blur and the shared grain. Surfaces and fields use the wash with a slot. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
+The control fill is still jelly. The slot color is at 60% opacity, with the shared blur and the shared grain. Surfaces and fields use the wash with a slot. A field with no slot uses plain as its solid, so the focused wash stays plain. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
 
 ### Menu mixes
 
@@ -146,7 +145,7 @@ Option text stays the plain content color.
 
 Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. They set the solid and the content color. Content colors are paired variables, named with the daisyUI suffix `content` (`--color-primary-content`, and the same for the other slots).
 
-Plain content is `--color-plain-content`. The focused fill of a plain field is `--color-plain-focus`. The menu fill is `--color-menu`.
+Plain content is `--color-plain-content`. The menu fill is `--color-menu`.
 
 Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-600`, `--color-indigo-50`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.
 
@@ -455,23 +454,22 @@ Dark changes only the neutral step fed into a recipe, the content color step, th
 
 The Neutral slot is one of the eight colors. Light uses Neutral 600 as its solid. Dark uses Neutral 300. It then uses the same wash, control fill, and content mix as primary.
 
-The plain element uses the surface tone, the menu tone, the field focus ground, and the plain content color. Those are not a second color and not the Neutral slot.
+The plain element uses plain as its solid, plus the menu tone and the plain content color. Plain is not a second color and not the Neutral slot.
 
 Disabled is a state. The fade stays 60% for the fill and 70% for the text. Dark changes the ramp step that is faded.
 
 The focus gap and the grain apply to every component, with a slot and without one.
 
-| Token              | What it is                    | Light          | Dark               |
-| ------------------ | ----------------------------- | -------------- | ------------------ |
-| Neutral slot       | One of the eight colors       | Neutral 600    | Neutral 300        |
-| Surface tone       | Plain element fill            | Neutral 50     | Neutral 700        |
-| Menu tone          | Plain menu fill               | Neutral 100    | Neutral 800        |
-| Field focus ground | Plain field while focused     | Neutral 100    | Neutral 600        |
-| Plain content      | Text on a surface or field    | Neutral 800    | Neutral 100        |
-| Disabled fill      | Disabled state, 60% fade      | Neutral 400    | Neutral 600        |
-| Disabled text      | Disabled state, 70% fade      | Neutral 50     | Neutral 300        |
-| Focus gap          | Shared by every focus ring    | White at 50%   | Neutral 950 at 50% |
-| Grain              | Shared by every jelly surface | Dark, stronger | Light, fainter     |
+| Token         | What it is                    | Light          | Dark               |
+| ------------- | ----------------------------- | -------------- | ------------------ |
+| Neutral slot  | One of the eight colors       | Neutral 600    | Neutral 300        |
+| Surface tone  | Plain element fill            | Neutral 50     | Neutral 700        |
+| Menu tone     | Plain menu fill               | Neutral 100    | Neutral 800        |
+| Plain content | Text on a surface or field    | Neutral 800    | Neutral 100        |
+| Disabled fill | Disabled state, 60% fade      | Neutral 400    | Neutral 600        |
+| Disabled text | Disabled state, 70% fade      | Neutral 50     | Neutral 300        |
+| Focus gap     | Shared by every focus ring    | White at 50%   | Neutral 950 at 50% |
+| Grain         | Shared by every jelly surface | Dark, stronger | Light, fainter     |
 
 A recipe marked `[DARK ADAPTATION MAY BE NEEDED]` uses the value in this document in both themes. That value is a CSS variable. The dark theme may override it.
 
