@@ -96,14 +96,14 @@ Black and white are shared values, stored once and reused by every mix that need
 
 Each slot has a content color, stored explicitly. Replacing a solid does not recalculate the content color. A custom theme sets both.
 
-The content color is the text on a control. The solid stays the same in both themes. Light text is the 950 step, because the page behind the button is light and the fill turns pale. Dark text is the 50 step, because the page behind the button is dark and the fill turns dark. Neutral keeps the 950 in both themes: in the dark theme its solid is Neutral 300, so the button stays pale. The hex fallback is that same step.
+The content color is the text on a control. The solid stays the same in both themes. Light text is the 950 step, because the page behind the button is light and the fill turns pale. Dark text is the 50 step, because the page behind the button is dark and the fill turns dark. The hex fallback is that same step.
 
 | Slot      | Light         | Dark         |
 | --------- | ------------- | ------------ |
 | Primary   | TW Indigo 950 | TW Indigo 50 |
 | Secondary | TW Pink 950   | TW Pink 50   |
 | Tertiary  | TW Teal 950   | TW Teal 50   |
-| Neutral   | Neutral 950   | Neutral 950  |
+| Neutral   | Neutral 950   | Neutral 50   |
 | Success   | TW Green 950  | TW Green 50  |
 | Warning   | TW Amber 950  | TW Amber 50  |
 | Error     | TW Red 950    | TW Red 50    |
@@ -113,7 +113,7 @@ Text on a surface or a field is the plain content color, with a slot and without
 
 Icons use the text color of the component they sit in. An icon on a surface or a field uses the plain content color. An icon on a control uses the control content color.
 
-Text on a control meets WCAG AA, 4.5:1, against the painted fill. The focus outline meets 3:1 against the ground next to it. A content color that cannot reach 4.5:1 needs a hand-set value. The library does not pick black or white at runtime.
+Text on a control meets WCAG AA, 4.5:1, against the painted fill. The focus outline meets 3:1 against the ground next to it. A content color that cannot reach 4.5:1 is set explicitly on that slot.
 
 ### Color strength
 
@@ -185,38 +185,32 @@ The track and the fill of a slider are both jelly. Only the color differs. The s
 
 ### Press light
 
-[DARK ADAPTATION MAY BE NEEDED]
-
 Press light is a pair of soft ellipses, derived from the solid. The lower ellipse is the highlight. The upper ellipse is the shade. They are not the loading sheen.
 
-**Control light** is hidden at rest and fully visible while the control is pressed. The transition is 300ms.
+**Control light** is hidden at rest and fully visible while the control is pressed. The transition is 300ms. Both ellipses are centered and fade out at 60% of the gradient radius.
 
-- Highlight: white mixed at 92% into the solid, then shown at 36%.
-- Shade: black mixed at 45% into the solid, then shown at 40%.
-- Both ellipses are 90% of the control width, centered, and fade out at 60% of the gradient radius.
-- The highlight starts at 60% of the height, is 60% tall, and is shifted up by 40% of its own height.
-- The shade starts at 42% of the height, is 50% tall, and is shifted up by 75% of its own height.
+| Ellipse   | Light                            | Dark                             | Place                                                                                        |
+| --------- | -------------------------------- | -------------------------------- | -------------------------------------------------------------------------------------------- |
+| Highlight | White mixed at 90%, shown at 36% | White mixed at 10%, shown at 36% | 90% of the width, 60% tall, starts at 60% of the height, shifted up by 40% of its own height |
+| Shade     | Black mixed at 90%, shown at 20% | Black mixed at 90%, shown at 20% | 90% of the width, 50% tall, starts at 42% of the height, shifted up by 75% of its own height |
 
-**Field light** uses a different strength, because a field is a recess. It is hidden at rest and fully visible while the field is focused, including when focus arrives by click. The transition is 300ms. [DARK ADAPTATION MAY BE NEEDED]
+**Field light** uses a different strength, because a field is a recess. It is hidden at rest and fully visible while the field is focused, including when focus arrives by click. The transition is 300ms.
 
-- Highlight: white mixed at 86% into the solid, then shown at 78%.
-- Shade: black mixed at 80% into the solid, then shown at 12%.
-- The highlight is 70% of the field width, 1.75rem tall, and sits 1rem below the bottom edge so only the top of it shows.
-- The shade is 90% of the field width, 2.1rem tall, and starts 1.4rem from the top.
+| Ellipse   | Light                            | Dark                             | Place                                                                                       |
+| --------- | -------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------- |
+| Highlight | White mixed at 90%, shown at 60% | White mixed at 40%, shown at 10% | 70% of the width, 1.75rem tall, sits 1rem below the bottom edge so only the top of it shows |
+| Shade     | Black mixed at 25%, shown at 20% | Black mixed at 90%, shown at 20% | 90% of the width, 2.1rem tall, starts 1.4rem from the top                                   |
 
 An object with no slot builds the same mixes from the surface tone.
 
 ### Bump
 
-[DARK ADAPTATION MAY BE NEEDED]
+The bump button is always lit. It uses the mark light, not the control light. Each ellipse is 1.75rem wide and 1rem tall, centered, and fades out at 70% of the gradient radius. While pressed, the two ellipses exchange places. The exchange takes 200ms.
 
-The bump button is always lit. It uses the mark light, not the control light.
-
-- Highlight: white mixed at 92% into the solid, then shown at 88%.
-- Shade: black mixed at 78% into the solid, then shown at 16%.
-- Each ellipse is 1.75rem wide and 1rem tall, centered, fading out at 70% of the gradient radius.
-- The highlight sits 0.15rem from the top. The shade sits 0.85rem from the top.
-- While pressed, the two ellipses exchange places. The exchange takes 200ms.
+| Ellipse   | Light                            | Dark                             | Place                |
+| --------- | -------------------------------- | -------------------------------- | -------------------- |
+| Highlight | White mixed at 95%, shown at 70% | White mixed at 20%, shown at 20% | 0.15rem from the top |
+| Shade     | Black mixed at 40%, shown at 15% | Black mixed at 80%, shown at 20% | 0.85rem from the top |
 
 ### Implementation notes
 

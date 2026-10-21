@@ -28,7 +28,7 @@ const ThemePair = ({ render }: { render: (theme: ThemeName) => ReactNode }) => (
       </p>
       {render("light")}
     </div>
-    <div className="dark rounded-2xl border border-neutral-800 bg-black p-6 text-neutral-100">
+    <div className="dark rounded-2xl border border-neutral-700 bg-neutral-900 p-6 text-neutral-100">
       <p className="mb-4 text-xs font-semibold tracking-[0.16em] text-neutral-400 uppercase">
         Dark
       </p>

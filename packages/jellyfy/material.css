@@ -79,7 +79,7 @@
     );
     --color-neutral-content: light-dark(
       var(--color-neutral-950, #0a0a0a),
-      var(--color-neutral-950, #0a0a0a)
+      var(--color-neutral-50, #fafafa)
     );
     --color-primary-content: light-dark(
       var(--color-indigo-950, #1e1b4b),
