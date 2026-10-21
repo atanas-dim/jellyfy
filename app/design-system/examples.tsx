@@ -807,6 +807,446 @@ const ThemeSamples = () => (
   />
 );
 
+const Plus = ({ size }: { size: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+    style={{ width: size, height: size }}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.75"
+  >
+    <path d="M12 5v14M5 12h14" />
+  </svg>
+);
+
+const buttonLabel: CSSProperties = {
+  fontSize: "0.875rem",
+  fontWeight: 600,
+  letterSpacing: "0.04em",
+  lineHeight: 1,
+  textTransform: "uppercase",
+  textShadow:
+    "0 0 6px color-mix(in oklab, var(--color-neutral-950, #0a0a0a) 40%, transparent)",
+};
+
+const controlStyle: CSSProperties = {
+  backgroundColor: CONTROL_FILL,
+  borderRadius: "var(--radius-control)",
+  color: "var(--color-primary-content)",
+  boxShadow: "var(--thickness-control), var(--elevation-rest)",
+};
+
+const fieldStyle: CSSProperties = {
+  backgroundColor: WASH,
+  borderRadius: "var(--radius-field)",
+  color: "var(--color-plain-content)",
+  boxShadow: "var(--thickness-field)",
+};
+
+const surfaceStyle: CSSProperties = {
+  backgroundColor: WASH,
+  borderRadius: "var(--radius-surface)",
+  color: "var(--color-plain-content)",
+  boxShadow: "var(--thickness-surface), var(--elevation-rest)",
+};
+
+const ComponentSamples = () => (
+  <ThemePair
+    render={(theme) => (
+      <div className="flex flex-col gap-8">
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Button
+          </figcaption>
+          <div
+            className={twJoin(
+              "primary thickness-control flex h-12 min-w-40 items-center justify-center px-6",
+              pairEdge[theme],
+            )}
+            style={{ ...controlStyle, ...buttonLabel }}
+          >
+            Save
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Icon button
+          </figcaption>
+          <div
+            className={twJoin(
+              "primary thickness-control flex size-12 items-center justify-center",
+              pairEdge[theme],
+            )}
+            style={controlStyle}
+          >
+            <Plus size="1.5rem" />
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Bump button
+          </figcaption>
+          <div
+            className="relative flex size-8 items-center justify-center"
+            style={{
+              borderRadius: "var(--radius-control)",
+              color: "var(--color-plain-content)",
+            }}
+          >
+            <span
+              className="pointer-events-none absolute top-[0.15rem] left-1/2 h-4 w-[1.75rem] rounded-full"
+              style={{
+                background:
+                  "radial-gradient(var(--bump-highlight), transparent 70%)",
+                transform: "translate(-50%, 0)",
+              }}
+            />
+            <span
+              className="pointer-events-none absolute top-[0.85rem] left-1/2 h-4 w-[1.75rem] rounded-full"
+              style={{
+                background:
+                  "radial-gradient(var(--bump-shade), transparent 70%)",
+                transform: "translate(-50%, 0)",
+              }}
+            />
+            <Plus size="1.25rem" />
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Input
+          </figcaption>
+          <div
+            className={twJoin(
+              "primary thickness-field relative h-12 w-full",
+              pairEdge[theme],
+            )}
+            style={fieldStyle}
+          >
+            <span
+              className="absolute"
+              style={{
+                top: "0.75rem",
+                left: "1rem",
+                fontSize: "10px",
+                fontWeight: 500,
+                letterSpacing: "0.04em",
+                lineHeight: 1,
+              }}
+            >
+              Email
+            </span>
+            <span
+              className="absolute"
+              style={{ left: "1rem", bottom: "0.625rem", fontSize: "1rem" }}
+            >
+              ada@jellyfy.dev
+            </span>
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Textarea
+          </figcaption>
+          <div
+            className={twJoin(
+              "primary thickness-field relative min-h-28 w-full",
+              pairEdge[theme],
+            )}
+            style={{ ...fieldStyle, padding: "1.375rem 1rem 0.75rem" }}
+          >
+            <span
+              className="absolute"
+              style={{
+                top: "0.75rem",
+                left: "1rem",
+                fontSize: "10px",
+                fontWeight: 500,
+                letterSpacing: "0.04em",
+                lineHeight: 1,
+              }}
+            >
+              Note
+            </span>
+            <p
+              style={{
+                marginTop: "0.75rem",
+                fontSize: "1rem",
+                lineHeight: 1.5,
+              }}
+            >
+              The pour stays quiet until you press it.
+            </p>
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Select
+          </figcaption>
+          <div
+            className={twJoin(
+              "primary thickness-field relative h-12 w-full",
+              pairEdge[theme],
+            )}
+            style={fieldStyle}
+          >
+            <span
+              className="absolute"
+              style={{
+                top: "0.75rem",
+                left: "1rem",
+                fontSize: "10px",
+                fontWeight: 500,
+                letterSpacing: "0.04em",
+                lineHeight: 1,
+              }}
+            >
+              Tone
+            </span>
+            <span
+              className="absolute"
+              style={{ left: "1rem", bottom: "0.625rem", fontSize: "1rem" }}
+            >
+              Primary
+            </span>
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              className="absolute top-1/2 right-4 size-5 -translate-y-1/2"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.75"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Checkbox
+          </figcaption>
+          <div className="flex items-center gap-3">
+            <div
+              className={twJoin(
+                "primary thickness-mark flex size-6 items-center justify-center",
+                pairEdge[theme],
+              )}
+              style={{
+                backgroundColor: CONTROL_FILL,
+                borderRadius: "var(--radius-mark)",
+                boxShadow: "var(--thickness-mark), var(--elevation-mark)",
+                color: "var(--color-primary-content)",
+              }}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                className="size-3.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path d="M5 12.5 10 17 19 7" />
+              </svg>
+            </div>
+            <span style={{ fontSize: "0.875rem", fontWeight: 500 }}>
+              Remember me
+            </span>
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Radio
+          </figcaption>
+          <div className="flex items-center gap-3">
+            <div
+              className={twJoin(
+                "primary thickness-mark flex size-6 items-center justify-center",
+                pairEdge[theme],
+              )}
+              style={{
+                borderRadius: "var(--radius-control)",
+                boxShadow: "var(--thickness-mark)",
+                backgroundColor: "var(--color-plain)",
+              }}
+            >
+              <span
+                className="size-3.5 rounded-full"
+                style={{ backgroundColor: CONTROL_FILL }}
+              />
+            </div>
+            <span style={{ fontSize: "0.875rem", fontWeight: 500 }}>
+              Primary
+            </span>
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Toggle
+          </figcaption>
+          <div className="flex items-center gap-3">
+            <div
+              className={twJoin(
+                "primary thickness-mark relative h-7 w-12",
+                pairEdge[theme],
+              )}
+              style={{
+                borderRadius: "var(--radius-control)",
+                backgroundColor: CONTROL_FILL,
+                boxShadow: "var(--thickness-mark)",
+              }}
+            >
+              <span
+                className="absolute top-1 size-5 rounded-full bg-white"
+                style={{
+                  left: "calc(0.25rem + 1.15rem)",
+                  boxShadow: "var(--thickness-mark)",
+                }}
+              />
+            </div>
+            <span style={{ fontSize: "0.875rem", fontWeight: 500 }}>On</span>
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Range
+          </figcaption>
+          <div className="relative flex h-8 w-full max-w-96 items-center">
+            <div
+              className={twJoin("thickness-mark h-3 w-full", pairEdge[theme])}
+              style={{
+                borderRadius: "var(--radius-control)",
+                backgroundColor: "var(--color-plain)",
+                boxShadow: "var(--thickness-mark)",
+              }}
+            />
+            <div
+              className="primary absolute left-0 h-3 w-2/5"
+              style={{
+                borderRadius: "var(--radius-control)",
+                backgroundColor: CONTROL_FILL,
+              }}
+            />
+            <span
+              className={twJoin(
+                "primary absolute left-[40%] size-6 -translate-x-1/2 rounded-full",
+                pairEdge[theme],
+              )}
+              style={{
+                backgroundColor: CONTROL_FILL,
+                boxShadow: "var(--thickness-mark), var(--elevation-mark)",
+              }}
+            />
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Alert
+          </figcaption>
+          <div
+            className={twJoin(
+              "primary thickness-surface flex items-center gap-3 px-4 py-3 text-base",
+              pairEdge[theme],
+            )}
+            style={surfaceStyle}
+          >
+            <Plus size="1.25rem" />
+            <p style={{ lineHeight: 1.5 }}>
+              The pour stays quiet until you press it.
+            </p>
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Badge
+          </figcaption>
+          <div
+            className={twJoin(
+              "primary thickness-surface inline-flex w-fit px-2.5 py-1",
+              pairEdge[theme],
+            )}
+            style={{
+              ...controlStyle,
+              boxShadow: "var(--thickness-surface), var(--elevation-mark)",
+              fontSize: "10px",
+              fontWeight: 600,
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+            }}
+          >
+            New
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Card
+          </figcaption>
+          <div
+            className={twJoin(
+              "primary thickness-surface px-5 py-4 text-base",
+              pairEdge[theme],
+            )}
+            style={surfaceStyle}
+          >
+            <p style={{ lineHeight: 1.5 }}>A quiet surface for a short note.</p>
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Modal
+          </figcaption>
+          <div
+            className="relative flex min-h-40 items-center justify-center p-4"
+            style={{
+              backgroundColor:
+                "color-mix(in oklab, var(--color-neutral-950, #0a0a0a) 40%, transparent)",
+              borderRadius: "var(--radius-surface)",
+            }}
+          >
+            <div
+              className={twJoin(
+                "primary thickness-surface relative w-full max-w-md px-6 py-6",
+                pairEdge[theme],
+              )}
+              style={{
+                ...surfaceStyle,
+                boxShadow: "var(--thickness-surface), var(--elevation-overlay)",
+              }}
+            >
+              <span
+                className="absolute top-3 right-3 flex size-8 items-center justify-center"
+                style={{
+                  borderRadius: "var(--radius-control)",
+                  color: "var(--color-plain-content)",
+                }}
+              >
+                <Plus size="1.25rem" />
+              </span>
+              <p style={{ lineHeight: 1.5 }}>A panel over the veil.</p>
+            </div>
+          </div>
+        </figure>
+        <figure className="flex flex-col gap-2">
+          <figcaption className={twJoin(captionClass[theme], "text-left")}>
+            Message
+          </figcaption>
+          <p
+            className="primary"
+            style={{
+              marginTop: "0.375rem",
+              fontSize: "0.75rem",
+              color: "var(--solid)",
+            }}
+          >
+            Use a work email.
+          </p>
+        </figure>
+      </div>
+    )}
+  />
+);
+
 export const examples: Record<string, ReactNode> = {
   roles: <RoleSwatches />,
   color: <ColorSamples />,
@@ -818,4 +1258,5 @@ export const examples: Record<string, ReactNode> = {
   motion: <MotionSamples />,
   "interaction-states": <InteractionSamples />,
   themes: <ThemeSamples />,
+  components: <ComponentSamples />,
 };

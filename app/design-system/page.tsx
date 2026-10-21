@@ -22,6 +22,7 @@ const SHOWN = [
   "motion",
   "interaction-states",
   "themes",
+  "components",
 ];
 
 export default function DesignSystemPage() {
