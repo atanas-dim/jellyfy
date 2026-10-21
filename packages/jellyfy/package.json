@@ -45,6 +45,10 @@
     "./radio.css": {
       "style": "./radio.css",
       "default": "./radio.css"
+    },
+    "./toggle.css": {
+      "style": "./toggle.css",
+      "default": "./toggle.css"
     }
   },
   "files": [
@@ -58,7 +62,8 @@
     "textarea.css",
     "select.css",
     "checkbox.css",
-    "radio.css"
+    "radio.css",
+    "toggle.css"
   ],
   "sideEffects": [
     "./material.css",
@@ -70,6 +75,7 @@
     "./textarea.css",
     "./select.css",
     "./checkbox.css",
-    "./radio.css"
+    "./radio.css",
+    "./toggle.css"
   ]
 }

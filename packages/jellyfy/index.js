@@ -79,8 +79,13 @@ const releaseSquish = (face) => {
 const pressSquish = (event) => {
   const face = event.currentTarget;
   if (!(face instanceof HTMLElement)) return;
-  if (face instanceof HTMLButtonElement && face.disabled) return;
-  if (face.matches(":has(:disabled)")) return;
+  const control = face.closest("label, button") ?? face;
+  const blocked =
+    face.matches(":disabled, :has(:disabled)") ||
+    control.matches(":disabled, :has(:disabled)") ||
+    (face instanceof HTMLButtonElement && face.disabled) ||
+    (control instanceof HTMLButtonElement && control.disabled);
+  if (blocked) return;
   if (event.button !== 0) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   pressed.add(face);
@@ -147,7 +152,7 @@ const refresh = () => {
   syncLights();
   document
     .querySelectorAll(
-      ".btn, .btn-icon, .btn-bump, .input, .textarea, .select, .checkbox-box, .radio-ring, .squish",
+      ".btn, .btn-icon, .btn-bump, .input, .textarea, .select, .checkbox-box, .radio-ring, .toggle-track, .squish",
     )
     .forEach(attachSquish);
 };

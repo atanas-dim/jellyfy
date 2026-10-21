@@ -9,6 +9,7 @@
 @import "jellyfy/select.css";
 @import "jellyfy/checkbox.css";
 @import "jellyfy/radio.css";
+@import "jellyfy/toggle.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

@@ -1133,27 +1133,49 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Toggle
           </figcaption>
-          <div className="flex items-center gap-3">
-            <div
-              className={twJoin(
-                "primary thickness-mark relative h-7 w-12",
-                pairEdge[theme],
-              )}
-              style={{
-                borderRadius: "var(--radius-control)",
-                backgroundColor: CONTROL_FILL,
-                boxShadow: "var(--thickness-mark)",
-              }}
-            >
-              <span
-                className="absolute top-1 size-5 rounded-full bg-white"
-                style={{
-                  left: "calc(0.25rem + 1.15rem)",
-                  boxShadow: "var(--thickness-mark)",
-                }}
-              />
-            </div>
-            <span style={{ fontSize: "0.875rem", fontWeight: 500 }}>On</span>
+          <div className="flex flex-col items-start gap-3">
+            <label className="toggle toggle-sm primary">
+              <input type="checkbox" role="switch" defaultChecked />
+              <span className="toggle-track">
+                <span className="toggle-thumb" />
+              </span>
+              <span>Small</span>
+            </label>
+            <label className="toggle primary">
+              <input type="checkbox" role="switch" defaultChecked />
+              <span className="toggle-track">
+                <span className="toggle-thumb" />
+              </span>
+              <span>On</span>
+            </label>
+            <label className="toggle toggle-lg primary">
+              <input type="checkbox" role="switch" />
+              <span className="toggle-track">
+                <span className="toggle-thumb" />
+              </span>
+              <span>Large</span>
+            </label>
+            <label className="toggle">
+              <input type="checkbox" role="switch" />
+              <span className="toggle-track">
+                <span className="toggle-thumb" />
+              </span>
+              <span>Off</span>
+            </label>
+            <label className="toggle primary">
+              <input type="checkbox" role="switch" defaultChecked disabled />
+              <span className="toggle-track">
+                <span className="toggle-thumb" />
+              </span>
+              <span>Disabled on</span>
+            </label>
+            <label className="toggle primary">
+              <input type="checkbox" role="switch" disabled />
+              <span className="toggle-track">
+                <span className="toggle-thumb" />
+              </span>
+              <span>Disabled off</span>
+            </label>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">
