@@ -22,6 +22,10 @@
       "style": "./icon-button.css",
       "default": "./icon-button.css"
     },
+    "./bump-button.css": {
+      "style": "./bump-button.css",
+      "default": "./bump-button.css"
+    },
     "./input.css": {
       "style": "./input.css",
       "default": "./input.css"
@@ -41,6 +45,7 @@
     "motion.css",
     "button.css",
     "icon-button.css",
+    "bump-button.css",
     "input.css",
     "textarea.css",
     "select.css"
@@ -50,6 +55,7 @@
     "./motion.css",
     "./button.css",
     "./icon-button.css",
+    "./bump-button.css",
     "./input.css",
     "./textarea.css",
     "./select.css"

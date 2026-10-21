@@ -252,12 +252,12 @@ The dark theme can override the shadow opacity. That override is marked `[DARK A
 
 Four radius tokens. The names are roles. A product can change the values.
 
-| Token   | Default | Used by                                                                                                          |
-| ------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| Surface | 1rem    | Card, alert, modal panel, select menu                                                                            |
-| Field   | 1rem    | Input, textarea, select                                                                                          |
-| Control | 999px   | Button, icon button, bump button, toggle track, toggle thumb, range track, range thumb, radio ring, radio bullet |
-| Mark    | 0.5rem  | Checkbox box                                                                                                     |
+| Token   | Default | Used by                                                                                             |
+| ------- | ------- | --------------------------------------------------------------------------------------------------- |
+| Surface | 1rem    | Card, alert, modal panel, select menu                                                               |
+| Field   | 1rem    | Input, textarea, select                                                                             |
+| Control | 999px   | Button, icon button, toggle track, toggle thumb, range track, range thumb, radio ring, radio bullet |
+| Mark    | 0.5rem  | Checkbox box                                                                                        |
 
 Field and surface both default to 1rem. They stay separate so a field inside a card can be tightened without changing the card. A nested corner should be smaller than the corner that contains it.
 
@@ -504,7 +504,7 @@ While loading, the icon stays and the orbit from the motion section is shown.
 
 ### Bump Button
 
-The close control on a modal. Transparent, no elevation, bump light, control radius. It sits 0.75rem from the top and the trailing edge of the panel.
+The close control on a modal. Transparent, no elevation, no radius, bump light. It sits 0.75rem from the top and the trailing edge of the panel.
 
 |      | Small  | Medium  | Large  |
 | ---- | ------ | ------- | ------ |
@@ -647,7 +647,7 @@ The caption under a field. It is not an error style. It has its own slot, indepe
 
 ### Implementation notes
 
-Medium classes have no size suffix. Small and large use `-sm` and `-lg` on the component class: `btn-sm`, `input-lg`, `btn-bump-sm`. The icon button uses the button sizes, `btn-sm` and `btn-lg`.
+Medium classes have no size suffix. Small and large use `-sm` and `-lg` on the component class: `btn-sm`, `input-lg`. The icon button and the bump button use the button sizes, `btn-sm` and `btn-lg`.
 
 The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, and `modal-panel`. The radio bullet, `radio-ring::after`, receives the grain only. It is opaque and has no blur and no inset.
 

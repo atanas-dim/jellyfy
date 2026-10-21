@@ -1,0 +1,95 @@
+@layer components {
+  .btn-bump {
+    position: relative;
+    isolation: isolate;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    background: transparent;
+    color: var(--color-plain-content);
+    box-shadow: none;
+    cursor: pointer;
+  }
+
+  .btn-bump.btn-sm {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .btn-bump.btn-lg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .btn-bump > svg {
+    position: relative;
+    z-index: 1;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .btn-bump.btn-sm > svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .btn-bump.btn-lg > svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .btn-bump::before,
+  .btn-bump::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 87.5%;
+    height: 50%;
+    border-radius: 999px;
+    pointer-events: none;
+    transform: translateX(-50%);
+    transition: top 200ms ease-out;
+  }
+
+  .btn-bump::before {
+    top: 7.5%;
+    background: radial-gradient(var(--bump-highlight), transparent 70%);
+  }
+
+  .btn-bump::after {
+    top: 42.5%;
+    background: radial-gradient(var(--bump-shade), transparent 70%);
+  }
+
+  .btn-bump:active:not(:disabled)::before {
+    top: 42.5%;
+  }
+
+  .btn-bump:active:not(:disabled)::after {
+    top: 7.5%;
+  }
+
+  .btn-bump:focus-visible {
+    outline: 1px solid var(--focus-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--focus-gap);
+  }
+
+  .btn-bump:disabled {
+    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    cursor: not-allowed;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-bump::before,
+  .btn-bump::after {
+    transition: none;
+  }
+}

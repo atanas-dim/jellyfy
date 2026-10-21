@@ -146,7 +146,9 @@ let scheduled = false;
 const refresh = () => {
   syncLights();
   document
-    .querySelectorAll(".btn, .btn-icon, .input, .textarea, .select, .squish")
+    .querySelectorAll(
+      ".btn, .btn-icon, .btn-bump, .input, .textarea, .select, .squish",
+    )
     .forEach(attachSquish);
 };
 

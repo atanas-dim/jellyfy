@@ -160,19 +160,19 @@
       ),
       color-mix(
         in oklab,
-        color-mix(in oklab, var(--color-white) 20%, var(--solid)) 20%,
+        color-mix(in oklab, var(--color-white) 20%, var(--solid)) 30%,
         transparent
       )
     );
     --bump-shade: light-dark(
       color-mix(
         in oklab,
-        color-mix(in oklab, var(--color-black) 40%, var(--solid)) 15%,
+        color-mix(in oklab, var(--color-black) 40%, var(--solid)) 25%,
         transparent
       ),
       color-mix(
         in oklab,
-        color-mix(in oklab, var(--color-black) 80%, var(--solid)) 20%,
+        color-mix(in oklab, var(--color-black) 80%, var(--solid)) 30%,
         transparent
       )
     );

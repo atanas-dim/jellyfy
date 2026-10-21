@@ -903,30 +903,32 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Bump button
           </figcaption>
-          <div
-            className="relative flex size-8 items-center justify-center"
-            style={{
-              borderRadius: "var(--radius-control)",
-              color: "var(--color-plain-content)",
-            }}
-          >
-            <span
-              className="pointer-events-none absolute top-[0.15rem] left-1/2 h-4 w-[1.75rem] rounded-full"
-              style={{
-                background:
-                  "radial-gradient(var(--bump-highlight), transparent 70%)",
-                transform: "translate(-50%, 0)",
-              }}
-            />
-            <span
-              className="pointer-events-none absolute top-[0.85rem] left-1/2 h-4 w-[1.75rem] rounded-full"
-              style={{
-                background:
-                  "radial-gradient(var(--bump-shade), transparent 70%)",
-                transform: "translate(-50%, 0)",
-              }}
-            />
-            <Plus size="1.25rem" />
+          <div className="flex flex-wrap items-end gap-3">
+            <button
+              className="btn-bump btn-sm"
+              type="button"
+              aria-label="Close"
+            >
+              <Plus size="1rem" />
+            </button>
+            <button className="btn-bump" type="button" aria-label="Close">
+              <Plus size="1.25rem" />
+            </button>
+            <button
+              className="btn-bump btn-lg"
+              type="button"
+              aria-label="Close"
+            >
+              <Plus size="1.5rem" />
+            </button>
+            <button
+              className="btn-bump"
+              type="button"
+              aria-label="Close"
+              disabled
+            >
+              <Plus size="1.25rem" />
+            </button>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">
