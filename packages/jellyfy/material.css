@@ -35,14 +35,6 @@
   --radius-field: 1rem;
   --radius-control: 999px;
   --radius-mark: 0.5rem;
-  --squish-distance: 8px;
-  --squish-height-ratio: calc(2 / 7);
-  --squish-settle-ratio: calc(1 / 7);
-  --squish-press-time: 480ms;
-  --squish-release-time: 300ms;
-  --squish-peak-at: 0.42;
-  --motion-rise-distance: 2px;
-  --motion-rise-time: 200ms;
 }
 
 .light {
