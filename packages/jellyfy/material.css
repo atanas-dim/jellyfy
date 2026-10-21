@@ -9,11 +9,11 @@
   --color-warning: var(--color-amber-600, #d97706);
   --color-error: var(--color-red-600, #dc2626);
   --color-info: var(--color-sky-600, #0284c7);
-  --wash: 86%;
-  --wash-focus: 78%;
-  --wash-opacity: 80%;
-  --menu-hover: 14%;
-  --menu-selected: 28%;
+  --percent-plain-resting-wash: 86%;
+  --percent-plain-focused-wash: 78%;
+  --percent-shown-wash: 80%;
+  --percent-solid-menu-hover: 14%;
+  --percent-solid-menu-selected: 28%;
   --material-opacity: 60%;
   --material-blur: 4px;
   --noise-size: 22.5rem;
@@ -38,10 +38,10 @@
   --squish-distance: 8px;
   --squish-height-ratio: calc(2 / 7);
   --squish-settle-ratio: calc(1 / 7);
-  --squish-press: 480ms;
-  --squish-release: 300ms;
-  --squish-peak: 0.42;
-  --motion-rise: 2px;
+  --squish-press-time: 480ms;
+  --squish-release-time: 300ms;
+  --squish-peak-at: 0.42;
+  --motion-rise-distance: 2px;
   --motion-rise-time: 200ms;
 }
 

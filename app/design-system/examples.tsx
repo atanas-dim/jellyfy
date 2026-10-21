@@ -127,7 +127,7 @@ const ColorSamples = () => (
         className={twJoin("primary", SWATCH_EDGE)}
         style={{
           backgroundColor:
-            "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--wash), var(--solid)) var(--wash-opacity), transparent)",
+            "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-resting-wash), var(--solid)) var(--percent-shown-wash), transparent)",
           color: "var(--color-plain-content)",
         }}
       />
@@ -145,7 +145,7 @@ const ColorSamples = () => (
         className={SWATCH_EDGE}
         style={{
           backgroundColor:
-            "color-mix(in oklab, var(--color-primary) var(--menu-selected), var(--color-menu))",
+            "color-mix(in oklab, var(--color-primary) var(--percent-solid-menu-selected), var(--color-menu))",
           color: "var(--color-plain-content)",
         }}
       />
@@ -167,9 +167,9 @@ const ColorSamples = () => (
 const CONTROL_FILL =
   "color-mix(in oklab, var(--solid) var(--material-opacity), transparent)";
 const WASH =
-  "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--wash), var(--solid)) var(--wash-opacity), transparent)";
+  "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-resting-wash), var(--solid)) var(--percent-shown-wash), transparent)";
 const WASH_FOCUS =
-  "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--wash-focus), var(--solid)) var(--wash-opacity), transparent)";
+  "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-focused-wash), var(--solid)) var(--percent-shown-wash), transparent)";
 
 const LightSwatches = ({
   slot,

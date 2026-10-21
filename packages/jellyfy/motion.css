@@ -102,7 +102,7 @@
 }
 
 .jelly-rise:hover:not(:active) {
-  translate: 0 calc(-1 * var(--motion-rise));
+  translate: 0 calc(-1 * var(--motion-rise-distance));
 }
 
 @media (prefers-reduced-motion: reduce) {

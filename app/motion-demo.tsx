@@ -53,7 +53,7 @@ export const SquishControl = ({ className }: { className?: string }) => {
     const transform = getComputedStyle(face).transform;
     face.getAnimations().forEach((animation) => animation.cancel());
     const releaseTime = time(
-      getComputedStyle(face).getPropertyValue("--squish-release"),
+      getComputedStyle(face).getPropertyValue("--squish-release-time"),
       300,
     );
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -80,8 +80,8 @@ export const SquishControl = ({ className }: { className?: string }) => {
       styles.getPropertyValue("--squish-settle-ratio"),
       1 / 7,
     );
-    const peakAt = parseFloat(styles.getPropertyValue("--squish-peak"));
-    const pressTime = time(styles.getPropertyValue("--squish-press"), 480);
+    const peakAt = parseFloat(styles.getPropertyValue("--squish-peak-at"));
+    const pressTime = time(styles.getPropertyValue("--squish-press-time"), 480);
     const width = face.offsetWidth;
     const height = face.offsetHeight;
     const scale = (across: number, down: number) =>
