@@ -827,13 +827,6 @@ const controlStyle: CSSProperties = {
   boxShadow: "var(--thickness-control), var(--elevation-rest)",
 };
 
-const fieldStyle: CSSProperties = {
-  backgroundColor: WASH,
-  borderRadius: "var(--radius-field)",
-  color: "var(--color-plain-content)",
-  boxShadow: "var(--thickness-field)",
-};
-
 const surfaceStyle: CSSProperties = {
   backgroundColor: WASH,
   borderRadius: "var(--radius-surface)",
@@ -991,42 +984,43 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Select
           </figcaption>
-          <div
-            className={twJoin(
-              "primary thickness-field relative h-12 w-full",
-              pairEdge[theme],
-            )}
-            style={fieldStyle}
-          >
-            <span
-              className="absolute"
-              style={{
-                top: "0.75rem",
-                left: "1rem",
-                fontSize: "10px",
-                fontWeight: 500,
-                letterSpacing: "0.04em",
-                lineHeight: 1,
-              }}
-            >
-              Tone
-            </span>
-            <span
-              className="absolute"
-              style={{ left: "1rem", bottom: "0.625rem", fontSize: "1rem" }}
-            >
-              Primary
-            </span>
-            <svg
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-              className="absolute top-1/2 right-4 size-5 -translate-y-1/2"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.75"
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
+          <div className="flex w-full flex-col gap-3">
+            <label className="select select-sm primary">
+              <select defaultValue="Primary">
+                <option>Primary</option>
+                <option>Neutral</option>
+                <option>Quiet</option>
+              </select>
+              <span>Small</span>
+              <span className="picker-icon" aria-hidden="true" />
+            </label>
+            <label className="select primary">
+              <select defaultValue="Primary">
+                <option>Primary</option>
+                <option>Neutral</option>
+                <option>Quiet</option>
+              </select>
+              <span>Tone</span>
+              <span className="picker-icon" aria-hidden="true" />
+            </label>
+            <label className="select select-lg primary">
+              <select defaultValue="Primary">
+                <option>Primary</option>
+                <option>Neutral</option>
+                <option>Quiet</option>
+              </select>
+              <span>Large</span>
+              <span className="picker-icon" aria-hidden="true" />
+            </label>
+            <label className="select primary">
+              <select defaultValue="Primary" disabled>
+                <option>Primary</option>
+                <option>Neutral</option>
+                <option>Quiet</option>
+              </select>
+              <span>Disabled</span>
+              <span className="picker-icon" aria-hidden="true" />
+            </label>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">

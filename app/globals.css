@@ -4,6 +4,7 @@
 @import "jellyfy/button.css";
 @import "jellyfy/input.css";
 @import "jellyfy/textarea.css";
+@import "jellyfy/select.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

@@ -25,6 +25,10 @@
     "./textarea.css": {
       "style": "./textarea.css",
       "default": "./textarea.css"
+    },
+    "./select.css": {
+      "style": "./select.css",
+      "default": "./select.css"
     }
   },
   "files": [
@@ -33,13 +37,15 @@
     "motion.css",
     "button.css",
     "input.css",
-    "textarea.css"
+    "textarea.css",
+    "select.css"
   ],
   "sideEffects": [
     "./material.css",
     "./motion.css",
     "./button.css",
     "./input.css",
-    "./textarea.css"
+    "./textarea.css",
+    "./select.css"
   ]
 }

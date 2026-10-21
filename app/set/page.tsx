@@ -249,7 +249,9 @@ export default function SetPage() {
                 className={twJoin("select", sizeClass("select", size))}
               >
                 <select defaultValue="rose">
+                  <option value="mint">Mint</option>
                   <option value="rose">Rose</option>
+                  <option value="stone">Stone</option>
                 </select>
                 <span>{SIZE_NAME[size]}</span>
                 <i className="picker-icon" />
