@@ -1,31 +1,78 @@
 :root {
   --color-black: black;
   --color-white: white;
-  --color-neutral-950: #0a0a0a;
-  --color-plain: #fafafa;
+  --color-plain: var(--color-neutral-50, #fafafa);
+  --color-plain-content: var(--color-neutral-800, #262626);
+  --color-plain-focus: var(--color-neutral-100, #f5f5f5);
+  --color-menu: var(--color-neutral-100, #f5f5f5);
+  --color-primary: var(--color-indigo-600, #4f46e5);
+  --color-primary-content: var(--color-indigo-50, #eef2ff);
+  --color-secondary: var(--color-pink-600, #db2777);
+  --color-secondary-content: var(--color-pink-50, #fdf2f8);
+  --color-tertiary: var(--color-teal-600, #0d9488);
+  --color-tertiary-content: var(--color-teal-50, #f0fdfa);
+  --color-neutral: var(--color-neutral-600, #525252);
+  --color-neutral-content: var(--color-neutral-50, #fafafa);
+  --color-success: var(--color-green-600, #16a34a);
+  --color-success-content: var(--color-green-50, #f0fdf4);
+  --color-warning: var(--color-amber-600, #d97706);
+  --color-warning-content: var(--color-amber-50, #fffbeb);
+  --color-error: var(--color-red-600, #dc2626);
+  --color-error-content: var(--color-red-50, #fef2f2);
+  --color-info: var(--color-sky-600, #0284c7);
+  --color-info-content: var(--color-sky-50, #f0f9ff);
+  --wash: 86%;
+  --wash-focus: 78%;
+  --wash-opacity: 80%;
+  --menu-hover: 14%;
+  --menu-selected: 28%;
   --material-opacity: 60%;
   --material-blur: 4px;
   --noise-size: 22.5rem;
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' opacity='0.2'%3E%3C/rect%3E%3C/svg%3E");
   --thickness-surface: inset 0 -6px 8px
-    rgb(from var(--color-neutral-950) r g b / 0.12);
+    rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.12);
   --thickness-field: inset 0 -10px 16px
-    rgb(from var(--color-neutral-950) r g b / 0.2);
+    rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.2);
   --thickness-control: inset 0 -16px 16px
-    rgb(from var(--color-neutral-950) r g b / 0.5);
+    rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.5);
   --thickness-mark: inset 0 -1px 5px
-    rgb(from var(--color-neutral-950) r g b / 0.35);
+    rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.35);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-plain: #404040;
+    --color-plain: var(--color-neutral-700, #404040);
+    --color-plain-content: var(--color-neutral-100, #f5f5f5);
+    --color-plain-focus: var(--color-neutral-600, #525252);
+    --color-menu: var(--color-neutral-800, #262626);
+    --color-neutral: var(--color-neutral-300, #d4d4d4);
+    --color-primary-content: var(--color-indigo-950, #1e1b4b);
+    --color-secondary-content: var(--color-pink-950, #500724);
+    --color-tertiary-content: var(--color-teal-950, #042f2e);
+    --color-neutral-content: var(--color-neutral-950, #0a0a0a);
+    --color-success-content: var(--color-green-950, #052e16);
+    --color-warning-content: var(--color-amber-950, #451a03);
+    --color-error-content: var(--color-red-950, #450a0a);
+    --color-info-content: var(--color-sky-950, #082f49);
     --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' fill='%23fff' opacity='0.06'%3E%3C/rect%3E%3C/svg%3E");
   }
 }
 
 :root[data-theme="dark"] {
-  --color-plain: #404040;
+  --color-plain: var(--color-neutral-700, #404040);
+  --color-plain-content: var(--color-neutral-100, #f5f5f5);
+  --color-plain-focus: var(--color-neutral-600, #525252);
+  --color-menu: var(--color-neutral-800, #262626);
+  --color-neutral: var(--color-neutral-300, #d4d4d4);
+  --color-primary-content: var(--color-indigo-950, #1e1b4b);
+  --color-secondary-content: var(--color-pink-950, #500724);
+  --color-tertiary-content: var(--color-teal-950, #042f2e);
+  --color-neutral-content: var(--color-neutral-950, #0a0a0a);
+  --color-success-content: var(--color-green-950, #052e16);
+  --color-warning-content: var(--color-amber-950, #451a03);
+  --color-error-content: var(--color-red-950, #450a0a);
+  --color-info-content: var(--color-sky-950, #082f49);
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' fill='%23fff' opacity='0.06'%3E%3C/rect%3E%3C/svg%3E");
 }
 
@@ -61,5 +108,47 @@
 
   .thickness-mark {
     --jelly-thickness: var(--thickness-mark);
+  }
+}
+
+@layer components {
+  .primary {
+    --solid: var(--color-primary);
+    --content: var(--color-primary-content);
+  }
+
+  .secondary {
+    --solid: var(--color-secondary);
+    --content: var(--color-secondary-content);
+  }
+
+  .tertiary {
+    --solid: var(--color-tertiary);
+    --content: var(--color-tertiary-content);
+  }
+
+  .neutral {
+    --solid: var(--color-neutral);
+    --content: var(--color-neutral-content);
+  }
+
+  .success {
+    --solid: var(--color-success);
+    --content: var(--color-success-content);
+  }
+
+  .warning {
+    --solid: var(--color-warning);
+    --content: var(--color-warning-content);
+  }
+
+  .error {
+    --solid: var(--color-error);
+    --content: var(--color-error-content);
+  }
+
+  .info {
+    --solid: var(--color-info);
+    --content: var(--color-info-content);
   }
 }

@@ -50,16 +50,16 @@ Eight slots. Four are the theme, four are status.
 
 | Slot      | Default solid | Fallback  |
 | --------- | ------------- | --------- |
-| Primary   | Indigo 600    | `#4f46e5` |
-| Secondary | Pink 600      | `#db2777` |
-| Tertiary  | Teal 600      | `#0d9488` |
+| Primary   | TW Indigo 600 | `#4f46e5` |
+| Secondary | TW Pink 600   | `#db2777` |
+| Tertiary  | TW Teal 600   | `#0d9488` |
 | Neutral   | Neutral 600   | `#525252` |
-| Success   | Green 600     | `#16a34a` |
-| Warning   | Amber 600     | `#d97706` |
-| Error     | Red 600       | `#dc2626` |
-| Info      | Sky 600       | `#0284c7` |
+| Success   | TW Green 600  | `#16a34a` |
+| Warning   | TW Amber 600  | `#d97706` |
+| Error     | TW Red 600    | `#dc2626` |
+| Info      | TW Sky 600    | `#0284c7` |
 
-The neutral ramp is available in full, from 50 through 950, even where a component uses only some steps.
+The neutral ramp is Jellyfy's, from 50 through 950, even where a component uses only some steps. It reads Tailwind's neutral variables when they exist, and uses these hex fallbacks when they do not.
 
 | Step | Fallback  |
 | ---- | --------- |
@@ -81,16 +81,15 @@ Every slot, including Neutral, uses the same wash, control fill, content color, 
 
 ### Base tones
 
-| Tone                | Step               |
-| ------------------- | ------------------ |
-| Surface fill        | Neutral 50         |
-| Menu                | Neutral 100        |
-| Field focus ground  | Neutral 100        |
-| Text on a surface   | Neutral 800        |
-| Start and end icons | Neutral 400        |
-| Disabled fill       | Neutral 400 at 60% |
-| Disabled text       | Neutral 50 at 70%  |
-| Shadow color        | Neutral 950        |
+| Tone               | Step               |
+| ------------------ | ------------------ |
+| Surface fill       | Neutral 50         |
+| Menu               | Neutral 100        |
+| Field focus ground | Neutral 100        |
+| Plain content      | Neutral 800        |
+| Disabled fill      | Neutral 400 at 60% |
+| Disabled text      | Neutral 50 at 70%  |
+| Shadow color       | Neutral 950        |
 
 Black and white are shared values, stored once and reused by every mix that needs them. They are not color slots.
 
@@ -98,14 +97,24 @@ Black and white are shared values, stored once and reused by every mix that need
 
 Each slot has a content color, stored explicitly. Replacing a solid does not recalculate the content color. A custom theme sets both.
 
-Two recipes produce the defaults.
+The content color is the text on a control. Light uses the 50 step of the solid's hue. Dark uses the 950 step. The hex fallback is that same step.
 
-- On a control fill, the content color is 94% white and 6% of the solid.
-- On a wash, the content color is 62% of the solid and 38% black. The dark theme uses 38% white. The 62% stays the same.
+| Slot      | Light            | Dark              |
+| --------- | ---------------- | ----------------- |
+| Primary   | TW Indigo 50     | TW Indigo 950     |
+| Secondary | TW Pink 50       | TW Pink 950       |
+| Tertiary  | TW Teal 50       | TW Teal 950       |
+| Neutral   | Neutral 50       | Neutral 950       |
+| Success   | TW Green 50      | TW Green 950      |
+| Warning   | TW Amber 50      | TW Amber 950      |
+| Error     | TW Red 50        | TW Red 950        |
+| Info      | TW Sky 50        | TW Sky 950        |
 
-Text with no slot uses the surface text tone, Neutral 800.
+Text on a surface or a field is the plain content color, with a slot and without one. Plain content is Neutral 800 in light and Neutral 100 in dark.
 
-Text on a control or a wash meets WCAG AA, 4.5:1, against the painted fill. The focus outline meets 3:1 against the ground next to it. A saturated solid that cannot reach 4.5:1 with either the control or the wash recipe needs a hand-set content color. The library does not pick black or white at runtime.
+Icons use the text color of the component they sit in. An icon on a surface or a field uses the plain content color. An icon on a control uses the control content color.
+
+Text on a control meets WCAG AA, 4.5:1, against the painted fill. The focus outline meets 3:1 against the ground next to it. A content color that cannot reach 4.5:1 needs a hand-set value. The library does not pick black or white at runtime.
 
 ### Color strength
 
@@ -131,15 +140,17 @@ These mixes are internal. They are not part of the customization contract.
 | Hovered or focused option | 14% of the solid       |
 | Selected option           | 28% of the solid       |
 
-Option text stays the surface text color.
+Option text stays the plain content color.
 
 ### Implementation notes
 
-Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. They set the solid. Content colors are paired variables, named with the daisyUI suffix `content` (`primary-content`, and the same for the other slots).
+Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. They set the solid and the content color. Content colors are paired variables, named with the daisyUI suffix `content` (`--color-primary-content`, and the same for the other slots).
 
-Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-600`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.
+Plain content is `--color-plain-content`. The focused fill of a plain field is `--color-plain-focus`. The menu fill is `--color-menu`.
 
-Black and white are `--color-black` and `--color-white`. Wash, press light, bump light, and loading light read those variables. Content colors are stored results of the recipes above. The dark theme sets the wash content recipe's endpoint to `--color-white`.
+Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-600`, `--color-indigo-50`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.
+
+Black and white are `--color-black` and `--color-white`. Wash, press light, bump light, and loading light read those variables.
 
 Wash percentages, wash opacity, and the menu mixes are variables. The dark theme can override a variable marked `[DARK ADAPTATION MAY BE NEEDED]`.
 
@@ -401,7 +412,7 @@ Buttons and icon buttons show the control press light and squish. A field squish
 
 The focus mark is a 1px outline in the object's solid, 2px outside the object, with a 2px gap. In the light theme the gap is white at 50%. In the dark theme the gap is Neutral 950 at 50%. The gap separates the outline from the jelly edge.
 
-An object with no slot uses the surface text color for the outline.
+An object with no slot uses the plain content color for the outline.
 
 Buttons, icon buttons, the bump button, marks, and the range thumb show this on keyboard focus only. Fields show it whenever they contain focus, including after a click, and they also show the field light and the focused thickness. The modal shell itself has no focus outline.
 
@@ -440,15 +451,15 @@ The focus gap is a 2px spread shadow drawn before the thickness and the drop sha
 
 The dark theme uses the same mixes, the same thicknesses, the same elevations, the same motion, and the same opacity and blur. Every slot, including Neutral, keeps those mixes. A plain element, one with no slot, keeps them too, and uses the surface tone as its solid.
 
-Dark changes only the neutral step fed into a recipe, the wash-text endpoint, the focus-gap tone, and the grain.
+Dark changes only the neutral step fed into a recipe, the content color step, the focus-gap tone, and the grain.
 
 The Neutral slot is one of the eight colors. Light uses Neutral 600 as its solid. Dark uses Neutral 300. It then uses the same wash, control fill, and content mix as primary.
 
-The plain element uses the surface tone, the menu tone, the field focus ground, and the surface text. Those are not a second color and not the Neutral slot.
+The plain element uses the surface tone, the menu tone, the field focus ground, and the plain content color. Those are not a second color and not the Neutral slot.
 
 Disabled is a state. The fade stays 60% for the fill and 70% for the text. Dark changes the ramp step that is faded.
 
-The wash-text endpoint, the focus gap, and the grain apply to every component, with a slot and without one.
+The focus gap and the grain apply to every component, with a slot and without one.
 
 | Token              | What it is                    | Light          | Dark               |
 | ------------------ | ----------------------------- | -------------- | ------------------ |
@@ -456,10 +467,9 @@ The wash-text endpoint, the focus gap, and the grain apply to every component, w
 | Surface tone       | Plain element fill            | Neutral 50     | Neutral 700        |
 | Menu tone          | Plain menu fill               | Neutral 100    | Neutral 800        |
 | Field focus ground | Plain field while focused     | Neutral 100    | Neutral 600        |
-| Surface text       | Plain element text            | Neutral 800    | Neutral 100        |
+| Plain content      | Text on a surface or field    | Neutral 800    | Neutral 100        |
 | Disabled fill      | Disabled state, 60% fade      | Neutral 400    | Neutral 600        |
 | Disabled text      | Disabled state, 70% fade      | Neutral 50     | Neutral 300        |
-| Wash text endpoint | Shared by every wash          | Black          | White              |
 | Focus gap          | Shared by every focus ring    | White at 50%   | Neutral 950 at 50% |
 | Grain              | Shared by every jelly surface | Dark, stronger | Light, fainter     |
 
@@ -498,7 +508,7 @@ A button with no label. Its box is square. Width, height, and icon size:
 | Box  | 2.5rem  | 3rem   | 3.5rem  |
 | Icon | 1.25rem | 1.5rem | 1.75rem |
 
-The shape comes from the control radius. There is no square variant and no circle variant.
+The shape comes from the control radius. There is no square variant and no circle variant. The icon uses the button's text color.
 
 While loading, the icon stays and the orbit from the motion section is shown.
 
@@ -511,7 +521,7 @@ The close control on a modal. Transparent, no elevation, bump light, control rad
 | Box  | 1.5rem | 2rem    | 2.5rem |
 | Icon | 1rem   | 1.25rem | 1.5rem |
 
-On a tinted surface, its icon uses the wash content color.
+Its icon uses the text color of the surface it sits on.
 
 ### Input
 
@@ -530,7 +540,7 @@ The label is a separate element. When the field is empty and not focused, the la
 | Floated label position | 0.375rem from the top, 0.75rem from the start | 0.75rem from the top, 1rem from the start | 0.875rem from the top, 1.25rem from the start |
 | Floated label size     | 0.625rem                                      | 10px                                      | 0.75rem                                       |
 
-**Start and end icons** sit in the field, in the current icon tone, Neutral 400. They do not receive pointer events. The value padding and the label's start edge grow to clear a start icon.
+**Start and end icons** sit in the field and use the field's text color. They do not receive pointer events. The value padding and the label's start edge grow to clear a start icon.
 
 |                            | Small     | Medium  | Large     |
 | -------------------------- | --------- | ------- | --------- |
@@ -550,7 +560,7 @@ The same field as the input, including the floating label, the start icon, and t
 
 ### Select
 
-A field with a library chevron and a menu. The closed control matches the input's padding, label, and focus light. The label stays floated, because a select always shows a value. The chevron is 1.25rem at medium, 1rem at small, and 1.5rem at large. It sits on the trailing edge, ignores pointer events, and turns 180° while the menu is open.
+A field with a library chevron and a menu. The closed control matches the input's padding, label, and focus light. The label stays floated, because a select always shows a value. The chevron is 1.25rem at medium, 1rem at small, and 1.5rem at large. It uses the field's text color, sits on the trailing edge, ignores pointer events, and turns 180° while the menu is open.
 
 The menu is an overlay: menu tone, surface radius, surface thickness, overlay elevation. It opens 0.35rem below the field and pads 0.35rem. Options pad 0.55rem by 0.75rem, with a 0.65rem corner and 4px between them. Hover and selected mixes are the menu mixes from the color section.
 
@@ -569,7 +579,7 @@ The check is two strokes of the current color, 2px thick, 46% of the box wide an
 
 ### Radio
 
-A mark plus a label. The ring is jelly: grain, blur, and mark thickness. It matches the checkbox sizes, including the 24px medium and 20px small hit target, and uses the control radius, so it is a circle in the default theme. The bullet is jelly with the grain. It is opaque, with no blur and no thickness. It is 0.75rem, 0.875rem, and 1.25rem at small, medium, and large. It scales from 0 to 1 when selected. With no slot, the bullet is the surface text color. With a slot, the bullet is the control fill.
+A mark plus a label. The ring is jelly: grain, blur, and mark thickness. It matches the checkbox sizes, including the 24px medium and 20px small hit target, and uses the control radius, so it is a circle in the default theme. The bullet is jelly with the grain. It is opaque, with no blur and no thickness. It is 0.75rem, 0.875rem, and 1.25rem at small, medium, and large. It scales from 0 to 1 when selected. With no slot, the bullet is the plain content color. With a slot, the bullet is the control fill.
 
 ### Toggle
 
@@ -586,7 +596,7 @@ The resting thumb is Neutral 500 mixed at 55% into white. The on thumb is white.
 
 ### Range
 
-A mark. The track, the fill, and the thumb are jelly: grain, blur, and mark thickness. Only the color differs. The fill is clipped to the track. With no slot, the track uses the surface tone and the fill uses the surface text tone, both at the material opacity. A slot sets the fill to the control fill. The thumb uses the fill's color. All three use the control radius.
+A mark. The track, the fill, and the thumb are jelly: grain, blur, and mark thickness. Only the color differs. The fill is clipped to the track. With no slot, the track uses the surface tone and the fill uses the plain content color, both at the material opacity. A slot sets the fill to the control fill. The thumb uses the fill's color. All three use the control radius.
 
 The thumb position and the fill width follow the current value between the minimum and the maximum.
 
@@ -600,7 +610,7 @@ The default lane is at most 24rem wide. Label size and the gap above the lane ma
 
 ### Alert
 
-A surface. Surface thickness, surface radius, rest elevation. A slot uses the wash and the wash content color. An optional icon is vertically centered on the first line.
+A surface. Surface thickness, surface radius, rest elevation. A slot uses the wash. Text on the alert is the plain content color. An optional icon is vertically centered on the first line and uses that text color.
 
 |         | Small          | Medium       | Large        |
 | ------- | -------------- | ------------ | ------------ |
@@ -639,7 +649,7 @@ The panel is a surface with surface thickness, surface radius, and the overlay e
 
 ### Message
 
-The caption under a field. It is not an error style. It has its own slot, independent of the field. With no slot, the color is the surface text color. With a slot, the color is the wash content color. The gap above the message is 0.375rem.
+The caption under a field. It is not an error style. It has its own slot, independent of the field. With no slot, the color is the plain content color. With a slot, the color is the solid. The gap above the message is 0.375rem.
 
 |      | Small    | Medium  | Large    |
 | ---- | -------- | ------- | -------- |
@@ -685,7 +695,7 @@ Shade, highlight, wash, menu mixes, thickness, and drop shadows stay internal va
 
 ## 14. Library contract
 
-Jellyfy styles its own components and anything that opts into a role or into squish. It does not set the page font, and it does not require Tailwind. Defaults follow Tailwind's color variables, spacing variable, and neutral ramp when they exist.
+Jellyfy styles its own components and anything that opts into a role or into squish. It does not set the page font, and it does not require Tailwind. Defaults follow Tailwind's color variables, spacing variable, and the neutral ramp when they exist.
 
 Class names are `btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox`, `radio`, `toggle`, `range`, `alert`, `badge`, `card`, `modal`, `modal-panel`, and `message`. Slots and sizes are extra classes on the same element.
 
