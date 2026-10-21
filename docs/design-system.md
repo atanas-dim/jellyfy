@@ -169,17 +169,15 @@ The 80% wash amount in the color section is a color mix. It is not a second mate
 
 ### Thickness
 
-[DARK ADAPTATION MAY BE NEEDED]
+Thickness is an inset shadow in Neutral 950. The shadow falls upward, so the bottom edge reads as the thick part of the pour. The inset distances are the same in both themes. The dark theme uses a stronger opacity.
 
-Thickness is an inset shadow in Neutral 950. The shadow falls upward, so the bottom edge reads as the thick part of the pour.
-
-| Thickness      | Shadow                                   | Used by                                                                                    |
-| -------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Surface        | `inset 0 -6px 8px`, Neutral 950 at 12%   | Card, alert, modal panel, badge, select menu                                               |
-| Field, resting | `inset 0 -10px 16px`, Neutral 950 at 20% | Input, textarea, select                                                                    |
-| Field, focused | `inset 0 -6px 10px`, Neutral 950 at 15%  | Input, textarea, select while focused                                                      |
-| Control        | `inset 0 -16px 16px`, Neutral 950 at 50% | Button, icon button                                                                        |
-| Mark           | `inset 0 -1px 5px`, Neutral 950 at 35%   | Checkbox box, radio ring, toggle track, toggle thumb, range track, range fill, range thumb |
+| Thickness      | Shadow               | Light              | Dark               | Used by                                                                                    |
+| -------------- | -------------------- | ------------------ | ------------------ | ------------------------------------------------------------------------------------------ |
+| Surface        | `inset 0 -6px 8px`   | Neutral 950 at 12% | Neutral 950 at 32% | Card, alert, modal panel, badge, select menu                                               |
+| Field, resting | `inset 0 -10px 16px` | Neutral 950 at 20% | Neutral 950 at 50% | Input, textarea, select                                                                    |
+| Field, focused | `inset 0 -6px 10px`  | Neutral 950 at 15% | Neutral 950 at 45% | Input, textarea, select while focused                                                      |
+| Control        | `inset 0 -16px 16px` | Neutral 950 at 50% | Neutral 950 at 65% | Button, icon button                                                                        |
+| Mark           | `inset 0 -1px 5px`   | Neutral 950 at 35% | Neutral 950 at 65% | Checkbox box, radio ring, toggle track, toggle thumb, range track, range fill, range thumb |
 
 The track and the fill of a slider are both jelly. Only the color differs. The same is true of a switch track and thumb, and of a radio ring.
 
@@ -218,7 +216,7 @@ Light grain: an SVG turbulence filter, `baseFrequency` 1.34, 4 octaves, stitched
 
 Material opacity is one variable. Blur is `backdrop-filter: blur(4px)`.
 
-Thickness, control light, field light, and bump light are variables. The dark theme can override a variable marked `[DARK ADAPTATION MAY BE NEEDED]`. Press-light and bump strengths are not customization tokens.
+Thickness, control light, field light, and bump light are variables. The dark theme has its own inset-shadow opacity. The inset distances stay the same. Press-light and bump strengths are not customization tokens.
 
 ## 5. Elevation
 

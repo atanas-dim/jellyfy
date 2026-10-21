@@ -957,35 +957,34 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Textarea
           </figcaption>
-          <div
-            className={twJoin(
-              "primary thickness-field relative min-h-28 w-full",
-              pairEdge[theme],
-            )}
-            style={{ ...fieldStyle, padding: "1.375rem 1rem 0.75rem" }}
-          >
-            <span
-              className="absolute"
-              style={{
-                top: "0.75rem",
-                left: "1rem",
-                fontSize: "10px",
-                fontWeight: 500,
-                letterSpacing: "0.04em",
-                lineHeight: 1,
-              }}
-            >
-              Note
-            </span>
-            <p
-              style={{
-                marginTop: "0.75rem",
-                fontSize: "1rem",
-                lineHeight: 1.5,
-              }}
-            >
-              The pour stays quiet until you press it.
-            </p>
+          <div className="flex w-full flex-col gap-3">
+            <label className="textarea textarea-sm primary">
+              <textarea placeholder=" " defaultValue="A short note." />
+              <span>Small</span>
+            </label>
+            <label className="textarea primary">
+              <textarea
+                placeholder=" "
+                defaultValue="The pour stays quiet until you press it."
+              />
+              <span>Note</span>
+            </label>
+            <label className="textarea textarea-lg primary">
+              <textarea placeholder=" " defaultValue="A longer note." />
+              <span>Large</span>
+            </label>
+            <label className="textarea primary">
+              <textarea placeholder=" " />
+              <span>Message</span>
+            </label>
+            <label className="textarea primary">
+              <textarea
+                placeholder=" "
+                defaultValue="The pour stays quiet until you press it."
+                disabled
+              />
+              <span>Disabled</span>
+            </label>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">
