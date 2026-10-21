@@ -44,7 +44,7 @@ export default function DesignSystemPage() {
           <h1 className="font-display text-4xl font-semibold tracking-tight">
             {spec.title}
           </h1>
-          <SpecCopy markdown={spec.intro} />
+          {spec.intro ? <SpecCopy markdown={spec.intro} /> : null}
         </header>
         {sections.map((section) => (
           <section

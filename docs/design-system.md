@@ -1,7 +1,5 @@
 # Jellyfy Design System
 
-**Implementation notes** under a section name the variables and classes that build the rule. They can be split out of this document without changing the rules.
-
 ## 1. Principles
 
 Jellyfy is a soft control material. A control looks poured, not painted: it is translucent, it carries a fine grain, and its edge is thick enough to catch light.
