@@ -85,6 +85,20 @@
       transparent 70%
     );
   }
+
+  :is(.alert, .card, .modal-panel):is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .warning,
+      .error,
+      .info
+    )
+    .btn-bump:not(:disabled) {
+    color: var(--surface-content);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -125,6 +125,38 @@
       var(--color-sky-950, #082f49),
       var(--color-sky-100, #e0f2fe)
     );
+    --color-neutral-surface-content: light-dark(
+      var(--color-neutral-800, #262626),
+      var(--color-neutral-200, #e5e5e5)
+    );
+    --color-primary-surface-content: light-dark(
+      var(--color-indigo-800, #3730a3),
+      var(--color-indigo-200, #c7d2fe)
+    );
+    --color-secondary-surface-content: light-dark(
+      var(--color-pink-800, #9d174d),
+      var(--color-pink-200, #fbcfe8)
+    );
+    --color-tertiary-surface-content: light-dark(
+      var(--color-teal-800, #115e59),
+      var(--color-teal-200, #99f6e4)
+    );
+    --color-success-surface-content: light-dark(
+      var(--color-green-800, #166534),
+      var(--color-green-200, #bbf7d0)
+    );
+    --color-warning-surface-content: light-dark(
+      var(--color-amber-800, #92400e),
+      var(--color-amber-200, #fde68a)
+    );
+    --color-error-surface-content: light-dark(
+      var(--color-red-800, #991b1b),
+      var(--color-red-200, #fecaca)
+    );
+    --color-info-surface-content: light-dark(
+      var(--color-sky-800, #075985),
+      var(--color-sky-200, #bae6fd)
+    );
     --solid: var(--color-plain);
     --control-highlight: light-dark(
       color-mix(
@@ -224,41 +256,49 @@
   .primary {
     --solid: var(--color-primary);
     --content: var(--color-primary-content);
+    --surface-content: var(--color-primary-surface-content);
   }
 
   .secondary {
     --solid: var(--color-secondary);
     --content: var(--color-secondary-content);
+    --surface-content: var(--color-secondary-surface-content);
   }
 
   .tertiary {
     --solid: var(--color-tertiary);
     --content: var(--color-tertiary-content);
+    --surface-content: var(--color-tertiary-surface-content);
   }
 
   .neutral {
     --solid: var(--color-neutral);
     --content: var(--color-neutral-content);
+    --surface-content: var(--color-neutral-surface-content);
   }
 
   .success {
     --solid: var(--color-success);
     --content: var(--color-success-content);
+    --surface-content: var(--color-success-surface-content);
   }
 
   .warning {
     --solid: var(--color-warning);
     --content: var(--color-warning-content);
+    --surface-content: var(--color-warning-surface-content);
   }
 
   .error {
     --solid: var(--color-error);
     --content: var(--color-error-content);
+    --surface-content: var(--color-error-surface-content);
   }
 
   .info {
     --solid: var(--color-info);
     --content: var(--color-info-content);
+    --surface-content: var(--color-info-surface-content);
   }
 
   :is(

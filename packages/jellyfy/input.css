@@ -260,6 +260,19 @@
     cursor: not-allowed;
   }
 
+  .input:is(
+    .primary,
+    .secondary,
+    .tertiary,
+    .neutral,
+    .success,
+    .warning,
+    .error,
+    .info
+  ) {
+    color: var(--surface-content);
+  }
+
   .input:has(:disabled) > span:not(.input-start, .input-end) {
     color: inherit;
   }

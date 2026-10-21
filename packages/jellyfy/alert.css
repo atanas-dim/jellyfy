@@ -75,6 +75,7 @@
         var(--percent-shown-wash),
       transparent
     );
+    color: var(--surface-content);
   }
 }
 

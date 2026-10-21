@@ -109,11 +109,24 @@ The content color is the text on a control. Primary is Indigo 500 in light and I
 | Error     | TW Red 950    | TW Red 100    |
 | Info      | TW Sky 950    | TW Sky 100    |
 
-Text on a surface or a field is the plain content color, with a slot and without one. Plain content is Neutral 800 in light and Neutral 100 in dark.
+Text on a control is the content color. Text on a slotted surface or field is the surface content color. With no slot, that text is the plain content color. Plain content is Neutral 800 in light and Neutral 100 in dark.
 
-Icons use the text color of the component they sit in. An icon on a surface or a field uses the plain content color. An icon on a control uses the control content color.
+### Surface content color
 
-Text on a control meets WCAG AA, 4.5:1, against the painted fill. The focus outline meets 3:1 against the ground next to it. A content color that cannot reach 4.5:1 is set explicitly on that slot.
+| Slot      | Light         | Dark          |
+| --------- | ------------- | ------------- |
+| Primary   | TW Indigo 800 | TW Indigo 200 |
+| Secondary | TW Pink 800   | TW Pink 200   |
+| Tertiary  | TW Teal 800   | TW Teal 200   |
+| Neutral   | Neutral 800   | Neutral 200   |
+| Success   | TW Green 800  | TW Green 200  |
+| Warning   | TW Amber 800  | TW Amber 200  |
+| Error     | TW Red 800    | TW Red 200    |
+| Info      | TW Sky 800    | TW Sky 200    |
+
+Icons use the text color of the component they sit in. An icon on a slotted surface uses the surface content color. An icon on a field uses the field text color. An icon on a control uses the control content color.
+
+Text on a control meets WCAG AA, 4.5:1, against the painted fill. Surface content text meets that ratio against the wash. The focus outline meets 3:1 against the ground next to it. A content color that cannot reach 4.5:1 is set explicitly on that slot.
 
 ### Color strength
 
@@ -143,7 +156,7 @@ Option text stays the plain content color.
 
 ### Implementation notes
 
-Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. They set the solid and the content color. Content colors are paired variables, named with the daisyUI suffix `content` (`--color-primary-content`, and the same for the other slots).
+Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. They set the solid, the content color, and the surface content color. Content colors are paired variables, named with the daisyUI suffix `content` (`--color-primary-content`, and the same for the other slots). Surface content colors use the suffix `surface-content` (`--color-primary-surface-content`, and the same for the other slots).
 
 Plain content is `--color-plain-content`. The menu fill is `--color-menu`.
 
@@ -513,7 +526,7 @@ Its icon uses the text color of the surface it sits on.
 
 ### Input
 
-A field. Field thickness, field radius, field light while focused, squish. The value is transparent and inherits the field color.
+A field. Field thickness, field radius, field light while focused, squish. The value is transparent and inherits the field color. With no slot, the field text is the plain content color. With a slot, it is the surface content color.
 
 |                            | Small               | Medium                 | Large                   |
 | -------------------------- | ------------------- | ---------------------- | ----------------------- |
@@ -548,7 +561,7 @@ The same field as the input, including the floating label, the start icon, and t
 
 ### Select
 
-A field with a library chevron and a menu. The closed control matches the input's padding, label, and focus light. The label stays floated, because a select always shows a value. The chevron is 1.25rem at medium, 1rem at small, and 1.5rem at large. It uses the field's text color, sits on the trailing edge, ignores pointer events, and turns 180° while the menu is open.
+A field with a library chevron and a menu. The closed control matches the input's padding, label, text color, and focus light. The label stays floated, because a select always shows a value. The chevron is 1.25rem at medium, 1rem at small, and 1.5rem at large. It uses the field's text color, sits on the trailing edge, ignores pointer events, and turns 180° while the menu is open.
 
 The menu is an overlay: menu tone, surface radius, surface thickness, overlay elevation. It opens 0.35rem below the field and pads 0.35rem. Options pad 0.55rem by 0.75rem, with a 0.65rem corner and 4px between them. Hover and selected mixes are the menu mixes from the color section.
 
@@ -598,7 +611,7 @@ The default lane is at most 24rem wide. Label size and the gap above the lane ma
 
 ### Alert
 
-A surface. Surface thickness, surface radius, rest elevation. A slot uses the wash. Text on the alert is the plain content color. An optional icon is vertically centered on the first line and uses that text color.
+A surface. Surface thickness, surface radius, rest elevation. A slot uses the wash. With no slot, the text is the plain content color. With a slot, the text is the surface content color. An optional icon is vertically centered on the first line and uses that text color.
 
 |         | Small          | Medium       | Large        |
 | ------- | -------------- | ------------ | ------------ |
@@ -618,7 +631,7 @@ A compact surface. Surface thickness, mark elevation, control radius, so the def
 
 ### Card
 
-A surface. Surface thickness, surface radius, rest elevation. A slot uses the wash.
+A surface. Surface thickness, surface radius, rest elevation. A slot uses the wash. With no slot, the text is the plain content color. With a slot, the text is the surface content color.
 
 |         | Small        | Medium       | Large          |
 | ------- | ------------ | ------------ | -------------- |
@@ -629,7 +642,7 @@ A surface. Surface thickness, surface radius, rest elevation. A slot uses the wa
 
 An overlay. The shell covers the viewport and centers the panel. The veil is Neutral 950 at 40%. The shell has no fill and no focus outline.
 
-The panel is a surface with surface thickness, surface radius, and the overlay elevation. It is at most 28rem wide, with 1rem of space on each side of the viewport. A slot uses the wash. The bump button sits in the panel.
+The panel is a surface with surface thickness, surface radius, and the overlay elevation. It is at most 28rem wide, with 1rem of space on each side of the viewport. A slot uses the wash. With no slot, the text is the plain content color. With a slot, the text is the surface content color. The bump button sits in the panel.
 
 |               | Small | Medium | Large |
 | ------------- | ----- | ------ | ----- |
@@ -657,6 +670,7 @@ A product may change:
 
 - The eight solids.
 - The eight content colors.
+- The eight surface content colors.
 - The surface, field, control, and mark radii.
 - The material opacity.
 - The material blur.
@@ -671,11 +685,11 @@ A product may not change, through the public contract:
 - The relationship between rest, hover, and disabled elevation. The multiplier scales them together.
 - The typeface. The app's font is inherited.
 
-Changing a solid without changing its content color leaves the previous content color in place.
+Changing a solid without changing its content color or its surface content color leaves the previous text colors in place.
 
 ### Implementation notes
 
-Public custom properties: one solid and one content color per slot, `--radius-surface`, `--radius-field`, `--radius-control`, `--radius-mark`, one opacity, one blur, one noise size, and one shadow multiplier defaulting to `1`.
+Public custom properties: one solid, one content color, and one surface content color per slot, `--radius-surface`, `--radius-field`, `--radius-control`, `--radius-mark`, one opacity, one blur, one noise size, and one shadow multiplier defaulting to `1`.
 
 `--color-black` and `--color-white` are shared mix values. They are not part of this contract.
 

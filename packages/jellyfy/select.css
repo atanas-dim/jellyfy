@@ -160,6 +160,19 @@
     cursor: not-allowed;
   }
 
+  .select:is(
+    .primary,
+    .secondary,
+    .tertiary,
+    .neutral,
+    .success,
+    .warning,
+    .error,
+    .info
+  ) {
+    color: var(--surface-content);
+  }
+
   .select :disabled {
     opacity: 1;
     color: inherit;
