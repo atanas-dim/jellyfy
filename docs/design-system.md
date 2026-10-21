@@ -122,8 +122,8 @@ Strength is separate from the solid. The same solid is quiet on a surface or fie
 | Application   | Mix                                                                                  |
 | ------------- | ------------------------------------------------------------------------------------ |
 | Surface tone  | Neutral 50 at the material opacity, 60%                                              |
-| Wash, resting | 86% surface tone and 14% solid, shown at 80% opacity [DARK ADAPTATION MAY BE NEEDED] |
-| Wash, focused | 78% surface tone and 22% solid, shown at 80% opacity [DARK ADAPTATION MAY BE NEEDED] |
+| Wash, resting | 86% surface tone and 14% solid in light. 76% surface tone and 24% solid in dark. Shown at 80% opacity. |
+| Wash, focused | 78% surface tone and 22% solid in light. 68% surface tone and 32% solid in dark. Shown at 80% opacity. |
 | Control fill  | Solid at the material opacity, 60%                                                   |
 
 The control fill is still jelly. The slot color is at 60% opacity, with the shared blur and the shared grain. Surfaces and fields use the wash with a slot. A field with no slot uses plain as its solid, so the focused wash stays plain. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
