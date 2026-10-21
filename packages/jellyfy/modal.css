@@ -1,0 +1,98 @@
+@layer components {
+  .modal {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    outline: none;
+  }
+
+  .modal:focus,
+  .modal:focus-visible {
+    outline: none;
+  }
+
+  .modal[open] {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+  }
+
+  .modal::backdrop {
+    background-color: color-mix(
+      in oklab,
+      var(--color-neutral-950, #0a0a0a) 40%,
+      transparent
+    );
+  }
+
+  .modal-panel {
+    --jelly-thickness: var(--thickness-surface);
+    --jelly-elevation: var(--elevation-overlay);
+    position: relative;
+    box-sizing: border-box;
+    width: min(28rem, calc(100vw - 2rem));
+    max-width: 100%;
+    padding: 1.5rem;
+    border-radius: var(--radius-surface);
+    color: var(--color-plain-content);
+    font: inherit;
+    line-height: 1.5;
+    transition:
+      background-color 300ms ease-out,
+      box-shadow 300ms ease-out,
+      color 300ms ease-out;
+  }
+
+  .modal-panel.modal-sm {
+    padding: 1rem;
+  }
+
+  .modal-panel.modal-lg {
+    padding: 2rem;
+  }
+
+  .modal-panel .btn-bump {
+    position: absolute;
+    top: 0.75rem;
+    inset-inline-end: 0.75rem;
+    z-index: 1;
+  }
+}
+
+@layer utilities {
+  .modal-panel:is(
+    .primary,
+    .secondary,
+    .tertiary,
+    .neutral,
+    .success,
+    .warning,
+    .error,
+    .info
+  ) {
+    background-color: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          var(--color-plain) var(--percent-plain-resting-wash),
+          var(--solid)
+        )
+        var(--percent-shown-wash),
+      transparent
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-panel {
+    transition: none;
+  }
+}

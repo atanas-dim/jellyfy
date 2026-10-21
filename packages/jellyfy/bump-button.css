@@ -30,18 +30,6 @@
   .btn-bump > svg {
     position: relative;
     z-index: 1;
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  .btn-bump.btn-sm > svg {
-    width: 1rem;
-    height: 1rem;
-  }
-
-  .btn-bump.btn-lg > svg {
-    width: 1.5rem;
-    height: 1.5rem;
   }
 
   .btn-bump::before,
@@ -104,4 +92,19 @@
   .btn-bump::after {
     transition: none;
   }
+}
+
+.btn-bump > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.btn-bump.btn-sm > svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.btn-bump.btn-lg > svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }

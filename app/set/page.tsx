@@ -1,6 +1,6 @@
 "use client";
 
-import { InfoIcon, PlusIcon, SearchIcon, SendIcon } from "lucide-react";
+import { InfoIcon, PlusIcon, SearchIcon, SendIcon, XIcon } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
@@ -479,12 +479,8 @@ export default function SetPage() {
           <dialog id="plain-dialog" className="modal">
             <div className="modal-panel">
               <form method="dialog">
-                <button
-                  className="btn-surface"
-                  type="submit"
-                  aria-label="Close"
-                >
-                  ×
+                <button className="btn-bump" type="submit" aria-label="Close">
+                  <XIcon aria-hidden="true" />
                 </button>
               </form>
               <h2 className="pe-8 text-lg font-semibold">A note</h2>
@@ -494,12 +490,8 @@ export default function SetPage() {
           <dialog id="tinted-dialog" className="modal">
             <div className="modal-panel tertiary">
               <form method="dialog">
-                <button
-                  className="btn-surface"
-                  type="submit"
-                  aria-label="Close"
-                >
-                  ×
+                <button className="btn-bump" type="submit" aria-label="Close">
+                  <XIcon aria-hidden="true" />
                 </button>
               </form>
               <h2 className="pe-8 text-lg font-semibold">Tinted</h2>

@@ -832,12 +832,17 @@ const PlusIcon = () => (
   </svg>
 );
 
-const surfaceStyle: CSSProperties = {
-  backgroundColor: WASH,
-  borderRadius: "var(--radius-surface)",
-  color: "var(--color-plain-content)",
-  boxShadow: "var(--thickness-surface), var(--elevation-rest)",
-};
+const CloseIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.75"
+  >
+    <path d="M18 6 6 18M6 6l12 12" />
+  </svg>
+);
 
 const ComponentSamples = () => (
   <ThemePair
@@ -908,48 +913,32 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Bump button
           </figcaption>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <section className="card relative">
-              <button
-                className="btn-bump btn-sm absolute end-3 top-3"
-                type="button"
-                aria-label="Close"
-              >
-                <Plus size="1rem" />
-              </button>
-              <p className="pe-8">Small</p>
-            </section>
-            <section className="card relative">
-              <button
-                className="btn-bump absolute end-3 top-3"
-                type="button"
-                aria-label="Close"
-              >
-                <Plus size="1.25rem" />
-              </button>
-              <p className="pe-10">Close</p>
-            </section>
-            <section className="card relative">
-              <button
-                className="btn-bump btn-lg absolute end-3 top-3"
-                type="button"
-                aria-label="Close"
-              >
-                <Plus size="1.5rem" />
-              </button>
-              <p className="pe-12">Large</p>
-            </section>
-            <section className="card relative">
-              <button
-                className="btn-bump absolute end-3 top-3"
-                type="button"
-                aria-label="Close"
-                disabled
-              >
-                <Plus size="1.25rem" />
-              </button>
-              <p className="pe-10">Disabled</p>
-            </section>
+          <div className="flex flex-wrap items-end gap-3">
+            <button
+              className="btn-bump btn-sm"
+              type="button"
+              aria-label="Close"
+            >
+              <Plus size="1rem" />
+            </button>
+            <button className="btn-bump" type="button" aria-label="Close">
+              <Plus size="1.25rem" />
+            </button>
+            <button
+              className="btn-bump btn-lg"
+              type="button"
+              aria-label="Close"
+            >
+              <Plus size="1.5rem" />
+            </button>
+            <button
+              className="btn-bump"
+              type="button"
+              aria-label="Close"
+              disabled
+            >
+              <Plus size="1.25rem" />
+            </button>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">
@@ -1313,33 +1302,17 @@ const ComponentSamples = () => (
             Modal
           </figcaption>
           <div
-            className="relative flex min-h-40 items-center justify-center p-4"
+            className="flex min-h-40 items-center justify-center rounded-2xl p-4"
             style={{
               backgroundColor:
                 "color-mix(in oklab, var(--color-neutral-950, #0a0a0a) 40%, transparent)",
-              borderRadius: "var(--radius-surface)",
             }}
           >
-            <div
-              className={twJoin(
-                "primary thickness-surface relative w-full max-w-md px-6 py-6",
-                pairEdge[theme],
-              )}
-              style={{
-                ...surfaceStyle,
-                boxShadow: "var(--thickness-surface), var(--elevation-overlay)",
-              }}
-            >
-              <span
-                className="absolute top-3 right-3 flex size-8 items-center justify-center"
-                style={{
-                  borderRadius: "var(--radius-control)",
-                  color: "var(--color-plain-content)",
-                }}
-              >
-                <Plus size="1.25rem" />
-              </span>
-              <p style={{ lineHeight: 1.5 }}>A panel over the veil.</p>
+            <div className="modal-panel primary">
+              <button className="btn-bump" type="button" aria-label="Close">
+                <CloseIcon />
+              </button>
+              <p className="pe-10">A panel over the veil.</p>
             </div>
           </div>
         </figure>

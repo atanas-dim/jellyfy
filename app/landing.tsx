@@ -2,7 +2,7 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ChevronDownIcon, MinusIcon, PlusIcon } from "lucide-react";
+import { ChevronDownIcon, MinusIcon, PlusIcon, XIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { twJoin } from "tailwind-merge";
@@ -462,8 +462,8 @@ export const Landing = () => {
       <dialog id="landing-note" className="modal">
         <div className={twJoin("modal-panel", tone)}>
           <form method="dialog">
-            <button className="btn-surface" type="submit" aria-label="Close">
-              ×
+            <button className="btn-bump" type="submit" aria-label="Close">
+              <XIcon aria-hidden="true" />
             </button>
           </form>
           <h2 className="pe-8 text-lg font-semibold">A note</h2>
