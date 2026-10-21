@@ -152,6 +152,22 @@
   .toggle:has(:checked) .toggle-thumb {
     background-color: var(--color-white);
   }
+
+  .toggle:has(:disabled) .toggle-track {
+    background-color: color-mix(
+      in oklab,
+      var(--color-disabled) 60%,
+      transparent
+    );
+  }
+
+  .toggle:has(:disabled) .toggle-thumb {
+    background-color: color-mix(
+      in oklab,
+      var(--color-disabled-content) 70%,
+      transparent
+    );
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

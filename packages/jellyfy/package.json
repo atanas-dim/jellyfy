@@ -49,6 +49,10 @@
     "./toggle.css": {
       "style": "./toggle.css",
       "default": "./toggle.css"
+    },
+    "./range.css": {
+      "style": "./range.css",
+      "default": "./range.css"
     }
   },
   "files": [
@@ -63,7 +67,8 @@
     "select.css",
     "checkbox.css",
     "radio.css",
-    "toggle.css"
+    "toggle.css",
+    "range.css"
   ],
   "sideEffects": [
     "./material.css",
@@ -76,6 +81,7 @@
     "./select.css",
     "./checkbox.css",
     "./radio.css",
-    "./toggle.css"
+    "./toggle.css",
+    "./range.css"
   ]
 }

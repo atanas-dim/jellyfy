@@ -122,6 +122,22 @@
       transparent
     );
   }
+
+  .radio:has(:disabled) .radio-ring {
+    background-color: color-mix(
+      in oklab,
+      var(--color-disabled) 60%,
+      transparent
+    );
+  }
+
+  .radio:has(:disabled) .radio-ring::after {
+    background-color: color-mix(
+      in oklab,
+      var(--color-disabled-content) 70%,
+      transparent
+    );
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -119,12 +119,12 @@ Text on a control meets WCAG AA, 4.5:1, against the painted fill. The focus outl
 
 Strength is separate from the solid. The same solid is quiet on a surface or field and firm on a control.
 
-| Application   | Mix                                                                                  |
-| ------------- | ------------------------------------------------------------------------------------ |
-| Surface tone  | Neutral 50 at the material opacity, 60%                                              |
+| Application   | Mix                                                                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------------ |
+| Surface tone  | Neutral 50 at the material opacity, 60%                                                                |
 | Wash, resting | 86% surface tone and 14% solid in light. 76% surface tone and 24% solid in dark. Shown at 80% opacity. |
 | Wash, focused | 78% surface tone and 22% solid in light. 68% surface tone and 32% solid in dark. Shown at 80% opacity. |
-| Control fill  | Solid at the material opacity, 60%                                                   |
+| Control fill  | Solid at the material opacity, 60%                                                                     |
 
 The control fill is still jelly. The slot color is at 60% opacity, with the shared blur and the shared grain. Surfaces and fields use the wash with a slot. A field with no slot uses plain as its solid, so the focused wash stays plain. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
 
@@ -420,9 +420,7 @@ A normal button has no selected style.
 
 ### Disabled
 
-A disabled button or icon button replaces its fill with the disabled fill and its text with the disabled text. It keeps the control thickness, uses the disabled elevation, loses the hover rise, and does not squish or show press light. The cursor shows that it cannot be used.
-
-A disabled field keeps its fill and is drawn at 60% opacity, with the disabled elevation. It keeps the field thickness.
+A disabled control replaces its fill with the disabled fill and its text with the disabled text. It does not keep its slot color. Buttons, icon buttons, and fields keep their own thickness and use the disabled elevation. Marks and the range keep the mark thickness and the mark elevation. A disabled control loses the hover rise, and it does not squish or show press light. The cursor shows that it cannot be used.
 
 ### Error
 

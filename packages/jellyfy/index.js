@@ -76,21 +76,24 @@ const releaseSquish = (face) => {
   });
 };
 
-const pressSquish = (event) => {
-  const face = event.currentTarget;
-  if (!(face instanceof HTMLElement)) return;
-  const control = face.closest("label, button") ?? face;
+const pressSquish = (event, painted) => {
+  const current = event.currentTarget;
+  const face = painted instanceof HTMLElement ? painted : current;
+  if (!(face instanceof HTMLElement) || !(current instanceof HTMLElement))
+    return;
+  const control = current.closest("label, button") ?? current;
   const blocked =
+    current.matches(":disabled, :has(:disabled)") ||
     face.matches(":disabled, :has(:disabled)") ||
     control.matches(":disabled, :has(:disabled)") ||
-    (face instanceof HTMLButtonElement && face.disabled) ||
+    (current instanceof HTMLButtonElement && current.disabled) ||
     (control instanceof HTMLButtonElement && control.disabled);
   if (blocked) return;
   if (event.button !== 0) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   pressed.add(face);
   try {
-    face.setPointerCapture(event.pointerId);
+    current.setPointerCapture(event.pointerId);
   } catch {
     /* The pointer is already gone. The press animation still runs. */
   }
@@ -125,12 +128,22 @@ const pressSquish = (event) => {
   );
 };
 
-const attachSquish = (face) => {
-  if (pressed.has(face) || face.dataset.jellySquish === "on") return;
+const paintedFace = (node) => {
+  if (node instanceof HTMLInputElement && node.type === "range") {
+    const thumb = node.closest(".range")?.querySelector(".range-thumb");
+    return thumb instanceof HTMLElement ? thumb : null;
+  }
+  return node instanceof HTMLElement ? node : null;
+};
+
+const attachSquish = (node) => {
+  const face = paintedFace(node);
+  if (!(face instanceof HTMLElement) || !(node instanceof HTMLElement)) return;
+  if (face.dataset.jellySquish === "on") return;
   face.dataset.jellySquish = "on";
-  face.addEventListener("pointerdown", pressSquish);
-  face.addEventListener("pointerup", () => releaseSquish(face));
-  face.addEventListener("pointercancel", () => releaseSquish(face));
+  node.addEventListener("pointerdown", (event) => pressSquish(event, face));
+  node.addEventListener("pointerup", () => releaseSquish(face));
+  node.addEventListener("pointercancel", () => releaseSquish(face));
 };
 
 const syncLights = () => {
@@ -145,14 +158,33 @@ const syncLights = () => {
     });
 };
 
+const syncRange = (input) => {
+  const range = input.closest(".range");
+  if (!range) return;
+  const min = Number(input.min) || 0;
+  const max = Number(input.max) || 100;
+  const span = max - min || 1;
+  range.style.setProperty(
+    "--range-percent",
+    String((Number(input.value) - min) / span),
+  );
+};
+
+const syncRanges = () => {
+  document.querySelectorAll(".range input").forEach((input) => {
+    if (input instanceof HTMLInputElement) syncRange(input);
+  });
+};
+
 let listening = false;
 let scheduled = false;
 
 const refresh = () => {
   syncLights();
+  syncRanges();
   document
     .querySelectorAll(
-      ".btn, .btn-icon, .btn-bump, .input, .textarea, .select, .checkbox-box, .radio-ring, .toggle-track, .squish",
+      ".btn, .btn-icon, .btn-bump, .input, .textarea, .select, .checkbox-box, .radio-ring, .toggle-track, .range input, .squish",
     )
     .forEach(attachSquish);
 };
@@ -176,5 +208,12 @@ export const startJellyfy = () => {
     subtree: true,
     attributes: true,
     attributeFilter: ["class"],
+  });
+
+  document.addEventListener("input", (event) => {
+    const target = event.target;
+    if (target instanceof HTMLInputElement && target.closest(".range")) {
+      syncRange(target);
+    }
   });
 };

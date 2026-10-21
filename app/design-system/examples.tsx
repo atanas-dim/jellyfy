@@ -1182,32 +1182,57 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Range
           </figcaption>
-          <div className="relative flex h-8 w-full max-w-96 items-center">
-            <div
-              className={twJoin("thickness-mark h-3 w-full", pairEdge[theme])}
-              style={{
-                borderRadius: "var(--radius-control)",
-                backgroundColor: "var(--color-plain)",
-                boxShadow: "var(--thickness-mark)",
-              }}
-            />
-            <div
-              className="primary absolute left-0 h-3 w-2/5"
-              style={{
-                borderRadius: "var(--radius-control)",
-                backgroundColor: CONTROL_FILL,
-              }}
-            />
-            <span
-              className={twJoin(
-                "primary absolute left-[40%] size-6 -translate-x-1/2 rounded-full",
-                pairEdge[theme],
-              )}
-              style={{
-                backgroundColor: CONTROL_FILL,
-                boxShadow: "var(--thickness-mark), var(--elevation-mark)",
-              }}
-            />
+          <div className="flex w-full flex-col gap-4">
+            <label className="range range-sm primary">
+              <span>Small</span>
+              <span className="range-box">
+                <span className="range-track">
+                  <span className="range-fill" />
+                </span>
+                <span className="range-thumb" />
+                <input type="range" defaultValue={40} />
+              </span>
+            </label>
+            <label className="range primary">
+              <span>Volume</span>
+              <span className="range-box">
+                <span className="range-track">
+                  <span className="range-fill" />
+                </span>
+                <span className="range-thumb" />
+                <input type="range" defaultValue={40} />
+              </span>
+            </label>
+            <label className="range range-lg primary">
+              <span>Large</span>
+              <span className="range-box">
+                <span className="range-track">
+                  <span className="range-fill" />
+                </span>
+                <span className="range-thumb" />
+                <input type="range" defaultValue={40} />
+              </span>
+            </label>
+            <label className="range">
+              <span>Plain</span>
+              <span className="range-box">
+                <span className="range-track">
+                  <span className="range-fill" />
+                </span>
+                <span className="range-thumb" />
+                <input type="range" defaultValue={40} />
+              </span>
+            </label>
+            <label className="range primary">
+              <span>Disabled</span>
+              <span className="range-box">
+                <span className="range-track">
+                  <span className="range-fill" />
+                </span>
+                <span className="range-thumb" />
+                <input type="range" defaultValue={40} disabled />
+              </span>
+            </label>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">

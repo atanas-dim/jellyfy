@@ -258,8 +258,11 @@
 
   .textarea:has(:disabled) {
     --jelly-elevation: var(--elevation-disabled);
-    opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  .textarea:has(:disabled) > span:not(.input-start, .input-end) {
+    color: inherit;
   }
 
   .textarea :disabled {
@@ -295,6 +298,15 @@
         var(--percent-shown-wash),
       transparent
     );
+  }
+
+  .textarea:has(:disabled) {
+    background-color: color-mix(
+      in oklab,
+      var(--color-disabled) 60%,
+      transparent
+    );
+    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
   }
 }
 
