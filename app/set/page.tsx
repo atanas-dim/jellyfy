@@ -52,7 +52,7 @@ const Tile = ({
       wide && "sm:col-span-2",
     )}
   >
-    <h2 className="text-sm font-semibold tracking-wide text-neutral-500 uppercase">
+    <h2 className="text-sm font-semibold tracking-wide text-neutral-500 uppercase dark:text-neutral-400">
       {title}
     </h2>
     {children}

@@ -15,7 +15,7 @@ export const Pager = ({ href }: { href: string }) => {
           href={previous.href}
           className="rounded-2xl border border-neutral-200 px-4 py-3 hover:border-neutral-300 dark:border-neutral-800 dark:hover:border-neutral-700"
         >
-          <span className="flex items-center gap-1 text-xs text-neutral-500">
+          <span className="flex items-center gap-1 text-xs text-neutral-500 dark:text-neutral-400">
             <ChevronLeftIcon className="size-3.5" aria-hidden="true" />
             Previous
           </span>
@@ -29,7 +29,7 @@ export const Pager = ({ href }: { href: string }) => {
           href={next.href}
           className="rounded-2xl border border-neutral-200 px-4 py-3 text-right hover:border-neutral-300 dark:border-neutral-800 dark:hover:border-neutral-700"
         >
-          <span className="flex items-center justify-end gap-1 text-xs text-neutral-500">
+          <span className="flex items-center justify-end gap-1 text-xs text-neutral-500 dark:text-neutral-400">
             Next
             <ChevronRightIcon className="size-3.5" aria-hidden="true" />
           </span>

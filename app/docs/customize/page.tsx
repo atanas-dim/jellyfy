@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 export default function CustomizePage() {
   return (
     <article>
-      <p className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase">
+      <p className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase dark:text-neutral-400">
         Getting started
       </p>
       <h1 className="mt-3 text-4xl font-semibold tracking-tight">Customize</h1>
-      <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
+      <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">
         Set only the names you want to change. The hexes below are the defaults.
       </p>
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
@@ -44,7 +44,7 @@ export default function CustomizePage() {
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         With Tailwind
       </h2>
-      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         Put the eight solids in{" "}
         <code className="font-mono text-sm">@theme</code>. That is Tailwind’s
         token list, and Jellyfy reads those names. Radius and grain are set on{" "}
@@ -75,7 +75,7 @@ export default function CustomizePage() {
   --noise-size: 22.5rem;
 }`}
       />
-      <ul className="mt-6 max-w-2xl list-disc space-y-2 pl-5 leading-7 text-neutral-600">
+      <ul className="mt-6 max-w-2xl list-disc space-y-2 pl-5 leading-7 text-neutral-600 dark:text-neutral-300">
         <li>
           The eight <code className="font-mono text-sm">--color-*</code> names
           are the solids. A button, a field, and a badge in{" "}
@@ -104,7 +104,7 @@ export default function CustomizePage() {
       </ul>
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">Dark</h2>
-      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         Jellyfy follows the operating system. The eight colours stay the ones
         you set. In the dark, the paper behind a control goes near black and the
         writing goes light. The default gray is lighter in the dark theme so a
@@ -114,7 +114,7 @@ export default function CustomizePage() {
         a field is still that colour: a brighter pool of it along the bottom,
         and the same colour mixed toward black along the top.
       </p>
-      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         To choose for the page, add the class{" "}
         <code className="font-mono text-sm">dark</code> on the root, or on any
         section. It forces the dark paper. The class{" "}

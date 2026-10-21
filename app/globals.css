@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "jellyfy/material.css";
 
-@custom-variant dark (&:where(.dark, .dark *):not(:where(.light, .light *)));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --font-sans: var(--font-figtree);
@@ -10,74 +10,21 @@
 }
 
 body {
-  background-color: var(--color-white);
+  background-color: light-dark(var(--color-white), var(--color-black));
+  color: light-dark(var(--color-neutral-950), var(--color-neutral-100));
   font-family: var(--font-figtree), Arial, Helvetica, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) body {
-    background-color: var(--color-black);
-    color: var(--color-neutral-100);
-  }
-}
-
-.dark body,
-body.dark {
-  background-color: var(--color-black);
-  color: var(--color-neutral-100);
 }
 
 .set-stripes {
   background: repeating-linear-gradient(
     -45deg,
-    #d7e3f0 0px,
-    #d7e3f0 20px,
-    #b9cadd 20px,
-    #b9cadd 40px,
-    #f4f5f2 40px,
-    #f4f5f2 60px
+    light-dark(#d7e3f0, #0d1b2a) 0px,
+    light-dark(#d7e3f0, #0d1b2a) 20px,
+    light-dark(#b9cadd, #1c3854) 20px,
+    light-dark(#b9cadd, #1c3854) 40px,
+    light-dark(#f4f5f2, #151c1b) 40px,
+    light-dark(#f4f5f2, #151c1b) 60px
   );
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) .set-stripes {
-    background: repeating-linear-gradient(
-      -45deg,
-      #0d1b2a 0px,
-      #0d1b2a 20px,
-      #1c3854 20px,
-      #1c3854 40px,
-      #151c1b 40px,
-      #151c1b 60px
-    );
-  }
-}
-
-.dark .set-stripes {
-  background: repeating-linear-gradient(
-    -45deg,
-    #0d1b2a 0px,
-    #0d1b2a 20px,
-    #1c3854 20px,
-    #1c3854 40px,
-    #151c1b 40px,
-    #151c1b 60px
-  );
-}
-
-.dark .text-neutral-950:not(:where(.light, .light *)) {
-  color: var(--color-neutral-100);
-}
-.dark .text-neutral-800:not(:where(.light, .light *)) {
-  color: var(--color-neutral-200);
-}
-.dark .text-neutral-700:not(:where(.light, .light *)),
-.dark .text-neutral-600:not(:where(.light, .light *)) {
-  color: var(--color-neutral-300);
-}
-.dark .text-neutral-500:not(:where(.light, .light *)),
-.dark .text-neutral-400:not(:where(.light, .light *)) {
-  color: var(--color-neutral-400);
 }
 
 h1,

@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 export default function InstallPage() {
   return (
     <article>
-      <p className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase">
+      <p className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase dark:text-neutral-400">
         Getting started
       </p>
       <h1 className="mt-3 text-4xl font-semibold tracking-tight">Install</h1>
-      <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
+      <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">
         Two files. <code className="font-mono text-base">jellyfy.css</code>{" "}
         paints the controls.{" "}
         <code className="font-mono text-base">jellyfy.js</code> runs the press
@@ -32,7 +32,7 @@ export default function InstallPage() {
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         With Tailwind
       </h2>
-      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         Import the stylesheet after Tailwind. A utility such as{" "}
         <code className="font-mono text-sm">px-4</code> sets that padding. The
         press stays.
@@ -46,14 +46,14 @@ export default function InstallPage() {
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         Without Tailwind
       </h2>
-      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         Link the stylesheet on its own. The controls paint the same way.
       </p>
       <CodeBlock
         lang="html"
         code={`<link rel="stylesheet" href="./node_modules/jellyfy/jellyfy.css" />`}
       />
-      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         A bundler imports that same file.
       </p>
       <CodeBlock lang="js" code={`import "jellyfy/jellyfy.css";`} />
@@ -61,7 +61,7 @@ export default function InstallPage() {
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         Call it once
       </h2>
-      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         Call <code className="font-mono text-sm">startJellyfy()</code> once,
         after the controls are on the page. A pointer press squashes the control
         under the pointer. Controls that appear later, including after a page
@@ -80,7 +80,7 @@ export default function InstallPage() {
       />
 
       <h3 className="mt-8 text-lg font-semibold tracking-tight">Vue</h3>
-      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         Import the stylesheet in the entry. Call the function when the app is
         mounted.
       </p>
@@ -106,7 +106,7 @@ onMounted(() => {
       />
 
       <h3 className="mt-8 text-lg font-semibold tracking-tight">React</h3>
-      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         Import the stylesheet after Tailwind. Call the function once from the
         root component.
       </p>
@@ -125,7 +125,7 @@ export default function App() {
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         Press any element
       </h2>
-      <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         Add <code className="font-mono text-sm">squish</code> to give any
         element the same press. On a Jellyfy control it uses the face that
         control already has. Add it to a card when the card should press.

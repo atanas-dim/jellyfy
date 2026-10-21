@@ -15,23 +15,23 @@ export const metadata: Metadata = {
 export default function DocsPage() {
   return (
     <article>
-      <p className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase">
+      <p className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase dark:text-neutral-400">
         Getting started
       </p>
       <h1 className="mt-3 text-4xl font-semibold tracking-tight">
         Introduction
       </h1>
-      <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
+      <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">
         Soft controls for the markup on the page. Add{" "}
         <code className="font-mono text-base">btn</code>, a color such as{" "}
         <code className="font-mono text-base">primary</code>, and call{" "}
         <code className="font-mono text-base">startJellyfy()</code> once.
       </p>
-      <ol className="mt-8 max-w-2xl list-decimal space-y-3 pl-5 leading-7 text-neutral-700">
+      <ol className="mt-8 max-w-2xl list-decimal space-y-3 pl-5 leading-7 text-neutral-700 dark:text-neutral-300">
         <li>
           <Link
             href="/docs/install"
-            className="font-medium text-neutral-950 underline decoration-neutral-300 underline-offset-4"
+            className="font-medium text-neutral-950 underline decoration-neutral-300 underline-offset-4 dark:text-neutral-100"
           >
             Install
           </Link>{" "}
@@ -42,7 +42,7 @@ export default function DocsPage() {
           Read{" "}
           <Link
             href="/docs/colors"
-            className="font-medium text-neutral-950 underline decoration-neutral-300 underline-offset-4"
+            className="font-medium text-neutral-950 underline decoration-neutral-300 underline-offset-4 dark:text-neutral-100"
           >
             Colors
           </Link>{" "}
@@ -52,7 +52,7 @@ export default function DocsPage() {
           Open{" "}
           <Link
             href="/docs/button"
-            className="font-medium text-neutral-950 underline decoration-neutral-300 underline-offset-4"
+            className="font-medium text-neutral-950 underline decoration-neutral-300 underline-offset-4 dark:text-neutral-100"
           >
             Button
           </Link>
@@ -68,7 +68,7 @@ export default function DocsPage() {
               className="block h-full w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 hover:border-neutral-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700"
             >
               <span className="font-medium">{doc.name}</span>
-              <span className="mt-1 block text-sm leading-6 text-neutral-600">
+              <span className="mt-1 block text-sm leading-6 text-neutral-600 dark:text-neutral-300">
                 {doc.description}
               </span>
             </Link>

@@ -16,7 +16,9 @@ export const Example = async ({
   <section className="mt-12">
     <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
     {note ? (
-      <p className="mt-2 max-w-2xl leading-7 text-neutral-600">{note}</p>
+      <p className="mt-2 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
+        {note}
+      </p>
     ) : null}
     <div className="mt-4 rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
       {children}

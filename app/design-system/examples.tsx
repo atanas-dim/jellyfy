@@ -8,41 +8,51 @@ const THICKNESS = [
   ["--thickness-mark", "Mark", "size-16"],
 ] as const;
 
-const ThemePair = ({ render }: { render: () => ReactNode }) => (
+type ThemeName = "light" | "dark";
+
+const captionClass = {
+  light: "text-center text-sm text-neutral-600",
+  dark: "text-center text-sm text-neutral-300",
+} as const;
+
+const pairEdge = {
+  light: "border border-neutral-950/20",
+  dark: "border border-neutral-50/30",
+} as const;
+
+const ThemePair = ({ render }: { render: (theme: ThemeName) => ReactNode }) => (
   <div className="mt-8 flex max-w-3xl flex-col gap-8">
     <div className="light rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-950">
       <p className="mb-4 text-xs font-semibold tracking-[0.16em] text-neutral-400 uppercase">
         Light
       </p>
-      {render()}
+      {render("light")}
     </div>
     <div className="dark rounded-2xl border border-neutral-800 bg-black p-6 text-neutral-100">
       <p className="mb-4 text-xs font-semibold tracking-[0.16em] text-neutral-400 uppercase">
         Dark
       </p>
-      {render()}
+      {render("dark")}
     </div>
   </div>
 );
 
 const RoleSwatches = () => (
   <ThemePair
-    render={() => (
+    render={(theme) => (
       <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
         {THICKNESS.map(([variable, label, size]) => (
           <figure key={variable} className="flex flex-col items-center gap-2">
             <div className="flex h-24 w-full items-center justify-center">
               <div
-                className={twJoin(size, "rounded-2xl", SWATCH_EDGE)}
+                className={twJoin(size, "rounded-2xl", pairEdge[theme])}
                 style={{
                   backgroundColor: "var(--color-plain)",
                   boxShadow: `var(${variable})`,
                 }}
               />
             </div>
-            <figcaption className="text-center text-sm text-neutral-600 dark:text-neutral-300">
-              {label}
-            </figcaption>
+            <figcaption className={captionClass[theme]}>{label}</figcaption>
           </figure>
         ))}
       </div>
@@ -168,7 +178,15 @@ const WASH =
 const WASH_FOCUS =
   "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--wash-focus), var(--solid)) var(--wash-opacity), transparent)";
 
-const LightSwatches = ({ slot, name }: { slot?: string; name: string }) => (
+const LightSwatches = ({
+  slot,
+  name,
+  theme,
+}: {
+  slot?: string;
+  name: string;
+  theme: ThemeName;
+}) => (
   <>
     <figure className="flex flex-col items-center gap-2">
       <div
@@ -195,9 +213,7 @@ const LightSwatches = ({ slot, name }: { slot?: string; name: string }) => (
           }}
         />
       </div>
-      <figcaption className="text-center text-sm text-neutral-600 dark:text-neutral-300">
-        {name} pressed
-      </figcaption>
+      <figcaption className={captionClass[theme]}>{name} pressed</figcaption>
     </figure>
     <figure className="flex flex-col items-center gap-2">
       <div
@@ -228,9 +244,7 @@ const LightSwatches = ({ slot, name }: { slot?: string; name: string }) => (
           }}
         />
       </div>
-      <figcaption className="text-center text-sm text-neutral-600 dark:text-neutral-300">
-        {name} focused
-      </figcaption>
+      <figcaption className={captionClass[theme]}>{name} focused</figcaption>
     </figure>
     <figure className="flex flex-col items-center gap-2">
       <div
@@ -258,16 +272,14 @@ const LightSwatches = ({ slot, name }: { slot?: string; name: string }) => (
           />
         </div>
       </div>
-      <figcaption className="text-center text-sm text-neutral-600 dark:text-neutral-300">
-        {name} bump
-      </figcaption>
+      <figcaption className={captionClass[theme]}>{name} bump</figcaption>
     </figure>
   </>
 );
 
 const MaterialSamples = () => (
   <ThemePair
-    render={() => (
+    render={(theme) => (
       <div className="flex flex-col gap-8">
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-5">
           {(
@@ -295,15 +307,13 @@ const MaterialSamples = () => (
                   }
                 />
               </div>
-              <figcaption className="text-center text-sm text-neutral-600 dark:text-neutral-300">
-                {label}
-              </figcaption>
+              <figcaption className={captionClass[theme]}>{label}</figcaption>
             </figure>
           ))}
         </div>
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
-          <LightSwatches name="Plain" />
-          <LightSwatches slot="primary" name="Primary" />
+          <LightSwatches name="Plain" theme={theme} />
+          <LightSwatches slot="primary" name="Primary" theme={theme} />
         </div>
       </div>
     )}

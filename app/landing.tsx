@@ -155,7 +155,7 @@ export const Landing = () => {
           <div className="max-w-xl">
             <p
               data-hero-item
-              className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase"
+              className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase dark:text-neutral-400"
             >
               One material
             </p>
@@ -173,13 +173,13 @@ export const Landing = () => {
             </h1>
             <p
               data-hero-item
-              className="mt-6 max-w-md text-lg leading-8 text-neutral-600"
+              className="mt-6 max-w-md text-lg leading-8 text-neutral-600 dark:text-neutral-300"
             >
               Soft controls. Pick eight colors. The rest of the set follows.
             </p>
 
             <div data-hero-item className="mt-8">
-              <p className="text-sm font-medium text-neutral-500">
+              <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
                 Try a solid
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -202,7 +202,9 @@ export const Landing = () => {
                   </button>
                 ))}
               </div>
-              <p className="mt-3 text-sm text-neutral-600">{toneLabel}</p>
+              <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-300">
+                {toneLabel}
+              </p>
             </div>
 
             <div
@@ -330,7 +332,7 @@ export const Landing = () => {
       <section className="border-y border-white/70 bg-white/40 py-8 dark:border-white/10 dark:bg-neutral-900/50">
         <p
           data-rise
-          className="px-6 text-center text-sm font-medium tracking-[0.18em] text-neutral-500 uppercase sm:px-10"
+          className="px-6 text-center text-sm font-medium tracking-[0.18em] text-neutral-500 uppercase sm:px-10 dark:text-neutral-400"
         >
           Every color, the same press
         </p>
@@ -364,7 +366,7 @@ export const Landing = () => {
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Drop it on your markup
           </h2>
-          <p className="mt-4 text-lg leading-8 text-neutral-600">
+          <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
             One stylesheet, then a class on the element. Press it and it gives.
           </p>
         </div>
@@ -374,14 +376,14 @@ export const Landing = () => {
             <h3 className="text-xl font-semibold tracking-tight">
               Your button
             </h3>
-            <p className="text-sm leading-6 text-neutral-600">
+            <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-300">
               Keep the element. Add the class. It comes back with a soft face
               and a press.
             </p>
             <button type="button" className="btn primary">
               <span>Launch</span>
             </button>
-            <p className="font-mono text-xs leading-5 text-neutral-500">
+            <p className="font-mono text-xs leading-5 text-neutral-500 dark:text-neutral-400">
               class=&quot;btn&quot;
             </p>
           </article>
@@ -390,7 +392,7 @@ export const Landing = () => {
             <h3 className="text-xl font-semibold tracking-tight">
               Your colors
             </h3>
-            <p className="text-sm leading-6 text-neutral-600">
+            <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-300">
               Name eight colors once. Buttons, fields, and badges in that color
               stay in the same material.
             </p>
@@ -398,7 +400,7 @@ export const Landing = () => {
               <input placeholder=" " defaultValue="Ready" />
               <span>Status</span>
             </label>
-            <p className="font-mono text-xs leading-5 text-neutral-500">
+            <p className="font-mono text-xs leading-5 text-neutral-500 dark:text-neutral-400">
               --color-success
             </p>
           </article>
@@ -407,14 +409,14 @@ export const Landing = () => {
             <h3 className="text-xl font-semibold tracking-tight">
               Your utilities
             </h3>
-            <p className="text-sm leading-6 text-neutral-600">
+            <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-300">
               Tailwind still applies. Widen it, pad it, or lay it out. The press
               stays.
             </p>
             <button type="button" className="btn tertiary w-full">
               <span>Continue</span>
             </button>
-            <p className="font-mono text-xs leading-5 text-neutral-500">
+            <p className="font-mono text-xs leading-5 text-neutral-500 dark:text-neutral-400">
               btn w-full
             </p>
           </article>
@@ -431,7 +433,7 @@ export const Landing = () => {
           </h2>
           <Link
             href="/set"
-            className="text-sm font-medium text-neutral-600 underline decoration-neutral-400 underline-offset-4"
+            className="text-sm font-medium text-neutral-600 underline decoration-neutral-400 underline-offset-4 dark:text-neutral-300"
           >
             Every color on one page
           </Link>
@@ -449,7 +451,7 @@ export const Landing = () => {
               <h3 className="text-xl font-semibold tracking-tight">
                 {component.name}
               </h3>
-              <p className="mt-3 text-sm leading-6 text-neutral-600">
+              <p className="mt-3 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
                 {component.description}
               </p>
             </Link>
