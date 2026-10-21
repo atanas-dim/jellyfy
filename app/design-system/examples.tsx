@@ -832,13 +832,6 @@ const PlusIcon = () => (
   </svg>
 );
 
-const controlStyle: CSSProperties = {
-  backgroundColor: CONTROL_FILL,
-  borderRadius: "var(--radius-control)",
-  color: "var(--color-primary-content)",
-  boxShadow: "var(--thickness-control), var(--elevation-rest)",
-};
-
 const surfaceStyle: CSSProperties = {
   backgroundColor: WASH,
   borderRadius: "var(--radius-surface)",
@@ -1273,21 +1266,11 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Badge
           </figcaption>
-          <div
-            className={twJoin(
-              "primary thickness-surface inline-flex w-fit px-2.5 py-1",
-              pairEdge[theme],
-            )}
-            style={{
-              ...controlStyle,
-              boxShadow: "var(--thickness-surface), var(--elevation-mark)",
-              fontSize: "10px",
-              fontWeight: 600,
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-            }}
-          >
-            New
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="badge badge-sm primary">Small</span>
+            <span className="badge primary">New</span>
+            <span className="badge badge-lg primary">Large</span>
+            <span className="badge">Plain</span>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">

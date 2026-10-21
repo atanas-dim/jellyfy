@@ -153,7 +153,18 @@
     background-color: var(--color-white);
   }
 
-  .toggle:has(:disabled) .toggle-track {
+  .toggle:has(:disabled) .toggle-track,
+  .toggle:is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .warning,
+      .error,
+      .info
+    ):has(:disabled)
+    .toggle-track {
     background-color: color-mix(
       in oklab,
       var(--color-disabled) 60%,
