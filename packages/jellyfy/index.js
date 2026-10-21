@@ -92,10 +92,15 @@ const pressSquish = (event, painted) => {
   if (event.button !== 0) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   pressed.add(face);
-  try {
-    current.setPointerCapture(event.pointerId);
-  } catch {
-    /* The pointer is already gone. The press animation still runs. */
+  // Pointer capture dismisses the select menu when the button is released.
+  const picker =
+    event.target instanceof Element && event.target.closest("select");
+  if (!picker) {
+    try {
+      current.setPointerCapture(event.pointerId);
+    } catch {
+      /* The pointer is already gone. The press animation still runs. */
+    }
   }
   const styles = getComputedStyle(face);
   const distance = parseFloat(styles.getPropertyValue("--squish-distance"));
