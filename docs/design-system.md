@@ -96,18 +96,18 @@ Black and white are shared values, stored once and reused by every mix that need
 
 Each slot has a content color, stored explicitly. Replacing a solid does not recalculate the content color. A custom theme sets both.
 
-The content color is the text on a control. Primary is Indigo 500 in light and Indigo 400 in dark. The other solids stay the same in both themes. Light text is the 950 step, because the page behind the button is light and the fill turns pale. Dark text is the 50 step, because the page behind the button is dark and the fill turns dark. The hex fallback is that same step.
+The content color is the text on a control. Primary is Indigo 500 in light and Indigo 400 in dark. The other solids stay the same in both themes. Light text is the 950 step, because the page behind the button is light and the fill turns pale. Dark text is the 100 step, because the page behind the button is dark and the fill turns dark. The hex fallback is that same step.
 
-| Slot      | Light         | Dark         |
-| --------- | ------------- | ------------ |
-| Primary   | TW Indigo 950 | TW Indigo 50 |
-| Secondary | TW Pink 950   | TW Pink 50   |
-| Tertiary  | TW Teal 950   | TW Teal 50   |
-| Neutral   | Neutral 950   | Neutral 50   |
-| Success   | TW Green 950  | TW Green 50  |
-| Warning   | TW Amber 950  | TW Amber 50  |
-| Error     | TW Red 950    | TW Red 50    |
-| Info      | TW Sky 950    | TW Sky 50    |
+| Slot      | Light         | Dark          |
+| --------- | ------------- | ------------- |
+| Primary   | TW Indigo 950 | TW Indigo 100 |
+| Secondary | TW Pink 950   | TW Pink 100   |
+| Tertiary  | TW Teal 950   | TW Teal 100   |
+| Neutral   | Neutral 950   | Neutral 100   |
+| Success   | TW Green 950  | TW Green 100  |
+| Warning   | TW Amber 950  | TW Amber 100  |
+| Error     | TW Red 950    | TW Red 100    |
+| Info      | TW Sky 950    | TW Sky 100    |
 
 Text on a surface or a field is the plain content color, with a slot and without one. Plain content is Neutral 800 in light and Neutral 100 in dark.
 
@@ -147,7 +147,7 @@ Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warn
 
 Plain content is `--color-plain-content`. The menu fill is `--color-menu`.
 
-Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-500`, `--color-indigo-400`, `--color-indigo-50`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.
+Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-500`, `--color-indigo-400`, `--color-indigo-100`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.
 
 Black and white are `--color-black` and `--color-white`. Wash, press light, bump light, and loading light read those variables.
 
