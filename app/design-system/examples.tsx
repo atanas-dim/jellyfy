@@ -866,7 +866,7 @@ const ComponentSamples = () => (
           </figcaption>
           <div className="flex flex-wrap items-end gap-3">
             <button
-              className="btn-icon btn-icon-sm primary"
+              className="btn-icon btn-sm primary"
               type="button"
               aria-label="Add"
             >
@@ -876,7 +876,7 @@ const ComponentSamples = () => (
               <Plus size="1.5rem" />
             </button>
             <button
-              className="btn-icon btn-icon-lg primary"
+              className="btn-icon btn-lg primary"
               type="button"
               aria-label="Add"
             >

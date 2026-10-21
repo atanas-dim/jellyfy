@@ -647,7 +647,7 @@ The caption under a field. It is not an error style. It has its own slot, indepe
 
 ### Implementation notes
 
-Medium classes have no size suffix. Small and large use `-sm` and `-lg` on the component class: `btn-sm`, `input-lg`, `btn-bump-sm`.
+Medium classes have no size suffix. Small and large use `-sm` and `-lg` on the component class: `btn-sm`, `input-lg`, `btn-bump-sm`. The icon button uses the button sizes, `btn-sm` and `btn-lg`.
 
 The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, and `modal-panel`. The radio bullet, `radio-ring::after`, receives the grain only. It is opaque and has no blur and no inset.
 

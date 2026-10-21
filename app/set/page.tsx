@@ -130,7 +130,7 @@ export default function SetPage() {
             {SIZES.map((size) => (
               <button
                 key={size || "regular"}
-                className={twJoin("btn-icon", sizeClass("btn-icon", size))}
+                className={twJoin("btn-icon", sizeClass("btn", size))}
                 type="button"
                 aria-label={SIZE_NAME[size]}
               >
