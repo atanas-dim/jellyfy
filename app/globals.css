@@ -13,6 +13,7 @@
 @import "jellyfy/range.css";
 @import "jellyfy/alert.css";
 @import "jellyfy/badge.css";
+@import "jellyfy/card.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

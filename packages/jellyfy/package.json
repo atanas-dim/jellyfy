@@ -61,6 +61,10 @@
     "./badge.css": {
       "style": "./badge.css",
       "default": "./badge.css"
+    },
+    "./card.css": {
+      "style": "./card.css",
+      "default": "./card.css"
     }
   },
   "files": [
@@ -78,7 +82,8 @@
     "toggle.css",
     "range.css",
     "alert.css",
-    "badge.css"
+    "badge.css",
+    "card.css"
   ],
   "sideEffects": [
     "./material.css",
@@ -94,6 +99,7 @@
     "./toggle.css",
     "./range.css",
     "./alert.css",
-    "./badge.css"
+    "./badge.css",
+    "./card.css"
   ]
 }

@@ -908,32 +908,48 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Bump button
           </figcaption>
-          <div className="flex flex-wrap items-end gap-3">
-            <button
-              className="btn-bump btn-sm"
-              type="button"
-              aria-label="Close"
-            >
-              <Plus size="1rem" />
-            </button>
-            <button className="btn-bump" type="button" aria-label="Close">
-              <Plus size="1.25rem" />
-            </button>
-            <button
-              className="btn-bump btn-lg"
-              type="button"
-              aria-label="Close"
-            >
-              <Plus size="1.5rem" />
-            </button>
-            <button
-              className="btn-bump"
-              type="button"
-              aria-label="Close"
-              disabled
-            >
-              <Plus size="1.25rem" />
-            </button>
+          <div className="grid gap-3 sm:grid-cols-2">
+            <section className="card relative">
+              <button
+                className="btn-bump btn-sm absolute end-3 top-3"
+                type="button"
+                aria-label="Close"
+              >
+                <Plus size="1rem" />
+              </button>
+              <p className="pe-8">Small</p>
+            </section>
+            <section className="card relative">
+              <button
+                className="btn-bump absolute end-3 top-3"
+                type="button"
+                aria-label="Close"
+              >
+                <Plus size="1.25rem" />
+              </button>
+              <p className="pe-10">Close</p>
+            </section>
+            <section className="card relative">
+              <button
+                className="btn-bump btn-lg absolute end-3 top-3"
+                type="button"
+                aria-label="Close"
+              >
+                <Plus size="1.5rem" />
+              </button>
+              <p className="pe-12">Large</p>
+            </section>
+            <section className="card relative">
+              <button
+                className="btn-bump absolute end-3 top-3"
+                type="button"
+                aria-label="Close"
+                disabled
+              >
+                <Plus size="1.25rem" />
+              </button>
+              <p className="pe-10">Disabled</p>
+            </section>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">
@@ -1277,14 +1293,19 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Card
           </figcaption>
-          <div
-            className={twJoin(
-              "primary thickness-surface px-5 py-4 text-base",
-              pairEdge[theme],
-            )}
-            style={surfaceStyle}
-          >
-            <p style={{ lineHeight: 1.5 }}>A quiet surface for a short note.</p>
+          <div className="flex flex-col gap-3">
+            <section className="card card-sm primary">
+              <p>Small</p>
+            </section>
+            <section className="card primary">
+              <p>A quiet surface for a short note.</p>
+            </section>
+            <section className="card card-lg primary">
+              <p>Large</p>
+            </section>
+            <section className="card">
+              <p>Plain</p>
+            </section>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">
