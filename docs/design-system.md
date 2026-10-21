@@ -139,7 +139,7 @@ Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warn
 
 Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-600`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.
 
-Black and white are `--black` and `--white`. Wash, press light, bump light, and loading light read those variables. Content colors are stored results of the recipes above. The dark theme sets the wash content recipe's endpoint to `--white`.
+Black and white are `--color-black` and `--color-white`. Wash, press light, bump light, and loading light read those variables. Content colors are stored results of the recipes above. The dark theme sets the wash content recipe's endpoint to `--color-white`.
 
 Wash percentages, wash opacity, and the menu mixes are variables. The dark theme can override a variable marked `[DARK ADAPTATION MAY BE NEEDED]`.
 
@@ -377,7 +377,7 @@ Color, shadow, and outline changes take 300ms, eased out. The select chevron tur
 
 Squish is applied in script to the painted face of the control, not to the invisible input inside a checkbox, radio, toggle, or range. The opt-in class is `squish`. The named constants are the total width change `8`, the height ratio `2/7`, the settle-width ratio `1/7`, the press `480ms`, the release `300ms`, and the peak at `0.42`. Scale on an axis is `1 + pixels / size` on that axis.
 
-Loading light and loading shade are variables that read `--white` and `--black`. The dark theme can override them. That override is marked `[DARK ADAPTATION MAY BE NEEDED]`.
+Loading light and loading shade are variables that read `--color-white` and `--color-black`. The dark theme can override them. That override is marked `[DARK ADAPTATION MAY BE NEEDED]`.
 
 Reduced motion is `prefers-reduced-motion: reduce`.
 
@@ -679,7 +679,7 @@ Changing a solid without changing its content color leaves the previous content 
 
 Public custom properties: one solid and one content color per slot, `--radius-surface`, `--radius-field`, `--radius-control`, `--radius-mark`, one opacity, one blur, one noise size, and one shadow multiplier defaulting to `1`.
 
-`--black` and `--white` are shared mix values. They are not part of this contract.
+`--color-black` and `--color-white` are shared mix values. They are not part of this contract.
 
 Shade, highlight, wash, menu mixes, thickness, and drop shadows stay internal variables. A variable marked `[DARK ADAPTATION MAY BE NEEDED]` can be overridden by the dark theme.
 

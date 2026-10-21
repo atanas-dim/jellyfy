@@ -23,7 +23,7 @@ export const ThemeToggle = () => {
   }, []);
 
   return (
-    <label className="toggle">
+    <label className="toggle flex gap-0.5">
       <SunIcon aria-hidden="true" className="size-4" />
       <input
         type="checkbox"

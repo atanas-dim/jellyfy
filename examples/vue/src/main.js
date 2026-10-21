@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 
 import App from "./App.vue";
-import "jellyfy/jellyfy.css";
+import "jellyfy/material.css";
 
 createApp(App).mount("#app");

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const SHOWN = ["principles"];
+const SHOWN = ["principles", "roles"];
 
 export default function DesignSystemPage() {
   const spec = readSpec();

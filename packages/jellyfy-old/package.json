@@ -1,0 +1,35 @@
+{
+  "name": "jellyfy-old",
+  "version": "0.3.1",
+  "license": "MIT",
+  "description": "Soft controls from one material.",
+  "author": "Atanas Dimitrov",
+  "homepage": "https://jellyfy.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atanas-dim/jellyfy.git",
+    "directory": "packages/jellyfy"
+  },
+  "bugs": {
+    "url": "https://github.com/atanas-dim/jellyfy/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./jellyfy.d.ts",
+      "default": "./jellyfy.js"
+    },
+    "./jellyfy.css": "./jellyfy.css",
+    "./plugin.js": "./plugin.js"
+  },
+  "files": [
+    "jellyfy.css",
+    "jellyfy.js",
+    "jellyfy.d.ts",
+    "plugin.js"
+  ],
+  "sideEffects": [
+    "./jellyfy.css",
+    "./plugin.js"
+  ]
+}
