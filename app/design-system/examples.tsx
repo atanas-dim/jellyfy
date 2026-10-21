@@ -374,10 +374,116 @@ const ShapeSamples = () => (
   />
 );
 
+const TYPE: {
+  label: string;
+  text: string;
+  style: CSSProperties;
+}[] = [
+  {
+    label: "Button label",
+    text: "Save",
+    style: {
+      fontSize: "0.875rem",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      lineHeight: 1,
+      textTransform: "uppercase",
+    },
+  },
+  {
+    label: "Field value",
+    text: "Jane Cooper",
+    style: { fontSize: "1rem", lineHeight: 1.5 },
+  },
+  {
+    label: "Field label, resting",
+    text: "Email",
+    style: {
+      fontSize: "1rem",
+      fontWeight: 400,
+      lineHeight: 1.5,
+      color: "color-mix(in oklab, currentColor 70%, transparent)",
+    },
+  },
+  {
+    label: "Field label, floated",
+    text: "Email",
+    style: {
+      fontSize: "10px",
+      fontWeight: 500,
+      letterSpacing: "0.04em",
+      lineHeight: 1,
+    },
+  },
+  {
+    label: "Checkbox, radio, and toggle label",
+    text: "Remember me",
+    style: { fontSize: "0.875rem", fontWeight: 500 },
+  },
+  {
+    label: "Range label",
+    text: "Volume",
+    style: { fontSize: "0.875rem", fontWeight: 500 },
+  },
+  {
+    label: "Message",
+    text: "This field is required",
+    style: { fontSize: "0.75rem" },
+  },
+  {
+    label: "Alert and card",
+    text: "The pour stays quiet until you press it.",
+    style: { fontSize: "1rem", lineHeight: 1.5 },
+  },
+  {
+    label: "Badge",
+    text: "New",
+    style: {
+      fontSize: "10px",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      textTransform: "uppercase",
+    },
+  },
+];
+
+const TypeSamples = () => (
+  <ThemePair
+    render={(theme) => (
+      <div className="flex flex-col gap-5">
+        <div className="flex items-center justify-between gap-6">
+          <p className={captionClass[theme]}>Icon button icon</p>
+          <svg
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+            style={{ width: "1.5rem", height: "1.5rem" }}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.75"
+          >
+            <circle cx="12" cy="12" r="8" />
+            <path d="M12 8v8M8 12h8" />
+          </svg>
+        </div>
+        {TYPE.map((row) => (
+          <div
+            key={row.label}
+            className="flex items-baseline justify-between gap-6"
+          >
+            <p className={captionClass[theme]}>{row.label}</p>
+            <p style={row.style}>{row.text}</p>
+          </div>
+        ))}
+      </div>
+    )}
+  />
+);
+
 export const examples: Record<string, ReactNode> = {
   roles: <RoleSwatches />,
   color: <ColorSamples />,
   material: <MaterialSamples />,
   elevation: <ElevationSamples />,
   shape: <ShapeSamples />,
+  typography: <TypeSamples />,
 };

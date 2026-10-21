@@ -17,6 +17,7 @@ const SHOWN = [
   "material",
   "elevation",
   "shape",
+  "typography",
 ];
 
 export default function DesignSystemPage() {
