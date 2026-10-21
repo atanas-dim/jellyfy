@@ -8,25 +8,46 @@ const THICKNESS = [
   ["--thickness-mark", "Mark", "size-16"],
 ] as const;
 
-const RoleSwatches = () => (
-  <div className="mt-8 grid max-w-3xl grid-cols-2 gap-6 sm:grid-cols-4">
-    {THICKNESS.map(([variable, label, size]) => (
-      <figure key={variable} className="flex flex-col items-center gap-2">
-        <div className="flex h-24 w-full items-center justify-center">
-          <div
-            className={twJoin(size, "rounded-2xl", SWATCH_EDGE)}
-            style={{
-              backgroundColor: "var(--color-plain)",
-              boxShadow: `var(${variable})`,
-            }}
-          />
-        </div>
-        <figcaption className="text-center text-sm text-neutral-600 dark:text-neutral-300">
-          {label}
-        </figcaption>
-      </figure>
-    ))}
+const ThemePair = ({ render }: { render: () => ReactNode }) => (
+  <div className="mt-8 flex max-w-3xl flex-col gap-8">
+    <div className="light rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-950">
+      <p className="mb-4 text-xs font-semibold tracking-[0.16em] text-neutral-400 uppercase">
+        Light
+      </p>
+      {render()}
+    </div>
+    <div className="dark rounded-2xl border border-neutral-800 bg-black p-6 text-neutral-100">
+      <p className="mb-4 text-xs font-semibold tracking-[0.16em] text-neutral-400 uppercase">
+        Dark
+      </p>
+      {render()}
+    </div>
   </div>
+);
+
+const RoleSwatches = () => (
+  <ThemePair
+    render={() => (
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+        {THICKNESS.map(([variable, label, size]) => (
+          <figure key={variable} className="flex flex-col items-center gap-2">
+            <div className="flex h-24 w-full items-center justify-center">
+              <div
+                className={twJoin(size, "rounded-2xl", SWATCH_EDGE)}
+                style={{
+                  backgroundColor: "var(--color-plain)",
+                  boxShadow: `var(${variable})`,
+                }}
+              />
+            </div>
+            <figcaption className="text-center text-sm text-neutral-600 dark:text-neutral-300">
+              {label}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    )}
+  />
 );
 
 const SLOTS = [
@@ -245,44 +266,48 @@ const LightSwatches = ({ slot, name }: { slot?: string; name: string }) => (
 );
 
 const MaterialSamples = () => (
-  <div className="mt-8 flex max-w-3xl flex-col gap-8">
-    <div className="grid grid-cols-2 gap-6 sm:grid-cols-5">
-      {(
-        [
-          ["thickness-surface", "Surface", "size-full", undefined],
-          ["thickness-field", "Field", "size-full", undefined],
-          [
-            "thickness-field",
-            "Field focused",
-            "size-full",
-            "var(--thickness-field-focus)",
-          ],
-          ["thickness-control", "Control", "size-full", undefined],
-          ["thickness-mark", "Mark", "size-16", undefined],
-        ] as const
-      ).map(([className, label, size, thickness]) => (
-        <figure key={label} className="flex flex-col items-center gap-2">
-          <div className="flex h-24 w-full items-center justify-center">
-            <div
-              className={twJoin(className, size, "rounded-2xl")}
-              style={
-                thickness
-                  ? ({ "--jelly-thickness": thickness } as CSSProperties)
-                  : undefined
-              }
-            />
-          </div>
-          <figcaption className="text-center text-sm text-neutral-600 dark:text-neutral-300">
-            {label}
-          </figcaption>
-        </figure>
-      ))}
-    </div>
-    <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
-      <LightSwatches name="Plain" />
-      <LightSwatches slot="primary" name="Primary" />
-    </div>
-  </div>
+  <ThemePair
+    render={() => (
+      <div className="flex flex-col gap-8">
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-5">
+          {(
+            [
+              ["thickness-surface", "Surface", "size-full", undefined],
+              ["thickness-field", "Field", "size-full", undefined],
+              [
+                "thickness-field",
+                "Field focused",
+                "size-full",
+                "var(--thickness-field-focus)",
+              ],
+              ["thickness-control", "Control", "size-full", undefined],
+              ["thickness-mark", "Mark", "size-16", undefined],
+            ] as const
+          ).map(([className, label, size, thickness]) => (
+            <figure key={label} className="flex flex-col items-center gap-2">
+              <div className="flex h-24 w-full items-center justify-center">
+                <div
+                  className={twJoin(className, size, "rounded-2xl")}
+                  style={
+                    thickness
+                      ? ({ "--jelly-thickness": thickness } as CSSProperties)
+                      : undefined
+                  }
+                />
+              </div>
+              <figcaption className="text-center text-sm text-neutral-600 dark:text-neutral-300">
+                {label}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+          <LightSwatches name="Plain" />
+          <LightSwatches slot="primary" name="Primary" />
+        </div>
+      </div>
+    )}
+  />
 );
 
 export const examples: Record<string, ReactNode> = {

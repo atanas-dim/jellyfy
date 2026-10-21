@@ -115,13 +115,13 @@ export default function CustomizePage() {
         and the same colour mixed toward black along the top.
       </p>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600">
-        To choose for the page, set{" "}
-        <code className="font-mono text-sm">data-theme</code> on the root
-        element. <code className="font-mono text-sm">dark</code> forces the dark
-        paper. <code className="font-mono text-sm">light</code> keeps the light
-        paper even when the system is dark.
+        To choose for the page, add the class{" "}
+        <code className="font-mono text-sm">dark</code> on the root, or on any
+        section. It forces the dark paper. The class{" "}
+        <code className="font-mono text-sm">light</code> on the root keeps the
+        light paper even when the system is dark.
       </p>
-      <CodeBlock lang="html" code={`<html data-theme="dark">`} />
+      <CodeBlock lang="html" code={`<html class="dark">`} />
       <Pager href="/docs/customize" />
     </article>
   );

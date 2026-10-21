@@ -96,18 +96,18 @@ Black and white are shared values, stored once and reused by every mix that need
 
 Each slot has a content color, stored explicitly. Replacing a solid does not recalculate the content color. A custom theme sets both.
 
-The content color is the text on a control. Light uses the 50 step of the solid's hue. Dark uses the 950 step. The hex fallback is that same step.
+The content color is the text on a control. The solid stays the same in both themes. Light text is the 950 step, because the page behind the button is light and the fill turns pale. Dark text is the 50 step, because the page behind the button is dark and the fill turns dark. Neutral keeps the 950 in both themes: in the dark theme its solid is Neutral 300, so the button stays pale. The hex fallback is that same step.
 
-| Slot      | Light        | Dark          |
-| --------- | ------------ | ------------- |
-| Primary   | TW Indigo 50 | TW Indigo 950 |
-| Secondary | TW Pink 50   | TW Pink 950   |
-| Tertiary  | TW Teal 50   | TW Teal 950   |
-| Neutral   | Neutral 50   | Neutral 950   |
-| Success   | TW Green 50  | TW Green 950  |
-| Warning   | TW Amber 50  | TW Amber 950  |
-| Error     | TW Red 50    | TW Red 950    |
-| Info      | TW Sky 50    | TW Sky 950    |
+| Slot      | Light         | Dark         |
+| --------- | ------------- | ------------ |
+| Primary   | TW Indigo 950 | TW Indigo 50 |
+| Secondary | TW Pink 950   | TW Pink 50   |
+| Tertiary  | TW Teal 950   | TW Teal 50   |
+| Neutral   | Neutral 950   | Neutral 950  |
+| Success   | TW Green 950  | TW Green 50  |
+| Warning   | TW Amber 950  | TW Amber 50  |
+| Error     | TW Red 950    | TW Red 50    |
+| Info      | TW Sky 950    | TW Sky 50    |
 
 Text on a surface or a field is the plain content color, with a slot and without one. Plain content is Neutral 800 in light and Neutral 100 in dark.
 
