@@ -1091,26 +1091,42 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Radio
           </figcaption>
-          <div className="flex items-center gap-3">
-            <div
-              className={twJoin(
-                "primary thickness-mark flex size-6 items-center justify-center",
-                pairEdge[theme],
-              )}
-              style={{
-                borderRadius: "var(--radius-control)",
-                boxShadow: "var(--thickness-mark)",
-                backgroundColor: "var(--color-plain)",
-              }}
-            >
-              <span
-                className="size-3.5 rounded-full"
-                style={{ backgroundColor: CONTROL_FILL }}
-              />
-            </div>
-            <span style={{ fontSize: "0.875rem", fontWeight: 500 }}>
-              Primary
-            </span>
+          <div className="flex flex-col items-start gap-3">
+            <label className="radio radio-sm primary">
+              <span className="radio-ring">
+                <input type="radio" name="radio-sm" defaultChecked />
+              </span>
+              <span>Small</span>
+            </label>
+            <label className="radio primary">
+              <span className="radio-ring">
+                <input type="radio" name="radio-md" defaultChecked />
+              </span>
+              <span>Primary</span>
+            </label>
+            <label className="radio radio-lg primary">
+              <span className="radio-ring">
+                <input type="radio" name="radio-lg" />
+              </span>
+              <span>Large</span>
+            </label>
+            <label className="radio">
+              <span className="radio-ring">
+                <input type="radio" name="radio-plain" defaultChecked />
+              </span>
+              <span>Plain</span>
+            </label>
+            <label className="radio primary">
+              <span className="radio-ring">
+                <input
+                  type="radio"
+                  name="radio-disabled"
+                  defaultChecked
+                  disabled
+                />
+              </span>
+              <span>Disabled</span>
+            </label>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">

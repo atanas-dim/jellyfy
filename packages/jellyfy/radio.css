@@ -1,0 +1,131 @@
+@layer components {
+  .radio {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-plain-content);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .radio-sm {
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .radio-lg {
+    gap: 1rem;
+    font-size: 1rem;
+  }
+
+  .radio-ring {
+    --jelly-thickness: var(--thickness-mark);
+    --jelly-elevation: var(--elevation-mark);
+    position: relative;
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--radius-control);
+    color: var(--color-plain-content);
+  }
+
+  .radio-sm .radio-ring {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .radio-lg .radio-ring {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .radio-ring input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .radio-ring::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 999px;
+    background-color: var(--color-plain-content);
+    background-image: var(--noise);
+    background-size: var(--noise-size);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 300ms ease-out;
+  }
+
+  .radio-sm .radio-ring::after {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .radio-lg .radio-ring::after {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .radio:has(:checked) .radio-ring::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .radio:has(:focus-visible) .radio-ring {
+    --jelly-focus: 0 0 0 2px var(--focus-gap);
+    outline: 1px solid var(--focus-color);
+    outline-offset: 2px;
+  }
+
+  .radio:has(:disabled) {
+    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    cursor: not-allowed;
+  }
+
+  .radio:has(:disabled) .radio-ring input {
+    cursor: not-allowed;
+  }
+}
+
+@layer utilities {
+  .radio-ring {
+    background-color: color-mix(
+      in oklab,
+      var(--color-plain) var(--material-opacity),
+      transparent
+    );
+  }
+
+  .radio:is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .warning,
+      .error,
+      .info
+    )
+    .radio-ring::after {
+    background-color: color-mix(
+      in oklab,
+      var(--solid) var(--material-opacity),
+      transparent
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radio-ring::after {
+    transition: none;
+  }
+}

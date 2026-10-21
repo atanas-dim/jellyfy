@@ -41,6 +41,10 @@
     "./checkbox.css": {
       "style": "./checkbox.css",
       "default": "./checkbox.css"
+    },
+    "./radio.css": {
+      "style": "./radio.css",
+      "default": "./radio.css"
     }
   },
   "files": [
@@ -53,7 +57,8 @@
     "input.css",
     "textarea.css",
     "select.css",
-    "checkbox.css"
+    "checkbox.css",
+    "radio.css"
   ],
   "sideEffects": [
     "./material.css",
@@ -64,6 +69,7 @@
     "./input.css",
     "./textarea.css",
     "./select.css",
-    "./checkbox.css"
+    "./checkbox.css",
+    "./radio.css"
   ]
 }

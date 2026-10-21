@@ -147,7 +147,7 @@ const refresh = () => {
   syncLights();
   document
     .querySelectorAll(
-      ".btn, .btn-icon, .btn-bump, .input, .textarea, .select, .checkbox-box, .squish",
+      ".btn, .btn-icon, .btn-bump, .input, .textarea, .select, .checkbox-box, .radio-ring, .squish",
     )
     .forEach(attachSquish);
 };
