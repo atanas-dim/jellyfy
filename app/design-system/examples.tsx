@@ -915,32 +915,42 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Input
           </figcaption>
-          <div
-            className={twJoin(
-              "primary thickness-field relative h-12 w-full",
-              pairEdge[theme],
-            )}
-            style={fieldStyle}
-          >
-            <span
-              className="absolute"
-              style={{
-                top: "0.75rem",
-                left: "1rem",
-                fontSize: "10px",
-                fontWeight: 500,
-                letterSpacing: "0.04em",
-                lineHeight: 1,
-              }}
-            >
-              Email
-            </span>
-            <span
-              className="absolute"
-              style={{ left: "1rem", bottom: "0.625rem", fontSize: "1rem" }}
-            >
-              ada@jellyfy.dev
-            </span>
+          <div className="flex w-full flex-col gap-3">
+            <label className="input input-sm primary">
+              <input placeholder=" " defaultValue="ada@jellyfy.dev" />
+              <span>Small</span>
+            </label>
+            <label className="input primary">
+              <input placeholder=" " defaultValue="ada@jellyfy.dev" />
+              <span>Email</span>
+            </label>
+            <label className="input input-lg primary">
+              <input placeholder=" " defaultValue="ada@jellyfy.dev" />
+              <span>Large</span>
+            </label>
+            <label className="input primary">
+              <input placeholder=" " />
+              <span>Name</span>
+            </label>
+            <label className="input primary">
+              <span className="input-start" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="M20 20l-3.5-3.5" />
+                </svg>
+              </span>
+              <input placeholder=" " />
+              <span>Search</span>
+            </label>
+            <label className="input primary">
+              <input placeholder=" " defaultValue="ada@jellyfy.dev" disabled />
+              <span>Disabled</span>
+            </label>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">

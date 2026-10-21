@@ -2,6 +2,7 @@
 @import "jellyfy/material.css";
 @import "jellyfy/motion.css";
 @import "jellyfy/button.css";
+@import "jellyfy/input.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

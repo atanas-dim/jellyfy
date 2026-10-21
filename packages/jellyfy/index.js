@@ -54,6 +54,7 @@ const pressSquish = (event) => {
   const face = event.currentTarget;
   if (!(face instanceof HTMLElement)) return;
   if (face instanceof HTMLButtonElement && face.disabled) return;
+  if (face.matches(":has(:disabled)")) return;
   if (event.button !== 0) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   pressed.add(face);
@@ -115,7 +116,7 @@ let scheduled = false;
 
 const refresh = () => {
   syncLights();
-  document.querySelectorAll(".btn, .squish").forEach(attachSquish);
+  document.querySelectorAll(".btn, .input, .squish").forEach(attachSquish);
 };
 
 const scheduleRefresh = () => {

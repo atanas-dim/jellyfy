@@ -316,6 +316,7 @@
 @layer utilities {
   :where(
     .btn,
+    .input,
     .thickness-surface,
     .thickness-field,
     .thickness-control,

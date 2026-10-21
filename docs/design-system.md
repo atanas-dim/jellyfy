@@ -196,10 +196,10 @@ Press light is a pair of soft ellipses, derived from the solid. The lower ellips
 
 **Field light** uses a different strength, because a field is a recess. It is hidden at rest and fully visible while the field is focused, including when focus arrives by click. The transition is 300ms.
 
-| Ellipse   | Light                            | Dark                             | Place                                                                                       |
-| --------- | -------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------- |
-| Highlight | White mixed at 90%, shown at 60% | White mixed at 40%, shown at 10% | 70% of the width, 1.75rem tall, sits 1rem below the bottom edge so only the top of it shows |
-| Shade     | Black mixed at 25%, shown at 20% | Black mixed at 90%, shown at 20% | 90% of the width, 2.1rem tall, starts 1.4rem from the top                                   |
+| Ellipse   | Light                            | Dark                             | Place                                                                                           |
+| --------- | -------------------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Highlight | White mixed at 90%, shown at 60% | White mixed at 40%, shown at 10% | 70% of the width, 1.75rem tall, 1rem below the bottom edge, shifted up by 40% of its own height |
+| Shade     | Black mixed at 25%, shown at 20% | Black mixed at 90%, shown at 20% | 90% of the width, 2.1rem tall, 1.4rem from the top, shifted up by 75% of its own height         |
 
 An object with no slot builds the same mixes from the surface tone.
 

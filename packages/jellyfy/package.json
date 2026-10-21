@@ -6,19 +6,34 @@
   "type": "module",
   "exports": {
     ".": "./index.js",
-    "./material.css": "./material.css",
-    "./motion.css": "./motion.css",
-    "./button.css": "./button.css"
+    "./material.css": {
+      "style": "./material.css",
+      "default": "./material.css"
+    },
+    "./motion.css": {
+      "style": "./motion.css",
+      "default": "./motion.css"
+    },
+    "./button.css": {
+      "style": "./button.css",
+      "default": "./button.css"
+    },
+    "./input.css": {
+      "style": "./input.css",
+      "default": "./input.css"
+    }
   },
   "files": [
     "index.js",
     "material.css",
     "motion.css",
-    "button.css"
+    "button.css",
+    "input.css"
   ],
   "sideEffects": [
     "./material.css",
     "./motion.css",
-    "./button.css"
+    "./button.css",
+    "./input.css"
   ]
 }
