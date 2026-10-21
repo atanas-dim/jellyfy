@@ -19,6 +19,12 @@ const SHEENS = [
   ["jelly-sheen-light", "1.5s", "0.78s"],
 ];
 
+const ORBITS = [
+  [0, "1.35s", "jelly-orbit-light"],
+  [130, "2.2s", "jelly-orbit-shade"],
+  [240, "1.6s", "jelly-orbit-light"],
+];
+
 const addLights = (button) => {
   if (button.querySelector(".jelly-lights")) return;
   const lights = document.createElement("span");
@@ -29,6 +35,26 @@ const addLights = (button) => {
     sheen.style.setProperty("--sheen-duration", duration);
     sheen.style.setProperty("--sheen-delay", delay);
     lights.append(sheen);
+  }
+  button.prepend(lights);
+};
+
+const addOrbit = (button) => {
+  if (button.querySelector(".jelly-lights")) return;
+  const lights = document.createElement("span");
+  lights.className = "jelly-lights";
+  for (const [angle, duration, tone] of ORBITS) {
+    const arm = document.createElement("span");
+    arm.className = "jelly-orbit-arm";
+    arm.style.transform = `rotate(${angle}deg)`;
+    const orbit = document.createElement("span");
+    orbit.className = "jelly-orbit";
+    orbit.style.setProperty("--orbit-duration", duration);
+    const dot = document.createElement("span");
+    dot.className = `jelly-orbit-dot ${tone}`;
+    orbit.append(dot);
+    arm.append(orbit);
+    lights.append(arm);
   }
   button.prepend(lights);
 };
@@ -104,8 +130,11 @@ const attachSquish = (face) => {
 
 const syncLights = () => {
   document.querySelectorAll(".btn.loading").forEach(addLights);
+  document.querySelectorAll(".btn-icon.loading").forEach(addOrbit);
   document
-    .querySelectorAll(".btn:not(.loading) > .jelly-lights")
+    .querySelectorAll(
+      ".btn:not(.loading) > .jelly-lights, .btn-icon:not(.loading) > .jelly-lights",
+    )
     .forEach((lights) => {
       lights.remove();
     });
@@ -117,7 +146,7 @@ let scheduled = false;
 const refresh = () => {
   syncLights();
   document
-    .querySelectorAll(".btn, .input, .textarea, .select, .squish")
+    .querySelectorAll(".btn, .btn-icon, .input, .textarea, .select, .squish")
     .forEach(attachSquish);
 };
 

@@ -18,6 +18,10 @@
       "style": "./button.css",
       "default": "./button.css"
     },
+    "./icon-button.css": {
+      "style": "./icon-button.css",
+      "default": "./icon-button.css"
+    },
     "./input.css": {
       "style": "./input.css",
       "default": "./input.css"
@@ -36,6 +40,7 @@
     "material.css",
     "motion.css",
     "button.css",
+    "icon-button.css",
     "input.css",
     "textarea.css",
     "select.css"
@@ -44,6 +49,7 @@
     "./material.css",
     "./motion.css",
     "./button.css",
+    "./icon-button.css",
     "./input.css",
     "./textarea.css",
     "./select.css"

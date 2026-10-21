@@ -1,0 +1,128 @@
+@layer components {
+  .btn-icon {
+    --jelly-thickness: var(--thickness-control);
+    --jelly-elevation: var(--elevation-rest);
+    position: relative;
+    isolation: isolate;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--radius-control);
+    color: var(--content, var(--color-plain-content));
+    cursor: pointer;
+    transition:
+      translate var(--motion-rise-time) ease-out,
+      box-shadow 300ms ease-out;
+  }
+
+  .btn-icon-sm {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .btn-icon-lg {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .btn-icon > svg {
+    position: relative;
+    z-index: 1;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .btn-icon-sm > svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .btn-icon-lg > svg {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .btn-icon::before,
+  .btn-icon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 90%;
+    border-radius: 999px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms ease-out;
+  }
+
+  .btn-icon::before {
+    top: 60%;
+    height: 60%;
+    transform: translate(-50%, -40%);
+    background: radial-gradient(var(--control-highlight), transparent 60%);
+  }
+
+  .btn-icon::after {
+    top: 42%;
+    height: 50%;
+    transform: translate(-50%, -75%);
+    background: radial-gradient(var(--control-shade), transparent 60%);
+  }
+
+  .btn-icon:active:not(:disabled)::before,
+  .btn-icon:active:not(:disabled)::after {
+    opacity: 1;
+  }
+
+  .btn-icon:hover:not(:disabled) {
+    --jelly-elevation: var(--elevation-hover);
+    translate: 0 calc(-1 * var(--motion-rise-distance));
+  }
+
+  .btn-icon:active:not(:disabled) {
+    translate: 0 0;
+  }
+
+  .btn-icon:focus-visible {
+    --jelly-focus: 0 0 0 2px var(--focus-gap);
+    outline: 1px solid var(--focus-color);
+    outline-offset: 2px;
+  }
+
+  .btn-icon:disabled {
+    --jelly-elevation: var(--elevation-disabled);
+    cursor: not-allowed;
+  }
+
+  .btn-icon:disabled::before,
+  .btn-icon:disabled::after {
+    opacity: 0;
+  }
+}
+
+@layer utilities {
+  .btn-icon:disabled {
+    background-color: color-mix(
+      in oklab,
+      var(--color-disabled) 60%,
+      transparent
+    );
+    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-icon {
+    transition: none;
+  }
+
+  .btn-icon:hover:not(:disabled),
+  .btn-icon:active:not(:disabled) {
+    translate: none;
+  }
+}

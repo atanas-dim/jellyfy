@@ -30,14 +30,14 @@
       box-shadow 300ms ease-out;
   }
 
-  .btn-sm {
+  .btn.btn-sm {
     height: 2.5rem;
     min-width: 8rem;
     padding-inline: 1.25rem;
     font-size: 0.75rem;
   }
 
-  .btn-lg {
+  .btn.btn-lg {
     height: 3.5rem;
     min-width: 12rem;
     padding-inline: 2rem;

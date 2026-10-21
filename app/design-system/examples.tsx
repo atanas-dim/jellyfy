@@ -864,14 +864,39 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Icon button
           </figcaption>
-          <div
-            className={twJoin(
-              "primary thickness-control flex size-12 items-center justify-center",
-              pairEdge[theme],
-            )}
-            style={controlStyle}
-          >
-            <Plus size="1.5rem" />
+          <div className="flex flex-wrap items-end gap-3">
+            <button
+              className="btn-icon btn-icon-sm primary"
+              type="button"
+              aria-label="Add"
+            >
+              <Plus size="1.25rem" />
+            </button>
+            <button className="btn-icon primary" type="button" aria-label="Add">
+              <Plus size="1.5rem" />
+            </button>
+            <button
+              className="btn-icon btn-icon-lg primary"
+              type="button"
+              aria-label="Add"
+            >
+              <Plus size="1.75rem" />
+            </button>
+            <button
+              className="btn-icon primary"
+              type="button"
+              aria-label="Add"
+              disabled
+            >
+              <Plus size="1.5rem" />
+            </button>
+            <button
+              className="btn-icon primary loading"
+              type="button"
+              aria-label="Add"
+            >
+              <Plus size="1.5rem" />
+            </button>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">
