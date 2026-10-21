@@ -92,10 +92,11 @@ const pressSquish = (event, painted) => {
   if (event.button !== 0) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   pressed.add(face);
-  // Pointer capture dismisses the select menu when the button is released.
-  const picker =
-    event.target instanceof Element && event.target.closest("select");
-  if (!picker) {
+  // Pointer capture dismisses the select menu and stops a range drag.
+  const nativeGesture =
+    (event.target instanceof Element && event.target.closest("select")) ||
+    (current instanceof HTMLInputElement && current.type === "range");
+  if (!nativeGesture) {
     try {
       current.setPointerCapture(event.pointerId);
     } catch {

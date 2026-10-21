@@ -48,16 +48,16 @@ The thickness classes are `thickness-surface`, `thickness-field`, `thickness-con
 
 Eight slots. Four are the theme, four are status.
 
-| Slot      | Default solid | Fallback  |
-| --------- | ------------- | --------- |
-| Primary   | TW Indigo 600 | `#4f46e5` |
-| Secondary | TW Pink 600   | `#db2777` |
-| Tertiary  | TW Teal 600   | `#0d9488` |
-| Neutral   | Neutral 400   | `#a3a3a3` |
-| Success   | TW Green 600  | `#16a34a` |
-| Warning   | TW Amber 600  | `#d97706` |
-| Error     | TW Red 600    | `#dc2626` |
-| Info      | TW Sky 600    | `#0284c7` |
+| Slot      | Default solid                                 | Fallback              |
+| --------- | --------------------------------------------- | --------------------- |
+| Primary   | TW Indigo 500 in light. TW Indigo 400 in dark | `#6366f1` / `#818cf8` |
+| Secondary | TW Pink 600                                   | `#db2777`             |
+| Tertiary  | TW Teal 600                                   | `#0d9488`             |
+| Neutral   | Neutral 400                                   | `#a3a3a3`             |
+| Success   | TW Green 600                                  | `#16a34a`             |
+| Warning   | TW Amber 600                                  | `#d97706`             |
+| Error     | TW Red 600                                    | `#dc2626`             |
+| Info      | TW Sky 600                                    | `#0284c7`             |
 
 The neutral ramp is Jellyfy's, from 50 through 950, even where a component uses only some steps. It reads Tailwind's neutral variables when they exist, and uses these hex fallbacks when they do not.
 
@@ -96,7 +96,7 @@ Black and white are shared values, stored once and reused by every mix that need
 
 Each slot has a content color, stored explicitly. Replacing a solid does not recalculate the content color. A custom theme sets both.
 
-The content color is the text on a control. The solid stays the same in both themes. Light text is the 950 step, because the page behind the button is light and the fill turns pale. Dark text is the 50 step, because the page behind the button is dark and the fill turns dark. The hex fallback is that same step.
+The content color is the text on a control. Primary is Indigo 500 in light and Indigo 400 in dark. The other solids stay the same in both themes. Light text is the 950 step, because the page behind the button is light and the fill turns pale. Dark text is the 50 step, because the page behind the button is dark and the fill turns dark. The hex fallback is that same step.
 
 | Slot      | Light         | Dark         |
 | --------- | ------------- | ------------ |
@@ -147,7 +147,7 @@ Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warn
 
 Plain content is `--color-plain-content`. The menu fill is `--color-menu`.
 
-Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-600`, `--color-indigo-50`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.
+Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-500`, `--color-indigo-400`, `--color-indigo-50`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.
 
 Black and white are `--color-black` and `--color-white`. Wash, press light, bump light, and loading light read those variables.
 
