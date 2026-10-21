@@ -820,6 +820,18 @@ const Plus = ({ size }: { size: string }) => (
   </svg>
 );
 
+const PlusIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.75"
+  >
+    <path d="M12 5v14M5 12h14" />
+  </svg>
+);
+
 const controlStyle: CSSProperties = {
   backgroundColor: CONTROL_FILL,
   borderRadius: "var(--radius-control)",
@@ -1239,17 +1251,22 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Alert
           </figcaption>
-          <div
-            className={twJoin(
-              "primary thickness-surface flex items-center gap-3 px-4 py-3 text-base",
-              pairEdge[theme],
-            )}
-            style={surfaceStyle}
-          >
-            <Plus size="1.25rem" />
-            <p style={{ lineHeight: 1.5 }}>
-              The pour stays quiet until you press it.
-            </p>
+          <div className="flex flex-col gap-3">
+            <div className="alert alert-sm primary">
+              <PlusIcon />
+              <p>Small</p>
+            </div>
+            <div className="alert primary">
+              <PlusIcon />
+              <p>The pour stays quiet until you press it.</p>
+            </div>
+            <div className="alert alert-lg primary">
+              <PlusIcon />
+              <p>Large</p>
+            </div>
+            <div className="alert">
+              <p>Plain</p>
+            </div>
           </div>
         </figure>
         <figure className="flex flex-col gap-2">

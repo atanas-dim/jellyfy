@@ -11,6 +11,7 @@
 @import "jellyfy/radio.css";
 @import "jellyfy/toggle.css";
 @import "jellyfy/range.css";
+@import "jellyfy/alert.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
