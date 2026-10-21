@@ -651,18 +651,6 @@ The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `
 
 Start and end slots are `input-start` and `input-end` inside both `input` and `textarea`. The select chevron is `picker-icon`. The built-in chevron is a masked element. A custom icon is an SVG with the same class.
 
-### Return to this gallery
-
-This gallery is built from the tokens. It is not the component classes. Delete this note when the gallery uses the classes.
-
-Come back and use the real classes on this page. Do not keep a second, inline copy.
-
-The Components section is about `btn`, `input`, `select`, and the rest. Once those classes exist, the gallery here should be those classes. One medium of each, in the light block and the dark block, is enough next to the spec.
-
-The token sections stay as they are. Color, material, elevation, shape, type, and spacing are not components. They keep showing the variables.
-
-The set page stays the full catalog: every size, every slot, loading, and disabled. It uses the same classes. It is the place to try them. This page is the place to read the spec and see one true example of each.
-
 ## 13. Customization
 
 A product may change:

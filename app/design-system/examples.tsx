@@ -1320,16 +1320,12 @@ const ComponentSamples = () => (
           <figcaption className={twJoin(captionClass[theme], "text-left")}>
             Message
           </figcaption>
-          <p
-            className="primary"
-            style={{
-              marginTop: "0.375rem",
-              fontSize: "0.75rem",
-              color: "var(--solid)",
-            }}
-          >
-            Use a work email.
-          </p>
+          <div className="flex flex-col items-start">
+            <p className="message message-sm primary">Small</p>
+            <p className="message primary">Use a work email.</p>
+            <p className="message message-lg primary">Large</p>
+            <p className="message">Plain</p>
+          </div>
         </figure>
       </div>
     )}
