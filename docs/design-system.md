@@ -53,7 +53,7 @@ Eight slots. Four are the theme, four are status.
 | Primary   | TW Indigo 600 | `#4f46e5` |
 | Secondary | TW Pink 600   | `#db2777` |
 | Tertiary  | TW Teal 600   | `#0d9488` |
-| Neutral   | Neutral 600   | `#525252` |
+| Neutral   | Neutral 400   | `#a3a3a3` |
 | Success   | TW Green 600  | `#16a34a` |
 | Warning   | TW Amber 600  | `#d97706` |
 | Error     | TW Red 600    | `#dc2626` |
@@ -87,7 +87,7 @@ Every slot, including Neutral, uses the same wash, control fill, content color, 
 | Menu          | Neutral 100        |
 | Plain content | Neutral 800        |
 | Disabled fill | Neutral 400 at 60% |
-| Disabled text | Neutral 50 at 70%  |
+| Disabled text | Neutral 800 at 70% |
 | Shadow color  | Neutral 950        |
 
 Black and white are shared values, stored once and reused by every mix that needs them. They are not color slots.
@@ -444,7 +444,7 @@ The dark theme uses the same mixes, the same thicknesses, the same elevations, t
 
 Dark changes only the neutral step fed into a recipe, the content color step, the focus-gap tone, and the grain.
 
-The Neutral slot is one of the eight colors. Light uses Neutral 600 as its solid. Dark uses Neutral 300. It then uses the same wash, control fill, and content mix as primary.
+The Neutral slot is one of the eight colors. Light uses Neutral 400 as its solid. Dark uses Neutral 400. It then uses the same wash, control fill, and content mix as primary.
 
 The plain element uses plain as its solid, plus the menu tone and the plain content color. Plain is not a second color and not the Neutral slot.
 
@@ -454,12 +454,12 @@ The focus gap and the grain apply to every component, with a slot and without on
 
 | Token         | What it is                    | Light          | Dark               |
 | ------------- | ----------------------------- | -------------- | ------------------ |
-| Neutral slot  | One of the eight colors       | Neutral 600    | Neutral 300        |
+| Neutral slot  | One of the eight colors       | Neutral 400    | Neutral 400        |
 | Surface tone  | Plain element fill            | Neutral 50     | Neutral 700        |
 | Menu tone     | Plain menu fill               | Neutral 100    | Neutral 800        |
 | Plain content | Text on a surface or field    | Neutral 800    | Neutral 100        |
 | Disabled fill | Disabled state, 60% fade      | Neutral 400    | Neutral 600        |
-| Disabled text | Disabled state, 70% fade      | Neutral 50     | Neutral 300        |
+| Disabled text | Disabled state, 70% fade      | Neutral 800    | Neutral 400        |
 | Focus gap     | Shared by every focus ring    | White at 50%   | Neutral 950 at 50% |
 | Grain         | Shared by every jelly surface | Dark, stronger | Light, fainter     |
 

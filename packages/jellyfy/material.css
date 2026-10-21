@@ -68,8 +68,8 @@
       var(--color-neutral-800, #262626)
     );
     --color-neutral: light-dark(
-      var(--color-neutral-600, #525252),
-      var(--color-neutral-300, #d4d4d4)
+      var(--color-neutral-400, #a3a3a3),
+      var(--color-neutral-400, #a3a3a3)
     );
     --color-neutral-content: light-dark(
       var(--color-neutral-950, #0a0a0a),
@@ -193,8 +193,8 @@
       var(--color-neutral-600, #525252)
     );
     --color-disabled-content: light-dark(
-      var(--color-neutral-50, #fafafa),
-      var(--color-neutral-300, #d4d4d4)
+      var(--color-neutral-800, #262626),
+      var(--color-neutral-400, #a3a3a3)
     );
     --focus-color: var(--color-plain-content);
   }
