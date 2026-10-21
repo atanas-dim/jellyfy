@@ -344,9 +344,40 @@ const ElevationSamples = () => (
   />
 );
 
+const SHAPE = [
+  ["--radius-surface", "Surface", "h-16 w-full"],
+  ["--radius-field", "Field", "h-12 w-full"],
+  ["--radius-control", "Control", "h-12 w-full"],
+  ["--radius-mark", "Mark", "size-16"],
+] as const;
+
+const ShapeSamples = () => (
+  <ThemePair
+    render={(theme) => (
+      <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+        {SHAPE.map(([variable, label, size]) => (
+          <figure key={variable} className="flex flex-col items-center gap-3">
+            <div className="flex h-24 w-full items-center justify-center">
+              <div
+                className={twJoin(size, pairEdge[theme])}
+                style={{
+                  backgroundColor: "var(--color-plain)",
+                  borderRadius: `var(${variable})`,
+                }}
+              />
+            </div>
+            <figcaption className={captionClass[theme]}>{label}</figcaption>
+          </figure>
+        ))}
+      </div>
+    )}
+  />
+);
+
 export const examples: Record<string, ReactNode> = {
   roles: <RoleSwatches />,
   color: <ColorSamples />,
   material: <MaterialSamples />,
   elevation: <ElevationSamples />,
+  shape: <ShapeSamples />,
 };

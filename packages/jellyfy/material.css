@@ -31,6 +31,10 @@
   --thickness-mark: inset 0 -1px 5px
     rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.35);
   --elevation: 1;
+  --radius-surface: 1rem;
+  --radius-field: 1rem;
+  --radius-control: 999px;
+  --radius-mark: 0.5rem;
 }
 
 .light {
