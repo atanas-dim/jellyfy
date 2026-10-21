@@ -1335,6 +1335,48 @@ const CustomizationSamples = () => (
   />
 );
 
+const ContractSamples = () => (
+  <ThemePair
+    render={(theme) => (
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className="flex h-12 w-full items-center justify-center text-sm"
+            style={{
+              borderRadius: "var(--radius-control)",
+              backgroundColor: "var(--color-plain)",
+              color: "var(--color-plain-content)",
+            }}
+          >
+            Plain
+          </div>
+          <figcaption className={captionClass[theme]}>No role</figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <div
+            className="thickness-control flex h-12 w-full items-center justify-center text-sm"
+            style={{
+              borderRadius: "var(--radius-control)",
+              color: "var(--color-plain-content)",
+            }}
+          >
+            Control
+          </div>
+          <figcaption className={captionClass[theme]}>
+            Opted into the control role
+          </figcaption>
+        </figure>
+        <figure className="flex flex-col items-center gap-3">
+          <SquishControl />
+          <figcaption className={captionClass[theme]}>
+            Opted into squish
+          </figcaption>
+        </figure>
+      </div>
+    )}
+  />
+);
+
 export const examples: Record<string, ReactNode> = {
   roles: <RoleSwatches />,
   color: <ColorSamples />,
@@ -1348,4 +1390,5 @@ export const examples: Record<string, ReactNode> = {
   themes: <ThemeSamples />,
   components: <ComponentSamples />,
   customization: <CustomizationSamples />,
+  "library-contract": <ContractSamples />,
 };

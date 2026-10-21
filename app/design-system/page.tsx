@@ -24,6 +24,7 @@ const SHOWN = [
   "themes",
   "components",
   "customization",
+  "library-contract",
 ];
 
 export default function DesignSystemPage() {
