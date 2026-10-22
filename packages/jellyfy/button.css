@@ -23,7 +23,15 @@
     text-transform: uppercase;
     color: var(--content, var(--color-plain-content));
     text-shadow: 0 0 6px
-      color-mix(in oklab, var(--color-neutral-950, #0a0a0a) 40%, transparent);
+      color-mix(
+        in oklab,
+        light-dark(
+            var(--color-neutral-50, #fafafa),
+            var(--color-neutral-950, #0a0a0a)
+          )
+          40%,
+        transparent
+      );
     cursor: pointer;
     transition:
       translate var(--motion-rise-time) ease-out,
