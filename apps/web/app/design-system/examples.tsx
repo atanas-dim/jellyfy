@@ -764,6 +764,7 @@ const InteractionSamples = () => (
 const THEME_SWATCHES = [
   ["Neutral slot", "var(--color-neutral)"],
   ["Surface", "var(--color-plain)"],
+  ["Mark", "var(--color-mark)"],
   ["Menu", "var(--color-menu)"],
   ["Plain content", "var(--color-plain-content)"],
   [

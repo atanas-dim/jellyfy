@@ -95,7 +95,7 @@
   .checkbox-box {
     background-color: color-mix(
       in oklab,
-      var(--color-plain) var(--material-opacity),
+      var(--color-mark) var(--material-opacity),
       transparent
     );
   }

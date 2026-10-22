@@ -29,7 +29,7 @@ Every object uses one role. Custom components use the same roles. Size and role 
 | Surface | A container: card, alert, modal panel, badge                                                      | Thin      | Surface tone. Wash with a slot.                                    | Surface                                        |
 | Field   | A place to type or choose: input, textarea, select                                                | Mid       | Surface tone. Wash with a slot.                                    | Field                                          |
 | Control | A press that takes an action: button, icon button                                                 | Thick     | Surface tone. Control fill with a slot.                            | Control                                        |
-| Mark    | A small indicator: checkbox box, radio ring, toggle track, toggle thumb, range track, range thumb | Mark      | Surface tone. Control fill when selected or filled.                | Control. The checkbox box uses the mark radius |
+| Mark    | A small indicator: checkbox box, radio ring, toggle track, toggle thumb, range track, range thumb | Mark      | Mark colour. Control fill when selected or filled.                 | Control. The checkbox box uses the mark radius |
 | Overlay | Modal panel, select menu                                                                          | Thin      | Modal panel uses the surface fill. Select menu uses the menu tone. | Surface                                        |
 
 A modal panel follows the surface fill rules. A select menu uses the menu tone for its panel. A hovered option and a selected option mix the solid into that menu tone at the menu mixes.
@@ -135,11 +135,12 @@ Strength is separate from the solid. The same solid is quiet on a surface or fie
 | Application   | Mix                                                                                                                            |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Surface tone  | Neutral 50 in light, Neutral 800 in dark. A plain surface runs this through the resting wash.                                  |
+| Mark colour   | Plain mixed with 28% white. The same mix in both themes.                                                                       |
 | Wash, resting | Fields: 86% plain and 14% solid in light, 76% and 24% in dark. Surfaces: 94% plain and 6% solid in light, 88% and 12% in dark. |
 | Wash, focused | Fields: 78% plain and 22% solid in light, 68% and 32% in dark.                                                                 |
 | Control fill  | The solid, with no plain mixed in.                                                                                             |
 
-Every jelly fill is painted at the material opacity, with the shared blur and the shared grain. Surfaces and fields use the wash. A focused field uses the focused wash, which mixes in more of the solid. With no slot, the solid is plain, so the wash stays plain. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
+Every jelly fill is painted at the material opacity, with the shared blur and the shared grain. Surfaces and fields use the wash. A focused field uses the focused wash, which mixes in more of the solid. With no slot, the solid is plain, so the wash stays plain. An empty checkbox box, an empty radio ring, an off toggle track, and a range track use the mark colour. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
 
 ### Menu mixes
 
@@ -158,7 +159,7 @@ Option text stays the plain content color.
 
 Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. They set the solid, the content color, and the surface content color. Content colors are paired variables, named with the daisyUI suffix `content` (`--color-primary-content`, and the same for the other slots). Surface content colors use the suffix `surface-content` (`--color-primary-surface-content`, and the same for the other slots).
 
-Plain content is `--color-plain-content`. The menu fill is `--color-menu`.
+Plain content is `--color-plain-content`. The menu fill is `--color-menu`. The mark colour is `--color-mark`. It mixes `--color-white` into `--color-plain` at `--percent-mark-lift`.
 
 Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-500`, `--color-indigo-400`, `--color-indigo-100`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.
 
@@ -575,11 +576,11 @@ A mark plus a label. The box uses mark thickness, the mark elevation, and the ma
 | Box   | 1.25rem | 1.5rem   | 2rem  |
 | Label | 0.75rem | 0.875rem | 1rem  |
 
-The check is a masked copy of the Lucide check, in the current color, centered in the box. It is invisible and scaled to 0.4 when off, and fully visible at scale 1 when on. A slotted checked box uses the control fill and the control content color.
+The empty box uses the mark colour. The check is a masked copy of the Lucide check, in the current color, centered in the box. It is invisible and scaled to 0.4 when off, and fully visible at scale 1 when on. A slotted checked box uses the control fill and the control content color.
 
 ### Radio
 
-A mark plus a label. The ring is jelly: grain, blur, and mark thickness. It matches the checkbox sizes, including the 24px medium and 20px small hit target, and uses the control radius, so it is a circle in the default theme. The bullet is jelly with the grain. It is opaque, with no blur and no thickness. It is 0.75rem, 0.875rem, and 1.25rem at small, medium, and large. It scales from 0 to 1 when selected. With no slot, the bullet is the plain content color. With a slot, the bullet is the control fill.
+A mark plus a label. The ring uses the mark colour. It is jelly: grain, blur, and mark thickness. It matches the checkbox sizes, including the 24px medium and 20px small hit target, and uses the control radius, so it is a circle in the default theme. The bullet is jelly with the grain. It is opaque, with no blur and no thickness. It is 0.75rem, 0.875rem, and 1.25rem at small, medium, and large. It scales from 0 to 1 when selected. With no slot, the bullet is the plain content color. With a slot, the bullet is the control fill.
 
 ### Toggle
 
@@ -592,11 +593,11 @@ A mark plus a label. The track and the thumb are both jelly: grain, blur, and ma
 | Thumb inset    | 0.25rem          | 0.25rem         | 0.25rem        |
 | Travel when on | 1rem             | 1.15rem         | 1.5rem         |
 
-The resting thumb is Neutral 500 mixed at 55% into white. The on thumb is white. A slotted on track uses the control fill. The thumb moves over 300ms, eased out.
+The off track uses the mark colour. The resting thumb is Neutral 500 mixed at 55% into white. The on thumb is white. A slotted on track uses the control fill. The thumb moves over 300ms, eased out.
 
 ### Range
 
-A mark. The track, the fill, and the thumb are jelly: grain, blur, and mark thickness. Only the color differs. The fill is clipped to the track. With no slot, the track uses the surface tone and the fill uses the plain content color, both at the material opacity. A slot sets the fill to the control fill. The thumb uses the fill's color. All three use the control radius.
+A mark. The track, the fill, and the thumb are jelly: grain, blur, and mark thickness. Only the color differs. The fill is clipped to the track. With no slot, the track uses the mark colour and the fill uses the plain content color, both at the material opacity. A slot sets the fill to the control fill. The thumb uses the fill's color. All three use the control radius.
 
 The thumb position and the fill width follow the current value between the minimum and the maximum.
 
@@ -692,7 +693,7 @@ Public custom properties: one solid, one content color, and one surface content 
 
 `--color-black` and `--color-white` are shared mix values. They are not part of this contract.
 
-Shade, highlight, wash, menu mixes, thickness, and drop shadows stay internal variables. A variable marked `[DARK ADAPTATION MAY BE NEEDED]` can be overridden by the dark theme.
+Shade, highlight, wash, the mark lift, menu mixes, thickness, and drop shadows stay internal variables. A variable marked `[DARK ADAPTATION MAY BE NEEDED]` can be overridden by the dark theme.
 
 ## 14. Library contract
 
