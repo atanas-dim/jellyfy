@@ -35,7 +35,8 @@ export default function ColorsPage() {
         slot has a solid, a content color for text on a button or badge, and a
         surface content color for text on a field, card, alert, or dialog panel.
         Primary is Indigo 500 in the light theme and Indigo 400 in the dark
-        theme. The other solids are the 600 step in both themes.
+        theme. Neutral is Neutral 400 in both themes. Secondary, tertiary,
+        success, warning, error, and info are the 600 step in both themes.
       </p>
       <div className="mt-8 overflow-x-auto overflow-y-hidden overscroll-x-contain overscroll-y-auto">
         <table className="w-full text-left text-sm">
@@ -61,10 +62,18 @@ export default function ColorsPage() {
         </table>
       </div>
       <p className="mt-4 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
-        A card with no color stays plain. A dialog panel with no color stays
-        plain, and the close button follows that text. A slot tints the text
-        with the surface content color: the 800 step in light, the 200 step in
-        dark.
+        A card, an alert, or a dialog panel with no color stays plain, and the
+        close button follows that text. A slot tints that text with the surface
+        content color: the 800 step in light, the 200 step in dark. Text on a
+        button or a badge is the content color: the 950 step in light, the 100
+        step in dark. A message with a slot uses the solid itself. A message
+        with no slot stays the plain content color. It is not an error style.
+      </p>
+      <p className="mt-4 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
+        A disabled control replaces its fill and its text with the disabled
+        colors. It does not keep its slot. The slider track keeps its own color.
+        A disabled bump button has no fill. It fades, and its icon stays the
+        plain content color.
       </p>
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         A color on a parent
@@ -72,7 +81,8 @@ export default function ColorsPage() {
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         The color class sets a variable, and variables inherit. A message inside
         a <code className="font-mono text-sm">primary</code> card follows that
-        card. Put the color on the message itself when it must stay red.
+        card. Put the color on the message itself when it should use its own
+        solid.
       </p>
       <CodeBlock
         lang="html"

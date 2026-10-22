@@ -35,8 +35,9 @@ export default function DocsPage() {
           >
             Install
           </Link>{" "}
-          the stylesheet and call{" "}
-          <code className="font-mono text-sm">startJellyfy()</code> once.
+          <code className="font-mono text-sm">jellyfy.css</code> for every
+          control, or the material, the motion, and the component files you use.
+          Call <code className="font-mono text-sm">startJellyfy()</code> once.
         </li>
         <li>
           Read{" "}

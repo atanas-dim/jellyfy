@@ -3,7 +3,8 @@ import { absoluteUrl, site } from "@/resources/site";
 
 const guides: Record<string, string> = {
   "/docs": "How to use the classes.",
-  "/docs/install": "Add jellyfy.css and call startJellyfy() once.",
+  "/docs/install":
+    "Import jellyfy.css for the whole library, or the component files you use, and call startJellyfy() once.",
   "/docs/colors": "The eight color classes and their defaults.",
   "/docs/customize": "The colors, radii, and grain you can set.",
 };
