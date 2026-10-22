@@ -167,7 +167,7 @@
     .toggle-track {
     background-color: color-mix(
       in oklab,
-      var(--color-disabled) 60%,
+      var(--color-disabled) var(--material-opacity),
       transparent
     );
   }

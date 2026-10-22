@@ -90,7 +90,7 @@ export const Landing = () => {
           y: 32,
           duration: 0.85,
           ease: "power3.out",
-          scrollTrigger: { trigger: element, start: "top 86%" },
+          scrollTrigger: { trigger: element, start: "top 90%" },
         });
       });
     }, root);
@@ -107,7 +107,7 @@ export const Landing = () => {
 
   return (
     <main ref={page}>
-      <section className="flex min-h-fit items-center lg:min-h-[min(calc(100svh-4rem),44rem)]">
+      <section className="flex h-svh max-h-[50rem] min-h-fit items-center">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
           <div className="max-w-xl">
             <p

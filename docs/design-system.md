@@ -132,14 +132,14 @@ Text on a control meets WCAG AA, 4.5:1, against the painted fill. Surface conten
 
 Strength is separate from the solid. The same solid is quiet on a surface or field and firm on a control.
 
-| Application   | Mix                                                                                                    |
-| ------------- | ------------------------------------------------------------------------------------------------------ |
-| Surface tone  | Neutral 50 at the material opacity, 60%                                                                |
-| Wash, resting | 86% surface tone and 14% solid in light. 76% surface tone and 24% solid in dark. Shown at 80% opacity. |
-| Wash, focused | 78% surface tone and 22% solid in light. 68% surface tone and 32% solid in dark. Shown at 80% opacity. |
-| Control fill  | Solid at the material opacity, 60%                                                                     |
+| Application   | Mix                                                                                                                            |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Surface tone  | Neutral 50 in light, Neutral 700 in dark. A plain surface runs this through the resting wash.                                  |
+| Wash, resting | Fields: 86% plain and 14% solid in light, 76% and 24% in dark. Surfaces: 94% plain and 6% solid in light, 88% and 12% in dark. |
+| Wash, focused | Fields: 78% plain and 22% solid in light, 68% and 32% in dark.                                                                 |
+| Control fill  | The solid, with no plain mixed in.                                                                                             |
 
-The control fill is still jelly. The slot color is at 60% opacity, with the shared blur and the shared grain. Surfaces and fields use the wash with a slot. A field with no slot uses plain as its solid, so the focused wash stays plain. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
+Every jelly fill is painted at the material opacity, with the shared blur and the shared grain. Surfaces and fields use the wash. A focused field uses the focused wash, which mixes in more of the solid. With no slot, the solid is plain, so the wash stays plain. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
 
 ### Menu mixes
 
@@ -178,7 +178,7 @@ The grain is fractal noise, tiled. The tile is 22.5rem. The light theme uses a d
 
 Material opacity is 60% for every object. Blur is 4px for every object. Both are single values. Components do not invent their own.
 
-The 80% wash amount in the color section is a color mix. It is not a second material opacity.
+The wash percentages are colour mixes. They are not a second opacity.
 
 ### Thickness
 
@@ -463,16 +463,16 @@ Disabled is a state. The fade stays 60% for the fill and 70% for the text. Dark 
 
 The focus gap and the grain apply to every component, with a slot and without one.
 
-| Token         | What it is                    | Light          | Dark               |
-| ------------- | ----------------------------- | -------------- | ------------------ |
-| Neutral slot  | One of the eight colors       | Neutral 400    | Neutral 400        |
-| Surface tone  | Plain element fill            | Neutral 50     | Neutral 700        |
-| Menu tone     | Plain menu fill               | Neutral 100    | Neutral 800        |
-| Plain content | Text on a surface or field    | Neutral 800    | Neutral 100        |
-| Disabled fill | Disabled state, 60% fade      | Neutral 400    | Neutral 600        |
-| Disabled text | Disabled state, 70% fade      | Neutral 800    | Neutral 400        |
-| Focus gap     | Shared by every focus ring    | White at 50%   | Neutral 950 at 50% |
-| Grain         | Shared by every jelly surface | Dark, stronger | Light, fainter     |
+| Token         | What it is                        | Light          | Dark               |
+| ------------- | --------------------------------- | -------------- | ------------------ |
+| Neutral slot  | One of the eight colors           | Neutral 400    | Neutral 400        |
+| Surface tone  | Plain solid, run through the wash | Neutral 50     | Neutral 700        |
+| Menu tone     | Plain menu fill                   | Neutral 100    | Neutral 800        |
+| Plain content | Text on a surface or field        | Neutral 800    | Neutral 100        |
+| Disabled fill | Disabled state, 60% fade          | Neutral 400    | Neutral 600        |
+| Disabled text | Disabled state, 70% fade          | Neutral 800    | Neutral 400        |
+| Focus gap     | Shared by every focus ring        | White at 50%   | Neutral 950 at 50% |
+| Grain         | Shared by every jelly surface     | Dark, stronger | Light, fainter     |
 
 A recipe marked `[DARK ADAPTATION MAY BE NEEDED]` uses the value in this document in both themes. That value is a CSS variable. The dark theme may override it.
 
@@ -610,7 +610,7 @@ The default lane is at most 24rem wide. Label size and the gap above the lane ma
 
 ### Alert
 
-A surface. Surface thickness, surface radius, rest elevation. A slot uses the wash. With no slot, the text is the plain content color. With a slot, the text is the surface content color. An optional icon is vertically centered on the first line and uses that text color.
+A surface. Surface thickness, surface radius, rest elevation. The fill is the resting wash. With no slot, the solid is plain and the text is the plain content color. With a slot, the text is the surface content color. An optional icon is vertically centered on the first line and uses that text color.
 
 |         | Small          | Medium       | Large        |
 | ------- | -------------- | ------------ | ------------ |
@@ -630,7 +630,7 @@ A compact surface. Surface thickness, mark elevation, control radius, so the def
 
 ### Card
 
-A surface. Surface thickness, surface radius, rest elevation. A slot uses the wash. With no slot, the text is the plain content color. With a slot, the text is the surface content color.
+A surface. Surface thickness, surface radius, rest elevation. The fill is the resting wash. With no slot, the solid is plain and the text is the plain content color. With a slot, the text is the surface content color.
 
 |         | Small        | Medium       | Large          |
 | ------- | ------------ | ------------ | -------------- |
@@ -641,7 +641,7 @@ A surface. Surface thickness, surface radius, rest elevation. A slot uses the wa
 
 An overlay. The shell covers the viewport and centers the panel. The veil is Neutral 950 at 40%. The shell has no fill and no focus outline.
 
-The panel is a surface with surface thickness, surface radius, and the overlay elevation. It is at most 28rem wide, with 1rem of space on each side of the viewport. A slot uses the wash. With no slot, the text is the plain content color. With a slot, the text is the surface content color. The bump button sits in the panel.
+The panel is a surface with surface thickness, surface radius, and the overlay elevation. It is at most 28rem wide, with 1rem of space on each side of the viewport. The fill is the resting wash. With no slot, the solid is plain and the text is the plain content color. With a slot, the text is the surface content color. The bump button sits in the panel.
 
 |               | Small | Medium | Large |
 | ------------- | ----- | ------ | ----- |

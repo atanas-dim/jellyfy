@@ -128,7 +128,7 @@ const ColorSamples = () => (
         className={twJoin("primary", SWATCH_EDGE)}
         style={{
           backgroundColor:
-            "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-resting-wash), var(--solid)) var(--percent-shown-wash), transparent)",
+            "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-resting-wash), var(--solid)) var(--material-opacity), transparent)",
           color: "var(--color-plain-content)",
         }}
       />
@@ -168,9 +168,9 @@ const ColorSamples = () => (
 const CONTROL_FILL =
   "color-mix(in oklab, var(--solid) var(--material-opacity), transparent)";
 const WASH =
-  "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-resting-wash), var(--solid)) var(--percent-shown-wash), transparent)";
+  "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-resting-wash), var(--solid)) var(--material-opacity), transparent)";
 const WASH_FOCUS =
-  "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-focused-wash), var(--solid)) var(--percent-shown-wash), transparent)";
+  "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-focused-wash), var(--solid)) var(--material-opacity), transparent)";
 
 const LightSwatches = ({
   slot,
@@ -709,7 +709,7 @@ const InteractionSamples = () => (
             style={{
               borderRadius: "var(--radius-control)",
               backgroundColor:
-                "color-mix(in oklab, var(--color-disabled) 60%, transparent)",
+                "color-mix(in oklab, var(--color-disabled) var(--material-opacity), transparent)",
               color:
                 "color-mix(in oklab, var(--color-disabled-content) 70%, transparent)",
               boxShadow: "var(--elevation-disabled)",
@@ -768,7 +768,7 @@ const THEME_SWATCHES = [
   ["Plain content", "var(--color-plain-content)"],
   [
     "Disabled fill",
-    "color-mix(in oklab, var(--color-disabled) 60%, transparent)",
+    "color-mix(in oklab, var(--color-disabled) var(--material-opacity), transparent)",
   ],
   [
     "Disabled text",

@@ -294,7 +294,7 @@
           var(--color-plain) var(--percent-plain-resting-wash),
           var(--solid)
         )
-        var(--percent-shown-wash),
+        var(--material-opacity),
       transparent
     );
   }
@@ -307,7 +307,7 @@
           var(--color-plain) var(--percent-plain-focused-wash),
           var(--solid)
         )
-        var(--percent-shown-wash),
+        var(--material-opacity),
       transparent
     );
   }
@@ -315,7 +315,7 @@
   .input:has(:disabled) {
     background-color: color-mix(
       in oklab,
-      var(--color-disabled) 60%,
+      var(--color-disabled) var(--material-opacity),
       transparent
     );
     color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);

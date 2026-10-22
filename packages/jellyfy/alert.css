@@ -55,6 +55,19 @@
 }
 
 @layer utilities {
+  .alert {
+    background-color: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          var(--color-plain) var(--percent-surface-resting-wash),
+          var(--solid)
+        )
+        var(--material-opacity),
+      transparent
+    );
+  }
+
   .alert:is(
     .primary,
     .secondary,
@@ -65,16 +78,6 @@
     .error,
     .info
   ) {
-    background-color: color-mix(
-      in oklab,
-      color-mix(
-          in oklab,
-          var(--color-plain) var(--percent-plain-resting-wash),
-          var(--solid)
-        )
-        var(--percent-shown-wash),
-      transparent
-    );
     color: var(--surface-content);
   }
 }
