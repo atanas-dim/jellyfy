@@ -81,7 +81,7 @@
   .info {
     --color-plain: light-dark(
       var(--color-neutral-50, #fafafa),
-      var(--color-neutral-700, #404040)
+      var(--color-neutral-800, #262626)
     );
     --color-plain-content: light-dark(
       var(--color-neutral-800, #262626),

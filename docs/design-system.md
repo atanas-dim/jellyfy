@@ -134,7 +134,7 @@ Strength is separate from the solid. The same solid is quiet on a surface or fie
 
 | Application   | Mix                                                                                                                            |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Surface tone  | Neutral 50 in light, Neutral 700 in dark. A plain surface runs this through the resting wash.                                  |
+| Surface tone  | Neutral 50 in light, Neutral 800 in dark. A plain surface runs this through the resting wash.                                  |
 | Wash, resting | Fields: 86% plain and 14% solid in light, 76% and 24% in dark. Surfaces: 94% plain and 6% solid in light, 88% and 12% in dark. |
 | Wash, focused | Fields: 78% plain and 22% solid in light, 68% and 32% in dark.                                                                 |
 | Control fill  | The solid, with no plain mixed in.                                                                                             |
@@ -466,7 +466,7 @@ The focus gap and the grain apply to every component, with a slot and without on
 | Token         | What it is                        | Light          | Dark               |
 | ------------- | --------------------------------- | -------------- | ------------------ |
 | Neutral slot  | One of the eight colors           | Neutral 400    | Neutral 400        |
-| Surface tone  | Plain solid, run through the wash | Neutral 50     | Neutral 700        |
+| Surface tone  | Plain solid, run through the wash | Neutral 50     | Neutral 800        |
 | Menu tone     | Plain menu fill                   | Neutral 100    | Neutral 800        |
 | Plain content | Text on a surface or field        | Neutral 800    | Neutral 100        |
 | Disabled fill | Disabled state, 60% fade          | Neutral 400    | Neutral 600        |
