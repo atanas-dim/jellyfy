@@ -167,7 +167,7 @@ const FooterDisplayText = ({
   return (
     <div
       ref={containerRef}
-      className="font-display w-full max-w-xs font-black text-neutral-950 md:min-h-0"
+      className="font-display w-full max-w-xs font-black text-neutral-950 md:min-h-0 dark:text-neutral-100"
     >
       {hasMeasured ? (
         <div className="flex w-full flex-col gap-2">
@@ -219,7 +219,7 @@ export const SiteFooter = ({ className }: { className?: string }) => {
           <FooterDisplayText paragraphs={displayText} />
         </div>
         <div className="mt-auto flex w-full shrink-0 flex-col items-center text-sm font-normal md:w-auto md:items-end md:text-right">
-          <span className="mb-0.5 text-xs text-neutral-500">
+          <span className="mb-0.5 text-xs text-neutral-500 dark:text-neutral-400">
             Built by{" "}
             <a
               href="https://adimitrov.com"
@@ -230,7 +230,9 @@ export const SiteFooter = ({ className }: { className?: string }) => {
               Atanas Dimitrov
             </a>
           </span>
-          <span className="text-xs text-neutral-500">© {year} adimitrov</span>
+          <span className="text-xs text-neutral-500 dark:text-neutral-400">
+            © {year} adimitrov
+          </span>
         </div>
       </div>
     </footer>

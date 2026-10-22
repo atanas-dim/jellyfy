@@ -20,7 +20,7 @@ export type ComponentDoc = {
   notes: string[];
 };
 
-const color = (fallback: string): ClassRow[] =>
+const color = (): ClassRow[] =>
   (
     [
       ["primary", "Indigo"],
@@ -35,10 +35,7 @@ const color = (fallback: string): ClassRow[] =>
   ).map(([name, hue]) => ({
     name,
     kind: "Color" as const,
-    note:
-      name === fallback
-        ? `${hue} by default. Used when you set no color.`
-        : `${hue} by default.`,
+    note: `${hue} by default. With no color class, the control stays plain.`,
   }));
 
 const HUES = [
@@ -84,7 +81,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
     classes: [
       { name: "btn", kind: "Component", note: "The button." },
       ...sizes("btn").slice(1),
-      ...color("primary"),
+      ...color(),
       {
         name: "loading",
         kind: "State",
@@ -121,7 +118,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       },
     ],
     notes: [
-      "A button with no color class is primary. neutral is a light face with dark text. The other colors are translucent solids.",
+      "A button with no color class uses the plain surface. A slot such as primary tints the fill. The label sits in a span so the press lights stay behind the words.",
     ],
   },
   {
@@ -136,7 +133,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       },
       { name: "btn-sm", kind: "Size", note: "Small. Use it with btn-icon." },
       { name: "btn-lg", kind: "Size", note: "Large. Use it with btn-icon." },
-      ...color("primary"),
+      ...color(),
       {
         name: "loading",
         kind: "State",
@@ -165,6 +162,43 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
     notes: [],
   },
   {
+    slug: "bump-button",
+    name: "Bump button",
+    description: "A transparent close control. The lights stay on.",
+    classes: [
+      {
+        name: "btn-bump",
+        kind: "Component",
+        note: "No fill and no radius. Pair it with btn-sm or btn-lg for the other sizes.",
+      },
+      { name: "btn-sm", kind: "Size", note: "Small. Use it with btn-bump." },
+      { name: "btn-lg", kind: "Size", note: "Large. Use it with btn-bump." },
+      ...color(),
+    ],
+    examples: [
+      {
+        id: "bump-basic",
+        title: "Close",
+        code: `<button class="btn-bump" type="button" aria-label="Close">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <path d="M18 6 6 18M6 6l12 12" />
+  </svg>
+</button>`,
+        note: "Leave the svg without a size. The button sets the icon size. On a modal panel it sits 0.75rem from the top and the trailing edge.",
+      },
+      {
+        id: "bump-sizes",
+        title: "Sizes",
+        code: `<button class="btn-bump btn-sm" type="button" aria-label="Close"></button>
+<button class="btn-bump" type="button" aria-label="Close"></button>
+<button class="btn-bump btn-lg" type="button" aria-label="Close"></button>`,
+      },
+    ],
+    notes: [
+      "A bump button on a slotted card, alert, or modal panel uses that surface’s text color.",
+    ],
+  },
+  {
     slug: "input",
     name: "Input",
     description:
@@ -182,7 +216,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         note: "An icon before the text. It centers on one line.",
       },
       { name: "input-end", kind: "Part", note: "An icon after the text." },
-      ...color("neutral"),
+      ...color(),
     ],
     examples: [
       {
@@ -258,7 +292,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         kind: "Size",
         note: "14px. A step under a large field.",
       },
-      ...color("error"),
+      ...color(),
     ],
     examples: [
       {
@@ -301,7 +335,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         kind: "Part",
         note: "An icon at the end of the first line.",
       },
-      ...color("neutral"),
+      ...color(),
     ],
     examples: [
       {
@@ -350,7 +384,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         kind: "Part",
         note: "The mark. CSS calls the native one ::picker-icon. An empty i is the default shape. An svg with this class replaces it.",
       },
-      ...color("neutral"),
+      ...color(),
     ],
     examples: [
       {
@@ -411,7 +445,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         note: "The box. The check is drawn inside it.",
       },
       ...sizes("checkbox").slice(1),
-      ...color("primary"),
+      ...color(),
     ],
     examples: [
       {
@@ -458,7 +492,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         note: "The ring. The dot inside it keeps the noise.",
       },
       ...sizes("radio").slice(1),
-      ...color("primary"),
+      ...color(),
     ],
     examples: [
       {
@@ -512,7 +546,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         note: "The thumb. It keeps the noise when it is white.",
       },
       ...sizes("toggle").slice(1),
-      ...color("primary"),
+      ...color(),
     ],
     examples: [
       {
@@ -567,7 +601,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       },
       { name: "range-thumb", kind: "Part", note: "The handle." },
       ...sizes("range").slice(1),
-      ...color("primary"),
+      ...color(),
     ],
     examples: [
       {
@@ -627,7 +661,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       },
       { name: "alert-sm", kind: "Size", note: "14px text." },
       { name: "alert-lg", kind: "Size", note: "20px text." },
-      ...color("warning"),
+      ...color(),
     ],
     examples: [
       {
@@ -673,7 +707,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
     classes: [
       { name: "badge", kind: "Component", note: "The pill." },
       ...sizes("badge").slice(1),
-      ...color("primary"),
+      ...color(),
     ],
     examples: [
       {
@@ -706,7 +740,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         note: "The panel. A plain card is white.",
       },
       ...sizes("card").slice(1),
-      ...color("primary").map((row) =>
+      ...color().map((row) =>
         row.name === "primary"
           ? { ...row, note: "A tint. A plain card is white." }
           : row,
@@ -756,25 +790,29 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         name: "modal-sm",
         kind: "Size",
-        note: "Less padding. The width stays the same.",
+        note: "Less padding. Put it on modal-panel. The width stays the same.",
       },
       {
         name: "modal-lg",
         kind: "Size",
-        note: "More padding. The width stays the same.",
+        note: "More padding. Put it on modal-panel. The width stays the same.",
       },
       {
-        name: "btn-surface",
+        name: "btn-bump",
         kind: "Part",
-        note: "The close control. Two washes sit on it and swap when pressed.",
+        note: "The close control. It sits 0.75rem from the top and the trailing edge of the panel.",
       },
       {
-        name: "btn-surface-sm",
+        name: "btn-sm",
         kind: "Size",
-        note: "A smaller close control.",
+        note: "A smaller close control. Use it with btn-bump.",
       },
-      { name: "btn-surface-lg", kind: "Size", note: "A larger close control." },
-      ...color("primary").map((row) =>
+      {
+        name: "btn-lg",
+        kind: "Size",
+        note: "A larger close control. Use it with btn-bump.",
+      },
+      ...color().map((row) =>
         row.name === "primary"
           ? {
               ...row,
@@ -791,7 +829,9 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
 <dialog class="modal">
   <div class="modal-panel">
     <form method="dialog">
-      <button class="btn-surface" type="submit" aria-label="Close">×</button>
+      <button class="btn-bump" type="submit" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
     </form>
     <h2>A note</h2>
     <p>Surface panel.</p>

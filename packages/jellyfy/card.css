@@ -1,0 +1,58 @@
+@layer components {
+  .card {
+    --jelly-thickness: var(--thickness-surface);
+    --jelly-elevation: var(--elevation-rest);
+    box-sizing: border-box;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-surface);
+    color: var(--color-plain-content);
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition:
+      background-color 300ms ease-out,
+      box-shadow 300ms ease-out,
+      color 300ms ease-out;
+  }
+
+  .card.card-sm {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .card.card-lg {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.25rem;
+  }
+}
+
+@layer utilities {
+  .card:is(
+    .primary,
+    .secondary,
+    .tertiary,
+    .neutral,
+    .success,
+    .warning,
+    .error,
+    .info
+  ) {
+    background-color: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          var(--color-plain) var(--percent-plain-resting-wash),
+          var(--solid)
+        )
+        var(--percent-shown-wash),
+      transparent
+    );
+    color: var(--surface-content);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}

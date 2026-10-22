@@ -1,0 +1,86 @@
+@layer components {
+  .alert {
+    --jelly-thickness: var(--thickness-surface);
+    --jelly-elevation: var(--elevation-rest);
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-surface);
+    color: var(--color-plain-content);
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition:
+      background-color 300ms ease-out,
+      box-shadow 300ms ease-out,
+      color 300ms ease-out;
+  }
+
+  .alert.alert-sm {
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .alert.alert-lg {
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    font-size: 1.25rem;
+  }
+
+  .alert > svg {
+    flex: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: calc((1.5em - 1.25rem) / 2);
+  }
+
+  .alert.alert-sm > svg {
+    width: 1rem;
+    height: 1rem;
+    margin-top: calc((1.5em - 1rem) / 2);
+  }
+
+  .alert.alert-lg > svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: calc((1.5em - 1.5rem) / 2);
+  }
+
+  .alert > :not(svg) {
+    min-width: 0;
+  }
+}
+
+@layer utilities {
+  .alert:is(
+    .primary,
+    .secondary,
+    .tertiary,
+    .neutral,
+    .success,
+    .warning,
+    .error,
+    .info
+  ) {
+    background-color: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          var(--color-plain) var(--percent-plain-resting-wash),
+          var(--solid)
+        )
+        var(--percent-shown-wash),
+      transparent
+    );
+    color: var(--surface-content);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alert {
+    transition: none;
+  }
+}

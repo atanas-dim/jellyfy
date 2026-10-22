@@ -37,13 +37,37 @@ const openDialog = (id) => {
 };
 
 const Plus = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    aria-hidden="true"
+  >
     <path d="M12 5v14M5 12h14" />
   </svg>
 );
 
+const Close = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    aria-hidden="true"
+  >
+    <path d="M18 6 6 18M6 6l12 12" />
+  </svg>
+);
+
 const Info = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    aria-hidden="true"
+  >
     <circle cx="12" cy="12" r="9" />
     <path d="M12 11v6M12 8h.01" />
   </svg>
@@ -134,7 +158,11 @@ export default function App() {
             </button>
           ))}
         </div>
-        <button className="btn-icon secondary loading" type="button" aria-label="Loading">
+        <button
+          className="btn-icon secondary loading"
+          type="button"
+          aria-label="Loading"
+        >
           <Plus />
         </button>
       </Section>
@@ -149,7 +177,10 @@ export default function App() {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           {SIZES.map((size) => (
-            <span key={size.label} className={`badge ${sizeClass("badge", size.id)}`}>
+            <span
+              key={size.label}
+              className={`badge ${sizeClass("badge", size.id)}`}
+            >
               {size.label}
             </span>
           ))}
@@ -160,14 +191,20 @@ export default function App() {
         <div className="grid gap-3 sm:grid-cols-2">
           {COLORS.map((color) => (
             <label key={color} className={`input ${color}`}>
-              <input placeholder=" " defaultValue={color === "neutral" ? "" : NAME[color]} />
+              <input
+                placeholder=" "
+                defaultValue={color === "neutral" ? "" : NAME[color]}
+              />
               <span>{NAME[color]}</span>
             </label>
           ))}
         </div>
         <div className="grid items-start gap-3 sm:grid-cols-3">
           {SIZES.map((size) => (
-            <label key={size.label} className={`input ${sizeClass("input", size.id)}`}>
+            <label
+              key={size.label}
+              className={`input ${sizeClass("input", size.id)}`}
+            >
               <input placeholder=" " />
               <span>{size.label}</span>
             </label>
@@ -175,7 +212,12 @@ export default function App() {
         </div>
         <label className="input">
           <span className="input-start" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <circle cx="11" cy="11" r="7" />
               <path d="m20 20-3.5-3.5" />
             </svg>
@@ -183,7 +225,12 @@ export default function App() {
           <input placeholder=" " />
           <span>Search</span>
           <span className="input-end" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </span>
@@ -194,14 +241,20 @@ export default function App() {
         <div className="grid items-start gap-3 sm:grid-cols-2">
           {COLORS.map((color) => (
             <label key={color} className={`textarea ${color}`}>
-              <textarea placeholder=" " defaultValue={color === "neutral" ? "" : NAME[color]} />
+              <textarea
+                placeholder=" "
+                defaultValue={color === "neutral" ? "" : NAME[color]}
+              />
               <span>Note</span>
             </label>
           ))}
         </div>
         <div className="grid items-start gap-3 sm:grid-cols-3">
           {SIZES.map((size) => (
-            <label key={size.label} className={`textarea ${sizeClass("textarea", size.id)}`}>
+            <label
+              key={size.label}
+              className={`textarea ${sizeClass("textarea", size.id)}`}
+            >
               <textarea placeholder=" " />
               <span>{size.label}</span>
             </label>
@@ -224,7 +277,10 @@ export default function App() {
         </div>
         <div className="grid items-start gap-3 sm:grid-cols-3">
           {SIZES.map((size) => (
-            <label key={size.label} className={`select ${sizeClass("select", size.id)}`}>
+            <label
+              key={size.label}
+              className={`select ${sizeClass("select", size.id)}`}
+            >
               <select defaultValue="rose">
                 <option value="rose">Rose</option>
               </select>
@@ -247,7 +303,10 @@ export default function App() {
         </div>
         <div className="flex flex-wrap items-center gap-4">
           {SIZES.map((size) => (
-            <label key={size.label} className={`checkbox ${sizeClass("checkbox", size.id)}`}>
+            <label
+              key={size.label}
+              className={`checkbox ${sizeClass("checkbox", size.id)}`}
+            >
               <input type="checkbox" defaultChecked />
               <span className="checkbox-box" />
               {size.label}
@@ -272,7 +331,10 @@ export default function App() {
         </div>
         <div className="flex flex-col">
           {SIZES.map((size) => (
-            <p key={size.label} className={`message ${sizeClass("message", size.id)}`}>
+            <p
+              key={size.label}
+              className={`message ${sizeClass("message", size.id)}`}
+            >
               {size.label}
             </p>
           ))}
@@ -291,7 +353,10 @@ export default function App() {
         </div>
         <div className="flex flex-wrap items-center gap-4">
           {SIZES.map((size) => (
-            <label key={size.label} className={`radio ${sizeClass("radio", size.id)}`}>
+            <label
+              key={size.label}
+              className={`radio ${sizeClass("radio", size.id)}`}
+            >
               <input type="radio" name={`size-${size.label}`} defaultChecked />
               <span className="radio-ring" />
               {size.label}
@@ -314,7 +379,10 @@ export default function App() {
         </div>
         <div className="flex flex-wrap items-center gap-4">
           {SIZES.map((size) => (
-            <label key={size.label} className={`toggle ${sizeClass("toggle", size.id)}`}>
+            <label
+              key={size.label}
+              className={`toggle ${sizeClass("toggle", size.id)}`}
+            >
               <input type="checkbox" role="switch" defaultChecked />
               <span className="toggle-track">
                 <span className="toggle-thumb" />
@@ -335,7 +403,12 @@ export default function App() {
       <Section title="Slider">
         <div className="grid gap-4 sm:grid-cols-2">
           {COLORS.map((color) => (
-            <Range key={color} className={`range ${color}`} label={NAME[color]} value={62} />
+            <Range
+              key={color}
+              className={`range ${color}`}
+              label={NAME[color]}
+              value={62}
+            />
           ))}
         </div>
         <div className="grid gap-4 sm:grid-cols-3">
@@ -364,7 +437,10 @@ export default function App() {
         </div>
         <div className="grid items-start gap-3 sm:grid-cols-3">
           {SIZES.map((size) => (
-            <div key={size.label} className={`alert ${sizeClass("alert", size.id)}`}>
+            <div
+              key={size.label}
+              className={`alert ${sizeClass("alert", size.id)}`}
+            >
               <Info />
               <div>
                 <p className="font-semibold">{size.label}</p>
@@ -393,7 +469,10 @@ export default function App() {
         </div>
         <div className="grid items-start gap-3 sm:grid-cols-3">
           {SIZES.map((size) => (
-            <section key={size.label} className={`card ${sizeClass("card", size.id)}`}>
+            <section
+              key={size.label}
+              className={`card ${sizeClass("card", size.id)}`}
+            >
               <h3 className="font-semibold">{size.label}</h3>
             </section>
           ))}
@@ -402,7 +481,11 @@ export default function App() {
 
       <Section title="Dialog">
         <div className="flex flex-wrap gap-3">
-          <button className="btn" type="button" onClick={() => openDialog("dialog-plain")}>
+          <button
+            className="btn"
+            type="button"
+            onClick={() => openDialog("dialog-plain")}
+          >
             <span>Plain</span>
           </button>
           {COLORS.map((color) => (
@@ -419,8 +502,8 @@ export default function App() {
         <dialog id="dialog-plain" className="modal">
           <div className="modal-panel">
             <form method="dialog">
-              <button className="btn-surface" type="submit" aria-label="Close">
-                ×
+              <button className="btn-bump" type="submit" aria-label="Close">
+                <Close />
               </button>
             </form>
             <h2 className="pe-8 text-lg font-semibold">Plain</h2>
@@ -431,12 +514,14 @@ export default function App() {
           <dialog key={color} id={`dialog-${color}`} className="modal">
             <div className={`modal-panel ${color}`}>
               <form method="dialog">
-                <button className="btn-surface" type="submit" aria-label="Close">
-                  ×
+                <button className="btn-bump" type="submit" aria-label="Close">
+                  <Close />
                 </button>
               </form>
               <h2 className="pe-8 text-lg font-semibold">{NAME[color]}</h2>
-              <p className="mt-2 text-sm leading-6">The same light tint as the card.</p>
+              <p className="mt-2 text-sm leading-6">
+                The same light tint as the card.
+              </p>
             </div>
           </dialog>
         ))}
