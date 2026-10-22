@@ -18,10 +18,11 @@ export default function InstallPage() {
       <h1 className="mt-3 text-4xl font-semibold tracking-tight">Install</h1>
       <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">
         Two files. <code className="font-mono text-base">jellyfy.css</code>{" "}
-        paints the controls.{" "}
-        <code className="font-mono text-base">jellyfy.js</code> runs the press
-        and the loading lights, and it keeps a slider’s fill in step with the
-        input.
+        paints every control. Import a single component stylesheet when you
+        want only that control.{" "}
+        <code className="font-mono text-base">startJellyfy()</code> runs the
+        press and the loading lights, and it keeps a slider’s fill in step with
+        the input.
       </p>
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
@@ -33,9 +34,12 @@ export default function InstallPage() {
         With Tailwind
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
-        Import the stylesheet after Tailwind. A utility such as{" "}
+        Import the whole library after Tailwind. A utility such as{" "}
         <code className="font-mono text-sm">px-4</code> sets that padding. The
-        press stays.
+        press stays. To ship one control, import{" "}
+        <code className="font-mono text-sm">jellyfy/material.css</code>,{" "}
+        <code className="font-mono text-sm">jellyfy/motion.css</code>, and that
+        component’s file instead.
       </p>
       <CodeBlock
         lang="css"
@@ -73,7 +77,7 @@ export default function InstallPage() {
       <CodeBlock
         lang="html"
         code={`<script type="module">
-  import { startJellyfy } from "./node_modules/jellyfy/jellyfy.js";
+  import { startJellyfy } from "./node_modules/jellyfy/index.js";
 
   startJellyfy();
 </script>`}

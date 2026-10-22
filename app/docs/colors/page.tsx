@@ -31,11 +31,11 @@ export default function ColorsPage() {
       <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">
         The color is its own class, as in{" "}
         <code className="font-mono text-base">btn primary</code>. The same word
-        works on every control. A control with no color class stays the plain
-        surface. Indigo, pink, teal, gray, green, red, amber, and sky are the
-        default solids. Set{" "}
-        <code className="font-mono text-base">--color-secondary</code>, or any
-        of the eight, to replace one.
+        works on every control. A control with no color class stays plain. Each
+        slot has a solid, a content color for text on a button or badge, and a
+        surface content color for text on a field, card, alert, or dialog panel.
+        Primary is Indigo 500 in the light theme and Indigo 400 in the dark
+        theme. The other solids are the 600 step in both themes.
       </p>
       <div className="mt-8 overflow-x-auto overflow-y-hidden overscroll-x-contain overscroll-y-auto">
         <table className="w-full text-left text-sm">
@@ -61,8 +61,10 @@ export default function ColorsPage() {
         </table>
       </div>
       <p className="mt-4 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
-        A card with no color stays the panel. A dialog panel with no color stays
-        the plain surface, and the close button follows that surface.
+        A card with no color stays plain. A dialog panel with no color stays
+        plain, and the close button follows that text. A slot tints the text
+        with the surface content color: the 800 step in light, the 200 step in
+        dark.
       </p>
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         A color on a parent

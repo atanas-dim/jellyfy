@@ -73,6 +73,10 @@
     "./message.css": {
       "style": "./message.css",
       "default": "./message.css"
+    },
+    "./jellyfy.css": {
+      "style": "./jellyfy.css",
+      "default": "./jellyfy.css"
     }
   },
   "files": [
@@ -93,7 +97,8 @@
     "badge.css",
     "card.css",
     "modal.css",
-    "message.css"
+    "message.css",
+    "jellyfy.css"
   ],
   "sideEffects": [
     "./material.css",
@@ -112,6 +117,7 @@
     "./badge.css",
     "./card.css",
     "./modal.css",
-    "./message.css"
+    "./message.css",
+    "./jellyfy.css"
   ]
 }

@@ -25,44 +25,45 @@ export default function CustomizePage() {
       <CodeBlock
         lang="css"
         code={`:root {
-  --color-primary: #4f46e5;
+  --color-primary: #6366f1;
+  --color-primary-content: #1e1b4b;
+  --color-primary-surface-content: #3730a3;
   --color-secondary: #db2777;
   --color-tertiary: #0d9488;
-  --color-neutral: #525252;
+  --color-neutral: #a3a3a3;
   --color-success: #16a34a;
   --color-error: #dc2626;
   --color-warning: #d97706;
   --color-info: #0284c7;
 
-  --radius-control: 999px;
   --radius-surface: 1rem;
+  --radius-field: 1rem;
+  --radius-control: 999px;
+  --radius-mark: 0.5rem;
+  --material-opacity: 60%;
+  --material-blur: 4px;
   --noise-size: 22.5rem;
-
-  --spacing: 0.25rem;
+  --elevation: 1;
 }`}
       />
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
         With Tailwind
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
-        Put the eight solids in{" "}
-        <code className="font-mono text-sm">@theme</code>. That is Tailwind’s
-        token list, and Jellyfy reads those names. Radius and grain are set on{" "}
-        <code className="font-mono text-sm">:root</code> in the stylesheet. A{" "}
-        <code className="font-mono text-sm">@theme</code> value sits in
-        Tailwind's theme layer, and that{" "}
-        <code className="font-mono text-sm">:root</code> rule wins, so a change
-        to those three goes on <code className="font-mono text-sm">:root</code>{" "}
-        as well. Tailwind already sets{" "}
+        Put the solids in <code className="font-mono text-sm">@theme</code>.
+        That is Tailwind’s token list, and Jellyfy reads those names. Content
+        colors, surface content colors, radius, opacity, blur, grain, and the
+        elevation multiplier are set on{" "}
+        <code className="font-mono text-sm">:root</code>. Tailwind already sets{" "}
         <code className="font-mono text-sm">--spacing</code>.
       </p>
       <CodeBlock
         lang="css"
         code={`@theme {
-  --color-primary: #4f46e5;
+  --color-primary: #6366f1;
   --color-secondary: #db2777;
   --color-tertiary: #0d9488;
-  --color-neutral: #525252;
+  --color-neutral: #a3a3a3;
   --color-success: #16a34a;
   --color-error: #dc2626;
   --color-warning: #d97706;
@@ -70,17 +71,30 @@ export default function CustomizePage() {
 }
 
 :root {
-  --radius-control: 999px;
+  --color-primary-content: #1e1b4b;
+  --color-primary-surface-content: #3730a3;
   --radius-surface: 1rem;
+  --radius-field: 1rem;
+  --radius-control: 999px;
+  --radius-mark: 0.5rem;
+  --material-opacity: 60%;
+  --material-blur: 4px;
   --noise-size: 22.5rem;
+  --elevation: 1;
 }`}
       />
       <ul className="mt-6 max-w-2xl list-disc space-y-2 pl-5 leading-7 text-neutral-600 dark:text-neutral-300">
         <li>
           The eight <code className="font-mono text-sm">--color-*</code> names
-          are the solids. A button, a field, and a badge in{" "}
-          <code className="font-mono text-sm">primary</code> all read{" "}
-          <code className="font-mono text-sm">--color-primary</code>.
+          are the solids.{" "}
+          <code className="font-mono text-sm">--color-primary-content</code> is
+          the text on a button or badge.{" "}
+          <code className="font-mono text-sm">
+            --color-primary-surface-content
+          </code>{" "}
+          is the text on a field, card, alert, or dialog panel. The same two
+          suffixes exist for every slot. Changing a solid does not change those
+          text colors.
         </li>
         <li>
           <code className="font-mono text-sm">--radius-control</code> is the
@@ -90,29 +104,31 @@ export default function CustomizePage() {
         </li>
         <li>
           <code className="font-mono text-sm">--radius-surface</code> is the
-          corner on fields, cards, alerts, and the dialog panel.
+          corner on cards, alerts, and the dialog panel.
         </li>
         <li>
           <code className="font-mono text-sm">--noise-size</code> is how large
           the grain tiles. It is in rem so the grain scales with the root font.
         </li>
         <li>
-          <code className="font-mono text-sm">--spacing</code> is optional.
-          Tailwind already sets it. Without Tailwind, leave it unset and the
-          sizes use <code className="font-mono text-sm">0.25rem</code>.
+          <code className="font-mono text-sm">--radius-field</code> is the
+          corner on inputs, textareas, and selects.{" "}
+          <code className="font-mono text-sm">--radius-mark</code> is the
+          checkbox.{" "}
+          <code className="font-mono text-sm">--material-opacity</code> and{" "}
+          <code className="font-mono text-sm">--material-blur</code> are the
+          jelly. <code className="font-mono text-sm">--elevation</code> scales
+          every drop shadow together.
         </li>
       </ul>
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">Dark</h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
-        Jellyfy follows the operating system. The eight colours stay the ones
-        you set. In the dark, the paper behind a control goes near black and the
-        writing goes light. The default gray is lighter in the dark theme so a
-        neutral control still sits clear of that page. Set
-        <code className="font-mono text-sm">--color-neutral</code> in that same
-        dark rule to replace it, the same way as the other colours. The press on
-        a field is still that colour: a brighter pool of it along the bottom,
-        and the same colour mixed toward black along the top.
+        Jellyfy follows the operating system. Primary is Indigo 500 in light and
+        Indigo 400 in dark. The other solids stay the ones you set. Surface text
+        is the 800 step in light and the 200 step in dark. Control text is the
+        950 step in light and the 100 step in dark. Neutral is Neutral 400 in
+        both themes.
       </p>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         To choose for the page, add the class{" "}
