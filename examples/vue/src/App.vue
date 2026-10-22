@@ -49,7 +49,12 @@ onMounted(() => {
     <section>
       <h2>Button</h2>
       <div class="row">
-        <button v-for="color in colors" :key="color" :class="['btn', color]" type="button">
+        <button
+          v-for="color in colors"
+          :key="color"
+          :class="['btn', color]"
+          type="button"
+        >
           <span>{{ name[color] }}</span>
         </button>
       </div>
@@ -64,8 +69,12 @@ onMounted(() => {
         </button>
       </div>
       <div class="row">
-        <button class="btn primary loading" type="button"><span>Loading</span></button>
-        <button class="btn" type="button" disabled><span>Disabled</span></button>
+        <button class="btn primary loading" type="button">
+          <span>Loading</span>
+        </button>
+        <button class="btn" type="button" disabled>
+          <span>Disabled</span>
+        </button>
       </div>
     </section>
 
@@ -79,7 +88,13 @@ onMounted(() => {
           type="button"
           :aria-label="name[color]"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
             <path d="M12 5v14M5 12h14" />
           </svg>
         </button>
@@ -92,13 +107,29 @@ onMounted(() => {
           type="button"
           :aria-label="size.label"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
             <path d="M12 5v14M5 12h14" />
           </svg>
         </button>
       </div>
-      <button class="btn-icon secondary loading" type="button" aria-label="Loading">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <button
+        class="btn-icon secondary loading"
+        type="button"
+        aria-label="Loading"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
           <path d="M12 5v14M5 12h14" />
         </svg>
       </button>
@@ -107,10 +138,16 @@ onMounted(() => {
     <section>
       <h2>Badge</h2>
       <div class="row">
-        <span v-for="color in colors" :key="color" :class="['badge', color]">{{ name[color] }}</span>
+        <span v-for="color in colors" :key="color" :class="['badge', color]">{{
+          name[color]
+        }}</span>
       </div>
       <div class="row">
-        <span v-for="size in sizes" :key="size.label" :class="['badge', sizeClass('badge', size.id)]">
+        <span
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['badge', sizeClass('badge', size.id)]"
+        >
           {{ size.label }}
         </span>
       </div>
@@ -120,19 +157,31 @@ onMounted(() => {
       <h2>Input</h2>
       <div class="grid">
         <label v-for="color in colors" :key="color" :class="['input', color]">
-          <input placeholder=" " :value="color === 'neutral' ? '' : name[color]" />
+          <input
+            placeholder=" "
+            :value="color === 'neutral' ? '' : name[color]"
+          />
           <span>{{ name[color] }}</span>
         </label>
       </div>
-      <div class="grid sizes">
-        <label v-for="size in sizes" :key="size.label" :class="['input', sizeClass('input', size.id)]">
+      <div class="sizes grid">
+        <label
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['input', sizeClass('input', size.id)]"
+        >
           <input placeholder=" " />
           <span>{{ size.label }}</span>
         </label>
       </div>
       <label class="input">
         <span class="input-start" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <circle cx="11" cy="11" r="7" />
             <path d="m20 20-3.5-3.5" />
           </svg>
@@ -140,7 +189,12 @@ onMounted(() => {
         <input placeholder=" " />
         <span>Search</span>
         <span class="input-end" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <path d="M5 12h14M13 6l6 6-6 6" />
           </svg>
         </span>
@@ -150,13 +204,23 @@ onMounted(() => {
     <section>
       <h2>Textarea</h2>
       <div class="grid">
-        <label v-for="color in colors" :key="color" :class="['textarea', color]">
-          <textarea placeholder=" ">{{ color === "neutral" ? "" : name[color] }}</textarea>
+        <label
+          v-for="color in colors"
+          :key="color"
+          :class="['textarea', color]"
+        >
+          <textarea placeholder=" ">{{
+            color === "neutral" ? "" : name[color]
+          }}</textarea>
           <span>Note</span>
         </label>
       </div>
-      <div class="grid sizes">
-        <label v-for="size in sizes" :key="size.label" :class="['textarea', sizeClass('textarea', size.id)]">
+      <div class="sizes grid">
+        <label
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['textarea', sizeClass('textarea', size.id)]"
+        >
           <textarea placeholder=" "></textarea>
           <span>{{ size.label }}</span>
         </label>
@@ -175,8 +239,12 @@ onMounted(() => {
           <i class="picker-icon"></i>
         </label>
       </div>
-      <div class="grid sizes">
-        <label v-for="size in sizes" :key="size.label" :class="['select', sizeClass('select', size.id)]">
+      <div class="sizes grid">
+        <label
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['select', sizeClass('select', size.id)]"
+        >
           <select>
             <option selected>Rose</option>
           </select>
@@ -189,14 +257,22 @@ onMounted(() => {
     <section>
       <h2>Checkbox</h2>
       <div class="stack">
-        <label v-for="color in colors" :key="color" :class="['checkbox', color]">
+        <label
+          v-for="color in colors"
+          :key="color"
+          :class="['checkbox', color]"
+        >
           <input type="checkbox" checked />
           <span class="checkbox-box"></span>
           {{ name[color] }}
         </label>
       </div>
       <div class="row">
-        <label v-for="size in sizes" :key="size.label" :class="['checkbox', sizeClass('checkbox', size.id)]">
+        <label
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['checkbox', sizeClass('checkbox', size.id)]"
+        >
           <input type="checkbox" checked />
           <span class="checkbox-box"></span>
           {{ size.label }}
@@ -213,10 +289,16 @@ onMounted(() => {
       <h2>Message</h2>
       <div class="stack tight">
         <p class="message">Required</p>
-        <p v-for="color in colors" :key="color" :class="['message', color]">{{ name[color] }}</p>
+        <p v-for="color in colors" :key="color" :class="['message', color]">
+          {{ name[color] }}
+        </p>
       </div>
       <div class="stack tight">
-        <p v-for="size in sizes" :key="size.label" :class="['message', sizeClass('message', size.id)]">
+        <p
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['message', sizeClass('message', size.id)]"
+        >
           {{ size.label }}
         </p>
       </div>
@@ -232,7 +314,11 @@ onMounted(() => {
         </label>
       </div>
       <div class="row">
-        <label v-for="size in sizes" :key="size.label" :class="['radio', sizeClass('radio', size.id)]">
+        <label
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['radio', sizeClass('radio', size.id)]"
+        >
           <input type="radio" :name="`size-${size.label}`" checked />
           <span class="radio-ring"></span>
           {{ size.label }}
@@ -250,7 +336,11 @@ onMounted(() => {
         </label>
       </div>
       <div class="row">
-        <label v-for="size in sizes" :key="size.label" :class="['toggle', sizeClass('toggle', size.id)]">
+        <label
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['toggle', sizeClass('toggle', size.id)]"
+        >
           <input type="checkbox" role="switch" checked />
           <span class="toggle-track"><span class="toggle-thumb"></span></span>
           {{ size.label }}
@@ -275,8 +365,12 @@ onMounted(() => {
           </span>
         </label>
       </div>
-      <div class="grid sizes">
-        <label v-for="size in sizes" :key="size.label" :class="['range', sizeClass('range', size.id)]">
+      <div class="sizes grid">
+        <label
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['range', sizeClass('range', size.id)]"
+        >
           {{ size.label }}
           <span class="range-box">
             <span class="range-track"><span class="range-fill"></span></span>
@@ -291,7 +385,13 @@ onMounted(() => {
       <h2>Alert</h2>
       <div class="grid">
         <div v-for="color in colors" :key="color" :class="['alert', color]">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
             <circle cx="12" cy="12" r="9" />
             <path d="M12 11v6M12 8h.01" />
           </svg>
@@ -301,9 +401,19 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div class="grid sizes">
-        <div v-for="size in sizes" :key="size.label" :class="['alert', sizeClass('alert', size.id)]">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <div class="sizes grid">
+        <div
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['alert', sizeClass('alert', size.id)]"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
             <circle cx="12" cy="12" r="9" />
             <path d="M12 11v6M12 8h.01" />
           </svg>
@@ -330,8 +440,12 @@ onMounted(() => {
           <h3>{{ name[color] }}</h3>
         </section>
       </div>
-      <div class="grid sizes">
-        <section v-for="size in sizes" :key="size.label" :class="['card', sizeClass('card', size.id)]">
+      <div class="sizes grid">
+        <section
+          v-for="size in sizes"
+          :key="size.label"
+          :class="['card', sizeClass('card', size.id)]"
+        >
           <h3>{{ size.label }}</h3>
         </section>
       </div>
@@ -356,16 +470,25 @@ onMounted(() => {
       <dialog id="dialog-plain" class="modal">
         <div class="modal-panel">
           <form method="dialog">
-            <button class="btn-surface" type="submit" aria-label="Close">×</button>
+            <button class="btn-surface" type="submit" aria-label="Close">
+              ×
+            </button>
           </form>
           <h2 class="panel-title">Plain</h2>
           <p>A white panel.</p>
         </div>
       </dialog>
-      <dialog v-for="color in colors" :id="`dialog-${color}`" :key="color" class="modal">
+      <dialog
+        v-for="color in colors"
+        :id="`dialog-${color}`"
+        :key="color"
+        class="modal"
+      >
         <div :class="['modal-panel', color]">
           <form method="dialog">
-            <button class="btn-surface" type="submit" aria-label="Close">×</button>
+            <button class="btn-surface" type="submit" aria-label="Close">
+              ×
+            </button>
           </form>
           <h2 class="panel-title">{{ name[color] }}</h2>
           <p>The same light tint as the card.</p>
@@ -378,8 +501,11 @@ onMounted(() => {
 <style>
 body {
   margin: 0;
-  color: #171717;
-  background: #fff;
+  color: light-dark(
+    var(--color-neutral-950, #0a0a0a),
+    var(--color-neutral-100, #f5f5f5)
+  );
+  background: light-dark(var(--color-white, white), var(--color-black, black));
   font-family: ui-sans-serif, system-ui, sans-serif;
 }
 
