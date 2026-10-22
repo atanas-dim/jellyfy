@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @import "jellyfy/jellyfy.css";
+
+body {
+  background: light-dark(var(--color-white, white), var(--color-black, black));
+  color: light-dark(
+    var(--color-neutral-950, #0a0a0a),
+    var(--color-neutral-100, #f5f5f5)
+  );
+}
