@@ -1,8 +1,6 @@
 # Jellyfy
 
-Soft controls for the markup on the page. Add `btn`, a color such as `primary`, and call `startJellyfy()` once.
-
-The guide is at [jellyfy.vercel.app/docs](https://jellyfy.vercel.app/docs).
+Soft controls from one material. Add a class, pick a color, and call `startJellyfy()` once.
 
 ## Install
 
@@ -10,32 +8,12 @@ The guide is at [jellyfy.vercel.app/docs](https://jellyfy.vercel.app/docs).
 npm install jellyfy
 ```
 
-## With Tailwind
-
-Import the stylesheet after Tailwind. A utility such as `px-4` sets that padding. The press stays.
+## Use the whole library
 
 ```css
 @import "tailwindcss";
 @import "jellyfy/jellyfy.css";
 ```
-
-## Without Tailwind
-
-Link the stylesheet on its own. The controls paint the same way.
-
-```html
-<link rel="stylesheet" href="./node_modules/jellyfy/jellyfy.css" />
-```
-
-A bundler imports that same file.
-
-```js
-import "jellyfy/jellyfy.css";
-```
-
-## Call it once
-
-Call `startJellyfy()` once, after the controls are on the page. A pointer press squashes the control under the pointer. Controls that appear later, including after a page change, are included. A later call is ignored.
 
 ```js
 import { startJellyfy } from "jellyfy";
@@ -43,16 +21,34 @@ import { startJellyfy } from "jellyfy";
 startJellyfy();
 ```
 
-Plain HTML:
+Without Tailwind, link `jellyfy/jellyfy.css` or import that file from a bundler.
 
-```html
-<script type="module">
-  import { startJellyfy } from "./node_modules/jellyfy/jellyfy.js";
+## Use one component
 
-  startJellyfy();
-</script>
+Import the material, the motion, and the components you use.
+
+```css
+@import "jellyfy/material.css";
+@import "jellyfy/motion.css";
+@import "jellyfy/button.css";
 ```
 
-## License
+A component file that is not imported is not in the build.
 
-[MIT](./LICENSE)
+## Classes
+
+`btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox`, `radio`, `toggle`, `range`, `alert`, `badge`, `card`, `modal`, `modal-panel`, and `message`.
+
+Slots are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. Sizes are `sm` and `lg` on the component class. The icon button and the bump button use `btn-sm` and `btn-lg`.
+
+## Variables you can change
+
+One solid, one content color, and one surface content color for each slot:
+
+- `--color-primary` and the same for `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`
+- `--color-primary-content` and the same suffix for the other slots
+- `--color-primary-surface-content` and the same suffix for the other slots
+
+Also `--radius-surface`, `--radius-field`, `--radius-control`, `--radius-mark`, `--material-opacity`, `--material-blur`, `--noise-size`, and `--elevation`.
+
+Changing a solid does not change its content color or its surface content color. Set those yourself.

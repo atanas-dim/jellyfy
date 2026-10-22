@@ -1,6 +1,6 @@
 {
   "name": "jellyfy",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "license": "MIT",
   "description": "Soft controls from one material.",
   "author": "Atanas Dimitrov",
@@ -15,21 +15,119 @@
   },
   "type": "module",
   "exports": {
-    ".": {
-      "types": "./jellyfy.d.ts",
-      "default": "./jellyfy.js"
+    ".": "./index.js",
+    "./material.css": {
+      "style": "./material.css",
+      "default": "./material.css"
     },
-    "./jellyfy.css": "./jellyfy.css",
-    "./plugin.js": "./plugin.js"
+    "./motion.css": {
+      "style": "./motion.css",
+      "default": "./motion.css"
+    },
+    "./button.css": {
+      "style": "./button.css",
+      "default": "./button.css"
+    },
+    "./icon-button.css": {
+      "style": "./icon-button.css",
+      "default": "./icon-button.css"
+    },
+    "./bump-button.css": {
+      "style": "./bump-button.css",
+      "default": "./bump-button.css"
+    },
+    "./input.css": {
+      "style": "./input.css",
+      "default": "./input.css"
+    },
+    "./textarea.css": {
+      "style": "./textarea.css",
+      "default": "./textarea.css"
+    },
+    "./select.css": {
+      "style": "./select.css",
+      "default": "./select.css"
+    },
+    "./checkbox.css": {
+      "style": "./checkbox.css",
+      "default": "./checkbox.css"
+    },
+    "./radio.css": {
+      "style": "./radio.css",
+      "default": "./radio.css"
+    },
+    "./toggle.css": {
+      "style": "./toggle.css",
+      "default": "./toggle.css"
+    },
+    "./range.css": {
+      "style": "./range.css",
+      "default": "./range.css"
+    },
+    "./alert.css": {
+      "style": "./alert.css",
+      "default": "./alert.css"
+    },
+    "./badge.css": {
+      "style": "./badge.css",
+      "default": "./badge.css"
+    },
+    "./card.css": {
+      "style": "./card.css",
+      "default": "./card.css"
+    },
+    "./modal.css": {
+      "style": "./modal.css",
+      "default": "./modal.css"
+    },
+    "./message.css": {
+      "style": "./message.css",
+      "default": "./message.css"
+    },
+    "./jellyfy.css": {
+      "style": "./jellyfy.css",
+      "default": "./jellyfy.css"
+    }
   },
   "files": [
-    "jellyfy.css",
-    "jellyfy.js",
-    "jellyfy.d.ts",
-    "plugin.js"
+    "index.js",
+    "material.css",
+    "motion.css",
+    "button.css",
+    "icon-button.css",
+    "bump-button.css",
+    "input.css",
+    "textarea.css",
+    "select.css",
+    "checkbox.css",
+    "radio.css",
+    "toggle.css",
+    "range.css",
+    "alert.css",
+    "badge.css",
+    "card.css",
+    "modal.css",
+    "message.css",
+    "jellyfy.css"
   ],
   "sideEffects": [
-    "./jellyfy.css",
-    "./plugin.js"
+    "./material.css",
+    "./motion.css",
+    "./button.css",
+    "./icon-button.css",
+    "./bump-button.css",
+    "./input.css",
+    "./textarea.css",
+    "./select.css",
+    "./checkbox.css",
+    "./radio.css",
+    "./toggle.css",
+    "./range.css",
+    "./alert.css",
+    "./badge.css",
+    "./card.css",
+    "./modal.css",
+    "./message.css",
+    "./jellyfy.css"
   ]
 }

@@ -59,7 +59,7 @@ export default function RootLayout({
     >
       <body>
         <Script id="jellyfy-theme" strategy="beforeInteractive">
-          {`(function(){try{var saved=localStorage.getItem("jellyfy-theme");var theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=theme;document.documentElement.classList.toggle("dark",theme==="dark");}catch(e){}})();`}
+          {`(function(){try{var saved=localStorage.getItem("jellyfy-theme");var theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");var root=document.documentElement;root.classList.toggle("dark",theme==="dark");root.classList.toggle("light",theme==="light");}catch(e){}})();`}
         </Script>
         <JellyfyBoot />
         <div className="isolate flex min-h-full flex-col">

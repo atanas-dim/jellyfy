@@ -1,0 +1,127 @@
+:root {
+  --squish-distance: 8px;
+  --squish-height-ratio: calc(2 / 7);
+  --squish-settle-ratio: calc(1 / 7);
+  --squish-press-time: 480ms;
+  --squish-release-time: 300ms;
+  --squish-peak-at: 0.42;
+  --motion-rise-distance: 2px;
+  --motion-rise-time: 200ms;
+}
+
+@keyframes jelly-sheen {
+  0% {
+    transform: translate3d(-100%, -50%, 0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.55;
+  }
+  55% {
+    opacity: 0.3;
+  }
+  78% {
+    opacity: 0.42;
+  }
+  100% {
+    transform: translate3d(300%, -50%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes jelly-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes jelly-orbit-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.jelly-lights {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.jelly-sheen {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: block;
+  width: 30%;
+  height: 40%;
+  border-radius: 999px;
+  filter: blur(12px);
+  opacity: 0;
+  animation: jelly-sheen var(--sheen-duration) linear infinite backwards;
+  animation-delay: var(--sheen-delay);
+}
+
+.jelly-sheen-light {
+  background-color: color-mix(in oklab, var(--loading-light) 60%, transparent);
+}
+
+.jelly-sheen-shade {
+  background-color: color-mix(in oklab, var(--loading-shade) 60%, transparent);
+}
+
+.jelly-orbit-arm {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.jelly-orbit {
+  position: absolute;
+  inset: 0;
+  animation: jelly-orbit var(--orbit-duration) linear infinite;
+}
+
+.jelly-orbit-dot {
+  position: absolute;
+  top: calc(var(--spacing, 0.25rem) * 0.5);
+  left: 50%;
+  display: block;
+  width: calc(var(--spacing, 0.25rem) * 3.5);
+  height: calc(var(--spacing, 0.25rem) * 3.5);
+  border-radius: 999px;
+  filter: blur(4px);
+  translate: -50% 0;
+  opacity: 0;
+  animation: jelly-orbit-in 400ms ease-out forwards;
+}
+
+.jelly-orbit-light {
+  background-color: color-mix(in oklab, var(--loading-light) 15%, transparent);
+}
+
+.jelly-orbit-shade {
+  background-color: color-mix(in oklab, var(--loading-shade) 10%, transparent);
+}
+
+.jelly-rise {
+  transition: translate var(--motion-rise-time) ease-out;
+}
+
+.jelly-rise:hover:not(:active) {
+  translate: 0 calc(-1 * var(--motion-rise-distance));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jelly-sheen,
+  .jelly-orbit,
+  .jelly-orbit-dot,
+  .jelly-rise {
+    animation: none;
+    transition: none;
+  }
+}

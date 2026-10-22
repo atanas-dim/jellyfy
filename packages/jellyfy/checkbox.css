@@ -1,0 +1,147 @@
+@layer components {
+  .checkbox {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-plain-content);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .checkbox-sm {
+    gap: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .checkbox-lg {
+    gap: 1rem;
+    font-size: 1rem;
+  }
+
+  .checkbox-box {
+    --jelly-thickness: var(--thickness-mark);
+    --jelly-elevation: var(--elevation-mark);
+    position: relative;
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: var(--radius-mark);
+    color: var(--color-plain-content);
+  }
+
+  .checkbox-sm .checkbox-box {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .checkbox-lg .checkbox-box {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .checkbox input {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    appearance: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .checkbox-box::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    height: 70%;
+    background: currentColor;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    transition:
+      transform 300ms ease-out,
+      opacity 300ms ease-out;
+  }
+
+  .checkbox:has(:checked) .checkbox-box::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .checkbox:has(:focus-visible) .checkbox-box {
+    --jelly-focus: 0 0 0 2px var(--focus-gap);
+    outline: 1px solid var(--focus-color);
+    outline-offset: 2px;
+  }
+
+  .checkbox:has(:disabled) {
+    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    cursor: not-allowed;
+  }
+
+  .checkbox:has(:disabled) input {
+    cursor: not-allowed;
+  }
+}
+
+@layer utilities {
+  .checkbox-box {
+    background-color: color-mix(
+      in oklab,
+      var(--color-plain) var(--material-opacity),
+      transparent
+    );
+  }
+
+  .checkbox:is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .warning,
+      .error,
+      .info
+    ):has(:checked)
+    .checkbox-box {
+    background-color: color-mix(
+      in oklab,
+      var(--solid) var(--material-opacity),
+      transparent
+    );
+    color: var(--content);
+  }
+
+  .checkbox:has(:disabled) .checkbox-box,
+  .checkbox:is(
+      .primary,
+      .secondary,
+      .tertiary,
+      .neutral,
+      .success,
+      .warning,
+      .error,
+      .info
+    ):has(:disabled)
+    .checkbox-box {
+    background-color: color-mix(
+      in oklab,
+      var(--color-disabled) 60%,
+      transparent
+    );
+    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkbox-box::after {
+    transition: none;
+  }
+}

@@ -35,13 +35,13 @@ export default async function ComponentDocPage({ params }: DocPageProps) {
 
   return (
     <article>
-      <p className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase">
+      <p className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase dark:text-neutral-400">
         Component
       </p>
       <div className="mt-3 flex flex-wrap items-end justify-between gap-3">
         <h1 className="text-4xl font-semibold tracking-tight">{doc.name}</h1>
       </div>
-      <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600">
+      <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">
         {doc.description}
       </p>
 
@@ -60,7 +60,7 @@ export default async function ComponentDocPage({ params }: DocPageProps) {
       ))}
 
       {doc.notes.length > 0 ? (
-        <div className="mt-10 max-w-2xl space-y-3 leading-7 text-neutral-600">
+        <div className="mt-10 max-w-2xl space-y-3 leading-7 text-neutral-600 dark:text-neutral-300">
           {doc.notes.map((note) => (
             <p key={note}>{note}</p>
           ))}

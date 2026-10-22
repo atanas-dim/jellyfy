@@ -20,8 +20,16 @@ export const DialogSample = () => (
     <dialog id="docs-dialog" className="modal">
       <div className="modal-panel">
         <form method="dialog">
-          <button className="btn-surface" type="submit" aria-label="Close">
-            ×
+          <button className="btn-bump" type="submit" aria-label="Close">
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
           </button>
         </form>
         <h2 className="pe-8 text-lg font-semibold">A note</h2>
@@ -33,8 +41,16 @@ export const DialogSample = () => (
     <dialog id="docs-dialog-tinted" className="modal">
       <div className="modal-panel tertiary">
         <form method="dialog">
-          <button className="btn-surface" type="submit" aria-label="Close">
-            ×
+          <button className="btn-bump" type="submit" aria-label="Close">
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
           </button>
         </form>
         <h2 className="pe-8 text-lg font-semibold">Tinted</h2>

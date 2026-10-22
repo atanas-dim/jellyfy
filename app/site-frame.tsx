@@ -10,6 +10,7 @@ import { ThemeToggle } from "./theme-toggle";
 
 const LINKS = [
   { href: "/set", label: "Set" },
+  { href: "/design-system", label: "Design system" },
   { href: "/docs", label: "Docs" },
 ] as const;
 

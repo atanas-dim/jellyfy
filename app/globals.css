@@ -1,6 +1,21 @@
 @import "tailwindcss";
-@plugin "jellyfy/plugin.js";
-@import "jellyfy/jellyfy.css";
+@import "jellyfy/material.css";
+@import "jellyfy/motion.css";
+@import "jellyfy/button.css";
+@import "jellyfy/icon-button.css";
+@import "jellyfy/bump-button.css";
+@import "jellyfy/input.css";
+@import "jellyfy/textarea.css";
+@import "jellyfy/select.css";
+@import "jellyfy/checkbox.css";
+@import "jellyfy/radio.css";
+@import "jellyfy/toggle.css";
+@import "jellyfy/range.css";
+@import "jellyfy/alert.css";
+@import "jellyfy/badge.css";
+@import "jellyfy/card.css";
+@import "jellyfy/modal.css";
+@import "jellyfy/message.css";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -11,73 +26,21 @@
 }
 
 body {
-  background-color: var(--color-neutral-50);
+  background-color: light-dark(var(--color-white), var(--color-black));
+  color: light-dark(var(--color-neutral-950), var(--color-neutral-100));
   font-family: var(--font-figtree), Arial, Helvetica, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) body {
-    background-color: var(--color-neutral-950);
-    color: var(--color-neutral-100);
-  }
-}
-
-:root[data-theme="dark"] body {
-  background-color: var(--color-neutral-950);
-  color: var(--color-neutral-100);
 }
 
 .set-stripes {
   background: repeating-linear-gradient(
     -45deg,
-    #d7e3f0 0px,
-    #d7e3f0 20px,
-    #b9cadd 20px,
-    #b9cadd 40px,
-    #f4f5f2 40px,
-    #f4f5f2 60px
+    light-dark(#d7e3f0, #0d1b2a) 0px,
+    light-dark(#d7e3f0, #0d1b2a) 20px,
+    light-dark(#b9cadd, #1c3854) 20px,
+    light-dark(#b9cadd, #1c3854) 40px,
+    light-dark(#f4f5f2, #151c1b) 40px,
+    light-dark(#f4f5f2, #151c1b) 60px
   );
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .set-stripes {
-    background: repeating-linear-gradient(
-      -45deg,
-      #0d1b2a 0px,
-      #0d1b2a 20px,
-      #1c3854 20px,
-      #1c3854 40px,
-      #151c1b 40px,
-      #151c1b 60px
-    );
-  }
-}
-
-:root[data-theme="dark"] .set-stripes {
-  background: repeating-linear-gradient(
-    -45deg,
-    #0d1b2a 0px,
-    #0d1b2a 20px,
-    #1c3854 20px,
-    #1c3854 40px,
-    #151c1b 40px,
-    #151c1b 60px
-  );
-}
-
-.dark .text-neutral-950 {
-  color: var(--color-neutral-100);
-}
-.dark .text-neutral-800 {
-  color: var(--color-neutral-200);
-}
-.dark .text-neutral-700,
-.dark .text-neutral-600 {
-  color: var(--color-neutral-300);
-}
-.dark .text-neutral-500,
-.dark .text-neutral-400 {
-  color: var(--color-neutral-400);
 }
 
 h1,
