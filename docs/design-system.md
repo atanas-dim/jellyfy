@@ -390,7 +390,7 @@ Color, shadow, and outline changes take 300ms, eased out. The select chevron tur
 
 ### Implementation notes
 
-Squish is applied in script to the painted face of the control, not to the invisible input inside a checkbox, radio, toggle, or range. The opt-in class is `squish`. The named constants are the total width change `8`, the height ratio `2/7`, the settle-width ratio `1/7`, the press `480ms`, the release `300ms`, and the peak at `0.42`. Scale on an axis is `1 + pixels / size` on that axis.
+Squish runs on the painted face of the control, not on the label text and not on the invisible input. A press on the label of a checkbox, radio, switch, or slider triggers that face. The opt-in class is `squish`. The named constants are the total width change `8`, the height ratio `2/7`, the settle-width ratio `1/7`, the press `480ms`, the release `300ms`, and the peak at `0.42`. Scale on an axis is `1 + pixels / size` on that axis.
 
 Loading light and loading shade are variables that read `--color-white` and `--color-black`. The dark theme can override them. That override is marked `[DARK ADAPTATION MAY BE NEEDED]`.
 
