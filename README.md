@@ -30,16 +30,21 @@ Jellyfy is not a Tailwind plugin. It reads Tailwind color and spacing variables 
 
 Import the whole library with `jellyfy/jellyfy.css`, or import the material, the motion, and the components you use. A component file that is not imported is not in the build.
 
-## This site
+## This repository
 
-This repository is the product site, at [jellyfy.vercel.app](https://jellyfy.vercel.app).
+- `packages/jellyfy` is the package that ships to npm.
+- `apps/web` is the product site, at [jellyfy.vercel.app](https://jellyfy.vercel.app).
+- `examples/` holds the HTML, React, and Vue proofs.
+- `docs/` holds the specification and the maintainer notes.
+
+On the site:
 
 - `/` is the introduction.
 - `/set` is every component, color, and size.
 - `/docs` is the guide.
 - `/design-system` is the specification.
 
-The specification source is `docs/design-system.md`. The package that ships is `packages/jellyfy`.
+The specification source is `docs/design-system.md`.
 
 ## Install
 

@@ -1,6 +1,6 @@
-# Project: React UI Lab
+# Project: Jellyfy
 
-This is a Next.js (App Router) application showcasing reusable React components built with TypeScript and Tailwind CSS.
+Jellyfy is a pnpm workspace. `packages/jellyfy` is the CSS library that ships to npm. `apps/web` is the Next.js site. `examples/` holds the HTML, React, and Vue proofs. `docs/` holds the specification.
 
 ## Core Principles
 
@@ -19,19 +19,13 @@ This is a Next.js (App Router) application showcasing reusable React components 
 ## Project Structure
 
 ```
-- app/
-  - page.tsx                        # Landing page listing all components
-  - components/[slug]/page.tsx      # Dynamic component pages
-
-- components/
-  - pill-button/
-    - PillButton.tsx
-
-- resources/                        # Constants, types, configurations
-  - components-registry.ts          # Central registry of components
-
-- hooks/                            # Custom React hooks
-- utils/                            # Utility functions
+- apps/web/                         # Next.js site
+  - app/                            # Routes: /, /set, /docs, /design-system
+  - resources/                      # Site constants and the component registry
+  - utils/
+- packages/jellyfy/                 # The npm package
+- examples/                         # html, react, vue
+- docs/                             # design-system.md and maintainer notes
 ```
 
 ## Component Rules
