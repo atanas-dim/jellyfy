@@ -493,12 +493,11 @@ A control. Control thickness, control radius, control fill when a slot is applie
 |                | Small   | Medium   | Large  |
 | -------------- | ------- | -------- | ------ |
 | Height         | 2.5rem  | 3rem     | 3.5rem |
-| Minimum width  | 8rem    | 10rem    | 12rem  |
 | Inline padding | 1.25rem | 1.5rem   | 2rem   |
 | Label size     | 0.75rem | 0.875rem | 1rem   |
 | Content gap    | 0.5rem  | 0.5rem   | 0.5rem |
 
-The label is uppercase, weight 600, tracking 0.04em. Text has a 6px shadow at 40%. Dark text uses Neutral 50. Light text uses Neutral 950.
+The width is the label plus the inline padding. There is no minimum width. The label is uppercase, weight 600, tracking 0.04em. Text has a 6px shadow at 40%. Dark text uses Neutral 50. Light text uses Neutral 950.
 
 ### Icon Button
 

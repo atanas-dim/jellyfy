@@ -4,9 +4,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ChevronDownIcon,
+  HandPlatterIcon,
+  LayoutGridIcon,
   LoaderIcon,
   MinusIcon,
   PlusIcon,
+  StickyNoteIcon,
   XIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -104,8 +107,8 @@ export const Landing = () => {
 
   return (
     <main ref={page}>
-      <section>
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-24">
+      <section className="flex min-h-fit items-center lg:min-h-[min(calc(100svh-4rem),44rem)]">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
           <div className="max-w-xl">
             <p
               data-hero-item
@@ -114,12 +117,12 @@ export const Landing = () => {
               Eight colours
             </p>
             <h1 className="mt-4 text-6xl leading-none font-bold tracking-tight sm:text-7xl">
-              <span className="block overflow-hidden pt-1 pb-3">
+              <span className="block overflow-hidden py-0.5">
                 <span data-line className="block">
                   Controls with
                 </span>
               </span>
-              <span className="block overflow-hidden pt-1 pb-3">
+              <span className="block overflow-hidden py-0.5">
                 <span data-line className="block">
                   a little flavour
                 </span>
@@ -129,13 +132,17 @@ export const Landing = () => {
               data-hero-item
               className="mt-6 max-w-md text-lg leading-8 text-neutral-600 dark:text-neutral-300"
             >
-              <span className="block">Pick a flavour for the controls</span>
-              <span className="block">The field and the note follow</span>
+              <span className="block">
+                A colour you can press, and a control that gives.
+              </span>
+              <span className="block">
+                Jellyfy is CSS for those controls. Add a class and build.
+              </span>
             </p>
 
             <div data-hero-item className="mt-8">
               <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
-                Pick a flavour
+                Pick a colour
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {TONES.map((item) => (
@@ -167,14 +174,20 @@ export const Landing = () => {
               className="mt-8 flex flex-wrap items-center gap-3"
             >
               <Link href="/set" className="btn neutral">
-                <span>See the set</span>
+                <span className="inline-flex items-center gap-2">
+                  <LayoutGridIcon aria-hidden="true" className="size-4" />
+                  See the set
+                </span>
               </Link>
               <button
                 type="button"
                 className="btn secondary"
                 onClick={openNote}
               >
-                <span>Taste a note</span>
+                <span className="inline-flex items-center gap-2">
+                  <StickyNoteIcon aria-hidden="true" className="size-4" />
+                  Open a note
+                </span>
               </button>
             </div>
           </div>
@@ -255,7 +268,13 @@ export const Landing = () => {
 
                   <div className="flex flex-wrap items-center gap-3">
                     <button type="button" className={twJoin("btn", tone)}>
-                      <span>Serve</span>
+                      <span className="inline-flex items-center gap-2">
+                        <HandPlatterIcon
+                          aria-hidden="true"
+                          className="size-4"
+                        />
+                        Serve
+                      </span>
                     </button>
                     <button type="button" className="btn secondary loading">
                       <span className="inline-flex items-center gap-2">
@@ -332,13 +351,13 @@ export const Landing = () => {
           </p>
         </div>
         <div data-rise className="mt-10 grid gap-4 lg:grid-cols-3">
-          <pre className="overflow-x-auto rounded-2xl border border-neutral-300 bg-neutral-200 p-5 font-mono text-sm leading-7 shadow-[0_16px_24px_-18px_rgb(10_10_10/0.55)] dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-[0_16px_24px_-18px_rgb(0_0_0/0.7)]">
+          <pre className="surface overflow-x-auto rounded-2xl p-5 font-mono text-sm leading-7 shadow-lg">
             npm install jellyfy
           </pre>
-          <pre className="overflow-x-auto rounded-2xl border border-neutral-300 bg-neutral-200 p-5 font-mono text-sm leading-7 shadow-[0_16px_24px_-18px_rgb(10_10_10/0.55)] dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-[0_16px_24px_-18px_rgb(0_0_0/0.7)]">
+          <pre className="surface overflow-x-auto rounded-2xl p-5 font-mono text-sm leading-7 shadow-lg">
             {`@import "jellyfy/jellyfy.css";`}
           </pre>
-          <pre className="overflow-x-auto rounded-2xl border border-neutral-300 bg-neutral-200 p-5 font-mono text-sm leading-7 shadow-[0_16px_24px_-18px_rgb(10_10_10/0.55)] dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-[0_16px_24px_-18px_rgb(0_0_0/0.7)]">
+          <pre className="surface overflow-x-auto rounded-2xl p-5 font-mono text-sm leading-7 shadow-lg">
             {`import { startJellyfy } from "jellyfy";
 
 startJellyfy();`}
@@ -364,7 +383,7 @@ startJellyfy();`}
           </p>
         </div>
         <div data-rise className="mt-10 grid gap-4 sm:grid-cols-3">
-          <article className="flex flex-col gap-4 rounded-2xl border border-neutral-200 p-5 dark:border-neutral-800">
+          <article className="surface flex flex-col gap-4 rounded-2xl p-5 shadow-lg">
             <div className="flex flex-col gap-3">
               <div className="primary thickness-surface h-10 rounded-2xl" />
               <div className="primary thickness-field h-10 rounded-2xl" />
@@ -379,8 +398,8 @@ startJellyfy();`}
               </p>
             </div>
           </article>
-          <article className="flex flex-col gap-4 rounded-2xl border border-neutral-200 p-5 dark:border-neutral-800">
-            <div className="flex flex-wrap items-center gap-3 py-2">
+          <article className="surface flex flex-col gap-4 rounded-2xl p-5 shadow-lg">
+            <div className="flex flex-wrap items-center justify-center gap-3 py-2">
               <button
                 type="button"
                 className="btn primary"
@@ -403,7 +422,7 @@ startJellyfy();`}
               </p>
             </div>
           </article>
-          <article className="flex flex-col gap-4 rounded-2xl border border-neutral-200 p-5 dark:border-neutral-800">
+          <article className="surface flex flex-col gap-4 rounded-2xl p-5 shadow-lg">
             <div className="flex flex-col gap-3">
               <button type="button" className="btn secondary">
                 <span>Press</span>
@@ -477,7 +496,7 @@ startJellyfy();`}
             <Link
               key={component.slug}
               href={`/set#${component.slug}`}
-              className="card squish block transition-transform duration-200 hover:-translate-y-0.5"
+              className="surface block rounded-2xl p-5 shadow-lg"
             >
               <h3 className="text-xl font-semibold tracking-tight">
                 {component.name}

@@ -209,34 +209,34 @@ export const SiteFooter = ({ className }: { className?: string }) => {
 
   return (
     <div className="w-full px-4 pb-4 sm:px-10">
-    <footer
-      className={twMerge(
-        "relative mx-auto flex min-h-[460px] w-full max-w-7xl flex-col items-center justify-center gap-6 overflow-hidden rounded-4xl border border-neutral-200/80 bg-white px-6 py-14 sm:px-10 md:min-h-[376px] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100",
-        className,
-      )}
-    >
-      <div className="mx-auto grid h-full w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-2">
-        <div className="flex w-full flex-col items-center md:items-start">
-          <FooterDisplayText paragraphs={displayText} />
+      <footer
+        className={twMerge(
+          "surface relative mx-auto flex min-h-[460px] w-full max-w-7xl flex-col items-center justify-center gap-6 overflow-hidden rounded-4xl py-14 shadow-lg md:min-h-[376px] dark:text-neutral-100",
+          className,
+        )}
+      >
+        <div className="mx-auto grid h-full w-full max-w-6xl grid-cols-1 gap-6 px-6 sm:px-10 md:grid-cols-2">
+          <div className="flex w-full flex-col items-center md:items-start">
+            <FooterDisplayText paragraphs={displayText} />
+          </div>
+          <div className="mt-auto flex w-full shrink-0 flex-col items-center text-sm font-normal md:w-auto md:items-end md:text-right">
+            <span className="mb-0.5 text-xs text-neutral-500 dark:text-neutral-400">
+              Built by{" "}
+              <a
+                href="https://adimitrov.com"
+                target="_blank"
+                rel="noreferrer"
+                className="underline decoration-neutral-400 underline-offset-4"
+              >
+                Atanas Dimitrov
+              </a>
+            </span>
+            <span className="text-xs text-neutral-500 dark:text-neutral-400">
+              © {year} adimitrov
+            </span>
+          </div>
         </div>
-        <div className="mt-auto flex w-full shrink-0 flex-col items-center text-sm font-normal md:w-auto md:items-end md:text-right">
-          <span className="mb-0.5 text-xs text-neutral-500 dark:text-neutral-400">
-            Built by{" "}
-            <a
-              href="https://adimitrov.com"
-              target="_blank"
-              rel="noreferrer"
-              className="underline decoration-neutral-400 underline-offset-4"
-            >
-              Atanas Dimitrov
-            </a>
-          </span>
-          <span className="text-xs text-neutral-500 dark:text-neutral-400">
-            © {year} adimitrov
-          </span>
-        </div>
-      </div>
-    </footer>
+      </footer>
     </div>
   );
 };

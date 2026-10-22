@@ -121,7 +121,7 @@ export const Contents = ({ groups }: { groups: ContentsGroup[] }) => {
 
   return (
     <>
-      <details className="mb-8 rounded-2xl border border-neutral-200 bg-white lg:hidden dark:border-neutral-800 dark:bg-neutral-900">
+      <details className="surface mb-8 rounded-2xl lg:hidden">
         <summary className="cursor-pointer px-4 py-3 text-sm font-medium">
           {current}
         </summary>

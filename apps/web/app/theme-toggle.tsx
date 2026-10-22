@@ -1,7 +1,7 @@
 "use client";
 
 import { MoonIcon, SunIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark";
 
@@ -14,28 +14,30 @@ const applyTheme = (theme: Theme) => {
   localStorage.setItem(storageKey, theme);
 };
 
-export const ThemeToggle = () => {
-  const [theme, setTheme] = useState<Theme>("light");
+const subscribe = (onStoreChange: () => void) => {
+  const observer = new MutationObserver(onStoreChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  return () => observer.disconnect();
+};
 
-  useEffect(() => {
-    setTheme(
-      document.documentElement.classList.contains("dark") ? "dark" : "light",
-    );
-  }, []);
+const themeFromDom = (): Theme =>
+  document.documentElement.classList.contains("dark") ? "dark" : "light";
+
+export const ThemeToggle = () => {
+  const theme = useSyncExternalStore(subscribe, themeFromDom, () => "light");
 
   return (
-    <label className="toggle flex gap-0.5">
+    <label className="toggle flex gap-1">
       <SunIcon aria-hidden="true" className="size-4" />
       <input
         type="checkbox"
         role="switch"
         aria-label="Dark theme"
         checked={theme === "dark"}
-        onChange={() => {
-          const next = theme === "dark" ? "light" : "dark";
-          applyTheme(next);
-          setTheme(next);
-        }}
+        onChange={() => applyTheme(theme === "dark" ? "light" : "dark")}
       />
       <span className="toggle-track">
         <span className="toggle-thumb" />
