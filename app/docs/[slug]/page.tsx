@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { COMPONENT_DOCS, getComponentDoc } from "@/resources/component-docs";
+import {
+  COMPONENT_DOCS,
+  COMPONENT_STYLESHEETS,
+  getComponentDoc,
+} from "@/resources/component-docs";
 
 import { ClassTable } from "../class-table";
 import { Example } from "../example";
@@ -43,6 +47,16 @@ export default async function ComponentDocPage({ params }: DocPageProps) {
       </div>
       <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-600 dark:text-neutral-300">
         {doc.description}
+      </p>
+      <p className="mt-4 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
+        Import{" "}
+        <code className="font-mono text-sm">
+          jellyfy/{COMPONENT_STYLESHEETS[doc.slug]}
+        </code>{" "}
+        with <code className="font-mono text-sm">jellyfy/material.css</code> and{" "}
+        <code className="font-mono text-sm">jellyfy/motion.css</code>. Or import{" "}
+        <code className="font-mono text-sm">jellyfy/jellyfy.css</code>, which
+        already includes this file and every other component.
       </p>
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">Classes</h2>

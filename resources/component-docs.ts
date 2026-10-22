@@ -35,7 +35,7 @@ const color = (): ClassRow[] =>
   ).map(([name, hue]) => ({
     name,
     kind: "Color" as const,
-    note: `${hue} by default. With no color class, the control stays plain.`,
+    note: `${hue} by default.`,
   }));
 
 const HUES = [
@@ -268,14 +268,14 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       },
     ],
     notes: [
-      "No color class means neutral. While the field is empty and not focused, the label is large and dim, on the text line. Focus, or the first letter, shrinks it to a caption and the caret is already where the letters go.",
+      "With no color class, the field stays plain and the text is the plain content color. A slot uses the surface content color. While the field is empty and not focused, the label is large and dim, on the text line. Focus, or the first letter, shrinks it to a caption and the caret is already where the letters go.",
     ],
   },
   {
     slug: "message",
     name: "Message",
     description:
-      "A short note under a control. With no color it is red, the usual field error.",
+      "A short note under a control. With no color it uses the plain content color. A slot uses that solid.",
     classes: [
       {
         name: "message",
@@ -299,7 +299,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         id: "message-colors",
         title: "Colors",
         code: hues((name, label) => `<p class="message ${name}">${label}</p>`),
-        note: "With no color class, the note is red, the same as error. Use another color for a confirmation or a warning.",
+        note: "With no color class, the note uses the plain content color. Add error, success, or warning when the note should use that solid.",
       },
       {
         id: "message-sizes",
@@ -398,7 +398,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   <span>Flavor</span>
   <i class="picker-icon"></i>
 </label>`,
-        note: "Include picker-icon. The library hides the native ::picker-icon. In Chrome the menu is styled. In other browsers it is the system menu.",
+        note: "Include picker-icon. The library hides the native ::picker-icon. Chrome and Safari use the styled menu. Firefox uses the system menu.",
       },
       {
         id: "select-colors",
@@ -478,7 +478,9 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
 </label>`,
       },
     ],
-    notes: ["No color class means primary."],
+    notes: [
+      "With no color class, the box stays plain. A slot fills the chosen box with that control color. A disabled checkbox uses the disabled colors in both the checked and unchecked states.",
+    ],
   },
   {
     slug: "radio",
@@ -698,7 +700,9 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         note: "Each size sets the type as well as the padding: 14px, 16px, and 20px.",
       },
     ],
-    notes: ["No color class means warning."],
+    notes: [
+      "With no color class, the alert stays plain. A slot uses the wash, and the text is the surface content color.",
+    ],
   },
   {
     slug: "badge",
@@ -737,12 +741,15 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         name: "card",
         kind: "Component",
-        note: "The panel. A plain card is white.",
+        note: "The panel. With no color class, the card stays plain.",
       },
       ...sizes("card").slice(1),
       ...color().map((row) =>
         row.name === "primary"
-          ? { ...row, note: "A tint. A plain card is white." }
+          ? {
+              ...row,
+              note: "A wash of this solid. The text is the surface content color. With no color class, the card stays plain.",
+            }
           : row,
       ),
       {
@@ -757,7 +764,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         title: "Plain",
         code: `<section class="card">
   <h3>Studio notes</h3>
-  <p>A white jelly panel.</p>
+  <p>A plain jelly panel.</p>
 </section>`,
       },
       {
@@ -816,7 +823,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         row.name === "primary"
           ? {
               ...row,
-              note: "Put the color on the panel. It tints the panel and the close control. With no color, both use the neutral surface.",
+              note: "Put the color on the panel. It tints the panel, and the close control uses the surface content color. With no color, both stay plain.",
             }
           : row,
       ),
@@ -837,7 +844,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
     <p>Surface panel.</p>
   </div>
 </dialog>`,
-        note: 'Open it with showModal() on the dialog element. The form method="dialog" closes it. With no color, the close control uses the neutral surface.',
+        note: 'Open it with showModal() on the dialog element. The form method="dialog" closes it. With no color, the panel and the close control stay plain.',
       },
       {
         id: "dialog-colors",
@@ -856,6 +863,24 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
 
 export const getComponentDoc = (slug: string) =>
   COMPONENT_DOCS.find((doc) => doc.slug === slug);
+
+export const COMPONENT_STYLESHEETS: Record<string, string> = {
+  button: "button.css",
+  "icon-button": "icon-button.css",
+  "bump-button": "bump-button.css",
+  input: "input.css",
+  message: "message.css",
+  textarea: "textarea.css",
+  select: "select.css",
+  checkbox: "checkbox.css",
+  radio: "radio.css",
+  switch: "toggle.css",
+  slider: "range.css",
+  alert: "alert.css",
+  badge: "badge.css",
+  card: "card.css",
+  dialog: "modal.css",
+};
 
 export const GUIDE_LINKS = [
   { href: "/docs", label: "Introduction" },
