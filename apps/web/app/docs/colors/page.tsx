@@ -38,8 +38,8 @@ export default function ColorsPage() {
         theme. Neutral is Neutral 400 in both themes. Secondary, tertiary,
         success, warning, error, and info are the 600 step in both themes.
       </p>
-      <div className="mt-8 overflow-x-auto overflow-y-hidden overscroll-x-contain overscroll-y-auto">
-        <table className="w-full text-left text-sm">
+      <div className="table-scroll mt-8">
+        <table className="text-left text-sm">
           <thead>
             <tr className="border-b border-neutral-200 text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
               <th className="py-2 pr-4 font-medium">Class</th>

@@ -208,9 +208,10 @@ export const SiteFooter = ({ className }: { className?: string }) => {
   const year = new Date().getFullYear();
 
   return (
+    <div className="w-full px-4 pb-4 sm:px-10">
     <footer
       className={twMerge(
-        "relative mx-auto flex min-h-[460px] w-full flex-col items-center justify-center gap-6 overflow-hidden border-t border-neutral-200/80 bg-white px-6 py-14 sm:px-10 md:min-h-[376px] dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-100",
+        "relative mx-auto flex min-h-[460px] w-full max-w-7xl flex-col items-center justify-center gap-6 overflow-hidden rounded-4xl border border-neutral-200/80 bg-white px-6 py-14 sm:px-10 md:min-h-[376px] dark:border-neutral-800 dark:bg-neutral-900 dark:text-neutral-100",
         className,
       )}
     >
@@ -236,5 +237,6 @@ export const SiteFooter = ({ className }: { className?: string }) => {
         </div>
       </div>
     </footer>
+    </div>
   );
 };

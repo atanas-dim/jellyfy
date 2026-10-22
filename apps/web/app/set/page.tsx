@@ -1,10 +1,17 @@
 "use client";
 
-import { InfoIcon, PlusIcon, SearchIcon, SendIcon, XIcon } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import {
+  InfoIcon,
+  LoaderIcon,
+  PlusIcon,
+  SearchIcon,
+  SendIcon,
+  XIcon,
+} from "lucide-react";
+import { type ReactNode, useEffect, useState } from "react";
 import { twJoin } from "tailwind-merge";
 
-import { StripeSwitch, STRIPES_CLASS } from "@/app/stripe-switch";
+import { STRIPES_CLASS, StripeSwitch } from "@/app/stripe-switch";
 
 const COLORS = [
   "primary",
@@ -32,7 +39,7 @@ const SIZES = ["sm", "", "lg"] as const;
 
 const SIZE_NAME: Record<(typeof SIZES)[number], string> = {
   sm: "Small",
-  "": "Regular",
+  "": "Medium",
   lg: "Large",
 };
 
@@ -72,8 +79,13 @@ const sizeClass = (prefix: string, size: (typeof SIZES)[number]) =>
 export default function SetPage() {
   const [striped, setStriped] = useState(false);
 
+  useEffect(() => {
+    document.body.classList.toggle(STRIPES_CLASS, striped);
+    return () => document.body.classList.remove(STRIPES_CLASS);
+  }, [striped]);
+
   return (
-    <main className={twJoin("w-full", striped && STRIPES_CLASS)}>
+    <main className="w-full">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-x-8 gap-y-12 px-6 py-12 sm:grid-cols-2 sm:px-10 xl:grid-cols-3">
         <StripeSwitch
           className="sm:col-span-2 xl:col-span-3"
@@ -105,7 +117,13 @@ export default function SetPage() {
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <button className="btn primary loading" type="button">
-              <span>Loading</span>
+              <span className="inline-flex items-center gap-2">
+                <LoaderIcon
+                  aria-hidden="true"
+                  className="size-4 animate-spin"
+                />
+                Loading
+              </span>
             </button>
             <button className="btn" type="button" disabled>
               <span>Disabled</span>
@@ -144,7 +162,7 @@ export default function SetPage() {
               type="button"
               aria-label="Loading"
             >
-              <PlusIcon />
+              <LoaderIcon className="animate-spin" />
             </button>
           </div>
         </Tile>

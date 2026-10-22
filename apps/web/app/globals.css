@@ -26,9 +26,33 @@
 }
 
 body {
-  background-color: light-dark(var(--color-white), var(--color-black));
+  background-color: light-dark(
+    var(--color-neutral-50),
+    var(--color-neutral-950)
+  );
   color: light-dark(var(--color-neutral-950), var(--color-neutral-100));
   font-family: var(--font-figtree), Arial, Helvetica, sans-serif;
+}
+
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+}
+
+.table-scroll > table {
+  width: 100%;
+  min-width: 36rem;
+}
+
+body.set-stripes {
+  background-attachment: fixed;
+}
+
+body.set-stripes footer {
+  background-color: transparent;
 }
 
 .set-stripes {

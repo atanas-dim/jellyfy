@@ -67,7 +67,7 @@ const sizes = (prefix: string): ClassRow[] => [
   {
     name: prefix,
     kind: "Size",
-    note: "Regular. No extra class.",
+    note: "Medium. No extra class.",
   },
   { name: `${prefix}-sm`, kind: "Size", note: "Small." },
   { name: `${prefix}-lg`, kind: "Size", note: "Large." },
@@ -105,9 +105,9 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         id: "button-sizes",
         title: "Sizes",
         code: `<button class="btn btn-sm" type="button"><span>Small</span></button>
-<button class="btn" type="button"><span>Regular</span></button>
+<button class="btn" type="button"><span>Medium</span></button>
 <button class="btn btn-lg" type="button"><span>Large</span></button>`,
-        note: "Regular is btn alone. btn-sm and btn-lg are the other sizes.",
+        note: "Medium is btn alone. btn-sm and btn-lg are the other sizes.",
       },
       {
         id: "button-states",
@@ -280,7 +280,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         name: "message",
         kind: "Component",
-        note: "The note. Regular is 12px.",
+        note: "The note. Medium is 12px.",
       },
       {
         name: "message-sm",
@@ -305,7 +305,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         id: "message-sizes",
         title: "Sizes",
         code: `<p class="message message-sm">Small</p>
-<p class="message">Regular</p>
+<p class="message">Medium</p>
 <p class="message message-lg">Large</p>`,
       },
     ],
@@ -659,7 +659,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         name: "alert",
         kind: "Component",
-        note: "The block. Regular text is 16px.",
+        note: "The block. Medium text is 16px.",
       },
       { name: "alert-sm", kind: "Size", note: "14px text." },
       { name: "alert-lg", kind: "Size", note: "20px text." },
@@ -725,7 +725,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         id: "badge-sizes",
         title: "Sizes",
         code: `<span class="badge badge-sm">Small</span>
-<span class="badge">Regular</span>
+<span class="badge">Medium</span>
 <span class="badge badge-lg">Large</span>`,
       },
     ],
@@ -780,7 +780,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         id: "card-sizes",
         title: "Sizes",
         code: `<section class="card card-sm"><h3>Small</h3></section>
-<section class="card"><h3>Regular</h3></section>
+<section class="card"><h3>Medium</h3></section>
 <section class="card card-lg"><h3>Large</h3></section>`,
         note: "The sizes change the type as well as the padding: 14px, 16px, and 20px.",
       },

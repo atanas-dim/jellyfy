@@ -2,22 +2,28 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ChevronDownIcon, MinusIcon, PlusIcon, XIcon } from "lucide-react";
+import {
+  ChevronDownIcon,
+  LoaderIcon,
+  MinusIcon,
+  PlusIcon,
+  XIcon,
+} from "lucide-react";
 import Link from "next/link";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { twJoin } from "tailwind-merge";
 
 import { COMPONENT_LIST } from "@/resources/components-registry";
 
 const TONES = [
-  { id: "primary", label: "Primary" },
-  { id: "secondary", label: "Secondary" },
-  { id: "tertiary", label: "Tertiary" },
-  { id: "neutral", label: "Neutral" },
-  { id: "success", label: "Success" },
-  { id: "error", label: "Error" },
-  { id: "warning", label: "Warning" },
-  { id: "info", label: "Info" },
+  { id: "primary", slot: "Primary", flavour: "Ink" },
+  { id: "secondary", slot: "Secondary", flavour: "Rose" },
+  { id: "tertiary", slot: "Tertiary", flavour: "Mint" },
+  { id: "neutral", slot: "Neutral", flavour: "Milk" },
+  { id: "success", slot: "Success", flavour: "Lime" },
+  { id: "warning", slot: "Warning", flavour: "Honey" },
+  { id: "error", slot: "Error", flavour: "Cherry" },
+  { id: "info", slot: "Info", flavour: "Sea" },
 ] as const;
 
 type Tone = (typeof TONES)[number]["id"];
@@ -30,7 +36,7 @@ const openNote = () => {
 export const Landing = () => {
   const page = useRef<HTMLElement>(null);
   const [tone, setTone] = useState<Tone>("primary");
-  const toneLabel = TONES.find((item) => item.id === tone)?.label ?? "Primary";
+  const selected = TONES.find((item) => item.id === tone) ?? TONES[0];
 
   useLayoutEffect(() => {
     const root = page.current;
@@ -39,8 +45,6 @@ export const Landing = () => {
 
     gsap.registerPlugin(ScrollTrigger);
     let alive = true;
-    const track = root.querySelector<HTMLElement>("[data-marquee]");
-    const group = track?.querySelector<HTMLElement>("[data-marquee-group]");
 
     const ctx = gsap.context(() => {
       gsap.from("[data-line]", {
@@ -68,17 +72,6 @@ export const Landing = () => {
         ease: "power3.out",
       });
 
-      gsap.utils.toArray<HTMLElement>("[data-blob]").forEach((blob) => {
-        gsap.to(blob, {
-          x: gsap.utils.random(-36, 36),
-          y: gsap.utils.random(-28, 28),
-          duration: gsap.utils.random(6, 9),
-          ease: "sine.inOut",
-          yoyo: true,
-          repeat: -1,
-        });
-      });
-
       gsap.to("[data-float]", {
         y: -12,
         duration: 3.4,
@@ -87,27 +80,6 @@ export const Landing = () => {
         repeat: -1,
         stagger: 0.5,
       });
-
-      if (track && group) {
-        const distance = group.offsetWidth;
-        let guard = 0;
-        while (track.scrollWidth < window.innerWidth + distance && guard < 8) {
-          const clone = group.cloneNode(true) as HTMLElement;
-          clone.setAttribute("data-marquee-clone", "");
-          clone.setAttribute("aria-hidden", "true");
-          clone.querySelectorAll("button").forEach((button) => {
-            button.tabIndex = -1;
-          });
-          track.appendChild(clone);
-          guard += 1;
-        }
-        gsap.to(track, {
-          x: -distance,
-          duration: distance / 80,
-          ease: "none",
-          repeat: -1,
-        });
-      }
 
       gsap.utils.toArray<HTMLElement>("[data-rise]").forEach((element) => {
         gsap.from(element, {
@@ -126,48 +98,30 @@ export const Landing = () => {
 
     return () => {
       alive = false;
-      track
-        ?.querySelectorAll("[data-marquee-clone]")
-        .forEach((node) => node.remove());
       ctx.revert();
     };
   }, []);
 
   return (
     <main ref={page}>
-      <section className="relative">
-        <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-          <div
-            data-blob
-            className="absolute -top-24 -left-16 size-[28rem] rounded-full bg-pink-300/45 blur-3xl dark:bg-pink-800/35"
-          />
-          <div
-            data-blob
-            className="absolute top-16 -right-20 size-[34rem] rounded-full bg-indigo-300/40 blur-3xl dark:bg-indigo-800/30"
-          />
-          <div
-            data-blob
-            className="absolute bottom-0 left-1/3 size-[22rem] rounded-full bg-teal-200/50 blur-3xl dark:bg-teal-800/35"
-          />
-        </div>
-
+      <section>
         <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-24">
           <div className="max-w-xl">
             <p
               data-hero-item
               className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase dark:text-neutral-400"
             >
-              One material
+              Eight colours
             </p>
             <h1 className="mt-4 text-6xl leading-none font-bold tracking-tight sm:text-7xl">
               <span className="block overflow-hidden pt-1 pb-3">
                 <span data-line className="block">
-                  The control
+                  Controls with
                 </span>
               </span>
               <span className="block overflow-hidden pt-1 pb-3">
                 <span data-line className="block">
-                  gives a little.
+                  a little flavour
                 </span>
               </span>
             </h1>
@@ -175,12 +129,13 @@ export const Landing = () => {
               data-hero-item
               className="mt-6 max-w-md text-lg leading-8 text-neutral-600 dark:text-neutral-300"
             >
-              Soft controls. Pick eight colors. The rest of the set follows.
+              <span className="block">Pick a flavour for the controls</span>
+              <span className="block">The field and the note follow</span>
             </p>
 
             <div data-hero-item className="mt-8">
               <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
-                Try a solid
+                Pick a flavour
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {TONES.map((item) => (
@@ -191,10 +146,10 @@ export const Landing = () => {
                       "btn-icon outline-2 outline-offset-2 transition-all duration-400",
                       item.id,
                       tone === item.id
-                        ? "outline-neutral-950 dark:outline-neutral-100"
+                        ? "outline-(--focus-color)"
                         : "outline-transparent",
                     )}
-                    aria-label={item.label}
+                    aria-label={item.slot}
                     aria-pressed={tone === item.id}
                     onClick={() => setTone(item.id)}
                   >
@@ -203,7 +158,7 @@ export const Landing = () => {
                 ))}
               </div>
               <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-300">
-                {toneLabel}
+                {selected.slot}
               </p>
             </div>
 
@@ -212,14 +167,14 @@ export const Landing = () => {
               className="mt-8 flex flex-wrap items-center gap-3"
             >
               <Link href="/set" className="btn neutral">
-                <span>Open the set</span>
+                <span>See the set</span>
               </Link>
               <button
                 type="button"
                 className="btn secondary"
                 onClick={openNote}
               >
-                <span>Open a note</span>
+                <span>Taste a note</span>
               </button>
             </div>
           </div>
@@ -235,9 +190,11 @@ export const Landing = () => {
                   )}
                 >
                   <div>
-                    <p className="text-sm font-semibold">Still on the desk</p>
+                    <p className="text-sm font-semibold">
+                      {selected.flavour} is ready
+                    </p>
                     <p className="mt-1 text-sm leading-6">
-                      Nothing has been sent yet.
+                      This batch stays on the counter.
                     </p>
                   </div>
                 </div>
@@ -245,14 +202,16 @@ export const Landing = () => {
                 <section className="card relative flex flex-col gap-4 lg:ml-8">
                   <div className="flex items-center justify-between gap-3">
                     <h2 className="text-lg font-semibold tracking-tight">
-                      Studio note
+                      Pick a flavour
                     </h2>
-                    <span className={twJoin("badge", tone)}>{toneLabel}</span>
+                    <span className={twJoin("badge", tone)}>
+                      {selected.flavour}
+                    </span>
                   </div>
 
                   <label className={twJoin("input", tone)}>
-                    <input placeholder=" " defaultValue="studio@jellyfy.dev" />
-                    <span>Email</span>
+                    <input placeholder=" " defaultValue="Rose syrup" />
+                    <span>Name</span>
                   </label>
 
                   <label className={twJoin("select", tone)}>
@@ -261,7 +220,7 @@ export const Landing = () => {
                       <option value="rose">Rose</option>
                       <option value="ink">Ink</option>
                     </select>
-                    <span>Flavor</span>
+                    <span>Flavour</span>
                     <ChevronDownIcon
                       className="picker-icon"
                       aria-hidden="true"
@@ -274,17 +233,17 @@ export const Landing = () => {
                       <span className="toggle-track">
                         <span className="toggle-thumb" />
                       </span>
-                      Soft press
+                      On the cone
                     </label>
                     <label className={twJoin("checkbox", tone)}>
                       <input type="checkbox" defaultChecked />
                       <span className="checkbox-box" />
-                      Remember
+                      Extra zest
                     </label>
                   </div>
 
                   <label className={twJoin("range", tone)}>
-                    Pressure
+                    Sweetness
                     <span className="range-box">
                       <span className="range-track">
                         <span className="range-fill" />
@@ -296,10 +255,16 @@ export const Landing = () => {
 
                   <div className="flex flex-wrap items-center gap-3">
                     <button type="button" className={twJoin("btn", tone)}>
-                      <span>Send</span>
+                      <span>Serve</span>
                     </button>
                     <button type="button" className="btn secondary loading">
-                      <span>Saving</span>
+                      <span className="inline-flex items-center gap-2">
+                        <LoaderIcon
+                          aria-hidden="true"
+                          className="size-4 animate-spin"
+                        />
+                        Mixing
+                      </span>
                     </button>
                   </div>
                 </section>
@@ -311,14 +276,14 @@ export const Landing = () => {
                   <button
                     type="button"
                     className={twJoin("btn-icon", tone)}
-                    aria-label="Add"
+                    aria-label="Add a drop"
                   >
                     <PlusIcon />
                   </button>
                   <button
                     type="button"
                     className="btn-icon neutral"
-                    aria-label="More"
+                    aria-label="Take a drop"
                   >
                     <MinusIcon />
                   </button>
@@ -329,101 +294,167 @@ export const Landing = () => {
         </div>
       </section>
 
-      <section className="border-y border-white/70 bg-white/40 py-8 dark:border-white/10 dark:bg-neutral-900/50">
+      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+        <div data-rise className="max-w-xl">
+          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+            Add a class
+          </h2>
+          <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
+            Keep the element you already have. Add{" "}
+            <span className="font-mono text-base">btn</span> and a colour such
+            as <span className="font-mono text-base">primary</span>. Call{" "}
+            <span className="font-mono text-base">startJellyfy()</span> once.
+            That call runs the press, the loading lights, and the slider fill.
+          </p>
+        </div>
+        <div data-rise className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {TONES.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={twJoin("btn", item.id)}
+            >
+              <span>{item.slot}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+        <div data-rise className="max-w-xl">
+          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+            Install
+          </h2>
+          <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
+            One package. Import the whole library, or the material, the motion,
+            and the components you use. A file you do not import stays out of
+            the build.
+          </p>
+        </div>
+        <div data-rise className="mt-10 grid gap-4 lg:grid-cols-3">
+          <pre className="overflow-x-auto rounded-2xl border border-neutral-300 bg-neutral-200 p-5 font-mono text-sm leading-7 shadow-[0_16px_24px_-18px_rgb(10_10_10/0.55)] dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-[0_16px_24px_-18px_rgb(0_0_0/0.7)]">
+            npm install jellyfy
+          </pre>
+          <pre className="overflow-x-auto rounded-2xl border border-neutral-300 bg-neutral-200 p-5 font-mono text-sm leading-7 shadow-[0_16px_24px_-18px_rgb(10_10_10/0.55)] dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-[0_16px_24px_-18px_rgb(0_0_0/0.7)]">
+            {`@import "jellyfy/jellyfy.css";`}
+          </pre>
+          <pre className="overflow-x-auto rounded-2xl border border-neutral-300 bg-neutral-200 p-5 font-mono text-sm leading-7 shadow-[0_16px_24px_-18px_rgb(10_10_10/0.55)] dark:border-neutral-700 dark:bg-neutral-800 dark:shadow-[0_16px_24px_-18px_rgb(0_0_0/0.7)]">
+            {`import { startJellyfy } from "jellyfy";
+
+startJellyfy();`}
+          </pre>
+        </div>
         <p
           data-rise
-          className="px-6 text-center text-sm font-medium tracking-[0.18em] text-neutral-500 uppercase sm:px-10 dark:text-neutral-400"
+          className="mt-6 text-sm leading-6 text-neutral-600 dark:text-neutral-300"
         >
-          Every color, the same press
+          Without Tailwind, link <span className="font-mono">jellyfy.css</span>{" "}
+          or import it from a bundler. The same classes apply.
         </p>
-        <div data-rise className="mt-6 overflow-hidden pt-8 pb-16">
-          <div data-marquee className="flex w-max">
-            {[0, 1].map((copy) => (
-              <div
-                key={copy}
-                data-marquee-group={copy === 0 ? "" : undefined}
-                className="flex gap-3 pr-3"
-                aria-hidden={copy === 1}
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+        <div data-rise className="max-w-xl">
+          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+            One material
+          </h2>
+          <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
+            Depth is three separate things. A theme changes the solids. It does
+            not flatten that difference.
+          </p>
+        </div>
+        <div data-rise className="mt-10 grid gap-4 sm:grid-cols-3">
+          <article className="flex flex-col gap-4 rounded-2xl border border-neutral-200 p-5 dark:border-neutral-800">
+            <div className="flex flex-col gap-3">
+              <div className="primary thickness-surface h-10 rounded-2xl" />
+              <div className="primary thickness-field h-10 rounded-2xl" />
+              <div className="primary thickness-control h-10 rounded-full" />
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold tracking-tight">
+                Thickness
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
+                The inset of the material. Surface, field, then control.
+              </p>
+            </div>
+          </article>
+          <article className="flex flex-col gap-4 rounded-2xl border border-neutral-200 p-5 dark:border-neutral-800">
+            <div className="flex flex-wrap items-center gap-3 py-2">
+              <button
+                type="button"
+                className="btn primary"
+                style={{
+                  ["--jelly-elevation" as string]: "0 0 0 0 transparent",
+                }}
               >
-                {TONES.map((item) => (
-                  <button
-                    key={`${copy}-${item.id}`}
-                    type="button"
-                    tabIndex={copy === 1 ? -1 : undefined}
-                    className={twJoin("btn", item.id)}
-                  >
-                    <span>{item.label}</span>
-                  </button>
-                ))}
-              </div>
-            ))}
+                <span>Flat</span>
+              </button>
+              <button type="button" className="btn primary">
+                <span>Lifted</span>
+              </button>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold tracking-tight">
+                Elevation
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
+                The drop shadow. It says how far the object sits off the page.
+              </p>
+            </div>
+          </article>
+          <article className="flex flex-col gap-4 rounded-2xl border border-neutral-200 p-5 dark:border-neutral-800">
+            <div className="flex flex-col gap-3">
+              <button type="button" className="btn secondary">
+                <span>Press</span>
+              </button>
+              <label className="input info">
+                <input placeholder=" " />
+                <span>Focus</span>
+              </label>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold tracking-tight">
+                Press light
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-neutral-600 dark:text-neutral-300">
+                Press the button, or focus the field. The wash appears while you
+                do.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+        <div data-rise className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="max-w-xl">
+            <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+              With Tailwind, or without
+            </h2>
+            <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
+              Widen a control, narrow it, tilt it, or let it fade. The utility
+              goes on the control. The material stays, and so does the press.
+            </p>
+          </div>
+          <div className="flex flex-col items-start gap-5">
+            <button type="button" className="btn primary w-full">
+              <span>Wide</span>
+            </button>
+            <button type="button" className="btn warning w-3/4 -rotate-3">
+              <span>Tilted</span>
+            </button>
+            <button type="button" className="btn info w-1/2 opacity-60">
+              <span>Faded</span>
+            </button>
+            <button type="button" className="btn success w-40">
+              <span>Narrow</span>
+            </button>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-20 sm:px-10">
-        <div data-rise className="max-w-xl">
-          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Drop it on your markup
-          </h2>
-          <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
-            One stylesheet, then a class on the element. Press it and it gives.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-4 lg:grid-cols-3">
-          <article data-rise className="card flex flex-col gap-4">
-            <h3 className="text-xl font-semibold tracking-tight">
-              Your button
-            </h3>
-            <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-300">
-              Keep the element. Add the class. It comes back with a soft face
-              and a press.
-            </p>
-            <button type="button" className="btn primary">
-              <span>Launch</span>
-            </button>
-            <p className="font-mono text-xs leading-5 text-neutral-500 dark:text-neutral-400">
-              class=&quot;btn&quot;
-            </p>
-          </article>
-
-          <article data-rise className="card flex flex-col gap-4">
-            <h3 className="text-xl font-semibold tracking-tight">
-              Your colors
-            </h3>
-            <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-300">
-              Name eight colors once. Buttons, fields, and badges in that color
-              stay in the same material.
-            </p>
-            <label className="input success">
-              <input placeholder=" " defaultValue="Ready" />
-              <span>Status</span>
-            </label>
-            <p className="font-mono text-xs leading-5 text-neutral-500 dark:text-neutral-400">
-              --color-success
-            </p>
-          </article>
-
-          <article data-rise className="card flex flex-col gap-4">
-            <h3 className="text-xl font-semibold tracking-tight">
-              Your utilities
-            </h3>
-            <p className="text-sm leading-6 text-neutral-600 dark:text-neutral-300">
-              Tailwind still applies. Widen it, pad it, or lay it out. The press
-              stays.
-            </p>
-            <button type="button" className="btn tertiary w-full">
-              <span>Continue</span>
-            </button>
-            <p className="font-mono text-xs leading-5 text-neutral-500 dark:text-neutral-400">
-              btn w-full
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-6 pb-24 sm:px-10">
+      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
         <div
           data-rise
           className="flex flex-wrap items-end justify-between gap-4"
@@ -466,9 +497,9 @@ export const Landing = () => {
               <XIcon aria-hidden="true" />
             </button>
           </form>
-          <h2 className="pe-8 text-lg font-semibold">A note</h2>
+          <h2 className="pe-8 text-lg font-semibold">Save this flavour</h2>
           <p className="mt-2 text-sm leading-6">
-            Keep this note, or send it on.
+            Keep {selected.flavour}, or pour it out.
           </p>
           <div className="mt-4 flex flex-col gap-2">
             <label className={twJoin("radio", tone)}>
@@ -479,7 +510,7 @@ export const Landing = () => {
             <label className={twJoin("radio", tone)}>
               <input type="radio" name="landing-note" />
               <span className="radio-ring" />
-              Send
+              Pour
             </label>
           </div>
         </div>

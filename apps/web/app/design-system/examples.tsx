@@ -1,8 +1,9 @@
+import { LoaderIcon } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
-import { ThemeFrame } from "@/app/stripe-switch";
 import { MotionFace, SquishControl } from "@/app/motion-demo";
+import { ThemeFrame } from "@/app/stripe-switch";
 
 const THICKNESS = [
   ["--thickness-surface", "Surface", "size-full"],
@@ -857,7 +858,7 @@ const ComponentSamples = () => (
               <span>Small</span>
             </button>
             <button className="btn primary" type="button">
-              <span>Save</span>
+              <span>Medium</span>
             </button>
             <button className="btn btn-lg primary" type="button">
               <span>Large</span>
@@ -866,7 +867,13 @@ const ComponentSamples = () => (
               <span>Disabled</span>
             </button>
             <button className="btn primary loading" type="button">
-              <span>Loading</span>
+              <span className="inline-flex items-center gap-2">
+                <LoaderIcon
+                  aria-hidden="true"
+                  className="size-4 animate-spin"
+                />
+                Loading
+              </span>
             </button>
           </div>
         </figure>
@@ -878,17 +885,21 @@ const ComponentSamples = () => (
             <button
               className="btn-icon btn-sm primary"
               type="button"
-              aria-label="Add"
+              aria-label="Small"
             >
               <Plus size="1.25rem" />
             </button>
-            <button className="btn-icon primary" type="button" aria-label="Add">
+            <button
+              className="btn-icon primary"
+              type="button"
+              aria-label="Medium"
+            >
               <Plus size="1.5rem" />
             </button>
             <button
               className="btn-icon btn-lg primary"
               type="button"
-              aria-label="Add"
+              aria-label="Large"
             >
               <Plus size="1.75rem" />
             </button>
@@ -903,9 +914,9 @@ const ComponentSamples = () => (
             <button
               className="btn-icon primary loading"
               type="button"
-              aria-label="Add"
+              aria-label="Loading"
             >
-              <Plus size="1.5rem" />
+              <LoaderIcon className="size-6 animate-spin" />
             </button>
           </div>
         </figure>
@@ -917,17 +928,17 @@ const ComponentSamples = () => (
             <button
               className="btn-bump btn-sm"
               type="button"
-              aria-label="Close"
+              aria-label="Small"
             >
               <Plus size="1rem" />
             </button>
-            <button className="btn-bump" type="button" aria-label="Close">
+            <button className="btn-bump" type="button" aria-label="Medium">
               <Plus size="1.25rem" />
             </button>
             <button
               className="btn-bump btn-lg"
               type="button"
-              aria-label="Close"
+              aria-label="Large"
             >
               <Plus size="1.5rem" />
             </button>
@@ -952,7 +963,7 @@ const ComponentSamples = () => (
             </label>
             <label className="input primary">
               <input placeholder=" " defaultValue="ada@jellyfy.dev" />
-              <span>Email</span>
+              <span>Medium</span>
             </label>
             <label className="input input-lg primary">
               <input placeholder=" " defaultValue="ada@jellyfy.dev" />
@@ -997,7 +1008,7 @@ const ComponentSamples = () => (
                 placeholder=" "
                 defaultValue="The pour stays quiet until you press it."
               />
-              <span>Note</span>
+              <span>Medium</span>
             </label>
             <label className="textarea textarea-lg primary">
               <textarea placeholder=" " defaultValue="A longer note." />
@@ -1037,7 +1048,7 @@ const ComponentSamples = () => (
                 <option>Neutral</option>
                 <option>Quiet</option>
               </select>
-              <span>Tone</span>
+              <span>Medium</span>
               <span className="picker-icon" aria-hidden="true" />
             </label>
             <label className="select select-lg primary">
@@ -1075,7 +1086,7 @@ const ComponentSamples = () => (
               <span className="checkbox-box">
                 <input type="checkbox" defaultChecked />
               </span>
-              <span>Remember me</span>
+              <span>Medium</span>
             </label>
             <label className="checkbox checkbox-lg primary">
               <span className="checkbox-box">
@@ -1112,7 +1123,7 @@ const ComponentSamples = () => (
               <span className="radio-ring">
                 <input type="radio" name="radio-md" defaultChecked />
               </span>
-              <span>Primary</span>
+              <span>Medium</span>
             </label>
             <label className="radio radio-lg primary">
               <span className="radio-ring">
@@ -1156,7 +1167,7 @@ const ComponentSamples = () => (
               <span className="toggle-track">
                 <span className="toggle-thumb" />
               </span>
-              <span>On</span>
+              <span>Medium</span>
             </label>
             <label className="toggle toggle-lg primary">
               <input type="checkbox" role="switch" />
@@ -1204,7 +1215,7 @@ const ComponentSamples = () => (
               </span>
             </label>
             <label className="range primary">
-              <span>Volume</span>
+              <span>Medium</span>
               <span className="range-box">
                 <span className="range-track">
                   <span className="range-fill" />
@@ -1256,7 +1267,7 @@ const ComponentSamples = () => (
             </div>
             <div className="alert primary">
               <PlusIcon />
-              <p>The pour stays quiet until you press it.</p>
+              <p>Medium</p>
             </div>
             <div className="alert alert-lg primary">
               <PlusIcon />
@@ -1273,7 +1284,7 @@ const ComponentSamples = () => (
           </figcaption>
           <div className="flex flex-wrap items-center gap-3">
             <span className="badge badge-sm primary">Small</span>
-            <span className="badge primary">New</span>
+            <span className="badge primary">Medium</span>
             <span className="badge badge-lg primary">Large</span>
             <span className="badge">Plain</span>
           </div>
@@ -1287,7 +1298,7 @@ const ComponentSamples = () => (
               <p>Small</p>
             </section>
             <section className="card primary">
-              <p>A quiet surface for a short note.</p>
+              <p>Medium</p>
             </section>
             <section className="card card-lg primary">
               <p>Large</p>
@@ -1322,7 +1333,7 @@ const ComponentSamples = () => (
           </figcaption>
           <div className="flex flex-col items-start">
             <p className="message message-sm primary">Small</p>
-            <p className="message primary">Use a work email.</p>
+            <p className="message primary">Medium</p>
             <p className="message message-lg primary">Large</p>
             <p className="message">Plain</p>
           </div>
@@ -1348,7 +1359,7 @@ const CustomizationSamples = () => (
       <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
         <figure className="flex flex-col items-center gap-3">
           <div className={CUSTOM_FACE} style={customStyle}>
-            Save
+            Default
           </div>
           <figcaption className={captionClass[theme]}>Default</figcaption>
         </figure>
@@ -1363,7 +1374,7 @@ const CustomizationSamples = () => (
               } as CSSProperties
             }
           >
-            Save
+            Teal
           </div>
           <figcaption className={captionClass[theme]}>
             Solid changes. Text color stays.
@@ -1379,7 +1390,7 @@ const CustomizationSamples = () => (
               } as CSSProperties
             }
           >
-            Save
+            Sharp
           </div>
           <figcaption className={captionClass[theme]}>
             Radius 0.25rem
@@ -1395,7 +1406,7 @@ const CustomizationSamples = () => (
               } as CSSProperties
             }
           >
-            Save
+            Sheer
           </div>
           <figcaption className={captionClass[theme]}>Opacity 20%</figcaption>
         </figure>
@@ -1411,7 +1422,7 @@ const CustomizationSamples = () => (
               } as CSSProperties
             }
           >
-            Save
+            Lift
           </div>
           <figcaption className={captionClass[theme]}>Elevation 2</figcaption>
         </figure>

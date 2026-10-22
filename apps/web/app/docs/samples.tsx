@@ -1,6 +1,7 @@
 import {
   ChevronDownIcon,
   InfoIcon,
+  LoaderIcon,
   PlusIcon,
   SearchIcon,
   SendIcon,
@@ -67,7 +68,7 @@ export const Sample = ({ id }: { id: string }) => {
             <span>Small</span>
           </button>
           <button className="btn" type="button">
-            <span>Regular</span>
+            <span>Medium</span>
           </button>
           <button className="btn btn-lg" type="button">
             <span>Large</span>
@@ -78,7 +79,10 @@ export const Sample = ({ id }: { id: string }) => {
       return (
         <Row>
           <button className="btn primary loading" type="button">
-            <span>Loading</span>
+            <span className="inline-flex items-center gap-2">
+              <LoaderIcon aria-hidden="true" className="size-4 animate-spin" />
+              Loading
+            </span>
           </button>
           <button className="btn" type="button" disabled>
             <span>Disabled</span>
@@ -103,21 +107,13 @@ export const Sample = ({ id }: { id: string }) => {
     case "icon-sizes":
       return (
         <div className="flex flex-wrap items-end gap-3">
-          <button
-            className="btn-icon btn-sm"
-            type="button"
-            aria-label="Small"
-          >
+          <button className="btn-icon btn-sm" type="button" aria-label="Small">
             <Mark />
           </button>
-          <button className="btn-icon" type="button" aria-label="Regular">
+          <button className="btn-icon" type="button" aria-label="Medium">
             <Mark />
           </button>
-          <button
-            className="btn-icon btn-lg"
-            type="button"
-            aria-label="Large"
-          >
+          <button className="btn-icon btn-lg" type="button" aria-label="Large">
             <Mark />
           </button>
         </div>
@@ -149,7 +145,7 @@ export const Sample = ({ id }: { id: string }) => {
           </label>
           <label className="input">
             <input placeholder=" " />
-            <span>Regular</span>
+            <span>Medium</span>
           </label>
           <label className="input input-lg">
             <input placeholder=" " />
@@ -194,7 +190,7 @@ export const Sample = ({ id }: { id: string }) => {
       return (
         <div>
           <p className="message message-sm">Small</p>
-          <p className="message">Regular</p>
+          <p className="message">Medium</p>
           <p className="message message-lg">Large</p>
         </div>
       );
@@ -225,7 +221,7 @@ export const Sample = ({ id }: { id: string }) => {
           </label>
           <label className="textarea">
             <textarea placeholder=" " />
-            <span>Regular</span>
+            <span>Medium</span>
           </label>
           <label className="textarea textarea-lg">
             <textarea placeholder=" " />
@@ -280,9 +276,9 @@ export const Sample = ({ id }: { id: string }) => {
           </label>
           <label className="select">
             <select defaultValue="regular">
-              <option value="regular">Regular</option>
+              <option value="regular">Medium</option>
             </select>
-            <span>Regular</span>
+            <span>Medium</span>
             <i className="picker-icon" />
           </label>
           <label className="select select-lg">
@@ -332,7 +328,7 @@ export const Sample = ({ id }: { id: string }) => {
           <label className="checkbox">
             <input type="checkbox" defaultChecked />
             <span className="checkbox-box" />
-            Regular
+            Medium
           </label>
           <label className="checkbox checkbox-lg">
             <input type="checkbox" defaultChecked />
@@ -379,7 +375,7 @@ export const Sample = ({ id }: { id: string }) => {
           <label className="radio">
             <input type="radio" name="docs-radio-size-regular" defaultChecked />
             <span className="radio-ring" />
-            Regular
+            Medium
           </label>
           <label className="radio radio-lg">
             <input type="radio" name="docs-radio-size-large" defaultChecked />
@@ -427,7 +423,7 @@ export const Sample = ({ id }: { id: string }) => {
           {(
             [
               ["toggle-sm", "Small"],
-              ["", "Regular"],
+              ["", "Medium"],
               ["toggle-lg", "Large"],
             ] as const
           ).map(([size, label]) => (
@@ -485,7 +481,7 @@ export const Sample = ({ id }: { id: string }) => {
             </span>
           </label>
           <label className="range">
-            Regular
+            Medium
             <span className="range-box">
               <span className="range-track">
                 <span className="range-fill" />
@@ -543,7 +539,7 @@ export const Sample = ({ id }: { id: string }) => {
           <div className="alert">
             <InfoIcon aria-hidden="true" />
             <div>
-              <p className="font-semibold">Regular</p>
+              <p className="font-semibold">Medium</p>
               <p>16px type.</p>
             </div>
           </div>
@@ -590,7 +586,7 @@ export const Sample = ({ id }: { id: string }) => {
       return (
         <Row>
           <span className="badge badge-sm">Small</span>
-          <span className="badge">Regular</span>
+          <span className="badge">Medium</span>
           <span className="badge badge-lg">Large</span>
         </Row>
       );
@@ -608,7 +604,7 @@ export const Sample = ({ id }: { id: string }) => {
             <h3 className="font-semibold">Small</h3>
           </section>
           <section className="card">
-            <h3 className="font-semibold">Regular</h3>
+            <h3 className="font-semibold">Medium</h3>
           </section>
           <section className="card card-lg">
             <h3 className="font-semibold">Large</h3>
