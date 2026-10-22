@@ -86,7 +86,7 @@ Every slot, including Neutral, uses the same wash, control fill, content color, 
 | Surface fill  | Neutral 50         |
 | Menu          | Neutral 100        |
 | Plain content | Neutral 800        |
-| Disabled fill | Neutral 400 at 60% |
+| Disabled fill | Neutral 500 at 60% |
 | Disabled text | Neutral 800 at 70% |
 | Shadow color  | Neutral 950        |
 
@@ -470,7 +470,7 @@ The focus gap and the grain apply to every component, with a slot and without on
 | Surface tone  | Plain solid, run through the wash | Neutral 50     | Neutral 800        |
 | Menu tone     | Plain menu fill                   | Neutral 100    | Neutral 800        |
 | Plain content | Text on a surface or field        | Neutral 800    | Neutral 100        |
-| Disabled fill | Disabled state, 60% fade          | Neutral 400    | Neutral 600        |
+| Disabled fill | Disabled state, 60% fade          | Neutral 500    | Neutral 700        |
 | Disabled text | Disabled state, 70% fade          | Neutral 800    | Neutral 400        |
 | Focus gap     | Shared by every focus ring        | White at 50%   | Neutral 950 at 50% |
 | Grain         | Shared by every jelly surface     | Dark, stronger | Light, fainter     |
