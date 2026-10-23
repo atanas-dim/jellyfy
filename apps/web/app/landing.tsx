@@ -107,16 +107,16 @@ export const Landing = () => {
 
   return (
     <main ref={page}>
-      <section className="flex h-svh max-h-[50rem] min-h-fit items-center">
+      <section className="flex h-svh max-h-[50rem] min-h-fit items-center pb-8">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
           <div className="max-w-xl">
             <p
               data-hero-item
-              className="text-sm font-medium tracking-[0.22em] text-neutral-500 uppercase dark:text-neutral-400"
+              className="text-xs font-medium tracking-[0.22em] text-neutral-500 uppercase sm:text-sm dark:text-neutral-400"
             >
-              Eight colours
+              Eight colours, one material
             </p>
-            <h1 className="mt-4 text-6xl leading-none font-bold tracking-tight sm:text-7xl">
+            <h1 className="mt-4 text-4xl leading-none font-bold tracking-tight sm:text-6xl xl:text-7xl">
               <span className="block overflow-hidden py-0.5">
                 <span data-line className="block">
                   Controls with
@@ -130,14 +130,10 @@ export const Landing = () => {
             </h1>
             <p
               data-hero-item
-              className="mt-6 max-w-md text-lg leading-8 text-neutral-600 dark:text-neutral-300"
+              className="mt-6 max-w-md text-base leading-6 text-neutral-600 sm:text-lg sm:leading-7 dark:text-neutral-300"
             >
-              <span className="block">
-                A colour you can press, and a control that gives.
-              </span>
-              <span className="block">
-                Jellyfy is CSS for those controls. Add a class and build.
-              </span>
+              A colour you can press, and a control that gives. Jellyfy is CSS
+              for those controls. Add a class and build.
             </p>
 
             <div data-hero-item className="mt-8">
@@ -192,7 +188,7 @@ export const Landing = () => {
             </div>
           </div>
 
-          <div>
+          <div className="lg:pt-16">
             <div data-desk-in>
               <div className="relative">
                 <div
