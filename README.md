@@ -22,7 +22,7 @@ The typeface belongs to the page. Jellyfy inherits it. Light and dark follow the
 
 Button, icon button, bump button, input, textarea, select, checkbox, radio, toggle, range, alert, badge, card, modal, and message.
 
-Slots are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. Sizes are `sm` and `lg`. The icon button and the bump button share `btn-sm` and `btn-lg` with the text button.
+Slots are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. Sizes are `sm`, `md`, and `lg`. A control with no size class is medium. The icon button and the bump button share `btn-sm`, `btn-md`, and `btn-lg` with the text button.
 
 ## With Tailwind, or without
 

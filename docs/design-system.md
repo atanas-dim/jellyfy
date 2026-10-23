@@ -40,7 +40,7 @@ A custom component picks a role the way it picks the squish behavior. The thickn
 
 ### Implementation notes
 
-The thickness classes are `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The squish class is `squish`. Size classes stay `sm` and `lg`.
+The thickness classes are `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The squish class is `squish`. Size classes are `sm`, `md`, and `lg`. Medium is also the size with no size class.
 
 ## 3. Color
 
@@ -662,7 +662,7 @@ The caption under a field. It is not an error style. It has its own slot, indepe
 
 ### Implementation notes
 
-Medium classes have no size suffix. Small and large use `-sm` and `-lg` on the component class: `btn-sm`, `input-lg`. The icon button and the bump button use the button sizes, `btn-sm` and `btn-lg`.
+Small, medium, and large use `-sm`, `-md`, and `-lg` on the component class: `btn-sm`, `btn-md`, `input-lg`. A control with no size class is medium. `btn-md` repeats that medium size so a breakpoint can return to it, as in `btn-lg md:btn-md`. The icon button and the bump button use the button sizes, `btn-sm`, `btn-md`, and `btn-lg`.
 
 The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, and `modal-panel`. The radio bullet, `radio-ring::after`, receives the grain only. It is opaque and has no blur and no inset.
 

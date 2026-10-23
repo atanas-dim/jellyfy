@@ -39,7 +39,7 @@ A component file that is not imported is not in the build.
 
 `btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox`, `radio`, `toggle`, `range`, `alert`, `badge`, `card`, `modal`, `modal-panel`, and `message`.
 
-Slots are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. Sizes are `sm` and `lg` on the component class. The icon button and the bump button use `btn-sm` and `btn-lg`.
+Slots are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. Sizes are `sm`, `md`, and `lg` on the component class. A control with no size class is medium. The icon button and the bump button use `btn-sm`, `btn-md`, and `btn-lg`.
 
 ## Variables you can change
 

@@ -4,38 +4,42 @@
     --range-percent: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: var(--range-gap, 0.75rem);
     width: 100%;
     max-width: 24rem;
     color: var(--color-plain-content);
-    font-size: 0.875rem;
+    font-size: var(--range-font, 0.875rem);
     font-weight: 500;
     line-height: 1.5;
   }
 
   .range-sm {
     --thumb-size: 1.25rem;
-    gap: 0.5rem;
-    font-size: 0.75rem;
+    --range-gap: 0.5rem;
+    --range-font: 0.75rem;
+    --range-box: 1.75rem;
+    --range-track: 0.5rem;
+  }
+
+  .range-md {
+    --thumb-size: 1.5rem;
+    --range-gap: 0.75rem;
+    --range-font: 0.875rem;
+    --range-box: 2rem;
+    --range-track: 0.75rem;
   }
 
   .range-lg {
     --thumb-size: 2rem;
-    gap: 1rem;
-    font-size: 1rem;
+    --range-gap: 1rem;
+    --range-font: 1rem;
+    --range-box: 2.5rem;
+    --range-track: 1rem;
   }
 
   .range-box {
     position: relative;
-    height: 2rem;
-  }
-
-  .range-sm .range-box {
-    height: 1.75rem;
-  }
-
-  .range-lg .range-box {
-    height: 2.5rem;
+    height: var(--range-box, 2rem);
   }
 
   .range-track {
@@ -45,18 +49,10 @@
     top: 50%;
     right: calc(var(--thumb-size) / 2);
     left: calc(var(--thumb-size) / 2);
-    height: 0.75rem;
+    height: var(--range-track, 0.75rem);
     overflow: hidden;
     border-radius: var(--radius-control);
     transform: translateY(-50%);
-  }
-
-  .range-sm .range-track {
-    height: 0.5rem;
-  }
-
-  .range-lg .range-track {
-    height: 1rem;
   }
 
   .range-fill {
@@ -106,6 +102,30 @@
   .range:has(:disabled) input {
     cursor: not-allowed;
   }
+}
+
+@utility range-sm {
+  --thumb-size: 1.25rem;
+  --range-gap: 0.5rem;
+  --range-font: 0.75rem;
+  --range-box: 1.75rem;
+  --range-track: 0.5rem;
+}
+
+@utility range-md {
+  --thumb-size: 1.5rem;
+  --range-gap: 0.75rem;
+  --range-font: 0.875rem;
+  --range-box: 2rem;
+  --range-track: 0.75rem;
+}
+
+@utility range-lg {
+  --thumb-size: 2rem;
+  --range-gap: 1rem;
+  --range-font: 1rem;
+  --range-box: 2.5rem;
+  --range-track: 1rem;
 }
 
 @layer utilities {

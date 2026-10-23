@@ -9,13 +9,13 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    height: 3rem;
-    padding-inline: 1.5rem;
+    height: var(--btn-height, 3rem);
+    padding-inline: var(--btn-pad, 1.5rem);
     overflow: hidden;
     border: 0;
     border-radius: var(--radius-control);
     font: inherit;
-    font-size: 0.875rem;
+    font-size: var(--btn-font, 0.875rem);
     font-weight: 600;
     line-height: 1;
     letter-spacing: 0.04em;
@@ -35,18 +35,6 @@
     transition:
       translate var(--motion-rise-time) ease-out,
       box-shadow 300ms ease-out;
-  }
-
-  .btn.btn-sm {
-    height: 2.5rem;
-    padding-inline: 1.25rem;
-    font-size: 0.75rem;
-  }
-
-  .btn.btn-lg {
-    height: 3.5rem;
-    padding-inline: 2rem;
-    font-size: 1rem;
   }
 
   .btn > span {

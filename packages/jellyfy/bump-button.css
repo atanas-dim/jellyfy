@@ -6,8 +6,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: var(--btn-bump-size, 2rem);
+    height: var(--btn-bump-size, 2rem);
     padding: 0;
     overflow: hidden;
     border: 0;
@@ -15,16 +15,6 @@
     color: var(--color-plain-content);
     box-shadow: none;
     cursor: pointer;
-  }
-
-  .btn-bump.btn-sm {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .btn-bump.btn-lg {
-    width: 2.5rem;
-    height: 2.5rem;
   }
 
   .btn-bump > svg {
@@ -109,16 +99,6 @@
 }
 
 .btn-bump > svg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.btn-bump.btn-sm > svg {
-  width: 1rem;
-  height: 1rem;
-}
-
-.btn-bump.btn-lg > svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: var(--btn-bump-glyph, 1.25rem);
+  height: var(--btn-bump-glyph, 1.25rem);
 }

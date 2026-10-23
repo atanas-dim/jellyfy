@@ -515,4 +515,64 @@
   .thickness-mark {
     --jelly-thickness: var(--thickness-mark);
   }
+
+  .btn-sm {
+    --btn-height: 2.5rem;
+    --btn-pad: 1.25rem;
+    --btn-font: 0.75rem;
+    --btn-icon-size: 2.5rem;
+    --btn-icon-glyph: 1.25rem;
+    --btn-bump-size: 1.5rem;
+    --btn-bump-glyph: 1rem;
+  }
+
+  .btn-md {
+    --btn-height: 3rem;
+    --btn-pad: 1.5rem;
+    --btn-font: 0.875rem;
+    --btn-icon-size: 3rem;
+    --btn-icon-glyph: 1.5rem;
+    --btn-bump-size: 2rem;
+    --btn-bump-glyph: 1.25rem;
+  }
+
+  .btn-lg {
+    --btn-height: 3.5rem;
+    --btn-pad: 2rem;
+    --btn-font: 1rem;
+    --btn-icon-size: 3.5rem;
+    --btn-icon-glyph: 1.75rem;
+    --btn-bump-size: 2.5rem;
+    --btn-bump-glyph: 1.5rem;
+  }
+}
+
+@utility btn-sm {
+  --btn-height: 2.5rem;
+  --btn-pad: 1.25rem;
+  --btn-font: 0.75rem;
+  --btn-icon-size: 2.5rem;
+  --btn-icon-glyph: 1.25rem;
+  --btn-bump-size: 1.5rem;
+  --btn-bump-glyph: 1rem;
+}
+
+@utility btn-md {
+  --btn-height: 3rem;
+  --btn-pad: 1.5rem;
+  --btn-font: 0.875rem;
+  --btn-icon-size: 3rem;
+  --btn-icon-glyph: 1.5rem;
+  --btn-bump-size: 2rem;
+  --btn-bump-glyph: 1.25rem;
+}
+
+@utility btn-lg {
+  --btn-height: 3.5rem;
+  --btn-pad: 2rem;
+  --btn-font: 1rem;
+  --btn-icon-size: 3.5rem;
+  --btn-icon-glyph: 1.75rem;
+  --btn-bump-size: 2.5rem;
+  --btn-bump-glyph: 1.5rem;
 }

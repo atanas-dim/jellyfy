@@ -40,7 +40,7 @@
     box-sizing: border-box;
     width: min(28rem, calc(100vw - 2rem));
     max-width: 100%;
-    padding: 1.5rem;
+    padding: var(--modal-pad, 1.5rem);
     border-radius: var(--radius-surface);
     color: var(--color-plain-content);
     font: inherit;
@@ -51,12 +51,16 @@
       color 300ms ease-out;
   }
 
-  .modal-panel.modal-sm {
-    padding: 1rem;
+  .modal-sm {
+    --modal-pad: 1rem;
   }
 
-  .modal-panel.modal-lg {
-    padding: 2rem;
+  .modal-md {
+    --modal-pad: 1.5rem;
+  }
+
+  .modal-lg {
+    --modal-pad: 2rem;
   }
 
   .modal-panel .btn-bump {
@@ -65,6 +69,18 @@
     inset-inline-end: 0.75rem;
     z-index: 1;
   }
+}
+
+@utility modal-sm {
+  --modal-pad: 1rem;
+}
+
+@utility modal-md {
+  --modal-pad: 1.5rem;
+}
+
+@utility modal-lg {
+  --modal-pad: 2rem;
 }
 
 @layer utilities {

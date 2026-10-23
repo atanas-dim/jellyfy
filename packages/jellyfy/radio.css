@@ -3,22 +3,33 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: var(--radio-gap, 0.75rem);
     color: var(--color-plain-content);
-    font-size: 0.875rem;
+    font-size: var(--radio-font, 0.875rem);
     font-weight: 500;
     line-height: 1.5;
     cursor: pointer;
   }
 
   .radio-sm {
-    gap: 0.5rem;
-    font-size: 0.75rem;
+    --radio-gap: 0.5rem;
+    --radio-font: 0.75rem;
+    --radio-size: 1.25rem;
+    --radio-bullet: 0.75rem;
+  }
+
+  .radio-md {
+    --radio-gap: 0.75rem;
+    --radio-font: 0.875rem;
+    --radio-size: 1.5rem;
+    --radio-bullet: 0.875rem;
   }
 
   .radio-lg {
-    gap: 1rem;
-    font-size: 1rem;
+    --radio-gap: 1rem;
+    --radio-font: 1rem;
+    --radio-size: 2rem;
+    --radio-bullet: 1.25rem;
   }
 
   .radio-ring {
@@ -28,20 +39,10 @@
     display: grid;
     flex: none;
     place-items: center;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: var(--radio-size, 1.5rem);
+    height: var(--radio-size, 1.5rem);
     border-radius: var(--radius-control);
     color: var(--color-plain-content);
-  }
-
-  .radio-sm .radio-ring {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  .radio-lg .radio-ring {
-    width: 2rem;
-    height: 2rem;
   }
 
   .radio input {
@@ -58,24 +59,14 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 0.875rem;
-    height: 0.875rem;
+    width: var(--radio-bullet, 0.875rem);
+    height: var(--radio-bullet, 0.875rem);
     border-radius: 999px;
     background-color: var(--color-plain-content);
     background-image: var(--noise);
     background-size: var(--noise-size);
     transform: translate(-50%, -50%) scale(0);
     transition: transform 300ms ease-out;
-  }
-
-  .radio-sm .radio-ring::after {
-    width: 0.75rem;
-    height: 0.75rem;
-  }
-
-  .radio-lg .radio-ring::after {
-    width: 1.25rem;
-    height: 1.25rem;
   }
 
   .radio:has(:checked) .radio-ring::after {
@@ -96,6 +87,27 @@
   .radio:has(:disabled) input {
     cursor: not-allowed;
   }
+}
+
+@utility radio-sm {
+  --radio-gap: 0.5rem;
+  --radio-font: 0.75rem;
+  --radio-size: 1.25rem;
+  --radio-bullet: 0.75rem;
+}
+
+@utility radio-md {
+  --radio-gap: 0.75rem;
+  --radio-font: 0.875rem;
+  --radio-size: 1.5rem;
+  --radio-bullet: 0.875rem;
+}
+
+@utility radio-lg {
+  --radio-gap: 1rem;
+  --radio-font: 1rem;
+  --radio-size: 2rem;
+  --radio-bullet: 1.25rem;
 }
 
 @layer utilities {
