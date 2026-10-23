@@ -94,8 +94,7 @@ const pressSquish = (event, painted) => {
   pressed.add(face);
   // Pointer capture dismisses the select menu and stops a range drag.
   const nativeGesture =
-    (event.target instanceof Element && event.target.closest("select")) ||
-    (current instanceof HTMLInputElement && current.type === "range");
+    event.target instanceof Element && event.target.closest("select, .range");
   if (!nativeGesture) {
     try {
       current.setPointerCapture(event.pointerId);
@@ -135,11 +134,19 @@ const pressSquish = (event, painted) => {
 };
 
 const paintedFace = (node) => {
-  if (node instanceof HTMLInputElement && node.type === "range") {
-    const thumb = node.closest(".range")?.querySelector(".range-thumb");
-    return thumb instanceof HTMLElement ? thumb : null;
+  if (!(node instanceof HTMLElement)) return null;
+  const inner = {
+    checkbox: ".checkbox-box",
+    radio: ".radio-ring",
+    toggle: ".toggle-track",
+    range: ".range-thumb",
+  };
+  for (const [name, selector] of Object.entries(inner)) {
+    if (!node.classList.contains(name)) continue;
+    const face = node.querySelector(selector);
+    return face instanceof HTMLElement ? face : null;
   }
-  return node instanceof HTMLElement ? node : null;
+  return node;
 };
 
 const attachSquish = (node) => {
@@ -190,7 +197,7 @@ const refresh = () => {
   syncRanges();
   document
     .querySelectorAll(
-      ".btn, .btn-icon, .btn-bump, .input, .textarea, .select, .checkbox-box, .radio-ring, .toggle-track, .range input, .squish",
+      ".btn, .btn-icon, .btn-bump, .input, .textarea, .select, .checkbox, .radio, .toggle, .range, .squish",
     )
     .forEach(attachSquish);
 };

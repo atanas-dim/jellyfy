@@ -89,7 +89,7 @@
   }
 
   .radio:has(:disabled) {
-    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    color: var(--color-disabled-text);
     cursor: not-allowed;
   }
 
@@ -100,11 +100,7 @@
 
 @layer utilities {
   .radio-ring {
-    background-color: color-mix(
-      in oklab,
-      var(--color-plain) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-mark);
   }
 
   .radio:is(
@@ -118,27 +114,15 @@
       .info
     )
     .radio-ring::after {
-    background-color: color-mix(
-      in oklab,
-      var(--solid) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-control);
   }
 
   .radio:has(:disabled) .radio-ring {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled) 60%,
-      transparent
-    );
+    background-color: var(--fill-disabled);
   }
 
   .radio:has(:disabled) .radio-ring::after {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled-content) 70%,
-      transparent
-    );
+    background-color: var(--color-disabled-text);
   }
 }
 

@@ -1,8 +1,8 @@
 import type { ClassRow } from "@/resources/component-docs";
 
 export const ClassTable = ({ rows }: { rows: ClassRow[] }) => (
-  <div className="mt-6 overflow-x-auto overflow-y-hidden overscroll-x-contain overscroll-y-auto">
-    <table className="w-full text-left text-sm">
+  <div className="table-scroll mt-6">
+    <table className="text-left text-sm">
       <thead>
         <tr className="border-b border-neutral-200 text-neutral-500 dark:border-neutral-800 dark:text-neutral-400">
           <th className="py-2 pr-4 font-medium">Class</th>

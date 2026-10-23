@@ -105,7 +105,7 @@
   }
 
   .toggle:has(:disabled) {
-    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    color: var(--color-disabled-text);
     cursor: not-allowed;
   }
 
@@ -116,11 +116,7 @@
 
 @layer utilities {
   .toggle-track {
-    background-color: color-mix(
-      in oklab,
-      var(--color-plain) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-mark);
   }
 
   .toggle:is(
@@ -134,11 +130,7 @@
       .info
     ):has(:checked)
     .toggle-track {
-    background-color: color-mix(
-      in oklab,
-      var(--solid) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-control);
   }
 
   .toggle-thumb {
@@ -165,19 +157,11 @@
       .info
     ):has(:disabled)
     .toggle-track {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled) 60%,
-      transparent
-    );
+    background-color: var(--fill-disabled);
   }
 
   .toggle:has(:disabled) .toggle-thumb {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled-content) 70%,
-      transparent
-    );
+    background-color: var(--color-disabled-text);
   }
 }
 

@@ -82,7 +82,7 @@
   }
 
   .checkbox:has(:disabled) {
-    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    color: var(--color-disabled-text);
     cursor: not-allowed;
   }
 
@@ -93,11 +93,7 @@
 
 @layer utilities {
   .checkbox-box {
-    background-color: color-mix(
-      in oklab,
-      var(--color-plain) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-mark);
   }
 
   .checkbox:is(
@@ -111,11 +107,7 @@
       .info
     ):has(:checked)
     .checkbox-box {
-    background-color: color-mix(
-      in oklab,
-      var(--solid) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-control);
     color: var(--content);
   }
 
@@ -131,12 +123,8 @@
       .info
     ):has(:disabled)
     .checkbox-box {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled) 60%,
-      transparent
-    );
-    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    background-color: var(--fill-disabled);
+    color: var(--color-disabled-text);
   }
 }
 

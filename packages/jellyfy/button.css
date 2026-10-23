@@ -10,7 +10,6 @@
     justify-content: center;
     gap: 0.5rem;
     height: 3rem;
-    min-width: 10rem;
     padding-inline: 1.5rem;
     overflow: hidden;
     border: 0;
@@ -40,14 +39,12 @@
 
   .btn.btn-sm {
     height: 2.5rem;
-    min-width: 8rem;
     padding-inline: 1.25rem;
     font-size: 0.75rem;
   }
 
   .btn.btn-lg {
     height: 3.5rem;
-    min-width: 12rem;
     padding-inline: 2rem;
     font-size: 1rem;
   }
@@ -116,12 +113,8 @@
 
 @layer utilities {
   .btn:disabled {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled) 60%,
-      transparent
-    );
-    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    background-color: var(--fill-disabled);
+    color: var(--color-disabled-text);
   }
 }
 

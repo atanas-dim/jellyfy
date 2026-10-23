@@ -107,7 +107,11 @@
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0;
-    color: color-mix(in oklab, currentColor 70%, transparent);
+    color: color-mix(
+      in oklab,
+      currentColor var(--percent-label-resting),
+      transparent
+    );
   }
 
   .input-sm:not(:focus-within):has(input:placeholder-shown)
@@ -287,38 +291,16 @@
 
 @layer utilities {
   .input {
-    background-color: color-mix(
-      in oklab,
-      color-mix(
-          in oklab,
-          var(--color-plain) var(--percent-plain-resting-wash),
-          var(--solid)
-        )
-        var(--percent-shown-wash),
-      transparent
-    );
+    background-color: var(--fill-field);
   }
 
   .input:focus-within {
-    background-color: color-mix(
-      in oklab,
-      color-mix(
-          in oklab,
-          var(--color-plain) var(--percent-plain-focused-wash),
-          var(--solid)
-        )
-        var(--percent-shown-wash),
-      transparent
-    );
+    background-color: var(--fill-field-focus);
   }
 
   .input:has(:disabled) {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled) 60%,
-      transparent
-    );
-    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    background-color: var(--fill-disabled);
+    color: var(--color-disabled-text);
   }
 }
 

@@ -7,7 +7,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "jellyfy": "file:../../packages/jellyfy",
+    "jellyfy": "workspace:*",
     "vue": "^3.5.22"
   },
   "devDependencies": {

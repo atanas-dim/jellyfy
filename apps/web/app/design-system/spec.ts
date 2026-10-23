@@ -16,7 +16,7 @@ const sectionId = (title: string) =>
 
 export const readSpec = () => {
   const file = readFileSync(
-    path.join(process.cwd(), "docs/design-system.md"),
+    path.join(process.cwd(), "../../docs/design-system.md"),
     "utf8",
   );
   const [preamble, ...parts] = file.split(/^## /m);

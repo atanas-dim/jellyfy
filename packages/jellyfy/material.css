@@ -4,10 +4,7 @@
   color-scheme: light dark;
   --color-black: black;
   --color-white: white;
-  --color-primary: light-dark(
-    var(--color-indigo-500, #6366f1),
-    var(--color-indigo-400, #818cf8)
-  );
+  --color-primary: var(--color-indigo-500, #6366f1);
   --color-secondary: var(--color-pink-600, #db2777);
   --color-tertiary: var(--color-teal-600, #0d9488);
   --color-success: var(--color-green-600, #16a34a);
@@ -18,7 +15,8 @@
   --percent-solid-menu-selected: 28%;
   --material-opacity: 60%;
   --material-blur: 4px;
-  --percent-shown-wash: 80%;
+  --percent-mark-lift: 28%;
+  --percent-label-resting: 70%;
   --noise-size: 22.5rem;
   --noise-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' opacity='0.2'%3E%3C/rect%3E%3C/svg%3E");
   --noise-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.34' numOctaves='4' stitchTiles='stitch'%3E%3C/feTurbulence%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23a)' fill='%23fff' opacity='0.06'%3E%3C/rect%3E%3C/svg%3E");
@@ -36,25 +34,19 @@
   --noise: var(--noise-light);
   --percent-plain-resting-wash: 86%;
   --percent-plain-focused-wash: 78%;
+  --percent-surface-resting-wash: 94%;
 }
 
 .light {
   color-scheme: light;
-  --color-primary: light-dark(
-    var(--color-indigo-500, #6366f1),
-    var(--color-indigo-400, #818cf8)
-  );
 }
 
 .dark {
   color-scheme: dark;
-  --color-primary: light-dark(
-    var(--color-indigo-500, #6366f1),
-    var(--color-indigo-400, #818cf8)
-  );
   --noise: var(--noise-dark);
   --percent-plain-resting-wash: 76%;
   --percent-plain-focused-wash: 68%;
+  --percent-surface-resting-wash: 88%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -62,6 +54,7 @@
     --noise: var(--noise-dark);
     --percent-plain-resting-wash: 76%;
     --percent-plain-focused-wash: 68%;
+    --percent-surface-resting-wash: 88%;
   }
 }
 
@@ -79,7 +72,12 @@
   .info {
     --color-plain: light-dark(
       var(--color-neutral-50, #fafafa),
-      var(--color-neutral-700, #404040)
+      var(--color-neutral-800, #262626)
+    );
+    --color-mark: color-mix(
+      in oklab,
+      var(--color-white) var(--percent-mark-lift),
+      var(--color-plain)
     );
     --color-plain-content: light-dark(
       var(--color-neutral-800, #262626),
@@ -90,8 +88,8 @@
       var(--color-neutral-800, #262626)
     );
     --color-neutral: light-dark(
-      var(--color-neutral-400, #a3a3a3),
-      var(--color-neutral-400, #a3a3a3)
+      var(--color-neutral-300, #d4d4d4),
+      var(--color-neutral-500, #737373)
     );
     --color-neutral-content: light-dark(
       var(--color-neutral-950, #0a0a0a),
@@ -243,12 +241,62 @@
       color-mix(in oklab, var(--color-neutral-950, #0a0a0a) 50%, transparent)
     );
     --color-disabled: light-dark(
-      var(--color-neutral-400, #a3a3a3),
-      var(--color-neutral-600, #525252)
+      var(--color-neutral-500, #737373),
+      var(--color-neutral-700, #404040)
     );
     --color-disabled-content: light-dark(
       var(--color-neutral-800, #262626),
       var(--color-neutral-400, #a3a3a3)
+    );
+    --color-disabled-text: color-mix(
+      in oklab,
+      var(--color-disabled-content) 70%,
+      transparent
+    );
+    --fill-surface: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          var(--color-plain) var(--percent-surface-resting-wash),
+          var(--solid)
+        )
+        var(--material-opacity),
+      transparent
+    );
+    --fill-field: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          var(--color-plain) var(--percent-plain-resting-wash),
+          var(--solid)
+        )
+        var(--material-opacity),
+      transparent
+    );
+    --fill-field-focus: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          var(--color-plain) var(--percent-plain-focused-wash),
+          var(--solid)
+        )
+        var(--material-opacity),
+      transparent
+    );
+    --fill-control: color-mix(
+      in oklab,
+      var(--solid) var(--material-opacity),
+      transparent
+    );
+    --fill-mark: color-mix(
+      in oklab,
+      var(--color-mark) var(--material-opacity),
+      transparent
+    );
+    --fill-disabled: color-mix(
+      in oklab,
+      var(--color-disabled) var(--material-opacity),
+      transparent
     );
     --focus-color: var(--color-plain-content);
   }
@@ -317,31 +365,62 @@
   :root,
   .light,
   .dark {
-    --thickness-surface: inset 0 -6px 8px
-      light-dark(
-        rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.12),
-        rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.32)
-      );
-    --thickness-field: inset 0 -10px 16px
-      light-dark(
-        rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.2),
-        rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.5)
-      );
-    --thickness-field-focus: inset 0 -6px 10px
-      light-dark(
-        rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.15),
-        rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.45)
-      );
-    --thickness-control: inset 0 -16px 16px
-      light-dark(
-        rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.5),
-        rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.65)
-      );
-    --thickness-mark: inset 0 -1px 5px
-      light-dark(
-        rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.35),
-        rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.65)
-      );
+    --thickness-surface:
+      inset 0 -6px 8px
+        light-dark(
+          rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.12),
+          rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.32)
+        ),
+      inset 0 4px 8px
+        light-dark(
+          rgb(from var(--color-neutral-50, #fafafa) r g b / 0.1),
+          rgb(from var(--color-neutral-50, #fafafa) r g b / 0.08)
+        );
+    --thickness-field:
+      inset 0 -10px 16px
+        light-dark(
+          rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.2),
+          rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.5)
+        ),
+      inset 0 5px 16px
+        light-dark(
+          rgb(from var(--color-neutral-50, #fafafa) r g b / 0.1),
+          rgb(from var(--color-neutral-50, #fafafa) r g b / 0.1)
+        );
+    --thickness-field-focus:
+      inset 0 -6px 10px
+        light-dark(
+          rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.15),
+          rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.45)
+        ),
+      inset 0 3px 10px
+        light-dark(
+          rgb(from var(--color-neutral-50, #fafafa) r g b / 0.1),
+          rgb(from var(--color-neutral-50, #fafafa) r g b / 0.1)
+        );
+    --thickness-control:
+      inset 0 -16px 16px
+        light-dark(
+          rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.5),
+          rgb(from var(--color-neutral-800, #262626) r g b / 0.65)
+        ),
+      inset 0 8px 16px
+        light-dark(
+          rgb(from var(--color-neutral-50, #fafafa) r g b / 0.1),
+          rgb(from var(--color-neutral-50, #fafafa) r g b / 0.12)
+        );
+    --thickness-mark:
+      inset 0 -2px 5px
+        light-dark(
+          rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.35),
+          rgb(from var(--color-neutral-950, #0a0a0a) r g b / 0.65)
+        ),
+      inset 0 1px 5px
+        light-dark(
+          rgb(from var(--color-neutral-50, #fafafa) r g b / 0.1),
+          rgb(from var(--color-neutral-50, #fafafa) r g b / 0.1)
+        );
+
     --elevation-rest: 0 12px 16px -14px
       light-dark(
         rgb(
@@ -413,11 +492,7 @@
     .thickness-control,
     .thickness-mark
   ) {
-    background-color: color-mix(
-      in oklab,
-      var(--solid) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-control);
     background-image: var(--noise);
     background-size: var(--noise-size);
     backdrop-filter: blur(var(--material-blur));

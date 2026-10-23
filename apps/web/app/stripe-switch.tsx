@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 import { twJoin } from "tailwind-merge";
 
 export const STRIPES_CLASS = "set-stripes";
@@ -9,12 +9,20 @@ export const StripeSwitch = ({
   checked,
   onChange,
   className,
+  labelFirst = false,
 }: {
   checked: boolean;
   onChange: (checked: boolean) => void;
   className?: string;
+  labelFirst?: boolean;
 }) => (
-  <label className={twJoin("toggle", className)}>
+  <label
+    className={twJoin(
+      "toggle",
+      labelFirst && "flex-row-reverse [&_input]:right-0 [&_input]:left-auto",
+      className,
+    )}
+  >
     <input
       type="checkbox"
       role="switch"
@@ -50,7 +58,7 @@ export const ThemeFrame = ({
         <p className="text-xs font-semibold tracking-[0.16em] text-neutral-400 uppercase">
           {theme === "light" ? "Light" : "Dark"}
         </p>
-        <StripeSwitch checked={striped} onChange={setStriped} />
+        <StripeSwitch labelFirst checked={striped} onChange={setStriped} />
       </div>
       {children}
     </div>
