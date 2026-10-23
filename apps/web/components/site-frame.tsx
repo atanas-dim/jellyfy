@@ -11,8 +11,8 @@ import { ThemeToggle } from "./theme-toggle";
 
 const LINKS = [
   { href: "/set", label: "The set" },
-  { href: "/design-system", label: "Design system" },
   { href: "/docs", label: "Docs" },
+  { href: "/design-system", label: "Design system" },
 ] as const;
 
 const PILL =
@@ -50,7 +50,7 @@ export const SiteFrame = ({ children }: { children: ReactNode }) => {
 
   return (
     <div className="flex min-h-full flex-1 flex-col text-neutral-950 dark:text-neutral-100">
-      <header className="fixed top-2 right-2 left-2 z-30">
+      <header className="fixed top-0 right-0 left-0 z-30 px-2 pt-2">
         <div className="mx-auto w-full max-w-7xl">
           <div className="flex items-center justify-between gap-3">
             <Link
@@ -135,7 +135,7 @@ export const SiteFrame = ({ children }: { children: ReactNode }) => {
           ) : null}
         </div>
       </header>
-      <div className="flex-1 pt-16">{children}</div>
+      <div className="w-full flex-1 px-4">{children}</div>
       <SiteFooter />
     </div>
   );

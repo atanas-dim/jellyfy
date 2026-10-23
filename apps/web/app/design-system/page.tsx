@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { Contents } from "@/app/contents";
-import { examples } from "./examples";
-import { readSpec } from "./spec";
-import { SpecCopy } from "./spec-copy";
+import { Contents } from "@/components/contents";
+import { examples } from "@/components/design-system/examples";
+import { SpecCopy } from "@/components/design-system/spec-copy";
+import { readSpec } from "@/utils/read-spec";
 
 export const metadata: Metadata = {
   title: "Design system",
@@ -34,7 +34,7 @@ export default function DesignSystemPage() {
   );
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col px-6 py-10 sm:px-10 lg:flex-row lg:items-start lg:gap-10">
+    <div className="mx-auto flex w-full max-w-7xl flex-col pt-16 pb-10 lg:flex-row lg:items-start lg:gap-10">
       <Contents
         groups={[
           {

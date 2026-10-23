@@ -121,7 +121,7 @@ export const Contents = ({ groups }: { groups: ContentsGroup[] }) => {
 
   return (
     <>
-      <details className="surface mb-8 rounded-2xl lg:hidden">
+      <details className="surface mb-8 lg:hidden">
         <summary className="cursor-pointer px-4 py-3 text-sm font-medium">
           {current}
         </summary>

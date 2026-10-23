@@ -3,14 +3,13 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
+  BookOpenIcon,
   ChevronDownIcon,
-  HandPlatterIcon,
   LayoutGridIcon,
   LoaderIcon,
   MinusIcon,
   PlusIcon,
-  StickyNoteIcon,
-  XIcon,
+  WavesIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { useLayoutEffect, useRef, useState } from "react";
@@ -19,22 +18,17 @@ import { twJoin } from "tailwind-merge";
 import { COMPONENT_LIST } from "@/resources/components-registry";
 
 const TONES = [
-  { id: "primary", slot: "Primary", flavour: "Ink" },
-  { id: "secondary", slot: "Secondary", flavour: "Rose" },
-  { id: "tertiary", slot: "Tertiary", flavour: "Mint" },
-  { id: "neutral", slot: "Neutral", flavour: "Milk" },
-  { id: "success", slot: "Success", flavour: "Lime" },
-  { id: "warning", slot: "Warning", flavour: "Honey" },
-  { id: "error", slot: "Error", flavour: "Cherry" },
-  { id: "info", slot: "Info", flavour: "Sea" },
+  { id: "primary", slot: "Primary" },
+  { id: "secondary", slot: "Secondary" },
+  { id: "tertiary", slot: "Tertiary" },
+  { id: "neutral", slot: "Neutral" },
+  { id: "success", slot: "Success" },
+  { id: "warning", slot: "Warning" },
+  { id: "error", slot: "Error" },
+  { id: "info", slot: "Info" },
 ] as const;
 
 type Tone = (typeof TONES)[number]["id"];
-
-const openNote = () => {
-  const dialog = document.getElementById("landing-note");
-  if (dialog instanceof HTMLDialogElement) dialog.showModal();
-};
 
 export const Landing = () => {
   const page = useRef<HTMLElement>(null);
@@ -107,14 +101,14 @@ export const Landing = () => {
 
   return (
     <main ref={page}>
-      <section className="flex h-svh max-h-[50rem] min-h-fit items-center pb-8">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
+      <section className="flex h-svh max-h-200 min-h-fit items-center py-16">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-16 p-6 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
           <div className="max-w-xl">
             <p
               data-hero-item
               className="text-xs font-medium tracking-[0.22em] text-neutral-500 uppercase sm:text-sm dark:text-neutral-400"
             >
-              Eight colours, one material
+              Eight colors, one material
             </p>
             <h1 className="mt-4 text-4xl leading-none font-bold tracking-tight sm:text-6xl xl:text-7xl">
               <span className="block overflow-hidden py-0.5">
@@ -124,21 +118,21 @@ export const Landing = () => {
               </span>
               <span className="block overflow-hidden py-0.5">
                 <span data-line className="block">
-                  a little flavour
+                  a little drift
                 </span>
               </span>
             </h1>
             <p
               data-hero-item
-              className="mt-6 max-w-md text-base leading-6 text-neutral-600 sm:text-lg sm:leading-7 dark:text-neutral-300"
+              className="mt-4 max-w-md text-base leading-6 text-neutral-600 sm:text-lg sm:leading-7 dark:text-neutral-300"
             >
-              A colour you can press, and a control that gives. Jellyfy is CSS
+              A color you can press, and a control that gives. Jellyfy is CSS
               for those controls. Add a class and build.
             </p>
 
             <div data-hero-item className="mt-8">
               <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
-                Pick a colour
+                Pick a color
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {TONES.map((item) => (
@@ -146,7 +140,7 @@ export const Landing = () => {
                     key={item.id}
                     type="button"
                     className={twJoin(
-                      "btn-icon outline-2 outline-offset-2 transition-all duration-400",
+                      "btn-icon btn-sm md:btn-md outline-2 outline-offset-2 transition-all duration-400",
                       item.id,
                       tone === item.id
                         ? "outline-(--focus-color)"
@@ -175,16 +169,12 @@ export const Landing = () => {
                   See the set
                 </span>
               </Link>
-              <button
-                type="button"
-                className="btn secondary"
-                onClick={openNote}
-              >
+              <Link href="/docs" className="btn secondary">
                 <span className="inline-flex items-center gap-2">
-                  <StickyNoteIcon aria-hidden="true" className="size-4" />
-                  Open a note
+                  <BookOpenIcon aria-hidden="true" className="size-4" />
+                  Docs
                 </span>
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -199,11 +189,9 @@ export const Landing = () => {
                   )}
                 >
                   <div>
-                    <p className="text-sm font-semibold">
-                      {selected.flavour} is ready
-                    </p>
+                    <p className="text-sm font-semibold">Moon jelly is close</p>
                     <p className="mt-1 text-sm leading-6">
-                      This batch stays on the counter.
+                      It holds in the current.
                     </p>
                   </div>
                 </div>
@@ -211,25 +199,25 @@ export const Landing = () => {
                 <section className="card relative flex flex-col gap-4 lg:ml-8">
                   <div className="flex items-center justify-between gap-3">
                     <h2 className="text-lg font-semibold tracking-tight">
-                      Pick a flavour
+                      Moon jelly
                     </h2>
                     <span className={twJoin("badge", tone)}>
-                      {selected.flavour}
+                      {selected.slot}
                     </span>
                   </div>
 
                   <label className={twJoin("input", tone)}>
-                    <input placeholder=" " defaultValue="Rose syrup" />
+                    <input placeholder=" " defaultValue="Moon jelly" />
                     <span>Name</span>
                   </label>
 
                   <label className={twJoin("select", tone)}>
-                    <select defaultValue="rose">
-                      <option value="mint">Mint</option>
-                      <option value="rose">Rose</option>
-                      <option value="ink">Ink</option>
+                    <select defaultValue="drift">
+                      <option value="drift">Drift</option>
+                      <option value="still">Still</option>
+                      <option value="pulse">Pulse</option>
                     </select>
-                    <span>Flavour</span>
+                    <span>Pace</span>
                     <ChevronDownIcon
                       className="picker-icon"
                       aria-hidden="true"
@@ -242,17 +230,17 @@ export const Landing = () => {
                       <span className="toggle-track">
                         <span className="toggle-thumb" />
                       </span>
-                      On the cone
+                      Glowing
                     </label>
                     <label className={twJoin("checkbox", tone)}>
                       <input type="checkbox" defaultChecked />
                       <span className="checkbox-box" />
-                      Extra zest
+                      Lit
                     </label>
                   </div>
 
                   <label className={twJoin("range", tone)}>
-                    Sweetness
+                    Depth
                     <span className="range-box">
                       <span className="range-track">
                         <span className="range-fill" />
@@ -265,11 +253,8 @@ export const Landing = () => {
                   <div className="flex flex-wrap items-center gap-3">
                     <button type="button" className={twJoin("btn", tone)}>
                       <span className="inline-flex items-center gap-2">
-                        <HandPlatterIcon
-                          aria-hidden="true"
-                          className="size-4"
-                        />
-                        Serve
+                        <WavesIcon aria-hidden="true" className="size-4" />
+                        Release
                       </span>
                     </button>
                     <button type="button" className="btn secondary loading">
@@ -278,7 +263,7 @@ export const Landing = () => {
                           aria-hidden="true"
                           className="size-4 animate-spin"
                         />
-                        Mixing
+                        Drifting
                       </span>
                     </button>
                   </div>
@@ -291,14 +276,14 @@ export const Landing = () => {
                   <button
                     type="button"
                     className={twJoin("btn-icon", tone)}
-                    aria-label="Add a drop"
+                    aria-label="Bring closer"
                   >
                     <PlusIcon />
                   </button>
                   <button
                     type="button"
                     className="btn-icon neutral"
-                    aria-label="Take a drop"
+                    aria-label="Let it sink"
                   >
                     <MinusIcon />
                   </button>
@@ -309,15 +294,15 @@ export const Landing = () => {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div data-rise className="max-w-xl">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Add a class
           </h2>
           <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
             Keep the element you already have. Add{" "}
-            <span className="font-mono text-base">btn</span> and a colour such
-            as <span className="font-mono text-base">primary</span>. Call{" "}
+            <span className="font-mono text-base">btn</span> and a color such as{" "}
+            <span className="font-mono text-base">primary</span>. Call{" "}
             <span className="font-mono text-base">startJellyfy()</span> once.
             That call runs the press, the loading lights, and the slider fill.
           </p>
@@ -335,7 +320,7 @@ export const Landing = () => {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div data-rise className="max-w-xl">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Install
@@ -347,13 +332,13 @@ export const Landing = () => {
           </p>
         </div>
         <div data-rise className="mt-10 grid gap-4 lg:grid-cols-3">
-          <pre className="surface overflow-x-auto rounded-2xl p-5 font-mono text-sm leading-7 shadow-lg">
+          <pre className="surface overflow-x-auto p-5 font-mono text-sm leading-7 shadow-lg">
             npm install jellyfy
           </pre>
-          <pre className="surface overflow-x-auto rounded-2xl p-5 font-mono text-sm leading-7 shadow-lg">
+          <pre className="surface overflow-x-auto p-5 font-mono text-sm leading-7 shadow-lg">
             {`@import "jellyfy/jellyfy.css";`}
           </pre>
-          <pre className="surface overflow-x-auto rounded-2xl p-5 font-mono text-sm leading-7 shadow-lg">
+          <pre className="surface overflow-x-auto p-5 font-mono text-sm leading-7 shadow-lg">
             {`import { startJellyfy } from "jellyfy";
 
 startJellyfy();`}
@@ -368,7 +353,7 @@ startJellyfy();`}
         </p>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div data-rise className="max-w-xl">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             One material
@@ -379,7 +364,7 @@ startJellyfy();`}
           </p>
         </div>
         <div data-rise className="mt-10 grid gap-4 sm:grid-cols-3">
-          <article className="surface flex flex-col gap-4 rounded-2xl p-5 shadow-lg">
+          <article className="surface flex flex-col gap-4 p-5 shadow-lg">
             <div className="flex flex-col gap-3">
               <div className="primary thickness-surface h-10 rounded-2xl" />
               <div className="primary thickness-field h-10 rounded-2xl" />
@@ -394,7 +379,7 @@ startJellyfy();`}
               </p>
             </div>
           </article>
-          <article className="surface flex flex-col gap-4 rounded-2xl p-5 shadow-lg">
+          <article className="surface flex flex-col gap-4 p-5 shadow-lg">
             <div className="flex flex-wrap items-center justify-center gap-3 py-2">
               <button
                 type="button"
@@ -418,7 +403,7 @@ startJellyfy();`}
               </p>
             </div>
           </article>
-          <article className="surface flex flex-col gap-4 rounded-2xl p-5 shadow-lg">
+          <article className="surface flex flex-col gap-4 p-5 shadow-lg">
             <div className="flex flex-col gap-3">
               <button type="button" className="btn secondary">
                 <span>Press</span>
@@ -441,7 +426,7 @@ startJellyfy();`}
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div data-rise className="grid items-center gap-10 lg:grid-cols-2">
           <div className="max-w-xl">
             <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
@@ -469,10 +454,10 @@ startJellyfy();`}
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div
           data-rise
-          className="flex flex-wrap items-end justify-between gap-4"
+          className="flex flex-wrap items-center justify-between gap-4"
         >
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             The set
@@ -492,7 +477,7 @@ startJellyfy();`}
             <Link
               key={component.slug}
               href={`/set#${component.slug}`}
-              className="surface block rounded-2xl p-5 shadow-lg"
+              className="surface block p-5 shadow-lg"
             >
               <h3 className="text-xl font-semibold tracking-tight">
                 {component.name}
@@ -504,32 +489,6 @@ startJellyfy();`}
           ))}
         </div>
       </section>
-
-      <dialog id="landing-note" className="modal">
-        <div className={twJoin("modal-panel", tone)}>
-          <form method="dialog">
-            <button className="btn-bump" type="submit" aria-label="Close">
-              <XIcon aria-hidden="true" />
-            </button>
-          </form>
-          <h2 className="pe-8 text-lg font-semibold">Save this flavour</h2>
-          <p className="mt-2 text-sm leading-6">
-            Keep {selected.flavour}, or pour it out.
-          </p>
-          <div className="mt-4 flex flex-col gap-2">
-            <label className={twJoin("radio", tone)}>
-              <input type="radio" name="landing-note" defaultChecked />
-              <span className="radio-ring" />
-              Keep
-            </label>
-            <label className={twJoin("radio", tone)}>
-              <input type="radio" name="landing-note" />
-              <span className="radio-ring" />
-              Pour
-            </label>
-          </div>
-        </div>
-      </dialog>
     </main>
   );
 };

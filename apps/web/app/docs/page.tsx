@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { Pager } from "@/components/docs/pager";
 import { COMPONENT_DOCS } from "@/resources/component-docs";
-
-import { Pager } from "./pager";
 
 export const metadata: Metadata = {
   title: "Docs",
@@ -66,7 +65,7 @@ export default function DocsPage() {
           <li key={doc.slug} className="flex">
             <Link
               href={`/docs/${doc.slug}`}
-              className="surface block h-full w-full rounded-2xl px-4 py-3 hover:border-neutral-300 dark:hover:border-neutral-600"
+              className="surface block h-full w-full px-4 py-3 hover:border-neutral-300 dark:hover:border-neutral-600"
             >
               <span className="font-medium">{doc.name}</span>
               <span className="mt-1 block text-sm leading-6 text-neutral-600 dark:text-neutral-300">

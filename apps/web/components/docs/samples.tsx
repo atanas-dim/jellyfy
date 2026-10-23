@@ -67,7 +67,7 @@ export const Sample = ({ id }: { id: string }) => {
           <button className="btn btn-sm" type="button">
             <span>Small</span>
           </button>
-          <button className="btn" type="button">
+          <button className="btn btn-md" type="button">
             <span>Medium</span>
           </button>
           <button className="btn btn-lg" type="button">
@@ -110,7 +110,7 @@ export const Sample = ({ id }: { id: string }) => {
           <button className="btn-icon btn-sm" type="button" aria-label="Small">
             <Mark />
           </button>
-          <button className="btn-icon" type="button" aria-label="Medium">
+          <button className="btn-icon btn-md" type="button" aria-label="Medium">
             <Mark />
           </button>
           <button className="btn-icon btn-lg" type="button" aria-label="Large">
@@ -143,7 +143,7 @@ export const Sample = ({ id }: { id: string }) => {
             <input placeholder=" " />
             <span>Small</span>
           </label>
-          <label className="input">
+          <label className="input input-md">
             <input placeholder=" " />
             <span>Medium</span>
           </label>
@@ -190,7 +190,7 @@ export const Sample = ({ id }: { id: string }) => {
       return (
         <div>
           <p className="message message-sm">Small</p>
-          <p className="message">Medium</p>
+          <p className="message message-md">Medium</p>
           <p className="message message-lg">Large</p>
         </div>
       );
@@ -219,7 +219,7 @@ export const Sample = ({ id }: { id: string }) => {
             <textarea placeholder=" " />
             <span>Small</span>
           </label>
-          <label className="textarea">
+          <label className="textarea textarea-md">
             <textarea placeholder=" " />
             <span>Medium</span>
           </label>
@@ -274,9 +274,9 @@ export const Sample = ({ id }: { id: string }) => {
             <span>Small</span>
             <i className="picker-icon" />
           </label>
-          <label className="select">
-            <select defaultValue="regular">
-              <option value="regular">Medium</option>
+          <label className="select select-md">
+            <select defaultValue="medium">
+              <option value="medium">Medium</option>
             </select>
             <span>Medium</span>
             <i className="picker-icon" />
@@ -325,7 +325,7 @@ export const Sample = ({ id }: { id: string }) => {
             <span className="checkbox-box" />
             Small
           </label>
-          <label className="checkbox">
+          <label className="checkbox checkbox-md">
             <input type="checkbox" defaultChecked />
             <span className="checkbox-box" />
             Medium
@@ -372,8 +372,8 @@ export const Sample = ({ id }: { id: string }) => {
             <span className="radio-ring" />
             Small
           </label>
-          <label className="radio">
-            <input type="radio" name="docs-radio-size-regular" defaultChecked />
+          <label className="radio radio-md">
+            <input type="radio" name="docs-radio-size-medium" defaultChecked />
             <span className="radio-ring" />
             Medium
           </label>
@@ -423,7 +423,7 @@ export const Sample = ({ id }: { id: string }) => {
           {(
             [
               ["toggle-sm", "Small"],
-              ["", "Medium"],
+              ["toggle-md", "Medium"],
               ["toggle-lg", "Large"],
             ] as const
           ).map(([size, label]) => (
@@ -480,7 +480,7 @@ export const Sample = ({ id }: { id: string }) => {
               <input type="range" defaultValue={40} />
             </span>
           </label>
-          <label className="range">
+          <label className="range range-md">
             Medium
             <span className="range-box">
               <span className="range-track">
@@ -536,7 +536,7 @@ export const Sample = ({ id }: { id: string }) => {
               <p>14px type.</p>
             </div>
           </div>
-          <div className="alert">
+          <div className="alert alert-md">
             <InfoIcon aria-hidden="true" />
             <div>
               <p className="font-semibold">Medium</p>
@@ -586,7 +586,7 @@ export const Sample = ({ id }: { id: string }) => {
       return (
         <Row>
           <span className="badge badge-sm">Small</span>
-          <span className="badge">Medium</span>
+          <span className="badge badge-md">Medium</span>
           <span className="badge badge-lg">Large</span>
         </Row>
       );
@@ -603,7 +603,7 @@ export const Sample = ({ id }: { id: string }) => {
           <section className="card card-sm">
             <h3 className="font-semibold">Small</h3>
           </section>
-          <section className="card">
+          <section className="card card-md">
             <h3 className="font-semibold">Medium</h3>
           </section>
           <section className="card card-lg">

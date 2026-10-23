@@ -1,0 +1,61 @@
+@layer components {
+  .btn-sm {
+    --btn-height: 2.5rem;
+    --btn-padding-x: 1.25rem;
+    --btn-font-size: 0.75rem;
+    --btn-icon-size: 2.5rem;
+    --btn-icon-symbol-size: 1.25rem;
+    --btn-bump-size: 1.5rem;
+    --btn-bump-symbol-size: 1rem;
+  }
+
+  .btn-md {
+    --btn-height: 3rem;
+    --btn-padding-x: 1.5rem;
+    --btn-font-size: 0.875rem;
+    --btn-icon-size: 3rem;
+    --btn-icon-symbol-size: 1.5rem;
+    --btn-bump-size: 2rem;
+    --btn-bump-symbol-size: 1.25rem;
+  }
+
+  .btn-lg {
+    --btn-height: 3.5rem;
+    --btn-padding-x: 2rem;
+    --btn-font-size: 1rem;
+    --btn-icon-size: 3.5rem;
+    --btn-icon-symbol-size: 1.75rem;
+    --btn-bump-size: 2.5rem;
+    --btn-bump-symbol-size: 1.5rem;
+  }
+}
+
+@utility btn-sm {
+  --btn-height: 2.5rem;
+  --btn-padding-x: 1.25rem;
+  --btn-font-size: 0.75rem;
+  --btn-icon-size: 2.5rem;
+  --btn-icon-symbol-size: 1.25rem;
+  --btn-bump-size: 1.5rem;
+  --btn-bump-symbol-size: 1rem;
+}
+
+@utility btn-md {
+  --btn-height: 3rem;
+  --btn-padding-x: 1.5rem;
+  --btn-font-size: 0.875rem;
+  --btn-icon-size: 3rem;
+  --btn-icon-symbol-size: 1.5rem;
+  --btn-bump-size: 2rem;
+  --btn-bump-symbol-size: 1.25rem;
+}
+
+@utility btn-lg {
+  --btn-height: 3.5rem;
+  --btn-padding-x: 2rem;
+  --btn-font-size: 1rem;
+  --btn-icon-size: 3.5rem;
+  --btn-icon-symbol-size: 1.75rem;
+  --btn-bump-size: 2.5rem;
+  --btn-bump-symbol-size: 1.5rem;
+}

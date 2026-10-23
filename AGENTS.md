@@ -22,7 +22,7 @@ Jellyfy is a pnpm workspace.
 - Join class names with `twJoin` or `twMerge` from `tailwind-merge`.
 - Shared site CSS lives in `apps/web/app/globals.css`. A style that only one component needs stays with that component. Control CSS lives in `packages/jellyfy`.
 - A presentational icon on the site comes from `lucide-react`. The published package does not depend on Lucide. A loading demo on the site may show a Lucide loader. The package loading state is the lights in `index.js`.
-- A size demo is labeled Small, Medium, or Large. Medium is the control with no size class.
+- A size demo is labeled Small, Medium, or Large. Medium is the control with no size class, and also the `md` class.
 
 ## Commands
 

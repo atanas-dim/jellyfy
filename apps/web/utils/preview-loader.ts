@@ -3,19 +3,22 @@ import type { FC } from "react";
 import { ComponentSlug } from "@/resources/component-slugs";
 
 const PREVIEW_COMPONENTS = {
-  [ComponentSlug.Button]: () => import("@/app/previews/button-preview"),
-  [ComponentSlug.IconButton]: () => import("@/app/previews/icon-button-preview"),
-  [ComponentSlug.Input]: () => import("@/app/previews/input-preview"),
-  [ComponentSlug.Textarea]: () => import("@/app/previews/textarea-preview"),
-  [ComponentSlug.Select]: () => import("@/app/previews/select-preview"),
-  [ComponentSlug.Checkbox]: () => import("@/app/previews/checkbox-preview"),
-  [ComponentSlug.Radio]: () => import("@/app/previews/radio-preview"),
-  [ComponentSlug.Switch]: () => import("@/app/previews/switch-preview"),
-  [ComponentSlug.Slider]: () => import("@/app/previews/slider-preview"),
-  [ComponentSlug.Alert]: () => import("@/app/previews/alert-preview"),
-  [ComponentSlug.Badge]: () => import("@/app/previews/badge-preview"),
-  [ComponentSlug.Card]: () => import("@/app/previews/card-preview"),
-  [ComponentSlug.Dialog]: () => import("@/app/previews/dialog-preview"),
+  [ComponentSlug.Button]: () => import("@/components/previews/button-preview"),
+  [ComponentSlug.IconButton]: () =>
+    import("@/components/previews/icon-button-preview"),
+  [ComponentSlug.Input]: () => import("@/components/previews/input-preview"),
+  [ComponentSlug.Textarea]: () =>
+    import("@/components/previews/textarea-preview"),
+  [ComponentSlug.Select]: () => import("@/components/previews/select-preview"),
+  [ComponentSlug.Checkbox]: () =>
+    import("@/components/previews/checkbox-preview"),
+  [ComponentSlug.Radio]: () => import("@/components/previews/radio-preview"),
+  [ComponentSlug.Switch]: () => import("@/components/previews/switch-preview"),
+  [ComponentSlug.Slider]: () => import("@/components/previews/slider-preview"),
+  [ComponentSlug.Alert]: () => import("@/components/previews/alert-preview"),
+  [ComponentSlug.Badge]: () => import("@/components/previews/badge-preview"),
+  [ComponentSlug.Card]: () => import("@/components/previews/card-preview"),
+  [ComponentSlug.Dialog]: () => import("@/components/previews/dialog-preview"),
 } as const;
 
 export type PreviewPath = keyof typeof PREVIEW_COMPONENTS;

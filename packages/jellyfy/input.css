@@ -10,7 +10,7 @@
     overflow: hidden;
     border-radius: var(--radius-field);
     font: inherit;
-    font-size: 1rem;
+    font-size: var(--input-font-size, 1rem);
     line-height: 1.5;
     color: var(--color-plain-content);
     cursor: text;
@@ -22,11 +22,54 @@
   }
 
   .input-sm {
-    font-size: 0.875rem;
+    --input-font-size: 0.875rem;
+    --input-padding-top: 1rem;
+    --input-padding-x: 0.75rem;
+    --input-padding-bottom: 0.5rem;
+    --input-rest-padding-y: 0.75rem;
+    --input-label-top: 0.375rem;
+    --input-label-x: 0.75rem;
+    --input-label-font-size: 0.625rem;
+    --input-label-rest-top: 0.75rem;
+    --input-label-rest-font-size: 0.875rem;
+    --input-addon-top: 0.9375rem;
+    --input-addon-size: 0.875rem;
+    --input-addon-x: 0.75rem;
+    --input-addon-padding-x: 2rem;
+  }
+
+  .input-md {
+    --input-font-size: 1rem;
+    --input-padding-top: 1.375rem;
+    --input-padding-x: 1rem;
+    --input-padding-bottom: 0.625rem;
+    --input-rest-padding-y: 1rem;
+    --input-label-top: 0.75rem;
+    --input-label-x: 1rem;
+    --input-label-font-size: 10px;
+    --input-label-rest-top: 1rem;
+    --input-label-rest-font-size: 1rem;
+    --input-addon-top: 1.25rem;
+    --input-addon-size: 1rem;
+    --input-addon-x: 1rem;
+    --input-addon-padding-x: 2.5rem;
   }
 
   .input-lg {
-    font-size: 1.25rem;
+    --input-font-size: 1.25rem;
+    --input-padding-top: 1.75rem;
+    --input-padding-x: 1.25rem;
+    --input-padding-bottom: 0.75rem;
+    --input-rest-padding-y: 1.25rem;
+    --input-label-top: 0.875rem;
+    --input-label-x: 1.25rem;
+    --input-label-font-size: 0.75rem;
+    --input-label-rest-top: 1.25rem;
+    --input-label-rest-font-size: 1.25rem;
+    --input-addon-top: 1.5625rem;
+    --input-addon-size: 1.25rem;
+    --input-addon-x: 1.25rem;
+    --input-addon-padding-x: 3rem;
   }
 
   .input input {
@@ -36,7 +79,8 @@
     display: block;
     width: 100%;
     margin: 0;
-    padding: 1.375rem 1rem 0.625rem;
+    padding: var(--input-padding-top, 1.375rem) var(--input-padding-x, 1rem)
+      var(--input-padding-bottom, 0.625rem);
     border: 0;
     background: transparent;
     color: inherit;
@@ -46,35 +90,17 @@
     outline: none;
   }
 
-  .input-sm input {
-    padding: 1rem 0.75rem 0.5rem;
-  }
-
-  .input-lg input {
-    padding: 1.75rem 1.25rem 0.75rem;
-  }
-
   .input:not(:focus-within):has(input:placeholder-shown) input {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-
-  .input-sm:not(:focus-within):has(input:placeholder-shown) input {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-  }
-
-  .input-lg:not(:focus-within):has(input:placeholder-shown) input {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+    padding-top: var(--input-rest-padding-y, 1rem);
+    padding-bottom: var(--input-rest-padding-y, 1rem);
   }
 
   .input > span:not(.input-start, .input-end) {
     position: absolute;
-    top: 0.75rem;
-    left: 1rem;
+    top: var(--input-label-top, 0.75rem);
+    left: var(--input-label-x, 1rem);
     z-index: 1;
-    font-size: 10px;
+    font-size: var(--input-label-font-size, 10px);
     font-weight: 500;
     line-height: 1;
     letter-spacing: 0.04em;
@@ -88,22 +114,10 @@
       color 300ms ease-out;
   }
 
-  .input-sm > span:not(.input-start, .input-end) {
-    top: 0.375rem;
-    left: 0.75rem;
-    font-size: 0.625rem;
-  }
-
-  .input-lg > span:not(.input-start, .input-end) {
-    top: 0.875rem;
-    left: 1.25rem;
-    font-size: 0.75rem;
-  }
-
   .input:not(:focus-within):has(input:placeholder-shown)
     > span:not(.input-start, .input-end) {
-    top: 1rem;
-    font-size: 1rem;
+    top: var(--input-label-rest-top, 1rem);
+    font-size: var(--input-label-rest-font-size, 1rem);
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0;
@@ -114,67 +128,25 @@
     );
   }
 
-  .input-sm:not(:focus-within):has(input:placeholder-shown)
-    > span:not(.input-start, .input-end) {
-    top: 0.75rem;
-    font-size: 0.875rem;
-  }
-
-  .input-lg:not(:focus-within):has(input:placeholder-shown)
-    > span:not(.input-start, .input-end) {
-    top: 1.25rem;
-    font-size: 1.25rem;
-  }
-
   .input-start,
   .input-end {
     position: absolute;
-    top: 1.25rem;
+    top: var(--input-addon-top, 1.25rem);
     z-index: 1;
     display: grid;
-    width: 1rem;
-    height: 1rem;
+    width: var(--input-addon-size, 1rem);
+    height: var(--input-addon-size, 1rem);
     place-items: center;
     color: inherit;
     pointer-events: none;
   }
 
-  .input-sm .input-start,
-  .input-sm .input-end {
-    top: 0.9375rem;
-    width: 0.875rem;
-    height: 0.875rem;
-  }
-
-  .input-lg .input-start,
-  .input-lg .input-end {
-    top: 1.5625rem;
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
   .input-start {
-    left: 1rem;
+    left: var(--input-addon-x, 1rem);
   }
 
   .input-end {
-    right: 1rem;
-  }
-
-  .input-sm .input-start {
-    left: 0.75rem;
-  }
-
-  .input-sm .input-end {
-    right: 0.75rem;
-  }
-
-  .input-lg .input-start {
-    left: 1.25rem;
-  }
-
-  .input-lg .input-end {
-    right: 1.25rem;
+    right: var(--input-addon-x, 1rem);
   }
 
   .input-start > svg,
@@ -184,39 +156,15 @@
   }
 
   .input:has(.input-start) input {
-    padding-left: 2.5rem;
+    padding-left: var(--input-addon-padding-x, 2.5rem);
   }
 
   .input:has(.input-end) input {
-    padding-right: 2.5rem;
-  }
-
-  .input-sm:has(.input-start) input {
-    padding-left: 2rem;
-  }
-
-  .input-sm:has(.input-end) input {
-    padding-right: 2rem;
-  }
-
-  .input-lg:has(.input-start) input {
-    padding-left: 3rem;
-  }
-
-  .input-lg:has(.input-end) input {
-    padding-right: 3rem;
+    padding-right: var(--input-addon-padding-x, 2.5rem);
   }
 
   .input:has(.input-start) > span:not(.input-start, .input-end) {
-    left: 2.5rem;
-  }
-
-  .input-sm:has(.input-start) > span:not(.input-start, .input-end) {
-    left: 2rem;
-  }
-
-  .input-lg:has(.input-start) > span:not(.input-start, .input-end) {
-    left: 3rem;
+    left: var(--input-addon-padding-x, 2.5rem);
   }
 
   .input::before,
@@ -287,6 +235,57 @@
     -webkit-text-fill-color: currentColor;
     cursor: not-allowed;
   }
+}
+
+@utility input-sm {
+  --input-font-size: 0.875rem;
+  --input-padding-top: 1rem;
+  --input-padding-x: 0.75rem;
+  --input-padding-bottom: 0.5rem;
+  --input-rest-padding-y: 0.75rem;
+  --input-label-top: 0.375rem;
+  --input-label-x: 0.75rem;
+  --input-label-font-size: 0.625rem;
+  --input-label-rest-top: 0.75rem;
+  --input-label-rest-font-size: 0.875rem;
+  --input-addon-top: 0.9375rem;
+  --input-addon-size: 0.875rem;
+  --input-addon-x: 0.75rem;
+  --input-addon-padding-x: 2rem;
+}
+
+@utility input-md {
+  --input-font-size: 1rem;
+  --input-padding-top: 1.375rem;
+  --input-padding-x: 1rem;
+  --input-padding-bottom: 0.625rem;
+  --input-rest-padding-y: 1rem;
+  --input-label-top: 0.75rem;
+  --input-label-x: 1rem;
+  --input-label-font-size: 10px;
+  --input-label-rest-top: 1rem;
+  --input-label-rest-font-size: 1rem;
+  --input-addon-top: 1.25rem;
+  --input-addon-size: 1rem;
+  --input-addon-x: 1rem;
+  --input-addon-padding-x: 2.5rem;
+}
+
+@utility input-lg {
+  --input-font-size: 1.25rem;
+  --input-padding-top: 1.75rem;
+  --input-padding-x: 1.25rem;
+  --input-padding-bottom: 0.75rem;
+  --input-rest-padding-y: 1.25rem;
+  --input-label-top: 0.875rem;
+  --input-label-x: 1.25rem;
+  --input-label-font-size: 0.75rem;
+  --input-label-rest-top: 1.25rem;
+  --input-label-rest-font-size: 1.25rem;
+  --input-addon-top: 1.5625rem;
+  --input-addon-size: 1.25rem;
+  --input-addon-x: 1.25rem;
+  --input-addon-padding-x: 3rem;
 }
 
 @layer utilities {

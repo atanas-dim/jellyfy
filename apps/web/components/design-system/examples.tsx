@@ -2,8 +2,8 @@ import { LoaderIcon } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
-import { MotionFace, SquishControl } from "@/app/motion-demo";
-import { ThemeFrame } from "@/app/stripe-switch";
+import { MotionFace, SquishControl } from "@/components/motion-demo";
+import { ThemeFrame } from "@/components/stripe-switch";
 
 const THICKNESS = [
   ["--thickness-surface", "Surface", "size-full"],
@@ -847,7 +847,7 @@ const ComponentSamples = () => (
             <button className="btn btn-sm primary" type="button">
               <span>Small</span>
             </button>
-            <button className="btn primary" type="button">
+            <button className="btn btn-md primary" type="button">
               <span>Medium</span>
             </button>
             <button className="btn btn-lg primary" type="button">
@@ -880,7 +880,7 @@ const ComponentSamples = () => (
               <Plus size="1.25rem" />
             </button>
             <button
-              className="btn-icon primary"
+              className="btn-icon btn-md primary"
               type="button"
               aria-label="Medium"
             >
@@ -922,7 +922,7 @@ const ComponentSamples = () => (
             >
               <Plus size="1rem" />
             </button>
-            <button className="btn-bump" type="button" aria-label="Medium">
+            <button className="btn-bump btn-md" type="button" aria-label="Medium">
               <Plus size="1.25rem" />
             </button>
             <button
