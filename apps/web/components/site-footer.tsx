@@ -211,7 +211,7 @@ export const SiteFooter = ({ className }: { className?: string }) => {
     <div className="w-full px-2 pb-2">
       <footer
         className={twMerge(
-          "surface relative mx-auto flex min-h-115 w-full max-w-7xl flex-col items-center justify-center gap-6 overflow-hidden rounded-4xl py-14 shadow-lg md:min-h-[376px] dark:text-neutral-100",
+          "surface relative mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 overflow-hidden rounded-4xl py-20 shadow-lg dark:text-neutral-100",
           className,
         )}
       >
