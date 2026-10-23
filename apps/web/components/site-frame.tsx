@@ -11,8 +11,8 @@ import { ThemeToggle } from "./theme-toggle";
 
 const LINKS = [
   { href: "/set", label: "The set" },
-  { href: "/design-system", label: "Design system" },
   { href: "/docs", label: "Docs" },
+  { href: "/design-system", label: "Design system" },
 ] as const;
 
 const PILL =
