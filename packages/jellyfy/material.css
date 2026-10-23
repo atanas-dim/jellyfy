@@ -39,18 +39,10 @@
 
 .light {
   color-scheme: light;
-  --color-primary: light-dark(
-    var(--color-indigo-500, #6366f1),
-    var(--color-indigo-400, #818cf8)
-  );
 }
 
 .dark {
   color-scheme: dark;
-  --color-primary: light-dark(
-    var(--color-indigo-500, #6366f1),
-    var(--color-indigo-400, #818cf8)
-  );
   --noise: var(--noise-dark);
   --percent-plain-resting-wash: 76%;
   --percent-plain-focused-wash: 68%;
@@ -96,8 +88,8 @@
       var(--color-neutral-800, #262626)
     );
     --color-neutral: light-dark(
-      var(--color-neutral-400, #a3a3a3),
-      var(--color-neutral-400, #a3a3a3)
+      var(--color-neutral-300, #d4d4d4),
+      var(--color-neutral-500, #737373)
     );
     --color-neutral-content: light-dark(
       var(--color-neutral-950, #0a0a0a),

@@ -34,7 +34,7 @@ export default function CustomizePage() {
   --color-tertiary: #0d9488;
   --color-tertiary-content: #042f2e;
   --color-tertiary-surface-content: #115e59;
-  --color-neutral: #a3a3a3;
+  --color-neutral: #d4d4d4;
   --color-neutral-content: #0a0a0a;
   --color-neutral-surface-content: #262626;
   --color-success: #16a34a;
@@ -77,7 +77,7 @@ export default function CustomizePage() {
   --color-primary: #6366f1;
   --color-secondary: #db2777;
   --color-tertiary: #0d9488;
-  --color-neutral: #a3a3a3;
+  --color-neutral: #d4d4d4;
   --color-success: #16a34a;
   --color-warning: #d97706;
   --color-error: #dc2626;
@@ -155,11 +155,11 @@ export default function CustomizePage() {
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">Dark</h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
-        Jellyfy follows the operating system. Primary is Indigo 500 in light and
-        Indigo 400 in dark. The other solids stay the ones you set. Surface text
-        is the 800 step in light and the 200 step in dark. Control text is the
-        950 step in light and the 100 step in dark. Neutral is Neutral 400 in
-        both themes.
+        Jellyfy follows the operating system. Primary is Indigo 500 in both
+        themes. The other solids stay the ones you set. Surface text is the 800
+        step in light and the 200 step in dark. Control text is the 950 step in
+        light and the 100 step in dark. Neutral is Neutral 300 in light and
+        Neutral 500 in dark.
       </p>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         To choose for the page, add the class{" "}
