@@ -35,11 +35,11 @@ const NAME: Record<(typeof COLORS)[number], string> = {
   info: "Info",
 };
 
-const SIZES = ["sm", "", "lg"] as const;
+const SIZES = ["sm", "md", "lg"] as const;
 
 const SIZE_NAME: Record<(typeof SIZES)[number], string> = {
   sm: "Small",
-  "": "Medium",
+  md: "Medium",
   lg: "Large",
 };
 
@@ -77,7 +77,7 @@ const openDialog = (id: string) => {
 };
 
 const sizeClass = (prefix: string, size: (typeof SIZES)[number]) =>
-  size ? `${prefix}-${size}` : undefined;
+  `${prefix}-${size}`;
 
 export default function SetPage() {
   const [striped, setStriped] = useState(false);
@@ -105,7 +105,7 @@ export default function SetPage() {
           <div className="flex flex-wrap items-end gap-x-3 gap-y-8">
             {SIZES.map((size) => (
               <button
-                key={size || "regular"}
+                key={size}
                 className={twJoin("btn", sizeClass("btn", size))}
                 type="button"
               >
@@ -145,7 +145,7 @@ export default function SetPage() {
           <div className="flex flex-wrap items-end gap-3">
             {SIZES.map((size) => (
               <button
-                key={size || "regular"}
+                key={size}
                 className={twJoin("btn-icon", sizeClass("btn", size))}
                 type="button"
                 aria-label={SIZE_NAME[size]}
@@ -176,7 +176,7 @@ export default function SetPage() {
           <div className="flex flex-wrap items-center gap-2">
             {SIZES.map((size) => (
               <span
-                key={size || "regular"}
+                key={size}
                 className={twJoin("badge", sizeClass("badge", size))}
               >
                 {SIZE_NAME[size]}
@@ -200,7 +200,7 @@ export default function SetPage() {
           <div className="grid items-start gap-3 sm:grid-cols-3">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("input", sizeClass("input", size))}
               >
                 <input placeholder=" " />
@@ -235,7 +235,7 @@ export default function SetPage() {
           <div className="grid items-start gap-3 sm:grid-cols-3">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("textarea", sizeClass("textarea", size))}
               >
                 <textarea placeholder=" " />
@@ -261,7 +261,7 @@ export default function SetPage() {
           <div className="grid items-start gap-3 sm:grid-cols-3">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("select", sizeClass("select", size))}
               >
                 <select defaultValue="rose">
@@ -289,7 +289,7 @@ export default function SetPage() {
           <div className="flex flex-wrap items-center gap-4">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("checkbox", sizeClass("checkbox", size))}
               >
                 <input type="checkbox" defaultChecked />
@@ -317,7 +317,7 @@ export default function SetPage() {
           <div className="flex flex-col">
             {SIZES.map((size) => (
               <p
-                key={size || "regular"}
+                key={size}
                 className={twJoin("message", sizeClass("message", size))}
               >
                 {SIZE_NAME[size]}
@@ -339,12 +339,12 @@ export default function SetPage() {
           <div className="flex flex-wrap items-center gap-4">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("radio", sizeClass("radio", size))}
               >
                 <input
                   type="radio"
-                  name={`size-${size || "regular"}`}
+                  name={`size-${size}`}
                   defaultChecked
                 />
                 <span className="radio-ring" />
@@ -369,7 +369,7 @@ export default function SetPage() {
           <div className="flex flex-wrap items-center gap-4">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("toggle", sizeClass("toggle", size))}
               >
                 <input type="checkbox" role="switch" defaultChecked />
@@ -407,7 +407,7 @@ export default function SetPage() {
           <div className="grid gap-4 sm:grid-cols-3">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("range", sizeClass("range", size))}
               >
                 {SIZE_NAME[size]}
@@ -438,7 +438,7 @@ export default function SetPage() {
           <div className="grid items-start gap-3 sm:grid-cols-3">
             {SIZES.map((size) => (
               <div
-                key={size || "regular"}
+                key={size}
                 className={twJoin("alert", sizeClass("alert", size))}
               >
                 <InfoIcon aria-hidden="true" />
@@ -466,7 +466,7 @@ export default function SetPage() {
           <div className="grid items-start gap-3 sm:grid-cols-3">
             {SIZES.map((size) => (
               <section
-                key={size || "regular"}
+                key={size}
                 className={twJoin("card", sizeClass("card", size))}
               >
                 <h3 className="font-semibold">{SIZE_NAME[size]}</h3>

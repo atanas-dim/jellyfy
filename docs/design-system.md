@@ -487,7 +487,7 @@ A recipe marked `[DARK ADAPTATION MAY BE NEEDED]` uses the value in this documen
 
 ## 12. Components
 
-Every component has three sizes: small, medium, and large. Medium is the default and has no size name.
+Every component has three sizes: small, medium, and large. Medium is the default, with no size class, and `md` repeats that size so a breakpoint can return to it.
 
 The component list is Button, Icon Button, Bump Button, Input, Textarea, Select, Checkbox, Radio, Toggle, Range, Alert, Badge, Card, Modal, and Message.
 

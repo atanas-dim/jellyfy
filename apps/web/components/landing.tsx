@@ -140,7 +140,7 @@ export const Landing = () => {
                     key={item.id}
                     type="button"
                     className={twJoin(
-                      "btn-icon btn-sm outline-2 outline-offset-2 transition-all duration-400",
+                      "btn-icon btn-sm md:btn-md outline-2 outline-offset-2 transition-all duration-400",
                       item.id,
                       tone === item.id
                         ? "outline-(--focus-color)"
@@ -457,7 +457,7 @@ startJellyfy();`}
       <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div
           data-rise
-          className="flex flex-wrap items-end justify-between gap-4"
+          className="flex flex-wrap items-center justify-between gap-4"
         >
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             The set

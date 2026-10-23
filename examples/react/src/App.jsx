@@ -25,7 +25,7 @@ const NAME = {
 
 const SIZES = [
   { id: "sm", label: "Small" },
-  { id: "", label: "Regular" },
+  { id: "md", label: "Medium" },
   { id: "lg", label: "Large" },
 ];
 
