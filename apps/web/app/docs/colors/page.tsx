@@ -34,9 +34,9 @@ export default function ColorsPage() {
         works on every control. A control with no color class stays plain. Each
         slot has a solid, a content color for text on a button or badge, and a
         surface content color for text on a field, card, alert, or dialog panel.
-        Primary is Indigo 500 in both themes. Neutral is Neutral 300 in light
-        and Neutral 500 in dark. Secondary, tertiary, success, warning, error,
-        and info are the 600 step in both themes.
+        Primary is Indigo 500 in both themes. Neutral is Neutral 500 in both
+        themes. Secondary, tertiary, success, warning, error, and info are the
+        600 step in both themes.
       </p>
       <div className="table-scroll mt-8">
         <table className="text-left text-sm">

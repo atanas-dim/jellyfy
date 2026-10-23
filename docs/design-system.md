@@ -48,16 +48,16 @@ The thickness classes are `thickness-surface`, `thickness-field`, `thickness-con
 
 Eight slots. Four are the theme, four are status.
 
-| Slot      | Default solid                             | Fallback              |
-| --------- | ----------------------------------------- | --------------------- |
-| Primary   | TW Indigo 500 in both themes              | `#6366f1`             |
-| Secondary | TW Pink 600                               | `#db2777`             |
-| Tertiary  | TW Teal 600                               | `#0d9488`             |
-| Neutral   | Neutral 300 in light. Neutral 500 in dark | `#d4d4d4` / `#737373` |
-| Success   | TW Green 600                              | `#16a34a`             |
-| Warning   | TW Amber 600                              | `#d97706`             |
-| Error     | TW Red 600                                | `#dc2626`             |
-| Info      | TW Sky 600                                | `#0284c7`             |
+| Slot      | Default solid                | Fallback  |
+| --------- | ---------------------------- | --------- |
+| Primary   | TW Indigo 500 in both themes | `#6366f1` |
+| Secondary | TW Pink 600                  | `#db2777` |
+| Tertiary  | TW Teal 600                  | `#0d9488` |
+| Neutral   | Neutral 500 in both themes   | `#737373` |
+| Success   | TW Green 600                 | `#16a34a` |
+| Warning   | TW Amber 600                 | `#d97706` |
+| Error     | TW Red 600                   | `#dc2626` |
+| Info      | TW Sky 600                   | `#0284c7` |
 
 The neutral ramp is Jellyfy's, from 50 through 950, even where a component uses only some steps. It reads Tailwind's neutral variables when they exist, and uses these hex fallbacks when they do not.
 
@@ -185,14 +185,14 @@ The wash percentages are colour mixes. They are not a second opacity.
 
 Thickness is two inset shadows. The first falls upward, so the bottom edge reads as the thick part of the pour. The second is a light lip in the other direction. Its offset is smaller, and its blur matches the thick edge. Those distances are the same in both themes.
 
-The thick edge is Neutral 950. Dark uses a stronger opacity. The button's dark thick edge is Neutral 800 at 65%. The lip is Neutral 50.
+The thick edge is Neutral 950. Dark uses a stronger opacity. The button's dark thick edge is Neutral 900 at 65%. The lip is Neutral 50.
 
 | Thickness      | Thick edge           | Lip                | Light             | Dark                             | Used by                                                                                    |
 | -------------- | -------------------- | ------------------ | ----------------- | -------------------------------- | ------------------------------------------------------------------------------------------ |
 | Surface        | `inset 0 -6px 8px`   | `inset 0 4px 8px`  | Edge 12%, lip 10% | Edge 32%, lip 8%                 | Card, alert, modal panel, badge, select menu                                               |
 | Field, resting | `inset 0 -10px 16px` | `inset 0 5px 16px` | Edge 20%, lip 10% | Edge 50%, lip 10%                | Input, textarea, select                                                                    |
 | Field, focused | `inset 0 -6px 10px`  | `inset 0 3px 10px` | Edge 15%, lip 10% | Edge 45%, lip 10%                | Input, textarea, select while focused                                                      |
-| Control        | `inset 0 -16px 16px` | `inset 0 8px 16px` | Edge 50%, lip 10% | Edge 65% in Neutral 800, lip 12% | Button, icon button                                                                        |
+| Control        | `inset 0 -16px 16px` | `inset 0 8px 16px` | Edge 50%, lip 10% | Edge 65% in Neutral 900, lip 12% | Button, icon button                                                                        |
 | Mark           | `inset 0 -2px 5px`   | `inset 0 1px 5px`  | Edge 35%, lip 10% | Edge 65%, lip 10%                | Checkbox box, radio ring, toggle track, toggle thumb, range track, range fill, range thumb |
 
 The track and the fill of a slider are both jelly. Only the color differs. The same is true of a switch track and thumb, and of a radio ring.
@@ -458,7 +458,7 @@ The dark theme uses the same mixes, the same thickness distances, the same eleva
 
 Dark changes only the neutral step fed into a recipe, the content color step, the focus-gap tone, and the grain.
 
-The Neutral slot is one of the eight colors. Light uses Neutral 300 as its solid. Dark uses Neutral 500. It then uses the same wash, control fill, and content mix as primary.
+The Neutral slot is one of the eight colors. Both themes use Neutral 500 as its solid. It then uses the same wash, control fill, and content mix as primary.
 
 The plain element uses plain as its solid, plus the menu tone and the plain content color. Plain is not a second color and not the Neutral slot.
 
@@ -468,7 +468,7 @@ The focus gap and the grain apply to every component, with a slot and without on
 
 | Token         | What it is                        | Light          | Dark               |
 | ------------- | --------------------------------- | -------------- | ------------------ |
-| Neutral slot  | One of the eight colors           | Neutral 300    | Neutral 500        |
+| Neutral slot  | One of the eight colors           | Neutral 500    | Neutral 500        |
 | Surface tone  | Plain solid, run through the wash | Neutral 50     | Neutral 800        |
 | Menu tone     | Plain menu fill                   | Neutral 100    | Neutral 800        |
 | Plain content | Text on a surface or field        | Neutral 800    | Neutral 100        |

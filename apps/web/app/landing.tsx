@@ -108,7 +108,7 @@ export const Landing = () => {
   return (
     <main ref={page}>
       <section className="flex h-svh max-h-[50rem] min-h-fit items-center pb-8">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-16 border border-[red] px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
           <div className="max-w-xl">
             <p
               data-hero-item
