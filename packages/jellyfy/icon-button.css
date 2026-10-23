@@ -107,12 +107,8 @@
 
 @layer utilities {
   .btn-icon:disabled {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled) var(--material-opacity),
-      transparent
-    );
-    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    background-color: var(--fill-disabled);
+    color: var(--color-disabled-text);
   }
 }
 

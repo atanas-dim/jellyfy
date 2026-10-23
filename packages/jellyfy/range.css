@@ -99,7 +99,7 @@
   }
 
   .range:has(:disabled) {
-    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    color: var(--color-disabled-text);
     cursor: not-allowed;
   }
 
@@ -110,11 +110,7 @@
 
 @layer utilities {
   .range-track {
-    background-color: color-mix(
-      in oklab,
-      var(--color-mark) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-mark);
   }
 
   .range-fill,
@@ -148,26 +144,14 @@
       .info
     )
     .range-thumb {
-    background-color: color-mix(
-      in oklab,
-      var(--solid) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-control);
   }
 
   .range:has(:disabled) .range-fill {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-disabled);
   }
 
   .range:has(:disabled) .range-thumb {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled-content) 70%,
-      transparent
-    );
+    background-color: var(--color-disabled-text);
   }
 }

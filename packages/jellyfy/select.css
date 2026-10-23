@@ -239,38 +239,16 @@
 
 @layer utilities {
   .select {
-    background-color: color-mix(
-      in oklab,
-      color-mix(
-          in oklab,
-          var(--color-plain) var(--percent-plain-resting-wash),
-          var(--solid)
-        )
-        var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-field);
   }
 
   .select:focus-within {
-    background-color: color-mix(
-      in oklab,
-      color-mix(
-          in oklab,
-          var(--color-plain) var(--percent-plain-focused-wash),
-          var(--solid)
-        )
-        var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-field-focus);
   }
 
   .select:has(:disabled) {
-    background-color: color-mix(
-      in oklab,
-      var(--color-disabled) var(--material-opacity),
-      transparent
-    );
-    color: color-mix(in oklab, var(--color-disabled-content) 70%, transparent);
+    background-color: var(--fill-disabled);
+    color: var(--color-disabled-text);
   }
 }
 

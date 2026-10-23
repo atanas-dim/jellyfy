@@ -28,16 +28,7 @@
 
 @layer utilities {
   .card {
-    background-color: color-mix(
-      in oklab,
-      color-mix(
-          in oklab,
-          var(--color-plain) var(--percent-surface-resting-wash),
-          var(--solid)
-        )
-        var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-surface);
   }
 
   .card:is(

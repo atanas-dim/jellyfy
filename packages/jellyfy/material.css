@@ -258,6 +258,56 @@
       var(--color-neutral-800, #262626),
       var(--color-neutral-400, #a3a3a3)
     );
+    --color-disabled-text: color-mix(
+      in oklab,
+      var(--color-disabled-content) 70%,
+      transparent
+    );
+    --fill-surface: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          var(--color-plain) var(--percent-surface-resting-wash),
+          var(--solid)
+        )
+        var(--material-opacity),
+      transparent
+    );
+    --fill-field: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          var(--color-plain) var(--percent-plain-resting-wash),
+          var(--solid)
+        )
+        var(--material-opacity),
+      transparent
+    );
+    --fill-field-focus: color-mix(
+      in oklab,
+      color-mix(
+          in oklab,
+          var(--color-plain) var(--percent-plain-focused-wash),
+          var(--solid)
+        )
+        var(--material-opacity),
+      transparent
+    );
+    --fill-control: color-mix(
+      in oklab,
+      var(--solid) var(--material-opacity),
+      transparent
+    );
+    --fill-mark: color-mix(
+      in oklab,
+      var(--color-mark) var(--material-opacity),
+      transparent
+    );
+    --fill-disabled: color-mix(
+      in oklab,
+      var(--color-disabled) var(--material-opacity),
+      transparent
+    );
     --focus-color: var(--color-plain-content);
   }
 
@@ -421,11 +471,7 @@
     .thickness-control,
     .thickness-mark
   ) {
-    background-color: color-mix(
-      in oklab,
-      var(--solid) var(--material-opacity),
-      transparent
-    );
+    background-color: var(--fill-control);
     background-image: var(--noise);
     background-size: var(--noise-size);
     backdrop-filter: blur(var(--material-blur));

@@ -127,8 +127,7 @@ const ColorSamples = () => (
         label="Wash"
         className={twJoin("primary", SWATCH_EDGE)}
         style={{
-          backgroundColor:
-            "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-resting-wash), var(--solid)) var(--material-opacity), transparent)",
+          backgroundColor: "var(--fill-field)",
           color: "var(--color-plain-content)",
         }}
       />
@@ -165,12 +164,9 @@ const ColorSamples = () => (
   </div>
 );
 
-const CONTROL_FILL =
-  "color-mix(in oklab, var(--solid) var(--material-opacity), transparent)";
-const WASH =
-  "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-resting-wash), var(--solid)) var(--material-opacity), transparent)";
-const WASH_FOCUS =
-  "color-mix(in oklab, color-mix(in oklab, var(--color-plain) var(--percent-plain-focused-wash), var(--solid)) var(--material-opacity), transparent)";
+const CONTROL_FILL = "var(--fill-control)";
+const WASH = "var(--fill-field)";
+const WASH_FOCUS = "var(--fill-field-focus)";
 
 const LightSwatches = ({
   slot,
@@ -708,10 +704,8 @@ const InteractionSamples = () => (
             )}
             style={{
               borderRadius: "var(--radius-control)",
-              backgroundColor:
-                "color-mix(in oklab, var(--color-disabled) var(--material-opacity), transparent)",
-              color:
-                "color-mix(in oklab, var(--color-disabled-content) 70%, transparent)",
+              backgroundColor: "var(--fill-disabled)",
+              color: "var(--color-disabled-text)",
               boxShadow: "var(--elevation-disabled)",
               cursor: "not-allowed",
             }}
@@ -767,14 +761,8 @@ const THEME_SWATCHES = [
   ["Mark", "var(--color-mark)"],
   ["Menu", "var(--color-menu)"],
   ["Plain content", "var(--color-plain-content)"],
-  [
-    "Disabled fill",
-    "color-mix(in oklab, var(--color-disabled) var(--material-opacity), transparent)",
-  ],
-  [
-    "Disabled text",
-    "color-mix(in oklab, var(--color-disabled-content) 70%, transparent)",
-  ],
+  ["Disabled fill", "var(--fill-disabled)"],
+  ["Disabled text", "var(--color-disabled-text)"],
   ["Focus gap", "var(--focus-gap)"],
 ] as const;
 

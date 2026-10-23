@@ -693,7 +693,7 @@ Public custom properties: one solid, one content color, and one surface content 
 
 `--color-black` and `--color-white` are shared mix values. They are not part of this contract.
 
-Shade, highlight, wash, the mark lift, menu mixes, thickness, and drop shadows stay internal variables. A variable marked `[DARK ADAPTATION MAY BE NEEDED]` can be overridden by the dark theme.
+Shade, highlight, wash, the fills, the mark lift, menu mixes, thickness, and drop shadows stay internal variables. A variable marked `[DARK ADAPTATION MAY BE NEEDED]` can be overridden by the dark theme.
 
 ## 14. Library contract
 
@@ -711,10 +711,10 @@ One rule in that file paints the jelly material. It sets the grain, the blur, an
 
 Each component is its own stylesheet. A product imports the components it uses, or imports `jellyfy.css` for the whole library. That file imports the material, the motion, and every component. A component file that is not imported is not in the build. The material file ships once. A component name left in the shared selector does nothing when that component's file is absent.
 
-A component file does not repeat the grain, the blur, or the shadow. It sets `--jelly-thickness` to the thickness for its role. `.btn` sets the control thickness, so `<button class="btn">` has the jelly material.
+A component file does not repeat the grain, the blur, the shadow, or a fill mix. It sets `background-color` to `--fill-surface`, `--fill-field`, `--fill-field-focus`, `--fill-control`, `--fill-mark`, or `--fill-disabled`, and it sets `--jelly-thickness` to the thickness for its role. Disabled text is `--color-disabled-text`. `.btn` sets the control thickness, so `<button class="btn">` has the jelly material.
 
 `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark` are for a custom element. They set `--jelly-thickness` to the matching thickness. The same class on a component replaces that component's thickness and nothing else. `class="btn thickness-surface"` keeps the button's size, radius, type, fill, and press light, and uses the surface thickness. The thickness classes sit in the utilities layer, after the component rules, so the tie goes to the thickness class.
 
 ### Implementation notes
 
-The shared rule uses `:where(...)`, so it adds no specificity. Component files only assign `--jelly-thickness`. When browsers support native CSS mixins, that shared selector will be replaced by a mixin applied inside each component. The variables will stay.
+The shared rule uses `:where(...)`, so it adds no specificity. It paints `--fill-control`. Component files assign a fill variable and `--jelly-thickness`. When browsers support native CSS mixins, that shared selector will be replaced by a mixin applied inside each component. The variables will stay.
