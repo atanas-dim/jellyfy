@@ -107,8 +107,8 @@ export const Landing = () => {
 
   return (
     <main ref={page}>
-      <section className="flex h-svh max-h-[50rem] min-h-fit items-center pb-8">
-        <div className="mx-auto grid w-full max-w-6xl items-center gap-16 border border-[red] px-6 py-16 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
+      <section className="flex h-svh max-h-200 min-h-fit items-center py-16">
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-16 p-6 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
           <div className="max-w-xl">
             <p
               data-hero-item
@@ -146,7 +146,7 @@ export const Landing = () => {
                     key={item.id}
                     type="button"
                     className={twJoin(
-                      "btn-icon outline-2 outline-offset-2 transition-all duration-400",
+                      "btn-icon btn-sm outline-2 outline-offset-2 transition-all duration-400",
                       item.id,
                       tone === item.id
                         ? "outline-(--focus-color)"
@@ -309,7 +309,7 @@ export const Landing = () => {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div data-rise className="max-w-xl">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Add a class
@@ -335,7 +335,7 @@ export const Landing = () => {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div data-rise className="max-w-xl">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Install
@@ -368,7 +368,7 @@ startJellyfy();`}
         </p>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div data-rise className="max-w-xl">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             One material
@@ -441,7 +441,7 @@ startJellyfy();`}
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div data-rise className="grid items-center gap-10 lg:grid-cols-2">
           <div className="max-w-xl">
             <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
@@ -469,7 +469,7 @@ startJellyfy();`}
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+      <section className="mx-auto w-full max-w-6xl py-24 sm:px-10 sm:py-32">
         <div
           data-rise
           className="flex flex-wrap items-end justify-between gap-4"

@@ -85,7 +85,7 @@ export default function SetPage() {
   }, [striped]);
 
   return (
-    <main className="w-full">
+    <main className="w-full pt-16">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-x-8 gap-y-12 px-6 py-12 sm:grid-cols-2 sm:px-10 xl:grid-cols-3">
         <StripeSwitch
           className="sm:col-span-2 xl:col-span-3"
