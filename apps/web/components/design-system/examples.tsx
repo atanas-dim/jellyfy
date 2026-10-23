@@ -2,8 +2,8 @@ import { LoaderIcon } from "lucide-react";
 import type { CSSProperties, ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
-import { MotionFace, SquishControl } from "@/app/motion-demo";
-import { ThemeFrame } from "@/app/stripe-switch";
+import { MotionFace, SquishControl } from "@/components/motion-demo";
+import { ThemeFrame } from "@/components/stripe-switch";
 
 const THICKNESS = [
   ["--thickness-surface", "Surface", "size-full"],

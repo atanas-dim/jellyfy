@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import { CodeBlock } from "../code-block";
-import { Pager } from "../pager";
+import { CodeBlock } from "@/components/docs/code-block";
+import { Pager } from "@/components/docs/pager";
 
 export const metadata: Metadata = {
   title: "Customize",

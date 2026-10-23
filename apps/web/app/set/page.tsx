@@ -11,7 +11,7 @@ import {
 import { type ReactNode, useEffect, useState } from "react";
 import { twJoin } from "tailwind-merge";
 
-import { STRIPES_CLASS, StripeSwitch } from "@/app/stripe-switch";
+import { STRIPES_CLASS, StripeSwitch } from "@/components/stripe-switch";
 
 const COLORS = [
   "primary",

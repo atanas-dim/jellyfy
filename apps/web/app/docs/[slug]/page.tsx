@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { ClassTable } from "@/components/docs/class-table";
+import { Example } from "@/components/docs/example";
+import { Pager } from "@/components/docs/pager";
+import { Sample } from "@/components/docs/samples";
 import {
   COMPONENT_DOCS,
   COMPONENT_STYLESHEETS,
   getComponentDoc,
 } from "@/resources/component-docs";
-
-import { ClassTable } from "../class-table";
-import { Example } from "../example";
-import { Pager } from "../pager";
-import { Sample } from "../samples";
 
 type DocPageProps = {
   params: Promise<{ slug: string }>;

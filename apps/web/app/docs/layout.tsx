@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { Contents } from "@/app/contents";
+import { Contents } from "@/components/contents";
 import { COMPONENT_DOCS, GUIDE_LINKS } from "@/resources/component-docs";
 
 export default function DocsLayout({ children }: { children: ReactNode }) {

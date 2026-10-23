@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { Pager } from "@/components/docs/pager";
 import { COMPONENT_DOCS } from "@/resources/component-docs";
-
-import { Pager } from "./pager";
 
 export const metadata: Metadata = {
   title: "Docs",

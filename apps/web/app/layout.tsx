@@ -5,10 +5,9 @@ import { Figtree, Geist_Mono, Rubik } from "next/font/google";
 import Script from "next/script";
 import { twJoin } from "tailwind-merge";
 
+import { JellyfyBoot } from "@/components/jellyfy-boot";
+import { SiteFrame } from "@/components/site-frame";
 import { site } from "@/resources/site";
-
-import { JellyfyBoot } from "./jellyfy-boot";
-import { SiteFrame } from "./site-frame";
 
 const figtree = Figtree({
   variable: "--font-figtree",
