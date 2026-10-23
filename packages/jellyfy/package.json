@@ -24,6 +24,10 @@
       "style": "./motion.css",
       "default": "./motion.css"
     },
+    "./button-size.css": {
+      "style": "./button-size.css",
+      "default": "./button-size.css"
+    },
     "./button.css": {
       "style": "./button.css",
       "default": "./button.css"
@@ -93,6 +97,7 @@
     "index.js",
     "material.css",
     "motion.css",
+    "button-size.css",
     "button.css",
     "icon-button.css",
     "bump-button.css",
@@ -113,6 +118,7 @@
   "sideEffects": [
     "./material.css",
     "./motion.css",
+    "./button-size.css",
     "./button.css",
     "./icon-button.css",
     "./bump-button.css",

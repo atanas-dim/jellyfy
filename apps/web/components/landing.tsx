@@ -108,7 +108,7 @@ export const Landing = () => {
               data-hero-item
               className="text-xs font-medium tracking-[0.22em] text-neutral-500 uppercase sm:text-sm dark:text-neutral-400"
             >
-              Eight colours, one material
+              Eight colors, one material
             </p>
             <h1 className="mt-4 text-4xl leading-none font-bold tracking-tight sm:text-6xl xl:text-7xl">
               <span className="block overflow-hidden py-0.5">
@@ -126,13 +126,13 @@ export const Landing = () => {
               data-hero-item
               className="mt-4 max-w-md text-base leading-6 text-neutral-600 sm:text-lg sm:leading-7 dark:text-neutral-300"
             >
-              A colour you can press, and a control that gives. Jellyfy is CSS
+              A color you can press, and a control that gives. Jellyfy is CSS
               for those controls. Add a class and build.
             </p>
 
             <div data-hero-item className="mt-8">
               <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
-                Pick a colour
+                Pick a color
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {TONES.map((item) => (
@@ -301,8 +301,8 @@ export const Landing = () => {
           </h2>
           <p className="mt-4 text-lg leading-8 text-neutral-600 dark:text-neutral-300">
             Keep the element you already have. Add{" "}
-            <span className="font-mono text-base">btn</span> and a colour such
-            as <span className="font-mono text-base">primary</span>. Call{" "}
+            <span className="font-mono text-base">btn</span> and a color such as{" "}
+            <span className="font-mono text-base">primary</span>. Call{" "}
             <span className="font-mono text-base">startJellyfy()</span> once.
             That call runs the press, the loading lights, and the slider fill.
           </p>
@@ -332,13 +332,13 @@ export const Landing = () => {
           </p>
         </div>
         <div data-rise className="mt-10 grid gap-4 lg:grid-cols-3">
-          <pre className="surface overflow-x-auto rounded-2xl p-5 font-mono text-sm leading-7 shadow-lg">
+          <pre className="surface overflow-x-auto p-5 font-mono text-sm leading-7 shadow-lg">
             npm install jellyfy
           </pre>
-          <pre className="surface overflow-x-auto rounded-2xl p-5 font-mono text-sm leading-7 shadow-lg">
+          <pre className="surface overflow-x-auto p-5 font-mono text-sm leading-7 shadow-lg">
             {`@import "jellyfy/jellyfy.css";`}
           </pre>
-          <pre className="surface overflow-x-auto rounded-2xl p-5 font-mono text-sm leading-7 shadow-lg">
+          <pre className="surface overflow-x-auto p-5 font-mono text-sm leading-7 shadow-lg">
             {`import { startJellyfy } from "jellyfy";
 
 startJellyfy();`}
@@ -364,7 +364,7 @@ startJellyfy();`}
           </p>
         </div>
         <div data-rise className="mt-10 grid gap-4 sm:grid-cols-3">
-          <article className="surface flex flex-col gap-4 rounded-2xl p-5 shadow-lg">
+          <article className="surface flex flex-col gap-4 p-5 shadow-lg">
             <div className="flex flex-col gap-3">
               <div className="primary thickness-surface h-10 rounded-2xl" />
               <div className="primary thickness-field h-10 rounded-2xl" />
@@ -379,7 +379,7 @@ startJellyfy();`}
               </p>
             </div>
           </article>
-          <article className="surface flex flex-col gap-4 rounded-2xl p-5 shadow-lg">
+          <article className="surface flex flex-col gap-4 p-5 shadow-lg">
             <div className="flex flex-wrap items-center justify-center gap-3 py-2">
               <button
                 type="button"
@@ -403,7 +403,7 @@ startJellyfy();`}
               </p>
             </div>
           </article>
-          <article className="surface flex flex-col gap-4 rounded-2xl p-5 shadow-lg">
+          <article className="surface flex flex-col gap-4 p-5 shadow-lg">
             <div className="flex flex-col gap-3">
               <button type="button" className="btn secondary">
                 <span>Press</span>
@@ -477,7 +477,7 @@ startJellyfy();`}
             <Link
               key={component.slug}
               href={`/set#${component.slug}`}
-              className="surface block rounded-2xl p-5 shadow-lg"
+              className="surface block p-5 shadow-lg"
             >
               <h3 className="text-xl font-semibold tracking-tight">
                 {component.name}

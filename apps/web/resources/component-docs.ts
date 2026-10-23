@@ -67,15 +67,15 @@ const sizes = (prefix: string): ClassRow[] => [
   {
     name: prefix,
     kind: "Size",
-    note: "Medium. No extra class. The same size as the md class.",
+    note: "Medium size (default)",
   },
-  { name: `${prefix}-sm`, kind: "Size", note: "Small." },
+  { name: `${prefix}-sm`, kind: "Size", note: "Small size" },
   {
     name: `${prefix}-md`,
     kind: "Size",
-    note: "Medium. The same size as no size class.",
+    note: "Medium size (default)",
   },
-  { name: `${prefix}-lg`, kind: "Size", note: "Large." },
+  { name: `${prefix}-lg`, kind: "Size", note: "Large size" },
 ];
 
 export const COMPONENT_DOCS: ComponentDoc[] = [
@@ -112,7 +112,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         code: `<button class="btn btn-sm" type="button"><span>Small</span></button>
 <button class="btn btn-md" type="button"><span>Medium</span></button>
 <button class="btn btn-lg" type="button"><span>Large</span></button>`,
-        note: "Medium is btn alone, or btn-md. btn-sm and btn-lg are the other sizes. btn-md is the class a breakpoint can turn back on.",
+        note: "Medium size (default)",
       },
       {
         id: "button-states",
@@ -136,13 +136,9 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         kind: "Component",
         note: "A square button. Pair it with btn-sm, btn-md, or btn-lg.",
       },
-      { name: "btn-sm", kind: "Size", note: "Small. Use it with btn-icon." },
-      {
-        name: "btn-md",
-        kind: "Size",
-        note: "Medium. The same size as btn-icon alone.",
-      },
-      { name: "btn-lg", kind: "Size", note: "Large. Use it with btn-icon." },
+      { name: "btn-sm", kind: "Size", note: "Small size" },
+      { name: "btn-md", kind: "Size", note: "Medium size (default)" },
+      { name: "btn-lg", kind: "Size", note: "Large size" },
       ...color(),
       {
         name: "loading",
@@ -181,13 +177,9 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         kind: "Component",
         note: "No fill and no radius. Pair it with btn-sm, btn-md, or btn-lg.",
       },
-      { name: "btn-sm", kind: "Size", note: "Small. Use it with btn-bump." },
-      {
-        name: "btn-md",
-        kind: "Size",
-        note: "Medium. The same size as btn-bump alone.",
-      },
-      { name: "btn-lg", kind: "Size", note: "Large. Use it with btn-bump." },
+      { name: "btn-sm", kind: "Size", note: "Small size" },
+      { name: "btn-md", kind: "Size", note: "Medium size (default)" },
+      { name: "btn-lg", kind: "Size", note: "Large size" },
       ...color(),
     ],
     examples: [
@@ -300,17 +292,17 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         name: "message-sm",
         kind: "Size",
-        note: "10px. A step under a small field.",
+        note: "Small size",
       },
       {
         name: "message-md",
         kind: "Size",
-        note: "12px. The same size as message alone.",
+        note: "Medium size (default)",
       },
       {
         name: "message-lg",
         kind: "Size",
-        note: "14px. A step under a large field.",
+        note: "Large size",
       },
       ...color(),
     ],
@@ -681,9 +673,9 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         kind: "Component",
         note: "The block. Medium text is 16px.",
       },
-      { name: "alert-sm", kind: "Size", note: "14px text." },
-      { name: "alert-md", kind: "Size", note: "16px text. The same size as alert alone." },
-      { name: "alert-lg", kind: "Size", note: "20px text." },
+      { name: "alert-sm", kind: "Size", note: "Small size" },
+      { name: "alert-md", kind: "Size", note: "Medium size (default)" },
+      { name: "alert-lg", kind: "Size", note: "Large size" },
       ...color(),
     ],
     examples: [
@@ -818,17 +810,17 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         name: "modal-sm",
         kind: "Size",
-        note: "Less padding. Put it on modal-panel. The width stays the same.",
+        note: "Small size",
       },
       {
         name: "modal-md",
         kind: "Size",
-        note: "Medium padding. The same size as modal-panel alone.",
+        note: "Medium size (default)",
       },
       {
         name: "modal-lg",
         kind: "Size",
-        note: "More padding. Put it on modal-panel. The width stays the same.",
+        note: "Large size",
       },
       {
         name: "btn-bump",
@@ -838,17 +830,17 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         name: "btn-sm",
         kind: "Size",
-        note: "A smaller close control. Use it with btn-bump.",
+        note: "Small size",
       },
       {
         name: "btn-md",
         kind: "Size",
-        note: "Medium close control. The same size as btn-bump alone.",
+        note: "Medium size (default)",
       },
       {
         name: "btn-lg",
         kind: "Size",
-        note: "A larger close control. Use it with btn-bump.",
+        note: "Large size",
       },
       ...color().map((row) =>
         row.name === "primary"

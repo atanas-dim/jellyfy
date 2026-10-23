@@ -1,3 +1,5 @@
+@import "./button-size.css";
+
 @layer components {
   .btn-bump {
     position: relative;

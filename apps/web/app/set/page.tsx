@@ -59,7 +59,7 @@ const Tile = ({
   <section
     id={id}
     className={twJoin(
-      "flex scroll-mt-24 flex-col gap-4 rounded-2xl border border-neutral-200/80 p-4 dark:border-neutral-700",
+      "surface flex scroll-mt-24 flex-col gap-4 p-4 shadow-lg lg:p-6",
       striped && STRIPES_CLASS,
       wide && "sm:col-span-2",
     )}
@@ -342,11 +342,7 @@ export default function SetPage() {
                 key={size}
                 className={twJoin("radio", sizeClass("radio", size))}
               >
-                <input
-                  type="radio"
-                  name={`size-${size}`}
-                  defaultChecked
-                />
+                <input type="radio" name={`size-${size}`} defaultChecked />
                 <span className="radio-ring" />
                 {SIZE_NAME[size]}
               </label>
