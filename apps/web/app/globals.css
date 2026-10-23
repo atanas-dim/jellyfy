@@ -53,10 +53,6 @@ body {
   min-width: 36rem;
 }
 
-body.set-stripes {
-  background-attachment: fixed;
-}
-
 .set-stripes {
   background: repeating-linear-gradient(
     -45deg,
