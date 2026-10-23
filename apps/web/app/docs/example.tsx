@@ -20,9 +20,7 @@ export const Example = async ({
         {note}
       </p>
     ) : null}
-    <div className="mt-4 rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-800 dark:bg-neutral-900">
-      {children}
-    </div>
+    <div className="surface mt-4 rounded-2xl p-6">{children}</div>
     <CodeBlock code={code} />
   </section>
 );

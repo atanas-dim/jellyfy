@@ -66,7 +66,7 @@ export default function DocsPage() {
           <li key={doc.slug} className="flex">
             <Link
               href={`/docs/${doc.slug}`}
-              className="block h-full w-full rounded-2xl border border-neutral-200 bg-white px-4 py-3 hover:border-neutral-300 dark:border-neutral-800 dark:bg-neutral-900 dark:hover:border-neutral-700"
+              className="surface block h-full w-full rounded-2xl px-4 py-3 hover:border-neutral-300 dark:hover:border-neutral-600"
             >
               <span className="font-medium">{doc.name}</span>
               <span className="mt-1 block text-sm leading-6 text-neutral-600 dark:text-neutral-300">

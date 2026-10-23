@@ -2,6 +2,6 @@
   "name": "jellyfy-example-html",
   "private": true,
   "dependencies": {
-    "jellyfy": "file:../../packages/jellyfy"
+    "jellyfy": "workspace:*"
   }
 }

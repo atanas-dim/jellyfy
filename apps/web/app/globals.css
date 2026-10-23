@@ -26,9 +26,35 @@
 }
 
 body {
-  background-color: light-dark(var(--color-white), var(--color-black));
+  background-color: light-dark(
+    var(--color-neutral-50),
+    var(--color-neutral-900)
+  );
   color: light-dark(var(--color-neutral-950), var(--color-neutral-100));
   font-family: var(--font-figtree), Arial, Helvetica, sans-serif;
+}
+
+.surface {
+  border: 1px solid
+    light-dark(var(--color-neutral-200), var(--color-neutral-700));
+  background-color: light-dark(var(--color-white), var(--color-neutral-800));
+}
+
+.table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: auto;
+}
+
+.table-scroll > table {
+  width: 100%;
+  min-width: 36rem;
+}
+
+body.set-stripes {
+  background-attachment: fixed;
 }
 
 .set-stripes {

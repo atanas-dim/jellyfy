@@ -29,12 +29,26 @@ export default function CustomizePage() {
   --color-primary-content: #1e1b4b;
   --color-primary-surface-content: #3730a3;
   --color-secondary: #db2777;
+  --color-secondary-content: #500724;
+  --color-secondary-surface-content: #9d174d;
   --color-tertiary: #0d9488;
-  --color-neutral: #a3a3a3;
+  --color-tertiary-content: #042f2e;
+  --color-tertiary-surface-content: #115e59;
+  --color-neutral: #d4d4d4;
+  --color-neutral-content: #0a0a0a;
+  --color-neutral-surface-content: #262626;
   --color-success: #16a34a;
-  --color-error: #dc2626;
+  --color-success-content: #052e16;
+  --color-success-surface-content: #166534;
   --color-warning: #d97706;
+  --color-warning-content: #451a03;
+  --color-warning-surface-content: #92400e;
+  --color-error: #dc2626;
+  --color-error-content: #450a0a;
+  --color-error-surface-content: #991b1b;
   --color-info: #0284c7;
+  --color-info-content: #082f49;
+  --color-info-surface-content: #075985;
 
   --radius-surface: 1rem;
   --radius-field: 1rem;
@@ -63,16 +77,31 @@ export default function CustomizePage() {
   --color-primary: #6366f1;
   --color-secondary: #db2777;
   --color-tertiary: #0d9488;
-  --color-neutral: #a3a3a3;
+  --color-neutral: #d4d4d4;
   --color-success: #16a34a;
-  --color-error: #dc2626;
   --color-warning: #d97706;
+  --color-error: #dc2626;
   --color-info: #0284c7;
 }
 
 :root {
   --color-primary-content: #1e1b4b;
   --color-primary-surface-content: #3730a3;
+  --color-secondary-content: #500724;
+  --color-secondary-surface-content: #9d174d;
+  --color-tertiary-content: #042f2e;
+  --color-tertiary-surface-content: #115e59;
+  --color-neutral-content: #0a0a0a;
+  --color-neutral-surface-content: #262626;
+  --color-success-content: #052e16;
+  --color-success-surface-content: #166534;
+  --color-warning-content: #451a03;
+  --color-warning-surface-content: #92400e;
+  --color-error-content: #450a0a;
+  --color-error-surface-content: #991b1b;
+  --color-info-content: #082f49;
+  --color-info-surface-content: #075985;
+
   --radius-surface: 1rem;
   --radius-field: 1rem;
   --radius-control: 999px;
@@ -85,16 +114,18 @@ export default function CustomizePage() {
       />
       <ul className="mt-6 max-w-2xl list-disc space-y-2 pl-5 leading-7 text-neutral-600 dark:text-neutral-300">
         <li>
-          The eight <code className="font-mono text-sm">--color-*</code> names
-          are the solids.{" "}
+          Each slot has three names.{" "}
+          <code className="font-mono text-sm">--color-primary</code> is the
+          solid.{" "}
           <code className="font-mono text-sm">--color-primary-content</code> is
           the text on a button or badge.{" "}
           <code className="font-mono text-sm">
             --color-primary-surface-content
           </code>{" "}
           is the text on a field, card, alert, or dialog panel. The same two
-          suffixes exist for every slot. Changing a solid does not change those
-          text colors.
+          suffixes exist for every slot, and the samples list them. The hexes
+          are the light defaults. A single hex replaces the light and dark pair.
+          Changing a solid does not change those text colors.
         </li>
         <li>
           <code className="font-mono text-sm">--radius-control</code> is the
@@ -124,11 +155,11 @@ export default function CustomizePage() {
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">Dark</h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
-        Jellyfy follows the operating system. Primary is Indigo 500 in light and
-        Indigo 400 in dark. The other solids stay the ones you set. Surface text
-        is the 800 step in light and the 200 step in dark. Control text is the
-        950 step in light and the 100 step in dark. Neutral is Neutral 400 in
-        both themes.
+        Jellyfy follows the operating system. Primary is Indigo 500 in both
+        themes. The other solids stay the ones you set. Surface text is the 800
+        step in light and the 200 step in dark. Control text is the 950 step in
+        light and the 100 step in dark. Neutral is Neutral 300 in light and
+        Neutral 500 in dark.
       </p>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         To choose for the page, add the class{" "}
