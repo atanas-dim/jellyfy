@@ -99,6 +99,6 @@
 }
 
 .btn-bump > svg {
-  width: var(--btn-bump-glyph, 1.25rem);
-  height: var(--btn-bump-glyph, 1.25rem);
+  width: var(--btn-bump-symbol-size, 1.25rem);
+  height: var(--btn-bump-symbol-size, 1.25rem);
 }

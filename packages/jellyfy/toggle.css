@@ -5,7 +5,7 @@
     align-items: center;
     gap: var(--toggle-gap, 0.75rem);
     color: var(--color-plain-content);
-    font-size: var(--toggle-font, 0.875rem);
+    font-size: var(--toggle-font-size, 0.875rem);
     font-weight: 500;
     line-height: 1.5;
     cursor: pointer;
@@ -13,29 +13,29 @@
 
   .toggle-sm {
     --toggle-gap: 0.5rem;
-    --toggle-font: 0.75rem;
+    --toggle-font-size: 0.75rem;
     --toggle-track-width: 2.5rem;
     --toggle-track-height: 1.5rem;
-    --toggle-thumb: 1rem;
-    --toggle-travel: 1rem;
+    --toggle-thumb-size: 1rem;
+    --toggle-translate-x: 1rem;
   }
 
   .toggle-md {
     --toggle-gap: 0.75rem;
-    --toggle-font: 0.875rem;
+    --toggle-font-size: 0.875rem;
     --toggle-track-width: 3rem;
     --toggle-track-height: 1.75rem;
-    --toggle-thumb: 1.25rem;
-    --toggle-travel: 1.15rem;
+    --toggle-thumb-size: 1.25rem;
+    --toggle-translate-x: 1.15rem;
   }
 
   .toggle-lg {
     --toggle-gap: 1rem;
-    --toggle-font: 1rem;
+    --toggle-font-size: 1rem;
     --toggle-track-width: 3.5rem;
     --toggle-track-height: 2rem;
-    --toggle-thumb: 1.5rem;
-    --toggle-travel: 1.5rem;
+    --toggle-thumb-size: 1.5rem;
+    --toggle-translate-x: 1.5rem;
   }
 
   .toggle input {
@@ -66,15 +66,15 @@
     position: absolute;
     top: 0.25rem;
     left: 0.25rem;
-    width: var(--toggle-thumb, 1.25rem);
-    height: var(--toggle-thumb, 1.25rem);
+    width: var(--toggle-thumb-size, 1.25rem);
+    height: var(--toggle-thumb-size, 1.25rem);
     border-radius: var(--radius-control);
     pointer-events: none;
     transition: translate 300ms ease-out;
   }
 
   .toggle:has(:checked) .toggle-thumb {
-    translate: var(--toggle-travel, 1.15rem) 0;
+    translate: var(--toggle-translate-x, 1.15rem) 0;
   }
 
   .toggle:has(:focus-visible) .toggle-track {
@@ -95,29 +95,29 @@
 
 @utility toggle-sm {
   --toggle-gap: 0.5rem;
-  --toggle-font: 0.75rem;
+  --toggle-font-size: 0.75rem;
   --toggle-track-width: 2.5rem;
   --toggle-track-height: 1.5rem;
-  --toggle-thumb: 1rem;
-  --toggle-travel: 1rem;
+  --toggle-thumb-size: 1rem;
+  --toggle-translate-x: 1rem;
 }
 
 @utility toggle-md {
   --toggle-gap: 0.75rem;
-  --toggle-font: 0.875rem;
+  --toggle-font-size: 0.875rem;
   --toggle-track-width: 3rem;
   --toggle-track-height: 1.75rem;
-  --toggle-thumb: 1.25rem;
-  --toggle-travel: 1.15rem;
+  --toggle-thumb-size: 1.25rem;
+  --toggle-translate-x: 1.15rem;
 }
 
 @utility toggle-lg {
   --toggle-gap: 1rem;
-  --toggle-font: 1rem;
+  --toggle-font-size: 1rem;
   --toggle-track-width: 3.5rem;
   --toggle-track-height: 2rem;
-  --toggle-thumb: 1.5rem;
-  --toggle-travel: 1.5rem;
+  --toggle-thumb-size: 1.5rem;
+  --toggle-translate-x: 1.5rem;
 }
 
 @layer utilities {

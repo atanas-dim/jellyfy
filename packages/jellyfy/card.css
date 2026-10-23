@@ -3,11 +3,11 @@
     --jelly-thickness: var(--thickness-surface);
     --jelly-elevation: var(--elevation-rest);
     box-sizing: border-box;
-    padding: var(--card-pad, 1rem 1.25rem);
+    padding: var(--card-padding, 1rem 1.25rem);
     border-radius: var(--radius-surface);
     color: var(--color-plain-content);
     font: inherit;
-    font-size: var(--card-font, 1rem);
+    font-size: var(--card-font-size, 1rem);
     line-height: 1.5;
     transition:
       background-color 300ms ease-out,
@@ -16,34 +16,34 @@
   }
 
   .card-sm {
-    --card-pad: 0.75rem 1rem;
-    --card-font: 0.875rem;
+    --card-padding: 0.75rem 1rem;
+    --card-font-size: 0.875rem;
   }
 
   .card-md {
-    --card-pad: 1rem 1.25rem;
-    --card-font: 1rem;
+    --card-padding: 1rem 1.25rem;
+    --card-font-size: 1rem;
   }
 
   .card-lg {
-    --card-pad: 1.25rem 1.5rem;
-    --card-font: 1.25rem;
+    --card-padding: 1.25rem 1.5rem;
+    --card-font-size: 1.25rem;
   }
 }
 
 @utility card-sm {
-  --card-pad: 0.75rem 1rem;
-  --card-font: 0.875rem;
+  --card-padding: 0.75rem 1rem;
+  --card-font-size: 0.875rem;
 }
 
 @utility card-md {
-  --card-pad: 1rem 1.25rem;
-  --card-font: 1rem;
+  --card-padding: 1rem 1.25rem;
+  --card-font-size: 1rem;
 }
 
 @utility card-lg {
-  --card-pad: 1.25rem 1.5rem;
-  --card-font: 1.25rem;
+  --card-padding: 1.25rem 1.5rem;
+  --card-font-size: 1.25rem;
 }
 
 @layer utilities {

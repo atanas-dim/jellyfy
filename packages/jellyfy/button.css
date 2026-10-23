@@ -10,12 +10,12 @@
     justify-content: center;
     gap: 0.5rem;
     height: var(--btn-height, 3rem);
-    padding-inline: var(--btn-pad, 1.5rem);
+    padding-inline: var(--btn-padding-x, 1.5rem);
     overflow: hidden;
     border: 0;
     border-radius: var(--radius-control);
     font: inherit;
-    font-size: var(--btn-font, 0.875rem);
+    font-size: var(--btn-font-size, 0.875rem);
     font-weight: 600;
     line-height: 1;
     letter-spacing: 0.04em;

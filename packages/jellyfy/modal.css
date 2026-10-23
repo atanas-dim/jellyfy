@@ -40,7 +40,7 @@
     box-sizing: border-box;
     width: min(28rem, calc(100vw - 2rem));
     max-width: 100%;
-    padding: var(--modal-pad, 1.5rem);
+    padding: var(--modal-padding, 1.5rem);
     border-radius: var(--radius-surface);
     color: var(--color-plain-content);
     font: inherit;
@@ -52,15 +52,15 @@
   }
 
   .modal-sm {
-    --modal-pad: 1rem;
+    --modal-padding: 1rem;
   }
 
   .modal-md {
-    --modal-pad: 1.5rem;
+    --modal-padding: 1.5rem;
   }
 
   .modal-lg {
-    --modal-pad: 2rem;
+    --modal-padding: 2rem;
   }
 
   .modal-panel .btn-bump {
@@ -72,15 +72,15 @@
 }
 
 @utility modal-sm {
-  --modal-pad: 1rem;
+  --modal-padding: 1rem;
 }
 
 @utility modal-md {
-  --modal-pad: 1.5rem;
+  --modal-padding: 1.5rem;
 }
 
 @utility modal-lg {
-  --modal-pad: 2rem;
+  --modal-padding: 2rem;
 }
 
 @layer utilities {

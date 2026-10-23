@@ -6,11 +6,11 @@
     display: flex;
     align-items: flex-start;
     gap: var(--alert-gap, 0.75rem);
-    padding: var(--alert-pad, 0.75rem 1rem);
+    padding: var(--alert-padding, 0.75rem 1rem);
     border-radius: var(--radius-surface);
     color: var(--color-plain-content);
     font: inherit;
-    font-size: var(--alert-font, 1rem);
+    font-size: var(--alert-font-size, 1rem);
     line-height: 1.5;
     transition:
       background-color 300ms ease-out,
@@ -20,30 +20,30 @@
 
   .alert-sm {
     --alert-gap: 0.5rem;
-    --alert-pad: 0.5rem 0.75rem;
-    --alert-font: 0.875rem;
-    --alert-icon: 1rem;
+    --alert-padding: 0.5rem 0.75rem;
+    --alert-font-size: 0.875rem;
+    --alert-icon-size: 1rem;
   }
 
   .alert-md {
     --alert-gap: 0.75rem;
-    --alert-pad: 0.75rem 1rem;
-    --alert-font: 1rem;
-    --alert-icon: 1.25rem;
+    --alert-padding: 0.75rem 1rem;
+    --alert-font-size: 1rem;
+    --alert-icon-size: 1.25rem;
   }
 
   .alert-lg {
     --alert-gap: 1rem;
-    --alert-pad: 1rem 1.25rem;
-    --alert-font: 1.25rem;
-    --alert-icon: 1.5rem;
+    --alert-padding: 1rem 1.25rem;
+    --alert-font-size: 1.25rem;
+    --alert-icon-size: 1.5rem;
   }
 
   .alert > svg {
     flex: none;
-    width: var(--alert-icon, 1.25rem);
-    height: var(--alert-icon, 1.25rem);
-    margin-top: calc((1.5em - var(--alert-icon, 1.25rem)) / 2);
+    width: var(--alert-icon-size, 1.25rem);
+    height: var(--alert-icon-size, 1.25rem);
+    margin-top: calc((1.5em - var(--alert-icon-size, 1.25rem)) / 2);
   }
 
   .alert > :not(svg) {
@@ -53,23 +53,23 @@
 
 @utility alert-sm {
   --alert-gap: 0.5rem;
-  --alert-pad: 0.5rem 0.75rem;
-  --alert-font: 0.875rem;
-  --alert-icon: 1rem;
+  --alert-padding: 0.5rem 0.75rem;
+  --alert-font-size: 0.875rem;
+  --alert-icon-size: 1rem;
 }
 
 @utility alert-md {
   --alert-gap: 0.75rem;
-  --alert-pad: 0.75rem 1rem;
-  --alert-font: 1rem;
-  --alert-icon: 1.25rem;
+  --alert-padding: 0.75rem 1rem;
+  --alert-font-size: 1rem;
+  --alert-icon-size: 1.25rem;
 }
 
 @utility alert-lg {
   --alert-gap: 1rem;
-  --alert-pad: 1rem 1.25rem;
-  --alert-font: 1.25rem;
-  --alert-icon: 1.5rem;
+  --alert-padding: 1rem 1.25rem;
+  --alert-font-size: 1.25rem;
+  --alert-icon-size: 1.5rem;
 }
 
 @layer utilities {

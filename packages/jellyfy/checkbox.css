@@ -3,30 +3,30 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: var(--check-gap, 0.75rem);
+    gap: var(--checkbox-gap, 0.75rem);
     color: var(--color-plain-content);
-    font-size: var(--check-font, 0.875rem);
+    font-size: var(--checkbox-font-size, 0.875rem);
     font-weight: 500;
     line-height: 1.5;
     cursor: pointer;
   }
 
   .checkbox-sm {
-    --check-gap: 0.5rem;
-    --check-font: 0.75rem;
-    --check-size: 1.25rem;
+    --checkbox-gap: 0.5rem;
+    --checkbox-font-size: 0.75rem;
+    --checkbox-box-size: 1.25rem;
   }
 
   .checkbox-md {
-    --check-gap: 0.75rem;
-    --check-font: 0.875rem;
-    --check-size: 1.5rem;
+    --checkbox-gap: 0.75rem;
+    --checkbox-font-size: 0.875rem;
+    --checkbox-box-size: 1.5rem;
   }
 
   .checkbox-lg {
-    --check-gap: 1rem;
-    --check-font: 1rem;
-    --check-size: 2rem;
+    --checkbox-gap: 1rem;
+    --checkbox-font-size: 1rem;
+    --checkbox-box-size: 2rem;
   }
 
   .checkbox-box {
@@ -36,8 +36,8 @@
     display: grid;
     flex: none;
     place-items: center;
-    width: var(--check-size, 1.5rem);
-    height: var(--check-size, 1.5rem);
+    width: var(--checkbox-box-size, 1.5rem);
+    height: var(--checkbox-box-size, 1.5rem);
     border-radius: var(--radius-mark);
     color: var(--color-plain-content);
   }
@@ -90,21 +90,21 @@
 }
 
 @utility checkbox-sm {
-  --check-gap: 0.5rem;
-  --check-font: 0.75rem;
-  --check-size: 1.25rem;
+  --checkbox-gap: 0.5rem;
+  --checkbox-font-size: 0.75rem;
+  --checkbox-box-size: 1.25rem;
 }
 
 @utility checkbox-md {
-  --check-gap: 0.75rem;
-  --check-font: 0.875rem;
-  --check-size: 1.5rem;
+  --checkbox-gap: 0.75rem;
+  --checkbox-font-size: 0.875rem;
+  --checkbox-box-size: 1.5rem;
 }
 
 @utility checkbox-lg {
-  --check-gap: 1rem;
-  --check-font: 1rem;
-  --check-size: 2rem;
+  --checkbox-gap: 1rem;
+  --checkbox-font-size: 1rem;
+  --checkbox-box-size: 2rem;
 }
 
 @layer utilities {

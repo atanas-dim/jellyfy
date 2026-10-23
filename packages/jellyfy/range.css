@@ -1,6 +1,6 @@
 @layer components {
   .range {
-    --thumb-size: 1.5rem;
+    --range-thumb-size: 1.5rem;
     --range-percent: 0;
     display: flex;
     flex-direction: column;
@@ -8,38 +8,38 @@
     width: 100%;
     max-width: 24rem;
     color: var(--color-plain-content);
-    font-size: var(--range-font, 0.875rem);
+    font-size: var(--range-font-size, 0.875rem);
     font-weight: 500;
     line-height: 1.5;
   }
 
   .range-sm {
-    --thumb-size: 1.25rem;
+    --range-thumb-size: 1.25rem;
     --range-gap: 0.5rem;
-    --range-font: 0.75rem;
-    --range-box: 1.75rem;
-    --range-track: 0.5rem;
+    --range-font-size: 0.75rem;
+    --range-box-height: 1.75rem;
+    --range-track-height: 0.5rem;
   }
 
   .range-md {
-    --thumb-size: 1.5rem;
+    --range-thumb-size: 1.5rem;
     --range-gap: 0.75rem;
-    --range-font: 0.875rem;
-    --range-box: 2rem;
-    --range-track: 0.75rem;
+    --range-font-size: 0.875rem;
+    --range-box-height: 2rem;
+    --range-track-height: 0.75rem;
   }
 
   .range-lg {
-    --thumb-size: 2rem;
+    --range-thumb-size: 2rem;
     --range-gap: 1rem;
-    --range-font: 1rem;
-    --range-box: 2.5rem;
-    --range-track: 1rem;
+    --range-font-size: 1rem;
+    --range-box-height: 2.5rem;
+    --range-track-height: 1rem;
   }
 
   .range-box {
     position: relative;
-    height: var(--range-box, 2rem);
+    height: var(--range-box-height, 2rem);
   }
 
   .range-track {
@@ -47,9 +47,9 @@
     --jelly-elevation: var(--elevation-mark);
     position: absolute;
     top: 50%;
-    right: calc(var(--thumb-size) / 2);
-    left: calc(var(--thumb-size) / 2);
-    height: var(--range-track, 0.75rem);
+    right: calc(var(--range-thumb-size) / 2);
+    left: calc(var(--range-thumb-size) / 2);
+    height: var(--range-track-height, 0.75rem);
     overflow: hidden;
     border-radius: var(--radius-control);
     transform: translateY(-50%);
@@ -71,10 +71,10 @@
     position: absolute;
     top: 50%;
     left: calc(
-      var(--thumb-size) / 2 + var(--range-percent) * (100% - var(--thumb-size))
+      var(--range-thumb-size) / 2 + var(--range-percent) * (100% - var(--range-thumb-size))
     );
-    width: var(--thumb-size);
-    height: var(--thumb-size);
+    width: var(--range-thumb-size);
+    height: var(--range-thumb-size);
     border-radius: var(--radius-control);
     pointer-events: none;
     translate: -50% -50%;
@@ -105,27 +105,27 @@
 }
 
 @utility range-sm {
-  --thumb-size: 1.25rem;
+  --range-thumb-size: 1.25rem;
   --range-gap: 0.5rem;
-  --range-font: 0.75rem;
-  --range-box: 1.75rem;
-  --range-track: 0.5rem;
+  --range-font-size: 0.75rem;
+  --range-box-height: 1.75rem;
+  --range-track-height: 0.5rem;
 }
 
 @utility range-md {
-  --thumb-size: 1.5rem;
+  --range-thumb-size: 1.5rem;
   --range-gap: 0.75rem;
-  --range-font: 0.875rem;
-  --range-box: 2rem;
-  --range-track: 0.75rem;
+  --range-font-size: 0.875rem;
+  --range-box-height: 2rem;
+  --range-track-height: 0.75rem;
 }
 
 @utility range-lg {
-  --thumb-size: 2rem;
+  --range-thumb-size: 2rem;
   --range-gap: 1rem;
-  --range-font: 1rem;
-  --range-box: 2.5rem;
-  --range-track: 1rem;
+  --range-font-size: 1rem;
+  --range-box-height: 2.5rem;
+  --range-track-height: 1rem;
 }
 
 @layer utilities {

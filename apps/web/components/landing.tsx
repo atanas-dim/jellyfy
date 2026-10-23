@@ -124,7 +124,7 @@ export const Landing = () => {
             </h1>
             <p
               data-hero-item
-              className="mt-6 max-w-md text-base leading-6 text-neutral-600 sm:text-lg sm:leading-7 dark:text-neutral-300"
+              className="mt-4 max-w-md text-base leading-6 text-neutral-600 sm:text-lg sm:leading-7 dark:text-neutral-300"
             >
               A colour you can press, and a control that gives. Jellyfy is CSS
               for those controls. Add a class and build.

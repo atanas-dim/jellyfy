@@ -24,8 +24,8 @@
   .btn-icon > svg {
     position: relative;
     z-index: 1;
-    width: var(--btn-icon-glyph, 1.5rem);
-    height: var(--btn-icon-glyph, 1.5rem);
+    width: var(--btn-icon-symbol-size, 1.5rem);
+    height: var(--btn-icon-symbol-size, 1.5rem);
   }
 
   .btn-icon::before,

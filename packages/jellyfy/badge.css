@@ -6,11 +6,11 @@
     display: inline-flex;
     align-items: center;
     min-height: var(--badge-min-height, calc(1.5em + 0.5rem));
-    padding: var(--badge-pad, 0.25rem 0.625rem);
+    padding: var(--badge-padding, 0.25rem 0.625rem);
     border-radius: var(--radius-control);
     color: var(--content, var(--color-plain-content));
     font: inherit;
-    font-size: var(--badge-font, 10px);
+    font-size: var(--badge-font-size, 10px);
     font-weight: 600;
     line-height: 1;
     letter-spacing: 0.04em;
@@ -25,39 +25,39 @@
 
   .badge-sm {
     --badge-min-height: calc(1.5em + 0.25rem);
-    --badge-pad: 0.125rem 0.5rem;
-    --badge-font: 0.5rem;
+    --badge-padding: 0.125rem 0.5rem;
+    --badge-font-size: 0.5rem;
   }
 
   .badge-md {
     --badge-min-height: calc(1.5em + 0.5rem);
-    --badge-pad: 0.25rem 0.625rem;
-    --badge-font: 10px;
+    --badge-padding: 0.25rem 0.625rem;
+    --badge-font-size: 10px;
   }
 
   .badge-lg {
     --badge-min-height: calc(1.5em + 0.75rem);
-    --badge-pad: 0.375rem 0.75rem;
-    --badge-font: 0.75rem;
+    --badge-padding: 0.375rem 0.75rem;
+    --badge-font-size: 0.75rem;
   }
 }
 
 @utility badge-sm {
   --badge-min-height: calc(1.5em + 0.25rem);
-  --badge-pad: 0.125rem 0.5rem;
-  --badge-font: 0.5rem;
+  --badge-padding: 0.125rem 0.5rem;
+  --badge-font-size: 0.5rem;
 }
 
 @utility badge-md {
   --badge-min-height: calc(1.5em + 0.5rem);
-  --badge-pad: 0.25rem 0.625rem;
-  --badge-font: 10px;
+  --badge-padding: 0.25rem 0.625rem;
+  --badge-font-size: 10px;
 }
 
 @utility badge-lg {
   --badge-min-height: calc(1.5em + 0.75rem);
-  --badge-pad: 0.375rem 0.75rem;
-  --badge-font: 0.75rem;
+  --badge-padding: 0.375rem 0.75rem;
+  --badge-font-size: 0.75rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
