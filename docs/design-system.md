@@ -291,18 +291,18 @@ Jellyfy does not ship a typeface and does not set one. Text, icons, and form con
 
 Weight, case, and size are still specified, because they are part of the material.
 
-| Text                                   | Size, medium | Weight    | Case and tracking |
-| -------------------------------------- | ------------ | --------- | ----------------- |
-| Button label                           | 0.875rem     | 600       | Uppercase, 0.04em |
-| Icon button icon                       | 1.5rem       | —         | —                 |
-| Field value                            | 1rem         | Inherited | —                 |
-| Field label, resting in an empty field | 1rem         | 400       | Color at 70%      |
-| Field label, floated                   | 10px         | 500       | 0.04em            |
-| Checkbox, radio, and toggle label      | 0.875rem     | 500       | —                 |
-| Range label                            | 0.875rem     | 500       | —                 |
-| Message                                | 0.75rem      | Inherited | —                 |
-| Alert and card                         | 1rem         | Inherited | Line height 1.5   |
-| Badge                                  | 10px         | 600       | Uppercase, 0.04em |
+| Text                                   | Size, medium | Weight    | Case and tracking                          |
+| -------------------------------------- | ------------ | --------- | ------------------------------------------ |
+| Button label                           | 0.875rem     | 600       | Uppercase, 0.04em                          |
+| Icon button icon                       | 1.5rem       | —         | —                                          |
+| Field value                            | 1rem         | Inherited | —                                          |
+| Field label, resting in an empty field | 1rem         | 400       | Current color at `--percent-label-resting` |
+| Field label, floated                   | 10px         | 500       | 0.04em                                     |
+| Checkbox, radio, and toggle label      | 0.875rem     | 500       | —                                          |
+| Range label                            | 0.875rem     | 500       | —                                          |
+| Message                                | 0.75rem      | Inherited | —                                          |
+| Alert and card                         | 1rem         | Inherited | Line height 1.5                            |
+| Badge                                  | 10px         | 600       | Uppercase, 0.04em                          |
 
 Line height is 1 on buttons and floated labels, and 1.5 on field values, resting labels, alerts, and cards.
 
@@ -534,7 +534,7 @@ A field. Field thickness, field radius, field light while focused, squish. The v
 | Padding, filled or focused | 1rem 0.75rem 0.5rem | 1.375rem 1rem 0.625rem | 1.75rem 1.25rem 0.75rem |
 | Padding, empty and blurred | 0.75rem vertical    | 1rem vertical          | 1.25rem vertical        |
 
-The label is a separate element. When the field is empty and not focused, the label sits in the value line at the value size, weight 400, in the current color at 70%. When the field is focused or has a value, the label floats.
+The label is a separate element. When the field is empty and not focused, the label sits in the value line at the value size, weight 400, in the current color at `--percent-label-resting`. When the field is focused or has a value, the label floats.
 
 |                        | Small                                         | Medium                                    | Large                                         |
 | ---------------------- | --------------------------------------------- | ----------------------------------------- | --------------------------------------------- |
@@ -693,7 +693,7 @@ Public custom properties: one solid, one content color, and one surface content 
 
 `--color-black` and `--color-white` are shared mix values. They are not part of this contract.
 
-Shade, highlight, wash, the fills, the mark lift, menu mixes, thickness, and drop shadows stay internal variables. A variable marked `[DARK ADAPTATION MAY BE NEEDED]` can be overridden by the dark theme.
+Shade, highlight, wash, the fills, the mark lift, the resting label, menu mixes, thickness, and drop shadows stay internal variables. A variable marked `[DARK ADAPTATION MAY BE NEEDED]` can be overridden by the dark theme.
 
 ## 14. Library contract
 

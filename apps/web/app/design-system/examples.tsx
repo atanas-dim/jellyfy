@@ -400,7 +400,8 @@ const TYPE: {
       fontSize: "1rem",
       fontWeight: 400,
       lineHeight: 1.5,
-      color: "color-mix(in oklab, currentColor 70%, transparent)",
+      color:
+        "color-mix(in oklab, currentColor var(--percent-label-resting), transparent)",
     },
   },
   {

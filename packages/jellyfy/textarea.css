@@ -108,7 +108,11 @@
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0;
-    color: color-mix(in oklab, currentColor 70%, transparent);
+    color: color-mix(
+      in oklab,
+      currentColor var(--percent-label-resting),
+      transparent
+    );
   }
 
   .textarea-sm:not(:focus-within):has(textarea:placeholder-shown)

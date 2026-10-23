@@ -29,12 +29,26 @@ export default function CustomizePage() {
   --color-primary-content: #1e1b4b;
   --color-primary-surface-content: #3730a3;
   --color-secondary: #db2777;
+  --color-secondary-content: #500724;
+  --color-secondary-surface-content: #9d174d;
   --color-tertiary: #0d9488;
+  --color-tertiary-content: #042f2e;
+  --color-tertiary-surface-content: #115e59;
   --color-neutral: #a3a3a3;
+  --color-neutral-content: #0a0a0a;
+  --color-neutral-surface-content: #262626;
   --color-success: #16a34a;
-  --color-error: #dc2626;
+  --color-success-content: #052e16;
+  --color-success-surface-content: #166534;
   --color-warning: #d97706;
+  --color-warning-content: #451a03;
+  --color-warning-surface-content: #92400e;
+  --color-error: #dc2626;
+  --color-error-content: #450a0a;
+  --color-error-surface-content: #991b1b;
   --color-info: #0284c7;
+  --color-info-content: #082f49;
+  --color-info-surface-content: #075985;
 
   --radius-surface: 1rem;
   --radius-field: 1rem;
@@ -65,14 +79,29 @@ export default function CustomizePage() {
   --color-tertiary: #0d9488;
   --color-neutral: #a3a3a3;
   --color-success: #16a34a;
-  --color-error: #dc2626;
   --color-warning: #d97706;
+  --color-error: #dc2626;
   --color-info: #0284c7;
 }
 
 :root {
   --color-primary-content: #1e1b4b;
   --color-primary-surface-content: #3730a3;
+  --color-secondary-content: #500724;
+  --color-secondary-surface-content: #9d174d;
+  --color-tertiary-content: #042f2e;
+  --color-tertiary-surface-content: #115e59;
+  --color-neutral-content: #0a0a0a;
+  --color-neutral-surface-content: #262626;
+  --color-success-content: #052e16;
+  --color-success-surface-content: #166534;
+  --color-warning-content: #451a03;
+  --color-warning-surface-content: #92400e;
+  --color-error-content: #450a0a;
+  --color-error-surface-content: #991b1b;
+  --color-info-content: #082f49;
+  --color-info-surface-content: #075985;
+
   --radius-surface: 1rem;
   --radius-field: 1rem;
   --radius-control: 999px;
@@ -85,16 +114,18 @@ export default function CustomizePage() {
       />
       <ul className="mt-6 max-w-2xl list-disc space-y-2 pl-5 leading-7 text-neutral-600 dark:text-neutral-300">
         <li>
-          The eight <code className="font-mono text-sm">--color-*</code> names
-          are the solids.{" "}
+          Each slot has three names.{" "}
+          <code className="font-mono text-sm">--color-primary</code> is the
+          solid.{" "}
           <code className="font-mono text-sm">--color-primary-content</code> is
           the text on a button or badge.{" "}
           <code className="font-mono text-sm">
             --color-primary-surface-content
           </code>{" "}
           is the text on a field, card, alert, or dialog panel. The same two
-          suffixes exist for every slot. Changing a solid does not change those
-          text colors.
+          suffixes exist for every slot, and the samples list them. The hexes
+          are the light defaults. A single hex replaces the light and dark pair.
+          Changing a solid does not change those text colors.
         </li>
         <li>
           <code className="font-mono text-sm">--radius-control</code> is the
