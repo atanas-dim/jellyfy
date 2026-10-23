@@ -3,15 +3,15 @@
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useSyncExternalStore } from "react";
 
-type Theme = "light" | "dark";
+import { THEME_STORAGE_KEY } from "@/utils/theme";
 
-const storageKey = "jellyfy-theme";
+type Theme = "light" | "dark";
 
 const applyTheme = (theme: Theme) => {
   const root = document.documentElement;
   root.classList.toggle("dark", theme === "dark");
   root.classList.toggle("light", theme === "light");
-  localStorage.setItem(storageKey, theme);
+  localStorage.setItem(THEME_STORAGE_KEY, theme);
 };
 
 const subscribe = (onStoreChange: () => void) => {

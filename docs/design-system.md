@@ -29,10 +29,10 @@ Every object uses one role. Custom components use the same roles. Size and role 
 | Surface | A container: card, alert, modal panel, badge                                                      | Thin      | Surface tone. Wash with a slot.                                    | Surface                                        |
 | Field   | A place to type or choose: input, textarea, select                                                | Mid       | Surface tone. Wash with a slot.                                    | Field                                          |
 | Control | A press that takes an action: button, icon button                                                 | Thick     | Surface tone. Control fill with a slot.                            | Control                                        |
-| Mark    | A small indicator: checkbox box, radio ring, toggle track, toggle thumb, range track, range thumb | Mark      | Mark colour. Control fill when selected or filled.                 | Control. The checkbox box uses the mark radius |
+| Mark    | A small indicator: checkbox box, radio ring, toggle track, toggle thumb, range track, range thumb | Mark      | Mark color. Control fill when selected or filled.                  | Control. The checkbox box uses the mark radius |
 | Overlay | Modal panel, select menu                                                                          | Thin      | Modal panel uses the surface fill. Select menu uses the menu tone. | Surface                                        |
 
-A modal panel follows the surface fill rules. A select menu uses the menu tone for its panel. A hovered option and a selected option mix the solid into that menu tone at the menu mixes.
+A modal panel follows the surface fill rules. A select menu uses the menu tone for its panel. A hovered option and a selected option mix the menu mix into that menu tone. A slot's menu mix is its solid. A select with no slot uses black in light and white in dark.
 
 The bump button, used to close a modal, is not a fifth thickness. It is a transparent control with the bump light, no fill, and no drop shadow.
 
@@ -40,7 +40,7 @@ A custom component picks a role the way it picks the squish behavior. The thickn
 
 ### Implementation notes
 
-The thickness classes are `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The squish class is `squish`. Size classes stay `sm` and `lg`.
+The thickness classes are `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The squish class is `squish`. Size classes are `sm`, `md`, and `lg`. Medium is also the size with no size class.
 
 ## 3. Color
 
@@ -48,16 +48,16 @@ The thickness classes are `thickness-surface`, `thickness-field`, `thickness-con
 
 Eight slots. Four are the theme, four are status.
 
-| Slot      | Default solid                             | Fallback              |
-| --------- | ----------------------------------------- | --------------------- |
-| Primary   | TW Indigo 500 in both themes              | `#6366f1`             |
-| Secondary | TW Pink 600                               | `#db2777`             |
-| Tertiary  | TW Teal 600                               | `#0d9488`             |
-| Neutral   | Neutral 300 in light. Neutral 500 in dark | `#d4d4d4` / `#737373` |
-| Success   | TW Green 600                              | `#16a34a`             |
-| Warning   | TW Amber 600                              | `#d97706`             |
-| Error     | TW Red 600                                | `#dc2626`             |
-| Info      | TW Sky 600                                | `#0284c7`             |
+| Slot      | Default solid                | Fallback  |
+| --------- | ---------------------------- | --------- |
+| Primary   | TW Indigo 500 in both themes | `#6366f1` |
+| Secondary | TW Pink 600                  | `#db2777` |
+| Tertiary  | TW Teal 600                  | `#0d9488` |
+| Neutral   | Neutral 500 in both themes   | `#737373` |
+| Success   | TW Green 600                 | `#16a34a` |
+| Warning   | TW Amber 600                 | `#d97706` |
+| Error     | TW Red 600                   | `#dc2626` |
+| Info      | TW Sky 600                   | `#0284c7` |
 
 The neutral ramp is Jellyfy's, from 50 through 950, even where a component uses only some steps. It reads Tailwind's neutral variables when they exist, and uses these hex fallbacks when they do not.
 
@@ -77,7 +77,7 @@ The neutral ramp is Jellyfy's, from 50 through 950, even where a component uses 
 
 An object with no slot uses the base tones. A slot replaces the solid. The user applies a slot, including Error, with their own logic. Error does not add a second invalid style.
 
-Every slot, including Neutral, uses the same wash, control fill, content color, press light, and menu mixes. A component with no slot uses those same mixes, with the surface tone as its solid. No slot has a mix of its own.
+Every slot, including Neutral, uses the same wash, control fill, content color, press light, and menu mixes. A component with no slot uses those same mixes, with the surface tone as its solid. Its menu mix is black in light and white in dark. No slot has a mix of its own.
 
 ### Base tones
 
@@ -135,12 +135,12 @@ Strength is separate from the solid. The same solid is quiet on a surface or fie
 | Application   | Mix                                                                                                                            |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | Surface tone  | Neutral 50 in light, Neutral 800 in dark. A plain surface runs this through the resting wash.                                  |
-| Mark colour   | Plain mixed with 28% white. The same mix in both themes.                                                                       |
+| Mark color    | Plain mixed with 28% white. The same mix in both themes.                                                                       |
 | Wash, resting | Fields: 86% plain and 14% solid in light, 76% and 24% in dark. Surfaces: 94% plain and 6% solid in light, 88% and 12% in dark. |
 | Wash, focused | Fields: 78% plain and 22% solid in light, 68% and 32% in dark.                                                                 |
 | Control fill  | The solid, with no plain mixed in.                                                                                             |
 
-Every jelly fill is painted at the material opacity, with the shared blur and the shared grain. Surfaces and fields use the wash. A focused field uses the focused wash, which mixes in more of the solid. With no slot, the solid is plain, so the wash stays plain. An empty checkbox box, an empty radio ring, an off toggle track, and a range track use the mark colour. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
+Every jelly fill is painted at the material opacity, with the shared blur and the shared grain. Surfaces and fields use the wash. A focused field uses the focused wash, which mixes in more of the solid. With no slot, the solid is plain, so the wash stays plain. An empty checkbox box, an empty radio ring, an off toggle track, and a range track use the mark color. Buttons, icon buttons, badges, selected checkbox boxes, selected toggle tracks, range fills, and colored range thumbs use the control fill.
 
 ### Menu mixes
 
@@ -150,8 +150,10 @@ These mixes are internal. They are not part of the customization contract.
 
 | State                     | Mix into the menu tone |
 | ------------------------- | ---------------------- |
-| Hovered or focused option | 14% of the solid       |
-| Selected option           | 28% of the solid       |
+| Hovered or focused option | 14% of the menu mix    |
+| Selected option           | 28% of the menu mix    |
+
+A slot's menu mix is its solid. A select with no slot uses black in light and white in dark.
 
 Option text stays the plain content color.
 
@@ -159,7 +161,7 @@ Option text stays the plain content color.
 
 Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. They set the solid, the content color, and the surface content color. Content colors are paired variables, named with the daisyUI suffix `content` (`--color-primary-content`, and the same for the other slots). Surface content colors use the suffix `surface-content` (`--color-primary-surface-content`, and the same for the other slots).
 
-Plain content is `--color-plain-content`. The menu fill is `--color-menu`. The mark colour is `--color-mark`. It mixes `--color-white` into `--color-plain` at `--percent-mark-lift`.
+Plain content is `--color-plain-content`. The menu fill is `--color-menu`. The mark color is `--color-mark`. It mixes `--color-white` into `--color-plain` at `--percent-mark-lift`.
 
 Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-500`, `--color-indigo-400`, `--color-indigo-100`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.
 
@@ -179,20 +181,20 @@ The grain is fractal noise, tiled. The tile is 22.5rem. The light theme uses a d
 
 Material opacity is 60% for every object. Blur is 4px for every object. Both are single values. Components do not invent their own.
 
-The wash percentages are colour mixes. They are not a second opacity.
+The wash percentages are color mixes. They are not a second opacity.
 
 ### Thickness
 
 Thickness is two inset shadows. The first falls upward, so the bottom edge reads as the thick part of the pour. The second is a light lip in the other direction. Its offset is smaller, and its blur matches the thick edge. Those distances are the same in both themes.
 
-The thick edge is Neutral 950. Dark uses a stronger opacity. The button's dark thick edge is Neutral 800 at 65%. The lip is Neutral 50.
+The thick edge is Neutral 950. Dark uses a stronger opacity. The button's dark thick edge is Neutral 900 at 65%. The lip is Neutral 50.
 
 | Thickness      | Thick edge           | Lip                | Light             | Dark                             | Used by                                                                                    |
 | -------------- | -------------------- | ------------------ | ----------------- | -------------------------------- | ------------------------------------------------------------------------------------------ |
 | Surface        | `inset 0 -6px 8px`   | `inset 0 4px 8px`  | Edge 12%, lip 10% | Edge 32%, lip 8%                 | Card, alert, modal panel, badge, select menu                                               |
 | Field, resting | `inset 0 -10px 16px` | `inset 0 5px 16px` | Edge 20%, lip 10% | Edge 50%, lip 10%                | Input, textarea, select                                                                    |
 | Field, focused | `inset 0 -6px 10px`  | `inset 0 3px 10px` | Edge 15%, lip 10% | Edge 45%, lip 10%                | Input, textarea, select while focused                                                      |
-| Control        | `inset 0 -16px 16px` | `inset 0 8px 16px` | Edge 50%, lip 10% | Edge 65% in Neutral 800, lip 12% | Button, icon button                                                                        |
+| Control        | `inset 0 -16px 16px` | `inset 0 8px 16px` | Edge 50%, lip 10% | Edge 65% in Neutral 900, lip 12% | Button, icon button                                                                        |
 | Mark           | `inset 0 -2px 5px`   | `inset 0 1px 5px`  | Edge 35%, lip 10% | Edge 65%, lip 10%                | Checkbox box, radio ring, toggle track, toggle thumb, range track, range fill, range thumb |
 
 The track and the fill of a slider are both jelly. Only the color differs. The same is true of a switch track and thumb, and of a radio ring.
@@ -458,7 +460,7 @@ The dark theme uses the same mixes, the same thickness distances, the same eleva
 
 Dark changes only the neutral step fed into a recipe, the content color step, the focus-gap tone, and the grain.
 
-The Neutral slot is one of the eight colors. Light uses Neutral 300 as its solid. Dark uses Neutral 500. It then uses the same wash, control fill, and content mix as primary.
+The Neutral slot is one of the eight colors. Both themes use Neutral 500 as its solid. It then uses the same wash, control fill, and content mix as primary.
 
 The plain element uses plain as its solid, plus the menu tone and the plain content color. Plain is not a second color and not the Neutral slot.
 
@@ -468,7 +470,7 @@ The focus gap and the grain apply to every component, with a slot and without on
 
 | Token         | What it is                        | Light          | Dark               |
 | ------------- | --------------------------------- | -------------- | ------------------ |
-| Neutral slot  | One of the eight colors           | Neutral 300    | Neutral 500        |
+| Neutral slot  | One of the eight colors           | Neutral 500    | Neutral 500        |
 | Surface tone  | Plain solid, run through the wash | Neutral 50     | Neutral 800        |
 | Menu tone     | Plain menu fill                   | Neutral 100    | Neutral 800        |
 | Plain content | Text on a surface or field        | Neutral 800    | Neutral 100        |
@@ -485,7 +487,7 @@ A recipe marked `[DARK ADAPTATION MAY BE NEEDED]` uses the value in this documen
 
 ## 12. Components
 
-Every component has three sizes: small, medium, and large. Medium is the default and has no size name.
+Every component has three sizes: small, medium, and large. Medium is the default, with no size class, and `md` repeats that size so a breakpoint can return to it.
 
 The component list is Button, Icon Button, Bump Button, Input, Textarea, Select, Checkbox, Radio, Toggle, Range, Alert, Badge, Card, Modal, and Message.
 
@@ -578,11 +580,11 @@ A mark plus a label. The box uses mark thickness, the mark elevation, and the ma
 | Box   | 1.25rem | 1.5rem   | 2rem  |
 | Label | 0.75rem | 0.875rem | 1rem  |
 
-The empty box uses the mark colour. The check is a masked copy of the Lucide check, in the current color, centered in the box. It is invisible and scaled to 0.4 when off, and fully visible at scale 1 when on. A slotted checked box uses the control fill and the control content color.
+The empty box uses the mark color. The check is a masked copy of the Lucide check, in the current color, centered in the box. It is invisible and scaled to 0.4 when off, and fully visible at scale 1 when on. A slotted checked box uses the control fill and the control content color.
 
 ### Radio
 
-A mark plus a label. The ring uses the mark colour. It is jelly: grain, blur, and mark thickness. It matches the checkbox sizes, including the 24px medium and 20px small hit target, and uses the control radius, so it is a circle in the default theme. The bullet is jelly with the grain. It is opaque, with no blur and no thickness. It is 0.75rem, 0.875rem, and 1.25rem at small, medium, and large. It scales from 0 to 1 when selected. With no slot, the bullet is the plain content color. With a slot, the bullet is the control fill.
+A mark plus a label. The ring uses the mark color. It is jelly: grain, blur, and mark thickness. It matches the checkbox sizes, including the 24px medium and 20px small hit target, and uses the control radius, so it is a circle in the default theme. The bullet is jelly with the grain. It is opaque, with no blur and no thickness. It is 0.75rem, 0.875rem, and 1.25rem at small, medium, and large. It scales from 0 to 1 when selected. With no slot, the bullet is the plain content color. With a slot, the bullet is the control fill.
 
 ### Toggle
 
@@ -595,11 +597,11 @@ A mark plus a label. The track and the thumb are both jelly: grain, blur, and ma
 | Thumb inset    | 0.25rem          | 0.25rem         | 0.25rem        |
 | Travel when on | 1rem             | 1.15rem         | 1.5rem         |
 
-The off track uses the mark colour. The resting thumb is Neutral 500 mixed at 55% into white. The on thumb is white. A slotted on track uses the control fill. The thumb moves over 300ms, eased out.
+The off track uses the mark color. The resting thumb is Neutral 500 mixed at 55% into white. The on thumb is white. A slotted on track uses the control fill. The thumb moves over 300ms, eased out.
 
 ### Range
 
-A mark. The track, the fill, and the thumb are jelly: grain, blur, and mark thickness. Only the color differs. The fill is clipped to the track. With no slot, the track uses the mark colour and the fill uses the plain content color, both at the material opacity. A slot sets the fill to the control fill. The thumb uses the fill's color. All three use the control radius.
+A mark. The track, the fill, and the thumb are jelly: grain, blur, and mark thickness. Only the color differs. The fill is clipped to the track. With no slot, the track uses the mark color and the fill uses the plain content color, both at the material opacity. A slot sets the fill to the control fill. The thumb uses the fill's color. All three use the control radius.
 
 The thumb position and the fill width follow the current value between the minimum and the maximum.
 
@@ -660,7 +662,7 @@ The caption under a field. It is not an error style. It has its own slot, indepe
 
 ### Implementation notes
 
-Medium classes have no size suffix. Small and large use `-sm` and `-lg` on the component class: `btn-sm`, `input-lg`. The icon button and the bump button use the button sizes, `btn-sm` and `btn-lg`.
+Small, medium, and large use `-sm`, `-md`, and `-lg` on the component class: `btn-sm`, `btn-md`, `input-lg`. A control with no size class is medium. `btn-md` repeats that medium size so a breakpoint can return to it, as in `btn-lg md:btn-md`. The icon button and the bump button use the button sizes, `btn-sm`, `btn-md`, and `btn-lg`.
 
 The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, and `modal-panel`. The radio bullet, `radio-ring::after`, receives the grain only. It is opaque and has no blur and no inset.
 

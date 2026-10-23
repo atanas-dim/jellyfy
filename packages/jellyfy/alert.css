@@ -5,12 +5,12 @@
     box-sizing: border-box;
     display: flex;
     align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
+    gap: var(--alert-gap, 0.75rem);
+    padding: var(--alert-padding, 0.75rem 1rem);
     border-radius: var(--radius-surface);
     color: var(--color-plain-content);
     font: inherit;
-    font-size: 1rem;
+    font-size: var(--alert-font-size, 1rem);
     line-height: 1.5;
     transition:
       background-color 300ms ease-out,
@@ -18,40 +18,58 @@
       color 300ms ease-out;
   }
 
-  .alert.alert-sm {
-    gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.875rem;
+  .alert-sm {
+    --alert-gap: 0.5rem;
+    --alert-padding: 0.5rem 0.75rem;
+    --alert-font-size: 0.875rem;
+    --alert-icon-size: 1rem;
   }
 
-  .alert.alert-lg {
-    gap: 1rem;
-    padding: 1rem 1.25rem;
-    font-size: 1.25rem;
+  .alert-md {
+    --alert-gap: 0.75rem;
+    --alert-padding: 0.75rem 1rem;
+    --alert-font-size: 1rem;
+    --alert-icon-size: 1.25rem;
+  }
+
+  .alert-lg {
+    --alert-gap: 1rem;
+    --alert-padding: 1rem 1.25rem;
+    --alert-font-size: 1.25rem;
+    --alert-icon-size: 1.5rem;
   }
 
   .alert > svg {
     flex: none;
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-top: calc((1.5em - 1.25rem) / 2);
-  }
-
-  .alert.alert-sm > svg {
-    width: 1rem;
-    height: 1rem;
-    margin-top: calc((1.5em - 1rem) / 2);
-  }
-
-  .alert.alert-lg > svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-top: calc((1.5em - 1.5rem) / 2);
+    width: var(--alert-icon-size, 1.25rem);
+    height: var(--alert-icon-size, 1.25rem);
+    margin-top: calc((1.5em - var(--alert-icon-size, 1.25rem)) / 2);
   }
 
   .alert > :not(svg) {
     min-width: 0;
   }
+}
+
+@utility alert-sm {
+  --alert-gap: 0.5rem;
+  --alert-padding: 0.5rem 0.75rem;
+  --alert-font-size: 0.875rem;
+  --alert-icon-size: 1rem;
+}
+
+@utility alert-md {
+  --alert-gap: 0.75rem;
+  --alert-padding: 0.75rem 1rem;
+  --alert-font-size: 1rem;
+  --alert-icon-size: 1.25rem;
+}
+
+@utility alert-lg {
+  --alert-gap: 1rem;
+  --alert-padding: 1rem 1.25rem;
+  --alert-font-size: 1.25rem;
+  --alert-icon-size: 1.5rem;
 }
 
 @layer utilities {

@@ -8,10 +8,10 @@ import {
   SendIcon,
   XIcon,
 } from "lucide-react";
-import { type ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useState } from "react";
 import { twJoin } from "tailwind-merge";
 
-import { STRIPES_CLASS, StripeSwitch } from "@/app/stripe-switch";
+import { STRIPES_CLASS, StripeSwitch } from "@/components/stripe-switch";
 
 const COLORS = [
   "primary",
@@ -35,11 +35,11 @@ const NAME: Record<(typeof COLORS)[number], string> = {
   info: "Info",
 };
 
-const SIZES = ["sm", "", "lg"] as const;
+const SIZES = ["sm", "md", "lg"] as const;
 
 const SIZE_NAME: Record<(typeof SIZES)[number], string> = {
   sm: "Small",
-  "": "Medium",
+  md: "Medium",
   lg: "Large",
 };
 
@@ -47,17 +47,20 @@ const Tile = ({
   id,
   title,
   wide,
+  striped,
   children,
 }: {
   id: string;
   title: string;
   wide?: boolean;
+  striped: boolean;
   children: ReactNode;
 }) => (
   <section
     id={id}
     className={twJoin(
-      "flex scroll-mt-24 flex-col gap-4",
+      "surface flex scroll-mt-24 flex-col gap-4 p-4 shadow-lg lg:p-6",
+      striped && STRIPES_CLASS,
       wide && "sm:col-span-2",
     )}
   >
@@ -74,25 +77,20 @@ const openDialog = (id: string) => {
 };
 
 const sizeClass = (prefix: string, size: (typeof SIZES)[number]) =>
-  size ? `${prefix}-${size}` : undefined;
+  `${prefix}-${size}`;
 
 export default function SetPage() {
   const [striped, setStriped] = useState(false);
 
-  useEffect(() => {
-    document.body.classList.toggle(STRIPES_CLASS, striped);
-    return () => document.body.classList.remove(STRIPES_CLASS);
-  }, [striped]);
-
   return (
-    <main className="w-full">
+    <main className="w-full pt-16">
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-x-8 gap-y-12 px-6 py-12 sm:grid-cols-2 sm:px-10 xl:grid-cols-3">
         <StripeSwitch
           className="sm:col-span-2 xl:col-span-3"
           checked={striped}
           onChange={setStriped}
         />
-        <Tile id="button" title="Button" wide>
+        <Tile striped={striped} id="button" title="Button" wide>
           <div className="flex flex-wrap items-center gap-3">
             {COLORS.map((color) => (
               <button
@@ -107,7 +105,7 @@ export default function SetPage() {
           <div className="flex flex-wrap items-end gap-x-3 gap-y-8">
             {SIZES.map((size) => (
               <button
-                key={size || "regular"}
+                key={size}
                 className={twJoin("btn", sizeClass("btn", size))}
                 type="button"
               >
@@ -131,7 +129,7 @@ export default function SetPage() {
           </div>
         </Tile>
 
-        <Tile id="icon-button" title="Icon button">
+        <Tile striped={striped} id="icon-button" title="Icon button">
           <div className="flex flex-wrap items-center gap-3">
             {COLORS.map((color) => (
               <button
@@ -147,7 +145,7 @@ export default function SetPage() {
           <div className="flex flex-wrap items-end gap-3">
             {SIZES.map((size) => (
               <button
-                key={size || "regular"}
+                key={size}
                 className={twJoin("btn-icon", sizeClass("btn", size))}
                 type="button"
                 aria-label={SIZE_NAME[size]}
@@ -167,7 +165,7 @@ export default function SetPage() {
           </div>
         </Tile>
 
-        <Tile id="badge" title="Badge">
+        <Tile striped={striped} id="badge" title="Badge">
           <div className="flex flex-wrap items-center gap-2">
             {COLORS.map((color) => (
               <span key={color} className={twJoin("badge", color)}>
@@ -178,7 +176,7 @@ export default function SetPage() {
           <div className="flex flex-wrap items-center gap-2">
             {SIZES.map((size) => (
               <span
-                key={size || "regular"}
+                key={size}
                 className={twJoin("badge", sizeClass("badge", size))}
               >
                 {SIZE_NAME[size]}
@@ -187,7 +185,7 @@ export default function SetPage() {
           </div>
         </Tile>
 
-        <Tile id="input" title="Input" wide>
+        <Tile striped={striped} id="input" title="Input" wide>
           <div className="grid gap-3 sm:grid-cols-2">
             {COLORS.map((color) => (
               <label key={color} className={twJoin("input", color)}>
@@ -202,7 +200,7 @@ export default function SetPage() {
           <div className="grid items-start gap-3 sm:grid-cols-3">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("input", sizeClass("input", size))}
               >
                 <input placeholder=" " />
@@ -222,7 +220,7 @@ export default function SetPage() {
           </label>
         </Tile>
 
-        <Tile id="textarea" title="Textarea" wide>
+        <Tile striped={striped} id="textarea" title="Textarea" wide>
           <div className="grid items-start gap-3 sm:grid-cols-2">
             {COLORS.map((color) => (
               <label key={color} className={twJoin("textarea", color)}>
@@ -237,7 +235,7 @@ export default function SetPage() {
           <div className="grid items-start gap-3 sm:grid-cols-3">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("textarea", sizeClass("textarea", size))}
               >
                 <textarea placeholder=" " />
@@ -247,7 +245,7 @@ export default function SetPage() {
           </div>
         </Tile>
 
-        <Tile id="select" title="Select" wide>
+        <Tile striped={striped} id="select" title="Select" wide>
           <div className="grid gap-3 sm:grid-cols-2">
             {COLORS.map((color) => (
               <label key={color} className={twJoin("select", color)}>
@@ -263,7 +261,7 @@ export default function SetPage() {
           <div className="grid items-start gap-3 sm:grid-cols-3">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("select", sizeClass("select", size))}
               >
                 <select defaultValue="rose">
@@ -278,7 +276,7 @@ export default function SetPage() {
           </div>
         </Tile>
 
-        <Tile id="checkbox" title="Checkbox">
+        <Tile striped={striped} id="checkbox" title="Checkbox">
           <div className="flex flex-col gap-2">
             {COLORS.map((color) => (
               <label key={color} className={twJoin("checkbox", color)}>
@@ -291,7 +289,7 @@ export default function SetPage() {
           <div className="flex flex-wrap items-center gap-4">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("checkbox", sizeClass("checkbox", size))}
               >
                 <input type="checkbox" defaultChecked />
@@ -307,7 +305,7 @@ export default function SetPage() {
           </label>
         </Tile>
 
-        <Tile id="message" title="Message">
+        <Tile striped={striped} id="message" title="Message">
           <div className="flex flex-col">
             <p className="message">Required</p>
             {COLORS.map((color) => (
@@ -319,7 +317,7 @@ export default function SetPage() {
           <div className="flex flex-col">
             {SIZES.map((size) => (
               <p
-                key={size || "regular"}
+                key={size}
                 className={twJoin("message", sizeClass("message", size))}
               >
                 {SIZE_NAME[size]}
@@ -328,7 +326,7 @@ export default function SetPage() {
           </div>
         </Tile>
 
-        <Tile id="radio" title="Radio">
+        <Tile striped={striped} id="radio" title="Radio">
           <div className="flex flex-col gap-3">
             {COLORS.map((color) => (
               <label key={color} className={twJoin("radio", color)}>
@@ -341,14 +339,10 @@ export default function SetPage() {
           <div className="flex flex-wrap items-center gap-4">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("radio", sizeClass("radio", size))}
               >
-                <input
-                  type="radio"
-                  name={`size-${size || "regular"}`}
-                  defaultChecked
-                />
+                <input type="radio" name={`size-${size}`} defaultChecked />
                 <span className="radio-ring" />
                 {SIZE_NAME[size]}
               </label>
@@ -356,7 +350,7 @@ export default function SetPage() {
           </div>
         </Tile>
 
-        <Tile id="switch" title="Switch">
+        <Tile striped={striped} id="switch" title="Switch">
           <div className="flex flex-col gap-3">
             {COLORS.map((color) => (
               <label key={color} className={twJoin("toggle", color)}>
@@ -371,7 +365,7 @@ export default function SetPage() {
           <div className="flex flex-wrap items-center gap-4">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("toggle", sizeClass("toggle", size))}
               >
                 <input type="checkbox" role="switch" defaultChecked />
@@ -391,7 +385,7 @@ export default function SetPage() {
           </label>
         </Tile>
 
-        <Tile id="slider" title="Slider" wide>
+        <Tile striped={striped} id="slider" title="Slider" wide>
           <div className="grid gap-4 sm:grid-cols-2">
             {COLORS.map((color) => (
               <label key={color} className={twJoin("range", color)}>
@@ -409,7 +403,7 @@ export default function SetPage() {
           <div className="grid gap-4 sm:grid-cols-3">
             {SIZES.map((size) => (
               <label
-                key={size || "regular"}
+                key={size}
                 className={twJoin("range", sizeClass("range", size))}
               >
                 {SIZE_NAME[size]}
@@ -425,7 +419,7 @@ export default function SetPage() {
           </div>
         </Tile>
 
-        <Tile id="alert" title="Alert" wide>
+        <Tile striped={striped} id="alert" title="Alert" wide>
           <div className="grid items-start gap-3 sm:grid-cols-2">
             {COLORS.map((color) => (
               <div key={color} className={twJoin("alert", color)}>
@@ -440,7 +434,7 @@ export default function SetPage() {
           <div className="grid items-start gap-3 sm:grid-cols-3">
             {SIZES.map((size) => (
               <div
-                key={size || "regular"}
+                key={size}
                 className={twJoin("alert", sizeClass("alert", size))}
               >
                 <InfoIcon aria-hidden="true" />
@@ -453,7 +447,7 @@ export default function SetPage() {
           </div>
         </Tile>
 
-        <Tile id="card" title="Card" wide>
+        <Tile striped={striped} id="card" title="Card" wide>
           <div className="grid items-start gap-3 sm:grid-cols-2">
             <section className="card">
               <h3 className="font-semibold">Plain</h3>
@@ -468,7 +462,7 @@ export default function SetPage() {
           <div className="grid items-start gap-3 sm:grid-cols-3">
             {SIZES.map((size) => (
               <section
-                key={size || "regular"}
+                key={size}
                 className={twJoin("card", sizeClass("card", size))}
               >
                 <h3 className="font-semibold">{SIZE_NAME[size]}</h3>
@@ -477,7 +471,7 @@ export default function SetPage() {
           </div>
         </Tile>
 
-        <Tile id="dialog" title="Dialog">
+        <Tile striped={striped} id="dialog" title="Dialog">
           <div className="flex flex-wrap gap-3">
             <button
               className="btn"

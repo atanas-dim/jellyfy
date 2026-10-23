@@ -1,6 +1,6 @@
 {
   "name": "jellyfy",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "license": "MIT",
   "description": "Soft controls from one material.",
   "author": "Atanas Dimitrov",
@@ -23,6 +23,10 @@
     "./motion.css": {
       "style": "./motion.css",
       "default": "./motion.css"
+    },
+    "./button-size.css": {
+      "style": "./button-size.css",
+      "default": "./button-size.css"
     },
     "./button.css": {
       "style": "./button.css",
@@ -93,6 +97,7 @@
     "index.js",
     "material.css",
     "motion.css",
+    "button-size.css",
     "button.css",
     "icon-button.css",
     "bump-button.css",
@@ -113,6 +118,7 @@
   "sideEffects": [
     "./material.css",
     "./motion.css",
+    "./button-size.css",
     "./button.css",
     "./icon-button.css",
     "./bump-button.css",

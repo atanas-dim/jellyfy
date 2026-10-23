@@ -10,7 +10,7 @@
     overflow: hidden;
     border-radius: var(--radius-field);
     font: inherit;
-    font-size: 1rem;
+    font-size: var(--select-font-size, 1rem);
     line-height: 1.5;
     color: var(--color-plain-content);
     cursor: pointer;
@@ -22,11 +22,33 @@
   }
 
   .select-sm {
-    font-size: 0.875rem;
+    --select-font-size: 0.875rem;
+    --select-padding: 1rem 2.25rem 0.5rem 0.75rem;
+    --select-label-top: 0.375rem;
+    --select-label-x: 0.75rem;
+    --select-label-font-size: 0.625rem;
+    --select-icon-x: 0.75rem;
+    --select-icon-size: 1rem;
+  }
+
+  .select-md {
+    --select-font-size: 1rem;
+    --select-padding: 1.375rem 2.5rem 0.625rem 1rem;
+    --select-label-top: 0.75rem;
+    --select-label-x: 1rem;
+    --select-label-font-size: 10px;
+    --select-icon-x: 1rem;
+    --select-icon-size: 1.25rem;
   }
 
   .select-lg {
-    font-size: 1.25rem;
+    --select-font-size: 1.25rem;
+    --select-padding: 1.75rem 3rem 0.75rem 1.25rem;
+    --select-label-top: 0.875rem;
+    --select-label-x: 1.25rem;
+    --select-label-font-size: 0.75rem;
+    --select-icon-x: 1.25rem;
+    --select-icon-size: 1.5rem;
   }
 
   .select select {
@@ -36,7 +58,7 @@
     display: block;
     width: 100%;
     margin: 0;
-    padding: 1.375rem 2.5rem 0.625rem 1rem;
+    padding: var(--select-padding, 1.375rem 2.5rem 0.625rem 1rem);
     border: 0;
     appearance: none;
     background: transparent;
@@ -48,61 +70,29 @@
     cursor: pointer;
   }
 
-  .select-sm select {
-    padding: 1rem 2.25rem 0.5rem 0.75rem;
-  }
-
-  .select-lg select {
-    padding: 1.75rem 3rem 0.75rem 1.25rem;
-  }
-
   .select > span:not(.picker-icon) {
     position: absolute;
-    top: 0.75rem;
-    left: 1rem;
+    top: var(--select-label-top, 0.75rem);
+    left: var(--select-label-x, 1rem);
     z-index: 1;
-    font-size: 10px;
+    font-size: var(--select-label-font-size, 10px);
     font-weight: 500;
     line-height: 1;
     letter-spacing: 0.04em;
     pointer-events: none;
   }
 
-  .select-sm > span:not(.picker-icon) {
-    top: 0.375rem;
-    left: 0.75rem;
-    font-size: 0.625rem;
-  }
-
-  .select-lg > span:not(.picker-icon) {
-    top: 0.875rem;
-    left: 1.25rem;
-    font-size: 0.75rem;
-  }
-
   .select .picker-icon {
     position: absolute;
     top: 50%;
-    right: 1rem;
+    right: var(--select-icon-x, 1rem);
     z-index: 1;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: var(--select-icon-size, 1.25rem);
+    height: var(--select-icon-size, 1.25rem);
     color: inherit;
     pointer-events: none;
     transform: translateY(-50%);
     transition: transform 200ms ease-out;
-  }
-
-  .select-sm .picker-icon {
-    right: 0.75rem;
-    width: 1rem;
-    height: 1rem;
-  }
-
-  .select-lg .picker-icon {
-    right: 1.25rem;
-    width: 1.5rem;
-    height: 1.5rem;
   }
 
   .select .picker-icon:not(svg) {
@@ -219,7 +209,7 @@
   .select select option:focus {
     background: color-mix(
       in oklab,
-      var(--solid) var(--percent-solid-menu-hover),
+      var(--menu-mix) var(--percent-solid-menu-hover),
       var(--color-menu)
     );
   }
@@ -227,7 +217,7 @@
   .select select option:checked {
     background: color-mix(
       in oklab,
-      var(--solid) var(--percent-solid-menu-selected),
+      var(--menu-mix) var(--percent-solid-menu-selected),
       var(--color-menu)
     );
   }
@@ -235,6 +225,36 @@
   .select select option::checkmark {
     display: none;
   }
+}
+
+@utility select-sm {
+  --select-font-size: 0.875rem;
+  --select-padding: 1rem 2.25rem 0.5rem 0.75rem;
+  --select-label-top: 0.375rem;
+  --select-label-x: 0.75rem;
+  --select-label-font-size: 0.625rem;
+  --select-icon-x: 0.75rem;
+  --select-icon-size: 1rem;
+}
+
+@utility select-md {
+  --select-font-size: 1rem;
+  --select-padding: 1.375rem 2.5rem 0.625rem 1rem;
+  --select-label-top: 0.75rem;
+  --select-label-x: 1rem;
+  --select-label-font-size: 10px;
+  --select-icon-x: 1rem;
+  --select-icon-size: 1.25rem;
+}
+
+@utility select-lg {
+  --select-font-size: 1.25rem;
+  --select-padding: 1.75rem 3rem 0.75rem 1.25rem;
+  --select-label-top: 0.875rem;
+  --select-label-x: 1.25rem;
+  --select-label-font-size: 0.75rem;
+  --select-icon-x: 1.25rem;
+  --select-icon-size: 1.5rem;
 }
 
 @layer utilities {

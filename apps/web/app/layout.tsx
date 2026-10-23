@@ -2,13 +2,12 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Figtree, Geist_Mono, Rubik } from "next/font/google";
-import Script from "next/script";
 import { twJoin } from "tailwind-merge";
 
+import { JellyfyBoot } from "@/components/jellyfy-boot";
+import { SiteFrame } from "@/components/site-frame";
 import { site } from "@/resources/site";
-
-import { JellyfyBoot } from "./jellyfy-boot";
-import { SiteFrame } from "./site-frame";
+import { THEME_SCRIPT } from "@/utils/theme";
 
 const figtree = Figtree({
   variable: "--font-figtree",
@@ -57,10 +56,10 @@ export default function RootLayout({
         geistMono.variable,
       )}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+      </head>
       <body>
-        <Script id="jellyfy-theme" strategy="beforeInteractive">
-          {`(function(){try{var saved=localStorage.getItem("jellyfy-theme");var theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");var root=document.documentElement;root.classList.toggle("dark",theme==="dark");root.classList.toggle("light",theme==="light");}catch(e){}})();`}
-        </Script>
         <JellyfyBoot />
         <div className="isolate flex min-h-full flex-col">
           <SiteFrame>{children}</SiteFrame>
