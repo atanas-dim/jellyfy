@@ -144,8 +144,6 @@ Every jelly fill is painted at the material opacity, with the shared blur and th
 
 ### Menu mixes
 
-[DARK ADAPTATION MAY BE NEEDED]
-
 These mixes are internal. They are not part of the customization contract.
 
 | State                     | Mix into the menu tone |
@@ -167,7 +165,7 @@ Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo
 
 Black and white are `--color-black` and `--color-white`. Wash, press light, bump light, and loading light read those variables.
 
-Wash percentages, wash opacity, and the menu mixes are variables. The dark theme can override a variable marked `[DARK ADAPTATION MAY BE NEEDED]`.
+Wash percentages, wash opacity, and the menu mixes are variables.
 
 ## 4. Material
 
@@ -238,8 +236,6 @@ Thickness, control light, field light, and bump light are variables. The dark th
 
 ## 5. Elevation
 
-[DARK ADAPTATION MAY BE NEEDED]
-
 Elevation is the drop shadow. It is independent from thickness. The shadow color is Neutral 950. The default theme has one multiplier, `1`, which scales every shadow together. Rest stays quieter than hover. The multiplier does not let those two cross.
 
 | Level    | Shadow                                  | Where it is used                       |
@@ -263,8 +259,6 @@ Focus adds the focus gap and keeps the elevation the object already has.
 ### Implementation notes
 
 Rest, hover, mark, disabled, and overlay are separate variables. Overlay's default value is the hover shadow.
-
-The dark theme can override the shadow opacity. That override is marked `[DARK ADAPTATION MAY BE NEEDED]`.
 
 ## 6. Shape
 
@@ -362,8 +356,6 @@ The floating label moves and changes size over 300ms, eased out.
 
 ### Loading lights
 
-[DARK ADAPTATION MAY BE NEEDED]
-
 Loading light is derived from the solid. It is not the press light.
 
 - The light sheen is a light variation of the solid, shown at 40% opacity.
@@ -397,7 +389,7 @@ Color, shadow, and outline changes take 300ms, eased out. The select chevron tur
 
 Squish runs on the painted face of the control, not on the label text and not on the invisible input. A press on the label of a checkbox, radio, switch, or slider triggers that face. The opt-in class is `squish`. The named constants are the total width change `8`, the height ratio `2/7`, the settle-width ratio `1/7`, the press `480ms`, the release `300ms`, and the peak at `0.42`. Scale on an axis is `1 + pixels / size` on that axis.
 
-Loading light and loading shade are variables that read `--color-white` and `--color-black`. The dark theme can override them. That override is marked `[DARK ADAPTATION MAY BE NEEDED]`.
+Loading light and loading shade are variables that read `--color-white` and `--color-black`.
 
 Reduced motion is `prefers-reduced-motion: reduce`.
 
@@ -478,8 +470,6 @@ The focus gap and the grain apply to every component, with a slot and without on
 | Disabled text | Disabled state, 70% fade          | Neutral 800    | Neutral 400        |
 | Focus gap     | Shared by every focus ring        | White at 50%   | Neutral 950 at 50% |
 | Grain         | Shared by every jelly surface     | Dark, stronger | Light, fainter     |
-
-A recipe marked `[DARK ADAPTATION MAY BE NEEDED]` uses the value in this document in both themes. That value is a CSS variable. The dark theme may override it.
 
 ### Implementation notes
 
@@ -697,7 +687,7 @@ Public custom properties: one solid, one content color, and one surface content 
 
 `--color-black` and `--color-white` are shared mix values. They are not part of this contract.
 
-Shade, highlight, wash, the fills, the mark lift, the resting label, menu mixes, thickness, and drop shadows stay internal variables. A variable marked `[DARK ADAPTATION MAY BE NEEDED]` can be overridden by the dark theme.
+Shade, highlight, wash, the fills, the mark lift, the resting label, menu mixes, thickness, and drop shadows stay internal variables.
 
 ## 14. Library contract
 

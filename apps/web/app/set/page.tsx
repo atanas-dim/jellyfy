@@ -59,7 +59,7 @@ const Tile = ({
   <section
     id={id}
     className={twJoin(
-      "surface flex scroll-mt-24 flex-col gap-4 p-4 shadow-lg lg:p-6",
+      "surface flex scroll-mt-24 flex-col gap-4 p-4 shadow-lg lg:p-6 dark:bg-neutral-900",
       striped && STRIPES_CLASS,
       wide && "sm:col-span-2",
     )}
