@@ -153,6 +153,7 @@
       var(--color-sky-200, #bae6fd)
     );
     --solid: var(--color-plain);
+    --menu-mix: light-dark(var(--color-black), var(--color-white));
     --control-highlight: light-dark(
       color-mix(
         in oklab,
@@ -357,6 +358,7 @@
     .info
   ) {
     --focus-color: var(--solid);
+    --menu-mix: var(--solid);
   }
 
   :root,

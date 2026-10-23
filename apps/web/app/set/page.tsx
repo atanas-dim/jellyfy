@@ -57,7 +57,7 @@ const Tile = ({
   <section
     id={id}
     className={twJoin(
-      "flex scroll-mt-24 flex-col gap-4",
+      "flex scroll-mt-24 flex-col gap-4 rounded-2xl border border-dashed p-4",
       wide && "sm:col-span-2",
     )}
   >

@@ -219,7 +219,7 @@
   .select select option:focus {
     background: color-mix(
       in oklab,
-      var(--solid) var(--percent-solid-menu-hover),
+      var(--menu-mix) var(--percent-solid-menu-hover),
       var(--color-menu)
     );
   }
@@ -227,7 +227,7 @@
   .select select option:checked {
     background: color-mix(
       in oklab,
-      var(--solid) var(--percent-solid-menu-selected),
+      var(--menu-mix) var(--percent-solid-menu-selected),
       var(--color-menu)
     );
   }

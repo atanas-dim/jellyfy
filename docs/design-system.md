@@ -32,7 +32,7 @@ Every object uses one role. Custom components use the same roles. Size and role 
 | Mark    | A small indicator: checkbox box, radio ring, toggle track, toggle thumb, range track, range thumb | Mark      | Mark colour. Control fill when selected or filled.                 | Control. The checkbox box uses the mark radius |
 | Overlay | Modal panel, select menu                                                                          | Thin      | Modal panel uses the surface fill. Select menu uses the menu tone. | Surface                                        |
 
-A modal panel follows the surface fill rules. A select menu uses the menu tone for its panel. A hovered option and a selected option mix the solid into that menu tone at the menu mixes.
+A modal panel follows the surface fill rules. A select menu uses the menu tone for its panel. A hovered option and a selected option mix the menu mix into that menu tone. A slot's menu mix is its solid. A select with no slot uses black in light and white in dark.
 
 The bump button, used to close a modal, is not a fifth thickness. It is a transparent control with the bump light, no fill, and no drop shadow.
 
@@ -77,7 +77,7 @@ The neutral ramp is Jellyfy's, from 50 through 950, even where a component uses 
 
 An object with no slot uses the base tones. A slot replaces the solid. The user applies a slot, including Error, with their own logic. Error does not add a second invalid style.
 
-Every slot, including Neutral, uses the same wash, control fill, content color, press light, and menu mixes. A component with no slot uses those same mixes, with the surface tone as its solid. No slot has a mix of its own.
+Every slot, including Neutral, uses the same wash, control fill, content color, press light, and menu mixes. A component with no slot uses those same mixes, with the surface tone as its solid. Its menu mix is black in light and white in dark. No slot has a mix of its own.
 
 ### Base tones
 
@@ -150,8 +150,10 @@ These mixes are internal. They are not part of the customization contract.
 
 | State                     | Mix into the menu tone |
 | ------------------------- | ---------------------- |
-| Hovered or focused option | 14% of the solid       |
-| Selected option           | 28% of the solid       |
+| Hovered or focused option | 14% of the menu mix    |
+| Selected option           | 28% of the menu mix    |
+
+A slot's menu mix is its solid. A select with no slot uses black in light and white in dark.
 
 Option text stays the plain content color.
 
