@@ -135,7 +135,7 @@ export const SiteFrame = ({ children }: { children: ReactNode }) => {
           ) : null}
         </div>
       </header>
-      <div className="w-full flex-1 px-4">{children}</div>
+      <div className="w-full flex-1 px-4 md:px-6">{children}</div>
       <SiteFooter />
     </div>
   );
