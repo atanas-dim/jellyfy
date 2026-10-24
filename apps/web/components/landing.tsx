@@ -134,7 +134,7 @@ export const Landing = () => {
               <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
                 Pick a color
               </p>
-              <div className="mt-3 flex flex-wrap gap-2">
+              <div className="mt-3 grid w-fit grid-cols-4 gap-2 sm:grid-cols-8">
                 {TONES.map((item) => (
                   <button
                     key={item.id}
