@@ -35,7 +35,7 @@ Import the whole library with `jellyfy/jellyfy.css`, or import the material, the
 - `packages/jellyfy` is the package that ships to npm.
 - `apps/web` is the product site, at [jellyfy.vercel.app](https://jellyfy.vercel.app).
 - `examples/` holds the HTML, React, and Vue proofs.
-- `docs/` holds the specification and the maintainer notes.
+- `docs/` holds the specification and the maintainer notes. `docs/git.md` is how a change reaches `main`.
 
 On the site:
 
