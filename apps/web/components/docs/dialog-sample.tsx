@@ -8,14 +8,14 @@ const open = (id: string) => {
 export const DialogSample = () => (
   <div className="flex flex-wrap gap-3">
     <button className="btn" type="button" onClick={() => open("docs-dialog")}>
-      <span>Open</span>
+      Open
     </button>
     <button
       className="btn tertiary"
       type="button"
       onClick={() => open("docs-dialog-tinted")}
     >
-      <span>Tinted</span>
+      Tinted
     </button>
     <dialog id="docs-dialog" className="modal">
       <div className="modal-panel">

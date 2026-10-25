@@ -59,7 +59,7 @@ export const Sample = ({ id }: { id: string }) => {
         <Row>
           {COLORS.map((color) => (
             <button key={color} className={twJoin("btn", color)} type="button">
-              <span>{NAME[color]}</span>
+              {NAME[color]}
             </button>
           ))}
         </Row>
@@ -68,13 +68,13 @@ export const Sample = ({ id }: { id: string }) => {
       return (
         <div className="flex flex-wrap items-end gap-3">
           <button className="btn btn-sm" type="button">
-            <span>Small</span>
+            Small
           </button>
           <button className="btn btn-md" type="button">
-            <span>Medium</span>
+            Medium
           </button>
           <button className="btn btn-lg" type="button">
-            <span>Large</span>
+            Large
           </button>
         </div>
       );
@@ -82,13 +82,11 @@ export const Sample = ({ id }: { id: string }) => {
       return (
         <Row>
           <button className="btn primary loading" type="button">
-            <span className="inline-flex items-center gap-2">
-              <LoaderIcon aria-hidden="true" className="size-4 animate-spin" />
-              Loading
-            </span>
+            <LoaderIcon aria-hidden="true" className="size-4 animate-spin" />
+            Loading
           </button>
           <button className="btn" type="button" disabled>
-            <span>Disabled</span>
+            Disabled
           </button>
         </Row>
       );

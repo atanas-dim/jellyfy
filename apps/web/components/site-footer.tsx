@@ -208,7 +208,7 @@ export const SiteFooter = ({ className }: { className?: string }) => {
   const year = new Date().getFullYear();
 
   return (
-    <div className="w-full px-2 pb-2 xl:pb-6">
+    <div className="w-full px-2 pb-2 md:px-4 md:pb-4 xl:pb-6">
       <footer
         className={twMerge(
           "surface relative mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 overflow-hidden rounded-4xl py-20 shadow-lg dark:text-neutral-100",

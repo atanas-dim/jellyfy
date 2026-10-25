@@ -1,6 +1,6 @@
 const ButtonPreview = () => (
   <button className="btn" type="button">
-    <span>Primary</span>
+    Primary
   </button>
 );
 

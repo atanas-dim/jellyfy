@@ -55,7 +55,7 @@ onMounted(() => {
           :class="['btn', color]"
           type="button"
         >
-          <span>{{ name[color] }}</span>
+          {{ name[color] }}
         </button>
       </div>
       <div class="row end">
@@ -65,15 +65,15 @@ onMounted(() => {
           :class="['btn', sizeClass('btn', size.id)]"
           type="button"
         >
-          <span>{{ size.label }}</span>
+          {{ size.label }}
         </button>
       </div>
       <div class="row">
         <button class="btn primary loading" type="button">
-          <span>Loading</span>
+          Loading
         </button>
         <button class="btn" type="button" disabled>
-          <span>Disabled</span>
+          Disabled
         </button>
       </div>
     </section>
@@ -455,7 +455,7 @@ onMounted(() => {
       <h2>Dialog</h2>
       <div class="row">
         <button class="btn" type="button" @click="openDialog('dialog-plain')">
-          <span>Plain</span>
+          Plain
         </button>
         <button
           v-for="color in colors"
@@ -464,7 +464,7 @@ onMounted(() => {
           type="button"
           @click="openDialog(`dialog-${color}`)"
         >
-          <span>{{ name[color] }}</span>
+          {{ name[color] }}
         </button>
       </div>
       <dialog id="dialog-plain" class="modal">

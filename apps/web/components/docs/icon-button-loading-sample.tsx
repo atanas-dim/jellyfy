@@ -21,7 +21,7 @@ export const IconButtonLoadingSample = () => {
         type="button"
         onClick={() => setLoading((current) => !current)}
       >
-        <span>{loading ? "Stop" : "Load"}</span>
+        {loading ? "Stop" : "Load"}
       </button>
     </div>
   );

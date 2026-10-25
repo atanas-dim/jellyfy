@@ -10,7 +10,7 @@ const DialogPreview = () => (
         if (dialog instanceof HTMLDialogElement) dialog.showModal();
       }}
     >
-      <span>Open dialog</span>
+      Open dialog
     </button>
     <dialog id="preview-dialog" className="modal">
       <div className="modal-panel">

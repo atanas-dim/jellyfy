@@ -98,29 +98,29 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       {
         id: "button-colors",
         title: "Colors",
-        code: `<button class="btn primary" type="button"><span>Primary</span></button>
-<button class="btn secondary" type="button"><span>Secondary</span></button>
-<button class="btn tertiary" type="button"><span>Tertiary</span></button>
-<button class="btn neutral" type="button"><span>Neutral</span></button>
-<button class="btn success" type="button"><span>Success</span></button>
-<button class="btn error" type="button"><span>Error</span></button>
-<button class="btn warning" type="button"><span>Warning</span></button>
-<button class="btn info" type="button"><span>Info</span></button>`,
+        code: `<button class="btn primary" type="button">Primary</button>
+<button class="btn secondary" type="button">Secondary</button>
+<button class="btn tertiary" type="button">Tertiary</button>
+<button class="btn neutral" type="button">Neutral</button>
+<button class="btn success" type="button">Success</button>
+<button class="btn error" type="button">Error</button>
+<button class="btn warning" type="button">Warning</button>
+<button class="btn info" type="button">Info</button>`,
       },
       {
         id: "button-sizes",
         title: "Sizes",
-        code: `<button class="btn btn-sm" type="button"><span>Small</span></button>
-<button class="btn btn-md" type="button"><span>Medium</span></button>
-<button class="btn btn-lg" type="button"><span>Large</span></button>`,
+        code: `<button class="btn btn-sm" type="button">Small</button>
+<button class="btn btn-md" type="button">Medium</button>
+<button class="btn btn-lg" type="button">Large</button>`,
         note: "Medium size (default)",
       },
       {
         id: "button-states",
         title: "Loading and disabled",
-        code: `<button class="btn primary loading" type="button"><span>Loading</span></button>
-<button class="btn" type="button" disabled><span>Disabled</span></button>`,
-        note: "Use the disabled attribute. Put the words in a span so the press lights stay behind them.",
+        code: `<button class="btn primary loading" type="button">Loading</button>
+<button class="btn" type="button" disabled>Disabled</button>`,
+        note: "Use the disabled attribute.",
       },
       {
         id: "button-loading",
@@ -133,20 +133,20 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   type="button"
   aria-busy={loading}
 >
-  <span>Save</span>
+  Save
 </button>
 <button
   className="btn"
   type="button"
   onClick={() => setLoading((current) => !current)}
 >
-  <span>{loading ? "Stop" : "Load"}</span>
+  {loading ? "Stop" : "Load"}
 </button>`,
         note: "Load adds loading on this button. Stop removes it. startJellyfy() sees the class change and puts the sweep on, then takes it off.",
       },
     ],
     notes: [
-      "A button with no color class uses the plain surface. A slot such as primary tints the fill. The label sits in a span so the press lights stay behind the words.",
+      "A button with no color class uses the plain surface. A slot such as primary tints the fill.",
     ],
   },
   {
@@ -208,7 +208,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
   type="button"
   onClick={() => setLoading((current) => !current)}
 >
-  <span>{loading ? "Stop" : "Load"}</span>
+  {loading ? "Stop" : "Load"}
 </button>`,
         note: "Load adds loading on this icon button. Stop removes it. startJellyfy() sees the class change and puts the orbit on, then takes it off. The icon stays.",
       },

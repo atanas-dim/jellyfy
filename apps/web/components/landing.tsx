@@ -164,21 +164,17 @@ export const Landing = () => {
               className="mt-8 flex flex-wrap items-center gap-3"
             >
               <Link href="/set" className="btn neutral">
-                <span className="inline-flex items-center gap-2">
-                  <LayoutGridIcon aria-hidden="true" className="size-4" />
-                  See the set
-                </span>
+                <LayoutGridIcon aria-hidden="true" className="size-4" />
+                See the set
               </Link>
               <Link href="/docs" className="btn secondary">
-                <span className="inline-flex items-center gap-2">
-                  <BookOpenIcon aria-hidden="true" className="size-4" />
-                  Docs
-                </span>
+                <BookOpenIcon aria-hidden="true" className="size-4" />
+                Docs
               </Link>
             </div>
           </div>
 
-          <div className="lg:pt-16">
+          <div className="md:pt-20 lg:pt-16">
             <div data-desk-in>
               <div className="relative">
                 <div
@@ -252,19 +248,15 @@ export const Landing = () => {
 
                   <div className="flex flex-wrap items-center gap-3">
                     <button type="button" className={twJoin("btn", tone)}>
-                      <span className="inline-flex items-center gap-2">
-                        <WavesIcon aria-hidden="true" className="size-4" />
-                        Release
-                      </span>
+                      <WavesIcon aria-hidden="true" className="size-4" />
+                      Release
                     </button>
                     <button type="button" className="btn secondary loading">
-                      <span className="inline-flex items-center gap-2">
-                        <LoaderIcon
-                          aria-hidden="true"
-                          className="size-4 animate-spin"
-                        />
-                        Drifting
-                      </span>
+                      <LoaderIcon
+                        aria-hidden="true"
+                        className="size-4 animate-spin"
+                      />
+                      Drifting
                     </button>
                   </div>
                 </section>
@@ -314,7 +306,7 @@ export const Landing = () => {
               type="button"
               className={twJoin("btn", item.id)}
             >
-              <span>{item.slot}</span>
+              {item.slot}
             </button>
           ))}
         </div>
@@ -388,10 +380,10 @@ startJellyfy();`}
                   ["--jelly-elevation" as string]: "0 0 0 0 transparent",
                 }}
               >
-                <span>Flat</span>
+                Flat
               </button>
               <button type="button" className="btn primary">
-                <span>Lifted</span>
+                Lifted
               </button>
             </div>
             <div>
@@ -406,7 +398,7 @@ startJellyfy();`}
           <article className="surface flex flex-col gap-4 p-5 shadow-lg">
             <div className="flex flex-col gap-3">
               <button type="button" className="btn secondary">
-                <span>Press</span>
+                Press
               </button>
               <label className="input info">
                 <input placeholder=" " />
@@ -439,16 +431,16 @@ startJellyfy();`}
           </div>
           <div className="flex flex-col items-start gap-5">
             <button type="button" className="btn primary w-full">
-              <span>Wide</span>
+              Wide
             </button>
             <button type="button" className="btn warning w-3/4 -rotate-3">
-              <span>Tilted</span>
+              Tilted
             </button>
             <button type="button" className="btn info w-1/2 opacity-60">
-              <span>Faded</span>
+              Faded
             </button>
             <button type="button" className="btn success w-40">
-              <span>Narrow</span>
+              Narrow
             </button>
           </div>
         </div>

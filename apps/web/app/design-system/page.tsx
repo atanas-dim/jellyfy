@@ -34,7 +34,7 @@ export default function DesignSystemPage() {
   );
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col pt-16 pb-10 lg:flex-row lg:items-start lg:gap-10">
+    <div className="mx-auto flex w-full max-w-7xl flex-col pt-16 pb-10 md:pt-20 lg:flex-row lg:items-start lg:gap-10">
       <Contents
         groups={[
           {

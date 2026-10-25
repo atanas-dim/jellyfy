@@ -845,25 +845,23 @@ const ComponentSamples = () => (
           </figcaption>
           <div className="flex flex-wrap items-end gap-3">
             <button className="btn btn-sm primary" type="button">
-              <span>Small</span>
+              Small
             </button>
             <button className="btn btn-md primary" type="button">
-              <span>Medium</span>
+              Medium
             </button>
             <button className="btn btn-lg primary" type="button">
-              <span>Large</span>
+              Large
             </button>
             <button className="btn primary" type="button" disabled>
-              <span>Disabled</span>
+              Disabled
             </button>
             <button className="btn primary loading" type="button">
-              <span className="inline-flex items-center gap-2">
-                <LoaderIcon
-                  aria-hidden="true"
-                  className="size-4 animate-spin"
-                />
-                Loading
-              </span>
+              <LoaderIcon
+                aria-hidden="true"
+                className="size-4 animate-spin"
+              />
+              Loading
             </button>
           </div>
         </figure>

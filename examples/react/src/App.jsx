@@ -108,7 +108,7 @@ export default function App() {
         <div className="flex flex-wrap items-center gap-3">
           {COLORS.map((color) => (
             <button key={color} className={`btn ${color}`} type="button">
-              <span>{NAME[color]}</span>
+              {NAME[color]}
             </button>
           ))}
         </div>
@@ -119,16 +119,16 @@ export default function App() {
               className={`btn ${sizeClass("btn", size.id)}`}
               type="button"
             >
-              <span>{size.label}</span>
+              {size.label}
             </button>
           ))}
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <button className="btn primary loading" type="button">
-            <span>Loading</span>
+            Loading
           </button>
           <button className="btn" type="button" disabled>
-            <span>Disabled</span>
+            Disabled
           </button>
         </div>
       </Section>
@@ -486,7 +486,7 @@ export default function App() {
             type="button"
             onClick={() => openDialog("dialog-plain")}
           >
-            <span>Plain</span>
+            Plain
           </button>
           {COLORS.map((color) => (
             <button
@@ -495,7 +495,7 @@ export default function App() {
               type="button"
               onClick={() => openDialog(`dialog-${color}`)}
             >
-              <span>{NAME[color]}</span>
+              {NAME[color]}
             </button>
           ))}
         </div>

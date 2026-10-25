@@ -39,15 +39,11 @@
       box-shadow 300ms ease-out;
   }
 
-  .btn > span {
-    position: relative;
-    z-index: 1;
-  }
-
   .btn::before,
   .btn::after {
     content: "";
     position: absolute;
+    z-index: -1;
     left: 50%;
     width: 90%;
     border-radius: 999px;

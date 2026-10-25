@@ -83,8 +83,8 @@ export default function SetPage() {
   const [striped, setStriped] = useState(false);
 
   return (
-    <main className="w-full pt-16">
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-x-8 gap-y-12 px-6 py-12 sm:grid-cols-2 sm:px-10 xl:grid-cols-3">
+    <main className="w-full pt-16 md:pt-20">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-x-8 gap-y-12 py-12 sm:grid-cols-2 sm:px-10 xl:grid-cols-3">
         <StripeSwitch
           className="sm:col-span-2 xl:col-span-3"
           checked={striped}
@@ -98,7 +98,7 @@ export default function SetPage() {
                 className={twJoin("btn", color)}
                 type="button"
               >
-                <span>{NAME[color]}</span>
+                {NAME[color]}
               </button>
             ))}
           </div>
@@ -109,22 +109,17 @@ export default function SetPage() {
                 className={twJoin("btn", sizeClass("btn", size))}
                 type="button"
               >
-                <span>{SIZE_NAME[size]}</span>
+                {SIZE_NAME[size]}
               </button>
             ))}
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <button className="btn primary loading" type="button">
-              <span className="inline-flex items-center gap-2">
-                <LoaderIcon
-                  aria-hidden="true"
-                  className="size-4 animate-spin"
-                />
-                Loading
-              </span>
+              <LoaderIcon aria-hidden="true" className="size-4 animate-spin" />
+              Loading
             </button>
             <button className="btn" type="button" disabled>
-              <span>Disabled</span>
+              Disabled
             </button>
           </div>
         </Tile>
@@ -478,14 +473,14 @@ export default function SetPage() {
               type="button"
               onClick={() => openDialog("plain-dialog")}
             >
-              <span>Open</span>
+              Open
             </button>
             <button
               className="btn tertiary"
               type="button"
               onClick={() => openDialog("tinted-dialog")}
             >
-              <span>Tinted</span>
+              Tinted
             </button>
           </div>
           <dialog id="plain-dialog" className="modal">

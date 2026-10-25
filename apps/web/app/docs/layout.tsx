@@ -5,7 +5,7 @@ import { COMPONENT_DOCS, GUIDE_LINKS } from "@/resources/component-docs";
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col pt-16 pb-10 lg:flex-row lg:items-start lg:gap-10">
+    <div className="mx-auto flex w-full max-w-7xl flex-col pt-16 pb-10 md:pt-20 lg:flex-row lg:items-start lg:gap-10">
       <Contents
         groups={[
           { title: "Getting started", items: [...GUIDE_LINKS] },

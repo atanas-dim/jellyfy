@@ -12,14 +12,14 @@ export const ButtonLoadingSample = () => {
         type="button"
         aria-busy={loading}
       >
-        <span>Save</span>
+        Save
       </button>
       <button
         className="btn"
         type="button"
         onClick={() => setLoading((current) => !current)}
       >
-        <span>{loading ? "Stop" : "Load"}</span>
+        {loading ? "Stop" : "Load"}
       </button>
     </div>
   );
