@@ -67,6 +67,7 @@ export default async function ComponentDocPage({ params }: DocPageProps) {
           title={example.title}
           code={example.code}
           note={example.note}
+          lang={example.lang}
         >
           <Sample id={example.id} />
         </Example>

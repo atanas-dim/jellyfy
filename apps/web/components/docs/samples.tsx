@@ -5,11 +5,14 @@ import {
   PlusIcon,
   SearchIcon,
   SendIcon,
+  XIcon,
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { twJoin } from "tailwind-merge";
 
+import { ButtonLoadingSample } from "./button-loading-sample";
 import { DialogSample } from "./dialog-sample";
+import { IconButtonLoadingSample } from "./icon-button-loading-sample";
 
 const COLORS = [
   "primary",
@@ -89,6 +92,8 @@ export const Sample = ({ id }: { id: string }) => {
           </button>
         </Row>
       );
+    case "button-loading":
+      return <ButtonLoadingSample />;
     case "icon-colors":
       return (
         <Row>
@@ -115,6 +120,28 @@ export const Sample = ({ id }: { id: string }) => {
           </button>
           <button className="btn-icon btn-lg" type="button" aria-label="Large">
             <Mark />
+          </button>
+        </div>
+      );
+    case "icon-loading":
+      return <IconButtonLoadingSample />;
+    case "bump-basic":
+      return (
+        <button className="btn-bump" type="button" aria-label="Close">
+          <XIcon aria-hidden="true" />
+        </button>
+      );
+    case "bump-sizes":
+      return (
+        <div className="flex flex-wrap items-end gap-3">
+          <button className="btn-bump btn-sm" type="button" aria-label="Small">
+            <XIcon aria-hidden="true" />
+          </button>
+          <button className="btn-bump btn-md" type="button" aria-label="Medium">
+            <XIcon aria-hidden="true" />
+          </button>
+          <button className="btn-bump btn-lg" type="button" aria-label="Large">
+            <XIcon aria-hidden="true" />
           </button>
         </div>
       );

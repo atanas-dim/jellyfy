@@ -9,6 +9,7 @@ export type DocExample = {
   title: string;
   code: string;
   note?: string;
+  lang?: string;
 };
 
 export type ComponentDoc = {
@@ -121,6 +122,28 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
 <button class="btn" type="button" disabled><span>Disabled</span></button>`,
         note: "Use the disabled attribute. Put the words in a span so the press lights stay behind them.",
       },
+      {
+        id: "button-loading",
+        title: "Loading from state",
+        lang: "tsx",
+        code: `const [loading, setLoading] = useState(false);
+
+<button
+  className={loading ? "btn primary loading" : "btn primary"}
+  type="button"
+  aria-busy={loading}
+>
+  <span>Save</span>
+</button>
+<button
+  className="btn"
+  type="button"
+  onClick={() => setLoading((current) => !current)}
+>
+  <span>{loading ? "Stop" : "Load"}</span>
+</button>`,
+        note: "Load adds loading on this button. Stop removes it. startJellyfy() sees the class change and puts the sweep on, then takes it off.",
+      },
     ],
     notes: [
       "A button with no color class uses the plain surface. A slot such as primary tints the fill. The label sits in a span so the press lights stay behind the words.",
@@ -163,6 +186,31 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         code: `<button class="btn-icon btn-sm" type="button" aria-label="Add small"></button>
 <button class="btn-icon btn-md" type="button" aria-label="Add"></button>
 <button class="btn-icon btn-lg" type="button" aria-label="Add large"></button>`,
+      },
+      {
+        id: "icon-loading",
+        title: "Loading from state",
+        lang: "tsx",
+        code: `const [loading, setLoading] = useState(false);
+
+<button
+  className={loading ? "btn-icon primary loading" : "btn-icon primary"}
+  type="button"
+  aria-label="Add"
+  aria-busy={loading}
+>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <path d="M12 5v14M5 12h14" />
+  </svg>
+</button>
+<button
+  className="btn"
+  type="button"
+  onClick={() => setLoading((current) => !current)}
+>
+  <span>{loading ? "Stop" : "Load"}</span>
+</button>`,
+        note: "Load adds loading on this icon button. Stop removes it. startJellyfy() sees the class change and puts the orbit on, then takes it off. The icon stays.",
       },
     ],
     notes: [],

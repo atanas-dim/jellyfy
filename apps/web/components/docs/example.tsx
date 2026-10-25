@@ -6,11 +6,13 @@ export const Example = async ({
   title,
   code,
   note,
+  lang,
   children,
 }: {
   title: string;
   code: string;
   note?: string;
+  lang?: string;
   children: ReactNode;
 }) => (
   <section className="mt-12">
@@ -21,6 +23,6 @@ export const Example = async ({
       </p>
     ) : null}
     <div className="surface mt-4 p-6">{children}</div>
-    <CodeBlock code={code} />
+    <CodeBlock code={code} lang={lang} />
   </section>
 );
