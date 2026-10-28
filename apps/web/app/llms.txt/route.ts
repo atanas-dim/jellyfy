@@ -18,6 +18,7 @@ export function GET() {
     "## Site",
     `- [Home](${absoluteUrl("/")}): ${site.description}`,
     `- [Set](${absoluteUrl("/set")}): Every control, color, and size.`,
+    `- [Design system](${absoluteUrl("/design-system")}): The specification.`,
     "",
     "## Docs",
     ...GUIDE_LINKS.map(

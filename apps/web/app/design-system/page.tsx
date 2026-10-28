@@ -7,7 +7,7 @@ import { readSpec } from "@/utils/read-spec";
 
 export const metadata: Metadata = {
   title: "Design system",
-  robots: { index: false, follow: false },
+  alternates: { canonical: "/design-system" },
 };
 
 const SHOWN = [

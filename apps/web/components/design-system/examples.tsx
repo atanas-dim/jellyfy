@@ -395,7 +395,7 @@ const TYPE: {
   },
   {
     label: "Field label, resting",
-    text: "Email",
+    text: "Name",
     style: {
       fontSize: "1rem",
       fontWeight: 400,
@@ -406,7 +406,7 @@ const TYPE: {
   },
   {
     label: "Field label, floated",
-    text: "Email",
+    text: "Name",
     style: {
       fontSize: "10px",
       fontWeight: 500,
@@ -529,7 +529,7 @@ const SpacingSamples = () => (
               lineHeight: 1,
             }}
           >
-            Email
+            Name
           </span>
         </div>
       </div>
@@ -857,10 +857,7 @@ const ComponentSamples = () => (
               Disabled
             </button>
             <button className="btn primary loading" type="button">
-              <LoaderIcon
-                aria-hidden="true"
-                className="size-4 animate-spin"
-              />
+              <LoaderIcon aria-hidden="true" className="size-4 animate-spin" />
               Loading
             </button>
           </div>
@@ -920,7 +917,11 @@ const ComponentSamples = () => (
             >
               <Plus size="1rem" />
             </button>
-            <button className="btn-bump btn-md" type="button" aria-label="Medium">
+            <button
+              className="btn-bump btn-md"
+              type="button"
+              aria-label="Medium"
+            >
               <Plus size="1.25rem" />
             </button>
             <button
@@ -946,15 +947,15 @@ const ComponentSamples = () => (
           </figcaption>
           <div className="flex w-full flex-col gap-3">
             <label className="input input-sm primary">
-              <input placeholder=" " defaultValue="ada@jellyfy.dev" />
+              <input placeholder=" " defaultValue="Moon jelly" />
               <span>Small</span>
             </label>
             <label className="input primary">
-              <input placeholder=" " defaultValue="ada@jellyfy.dev" />
+              <input placeholder=" " defaultValue="Moon jelly" />
               <span>Medium</span>
             </label>
             <label className="input input-lg primary">
-              <input placeholder=" " defaultValue="ada@jellyfy.dev" />
+              <input placeholder=" " defaultValue="Moon jelly" />
               <span>Large</span>
             </label>
             <label className="input primary">
@@ -977,7 +978,7 @@ const ComponentSamples = () => (
               <span>Search</span>
             </label>
             <label className="input primary">
-              <input placeholder=" " defaultValue="ada@jellyfy.dev" disabled />
+              <input placeholder=" " defaultValue="Moon jelly" disabled />
               <span>Disabled</span>
             </label>
           </div>

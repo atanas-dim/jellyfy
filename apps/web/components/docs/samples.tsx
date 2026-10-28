@@ -158,7 +158,7 @@ export const Sample = ({ id }: { id: string }) => {
       return (
         <label className="input max-w-sm">
           <input placeholder=" " />
-          <span>Email</span>
+          <span>Name</span>
         </label>
       );
     case "input-sizes":
@@ -196,9 +196,9 @@ export const Sample = ({ id }: { id: string }) => {
         <div className="max-w-sm">
           <label className="input error">
             <input placeholder=" " />
-            <span>Email</span>
+            <span>Name</span>
           </label>
-          <p className="message">Use a work address.</p>
+          <p className="message">A short note.</p>
         </div>
       );
     case "message-colors":

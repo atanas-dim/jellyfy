@@ -279,7 +279,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         title: "Field",
         code: `<label class="input">
   <input placeholder=" ">
-  <span>Email</span>
+  <span>Name</span>
 </label>`,
         note: "The placeholder is a single space. That is how the label knows the field is empty. The span is the label.",
       },
@@ -317,9 +317,9 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         title: "With a message",
         code: `<label class="input error">
   <input placeholder=" ">
-  <span>Email</span>
+  <span>Name</span>
 </label>
-<p class="message">Use a work address.</p>`,
+<p class="message">A short note.</p>`,
       },
     ],
     notes: [
