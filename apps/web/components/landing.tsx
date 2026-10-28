@@ -38,7 +38,6 @@ export const Landing = () => {
   useLayoutEffect(() => {
     const root = page.current;
     if (!root) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
     let alive = true;
@@ -126,31 +125,31 @@ export const Landing = () => {
           <div className="max-w-xl">
             <p
               data-hero-item
-              className="text-xs font-medium tracking-[0.22em] text-neutral-500 uppercase opacity-0 sm:text-sm dark:text-neutral-400"
+              className="text-xs font-medium tracking-[0.22em] text-neutral-500 uppercase sm:text-sm dark:text-neutral-400"
             >
               Eight colors, one material
             </p>
             <h1 className="mt-4 text-4xl leading-none font-bold tracking-tight sm:text-6xl xl:text-7xl">
               <span className="block overflow-hidden py-0.5">
-                <span data-line className="block opacity-0">
+                <span data-line className="block">
                   Controls with
                 </span>
               </span>
               <span className="block overflow-hidden py-0.5">
-                <span data-line className="block opacity-0">
+                <span data-line className="block">
                   a little drift
                 </span>
               </span>
             </h1>
             <p
               data-hero-item
-              className="mt-4 max-w-md text-base leading-6 text-neutral-600 opacity-0 sm:text-lg sm:leading-7 dark:text-neutral-300"
+              className="mt-4 max-w-md text-base leading-6 text-neutral-600 sm:text-lg sm:leading-7 dark:text-neutral-300"
             >
               A color you can press, and a control that gives. Jellyfy is CSS
               for those controls. Add a class and build.
             </p>
 
-            <div data-hero-item className="mt-8 opacity-0">
+            <div data-hero-item className="mt-8">
               <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
                 Pick a color
               </p>
@@ -181,7 +180,7 @@ export const Landing = () => {
 
             <div
               data-hero-item
-              className="mt-8 flex flex-wrap items-center gap-3 opacity-0"
+              className="mt-8 flex flex-wrap items-center gap-3"
             >
               <Link href="/set" className="btn neutral">
                 <LayoutGridIcon aria-hidden="true" className="size-4" />
@@ -195,7 +194,7 @@ export const Landing = () => {
           </div>
 
           <div className="md:pt-20 lg:pt-16">
-            <div data-desk-in className="opacity-0">
+            <div data-desk-in className="">
               <div className="relative">
                 <div
                   data-float
@@ -307,7 +306,7 @@ export const Landing = () => {
       </section>
 
       <section className="w-full py-24 sm:px-10 sm:py-32">
-        <div data-rise className="max-w-xl opacity-0">
+        <div data-rise className="max-w-xl">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Add a class
           </h2>
@@ -319,10 +318,7 @@ export const Landing = () => {
             That call runs the press, the loading lights, and the slider fill.
           </p>
         </div>
-        <div
-          data-rise
-          className="mt-10 grid grid-cols-2 gap-3 opacity-0 lg:grid-cols-4"
-        >
+        <div data-rise className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
           {TONES.map((item) => (
             <button
               key={item.id}
@@ -336,7 +332,7 @@ export const Landing = () => {
       </section>
 
       <section className="w-full py-24 sm:px-10 sm:py-32">
-        <div data-rise className="max-w-xl opacity-0">
+        <div data-rise className="max-w-xl">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Install
           </h2>
@@ -346,7 +342,7 @@ export const Landing = () => {
             the build.
           </p>
         </div>
-        <div data-rise className="mt-10 grid gap-4 opacity-0 lg:grid-cols-3">
+        <div data-rise className="mt-10 grid gap-4 lg:grid-cols-3">
           <pre className="surface overflow-x-auto p-5 font-mono text-sm leading-7 shadow-lg">
             npm install jellyfy
           </pre>
@@ -361,7 +357,7 @@ startJellyfy();`}
         </div>
         <p
           data-rise
-          className="mt-6 text-sm leading-6 text-neutral-600 opacity-0 dark:text-neutral-300"
+          className="mt-6 text-sm leading-6 text-neutral-600 dark:text-neutral-300"
         >
           Without Tailwind, link <span className="font-mono">jellyfy.css</span>{" "}
           or import it from a bundler. The same classes apply.
@@ -369,7 +365,7 @@ startJellyfy();`}
       </section>
 
       <section className="w-full py-24 sm:px-10 sm:py-32">
-        <div data-rise className="w-full max-w-xl opacity-0">
+        <div data-rise className="w-full max-w-xl">
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             One material
           </h2>
@@ -378,7 +374,7 @@ startJellyfy();`}
             not flatten that difference.
           </p>
         </div>
-        <div data-rise className="mt-10 grid gap-4 opacity-0 sm:grid-cols-3">
+        <div data-rise className="mt-10 grid gap-4 sm:grid-cols-3">
           <article className="surface flex flex-col gap-4 p-5 shadow-lg">
             <div className="flex flex-col gap-3">
               <div className="primary thickness-surface h-10 rounded-2xl" />
@@ -442,10 +438,7 @@ startJellyfy();`}
       </section>
 
       <section className="w-full py-24 sm:px-10 sm:py-32">
-        <div
-          data-rise
-          className="grid items-center gap-10 opacity-0 lg:grid-cols-2"
-        >
+        <div data-rise className="grid items-center gap-10 lg:grid-cols-2">
           <div className="max-w-xl">
             <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
               With Tailwind, or without
@@ -475,7 +468,7 @@ startJellyfy();`}
       <section className="w-full py-24 sm:px-10 sm:py-32">
         <div
           data-rise
-          className="flex flex-wrap items-center justify-between gap-4 opacity-0"
+          className="flex flex-wrap items-center justify-between gap-4"
         >
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             The set
@@ -488,7 +481,7 @@ startJellyfy();`}
           </Link>
         </div>
         <div
-          className="mt-10 grid gap-4 opacity-0 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
           data-rise
         >
           {COMPONENT_LIST.map((component) => (
