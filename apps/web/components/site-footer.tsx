@@ -3,6 +3,8 @@
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
+import { JellyfyLogo } from "./jellyfy-logo";
+
 type FooterDisplayParagraph = string[];
 
 const BASE_FONT_SIZE = 100;
@@ -217,6 +219,9 @@ export const SiteFooter = ({ className }: { className?: string }) => {
       >
         <div className="mx-auto grid h-full w-full max-w-6xl grid-cols-1 gap-6 px-6 sm:px-10 md:grid-cols-2">
           <div className="flex w-full flex-col items-center md:items-start">
+            <div className="mb-4 flex size-12 items-center justify-center rounded-xl bg-neutral-950 text-white dark:bg-neutral-100 dark:text-neutral-800">
+              <JellyfyLogo className="h-9 w-auto" />
+            </div>
             <FooterDisplayText paragraphs={displayText} />
           </div>
           <div className="mt-auto flex w-full shrink-0 flex-col items-center text-sm font-normal md:w-auto md:items-end md:text-right">

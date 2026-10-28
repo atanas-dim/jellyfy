@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { type ReactNode, useEffect, useState } from "react";
 import { twJoin } from "tailwind-merge";
 
+import { JellyfyLogo } from "./jellyfy-logo";
 import { SiteFooter } from "./site-footer";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -61,12 +62,7 @@ export const SiteFrame = ({ children }: { children: ReactNode }) => {
                 "font-display inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-lg font-semibold tracking-tight",
               )}
             >
-              <span
-                aria-hidden="true"
-                className="mt-[3px] self-center font-[emoji] text-xl leading-none"
-              >
-                🪼
-              </span>
+              <JellyfyLogo className="h-6 w-auto shrink-0" />
               Jellyfy
             </Link>
             <button

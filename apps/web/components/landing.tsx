@@ -44,30 +44,43 @@ export const Landing = () => {
     let alive = true;
 
     const ctx = gsap.context(() => {
-      gsap.from("[data-line]", {
-        yPercent: 110,
-        duration: 1,
-        ease: "power4.out",
-        stagger: 0.12,
-      });
+      gsap.fromTo(
+        "[data-line]",
+        { opacity: 0, yPercent: 110 },
+        {
+          opacity: 1,
+          yPercent: 0,
+          duration: 1,
+          ease: "power4.out",
+          stagger: 0.12,
+        },
+      );
 
-      gsap.from("[data-hero-item]", {
-        autoAlpha: 0,
-        y: 22,
-        duration: 0.8,
-        stagger: 0.08,
-        delay: 0.22,
-        ease: "power3.out",
-      });
+      gsap.fromTo(
+        "[data-hero-item]",
+        { opacity: 0, y: 22 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.08,
+          delay: 0.22,
+          ease: "power3.out",
+        },
+      );
 
-      gsap.from("[data-desk-in]", {
-        autoAlpha: 0,
-        y: 42,
-        scale: 0.97,
-        duration: 1.05,
-        delay: 0.18,
-        ease: "power3.out",
-      });
+      gsap.fromTo(
+        "[data-desk-in]",
+        { opacity: 0, y: 42, scale: 0.97 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1.05,
+          delay: 0.18,
+          ease: "power3.out",
+        },
+      );
 
       gsap.to("[data-float]", {
         y: -12,
@@ -79,13 +92,20 @@ export const Landing = () => {
       });
 
       gsap.utils.toArray<HTMLElement>("[data-rise]").forEach((element) => {
-        gsap.from(element, {
-          autoAlpha: 0,
-          y: 32,
-          duration: 0.85,
-          ease: "power3.out",
-          scrollTrigger: { trigger: element, start: "top 90%" },
-        });
+        gsap.fromTo(
+          element,
+          { opacity: 0, y: 32 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 90%",
+            },
+          },
+        );
       });
     }, root);
 
@@ -100,8 +120,8 @@ export const Landing = () => {
   }, []);
 
   return (
-    <main ref={page}>
-      <section className="flex h-svh max-h-200 min-h-fit items-center py-16">
+    <main ref={page} className="pt-16 md:pt-20">
+      <section className="flex h-svh max-h-200 min-h-fit items-center py-8 md:py-16">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-16 py-6 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
           <div className="max-w-xl">
             <p

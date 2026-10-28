@@ -115,3 +115,11 @@ h6 {
   font-size: 0.875rem;
   line-height: 1.75;
 }
+
+/* Set landing reveal elements to opacity 0 to avoid flicker before gsap has started transition in */
+[data-line],
+[data-hero-item],
+[data-desk-in],
+[data-rise] {
+  opacity: 0;
+}
