@@ -18,7 +18,7 @@ const ratio = (value: string, fallback: number) => {
 };
 
 const FACE =
-  "relative flex w-full items-center justify-center overflow-hidden border text-sm font-semibold tracking-[0.04em] uppercase";
+  "relative isolate flex w-full items-center justify-center overflow-hidden border text-sm font-semibold tracking-[0.04em] uppercase";
 
 export const MotionFace = ({
   className,

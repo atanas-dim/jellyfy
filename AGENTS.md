@@ -19,6 +19,7 @@ Jellyfy is a pnpm workspace.
 - A panel used in more than one place is the `surface` class in `apps/web/app/globals.css`. It is the site fill and border. It is not the Jellyfy `card` class, which is the material panel. Add a Tailwind shadow, such as `shadow-lg`, only on the surfaces that should lift.
 - A directory uses kebab-case.
 - On the site, use strict TypeScript. Prefer `type` over `interface`. Do not use `any`. Type the props. Add an explicit return type on an exported function when the inference is unclear.
+- A site component is an `FC`. Its props type is `ComponentNameProps`.
 - Join class names with `twJoin` or `twMerge` from `tailwind-merge`.
 - Shared site CSS lives in `apps/web/app/globals.css`. A style that only one component needs stays with that component. Control CSS lives in `packages/jellyfy`.
 - A presentational icon on the site comes from `lucide-react`. The published package does not depend on Lucide. A loading demo on the site may show a Lucide loader. The package loading state is the lights in `index.js`.

@@ -104,8 +104,14 @@ h6 {
 .code-block pre {
   margin: 0;
   min-width: max-content;
+  min-height: 100%;
   overflow: visible !important;
   padding: 1.25rem !important;
+}
+
+.code-wrap pre {
+  min-width: 0;
+  white-space: pre-wrap;
 }
 
 .code-block code {

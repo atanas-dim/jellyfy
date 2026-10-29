@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-import { CodeBlock } from "./code-block";
+import { CodeBlock } from "@/components/code-block";
 
 export const Example = async ({
   title,

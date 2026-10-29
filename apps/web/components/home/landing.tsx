@@ -12,7 +12,13 @@ import {
   WavesIcon,
 } from "lucide-react";
 import Link from "next/link";
-import { useLayoutEffect, useRef, useState } from "react";
+import {
+  type FC,
+  type ReactNode,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { twJoin } from "tailwind-merge";
 
 import { COMPONENT_LIST } from "@/resources/components-registry";
@@ -30,7 +36,7 @@ const TONES = [
 
 type Tone = (typeof TONES)[number]["id"];
 
-export const Landing = () => {
+export const Landing: FC<{ install: ReactNode }> = ({ install }) => {
   const page = useRef<HTMLElement>(null);
   const [tone, setTone] = useState<Tone>("primary");
   const selected = TONES.find((item) => item.id === tone) ?? TONES[0];
@@ -101,7 +107,7 @@ export const Landing = () => {
             ease: "power3.out",
             scrollTrigger: {
               trigger: element,
-              start: "top 90%",
+              start: "top 93%",
             },
           },
         );
@@ -120,7 +126,7 @@ export const Landing = () => {
 
   return (
     <main ref={page} className="mx-auto w-full max-w-6xl">
-      <section className="flex h-svh max-h-200 min-h-fit items-center py-16">
+      <section className="flex h-svh max-h-175 min-h-fit items-center pt-16 pb-8 md:pt-32">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-16 py-6 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
           <div className="max-w-xl">
             <p
@@ -343,17 +349,7 @@ export const Landing = () => {
           </p>
         </div>
         <div data-rise className="mt-10 grid gap-4 lg:grid-cols-3">
-          <pre className="surface overflow-x-auto p-5 font-mono text-sm leading-7 shadow-lg">
-            npm install jellyfy
-          </pre>
-          <pre className="surface overflow-x-auto p-5 font-mono text-sm leading-7 shadow-lg">
-            {`@import "jellyfy/jellyfy.css";`}
-          </pre>
-          <pre className="surface overflow-x-auto p-5 font-mono text-sm leading-7 shadow-lg">
-            {`import { startJellyfy } from "jellyfy";
-
-startJellyfy();`}
-          </pre>
+          {install}
         </div>
         <p
           data-rise

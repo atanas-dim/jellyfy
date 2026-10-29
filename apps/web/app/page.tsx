@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-import { Landing } from "@/components/landing";
+import { InstallSnippets } from "@/components/home/install-snippets";
+import { Landing } from "@/components/home/landing";
 import { site } from "@/resources/site";
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Landing />
+      <Landing install={<InstallSnippets />} />
     </>
   );
 }

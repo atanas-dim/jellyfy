@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { CodeBlock } from "@/components/docs/code-block";
+import { CodeBlock } from "@/components/code-block";
 import { Pager } from "@/components/docs/pager";
 
 export const metadata: Metadata = {
