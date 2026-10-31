@@ -125,8 +125,8 @@ export const Landing: FC<{ install: ReactNode }> = ({ install }) => {
   }, []);
 
   return (
-    <main ref={page} className="mx-auto w-full max-w-6xl">
-      <section className="flex h-svh max-h-175 min-h-fit items-center pt-16 pb-8 md:pt-32">
+    <main ref={page} className="mx-auto w-full max-w-6xl pt-16 md:pt-20">
+      <section className="flex h-[calc(100svh-(--spacing(16)))] max-h-175 min-h-fit items-center pb-8 md:h-[calc(100svh-(--spacing(20)))]">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-16 py-6 sm:px-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(22rem,0.95fr)] lg:py-8">
           <div className="max-w-xl">
             <p
