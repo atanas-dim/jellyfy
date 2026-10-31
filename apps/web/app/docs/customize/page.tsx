@@ -129,7 +129,7 @@ export default function CustomizePage() {
         </li>
         <li>
           <code className="font-mono text-sm">--radius-control</code> is the
-          pill on buttons, the switch, the slider handle, and badges.{" "}
+          pill on buttons, the switch, the range thumb, and badges.{" "}
           <code className="font-mono text-sm">999px</code> keeps that corner
           fully round.
         </li>

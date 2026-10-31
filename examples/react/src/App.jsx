@@ -400,7 +400,7 @@ export default function App() {
         </label>
       </Section>
 
-      <Section title="Slider">
+      <Section title="Range slider">
         <div className="grid gap-4 sm:grid-cols-2">
           {COLORS.map((color) => (
             <Range

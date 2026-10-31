@@ -462,7 +462,7 @@ export const Sample = ({ id }: { id: string }) => {
           ))}
         </Row>
       );
-    case "slider-colors":
+    case "range-colors":
       return (
         <div className="grid gap-4 sm:grid-cols-2">
           {COLORS.map((color) => (
@@ -479,7 +479,7 @@ export const Sample = ({ id }: { id: string }) => {
           ))}
         </div>
       );
-    case "slider-basic":
+    case "range-basic":
       return (
         <label className="range primary max-w-sm">
           Volume
@@ -492,7 +492,7 @@ export const Sample = ({ id }: { id: string }) => {
           </span>
         </label>
       );
-    case "slider-sizes":
+    case "range-sizes":
       return (
         <div className="grid max-w-lg gap-4">
           <label className="range range-sm">

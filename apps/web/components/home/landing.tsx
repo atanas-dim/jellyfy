@@ -155,6 +155,20 @@ export const Landing: FC<{ install: ReactNode }> = ({ install }) => {
               for those controls. Add a class and build.
             </p>
 
+            <div
+              data-hero-item
+              className="mt-8 flex flex-wrap items-center gap-3"
+            >
+              <Link href="/set" className="btn neutral">
+                <LayoutGridIcon aria-hidden="true" className="size-4" />
+                See the set
+              </Link>
+              <Link href="/docs" className="btn secondary">
+                <BookOpenIcon aria-hidden="true" className="size-4" />
+                Docs
+              </Link>
+            </div>
+
             <div data-hero-item className="mt-8">
               <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">
                 Pick a color
@@ -183,20 +197,6 @@ export const Landing: FC<{ install: ReactNode }> = ({ install }) => {
                 {selected.slot}
               </p>
             </div>
-
-            <div
-              data-hero-item
-              className="mt-8 flex flex-wrap items-center gap-3"
-            >
-              <Link href="/set" className="btn neutral">
-                <LayoutGridIcon aria-hidden="true" className="size-4" />
-                See the set
-              </Link>
-              <Link href="/docs" className="btn secondary">
-                <BookOpenIcon aria-hidden="true" className="size-4" />
-                Docs
-              </Link>
-            </div>
           </div>
 
           <div className="md:pt-20 lg:pt-16">
@@ -205,7 +205,7 @@ export const Landing: FC<{ install: ReactNode }> = ({ install }) => {
                 <div
                   data-float
                   className={twJoin(
-                    "alert mb-4 lg:absolute lg:-top-10 lg:-left-8 lg:mb-0 lg:w-60",
+                    "alert mb-4 w-60 lg:absolute lg:-top-10 lg:-left-8 lg:mb-0",
                     tone,
                   )}
                 >
@@ -321,7 +321,7 @@ export const Landing: FC<{ install: ReactNode }> = ({ install }) => {
             <span className="font-mono text-base">btn</span> and a color such as{" "}
             <span className="font-mono text-base">primary</span>. Call{" "}
             <span className="font-mono text-base">startJellyfy()</span> once.
-            That call runs the press, the loading lights, and the slider fill.
+            That call runs the press, the loading lights, and the range fill.
           </p>
         </div>
         <div data-rise className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">

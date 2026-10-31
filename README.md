@@ -4,7 +4,7 @@ Soft controls from one material.
 
 A control looks poured, not painted. It is translucent, it carries a fine grain, and the edge is thick enough to catch light. Press it and it gives.
 
-Keep the element you already have. Add a class. Pick one of eight colors. Call `startJellyfy()` once. That call runs the press, the loading lights, and the slider fill.
+Keep the element you already have. Add a class. Pick one of eight colors. Call `startJellyfy()` once. That call runs the press, the loading lights, and the range fill.
 
 ## The material
 

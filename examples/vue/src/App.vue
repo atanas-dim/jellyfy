@@ -69,12 +69,8 @@ onMounted(() => {
         </button>
       </div>
       <div class="row">
-        <button class="btn primary loading" type="button">
-          Loading
-        </button>
-        <button class="btn" type="button" disabled>
-          Disabled
-        </button>
+        <button class="btn primary loading" type="button">Loading</button>
+        <button class="btn" type="button" disabled>Disabled</button>
       </div>
     </section>
 
@@ -354,7 +350,7 @@ onMounted(() => {
     </section>
 
     <section>
-      <h2>Slider</h2>
+      <h2>Range slider</h2>
       <div class="grid">
         <label v-for="color in colors" :key="color" :class="['range', color]">
           {{ name[color] }}

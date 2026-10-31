@@ -21,7 +21,7 @@ export default function InstallPage() {
         Import <code className="font-mono text-base">jellyfy.css</code> for
         every control, or import the component files you use.{" "}
         <code className="font-mono text-base">startJellyfy()</code> runs the
-        press and the loading lights, and it keeps a slider’s fill in step with
+        press and the loading lights, and it keeps the range fill in step with
         the input.
       </p>
 
@@ -109,9 +109,9 @@ export default function InstallPage() {
           <code className="font-mono text-sm">modal.css</code>, and{" "}
           <code className="font-mono text-sm">message.css</code> match those
           class names. The switch is{" "}
-          <code className="font-mono text-sm">toggle.css</code>. The slider is{" "}
-          <code className="font-mono text-sm">range.css</code>. The dialog is{" "}
-          <code className="font-mono text-sm">modal.css</code>.
+          <code className="font-mono text-sm">toggle.css</code>. The range
+          slider is <code className="font-mono text-sm">range.css</code>. The
+          dialog is <code className="font-mono text-sm">modal.css</code>.
         </li>
       </ul>
 

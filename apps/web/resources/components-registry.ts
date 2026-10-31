@@ -47,9 +47,9 @@ export const COMPONENTS: Record<ComponentSlug, ShowcaseComponent> = {
     name: "Switch",
     description: "On and off, with the same soft travel.",
   },
-  [ComponentSlug.Slider]: {
-    slug: ComponentSlug.Slider,
-    name: "Slider",
+  [ComponentSlug.Range]: {
+    slug: ComponentSlug.Range,
+    name: "Range slider",
     description: "Drag along a soft track. The fill is your color.",
   },
   [ComponentSlug.Alert]: {

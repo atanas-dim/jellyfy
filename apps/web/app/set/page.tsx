@@ -380,7 +380,7 @@ export default function SetPage() {
           </label>
         </Tile>
 
-        <Tile striped={striped} id="slider" title="Slider" wide>
+        <Tile striped={striped} id="range" title="Range slider" wide>
           <div className="grid gap-4 sm:grid-cols-2">
             {COLORS.map((color) => (
               <label key={color} className={twJoin("range", color)}>

@@ -156,7 +156,7 @@
   .toggle:has(:checked) .toggle-thumb {
     background-color: color-mix(
       in oklab,
-      var(--color-white) calc(var(--material-opacity) * 2),
+      var(--color-white) calc(var(--material-opacity) * 1.5),
       transparent
     );
   }

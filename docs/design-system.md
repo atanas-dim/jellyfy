@@ -169,7 +169,7 @@ Wash percentages, wash opacity, and the menu mixes are variables.
 
 ## 4. Material
 
-Every part of a checkbox, radio, switch, and slider is jelly. The radio bullet keeps the grain. Its color is at the material opacity. It has no blur and no thickness. Every other part has the grain, the blur, and its thickness.
+Every part of a checkbox, radio, switch, and range slider is jelly. The radio bullet keeps the grain. Its color is at the material opacity. It has no blur and no thickness. Every other part has the grain, the blur, and its thickness.
 
 ### Grain
 
@@ -197,7 +197,7 @@ The thick edge is Neutral 950. Dark uses a stronger opacity. The button's dark t
 | Control        | `inset 0 -16px 16px` | `inset 0 8px 16px` | Edge 50%, lip 10% | Edge 65% in Neutral 900, lip 12% | Button, icon button                                                                        |
 | Mark           | `inset 0 -2px 5px`   | `inset 0 1px 5px`  | Edge 35%, lip 10% | Edge 65%, lip 10%                | Checkbox box, radio ring, toggle track, toggle thumb, range track, range fill, range thumb |
 
-The track and the fill of a slider are both jelly. Only the color differs. The same is true of a switch track and thumb, and of a radio ring.
+The track and the fill of a range slider are both jelly. Only the color differs. The same is true of a switch track and thumb, and of a radio ring.
 
 ### Press light
 
@@ -389,7 +389,7 @@ Color, shadow, and outline changes take 300ms, eased out. The select chevron tur
 
 ### Implementation notes
 
-Squish runs on the painted face of the control, not on the label text and not on the invisible input. A press on the label of a checkbox, radio, switch, or slider triggers that face. The opt-in class is `squish`. The named constants are the total width change `8`, the height ratio `2/7`, the settle-width ratio `1/7`, the press `480ms`, the release `300ms`, and the peak at `0.42`. Scale on an axis is `1 + pixels / size` on that axis.
+Squish runs on the painted face of the control, not on the label text and not on the invisible input. A press on the label of a checkbox, radio, switch, or range slider triggers that face. The opt-in class is `squish`. The named constants are the total width change `8`, the height ratio `2/7`, the settle-width ratio `1/7`, the press `480ms`, the release `300ms`, and the peak at `0.42`. Scale on an axis is `1 + pixels / size` on that axis.
 
 Loading light and loading shade are variables that read `--color-white` and `--color-black`.
 
@@ -593,9 +593,9 @@ The off track uses the mark color. The resting thumb is Neutral 500 mixed at 55%
 
 ### Range
 
-A mark. The track, the fill, and the thumb are jelly: grain, blur, and mark thickness. Only the color differs. The fill is clipped to the track. With no slot, the track uses the mark color and the fill uses the plain content color, both at the material opacity. A slot sets the fill to the control fill. The thumb uses the fill's color. All three use the control radius.
+A range slider. It is a mark. The track, the fill, and the thumb are jelly: grain, blur, and mark thickness. Only the color differs. The fill is clipped to the track. With no slot, the track uses the mark color and the fill uses the plain content color, both at the material opacity. A slot sets the fill to the control fill. The thumb uses the fill's color. All three use the control radius.
 
-The thumb position and the fill width follow the current value between the minimum and the maximum.
+The track is the full width of the lane, so it lines up with the label. The thumb center travels from half a thumb in from the left to half a thumb in from the right. The fill ends at that center.
 
 |              | Small   | Medium  | Large  |
 | ------------ | ------- | ------- | ------ |
