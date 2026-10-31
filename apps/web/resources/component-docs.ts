@@ -645,15 +645,15 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
     notes: [],
   },
   {
-    slug: "slider",
-    name: "Slider",
-    description: "A soft track and a handle. The fill follows the input.",
+    slug: "range",
+    name: "Range slider",
+    description: "A soft track and a thumb. The fill follows the input.",
     classes: [
       { name: "range", kind: "Component", note: "The label." },
       {
         name: "range-box",
         kind: "Part",
-        note: "The positioning box for the track and the handle.",
+        note: "The positioning box for the track and the thumb.",
       },
       { name: "range-track", kind: "Part", note: "The track." },
       {
@@ -661,13 +661,13 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         kind: "Part",
         note: "The filled part. The script sets its width from the input.",
       },
-      { name: "range-thumb", kind: "Part", note: "The handle." },
+      { name: "range-thumb", kind: "Part", note: "The thumb." },
       ...sizes("range").slice(1),
       ...color(),
     ],
     examples: [
       {
-        id: "slider-basic",
+        id: "range-basic",
         title: "Track",
         code: `<label class="range primary">
   Volume
@@ -677,10 +677,10 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
     <input type="range" value="62">
   </span>
 </label>`,
-        note: "startJellyfy() reads the input and moves the fill and the handle. Without that call, the fill stays put.",
+        note: "startJellyfy() reads the input and moves the fill and the thumb. Without that call, the fill stays put.",
       },
       {
-        id: "slider-colors",
+        id: "range-colors",
         title: "Colors",
         code: hues(
           (name, label) => `<label class="range ${name}">
@@ -694,7 +694,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
         ),
       },
       {
-        id: "slider-sizes",
+        id: "range-sizes",
         title: "Sizes",
         code: `<label class="range range-lg">
   Large
@@ -707,7 +707,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       },
     ],
     notes: [
-      "The track and the handle both sit on the small drop shadow. The track is a jelly surface, not only the handle.",
+      "The track and the thumb both sit on the small drop shadow. The track is a jelly surface, not only the thumb.",
     ],
   },
   {
@@ -791,7 +791,7 @@ export const COMPONENT_DOCS: ComponentDoc[] = [
       },
     ],
     notes: [
-      "A badge uses the small drop shadow, the same step as a mark or a slider handle.",
+      "A badge uses the small drop shadow, the same step as a mark or a range thumb.",
     ],
   },
   {
@@ -946,7 +946,7 @@ export const COMPONENT_STYLESHEETS: Record<string, string> = {
   checkbox: "checkbox.css",
   radio: "radio.css",
   switch: "toggle.css",
-  slider: "range.css",
+  range: "range.css",
   alert: "alert.css",
   badge: "badge.css",
   card: "card.css",

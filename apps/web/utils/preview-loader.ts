@@ -14,7 +14,7 @@ const PREVIEW_COMPONENTS = {
     import("@/components/previews/checkbox-preview"),
   [ComponentSlug.Radio]: () => import("@/components/previews/radio-preview"),
   [ComponentSlug.Switch]: () => import("@/components/previews/switch-preview"),
-  [ComponentSlug.Slider]: () => import("@/components/previews/slider-preview"),
+  [ComponentSlug.Range]: () => import("@/components/previews/range-preview"),
   [ComponentSlug.Alert]: () => import("@/components/previews/alert-preview"),
   [ComponentSlug.Badge]: () => import("@/components/previews/badge-preview"),
   [ComponentSlug.Card]: () => import("@/components/previews/card-preview"),

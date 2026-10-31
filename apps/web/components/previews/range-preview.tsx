@@ -1,4 +1,4 @@
-const SliderPreview = () => (
+const RangePreview = () => (
   <label className="range">
     Volume
     <span className="range-box">
@@ -11,4 +11,4 @@ const SliderPreview = () => (
   </label>
 );
 
-export default SliderPreview;
+export default RangePreview;

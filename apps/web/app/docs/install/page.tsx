@@ -21,7 +21,7 @@ export default function InstallPage() {
         Import <code className="font-mono text-base">jellyfy.css</code> for
         every control, or import the component files you use.{" "}
         <code className="font-mono text-base">startJellyfy()</code> runs the
-        press and the loading lights, and it keeps a slider’s fill in step with
+        press and the loading lights, and it keeps the range fill in step with
         the input.
       </p>
 
@@ -109,9 +109,9 @@ export default function InstallPage() {
           <code className="font-mono text-sm">modal.css</code>, and{" "}
           <code className="font-mono text-sm">message.css</code> match those
           class names. The switch is{" "}
-          <code className="font-mono text-sm">toggle.css</code>. The slider is{" "}
-          <code className="font-mono text-sm">range.css</code>. The dialog is{" "}
-          <code className="font-mono text-sm">modal.css</code>.
+          <code className="font-mono text-sm">toggle.css</code>. The range
+          slider is <code className="font-mono text-sm">range.css</code>. The
+          dialog is <code className="font-mono text-sm">modal.css</code>.
         </li>
       </ul>
 
@@ -211,6 +211,13 @@ export default function App() {
 <div class="thickness-control">A control</div>
 <div class="thickness-mark">A mark</div>`}
       />
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
+        Add <code className="font-mono text-sm">noise</code> for the grain
+        alone. Put it on your own element the way you put{" "}
+        <code className="font-mono text-sm">squish</code> on it for the press,
+        or a thickness class on it for the edge.
+      </p>
+      <CodeBlock lang="html" code={`<div class="noise">Grain only</div>`} />
 
       <Pager href="/docs/install" />
     </article>

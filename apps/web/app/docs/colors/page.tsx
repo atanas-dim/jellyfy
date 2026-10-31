@@ -71,7 +71,7 @@ export default function ColorsPage() {
       </p>
       <p className="mt-4 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
         A disabled control replaces its fill and its text with the disabled
-        colors. It does not keep its slot. The slider track keeps its own color.
+        colors. It does not keep its slot. The range track keeps its own color.
         A disabled bump button has no fill. It fades, and its icon stays the
         plain content color.
       </p>

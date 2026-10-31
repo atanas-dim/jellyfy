@@ -39,20 +39,19 @@
 
   .range-box {
     position: relative;
+    display: flex;
+    align-items: center;
     height: var(--range-box-height, 2rem);
   }
 
   .range-track {
     --jelly-thickness: var(--thickness-mark);
     --jelly-elevation: var(--elevation-mark);
-    position: absolute;
-    top: 50%;
-    right: calc(var(--range-thumb-size) / 2);
-    left: calc(var(--range-thumb-size) / 2);
+    position: relative;
+    width: 100%;
     height: var(--range-track-height, 0.75rem);
     overflow: hidden;
     border-radius: var(--radius-control);
-    transform: translateY(-50%);
   }
 
   .range-fill {
@@ -61,7 +60,10 @@
     position: absolute;
     inset-block: 0;
     left: 0;
-    width: calc(var(--range-percent) * 100%);
+    width: calc(
+      var(--range-thumb-size) / 2 + var(--range-percent) *
+        (100% - var(--range-thumb-size))
+    );
     border-radius: inherit;
   }
 
@@ -71,7 +73,8 @@
     position: absolute;
     top: 50%;
     left: calc(
-      var(--range-thumb-size) / 2 + var(--range-percent) * (100% - var(--range-thumb-size))
+      var(--range-thumb-size) / 2 + var(--range-percent) *
+        (100% - var(--range-thumb-size))
     );
     width: var(--range-thumb-size);
     height: var(--range-thumb-size);

@@ -7,7 +7,7 @@ export enum ComponentSlug {
   Checkbox = "checkbox",
   Radio = "radio",
   Switch = "switch",
-  Slider = "slider",
+  Range = "range",
   Alert = "alert",
   Badge = "badge",
   Card = "card",

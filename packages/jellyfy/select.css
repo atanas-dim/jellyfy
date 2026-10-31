@@ -14,6 +14,8 @@
     line-height: 1.5;
     color: var(--color-plain-content);
     cursor: pointer;
+    outline: 1px solid transparent;
+    outline-offset: 2px;
     transition:
       background-color 300ms ease-out,
       box-shadow 300ms ease-out,
@@ -136,8 +138,7 @@
   .select:focus-within {
     --jelly-thickness: var(--thickness-field-focus);
     --jelly-focus: 0 0 0 2px var(--focus-gap);
-    outline: 1px solid var(--focus-color);
-    outline-offset: 2px;
+    outline-color: var(--focus-color);
   }
 
   .select:focus-within::before,
