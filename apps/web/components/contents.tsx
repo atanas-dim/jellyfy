@@ -21,8 +21,8 @@ const itemClass = (active: boolean) =>
   twJoin(
     "block rounded-lg px-3 py-1.5 text-sm",
     active
-      ? "text-neutral-950 underline decoration-neutral-950 underline-offset-4 dark:text-neutral-100 dark:decoration-neutral-100"
-      : "text-neutral-600 hover:text-neutral-950 dark:text-neutral-300 dark:hover:text-neutral-100",
+      ? "text-neutral-900 underline decoration-neutral-950 underline-offset-4 dark:text-neutral-100 dark:decoration-neutral-100"
+      : "text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-neutral-100",
   );
 
 const Groups = ({

@@ -49,7 +49,7 @@ export const ThemeFrame = ({
     <div
       className={twJoin(
         theme === "light"
-          ? "light rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-950"
+          ? "light rounded-2xl border border-neutral-200 bg-white p-6 text-neutral-900"
           : "dark rounded-2xl border border-neutral-700 bg-neutral-900 p-6 text-neutral-100",
         striped && STRIPES_CLASS,
       )}

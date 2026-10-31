@@ -23,8 +23,8 @@ const linkClass = (active: boolean) =>
   twJoin(
     "text-sm font-medium",
     active
-      ? "text-neutral-950 dark:text-neutral-100"
-      : "text-neutral-500 hover:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-100",
+      ? "text-neutral-900 dark:text-neutral-100"
+      : "text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100",
   );
 
 export const SiteFrame = ({ children }: { children: ReactNode }) => {
@@ -50,7 +50,7 @@ export const SiteFrame = ({ children }: { children: ReactNode }) => {
     pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <div className="noise flex min-h-full flex-1 flex-col text-neutral-950 dark:text-neutral-100">
+    <div className="noise flex min-h-full flex-1 flex-col text-neutral-900 dark:text-neutral-100">
       <header className="fixed top-0 right-0 left-0 z-30 px-2 pt-2 md:px-4 md:pt-4">
         <div className="mx-auto w-full max-w-7xl">
           <div className="flex items-center justify-between gap-3">

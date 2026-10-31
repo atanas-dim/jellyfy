@@ -30,7 +30,7 @@ export default function DocsPage() {
         <li>
           <Link
             href="/docs/install"
-            className="font-medium text-neutral-950 underline decoration-neutral-300 underline-offset-4 dark:text-neutral-100"
+            className="font-medium text-neutral-900 underline decoration-neutral-300 underline-offset-4 dark:text-neutral-100"
           >
             Install
           </Link>{" "}
@@ -42,7 +42,7 @@ export default function DocsPage() {
           Read{" "}
           <Link
             href="/docs/colors"
-            className="font-medium text-neutral-950 underline decoration-neutral-300 underline-offset-4 dark:text-neutral-100"
+            className="font-medium text-neutral-900 underline decoration-neutral-300 underline-offset-4 dark:text-neutral-100"
           >
             Colors
           </Link>{" "}
@@ -52,7 +52,7 @@ export default function DocsPage() {
           Open{" "}
           <Link
             href="/docs/button"
-            className="font-medium text-neutral-950 underline decoration-neutral-300 underline-offset-4 dark:text-neutral-100"
+            className="font-medium text-neutral-900 underline decoration-neutral-300 underline-offset-4 dark:text-neutral-100"
           >
             Button
           </Link>

@@ -169,7 +169,7 @@ const FooterDisplayText = ({
   return (
     <div
       ref={containerRef}
-      className="font-display w-full max-w-xs font-black text-neutral-950 md:min-h-0 dark:text-neutral-100"
+      className="font-display w-full max-w-xs font-black text-neutral-900 md:min-h-0 dark:text-neutral-100"
     >
       {hasMeasured ? (
         <div className="flex w-full flex-col gap-2">

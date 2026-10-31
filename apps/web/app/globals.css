@@ -30,7 +30,7 @@ body {
     var(--color-neutral-50),
     var(--color-neutral-900)
   );
-  color: light-dark(var(--color-neutral-950), var(--color-neutral-100));
+  color: light-dark(var(--color-neutral-900), var(--color-neutral-100));
   font-family: var(--font-figtree), Arial, Helvetica, sans-serif;
 }
 

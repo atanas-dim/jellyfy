@@ -16,7 +16,7 @@ export const ClassTable = ({ rows }: { rows: ClassRow[] }) => (
             key={`${row.kind}-${row.name}`}
             className="border-b border-neutral-100 dark:border-neutral-800"
           >
-            <td className="py-2 pr-4 font-mono text-[13px] text-neutral-950 dark:text-neutral-100">
+            <td className="py-2 pr-4 font-mono text-[13px] text-neutral-900 dark:text-neutral-100">
               {row.name}
             </td>
             <td className="py-2 pr-4 text-neutral-500 dark:text-neutral-400">
