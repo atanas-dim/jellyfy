@@ -14,7 +14,7 @@ Color is quiet on surfaces and fields, and stronger on controls. That difference
 
 The typeface belongs to the app. Jellyfy inherits it.
 
-Small marks use a shallower inset than buttons, because the button inset collapses at checkbox and handle size. The radio bullet is jelly with the grain. It is opaque, and it has no blur and no thickness.
+Small marks use a shallower inset than buttons, because the button inset collapses at checkbox and handle size. The radio bullet is jelly with the grain. Its color is at the material opacity. It has no blur and no thickness.
 
 ### Implementation notes
 
@@ -169,7 +169,7 @@ Wash percentages, wash opacity, and the menu mixes are variables.
 
 ## 4. Material
 
-Every part of a checkbox, radio, switch, and slider is jelly. The radio bullet keeps the grain and is opaque, with no blur and no thickness. Every other part has the grain, the blur, and its thickness.
+Every part of a checkbox, radio, switch, and slider is jelly. The radio bullet keeps the grain. Its color is at the material opacity. It has no blur and no thickness. Every other part has the grain, the blur, and its thickness.
 
 ### Grain
 
@@ -576,7 +576,7 @@ The empty box uses the mark color. The check is a masked copy of the Lucide chec
 
 ### Radio
 
-A mark plus a label. The ring uses the mark color. It is jelly: grain, blur, and mark thickness. It matches the checkbox sizes, including the 24px medium and 20px small hit target, and uses the control radius, so it is a circle in the default theme. The bullet is jelly with the grain. It is opaque, with no blur and no thickness. It is 0.75rem, 0.875rem, and 1.25rem at small, medium, and large. It scales from 0 to 1 when selected. With no slot, the bullet is the plain content color. With a slot, the bullet is the control fill.
+A mark plus a label. The ring uses the mark color. It is jelly: grain, blur, and mark thickness. It matches the checkbox sizes, including the 24px medium and 20px small hit target, and uses the control radius, so it is a circle in the default theme. The bullet is jelly with the grain. It has no blur and no thickness. It is 0.75rem, 0.875rem, and 1.25rem at small, medium, and large. It scales from 0 to 1 when selected. With no slot, the bullet is the plain content color at the material opacity. With a slot, the bullet is the control fill.
 
 ### Toggle
 
@@ -589,7 +589,7 @@ A mark plus a label. The track and the thumb are both jelly: grain, blur, and ma
 | Thumb inset    | 0.25rem          | 0.25rem         | 0.25rem        |
 | Travel when on | 1rem             | 1.15rem         | 1.5rem         |
 
-The off track uses the mark color. The resting thumb is Neutral 500 mixed at 55% into white. The on thumb is white. A slotted on track uses the control fill. The thumb moves over 300ms, eased out.
+The off track uses the mark color. The resting thumb is Neutral 500 mixed at 55% into white, at the material opacity. The on thumb is white at the material opacity. A slotted on track uses the control fill. The thumb moves over 300ms, eased out.
 
 ### Range
 
@@ -656,7 +656,7 @@ The caption under a field. It is not an error style. It has its own slot, indepe
 
 Small, medium, and large use `-sm`, `-md`, and `-lg` on the component class: `btn-sm`, `btn-md`, `input-lg`. A control with no size class is medium. `btn-md` repeats that medium size so a breakpoint can return to it, as in `btn-lg md:btn-md`. The icon button and the bump button use the button sizes, `btn-sm`, `btn-md`, and `btn-lg`.
 
-The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, and `modal-panel`. The radio bullet, `radio-ring::after`, receives the grain only. It is opaque and has no blur and no inset. Any other element opts in with `noise`.
+The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, and `modal-panel`. The radio bullet, `radio-ring::after`, receives the grain only. Its color is at the material opacity. It has no blur and no inset. Any other element opts in with `noise`.
 
 Start and end slots are `input-start` and `input-end` inside both `input` and `textarea`. The select chevron is `picker-icon`. The built-in chevron is a masked element. A custom icon is an SVG with the same class.
 

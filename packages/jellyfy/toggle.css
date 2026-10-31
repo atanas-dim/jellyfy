@@ -143,13 +143,22 @@
   .toggle-thumb {
     background-color: color-mix(
       in oklab,
-      var(--color-neutral-500, #737373) 55%,
-      var(--color-white)
+      color-mix(
+          in oklab,
+          var(--color-neutral-500, #737373) 55%,
+          var(--color-white)
+        )
+        var(--material-opacity),
+      transparent
     );
   }
 
   .toggle:has(:checked) .toggle-thumb {
-    background-color: var(--color-white);
+    background-color: color-mix(
+      in oklab,
+      var(--color-white) calc(var(--material-opacity) * 2),
+      transparent
+    );
   }
 
   .toggle:has(:disabled) .toggle-track,

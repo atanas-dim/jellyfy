@@ -62,7 +62,11 @@
     width: var(--radio-bullet-size, 0.875rem);
     height: var(--radio-bullet-size, 0.875rem);
     border-radius: 999px;
-    background-color: var(--color-plain-content);
+    background-color: color-mix(
+      in oklab,
+      var(--color-plain-content) var(--material-opacity),
+      transparent
+    );
     background-image: var(--noise);
     background-size: var(--noise-size);
     transform: translate(-50%, -50%) scale(0);
