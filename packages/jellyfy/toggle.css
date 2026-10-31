@@ -58,6 +58,7 @@
     height: var(--toggle-track-height, 1.75rem);
     overflow: hidden;
     border-radius: var(--radius-control);
+    transition: background-color 300ms ease-out;
   }
 
   .toggle-thumb {
@@ -172,7 +173,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .toggle-thumb {
+  .toggle-thumb,
+  .toggle-track {
     transition: none;
   }
 }

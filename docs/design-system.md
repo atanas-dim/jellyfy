@@ -36,11 +36,11 @@ A modal panel follows the surface fill rules. A select menu uses the menu tone f
 
 The bump button, used to close a modal, is not a fifth thickness. It is a transparent control with the bump light, no fill, and no drop shadow.
 
-A custom component picks a role the way it picks the squish behavior. The thickness classes are `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. Squish is one utility, because it is one behavior.
+A custom component picks a role the way it picks the squish behavior. The thickness classes are `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. Squish is one utility, because it is one behavior. `noise` adds the grain alone, the same way.
 
 ### Implementation notes
 
-The thickness classes are `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The squish class is `squish`. Size classes are `sm`, `md`, and `lg`. Medium is also the size with no size class.
+The thickness classes are `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The squish class is `squish`. The noise class is `noise`. Size classes are `sm`, `md`, and `lg`. Medium is also the size with no size class.
 
 ## 3. Color
 
@@ -174,6 +174,8 @@ Every part of a checkbox, radio, switch, and slider is jelly. The radio bullet k
 ### Grain
 
 The grain is fractal noise, tiled. The tile is 22.5rem. The light theme uses a dark grain. The dark theme uses a lighter, fainter grain so the same texture stays visible on a dark ground. The turbulence is the same in both.
+
+`.noise` paints that grain on any other element. It sets the image and the tile size. It does not add a fill, a blur, or a thickness.
 
 ### Opacity and blur
 
@@ -654,7 +656,7 @@ The caption under a field. It is not an error style. It has its own slot, indepe
 
 Small, medium, and large use `-sm`, `-md`, and `-lg` on the component class: `btn-sm`, `btn-md`, `input-lg`. A control with no size class is medium. `btn-md` repeats that medium size so a breakpoint can return to it, as in `btn-lg md:btn-md`. The icon button and the bump button use the button sizes, `btn-sm`, `btn-md`, and `btn-lg`.
 
-The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, and `modal-panel`. The radio bullet, `radio-ring::after`, receives the grain only. It is opaque and has no blur and no inset.
+The faces that receive squish, grain, and blur are `btn`, `btn-icon`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, and `modal-panel`. The radio bullet, `radio-ring::after`, receives the grain only. It is opaque and has no blur and no inset. Any other element opts in with `noise`.
 
 Start and end slots are `input-start` and `input-end` inside both `input` and `textarea`. The select chevron is `picker-icon`. The built-in chevron is a masked element. A custom icon is an SVG with the same class.
 
@@ -693,7 +695,7 @@ Shade, highlight, wash, the fills, the mark lift, the resting label, menu mixes,
 
 Jellyfy styles its own components and anything that opts into a role or into squish. It does not set the page font, and it does not require Tailwind. Defaults follow Tailwind's color variables, spacing variable, and the neutral ramp when they exist.
 
-Class names are `btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox`, `radio`, `toggle`, `range`, `alert`, `badge`, `card`, `modal`, `modal-panel`, and `message`. Slots and sizes are extra classes on the same element.
+Class names are `btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox`, `radio`, `toggle`, `range`, `alert`, `badge`, `card`, `modal`, `modal-panel`, `message`, and `noise`. Slots and sizes are extra classes on the same element. `noise` adds the grain alone.
 
 ## 15. Shipping
 
@@ -701,7 +703,7 @@ Jellyfy is not a Tailwind plugin. It stays compatible with Tailwind. Color and s
 
 The material recipes are variables in one material file: opacity, blur, grain, the four thicknesses, the press lights, and black and white. The dark theme overrides those variables. It does not restyle each component.
 
-One rule in that file paints the jelly material. It sets the grain, the blur, and `box-shadow: var(--jelly-thickness)`. The selectors are the component faces and the thickness classes: `btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, `modal-panel`, `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The radio bullet is not in this rule. It uses the grain, it is opaque, and it has no blur and no thickness.
+One rule declares the six fills on `:root`, the theme classes, the eight slots, and the faces, so `--material-opacity` and `--solid` resolve on the face. A plain face then follows a local opacity the way a slotted face does. That rule sets only the fills. Another rule paints the jelly material. It sets the grain, the blur, and `box-shadow: var(--jelly-thickness)`. The selectors are the component faces and the thickness classes: `btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, `modal-panel`, `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The radio bullet is not in this rule. It uses the grain, it is opaque, and it has no blur and no thickness. `.noise` sets the grain and the tile size alone.
 
 Each component is its own stylesheet. A product imports the components it uses, or imports `jellyfy.css` for the whole library. That file imports the material, the motion, and every component. A component file that is not imported is not in the build. The material file ships once. A component name left in the shared selector does nothing when that component's file is absent.
 
@@ -711,4 +713,4 @@ A component file does not repeat the grain, the blur, the shadow, or a fill mix.
 
 ### Implementation notes
 
-The shared rule uses `:where(...)`, so it adds no specificity. It paints `--fill-control`. Component files assign a fill variable and `--jelly-thickness`. When browsers support native CSS mixins, that shared selector will be replaced by a mixin applied inside each component. The variables will stay.
+The shared rule uses `:where(...)`, so it adds no specificity. It paints `--fill-control`. The fills are declared once, on the face, in the components layer. Component files assign a fill variable and `--jelly-thickness`. When browsers support native CSS mixins, that shared selector will be replaced by a mixin applied inside each component. The variables will stay.

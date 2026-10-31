@@ -211,6 +211,13 @@ export default function App() {
 <div class="thickness-control">A control</div>
 <div class="thickness-mark">A mark</div>`}
       />
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
+        Add <code className="font-mono text-sm">noise</code> for the grain
+        alone. Put it on your own element the way you put{" "}
+        <code className="font-mono text-sm">squish</code> on it for the press,
+        or a thickness class on it for the edge.
+      </p>
+      <CodeBlock lang="html" code={`<div class="noise">Grain only</div>`} />
 
       <Pager href="/docs/install" />
     </article>
