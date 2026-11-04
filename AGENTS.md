@@ -35,3 +35,5 @@ pnpm dev
 ```
 
 `pnpm dev` starts the site. `pnpm build` builds the site.
+
+After any `package.json` change, run `pnpm install` at the repo root and commit `pnpm-lock.yaml` in the same change. Before push, run `pnpm lockfile:check` (same frozen install Vercel uses).

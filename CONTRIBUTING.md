@@ -17,3 +17,5 @@ pnpm dev
 ```
 
 `pnpm dev` starts the site. The examples use the local package through the workspace.
+
+When you change a dependency, run `pnpm install` again and include `pnpm-lock.yaml` in the commit. Run `pnpm lockfile:check` before you push.

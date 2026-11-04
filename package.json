@@ -1,11 +1,13 @@
 {
   "name": "jellyfy-workspace",
   "private": true,
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
     "dev": "pnpm --filter jellyfy-web dev",
     "build": "pnpm --filter jellyfy-web build",
     "start": "pnpm --filter jellyfy-web start",
-    "lint": "pnpm --filter jellyfy-web lint"
+    "lint": "pnpm --filter jellyfy-web lint",
+    "lockfile:check": "pnpm install --filter jellyfy-web... --frozen-lockfile"
   },
   "devDependencies": {
     "prettier": "^3.9.10",
