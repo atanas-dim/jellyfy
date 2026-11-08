@@ -60,34 +60,7 @@
 }
 
 @layer components {
-  :root,
-  .light,
-  .dark,
-  .primary,
-  .secondary,
-  .tertiary,
-  .neutral,
-  .success,
-  .warning,
-  .error,
-  .info {
-    --color-plain: light-dark(
-      var(--color-neutral-50, #fafafa),
-      var(--color-neutral-800, #262626)
-    );
-    --color-mark: color-mix(
-      in oklab,
-      var(--color-white) var(--percent-mark-lift),
-      var(--color-plain)
-    );
-    --color-plain-content: light-dark(
-      var(--color-neutral-800, #262626),
-      var(--color-neutral-100, #f5f5f5)
-    );
-    --color-menu: light-dark(
-      var(--color-neutral-100, #f5f5f5),
-      var(--color-neutral-800, #262626)
-    );
+  :root {
     --color-neutral-content: light-dark(
       var(--color-neutral-950, #0a0a0a),
       var(--color-neutral-100, #f5f5f5)
@@ -151,6 +124,36 @@
     --color-info-surface-content: light-dark(
       var(--color-sky-800, #075985),
       var(--color-sky-200, #bae6fd)
+    );
+  }
+
+  :root,
+  .light,
+  .dark,
+  .primary,
+  .secondary,
+  .tertiary,
+  .neutral,
+  .success,
+  .warning,
+  .error,
+  .info {
+    --color-plain: light-dark(
+      var(--color-neutral-50, #fafafa),
+      var(--color-neutral-800, #262626)
+    );
+    --color-mark: color-mix(
+      in oklab,
+      var(--color-white) var(--percent-mark-lift),
+      var(--color-plain)
+    );
+    --color-plain-content: light-dark(
+      var(--color-neutral-800, #262626),
+      var(--color-neutral-100, #f5f5f5)
+    );
+    --color-menu: light-dark(
+      var(--color-neutral-100, #f5f5f5),
+      var(--color-neutral-800, #262626)
     );
     --solid: var(--color-plain);
     --menu-mix: light-dark(var(--color-black), var(--color-white));
