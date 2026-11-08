@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@atanas.d/ananasy-ui": "0.6.4",
     "gsap": "^3.15.0",
     "jellyfy": "workspace:*",
     "lucide-react": "^1.59.0",

@@ -17,6 +17,8 @@
 @import "jellyfy/modal.css";
 @import "jellyfy/message.css";
 
+@source "../node_modules/@atanas.d/ananasy-ui/dist/**/*.js";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
