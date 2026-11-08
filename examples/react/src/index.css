@@ -1,13 +1,20 @@
 @import "tailwindcss";
 @import "jellyfy/jellyfy.css";
 
-:root {
-  --color-primary-content: #ffffff;
-  --color-secondary-content: #ffffff;
-  --color-tertiary-content: #ffffff;
+@theme inline {
+  --color-primary: var(--color-green-800);
+  --color-secondary: var(--color-blue-700);
+  --color-tertiary: var(--color-purple-700);
+  --color-primary-content: var(--color-red-400);
+  --color-secondary-content: var(--color-red-400);
+  --color-tertiary-content: var(--color-red-400);
   --color-primary-surface-content: #14532d;
   --color-secondary-surface-content: #14532d;
   --color-tertiary-surface-content: #14532d;
+}
+
+:root {
+  --material-opacity: 70%;
 }
 
 body {

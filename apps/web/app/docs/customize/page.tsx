@@ -64,10 +64,13 @@ export default function CustomizePage() {
         With Tailwind
       </h2>
       <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
-        Put the solids in <code className="font-mono text-sm">@theme</code>.
-        That is Tailwind’s token list, and Jellyfy reads those names. Content
-        colors, surface content colors, radius, opacity, blur, grain, and the
-        elevation multiplier are set on{" "}
+        Put solids, content colors, and surface content colors in{" "}
+        <code className="font-mono text-sm">@theme</code>. Jellyfy reads those
+        names, and Tailwind makes them available to utilities such as{" "}
+        <code className="font-mono text-sm">bg-primary</code>,{" "}
+        <code className="font-mono text-sm">text-primary-content</code>, and{" "}
+        <code className="font-mono text-sm">text-primary-surface-content</code>.
+        Set radius, opacity, blur, grain, and elevation on{" "}
         <code className="font-mono text-sm">:root</code>. Tailwind already sets{" "}
         <code className="font-mono text-sm">--spacing</code>.
       </p>
@@ -82,9 +85,7 @@ export default function CustomizePage() {
   --color-warning: #d97706;
   --color-error: #dc2626;
   --color-info: #0284c7;
-}
 
-:root {
   --color-primary-content: #1e1b4b;
   --color-primary-surface-content: #3730a3;
   --color-secondary-content: #500724;
@@ -101,7 +102,9 @@ export default function CustomizePage() {
   --color-error-surface-content: #991b1b;
   --color-info-content: #082f49;
   --color-info-surface-content: #075985;
+}
 
+:root {
   --radius-surface: 1rem;
   --radius-field: 1rem;
   --radius-control: 999px;

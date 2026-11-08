@@ -107,24 +107,41 @@ export default function App() {
           Jellyfy customization
         </h1>
         <p>
-          Primary, secondary, and tertiary controls below use white text. Their
-          fields, cards, and alerts use dark green text. These colours are
-          configured only on :root in src/index.css.
+          Primary, secondary, and tertiary solids are green, blue, and purple,
+          with white control text and dark green surface text. All nine colour
+          settings are configured through @theme inline in src/index.css.
         </p>
         <pre className="overflow-x-auto rounded-xl bg-neutral-950 p-4 text-sm text-neutral-100">
-          <code>{`:root {
-  --color-primary-content: #ffffff;
-  --color-secondary-content: #ffffff;
-  --color-tertiary-content: #ffffff;
+          <code>{`@theme inline {
+  --color-primary: var(--color-green-800);
+  --color-secondary: var(--color-blue-700);
+  --color-tertiary: var(--color-purple-700);
+  --color-primary-content: var(--color-red-400);
+  --color-secondary-content: var(--color-red-400);
+  --color-tertiary-content: var(--color-red-400);
   --color-primary-surface-content: #14532d;
   --color-secondary-surface-content: #14532d;
   --color-tertiary-surface-content: #14532d;
+}
+
+:root {
+  --material-opacity: 70%;
 }`}</code>
         </pre>
         <p>
-          The remaining colour slots keep their defaults. Edit these root values
-          to check that the controls update without any slot-class overrides.
+          The remaining colour slots keep their defaults. The swatch below uses
+          ordinary Tailwind utilities with the same semantic colour names.
         </p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div className="border-secondary bg-primary text-primary-content rounded-xl border-2 p-4">
+            Tailwind control colours: bg-primary, text-primary-content,
+            border-secondary
+          </div>
+          <div className="border-primary bg-primary-content text-primary-surface-content rounded-xl border-2 p-4">
+            Tailwind surface colours: bg-primary-content,
+            text-primary-surface-content, border-primary
+          </div>
+        </div>
       </header>
 
       <Section title="Button">

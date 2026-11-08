@@ -159,6 +159,8 @@ Option text stays the plain content color.
 
 Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. They set the solid, the content color, and the surface content color. Content colors are paired variables, named with the daisyUI suffix `content` (`--color-primary-content`, and the same for the other slots). Surface content colors use the suffix `surface-content` (`--color-primary-surface-content`, and the same for the other slots).
 
+With Tailwind, configure all three color tokens for each slot in `@theme`, or `@theme inline` when referencing other variables. Configure non-color options on `:root`. Without Tailwind, configure both colors and non-color options on `:root`. Library slot-color defaults belong to the theme layer with zero selector specificity so consumer settings take priority.
+
 Plain content is `--color-plain-content`. The menu fill is `--color-menu`. The mark color is `--color-mark`. It mixes `--color-white` into `--color-plain` at `--percent-mark-lift`.
 
 Defaults read Tailwind color variables first: `--color-primary`, `--color-indigo-500`, `--color-indigo-400`, `--color-indigo-100`, `--color-neutral-50`, and the rest of the ramp. The fallbacks above apply when Tailwind is absent.

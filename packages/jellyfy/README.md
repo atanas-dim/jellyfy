@@ -53,4 +53,6 @@ One solid, one content color, and one surface content color for each slot:
 
 Also `--radius-surface`, `--radius-field`, `--radius-control`, `--radius-mark`, `--material-opacity`, `--material-blur`, `--noise-size`, and `--elevation`.
 
+With Tailwind, set all three slot colors in `@theme` (or `@theme inline` when referencing other variables). Set the other options on `:root`. Without Tailwind, set them all on `:root`.
+
 Changing a solid does not change its content color or its surface content color. Set those yourself.
