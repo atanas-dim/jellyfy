@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @import "jellyfy/jellyfy.css";
 
+:root {
+  --color-primary-content: #ffffff;
+  --color-secondary-content: #ffffff;
+  --color-tertiary-content: #ffffff;
+  --color-primary-surface-content: #14532d;
+  --color-secondary-surface-content: #14532d;
+  --color-tertiary-surface-content: #14532d;
+}
+
 body {
   background: light-dark(var(--color-white, white), var(--color-black, black));
   color: light-dark(

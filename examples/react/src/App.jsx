@@ -102,7 +102,30 @@ export default function App() {
 
   return (
     <main className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-12">
-      <h1 className="text-3xl font-semibold tracking-tight">Jellyfy</h1>
+      <header className="grid gap-4">
+        <h1 className="text-3xl font-semibold tracking-tight">
+          Jellyfy customization
+        </h1>
+        <p>
+          Primary, secondary, and tertiary controls below use white text. Their
+          fields, cards, and alerts use dark green text. These colours are
+          configured only on :root in src/index.css.
+        </p>
+        <pre className="overflow-x-auto rounded-xl bg-neutral-950 p-4 text-sm text-neutral-100">
+          <code>{`:root {
+  --color-primary-content: #ffffff;
+  --color-secondary-content: #ffffff;
+  --color-tertiary-content: #ffffff;
+  --color-primary-surface-content: #14532d;
+  --color-secondary-surface-content: #14532d;
+  --color-tertiary-surface-content: #14532d;
+}`}</code>
+        </pre>
+        <p>
+          The remaining colour slots keep their defaults. Edit these root values
+          to check that the controls update without any slot-class overrides.
+        </p>
+      </header>
 
       <Section title="Button">
         <div className="flex flex-wrap items-center gap-3">
