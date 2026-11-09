@@ -54,12 +54,6 @@ const ChangelogPage: FC = () => {
                     timeZone: "UTC",
                   })}
                 </time>
-                <a
-                  href={`/changelog/${version}.md`}
-                  className="text-sm underline underline-offset-4"
-                >
-                  Markdown
-                </a>
               </header>
               <div className="mt-5 space-y-4 leading-7 text-neutral-700 dark:text-neutral-200 [&_code]:rounded [&_code]:bg-neutral-100 [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-sm dark:[&_code]:bg-neutral-800 [&_h3]:mt-6 [&_h3]:font-semibold [&_li]:mt-2 [&_ul]:list-disc [&_ul]:pl-5">
                 <Markdown
