@@ -9,7 +9,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { twJoin } from "tailwind-merge";
 
 import { TestBenchButton } from "@/components/test-bench-button";
 
@@ -20,20 +19,28 @@ import {
   type RemoteSuite,
   type RemoteSuiteRunner,
 } from "../../(test-bench)/test-bench/audit-plan";
-import { AUDIT_MODES, type AuditMode } from "./audit-environment";
+import { PREVIEW_MODE_EVENT } from "../../(test-bench)/test-bench/preview-config";
+import { type AuditMode } from "./audit-environment";
+import { EnvironmentPreview } from "./environment-preview";
 import { MaterialVariableAudit } from "./material-variable-audit";
 import type { MaterialVariableReport } from "./material-variable-cases";
 import { runMaterialVariableAudit } from "./run-material-variable-audit";
 import { runThemeAudit } from "./run-theme-audit";
 import {
-  CUSTOMIZATION_CSS,
-  customValues,
+  auditValues,
   type Theme,
   type ThemeReport,
   THEMES,
   tokenNames,
 } from "./theme-cases";
 import { ThemeFixtures } from "./theme-fixtures";
+
+const THEME_PREVIEW_CSS = `
+.theme-preview { display:grid; gap:24px; border:1px solid #737373; border-radius:16px; padding:24px; }
+.theme-preview h3, .theme-preview p { margin:0; }
+.theme-sections { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); gap:24px; }
+.theme-section { display:grid; min-width:0; align-content:start; gap:16px; padding:20px; border:1px solid #737373; border-radius:12px; }
+`;
 
 export const ThemeAudit: FC = () => {
   const [activeSuite, setActiveSuite] = useState<RemoteSuite | null>(null);
@@ -81,7 +88,6 @@ export const ThemeAudit: FC = () => {
       controller.current = current;
       const cancel = () => current.abort();
       signal.addEventListener("abort", cancel, { once: true });
-      setAuditMode(mode);
       setActiveSuite(suite);
       setLastSuite(suite);
       setError("");
@@ -160,10 +166,16 @@ export const ThemeAudit: FC = () => {
     };
     const lock = (event: Event) =>
       setBatchLocked((event as CustomEvent<boolean>).detail === true);
+    const preview = (event: Event) => {
+      const mode = (event as CustomEvent<AuditMode>).detail;
+      if (mode === "tailwind" || mode === "plain-css") setAuditMode(mode);
+    };
+    window.addEventListener(PREVIEW_MODE_EVENT, preview);
     window.addEventListener(AUDIT_RUN_EVENT, run);
     window.addEventListener(AUDIT_LOCK_EVENT, lock);
     document.documentElement.dataset.auditReady = "true";
     return () => {
+      window.removeEventListener(PREVIEW_MODE_EVENT, preview);
       window.removeEventListener(AUDIT_RUN_EVENT, run);
       window.removeEventListener(AUDIT_LOCK_EVENT, lock);
       delete document.documentElement.dataset.auditReady;
@@ -202,36 +214,6 @@ export const ThemeAudit: FC = () => {
       </p>
       <div
         role="group"
-        aria-label="Audit environment"
-        className="flex flex-wrap gap-3"
-      >
-        {AUDIT_MODES.map(({ mode, label }) => (
-          <TestBenchButton
-            key={mode}
-            disabled={busy}
-            aria-pressed={auditMode === mode}
-            variant={auditMode === mode ? "primary" : "secondary"}
-            onClick={() => setAuditMode(mode)}
-          >
-            {label}
-          </TestBenchButton>
-        ))}
-      </div>
-      <p className="text-sm">
-        The selected environment applies to automated tests. The fixed visual
-        examples below use Tailwind.{" "}
-        <a
-          href="/test-bench/plain"
-          target="_blank"
-          rel="noreferrer"
-          className="underline underline-offset-4"
-        >
-          Open the standalone HTML example without Tailwind
-        </a>
-        .
-      </p>
-      <div
-        role="group"
         aria-label="Outer page theme"
         className="flex flex-wrap gap-3"
       >
@@ -256,64 +238,73 @@ export const ThemeAudit: FC = () => {
           </TestBenchButton>
         ))}
       </div>
-      <div
-        className={twJoin(
-          "grid min-w-0 gap-6 rounded-2xl border p-[1.5rem] sm:p-[2rem]",
-          outerTheme === "light"
-            ? "border-neutral-300 bg-neutral-100 text-neutral-950"
-            : "border-neutral-700 bg-neutral-950 text-white",
-        )}
+      <EnvironmentPreview
+        mode={auditMode}
+        theme={outerTheme}
+        css={THEME_PREVIEW_CSS}
       >
-        <div>
-          <h3 className="text-lg font-semibold">
-            Outer page: {outerTheme === "light" ? "Light" : "Dark"}
-          </h3>
-          <p className="mt-1 text-sm">
-            The background around these sections follows your selection. Each
-            inner section keeps its own theme.
+        <div
+          className="theme-preview"
+          style={{
+            background: outerTheme === "light" ? "#f5f5f5" : "#0a0a0a",
+            color: outerTheme === "light" ? "#0a0a0a" : "#fafafa",
+          }}
+        >
+          <h3>Outer page: {outerTheme === "light" ? "Light" : "Dark"}</h3>
+          <p>
+            The background follows your selection. Each inner section keeps its
+            own theme.
           </p>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2">
-          {THEMES.map((theme) => (
-            <section
-              key={theme}
-              className={twJoin(
-                theme,
-                "grid min-w-0 content-start gap-4 rounded-xl border p-[1.25rem]",
-                theme === "light"
-                  ? "border-neutral-300 bg-white text-neutral-950"
-                  : "border-neutral-600 bg-neutral-800 text-neutral-100",
-              )}
-            >
-              <h3 className="font-semibold">Fixed {theme} section</h3>
-              <button type="button" className="btn primary">
-                Default primary
-              </button>
-              <div
-                style={
-                  Object.fromEntries(
-                    tokenNames("primary").map((token, index) => [
-                      token,
-                      customValues("theme-custom", theme)![index],
-                    ]),
-                  ) as CSSProperties
-                }
+          <div className="theme-sections">
+            {THEMES.map((theme) => (
+              <section
+                key={theme}
+                className={`theme-section ${theme}`}
+                style={{
+                  background: theme === "light" ? "white" : "#262626",
+                  color: theme === "light" ? "#0a0a0a" : "#f5f5f5",
+                }}
               >
+                <h3>Fixed {theme} section</h3>
                 <button type="button" className="btn primary">
-                  Blue {theme === "light" ? "600" : "400"}
+                  Default primary
                 </button>
-                <div className="card primary mt-4">Custom surface text</div>
-              </div>
-            </section>
-          ))}
+                <div
+                  style={
+                    Object.fromEntries(
+                      tokenNames("primary").map((token, index) => [
+                        token,
+                        auditValues("theme-custom", theme, auditMode)![index],
+                      ]),
+                    ) as CSSProperties
+                  }
+                >
+                  <button type="button" className="btn primary">
+                    Blue {theme === "light" ? "600" : "400"}
+                  </button>
+                  <div className="card primary" style={{ marginTop: 16 }}>
+                    Custom surface text
+                  </div>
+                </div>
+              </section>
+            ))}
+          </div>
         </div>
-      </div>
+      </EnvironmentPreview>
       <details>
         <summary className="cursor-pointer font-medium">
           Per-theme customization being tested
         </summary>
         <pre className="mt-3 overflow-x-auto rounded-lg bg-neutral-950 p-4 text-sm text-white">
-          {CUSTOMIZATION_CSS}
+          {THEMES.map(
+            (theme) =>
+              `.${theme} {\n${tokenNames("primary")
+                .map(
+                  (name, index) =>
+                    `  ${name}: ${auditValues("theme-custom", theme, auditMode)![index]};`,
+                )
+                .join("\n")}\n}`,
+          ).join("\n\n")}
         </pre>
       </details>
       <p className="text-sm">

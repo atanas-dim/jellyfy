@@ -6,6 +6,7 @@ import {
   useRef,
 } from "react";
 
+import type { AuditMode } from "../../(theme-probe)/theme-probe/audit-environment";
 import type { MaterialVariableReport } from "../../(theme-probe)/theme-probe/material-variable-cases";
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import {
@@ -14,6 +15,7 @@ import {
   type AuditCommand,
   type RemoteAuditRunner,
 } from "./audit-plan";
+import { PREVIEW_MODE_EVENT } from "./preview-config";
 
 export type NestedAuditHandle = { run: RemoteAuditRunner };
 
@@ -41,6 +43,7 @@ async function waitForFrame(
 type NestedThemesProps = {
   ref?: Ref<NestedAuditHandle>;
   disabled: boolean;
+  mode: AuditMode;
   onBusyChange: (busy: boolean) => void;
   onReport: (report: ThemeReport) => void;
   onMaterialReport: (report: MaterialVariableReport) => void;
@@ -49,6 +52,7 @@ type NestedThemesProps = {
 export const NestedThemes: FC<NestedThemesProps> = ({
   ref,
   disabled,
+  mode,
   onBusyChange,
   onReport,
   onMaterialReport,
@@ -104,15 +108,26 @@ export const NestedThemes: FC<NestedThemesProps> = ({
   );
   useEffect(() => {
     const controller = new AbortController();
-    waitForFrame(() => frame.current, controller.signal)
-      .then((view) =>
-        view.dispatchEvent(
-          new CustomEvent(AUDIT_LOCK_EVENT, { detail: disabled }),
-        ),
-      )
-      .catch(() => {});
-    return () => controller.abort();
-  }, [disabled]);
+    const sync = () => {
+      waitForFrame(() => frame.current, controller.signal)
+        .then((view) => {
+          view.dispatchEvent(
+            new CustomEvent(PREVIEW_MODE_EVENT, { detail: mode }),
+          );
+          view.dispatchEvent(
+            new CustomEvent(AUDIT_LOCK_EVENT, { detail: disabled }),
+          );
+        })
+        .catch(() => {});
+    };
+    const element = frame.current;
+    element?.addEventListener("load", sync);
+    sync();
+    return () => {
+      controller.abort();
+      element?.removeEventListener("load", sync);
+    };
+  }, [mode, disabled]);
   useEffect(() => {
     const receive = (event: MessageEvent) => {
       if (

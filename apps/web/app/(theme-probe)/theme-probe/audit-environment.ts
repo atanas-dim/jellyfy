@@ -21,6 +21,7 @@ export type AuditWorker = {
 export async function createAuditWorker(
   mode: AuditMode,
   signal: AbortSignal,
+  container?: HTMLElement,
 ): Promise<AuditWorker> {
   const stylesheets =
     mode === "plain-css"
@@ -35,10 +36,15 @@ export async function createAuditWorker(
   const frame = await new Promise<HTMLIFrameElement>((resolve, reject) => {
     const node = document.createElement("iframe");
     node.title = `${mode} audit fixtures`;
-    node.tabIndex = -1;
-    node.setAttribute("aria-hidden", "true");
-    node.className =
-      "pointer-events-none absolute top-0 left-[-20000px] h-[600px] w-[640px] opacity-0";
+    if (container) {
+      node.title = `${mode === "tailwind" ? "With Tailwind" : "Without Tailwind"} interactive preview`;
+      node.style.cssText = "display:block;width:100%;border:0;min-height:80px";
+    } else {
+      node.tabIndex = -1;
+      node.setAttribute("aria-hidden", "true");
+      node.className =
+        "pointer-events-none absolute top-0 left-[-20000px] h-[600px] w-[640px] opacity-0";
+    }
     const worker = document.implementation.createHTMLDocument("Jellyfy audit");
     const order = worker.createElement("style");
     order.textContent = "@layer theme, base, components, utilities;";
@@ -60,7 +66,7 @@ export async function createAuditWorker(
     const harness = worker.createElement("style");
     harness.textContent =
       "*,*::before,*::after{transition:none!important;animation:none!important}.audit-local{color:#ef4444;background-color:#f97316;border-color:#ef4444}";
-    worker.head.append(harness);
+    if (!container) worker.head.append(harness);
     const bootstrap = worker.createElement("script");
     bootstrap.type = "module";
     bootstrap.textContent = `import { startJellyfy } from ${JSON.stringify(runtime)}; document.addEventListener("jellyfy-audit-refresh", startJellyfy); startJellyfy(); document.documentElement.dataset.runtimeReady = "true";`;
@@ -89,7 +95,7 @@ export async function createAuditWorker(
       cancel();
       return;
     }
-    document.body.append(node);
+    (container ?? document.body).append(node);
   });
   try {
     const doc = frame.contentDocument;

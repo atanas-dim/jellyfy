@@ -2,15 +2,22 @@
 
 import { type FC, useCallback, useRef, useState } from "react";
 
-import type { AuditMode } from "../../(theme-probe)/theme-probe/audit-environment";
+import { TestBenchButton } from "@/components/test-bench-button";
+
+import {
+  AUDIT_MODES,
+  type AuditMode,
+} from "../../(theme-probe)/theme-probe/audit-environment";
 import type { MaterialVariableReport } from "../../(theme-probe)/theme-probe/material-variable-cases";
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import type { AuditJob, RemoteAuditRunner } from "./audit-plan";
 import { type NestedAuditHandle, NestedThemes } from "./nested-themes";
+import { PLAIN_COLOR_CSS } from "./preview-config";
 import PropertyAudit from "./property-audit";
 import PropertyOverrides from "./property-overrides";
 
 const Customize: FC = () => {
+  const [mode, setMode] = useState<AuditMode>("tailwind");
   const remote = useRef<NestedAuditHandle>(null);
   const [batchBusy, setBatchBusy] = useState(false);
   const [remoteBusy, setRemoteBusy] = useState(false);
@@ -63,14 +70,65 @@ const Customize: FC = () => {
         <h1 className="text-3xl font-semibold tracking-tight">
           Jellyfy test bench
         </h1>
-        <p>
-          Primary, secondary, and tertiary solids are green, blue, and purple,
-          with control text and surface text configured separately. All nine
-          colour settings are configured through @theme inline in
-          test-bench.css.
-        </p>
-        <pre className="overflow-x-auto rounded-xl bg-neutral-950 p-4 text-sm text-neutral-100">
-          <code>{`@theme inline {
+      </header>
+      <div className="grid gap-8">
+        <div
+          role="tablist"
+          aria-label="Interactive preview environment"
+          className="flex flex-wrap gap-3"
+        >
+          {AUDIT_MODES.map((item) => (
+            <TestBenchButton
+              key={item.mode}
+              role="tab"
+              id={`tab-${item.mode}`}
+              aria-selected={mode === item.mode}
+              aria-controls="interactive-bench"
+              tabIndex={mode === item.mode ? 0 : -1}
+              onKeyDown={(event) => {
+                const keys = ["ArrowLeft", "ArrowRight", "Home", "End"];
+                if (!keys.includes(event.key)) return;
+                event.preventDefault();
+                const next =
+                  event.key === "Home"
+                    ? "tailwind"
+                    : event.key === "End"
+                      ? "plain-css"
+                      : mode === "tailwind"
+                        ? "plain-css"
+                        : "tailwind";
+                setMode(next);
+                document.getElementById(`tab-${next}`)?.focus();
+              }}
+              variant={mode === item.mode ? "primary" : "secondary"}
+              disabled={batchBusy || remoteBusy}
+              onClick={() => setMode(item.mode)}
+            >
+              {item.label}
+            </TestBenchButton>
+          ))}
+        </div>
+        <div
+          role="tabpanel"
+          id="interactive-bench"
+          aria-labelledby={`tab-${mode}`}
+          className="grid gap-12"
+        >
+          <header className="grid gap-4">
+            <p>
+              Primary, secondary, and tertiary solids are green, blue, and
+              purple, with control text and surface text configured separately.
+              All nine colour settings use{" "}
+              {mode === "tailwind"
+                ? "@theme inline in test-bench.css"
+                : "ordinary CSS in the isolated preview"}
+              .
+            </p>
+            <pre className="overflow-x-auto rounded-xl bg-neutral-950 p-4 text-sm text-neutral-100">
+              <code>
+                {mode === "plain-css"
+                  ? PLAIN_COLOR_CSS
+                  : `@theme inline {
   --color-primary: var(--color-green-800);
   --color-secondary: var(--color-blue-700);
   --color-tertiary: var(--color-purple-700);
@@ -84,32 +142,22 @@ const Customize: FC = () => {
 
 :root {
   --material-opacity: 70%;
-}`}</code>
-        </pre>
-        <p>
-          The remaining colour slots keep their defaults. The swatch below uses
-          ordinary Tailwind utilities with the same semantic colour names.
-        </p>
-        <div className="grid gap-3 sm:grid-cols-2">
-          <div className="border-secondary bg-primary text-primary-content rounded-xl border-2 p-4">
-            Tailwind control colours: bg-primary, text-primary-content,
-            border-secondary
-          </div>
-          <div className="border-primary bg-primary-content text-primary-surface-content rounded-xl border-2 p-4">
-            Tailwind surface colours: bg-primary-content,
-            text-primary-surface-content, border-primary
-          </div>
-        </div>
-      </header>
+}`}
+              </code>
+            </pre>
+          </header>
 
-      <PropertyOverrides />
-      <NestedThemes
-        ref={remote}
-        disabled={batchBusy}
-        onBusyChange={setRemoteBusy}
-        onReport={saveThemeReport}
-        onMaterialReport={saveMaterialReport}
-      />
+          <PropertyOverrides mode={mode} />
+          <NestedThemes
+            ref={remote}
+            mode={mode}
+            disabled={batchBusy}
+            onBusyChange={setRemoteBusy}
+            onReport={saveThemeReport}
+            onMaterialReport={saveMaterialReport}
+          />
+        </div>
+      </div>
       <PropertyAudit
         runRemote={runRemote}
         remoteBusy={remoteBusy}

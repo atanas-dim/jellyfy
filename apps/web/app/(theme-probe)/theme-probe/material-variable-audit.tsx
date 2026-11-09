@@ -3,6 +3,7 @@ import { type CSSProperties, type FC } from "react";
 import { TestBenchButton } from "@/components/test-bench-button";
 
 import type { AuditMode } from "./audit-environment";
+import { EnvironmentPreview } from "./environment-preview";
 import {
   MATERIAL_VARIABLE_CASES,
   type MaterialVariableReport,
@@ -39,9 +40,9 @@ export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
         stylesheet.
       </p>
       <p className="text-sm font-semibold">
-        Audit environment:{" "}
-        {mode === "tailwind" ? "With Tailwind" : "Without Tailwind"}. Visual
-        examples below use Tailwind.
+        Preview and individual audit environment:{" "}
+        {mode === "tailwind" ? "With Tailwind" : "Without Tailwind"}. Both
+        columns use the selected environment.
       </p>
       <div className="grid gap-6">
         {MATERIAL_VARIABLE_CASES.slice(0, 8).map((test) => (
@@ -53,19 +54,42 @@ export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
             <code className="text-sm">
               {test.variable}: {test.value}
             </code>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="grid min-w-0 content-start gap-2">
-                <p className="text-sm">Default</p>
-                <div dangerouslySetInnerHTML={{ __html: test.markup }} />
-              </div>
-              <div className="grid min-w-0 content-start gap-2">
-                <p className="text-sm">Scoped override</p>
+            <EnvironmentPreview mode={mode}>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns:
+                    "repeat(auto-fit,minmax(min(100%,200px),1fr))",
+                  gap: 16,
+                }}
+              >
                 <div
-                  style={{ [test.variable]: test.value } as CSSProperties}
-                  dangerouslySetInnerHTML={{ __html: test.markup }}
-                />
+                  style={{
+                    display: "grid",
+                    minWidth: 0,
+                    alignContent: "start",
+                    gap: 8,
+                  }}
+                >
+                  <p style={{ fontSize: 14, margin: 0 }}>Default</p>
+                  <div dangerouslySetInnerHTML={{ __html: test.markup }} />
+                </div>
+                <div
+                  style={{
+                    display: "grid",
+                    minWidth: 0,
+                    alignContent: "start",
+                    gap: 8,
+                  }}
+                >
+                  <p style={{ fontSize: 14, margin: 0 }}>Scoped override</p>
+                  <div
+                    style={{ [test.variable]: test.value } as CSSProperties}
+                    dangerouslySetInnerHTML={{ __html: test.markup }}
+                  />
+                </div>
               </div>
-            </div>
+            </EnvironmentPreview>
           </article>
         ))}
       </div>

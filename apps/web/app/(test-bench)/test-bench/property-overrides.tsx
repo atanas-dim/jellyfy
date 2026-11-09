@@ -1,11 +1,13 @@
 import { type FC, useEffect, useRef, useState } from "react";
 
+import type { AuditMode } from "../../(theme-probe)/theme-probe/audit-environment";
+import { EnvironmentPreview } from "../../(theme-probe)/theme-probe/environment-preview";
 import { measureOverride, type OverrideMeasurement } from "./measure-override";
+import { getPreviewOverride, PLAIN_COLOR_CSS } from "./preview-config";
 import {
   getDefaultPart,
   getOverrideClasses,
   getParts,
-  type OverrideTest,
   SAMPLES,
   TESTS,
 } from "./property-cases";
@@ -14,25 +16,35 @@ import { renderSample } from "./property-sample";
 type PropertyExampleProps = {
   kind: string;
   name: string;
-  test: OverrideTest;
-  property: string;
+  property: keyof typeof TESTS;
+  mode: AuditMode;
 };
 
 export const PropertyExample: FC<PropertyExampleProps> = ({
   kind,
   name,
-  test,
   property,
+  mode,
 }) => {
   const parts = getParts(kind);
-  const [partId, setPartId] = useState(() => getDefaultPart(kind, property).id);
+  const [selection, setSelection] = useState<{
+    property: keyof typeof TESTS;
+    partId: string;
+  } | null>(null);
+  const partId =
+    selection?.property === property
+      ? selection.partId
+      : getDefaultPart(kind, property).id;
   const part = parts.find((item) => item.id === partId) ?? parts[0];
-  const container = useRef<HTMLDivElement>(null);
+  const [container, setContainer] = useState<HTMLDivElement | null>(null);
+  const override = getPreviewOverride(property, part, mode);
+  const test = override.test;
   const reference = useRef<HTMLSpanElement>(null);
   const [result, setResult] = useState<OverrideMeasurement | null>(null);
 
   useEffect(() => {
-    const root = container.current;
+    const test = getPreviewOverride(property, part, mode).test;
+    const root = container;
     if (!root) return;
     const target = root.querySelector(`[data-part="${part.host ?? part.id}"]`);
     let timer: ReturnType<typeof setTimeout>;
@@ -57,20 +69,10 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
       clearTimeout(timer);
       events.forEach((event) => root.removeEventListener(event, schedule));
     };
-  }, [test, part]);
+  }, [property, part, mode, container]);
 
   return (
-    <article
-      ref={container}
-      className="relative grid content-start gap-3 rounded-xl border border-neutral-300 p-4"
-    >
-      <span
-        ref={reference}
-        aria-hidden="true"
-        className={`pointer-events-none invisible absolute block ${test.classes}`}
-      >
-        Reference
-      </span>
+    <article className="relative grid h-full min-w-0 content-start gap-3 rounded-xl border border-neutral-300 p-4">
       <div className="flex items-center justify-between gap-2">
         <h3 className="font-semibold">{name}</h3>
         <span
@@ -98,7 +100,7 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
             className="rounded border border-neutral-400 bg-white p-2 text-neutral-950"
             value={partId}
             onChange={(event) => {
-              setPartId(event.target.value);
+              setSelection({ property, partId: event.target.value });
               setResult(null);
             }}
           >
@@ -113,12 +115,44 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
         <p className="text-sm">Test target: {part.name}</p>
       )}
       <code className="text-sm break-words text-neutral-500">
-        {part.selector ?? `.${kind}`} → {getOverrideClasses(test, part)}
+        {mode === "tailwind"
+          ? `${part.selector ?? `.${kind}`} → ${getOverrideClasses(test, part)}`
+          : override.label}
       </code>
-      {test === TESTS.size && part.sizeNote && (
-        <p className="text-sm text-neutral-500">{part.sizeNote}</p>
+      {property === "size" && part.sizeNote && (
+        <p className="text-sm text-neutral-500">
+          {mode === "tailwind"
+            ? part.sizeNote
+            : part.sizeNote
+                .replaceAll("min-h-0", "min-height: 0")
+                .replaceAll("h-20", "height: 80px")
+                .replaceAll("shrink-0", "flex-shrink: 0")}
+        </p>
       )}
-      <div className="min-w-0">{renderSample(kind, test, part)}</div>
+      <EnvironmentPreview
+        mode={mode}
+        css={`
+          ${mode === "plain-css" ? PLAIN_COLOR_CSS : ""}
+          ${override.css}
+        `}
+      >
+        <div ref={setContainer} style={{ minWidth: 0 }}>
+          <span
+            ref={reference}
+            aria-hidden="true"
+            style={{
+              position: "absolute",
+              visibility: "hidden",
+              display: "block",
+              pointerEvents: "none",
+            }}
+            className={mode === "tailwind" ? test.classes : "local-reference"}
+          >
+            Reference
+          </span>
+          {renderSample(kind, test, part)}
+        </div>
+      </EnvironmentPreview>
       {result && (
         <details className="text-sm">
           <summary className="cursor-pointer">Computed styles</summary>
@@ -141,9 +175,8 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
   );
 };
 
-const PropertyOverrides: FC = () => {
+const PropertyOverrides: FC<{ mode: AuditMode }> = ({ mode }) => {
   const [selected, setSelected] = useState<keyof typeof TESTS>("background");
-  const test = TESTS[selected];
   return (
     <section id="local-property-overrides" className="grid scroll-mt-6 gap-5">
       <h2 className="text-2xl font-semibold">Local property overrides</h2>
@@ -163,27 +196,29 @@ const PropertyOverrides: FC = () => {
         >
           {Object.entries(TESTS).map(([key, value]) => (
             <option key={key} value={key}>
-              {value.label} — {value.classes}
+              {value.label}
+              {mode === "tailwind" ? ` — ${value.classes}` : ""}
             </option>
           ))}
         </select>
       </label>
       <p className="text-sm text-neutral-500">
         PASS compares the exact selected part against a plain reference with the
-        same utilities. A CSS property can be applied even when it has little
-        visual effect. Hover, focus or change a control to recheck its state.
-        FAIL means a computed value differs; inspect min/max sizing, layout and
-        state before calling it a selector conflict. Unsupported browser
-        properties are reported separately.
+        same {mode === "tailwind" ? "utilities" : "CSS declarations"}. A CSS
+        property can be applied even when it has little visual effect. Hover,
+        focus or change a control to recheck its state. FAIL means a computed
+        value differs; inspect min/max sizing, layout and state before calling
+        it a selector conflict. Unsupported browser properties are reported
+        separately.
       </p>
-      <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {SAMPLES.map(([kind, name]) => (
           <PropertyExample
-            key={`${selected}-${kind}`}
+            key={kind}
             kind={kind}
             name={name}
-            test={test}
             property={selected}
+            mode={mode}
           />
         ))}
       </div>

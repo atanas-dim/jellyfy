@@ -8,8 +8,10 @@ export function measureOverride(
 ) {
   if (!target || !reference)
     throw new Error("The selected test target is missing");
-  const actual = getComputedStyle(target, part.pseudo ?? null);
-  const expected = getComputedStyle(reference);
+  const view = target.ownerDocument.defaultView;
+  if (!view) throw new Error("Preview document is unavailable");
+  const actual = view.getComputedStyle(target, part.pseudo ?? null);
+  const expected = view.getComputedStyle(reference);
   const comparisons = test.properties.map((property) => ({
     property,
     actual: actual.getPropertyValue(property).trim(),
@@ -33,7 +35,7 @@ export function measureOverride(
     ].map((property) => [property, actual.getPropertyValue(property).trim()]),
   );
   const parent = target.parentElement
-    ? getComputedStyle(target.parentElement)
+    ? view.getComputedStyle(target.parentElement)
     : null;
   context["parent-display"] = parent?.display ?? "";
   context["parent-width"] = parent?.width ?? "";
