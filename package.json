@@ -7,7 +7,10 @@
     "build": "pnpm --filter jellyfy-web build",
     "start": "pnpm --filter jellyfy-web start",
     "lint": "pnpm --filter jellyfy-web lint",
-    "lockfile:check": "pnpm install --filter jellyfy-web... --frozen-lockfile"
+    "lockfile:check": "pnpm install --filter jellyfy-web... --frozen-lockfile",
+    "dev:test-bench": "pnpm --filter jellyfy-test-bench dev",
+    "build:test-bench": "pnpm --filter jellyfy-test-bench build",
+    "lint:test-bench": "pnpm --filter jellyfy-test-bench lint"
   },
   "devDependencies": {
     "prettier": "^3.9.10",

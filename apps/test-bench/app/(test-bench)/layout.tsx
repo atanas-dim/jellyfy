@@ -1,4 +1,4 @@
-import "./test-bench.css";
+import "./test-bench/test-bench.css";
 
 import type { Metadata } from "next";
 import type { FC, ReactNode } from "react";

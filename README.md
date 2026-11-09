@@ -33,6 +33,7 @@ Import the whole library with `jellyfy/jellyfy.css`, or import the material, the
 ## This repository
 
 - `packages/jellyfy` is the package that ships to npm.
+- `apps/test-bench` is the private Next.js test bench. Run `pnpm dev:test-bench` and open [http://localhost:3001](http://localhost:3001).
 - `apps/web` is the product site, at [jellyfy.vercel.app](https://jellyfy.vercel.app).
 - `examples/` holds the HTML, React, and Vue proofs.
 - `docs/` holds the specification and the maintainer notes. `docs/git.md` is how a change reaches `main`.
