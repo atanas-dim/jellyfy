@@ -11,7 +11,24 @@ export const metadata: Metadata = {
 };
 const ThemeProbeLayout: FC<{ children: ReactNode }> = ({ children }) => (
   <html lang="en" className="light">
-    <body className="m-0 min-w-0 bg-white p-[1rem] text-neutral-950">
+    <head>
+      {/* Keep chrome separate from the compiled stylesheet disabled by the plain-CSS tab. */}
+      {/* eslint-disable-next-line @next/next/no-css-tags */}
+      <link
+        rel="stylesheet"
+        href="/test-bench/preview.css"
+        data-bench-chrome=""
+      />
+    </head>
+    <body
+      style={{
+        margin: 0,
+        minWidth: 0,
+        background: "white",
+        padding: 16,
+        color: "#0a0a0a",
+      }}
+    >
       <JellyfyBoot />
       {children}
     </body>

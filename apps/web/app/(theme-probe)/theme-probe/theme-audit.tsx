@@ -19,9 +19,12 @@ import {
   type RemoteSuite,
   type RemoteSuiteRunner,
 } from "../../(test-bench)/test-bench/audit-plan";
-import { PREVIEW_MODE_EVENT } from "../../(test-bench)/test-bench/preview-config";
+import {
+  PLAIN_COLOR_CSS,
+  PREVIEW_MODE_EVENT,
+} from "../../(test-bench)/test-bench/preview-config";
+import PropertyOverrides from "../../(test-bench)/test-bench/property-overrides";
 import { type AuditMode } from "./audit-environment";
-import { EnvironmentPreview } from "./environment-preview";
 import { MaterialVariableAudit } from "./material-variable-audit";
 import type { MaterialVariableReport } from "./material-variable-cases";
 import { runMaterialVariableAudit } from "./run-material-variable-audit";
@@ -34,6 +37,7 @@ import {
   tokenNames,
 } from "./theme-cases";
 import { ThemeFixtures } from "./theme-fixtures";
+import { usePreviewEnvironment } from "./use-preview-environment";
 
 const THEME_PREVIEW_CSS = `
 .theme-preview { display:grid; gap:24px; border:1px solid #737373; border-radius:16px; padding:24px; }
@@ -48,10 +52,11 @@ export const ThemeAudit: FC = () => {
   const [batchLocked, setBatchLocked] = useState(false);
   const running = activeSuite === "themes";
   const materialRunning = activeSuite === "materials";
-  const busy = activeSuite !== null || batchLocked;
   const controller = useRef<AbortController | null>(null);
   const [progress, setProgress] = useState("");
   const [auditMode, setAuditMode] = useState<AuditMode>("tailwind");
+  const environment = usePreviewEnvironment(auditMode);
+  const busy = activeSuite !== null || batchLocked || !environment.ready;
   const [reports, setReports] = useState<
     Partial<Record<AuditMode, ThemeReport>>
   >({});
@@ -207,44 +212,85 @@ export const ThemeAudit: FC = () => {
   };
   const failures = report?.results.filter((result) => !result.passed) ?? [];
   return (
-    <div className="grid min-w-0 gap-5">
-      <p>
-        Library defaults and explicit per-theme customization run in a separate
-        document so the earlier global overrides cannot mask a failure.
-      </p>
-      <div
-        role="group"
-        aria-label="Outer page theme"
-        className="flex flex-wrap gap-3"
-      >
-        {THEMES.map((theme) => (
-          <TestBenchButton
-            key={theme}
-            type="button"
-            variant={outerTheme === theme ? "primary" : "secondary"}
-            disabled={busy}
-            aria-pressed={outerTheme === theme}
-            onClick={() => selectTheme(theme)}
-          >
-            {theme === "light" ? (
-              <SunIcon aria-hidden="true" className="size-4" />
-            ) : (
-              <MoonIcon aria-hidden="true" className="size-4" />
-            )}
-            {theme === "light" ? "Light" : "Dark"} outer page
-            {outerTheme === theme && (
-              <CheckIcon aria-hidden="true" className="size-4" />
-            )}
-          </TestBenchButton>
-        ))}
-      </div>
-      <EnvironmentPreview
-        mode={auditMode}
-        theme={outerTheme}
-        css={THEME_PREVIEW_CSS}
-      >
+    <div className="bench-visual">
+      {!environment.ready && (
+        <p role={environment.error ? "alert" : "status"} className="bench-meta">
+          {environment.error || "Loading preview environment…"}
+        </p>
+      )}
+      <header className="bench-section">
+        <p>
+          Primary, secondary, and tertiary solids are green, blue, and purple,
+          with control text and surface text configured separately. The palette
+          applies only to the property examples. Equivalent configuration using{" "}
+          {auditMode === "tailwind"
+            ? "Tailwind’s @theme inline"
+            : "ordinary CSS"}
+          .
+        </p>
+        <pre className="bench-source">
+          <code>
+            {auditMode === "plain-css"
+              ? PLAIN_COLOR_CSS
+              : `@theme inline {
+  --color-primary: var(--color-green-800);
+  --color-secondary: var(--color-blue-700);
+  --color-tertiary: var(--color-purple-700);
+  --color-primary-content: var(--color-red-400);
+  --color-secondary-content: var(--color-green-900);
+  --color-tertiary-content: var(--color-red-400);
+  --color-primary-surface-content: #14532d;
+  --color-secondary-surface-content: #14532d;
+  --color-tertiary-surface-content: #14532d;
+}
+
+:root {
+  --material-opacity: 70%;
+}`}
+          </code>
+        </pre>
+      </header>
+
+      <PropertyOverrides mode={auditMode} />
+
+      <section className="bench-section">
+        <h2 className="bench-heading">
+          Nested themes and per-theme customization
+        </h2>
+        <p>
+          These examples keep the library defaults. The automated audit uses
+          fresh documents so visual customizations cannot mask a failure.
+        </p>
         <div
-          className="theme-preview"
+          role="group"
+          aria-label="Outer page theme"
+          className="bench-actions"
+        >
+          {THEMES.map((theme) => (
+            <TestBenchButton
+              key={theme}
+              className="bench-button"
+              type="button"
+              variant={outerTheme === theme ? "primary" : "secondary"}
+              disabled={busy}
+              aria-pressed={outerTheme === theme}
+              onClick={() => selectTheme(theme)}
+            >
+              {theme === "light" ? (
+                <SunIcon aria-hidden="true" className="bench-icon" />
+              ) : (
+                <MoonIcon aria-hidden="true" className="bench-icon" />
+              )}
+              {theme === "light" ? "Light" : "Dark"} outer page
+              {outerTheme === theme && (
+                <CheckIcon aria-hidden="true" className="bench-icon" />
+              )}
+            </TestBenchButton>
+          ))}
+        </div>
+        <style>{THEME_PREVIEW_CSS}</style>
+        <div
+          className={`theme-preview ${outerTheme}`}
           style={{
             background: outerTheme === "light" ? "#f5f5f5" : "#0a0a0a",
             color: outerTheme === "light" ? "#0a0a0a" : "#fafafa",
@@ -290,92 +336,97 @@ export const ThemeAudit: FC = () => {
             ))}
           </div>
         </div>
-      </EnvironmentPreview>
-      <details>
-        <summary className="cursor-pointer font-medium">
-          Per-theme customization being tested
-        </summary>
-        <pre className="mt-3 overflow-x-auto rounded-lg bg-neutral-950 p-4 text-sm text-white">
-          {THEMES.map(
-            (theme) =>
-              `.${theme} {\n${tokenNames("primary")
-                .map(
-                  (name, index) =>
-                    `  ${name}: ${auditValues("theme-custom", theme, auditMode)![index]};`,
-                )
-                .join("\n")}\n}`,
-          ).join("\n\n")}
-        </pre>
-      </details>
-      <p className="text-sm">
-        The audit covers 15 components, all eight slots plus plain controls,
-        root overrides, per-theme overrides, local utilities, four nesting
-        arrangements, and resting/checked/disabled/focus/loading states. It runs
-        in an isolated document with the selected stylesheet and the package
-        runtime. Without Tailwind, customization uses literal colors and
-        ordinary local CSS overrides. Hover and native picker appearance remain
-        manual checks.
-      </p>
-      <TestBenchButton
-        type="button"
-        className="justify-self-start"
-        disabled={busy}
-        onClick={() => runLocal("themes")}
-      >
-        {" "}
-        {running ? "Running theme audit…" : "Run nested-theme tests"}
-      </TestBenchButton>
-      {running && (
-        <p role="status" className="text-sm">
-          {progress}
+        <details>
+          <summary className="bench-summary">
+            Per-theme customization being tested
+          </summary>
+          <pre className="bench-source">
+            {THEMES.map(
+              (theme) =>
+                `.${theme} {\n${tokenNames("primary")
+                  .map(
+                    (name, index) =>
+                      `  ${name}: ${auditValues("theme-custom", theme, auditMode)![index]};`,
+                  )
+                  .join("\n")}\n}`,
+            ).join("\n\n")}
+          </pre>
+        </details>
+        <p className="bench-small">
+          The audit covers 15 components, all eight slots plus plain controls,
+          root overrides, per-theme overrides, local utilities, four nesting
+          arrangements, and resting/checked/disabled/focus/loading states. It
+          runs in an isolated document with the selected stylesheet and the
+          package runtime. Without Tailwind, customization uses literal colors
+          and ordinary local CSS overrides. Hover and native picker appearance
+          remain manual checks.
         </p>
-      )}
-      {lastSuite === "themes" && error && (
-        <p role="alert" className="font-semibold text-red-700">
-          {error}
-        </p>
-      )}
-      <div
-        ref={canvas}
-        aria-hidden="true"
-        className="pointer-events-none absolute top-0 left-[-20000px] w-[640px] opacity-0"
-      >
-        <ThemeFixtures />
-      </div>
-      {report && (
-        <>
-          <p role="status" className="font-semibold">
-            {auditMode === "tailwind" ? "With Tailwind" : "Without Tailwind"}:{" "}
-            {report.passed} of {report.total} theme cases passed ·{" "}
-            {report.failures} failed · {report.propertyChecks.toLocaleString()}{" "}
-            property checks
+        <TestBenchButton
+          type="button"
+          className="bench-button"
+          disabled={busy}
+          onClick={() => runLocal("themes")}
+        >
+          {" "}
+          {running ? "Running theme audit…" : "Run nested-theme tests"}
+        </TestBenchButton>
+        {running && (
+          <p role="status" className="bench-small">
+            {progress}
           </p>
-          <p className="text-sm">
-            Results are included in the main bench’s Download report. Each
-            comparison uses a standalone reference with the same intended inner
-            theme.
+        )}
+        {lastSuite === "themes" && error && (
+          <p role="alert" className="bench-fail">
+            {error}
           </p>
-          {failures.slice(0, 100).map((result, index) => (
-            <details
-              key={index}
-              className="rounded border border-red-300 p-3 text-sm"
-            >
-              <summary className="cursor-pointer text-red-700">
-                {result.component} · {result.slot} · {result.profile} ·{" "}
-                {result.frame} · outer {result.outerTheme} · {result.state}
-              </summary>
-              <pre className="mt-2 max-h-80 overflow-auto">
-                {JSON.stringify(result.differences, null, 2)}
-              </pre>
-            </details>
-          ))}
-          {failures.length > 100 && (
-            <p className="text-sm">
-              Showing the first 100 failures. The report contains every result.
+        )}
+        <div
+          ref={canvas}
+          aria-hidden="true"
+          style={{
+            pointerEvents: "none",
+            position: "absolute",
+            top: 0,
+            left: -20000,
+            width: 640,
+            opacity: 0,
+          }}
+        >
+          <ThemeFixtures />
+        </div>
+        {report && (
+          <>
+            <p role="status" className="bench-strong">
+              {auditMode === "tailwind" ? "With Tailwind" : "Without Tailwind"}:{" "}
+              {report.passed} of {report.total} theme cases passed ·{" "}
+              {report.failures} failed ·{" "}
+              {report.propertyChecks.toLocaleString()} property checks
             </p>
-          )}
-        </>
-      )}
+            <p className="bench-small">
+              Results are included in the main bench’s Download report. Each
+              comparison uses a standalone reference with the same intended
+              inner theme.
+            </p>
+            {failures.slice(0, 100).map((result, index) => (
+              <details key={index} className="bench-failure">
+                <summary className="bench-fail bench-summary">
+                  {result.component} · {result.slot} · {result.profile} ·{" "}
+                  {result.frame} · outer {result.outerTheme} · {result.state}
+                </summary>
+                <pre className="bench-code">
+                  {JSON.stringify(result.differences, null, 2)}
+                </pre>
+              </details>
+            ))}
+            {failures.length > 100 && (
+              <p className="bench-small">
+                Showing the first 100 failures. The report contains every
+                result.
+              </p>
+            )}
+          </>
+        )}
+      </section>
       <MaterialVariableAudit
         disabled={busy}
         mode={auditMode}

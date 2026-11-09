@@ -36,6 +36,7 @@ export function getPreviewOverride(
   property: keyof typeof TESTS,
   part: Pick<TestPart, "pseudo" | "sizeClasses">,
   mode: AuditMode,
+  scope = "",
 ): { test: OverrideTest; css: string; label: string } {
   if (mode === "tailwind") return { test: TESTS[property], css: "", label: "" };
   const sizing =
@@ -47,7 +48,8 @@ export function getPreviewOverride(
           : ""
       : "";
   const declarations = PROPERTY_CSS[property] + sizing;
-  const css = `.local-override${part.pseudo ?? ""} { ${declarations} }\n.local-reference { ${declarations} }`;
+  const rule = `.local-override${part.pseudo ?? ""} { ${declarations} }`;
+  const css = `${scope} ${rule}\n${scope} .local-reference { ${declarations} }`;
   return {
     test: {
       ...TESTS[property],
@@ -55,6 +57,6 @@ export function getPreviewOverride(
       afterClasses: "local-override",
     },
     css,
-    label: css,
+    label: rule,
   };
 }

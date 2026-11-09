@@ -159,18 +159,11 @@ export const NestedThemes: FC<NestedThemesProps> = ({
     return () => window.removeEventListener("message", receive);
   }, [onReport, onMaterialReport, onBusyChange]);
   return (
-    <section className="grid gap-4 border-t border-neutral-300 pt-8">
-      <h2 className="text-2xl font-semibold">
-        Nested themes and per-theme customization
-      </h2>
-      <div className="min-w-0 overflow-hidden rounded-xl border border-neutral-300 bg-white">
-        <iframe
-          ref={frame}
-          src="/theme-probe"
-          title="Nested theme and color customization tests"
-          className="block h-[1000px] w-full border-0 bg-white"
-        />
-      </div>
-    </section>
+    <iframe
+      ref={frame}
+      src="/theme-probe"
+      title="Interactive Jellyfy test bench"
+      className="block h-[1000px] w-full border-0 bg-white"
+    />
   );
 };

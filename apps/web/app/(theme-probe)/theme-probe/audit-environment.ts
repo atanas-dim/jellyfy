@@ -1,3 +1,6 @@
+export const AUDIT_STYLESHEET_SELECTOR =
+  'link[rel="stylesheet"]:not([data-bench-chrome]):not([data-bench-plain])';
+
 export const AUDIT_MODES = [
   { mode: "tailwind", label: "With Tailwind" },
   { mode: "plain-css", label: "Without Tailwind" },
@@ -21,14 +24,13 @@ export type AuditWorker = {
 export async function createAuditWorker(
   mode: AuditMode,
   signal: AbortSignal,
-  container?: HTMLElement,
 ): Promise<AuditWorker> {
   const stylesheets =
     mode === "plain-css"
       ? [new URL("/test-bench/package/jellyfy.css", location.origin).href]
       : [
           ...document.querySelectorAll<HTMLLinkElement>(
-            'link[rel="stylesheet"]',
+            AUDIT_STYLESHEET_SELECTOR,
           ),
         ].map((link) => link.href);
   if (!stylesheets.length) throw new Error("No audit stylesheets found");
@@ -36,15 +38,10 @@ export async function createAuditWorker(
   const frame = await new Promise<HTMLIFrameElement>((resolve, reject) => {
     const node = document.createElement("iframe");
     node.title = `${mode} audit fixtures`;
-    if (container) {
-      node.title = `${mode === "tailwind" ? "With Tailwind" : "Without Tailwind"} interactive preview`;
-      node.style.cssText = "display:block;width:100%;border:0;min-height:80px";
-    } else {
-      node.tabIndex = -1;
-      node.setAttribute("aria-hidden", "true");
-      node.className =
-        "pointer-events-none absolute top-0 left-[-20000px] h-[600px] w-[640px] opacity-0";
-    }
+    node.tabIndex = -1;
+    node.setAttribute("aria-hidden", "true");
+    node.style.cssText =
+      "pointer-events:none;position:absolute;top:0;left:-20000px;height:600px;width:640px;opacity:0";
     const worker = document.implementation.createHTMLDocument("Jellyfy audit");
     const order = worker.createElement("style");
     order.textContent = "@layer theme, base, components, utilities;";
@@ -66,7 +63,7 @@ export async function createAuditWorker(
     const harness = worker.createElement("style");
     harness.textContent =
       "*,*::before,*::after{transition:none!important;animation:none!important}.audit-local{color:#ef4444;background-color:#f97316;border-color:#ef4444}";
-    if (!container) worker.head.append(harness);
+    worker.head.append(harness);
     const bootstrap = worker.createElement("script");
     bootstrap.type = "module";
     bootstrap.textContent = `import { startJellyfy } from ${JSON.stringify(runtime)}; document.addEventListener("jellyfy-audit-refresh", startJellyfy); startJellyfy(); document.documentElement.dataset.runtimeReady = "true";`;
@@ -95,7 +92,7 @@ export async function createAuditWorker(
       cancel();
       return;
     }
-    (container ?? document.body).append(node);
+    document.body.append(node);
   });
   try {
     const doc = frame.contentDocument;

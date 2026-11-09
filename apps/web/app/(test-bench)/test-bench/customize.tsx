@@ -12,9 +12,7 @@ import type { MaterialVariableReport } from "../../(theme-probe)/theme-probe/mat
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import type { AuditJob, RemoteAuditRunner } from "./audit-plan";
 import { type NestedAuditHandle, NestedThemes } from "./nested-themes";
-import { PLAIN_COLOR_CSS } from "./preview-config";
 import PropertyAudit from "./property-audit";
-import PropertyOverrides from "./property-overrides";
 
 const Customize: FC = () => {
   const [mode, setMode] = useState<AuditMode>("tailwind");
@@ -114,40 +112,6 @@ const Customize: FC = () => {
           aria-labelledby={`tab-${mode}`}
           className="grid gap-12"
         >
-          <header className="grid gap-4">
-            <p>
-              Primary, secondary, and tertiary solids are green, blue, and
-              purple, with control text and surface text configured separately.
-              All nine colour settings use{" "}
-              {mode === "tailwind"
-                ? "@theme inline in test-bench.css"
-                : "ordinary CSS in the isolated preview"}
-              .
-            </p>
-            <pre className="overflow-x-auto rounded-xl bg-neutral-950 p-4 text-sm text-neutral-100">
-              <code>
-                {mode === "plain-css"
-                  ? PLAIN_COLOR_CSS
-                  : `@theme inline {
-  --color-primary: var(--color-green-800);
-  --color-secondary: var(--color-blue-700);
-  --color-tertiary: var(--color-purple-700);
-  --color-primary-content: var(--color-red-400);
-  --color-secondary-content: var(--color-green-900);
-  --color-tertiary-content: var(--color-red-400);
-  --color-primary-surface-content: #14532d;
-  --color-secondary-surface-content: #14532d;
-  --color-tertiary-surface-content: #14532d;
-}
-
-:root {
-  --material-opacity: 70%;
-}`}
-              </code>
-            </pre>
-          </header>
-
-          <PropertyOverrides mode={mode} />
           <NestedThemes
             ref={remote}
             mode={mode}
