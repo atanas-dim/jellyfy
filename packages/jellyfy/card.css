@@ -47,11 +47,11 @@
 }
 
 @layer utilities {
-  .card {
+  :where(.card) {
     background-color: var(--fill-surface);
   }
 
-  .card:is(
+  :where(.card):where(
     .primary,
     .secondary,
     .tertiary,

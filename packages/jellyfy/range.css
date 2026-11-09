@@ -132,12 +132,12 @@
 }
 
 @layer utilities {
-  .range-track {
+  :where(.range-track) {
     background-color: var(--fill-mark);
   }
 
-  .range-fill,
-  .range-thumb {
+  :where(.range-fill),
+  :where(.range-thumb) {
     background-color: color-mix(
       in oklab,
       var(--color-plain-content) var(--material-opacity),
@@ -145,36 +145,40 @@
     );
   }
 
-  .range:is(
-      .primary,
-      .secondary,
-      .tertiary,
-      .neutral,
-      .success,
-      .warning,
-      .error,
-      .info
-    )
-    .range-fill,
-  .range:is(
-      .primary,
-      .secondary,
-      .tertiary,
-      .neutral,
-      .success,
-      .warning,
-      .error,
-      .info
-    )
-    .range-thumb {
+  :where(
+    .range:is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .warning,
+        .error,
+        .info
+      )
+      .range-fill
+  ),
+  :where(
+    .range:is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .warning,
+        .error,
+        .info
+      )
+      .range-thumb
+  ) {
     background-color: var(--fill-control);
   }
 
-  .range:has(:disabled) .range-fill {
+  :where(.range:has(:disabled) .range-fill) {
     background-color: var(--fill-disabled);
   }
 
-  .range:has(:disabled) .range-thumb {
+  :where(.range:has(:disabled) .range-thumb) {
     background-color: var(--color-disabled-text);
   }
 }

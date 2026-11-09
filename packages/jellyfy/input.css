@@ -290,15 +290,15 @@
 }
 
 @layer utilities {
-  .input {
+  :where(.input) {
     background-color: var(--fill-field);
   }
 
-  .input:focus-within {
+  :where(.input:focus-within) {
     background-color: var(--fill-field-focus);
   }
 
-  .input:has(:disabled) {
+  :where(.input:has(:disabled)) {
     background-color: var(--fill-disabled);
     color: var(--color-disabled-text);
   }

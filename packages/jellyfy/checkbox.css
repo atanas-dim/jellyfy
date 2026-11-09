@@ -108,37 +108,41 @@
 }
 
 @layer utilities {
-  .checkbox-box {
+  :where(.checkbox-box) {
     background-color: var(--fill-mark);
   }
 
-  .checkbox:is(
-      .primary,
-      .secondary,
-      .tertiary,
-      .neutral,
-      .success,
-      .warning,
-      .error,
-      .info
-    ):has(:checked)
-    .checkbox-box {
+  :where(
+    .checkbox:is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .warning,
+        .error,
+        .info
+      ):has(:checked)
+      .checkbox-box
+  ) {
     background-color: var(--fill-control);
     color: var(--content);
   }
 
-  .checkbox:has(:disabled) .checkbox-box,
-  .checkbox:is(
-      .primary,
-      .secondary,
-      .tertiary,
-      .neutral,
-      .success,
-      .warning,
-      .error,
-      .info
-    ):has(:disabled)
-    .checkbox-box {
+  :where(.checkbox:has(:disabled) .checkbox-box),
+  :where(
+    .checkbox:is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .warning,
+        .error,
+        .info
+      ):has(:disabled)
+      .checkbox-box
+  ) {
     background-color: var(--fill-disabled);
     color: var(--color-disabled-text);
   }

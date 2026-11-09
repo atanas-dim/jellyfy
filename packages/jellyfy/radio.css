@@ -115,29 +115,31 @@
 }
 
 @layer utilities {
-  .radio-ring {
+  :where(.radio-ring) {
     background-color: var(--fill-mark);
   }
 
-  .radio:is(
-      .primary,
-      .secondary,
-      .tertiary,
-      .neutral,
-      .success,
-      .warning,
-      .error,
-      .info
-    )
-    .radio-ring::after {
+  :where(
+    .radio:is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .warning,
+        .error,
+        .info
+      )
+      .radio-ring
+  )::after {
     background-color: var(--fill-control);
   }
 
-  .radio:has(:disabled) .radio-ring {
+  :where(.radio:has(:disabled) .radio-ring) {
     background-color: var(--fill-disabled);
   }
 
-  .radio:has(:disabled) .radio-ring::after {
+  :where(.radio:has(:disabled) .radio-ring)::after {
     background-color: var(--color-disabled-text);
   }
 }

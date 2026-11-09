@@ -12,4 +12,6 @@ git merge --ff-only dev
 
 The command stops when `main` holds a commit that `dev` does not. Put the branches back on one line, then run it again.
 
+Before a package release, bump `packages/jellyfy/package.json` and add `apps/web/public/changelog/<version>.md` with the release version, date, and user-facing changes. The site reads these files for `/changelog` and reads the package version for the docs navigation label.
+
 A package version is tagged on the commit that contains the version bump. That commit is on `main`, so the tag stays on `main`.

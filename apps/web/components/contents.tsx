@@ -74,7 +74,9 @@ const Groups = ({
   </div>
 );
 
-export const Contents = ({ groups }: { groups: ContentsGroup[] }) => {
+type ContentsProps = { groups: ContentsGroup[]; caption?: string };
+
+export const Contents = ({ groups, caption }: ContentsProps) => {
   const pathname = usePathname();
   const hashIds = groups
     .flatMap((group) => group.items)
@@ -126,6 +128,11 @@ export const Contents = ({ groups }: { groups: ContentsGroup[] }) => {
           {current}
         </summary>
         <div className="border-t border-neutral-100 px-2 py-3 dark:border-neutral-800">
+          {caption && (
+            <p className="mb-4 px-3 text-xs text-neutral-500 dark:text-neutral-400">
+              {caption}
+            </p>
+          )}
           <Groups
             groups={groups}
             activeHref={activeHref}
@@ -137,6 +144,11 @@ export const Contents = ({ groups }: { groups: ContentsGroup[] }) => {
         aria-label="Contents"
         className="sticky top-20 hidden h-[calc(100dvh-6rem)] w-52 shrink-0 overflow-y-auto px-1 lg:block"
       >
+        {caption && (
+          <p className="mb-4 px-3 text-xs text-neutral-500 dark:text-neutral-400">
+            {caption}
+          </p>
+        )}
         <Groups groups={groups} activeHref={activeHref} onHash={setActiveId} />
       </nav>
     </>
