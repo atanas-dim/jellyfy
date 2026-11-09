@@ -1,189 +1,34 @@
 import { useEffect, useRef, useState } from "react";
 
-import { SAMPLES, TESTS, getParts, getDefaultPart } from "./property-cases.js";
-
-const PlusIcon = (props) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    aria-hidden="true"
-    {...props}
-  >
-    <path d="M12 5v14M5 12h14" />
-  </svg>
-);
-
-function renderSample(kind, test, part, applicable) {
-  const props = (id, base = "") => ({
-    className: [
-      base,
-      applicable && (part.host ?? part.id) === id
-        ? part.pseudo
-          ? test.afterClasses
-          : test.classes
-        : "",
-    ]
-      .filter(Boolean)
-      .join(" "),
-    "data-part": id,
-  });
-  const root = props("surface", `${kind} secondary`);
-  switch (kind) {
-    case "btn":
-      return (
-        <button {...root} type="button">
-          Button
-        </button>
-      );
-    case "btn-icon":
-    case "btn-bump":
-      return (
-        <button {...root} type="button" aria-label="Add item">
-          <PlusIcon {...props("icon")} />
-        </button>
-      );
-    case "badge":
-      return <span {...root}>Badge</span>;
-    case "input":
-      return (
-        <label {...root}>
-          <input
-            {...props("value")}
-            placeholder=" "
-            defaultValue="Input value"
-          />
-          <span {...props("label")}>Input label</span>
-        </label>
-      );
-    case "textarea":
-      return (
-        <label {...root}>
-          <textarea
-            {...props("value")}
-            placeholder=" "
-            defaultValue="Textarea value"
-          />
-          <span {...props("label")}>Textarea label</span>
-        </label>
-      );
-    case "select":
-      return (
-        <label {...root}>
-          <select {...props("value")} defaultValue="one">
-            <option value="one">Selected value</option>
-            <option value="two">Other value</option>
-          </select>
-          <span {...props("label")}>Select label</span>
-          <i className="picker-icon" />
-        </label>
-      );
-    case "checkbox":
-      return (
-        <label {...root}>
-          <input type="checkbox" defaultChecked />
-          <span {...props("box", "checkbox-box")} />
-          <span {...props("label")}>Checkbox label</span>
-        </label>
-      );
-    case "radio":
-      return (
-        <label {...root}>
-          <input type="radio" name="property-override-radio" defaultChecked />
-          <span {...props("ring", "radio-ring")} />
-          <span {...props("label")}>Radio label</span>
-        </label>
-      );
-    case "toggle":
-      return (
-        <label {...root}>
-          <input type="checkbox" role="switch" defaultChecked />
-          <span {...props("track", "toggle-track")}>
-            <span {...props("thumb", "toggle-thumb")} />
-          </span>
-          <span {...props("label")}>Switch label</span>
-        </label>
-      );
-    case "range":
-      return (
-        <label {...root}>
-          <span {...props("label")}>Range label</span>
-          <span className="range-box">
-            <span {...props("track", "range-track")}>
-              <span {...props("fill", "range-fill")} />
-            </span>
-            <span {...props("thumb", "range-thumb")} />
-            <input type="range" defaultValue={62} />
-          </span>
-        </label>
-      );
-    case "message":
-      return <p {...root}>Message text</p>;
-    case "alert":
-      return (
-        <div {...root}>
-          <PlusIcon {...props("icon")} />
-          <div>
-            <p className="font-semibold">Alert title</p>
-            <p>Alert text</p>
-          </div>
-        </div>
-      );
-    case "card":
-      return (
-        <section {...root}>
-          <h4 className="font-semibold">Card title</h4>
-          <p>Card text</p>
-        </section>
-      );
-    case "modal-panel":
-      return (
-        <div {...root}>
-          <h4 className="font-semibold">Dialog panel</h4>
-          <p>Inline preview of the modal panel.</p>
-        </div>
-      );
-  }
-}
+import {
+  SAMPLES,
+  TESTS,
+  getParts,
+  getDefaultPart,
+  getOverrideClasses,
+} from "./property-cases.js";
+import { renderSample } from "./property-sample.jsx";
+import { measureOverride } from "./measure-override.js";
+import PropertyAudit from "./property-audit.jsx";
 
 export function PropertyExample({ kind, name, test, property }) {
   const parts = getParts(kind);
   const [partId, setPartId] = useState(() => getDefaultPart(kind, property).id);
   const part = parts.find((item) => item.id === partId);
-  const applicable = part.tests.includes(property);
   const container = useRef(null);
   const reference = useRef(null);
   const [result, setResult] = useState(null);
 
   useEffect(() => {
     const root = container.current;
-    if (!applicable) return;
     const target = root.querySelector(`[data-part="${part.host ?? part.id}"]`);
     let timer;
-    const measure = () => {
-      const actual = getComputedStyle(target, part.pseudo ?? null);
-      const expected = getComputedStyle(reference.current);
-      const comparisons = test.properties.map((property) => ({
-        property,
-        actual: actual.getPropertyValue(property).trim(),
-        expected: expected.getPropertyValue(property).trim(),
-      }));
-      const supported = comparisons.every(
-        (value) => value.actual !== "" && value.expected !== "",
-      );
-      setResult({
-        supported,
-        passed:
-          supported &&
-          comparisons.every((value) => value.actual === value.expected),
-        comparisons,
-      });
-    };
     const schedule = () => {
       clearTimeout(timer);
-      // Allow the component's existing colour and shadow transitions to finish.
-      timer = setTimeout(measure, 400);
+      timer = setTimeout(
+        () => setResult(measureOverride(target, reference.current, test, part)),
+        400,
+      );
     };
     const events = [
       "pointerover",
@@ -199,7 +44,7 @@ export function PropertyExample({ kind, name, test, property }) {
       clearTimeout(timer);
       events.forEach((event) => root.removeEventListener(event, schedule));
     };
-  }, [test, part, applicable]);
+  }, [test, part]);
 
   return (
     <article
@@ -217,22 +62,20 @@ export function PropertyExample({ kind, name, test, property }) {
         <h3 className="font-semibold">{name}</h3>
         <span
           className={
-            applicable && result?.supported
+            result?.supported
               ? result.passed
                 ? "text-sm font-semibold text-green-700"
                 : "text-sm font-semibold text-red-600"
               : "text-sm text-neutral-500"
           }
         >
-          {!applicable
-            ? "N/A"
-            : result
-              ? !result.supported
-                ? "UNSUPPORTED"
-                : result.passed
-                  ? "PASS"
-                  : "FAIL"
-              : "Checking…"}
+          {result
+            ? !result.supported
+              ? "UNSUPPORTED"
+              : result.passed
+                ? "PASS"
+                : "FAIL"
+            : "Checking…"}
         </span>
       </div>
       {parts.length > 1 ? (
@@ -257,23 +100,10 @@ export function PropertyExample({ kind, name, test, property }) {
         <p className="text-sm">Test target: {part.name}</p>
       )}
       <code className="text-sm break-words text-neutral-500">
-        {part.selector ?? `.${kind}`} →{" "}
-        {applicable
-          ? part.pseudo
-            ? test.afterClasses
-            : test.classes
-          : "Not applied (N/A)"}
+        {part.selector ?? `.${kind}`} → {getOverrideClasses(test, part)}
       </code>
-      {!applicable && (
-        <p className="text-sm text-neutral-500">
-          This property is not a meaningful test for {part.name.toLowerCase()}.
-          Choose another target or property.
-        </p>
-      )}
-      <div className="min-w-0">
-        {renderSample(kind, test, part, applicable)}
-      </div>
-      {applicable && result && (
+      <div className="min-w-0">{renderSample(kind, test, part)}</div>
+      {result && (
         <details className="text-sm">
           <summary className="cursor-pointer">Computed styles</summary>
           <dl className="mt-2 grid gap-2 break-words">
@@ -285,6 +115,10 @@ export function PropertyExample({ kind, name, test, property }) {
               </div>
             ))}
           </dl>
+          <p className="mt-3 font-semibold">Layout constraints</p>
+          <pre className="mt-1 overflow-x-auto text-xs">
+            {JSON.stringify(result.context, null, 2)}
+          </pre>
         </details>
       )}
     </article>
@@ -298,8 +132,9 @@ export default function PropertyOverrides() {
     <section id="local-property-overrides" className="grid scroll-mt-6 gap-5">
       <h2 className="text-2xl font-semibold">Local property overrides</h2>
       <p>
-        Choose a property and inspect the named component part. Utilities are
-        applied to that exact element, without !important or custom variables.
+        Every property can be tested on every listed part, including labels and
+        pseudo-elements. The default target prioritizes common uses; it does not
+        restrict other combinations.
       </p>
       <label className="grid max-w-sm gap-2 text-sm font-semibold">
         Property
@@ -316,13 +151,12 @@ export default function PropertyOverrides() {
         </select>
       </label>
       <p className="text-sm text-neutral-500">
-        PASS compares the selected part against a plain reference with the same
-        utilities. Boxes, rings, tracks, fills and thumbs receive surface tests;
-        native fields receive padding tests; labels receive typography tests.
-        Use each target selector to inspect another part. N/A means that test
-        does not apply. Hover, focus or change a control to recheck its state.
-        FAIL means the computed result differs; inspect state and min/max size
-        constraints before treating it as a selector conflict.
+        PASS compares the exact selected part against a plain reference with the
+        same utilities. A CSS property can be applied even when it has little
+        visual effect. Hover, focus or change a control to recheck its state.
+        FAIL means a computed value differs; inspect min/max sizing, layout and
+        state before calling it a selector conflict. Unsupported browser
+        properties are reported separately.
       </p>
       <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {SAMPLES.map(([kind, name]) => (
@@ -335,6 +169,7 @@ export default function PropertyOverrides() {
           />
         ))}
       </div>
+      <PropertyAudit />
     </section>
   );
 }

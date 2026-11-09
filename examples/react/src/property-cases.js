@@ -17,6 +17,12 @@ export const SAMPLES = [
 ];
 
 export const TESTS = {
+  color: {
+    label: "Text colour",
+    classes: "text-red-500",
+    afterClasses: "after:text-red-500",
+    properties: ["color"],
+  },
   background: {
     label: "Background colour",
     classes: "bg-orange-500",
@@ -26,6 +32,7 @@ export const TESTS = {
   padding: {
     label: "Padding",
     classes: "p-2",
+    afterClasses: "after:p-2",
     properties: [
       "padding-top",
       "padding-right",
@@ -53,6 +60,7 @@ export const TESTS = {
   shadow: {
     label: "Shadow",
     classes: "shadow-none",
+    afterClasses: "after:shadow-none",
     properties: ["box-shadow"],
   },
   size: {
@@ -64,6 +72,8 @@ export const TESTS = {
   typography: {
     label: "Typography",
     classes: "text-xl font-light tracking-widest normal-case",
+    afterClasses:
+      "after:text-xl after:font-light after:tracking-widest after:normal-case",
     properties: [
       "font-size",
       "line-height",
@@ -81,15 +91,18 @@ export const TESTS = {
   texture: {
     label: "Remove background texture",
     classes: "bg-none",
+    afterClasses: "after:bg-none",
     properties: ["background-image"],
   },
   blur: {
     label: "Remove backdrop blur",
     classes: "backdrop-blur-none",
+    afterClasses: "after:backdrop-blur-none",
     properties: ["backdrop-filter"],
   },
 };
 
+// These preferences choose the initial target only; they never exclude a test.
 const MATERIAL = [
   "background",
   "radius",
@@ -104,12 +117,12 @@ const LABEL = {
   id: "label",
   name: "Label text",
   selector: "[data-part=label]",
-  tests: ["typography", "opacity"],
+  preferred: ["color", "typography", "opacity"],
 };
 const SURFACE = {
   id: "surface",
   name: "Component surface",
-  tests: Object.keys(TESTS),
+  preferred: Object.keys(TESTS),
 };
 const DEFAULT_PARTS = [SURFACE];
 const fieldParts = (tag) => [
@@ -117,21 +130,27 @@ const fieldParts = (tag) => [
     id: "surface",
     name: "Field surface",
     selector: `.${tag}`,
-    tests: MATERIAL,
+    preferred: MATERIAL,
   },
   {
     id: "value",
     name: "Native value field",
     selector: `.${tag} > ${tag === "input" ? "input" : tag}`,
-    tests: ["padding", "typography", "size", "opacity"],
+    preferred: ["color", "padding", "typography", "size", "opacity"],
   },
   {
     id: "label",
     name: "Floating label",
     selector: `.${tag} > span`,
-    tests: ["typography", "opacity"],
+    preferred: ["color", "typography", "opacity"],
   },
 ];
+const OUTER = {
+  id: "surface",
+  name: "Outer label/layout",
+  preferred: ["padding"],
+};
+
 const PARTS = {
   input: fieldParts("input"),
   textarea: fieldParts("textarea"),
@@ -141,8 +160,17 @@ const PARTS = {
       id: "box",
       name: "Checkbox box",
       selector: ".checkbox-box",
-      tests: MATERIAL,
+      preferred: MATERIAL,
     },
+    {
+      id: "checkmark",
+      host: "box",
+      pseudo: "::after",
+      name: "Checkbox checkmark",
+      selector: ".checkbox-box::after",
+      preferred: [],
+    },
+    OUTER,
     LABEL,
   ],
   radio: [
@@ -150,7 +178,7 @@ const PARTS = {
       id: "ring",
       name: "Radio ring",
       selector: ".radio-ring",
-      tests: MATERIAL,
+      preferred: MATERIAL,
     },
     {
       id: "dot",
@@ -158,8 +186,9 @@ const PARTS = {
       pseudo: "::after",
       name: "Selected radio dot",
       selector: ".radio-ring::after",
-      tests: ["background", "radius", "border", "size", "opacity"],
+      preferred: ["background", "radius", "border", "size", "opacity"],
     },
+    OUTER,
     LABEL,
   ],
   toggle: [
@@ -167,14 +196,15 @@ const PARTS = {
       id: "track",
       name: "Switch track",
       selector: ".toggle-track",
-      tests: MATERIAL,
+      preferred: MATERIAL,
     },
     {
       id: "thumb",
       name: "Switch thumb",
       selector: ".toggle-thumb",
-      tests: MATERIAL,
+      preferred: MATERIAL,
     },
+    OUTER,
     LABEL,
   ],
   range: [
@@ -182,40 +212,41 @@ const PARTS = {
       id: "track",
       name: "Slider track",
       selector: ".range-track",
-      tests: MATERIAL,
+      preferred: MATERIAL,
     },
     {
       id: "fill",
       name: "Slider fill",
       selector: ".range-fill",
-      tests: MATERIAL,
+      preferred: MATERIAL,
     },
     {
       id: "thumb",
       name: "Slider thumb",
       selector: ".range-thumb",
-      tests: MATERIAL,
+      preferred: MATERIAL,
     },
+    OUTER,
     LABEL,
   ],
   "btn-icon": [
     {
       ...SURFACE,
       name: "Button surface",
-      tests: Object.keys(TESTS).filter((key) => key !== "typography"),
+      preferred: Object.keys(TESTS).filter((key) => key !== "typography"),
     },
     {
       id: "icon",
       name: "SVG symbol",
       selector: ".btn-icon > svg",
-      tests: ["size", "opacity"],
+      preferred: ["size", "opacity"],
     },
   ],
   "btn-bump": [
     {
       ...SURFACE,
       name: "Button surface",
-      tests: [
+      preferred: [
         "background",
         "padding",
         "radius",
@@ -229,7 +260,7 @@ const PARTS = {
       id: "icon",
       name: "SVG symbol",
       selector: ".btn-bump > svg",
-      tests: ["size", "opacity"],
+      preferred: ["size", "opacity"],
     },
   ],
   alert: [
@@ -238,14 +269,14 @@ const PARTS = {
       id: "icon",
       name: "SVG symbol",
       selector: ".alert > svg",
-      tests: ["size", "opacity"],
+      preferred: ["size", "opacity"],
     },
   ],
   message: [
     {
       ...SURFACE,
       name: "Message text",
-      tests: Object.keys(TESTS).filter(
+      preferred: Object.keys(TESTS).filter(
         (key) => !["texture", "blur"].includes(key),
       ),
     },
@@ -254,5 +285,21 @@ const PARTS = {
 
 export const getParts = (kind) => PARTS[kind] ?? DEFAULT_PARTS;
 export const getDefaultPart = (kind, property) =>
-  getParts(kind).find((part) => part.tests.includes(property)) ??
+  getParts(kind).find((part) => part.preferred.includes(property)) ??
   getParts(kind)[0];
+
+export const getOverrideClasses = (test, part) =>
+  part.pseudo ? test.afterClasses : test.classes;
+
+export const AUDIT_CASES = SAMPLES.flatMap(([kind, name]) =>
+  getParts(kind).flatMap((part) =>
+    Object.entries(TESTS).map(([property, test]) => ({
+      id: `${kind}-${part.id}-${property}`,
+      kind,
+      name,
+      part,
+      property,
+      test,
+    })),
+  ),
+);
