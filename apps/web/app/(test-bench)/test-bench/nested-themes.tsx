@@ -5,7 +5,7 @@ import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 
 type NestedThemesProps = {
   onReport: (report: ThemeReport) => void;
-  onMaterialReport: (report: MaterialVariableReport | null) => void;
+  onMaterialReport: (report: MaterialVariableReport) => void;
 };
 
 export const NestedThemes: FC<NestedThemesProps> = ({
@@ -22,8 +22,7 @@ export const NestedThemes: FC<NestedThemesProps> = ({
         return;
       if (
         event.data?.type === "jellyfy-material-report" &&
-        (event.data.report === null ||
-          Array.isArray(event.data.report?.results))
+        Array.isArray(event.data.report?.results)
       )
         onMaterialReport(event.data.report);
       if (

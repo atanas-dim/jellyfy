@@ -1,3 +1,5 @@
+import type { AuditMode, AuditSource } from "./audit-environment";
+
 export const THEMES = ["light", "dark"] as const;
 export type Theme = (typeof THEMES)[number];
 export const SLOTS = [
@@ -17,7 +19,7 @@ export const PROFILES = [
   "theme-custom",
   "local-utilities",
 ] as const;
-export type Profile = (typeof PROFILES)[number];
+export type Profile = (typeof PROFILES)[number] | "local-css";
 export const STATES = [
   "resting",
   "checked",
@@ -91,6 +93,7 @@ export type ThemeResult = {
   differences: Difference[];
 };
 export type ThemeReport = {
+  environment: AuditSource;
   version: string;
   userAgent: string;
   total: number;
@@ -144,3 +147,18 @@ export const tokenNames = (slot: string): string[] => [
   `--color-${slot}-content`,
   `--color-${slot}-surface-content`,
 ];
+
+// Plain CSS must exercise literal colors without supplying Tailwind's palette.
+export const auditValues = (
+  profile: Profile,
+  theme: Theme,
+  mode: AuditMode,
+): string[] | null => {
+  if (mode === "tailwind") return customValues(profile, theme);
+  if (profile === "root-custom") return ["#15803d", "#ef4444", "#a855f7"];
+  if (profile === "theme-custom")
+    return theme === "light"
+      ? ["#2563eb", "#172554", "#1e40af"]
+      : ["#60a5fa", "#dbeafe", "#bfdbfe"];
+  return null;
+};

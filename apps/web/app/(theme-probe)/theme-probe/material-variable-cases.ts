@@ -1,3 +1,5 @@
+import type { AuditSource } from "./audit-environment";
+
 export type MaterialVariableCase = {
   name: string;
   variable: string;
@@ -161,6 +163,7 @@ export type MaterialVariableResult = {
 };
 
 export type MaterialVariableReport = {
+  environment: AuditSource;
   version: string;
   total: number;
   passed: number;

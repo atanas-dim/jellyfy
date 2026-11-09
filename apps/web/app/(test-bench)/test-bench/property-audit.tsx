@@ -2,6 +2,10 @@ import { type FC, useEffect, useRef, useState } from "react";
 
 import { TestBenchButton } from "@/components/test-bench-button";
 
+import {
+  AUDIT_MODES,
+  type AuditMode,
+} from "../../(theme-probe)/theme-probe/audit-environment";
 import type { MaterialVariableReport } from "../../(theme-probe)/theme-probe/material-variable-cases";
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import { measureOverride, type OverrideMeasurement } from "./measure-override";
@@ -18,10 +22,31 @@ type AuditResult = OverrideMeasurement & {
 
 type AuditReport = { state: string; results: AuditResult[] };
 
+function failureReports<T extends { results: { passed: boolean }[] }>(
+  reports: Partial<Record<AuditMode, T>>,
+) {
+  return Object.fromEntries(
+    Object.entries(reports).flatMap(([mode, report]) => {
+      const value = report as T | undefined;
+      return value
+        ? [
+            [
+              mode,
+              {
+                ...value,
+                results: value.results.filter((result) => !result.passed),
+              },
+            ],
+          ]
+        : [];
+    }),
+  );
+}
+
 const PropertyAudit: FC<{
-  themeReport: ThemeReport | null;
-  materialReport: MaterialVariableReport | null;
-}> = ({ themeReport, materialReport }) => {
+  themeReports: Partial<Record<AuditMode, ThemeReport>>;
+  materialReports: Partial<Record<AuditMode, MaterialVariableReport>>;
+}> = ({ themeReports, materialReports }) => {
   const canvas = useRef<HTMLDivElement>(null);
   const [running, setRunning] = useState(false);
   const [report, setReport] = useState<AuditReport | null>(null);
@@ -77,8 +102,9 @@ const PropertyAudit: FC<{
         passed,
         failures: failures.length,
         unsupported: unsupported.length,
-        nestedThemes: themeReport,
-        materialVariables: materialReport,
+        overrideEnvironment: "tailwind",
+        nestedThemes: themeReports,
+        materialVariables: materialReports,
       },
       null,
       2,
@@ -92,22 +118,8 @@ const PropertyAudit: FC<{
             total: report?.results.length ?? 0,
             failures,
             unsupported,
-            materialVariables: materialReport
-              ? {
-                  ...materialReport,
-                  results: materialReport.results.filter(
-                    (result) => !result.passed,
-                  ),
-                }
-              : null,
-            nestedThemes: themeReport
-              ? {
-                  ...themeReport,
-                  results: themeReport.results.filter(
-                    (result) => !result.passed,
-                  ),
-                }
-              : null,
+            materialVariables: failureReports(materialReports),
+            nestedThemes: failureReports(themeReports),
           },
           null,
           2,
@@ -146,7 +158,9 @@ const PropertyAudit: FC<{
         >
           {running ? "Running override tests…" : "Run override tests"}
         </TestBenchButton>
-        {(report || themeReport || materialReport) && (
+        {(report ||
+          Object.keys(themeReports).length > 0 ||
+          Object.keys(materialReports).length > 0) && (
           <>
             <TestBenchButton
               type="button"
@@ -171,17 +185,21 @@ const PropertyAudit: FC<{
         </p>
       )}
       <p className="text-sm">
-        Nested-theme report:{" "}
-        {themeReport
-          ? `${themeReport.passed}/${themeReport.total} passed; included in downloads`
-          : "not run yet"}
+        Downloads keep the latest completed results from each environment. The
+        407 utility override checks always use Tailwind.
       </p>
-      <p className="text-sm">
-        Public-variable report:{" "}
-        {materialReport
-          ? `${materialReport.passed}/${materialReport.total} passed; included in downloads`
-          : "not run yet"}
-      </p>
+      {AUDIT_MODES.map(({ mode, label }) => (
+        <p key={mode} className="text-sm">
+          {label}: nested themes{" "}
+          {themeReports[mode]
+            ? `${themeReports[mode]?.passed}/${themeReports[mode]?.total}`
+            : "not run"}
+          ; public variables{" "}
+          {materialReports[mode]
+            ? `${materialReports[mode]?.passed}/${materialReports[mode]?.total}`
+            : "not run"}
+        </p>
+      ))}
       {running && (
         <div
           ref={canvas}

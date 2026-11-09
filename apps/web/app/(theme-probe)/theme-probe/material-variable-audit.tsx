@@ -2,6 +2,7 @@ import { type CSSProperties, type FC, useEffect, useState } from "react";
 
 import { TestBenchButton } from "@/components/test-bench-button";
 
+import type { AuditMode } from "./audit-environment";
 import {
   MATERIAL_VARIABLE_CASES,
   type MaterialVariableReport,
@@ -10,25 +11,30 @@ import { runMaterialVariableAudit } from "./run-material-variable-audit";
 
 type MaterialVariableAuditProps = {
   disabled: boolean;
+  mode: AuditMode;
   onRunningChange: (running: boolean) => void;
 };
 
 export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
   disabled,
+  mode,
   onRunningChange,
 }) => {
   const [running, setRunning] = useState(false);
   const [progress, setProgress] = useState("");
-  const [report, setReport] = useState<MaterialVariableReport | null>(null);
+  const [reports, setReports] = useState<
+    Partial<Record<AuditMode, MaterialVariableReport>>
+  >({});
+  const report = reports[mode] ?? null;
   const [error, setError] = useState("");
   useEffect(() => {
     if (!running) return;
     const controller = new AbortController();
     onRunningChange(true);
-    runMaterialVariableAudit(setProgress, controller.signal)
+    runMaterialVariableAudit(setProgress, controller.signal, mode)
       .then((result) => {
         if (controller.signal.aborted) return;
-        setReport(result);
+        setReports((previous) => ({ ...previous, [mode]: result }));
         window.parent.postMessage(
           { type: "jellyfy-material-report", report: result },
           window.location.origin,
@@ -49,7 +55,7 @@ export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
         }
       });
     return () => controller.abort();
-  }, [running, onRunningChange]);
+  }, [running, mode, onRunningChange]);
   const failures = report?.results.filter((result) => !result.passed) ?? [];
   return (
     <section className="light grid gap-5 border-t border-neutral-300 pt-8">
@@ -60,6 +66,11 @@ export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
         section, and on the component itself, in both themes. Each setting is
         tested with ordinary and layered CSS before and after the library
         stylesheet.
+      </p>
+      <p className="text-sm font-semibold">
+        Audit environment:{" "}
+        {mode === "tailwind" ? "With Tailwind" : "Without Tailwind"}. Visual
+        examples below use Tailwind.
       </p>
       <div className="grid gap-6">
         {MATERIAL_VARIABLE_CASES.slice(0, 8).map((test) => (
@@ -92,12 +103,8 @@ export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
         className="justify-self-start"
         onClick={() => {
           setError("");
-          setReport(null);
+          setReports((previous) => ({ ...previous, [mode]: undefined }));
           setRunning(true);
-          window.parent.postMessage(
-            { type: "jellyfy-material-report", report: null },
-            window.location.origin,
-          );
         }}
       >
         {running ? "Running material tests…" : "Run public-variable tests"}

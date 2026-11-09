@@ -52,7 +52,12 @@ export const ThemeFixtures: FC = () => (
   <>
     {FRAMES.map((frame) => {
       let content: ReactNode = (
-        <div key={frame.id} data-frame={frame.id} className={frame.theme}>
+        <div
+          key={frame.id}
+          data-frame={frame.id}
+          className={frame.theme}
+          style={{ color: "var(--color-plain-content)" }}
+        >
           {SAMPLES.map(([kind, name]) => (
             <div
               key={kind}

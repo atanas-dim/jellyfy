@@ -12,6 +12,7 @@ import { twJoin } from "tailwind-merge";
 
 import { TestBenchButton } from "@/components/test-bench-button";
 
+import { AUDIT_MODES, type AuditMode } from "./audit-environment";
 import { MaterialVariableAudit } from "./material-variable-audit";
 import { runThemeAudit } from "./run-theme-audit";
 import {
@@ -28,7 +29,11 @@ export const ThemeAudit: FC = () => {
   const [running, setRunning] = useState(false);
   const [materialRunning, setMaterialRunning] = useState(false);
   const [progress, setProgress] = useState("");
-  const [report, setReport] = useState<ThemeReport | null>(null);
+  const [auditMode, setAuditMode] = useState<AuditMode>("tailwind");
+  const [reports, setReports] = useState<
+    Partial<Record<AuditMode, ThemeReport>>
+  >({});
+  const report = reports[auditMode] ?? null;
   const [error, setError] = useState("");
   const [outerTheme, setOuterTheme] = useState<Theme>("light");
   const canvas = useRef<HTMLDivElement>(null);
@@ -51,10 +56,10 @@ export const ThemeAudit: FC = () => {
   useEffect(() => {
     if (!running || !canvas.current) return;
     const controller = new AbortController();
-    runThemeAudit(canvas.current, setProgress, controller.signal)
+    runThemeAudit(canvas.current, setProgress, controller.signal, auditMode)
       .then((result) => {
         if (controller.signal.aborted) return;
-        setReport(result);
+        setReports((previous) => ({ ...previous, [auditMode]: result }));
         window.parent.postMessage(
           { type: "jellyfy-theme-report", report: result },
           window.location.origin,
@@ -70,7 +75,7 @@ export const ThemeAudit: FC = () => {
         if (!controller.signal.aborted) setRunning(false);
       });
     return () => controller.abort();
-  }, [running]);
+  }, [running, auditMode]);
 
   const selectTheme = (theme: Theme) => {
     document.documentElement.classList.remove("light", "dark");
@@ -83,6 +88,36 @@ export const ThemeAudit: FC = () => {
       <p>
         Library defaults and explicit per-theme customization run in a separate
         document so the earlier global overrides cannot mask a failure.
+      </p>
+      <div
+        role="group"
+        aria-label="Audit environment"
+        className="flex flex-wrap gap-3"
+      >
+        {AUDIT_MODES.map(({ mode, label }) => (
+          <TestBenchButton
+            key={mode}
+            disabled={running || materialRunning}
+            aria-pressed={auditMode === mode}
+            variant={auditMode === mode ? "primary" : "secondary"}
+            onClick={() => setAuditMode(mode)}
+          >
+            {label}
+          </TestBenchButton>
+        ))}
+      </div>
+      <p className="text-sm">
+        The selected environment applies to automated tests. The fixed visual
+        examples below use Tailwind.{" "}
+        <a
+          href="/test-bench/plain"
+          target="_blank"
+          rel="noreferrer"
+          className="underline underline-offset-4"
+        >
+          Open the standalone HTML example without Tailwind
+        </a>
+        .
       </p>
       <div
         role="group"
@@ -173,9 +208,11 @@ export const ThemeAudit: FC = () => {
       <p className="text-sm">
         The audit covers 15 components, all eight slots plus plain controls,
         root overrides, per-theme overrides, local utilities, four nesting
-        arrangements, and resting/checked/disabled/focus/loading states. It
-        temporarily switches this document’s root theme and restores it
-        afterward. Hover and native picker appearance remain manual checks.
+        arrangements, and resting/checked/disabled/focus/loading states. It runs
+        in an isolated document with the selected stylesheet and the package
+        runtime. Without Tailwind, customization uses literal colors and
+        ordinary local CSS overrides. Hover and native picker appearance remain
+        manual checks.
       </p>
       <TestBenchButton
         type="button"
@@ -183,7 +220,7 @@ export const ThemeAudit: FC = () => {
         disabled={running || materialRunning}
         onClick={() => {
           setError("");
-          setReport(null);
+          setReports((previous) => ({ ...previous, [auditMode]: undefined }));
           setRunning(true);
         }}
       >
@@ -212,6 +249,7 @@ export const ThemeAudit: FC = () => {
       {report && (
         <>
           <p role="status" className="font-semibold">
+            {auditMode === "tailwind" ? "With Tailwind" : "Without Tailwind"}:{" "}
             {report.passed} of {report.total} theme cases passed ·{" "}
             {report.failures} failed · {report.propertyChecks.toLocaleString()}{" "}
             property checks
@@ -244,6 +282,7 @@ export const ThemeAudit: FC = () => {
       )}
       <MaterialVariableAudit
         disabled={running}
+        mode={auditMode}
         onRunningChange={setMaterialRunning}
       />
     </div>

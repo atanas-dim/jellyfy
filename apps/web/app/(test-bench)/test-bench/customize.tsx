@@ -1,9 +1,10 @@
 "use client";
 
-import { type FC, useState } from "react";
+import { type FC, useCallback, useState } from "react";
 
 import { TestBenchButton } from "@/components/test-bench-button";
 
+import type { AuditMode } from "../../(theme-probe)/theme-probe/audit-environment";
 import type { MaterialVariableReport } from "../../(theme-probe)/theme-probe/material-variable-cases";
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import {
@@ -19,9 +20,28 @@ import PropertyAudit from "./property-audit";
 import PropertyOverrides from "./property-overrides";
 
 const Customize: FC = () => {
-  const [themeReport, setThemeReport] = useState<ThemeReport | null>(null);
-  const [materialReport, setMaterialReport] =
-    useState<MaterialVariableReport | null>(null);
+  const [themeReports, setThemeReports] = useState<
+    Partial<Record<AuditMode, ThemeReport>>
+  >({});
+  const [materialReports, setMaterialReports] = useState<
+    Partial<Record<AuditMode, MaterialVariableReport>>
+  >({});
+  const saveThemeReport = useCallback(
+    (report: ThemeReport) =>
+      setThemeReports((previous) => ({
+        ...previous,
+        [report.environment.mode]: report,
+      })),
+    [],
+  );
+  const saveMaterialReport = useCallback(
+    (report: MaterialVariableReport) =>
+      setMaterialReports((previous) => ({
+        ...previous,
+        [report.environment.mode]: report,
+      })),
+    [],
+  );
   return (
     <main className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-10">
       <header className="grid gap-4">
@@ -237,12 +257,12 @@ const Customize: FC = () => {
       </section>
       <PropertyOverrides />
       <NestedThemes
-        onReport={setThemeReport}
-        onMaterialReport={setMaterialReport}
+        onReport={saveThemeReport}
+        onMaterialReport={saveMaterialReport}
       />
       <PropertyAudit
-        themeReport={themeReport}
-        materialReport={materialReport}
+        themeReports={themeReports}
+        materialReports={materialReports}
       />
     </main>
   );

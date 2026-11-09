@@ -1,7 +1,8 @@
 import { JELLYFY_VERSION } from "@/resources/package-version";
 
+import { type AuditMode,createAuditWorker } from "./audit-environment";
 import {
-  customValues,
+  auditValues,
   type Difference,
   FRAMES,
   type Profile,
@@ -46,21 +47,24 @@ const setState = (sample: HTMLElement, state: State) => {
     sample,
     ...sample.querySelectorAll("input, textarea, select, button"),
   ]) {
-    if (control instanceof HTMLInputElement) {
-      control.disabled = state === "disabled";
-      if (control.type === "checkbox" || control.type === "radio")
-        control.checked = state !== "resting";
-    } else if (
-      control instanceof HTMLButtonElement ||
-      control instanceof HTMLTextAreaElement ||
-      control instanceof HTMLSelectElement
-    ) {
-      control.disabled = state === "disabled";
+    if (control.tagName === "INPUT") {
+      const input = control as HTMLInputElement;
+      input.disabled = state === "disabled";
+      if (input.type === "checkbox" || input.type === "radio")
+        input.checked = state !== "resting";
+    } else if (["BUTTON", "TEXTAREA", "SELECT"].includes(control.tagName)) {
+      (
+        control as HTMLButtonElement | HTMLTextAreaElement | HTMLSelectElement
+      ).disabled = state === "disabled";
     }
   }
 };
 
-const snapshot = (sample: HTMLElement, state: State): Snapshot => {
+const snapshot = (
+  sample: HTMLElement,
+  state: State,
+  view: Window,
+): Snapshot => {
   const control = sample.matches("button, input, textarea, select")
     ? sample
     : sample.querySelector<HTMLElement>("input, textarea, select, button");
@@ -68,7 +72,7 @@ const snapshot = (sample: HTMLElement, state: State): Snapshot => {
   const values: Snapshot = {};
   [sample, ...sample.querySelectorAll("*")].forEach((node, index) => {
     for (const pseudo of [null, "::before", "::after"]) {
-      const style = getComputedStyle(node, pseudo);
+      const style = view.getComputedStyle(node, pseudo);
       for (const property of STYLE_PROPERTIES)
         values[`${index}:${node.localName}${pseudo ?? ""}|${property}`] = style
           .getPropertyValue(property)
@@ -109,67 +113,86 @@ export async function runThemeAudit(
   canvas: HTMLElement,
   onProgress: (message: string) => void,
   signal: AbortSignal,
+  mode: AuditMode,
 ): Promise<ThemeReport> {
   if (!CSS.supports("color", "light-dark(white, black)")) {
     throw new Error(
       "This audit requires native light-dark(): Chrome/Edge 123+, Firefox 120+, Safari/iOS Safari 17.5+",
     );
   }
-  const root = document.documentElement;
-  const previousClass = root.className;
-  const previousStyle = root.style.cssText;
-  const active = document.activeElement;
-  const references = new Map<string, Snapshot>();
-  const pending: Capture[] = [];
-  const results: ThemeResult[] = [];
-  const customResults: ThemeResult[] = [];
-  let propertyChecks = 0;
-  const record = ({ values, ...capture }: Capture, expected: Snapshot) => {
-    propertyChecks += Object.keys(values).length;
-    const differences = compare(values, expected);
-    results.push({ ...capture, passed: differences.length === 0, differences });
-  };
-  const frameElements = FRAMES.map((frame) => {
-    const element = canvas.querySelector<HTMLElement>(
-      `[data-frame="${frame.id}"]`,
-    );
-    if (!element) throw new Error(`Missing theme frame: ${frame.id}`);
-    const samples = [
-      ...element.querySelectorAll<HTMLElement>("[data-theme-sample]"),
-    ].map((wrapper) => {
-      const sample = wrapper.firstElementChild;
-      if (!(sample instanceof HTMLElement))
-        throw new Error("Missing component fixture");
-      sample.dataset.themeComponent = wrapper.dataset.componentName;
-      return sample;
-    });
-    return { ...frame, element, samples };
-  });
-  const themeBoundaries = [
-    ...canvas.querySelectorAll<HTMLElement>(".light, .dark"),
-  ];
-  canvas.dataset.auditing = "true";
+  const {
+    frame: workerFrame,
+    doc,
+    view,
+    source,
+  } = await createAuditWorker(mode, signal);
   try {
-    for (const profile of PROFILES) {
+    const fixtures = doc.importNode(canvas, true);
+    doc.body.append(fixtures);
+    canvas = fixtures;
+    const root = doc.documentElement;
+    const references = new Map<string, Snapshot>();
+    const pending: Capture[] = [];
+    const results: ThemeResult[] = [];
+    const customResults: ThemeResult[] = [];
+    let propertyChecks = 0;
+    const record = ({ values, ...capture }: Capture, expected: Snapshot) => {
+      propertyChecks += Object.keys(values).length;
+      const differences = compare(values, expected);
+      results.push({
+        ...capture,
+        passed: differences.length === 0,
+        differences,
+      });
+    };
+    const frameElements = FRAMES.map((frame) => {
+      const element = canvas.querySelector<HTMLElement>(
+        `[data-frame="${frame.id}"]`,
+      );
+      if (!element) throw new Error(`Missing theme frame: ${frame.id}`);
+      const samples = [
+        ...element.querySelectorAll<HTMLElement>("[data-theme-sample]"),
+      ].map((wrapper) => {
+        const sample = wrapper.firstElementChild;
+        if (!sample || sample.namespaceURI !== "http://www.w3.org/1999/xhtml")
+          throw new Error("Missing component fixture");
+        const element = sample as HTMLElement;
+        element.dataset.themeComponent = wrapper.dataset.componentName;
+        return element;
+      });
+      return { ...frame, element, samples };
+    });
+    const themeBoundaries = [
+      ...canvas.querySelectorAll<HTMLElement>(".light, .dark"),
+    ];
+    canvas.dataset.auditing = "true";
+    const profiles: Profile[] = PROFILES.map((profile) =>
+      mode === "plain-css" && profile === "local-utilities"
+        ? "local-css"
+        : profile,
+    );
+    for (const profile of profiles) {
       for (const slot of SLOTS) {
         for (const outerTheme of THEMES) {
           root.classList.remove("light", "dark");
           root.classList.add(outerTheme);
-          applyTokens(root, customValues(profile, outerTheme));
+          applyTokens(root, auditValues(profile, outerTheme, mode));
           // Match explicit .light/.dark rules on every boundary, including
           // intermediate ancestors and the document root.
           for (const boundary of themeBoundaries)
             applyTokens(
               boundary,
               profile === "theme-custom"
-                ? customValues(
+                ? auditValues(
                     profile,
                     boundary.classList.contains("dark") ? "dark" : "light",
+                    mode,
                   )
                 : null,
             );
           for (const frame of frameElements) {
             frame.samples.forEach((sample) => {
+              sample.classList.toggle("audit-local", profile === "local-css");
               for (const name of SLOTS)
                 if (name !== "plain") sample.classList.remove(name);
               if (slot !== "plain") sample.classList.add(slot);
@@ -194,11 +217,13 @@ export async function runThemeAudit(
             frameElements.forEach((frame) =>
               frame.samples.forEach((sample) => setState(sample, state)),
             );
+            // Refresh synchronously: offscreen frames may throttle their own rAF.
+            doc.dispatchEvent(new Event("jellyfy-audit-refresh"));
             await nextPaint();
             for (const frame of frameElements) {
               const samples: SampleSnapshot[] = frame.samples.map((sample) => ({
                 component: sample.dataset.themeComponent ?? "unknown",
-                values: snapshot(sample, state),
+                values: snapshot(sample, state, view),
               }));
               for (const { component, values } of samples) {
                 if (frame.reference) {
@@ -233,15 +258,57 @@ export async function runThemeAudit(
               }
               // Check explicit customization against an independent ordinary CSS color probe.
               // Matrix consistency alone could otherwise pass if customization failed everywhere.
-              const expectedColors = customValues(profile, frame.theme);
+              const expectedColors = auditValues(profile, frame.theme, mode);
+              if (state === "resting" && profile === "local-css") {
+                const probe = doc.createElement("span");
+                probe.style.cssText =
+                  "color:#ef4444;background-color:#f97316;border-color:#ef4444";
+                frame.element.append(probe);
+                const expected = view.getComputedStyle(probe);
+                const properties = [
+                  "color",
+                  "background-color",
+                  "border-top-color",
+                ];
+                const differences: Difference[] = [];
+                for (const sample of frame.samples)
+                  for (const property of properties) {
+                    const actual = view
+                      .getComputedStyle(sample)
+                      .getPropertyValue(property);
+                    const value = expected.getPropertyValue(property);
+                    propertyChecks++;
+                    if (actual !== value)
+                      differences.push({
+                        target: sample.dataset.themeComponent ?? "component",
+                        property,
+                        actual,
+                        expected: value,
+                      });
+                  }
+                probe.remove();
+                customResults.push({
+                  component: "Local CSS overrides",
+                  slot,
+                  profile,
+                  state,
+                  outerTheme,
+                  frame: frame.id,
+                  innerTheme: frame.theme,
+                  passed: differences.length === 0,
+                  differences,
+                });
+              }
               if (state === "resting" && slot !== "plain" && expectedColors) {
-                const probe = document.createElement("span");
+                const probe = doc.createElement("span");
                 frame.element.append(probe);
                 const differences: Difference[] = [];
                 tokenNames(slot).forEach((token, index) => {
                   const paletteToken = expectedColors[index].slice(4, -1);
                   if (
-                    !getComputedStyle(probe)
+                    expectedColors[index].startsWith("var(") &&
+                    !view
+                      .getComputedStyle(probe)
                       .getPropertyValue(paletteToken)
                       .trim()
                   )
@@ -249,9 +316,9 @@ export async function runThemeAudit(
                       `Missing palette reference: ${paletteToken}`,
                     );
                   probe.style.color = `var(${token})`;
-                  const actual = getComputedStyle(probe).color;
+                  const actual = view.getComputedStyle(probe).color;
                   probe.style.color = expectedColors[index];
-                  const expected = getComputedStyle(probe).color;
+                  const expected = view.getComputedStyle(probe).color;
                   propertyChecks++;
                   if (actual !== expected)
                     differences.push({
@@ -265,7 +332,7 @@ export async function runThemeAudit(
                 // merely checking that the custom properties exist on the frame.
                 probe.style.backgroundColor = `color-mix(in oklab, ${expectedColors[0]} var(--material-opacity), transparent)`;
                 probe.style.color = expectedColors[1];
-                const expectedControl = getComputedStyle(probe);
+                const expectedControl = view.getComputedStyle(probe);
                 const expectedFill = expectedControl.backgroundColor;
                 const expectedText = expectedControl.color;
                 for (const sample of frame.samples.filter((sample) =>
@@ -273,7 +340,7 @@ export async function runThemeAudit(
                     sample.dataset.themeComponent ?? "",
                   ),
                 )) {
-                  const actual = getComputedStyle(sample);
+                  const actual = view.getComputedStyle(sample);
                   for (const [property, value, expected] of [
                     ["background-color", actual.backgroundColor, expectedFill],
                     ["color", actual.color, expectedText],
@@ -325,6 +392,7 @@ export async function runThemeAudit(
     const passed = results.filter((result) => result.passed).length;
     return {
       version: JELLYFY_VERSION,
+      environment: source,
       userAgent: navigator.userAgent,
       total: results.length,
       passed,
@@ -336,12 +404,12 @@ export async function runThemeAudit(
         "Every element and its ::before/::after styles are checked. Focus uses the actual native control; loading uses Jellyfy's runtime.",
         "Animations and transitions are paused in the audit fixtures to compare stable material values.",
         "Hover and operating-system native picker rendering require manual review in the visible examples.",
+        mode === "plain-css"
+          ? "Plain mode loads only raw package CSS and runtime. Local overrides use ordinary CSS and customization uses literal colors."
+          : "Tailwind mode uses compiled app CSS, palette variables and utility overrides.",
       ],
     };
   } finally {
-    root.className = previousClass;
-    root.style.cssText = previousStyle;
-    delete canvas.dataset.auditing;
-    if (active instanceof HTMLElement) active.focus({ preventScroll: true });
+    workerFrame.remove();
   }
 }
