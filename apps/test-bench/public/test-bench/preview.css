@@ -204,3 +204,26 @@
   border-radius: 6px;
   font-size: 14px;
 }
+
+/* Give each chosen component theme a matching backdrop without styling its controls. */
+.bench-preview-surface {
+  padding: 20px;
+  border: 1px solid #d4d4d4;
+  border-radius: 16px;
+  background: #fafafa;
+  color: #0a0a0a;
+}
+.bench-preview-surface.dark {
+  background: #171717;
+  color: #f5f5f5;
+  border-color: #525252;
+}
+.bench-preview-surface.dark .bench-meta {
+  color: #d4d4d4;
+}
+.bench-preview-surface.dark .bench-pass {
+  color: #86efac;
+}
+.bench-preview-surface.dark .bench-fail {
+  color: #fca5a5;
+}

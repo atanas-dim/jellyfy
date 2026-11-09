@@ -46,6 +46,7 @@ export const ThemeAudit: FC = () => {
   const [auditMode, setAuditMode] = useState<AuditMode>("tailwind");
   const environment = usePreviewEnvironment(auditMode);
   const busy = activeSuite !== null || batchLocked || !environment.ready;
+  const [previewTheme, setPreviewTheme] = useState<Theme>("light");
   const [outerTheme, setOuterTheme] = useState<Theme>("light");
   const canvas = useRef<HTMLDivElement>(null);
 
@@ -150,8 +151,6 @@ export const ThemeAudit: FC = () => {
   }, [runSuite]);
 
   const selectTheme = (theme: Theme) => {
-    document.documentElement.classList.remove("light", "dark");
-    document.documentElement.classList.add(theme);
     setOuterTheme(theme);
   };
   return (
@@ -161,6 +160,35 @@ export const ThemeAudit: FC = () => {
           {environment.error || "Loading preview environment…"}
         </p>
       )}
+      <div className="bench-section">
+        <h2 className="bench-heading">Component preview theme</h2>
+        <div
+          role="group"
+          aria-label="Component preview theme"
+          className="bench-actions"
+        >
+          {THEMES.map((theme) => (
+            <TestBenchButton
+              key={theme}
+              className="bench-button"
+              aria-pressed={previewTheme === theme}
+              disabled={busy}
+              onClick={() => setPreviewTheme(theme)}
+            >
+              {theme === "light" ? (
+                <SunIcon aria-hidden="true" className="bench-icon" />
+              ) : (
+                <MoonIcon aria-hidden="true" className="bench-icon" />
+              )}
+              {theme === "light" ? "Light" : "Dark"} components
+            </TestBenchButton>
+          ))}
+        </div>
+        <p className="bench-meta">
+          Applies to property and public material examples. The nested-theme
+          comparison below keeps its independent outer-theme controls.
+        </p>
+      </div>
       <header className="bench-section">
         <p>
           Primary, secondary, and tertiary solids are green, blue, and purple,
@@ -194,7 +222,7 @@ export const ThemeAudit: FC = () => {
         </pre>
       </header>
 
-      <PropertyOverrides mode={auditMode} />
+      <PropertyOverrides mode={auditMode} theme={previewTheme} />
 
       <section className="bench-section">
         <h2 className="bench-heading">
@@ -319,7 +347,7 @@ export const ThemeAudit: FC = () => {
           <ThemeFixtures />
         </div>
       </section>
-      <MaterialVariableExamples mode={auditMode} />
+      <MaterialVariableExamples mode={auditMode} theme={previewTheme} />
     </div>
   );
 };

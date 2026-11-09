@@ -1,6 +1,7 @@
 import { type FC, useEffect, useRef, useState } from "react";
 
 import type { AuditMode } from "../../(theme-probe)/theme-probe/audit-environment";
+import type { Theme } from "../../(theme-probe)/theme-probe/theme-cases";
 import { measureOverride, type OverrideMeasurement } from "./measure-override";
 import { getPreviewOverride, PLAIN_COLOR_CSS } from "./preview-config";
 import {
@@ -12,10 +13,18 @@ import {
 } from "./property-cases";
 import { renderSample } from "./property-sample";
 
+type VisualProperty = keyof typeof TESTS | "none";
+const NO_OVERRIDE = {
+  label: "No local override",
+  classes: "",
+  afterClasses: "",
+  properties: [],
+};
+
 type PropertyExampleProps = {
   kind: string;
   name: string;
-  property: keyof typeof TESTS;
+  property: VisualProperty;
   mode: AuditMode;
 };
 
@@ -27,7 +36,7 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
 }) => {
   const parts = getParts(kind);
   const [selection, setSelection] = useState<{
-    property: keyof typeof TESTS;
+    property: VisualProperty;
     partId: string;
   } | null>(null);
   const partId =
@@ -36,17 +45,21 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
       : getDefaultPart(kind, property).id;
   const part = parts.find((item) => item.id === partId) ?? parts[0];
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
-  const override = getPreviewOverride(
-    property,
-    part,
-    mode,
-    `[data-property-example="${kind}"]`,
-  );
+  const override =
+    property === "none"
+      ? { test: NO_OVERRIDE, css: "", label: "No local override" }
+      : getPreviewOverride(
+          property,
+          part,
+          mode,
+          `[data-property-example="${kind}"]`,
+        );
   const test = override.test;
   const reference = useRef<HTMLSpanElement>(null);
   const [result, setResult] = useState<OverrideMeasurement | null>(null);
 
   useEffect(() => {
+    if (property === "none") return;
     const test = getPreviewOverride(property, part, mode).test;
     const root = container;
     if (!root) return;
@@ -88,16 +101,20 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
               : "bench-meta"
           }
         >
-          {result
-            ? !result.supported
-              ? "UNSUPPORTED"
-              : result.passed
-                ? "PASS"
-                : "FAIL"
-            : "Checking…"}
+          {property === "none"
+            ? "Original"
+            : result
+              ? !result.supported
+                ? "UNSUPPORTED"
+                : result.passed
+                  ? "PASS"
+                  : "FAIL"
+              : "Checking…"}
         </span>
       </div>
-      {parts.length > 1 ? (
+      {property === "none" ? (
+        <p className="bench-small">Original component</p>
+      ) : parts.length > 1 ? (
         <label className="bench-label">
           Test target
           <select
@@ -119,9 +136,11 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
         <p className="bench-small">Test target: {part.name}</p>
       )}
       <code className="bench-meta bench-code">
-        {mode === "tailwind"
-          ? `${part.selector ?? `.${kind}`} → ${getOverrideClasses(test, part)}`
-          : override.label}
+        {property === "none"
+          ? "No local override"
+          : mode === "tailwind"
+            ? `${part.selector ?? `.${kind}`} → ${getOverrideClasses(test, part)}`
+            : override.label}
       </code>
       {property === "size" && part.sizeNote && (
         <p className="bench-meta">
@@ -150,7 +169,7 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
         </span>
         {renderSample(kind, test, part)}
       </div>
-      {result && (
+      {property !== "none" && result && (
         <details className="bench-small">
           <summary className="bench-summary">Computed styles</summary>
           <dl className="bench-details">
@@ -172,10 +191,16 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
   );
 };
 
-const PropertyOverrides: FC<{ mode: AuditMode }> = ({ mode }) => {
-  const [selected, setSelected] = useState<keyof typeof TESTS>("background");
+const PropertyOverrides: FC<{ mode: AuditMode; theme: Theme }> = ({
+  mode,
+  theme,
+}) => {
+  const [selected, setSelected] = useState<VisualProperty>("none");
   return (
-    <section id="local-property-overrides" className="bench-section light">
+    <section
+      id="local-property-overrides"
+      className={`bench-section bench-preview-surface ${theme}`}
+    >
       <style>
         {PLAIN_COLOR_CSS.replace(":root", "#local-property-overrides")}
       </style>
@@ -183,17 +208,19 @@ const PropertyOverrides: FC<{ mode: AuditMode }> = ({ mode }) => {
       <p>
         Every property can be tested on every listed part, including labels and
         pseudo-elements. The default target prioritizes common uses; it does not
-        restrict other combinations.
+        restrict other combinations. Use “No local override” to inspect the
+        solid color and press/focus lighting without changing the fill.
       </p>
       <label className="bench-label bench-property">
         Property
         <select
           value={selected}
           onChange={(event) =>
-            setSelected(event.target.value as keyof typeof TESTS)
+            setSelected(event.target.value as VisualProperty)
           }
           className="bench-select"
         >
+          <option value="none">No local override — original component</option>
           {Object.entries(TESTS).map(([key, value]) => (
             <option key={key} value={key}>
               {value.label}

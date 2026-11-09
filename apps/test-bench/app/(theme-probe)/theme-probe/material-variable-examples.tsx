@@ -2,14 +2,16 @@ import { type CSSProperties, type FC } from "react";
 
 import type { AuditMode } from "./audit-environment";
 import { MATERIAL_VARIABLE_CASES } from "./material-variable-cases";
+import type { Theme } from "./theme-cases";
 
-type MaterialVariableExamplesProps = { mode: AuditMode };
+type MaterialVariableExamplesProps = { mode: AuditMode; theme: Theme };
 
 export const MaterialVariableExamples: FC<MaterialVariableExamplesProps> = ({
   mode,
+  theme,
 }) => {
   return (
-    <section className="bench-section light">
+    <section className={`bench-section bench-preview-surface ${theme}`}>
       <h2 className="bench-heading">Public material variables</h2>
       <p>
         Each row compares defaults with a local section override. The audit
@@ -31,6 +33,7 @@ export const MaterialVariableExamples: FC<MaterialVariableExamplesProps> = ({
               {test.variable}: {test.value}
             </code>
             <div
+              className="bench-sample"
               style={{
                 display: "grid",
                 gridTemplateColumns:

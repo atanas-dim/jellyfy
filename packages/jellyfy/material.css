@@ -173,77 +173,24 @@
     );
     --solid: var(--color-plain);
     --menu-mix: light-dark(var(--color-black), var(--color-white));
+    /* Neutral lighting blends with the face fill without inheriting its lightness. */
     --control-highlight: light-dark(
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-white) 90%, var(--solid)) 36%,
-        transparent
-      ),
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-white) 10%, var(--solid)) 36%,
-        transparent
-      )
+      color-mix(in oklab, var(--color-white) 22%, transparent),
+      color-mix(in oklab, var(--color-white) 12%, transparent)
     );
-    --control-shade: light-dark(
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-black) 90%, var(--solid)) 20%,
-        transparent
-      ),
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-black) 90%, var(--solid)) 20%,
-        transparent
-      )
-    );
+    --control-shade: color-mix(in oklab, var(--color-black) 30%, transparent);
     --field-highlight: light-dark(
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-white) 90%, var(--solid)) 60%,
-        transparent
-      ),
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-white) 40%, var(--solid)) 10%,
-        transparent
-      )
+      color-mix(in oklab, var(--color-white) 36%, transparent),
+      color-mix(in oklab, var(--color-white) 4%, transparent)
     );
-    --field-shade: light-dark(
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-black) 25%, var(--solid)) 20%,
-        transparent
-      ),
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-black) 90%, var(--solid)) 20%,
-        transparent
-      )
-    );
+    --field-shade: color-mix(in oklab, var(--color-black) 16%, transparent);
     --bump-highlight: light-dark(
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-white) 95%, var(--solid)) 70%,
-        transparent
-      ),
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-white) 20%, var(--solid)) 30%,
-        transparent
-      )
+      color-mix(in oklab, var(--color-white) 42%, transparent),
+      color-mix(in oklab, var(--color-white) 12%, transparent)
     );
     --bump-shade: light-dark(
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-black) 40%, var(--solid)) 25%,
-        transparent
-      ),
-      color-mix(
-        in oklab,
-        color-mix(in oklab, var(--color-black) 80%, var(--solid)) 30%,
-        transparent
-      )
+      color-mix(in oklab, var(--color-black) 25%, transparent),
+      color-mix(in oklab, var(--color-black) 25%, transparent)
     );
     --loading-light: light-dark(
       color-mix(in oklab, var(--color-white) 60%, var(--solid)),
