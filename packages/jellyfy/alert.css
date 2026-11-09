@@ -73,7 +73,7 @@
 }
 
 @layer utilities {
-  .alert {
+  :where(.alert) {
     background-color: var(--fill-surface);
   }
 

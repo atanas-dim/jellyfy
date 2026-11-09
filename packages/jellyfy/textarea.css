@@ -297,15 +297,15 @@
 }
 
 @layer utilities {
-  .textarea {
+  :where(.textarea) {
     background-color: var(--fill-field);
   }
 
-  .textarea:focus-within {
+  :where(.textarea:focus-within) {
     background-color: var(--fill-field-focus);
   }
 
-  .textarea:has(:disabled) {
+  :where(.textarea:has(:disabled)) {
     background-color: var(--fill-disabled);
     color: var(--color-disabled-text);
   }

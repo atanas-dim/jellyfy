@@ -84,7 +84,7 @@
 }
 
 @layer utilities {
-  .modal-panel {
+  :where(.modal-panel) {
     background-color: var(--fill-surface);
   }
 

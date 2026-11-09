@@ -259,15 +259,15 @@
 }
 
 @layer utilities {
-  .select {
+  :where(.select) {
     background-color: var(--fill-field);
   }
 
-  .select:focus-within {
+  :where(.select:focus-within) {
     background-color: var(--fill-field-focus);
   }
 
-  .select:has(:disabled) {
+  :where(.select:has(:disabled)) {
     background-color: var(--fill-disabled);
     color: var(--color-disabled-text);
   }

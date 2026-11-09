@@ -49,12 +49,14 @@ export default function PropertyAudit() {
     [];
   const unsupported =
     report?.results.filter((result) => !result.supported) ?? [];
+  const passed = report?.results.filter((result) => result.passed).length ?? 0;
   const shown = failuresOnly ? failures : (report?.results ?? []);
   const exportReport = () =>
     JSON.stringify(
       {
         ...report,
         total: report.results.length,
+        passed,
         failures: failures.length,
         unsupported: unsupported.length,
       },
@@ -156,8 +158,8 @@ export default function PropertyAudit() {
       {report && (
         <>
           <p role="status">
-            {report.results.length - failures.length - unsupported.length}{" "}
-            passed · {failures.length} failed · {unsupported.length} unsupported
+            {passed} of {report.results.length} tests passed · {failures.length}{" "}
+            failed · {unsupported.length} unsupported
           </p>
           <label className="flex items-center gap-2 text-sm">
             <input

@@ -122,25 +122,27 @@
 }
 
 @layer utilities {
-  .toggle-track {
+  :where(.toggle-track) {
     background-color: var(--fill-mark);
   }
 
-  .toggle:is(
-      .primary,
-      .secondary,
-      .tertiary,
-      .neutral,
-      .success,
-      .warning,
-      .error,
-      .info
-    ):has(:checked)
-    .toggle-track {
+  :where(
+    .toggle:is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .warning,
+        .error,
+        .info
+      ):has(:checked)
+      .toggle-track
+  ) {
     background-color: var(--fill-control);
   }
 
-  .toggle-thumb {
+  :where(.toggle-thumb) {
     background-color: color-mix(
       in oklab,
       color-mix(
@@ -153,7 +155,7 @@
     );
   }
 
-  .toggle:has(:checked) .toggle-thumb {
+  :where(.toggle:has(:checked) .toggle-thumb) {
     background-color: color-mix(
       in oklab,
       var(--color-white) calc(var(--material-opacity) * 1.5),
@@ -161,22 +163,24 @@
     );
   }
 
-  .toggle:has(:disabled) .toggle-track,
-  .toggle:is(
-      .primary,
-      .secondary,
-      .tertiary,
-      .neutral,
-      .success,
-      .warning,
-      .error,
-      .info
-    ):has(:disabled)
-    .toggle-track {
+  :where(.toggle:has(:disabled) .toggle-track),
+  :where(
+    .toggle:is(
+        .primary,
+        .secondary,
+        .tertiary,
+        .neutral,
+        .success,
+        .warning,
+        .error,
+        .info
+      ):has(:disabled)
+      .toggle-track
+  ) {
     background-color: var(--fill-disabled);
   }
 
-  .toggle:has(:disabled) .toggle-thumb {
+  :where(.toggle:has(:disabled) .toggle-thumb) {
     background-color: var(--color-disabled-text);
   }
 }

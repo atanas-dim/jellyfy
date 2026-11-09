@@ -22,6 +22,8 @@
   .btn-bump > svg {
     position: relative;
     z-index: 1;
+    width: var(--btn-bump-symbol-size, 1.25rem);
+    height: var(--btn-bump-symbol-size, 1.25rem);
   }
 
   .btn-bump::before,
@@ -98,9 +100,4 @@
   .btn-bump::after {
     transition: none;
   }
-}
-
-.btn-bump > svg {
-  width: var(--btn-bump-symbol-size, 1.25rem);
-  height: var(--btn-bump-symbol-size, 1.25rem);
 }

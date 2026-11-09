@@ -47,7 +47,7 @@
 }
 
 @layer utilities {
-  .card {
+  :where(.card) {
     background-color: var(--fill-surface);
   }
 
