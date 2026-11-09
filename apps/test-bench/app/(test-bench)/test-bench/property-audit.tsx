@@ -22,6 +22,7 @@ import {
 import { measureOverride, type OverrideMeasurement } from "./measure-override";
 import { AUDIT_CASES, getOverrideClasses } from "./property-cases";
 import { renderSample } from "./property-sample";
+import { RemoteAuditFailures } from "./remote-audit-failures";
 
 type AuditResult = OverrideMeasurement & {
   component: string;
@@ -410,6 +411,10 @@ const PropertyAudit: FC<{
             : "not run"}
         </p>
       ))}
+      <RemoteAuditFailures
+        themeReports={themeReports}
+        materialReports={materialReports}
+      />
       {overrideRunning && (
         <div
           ref={canvas}

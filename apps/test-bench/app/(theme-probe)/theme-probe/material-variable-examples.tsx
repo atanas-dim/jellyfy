@@ -1,33 +1,13 @@
 import { type CSSProperties, type FC } from "react";
 
-import { TestBenchButton } from "@/components/test-bench-button";
-
 import type { AuditMode } from "./audit-environment";
-import {
-  MATERIAL_VARIABLE_CASES,
-  type MaterialVariableReport,
-} from "./material-variable-cases";
+import { MATERIAL_VARIABLE_CASES } from "./material-variable-cases";
 
-type MaterialVariableAuditProps = {
-  disabled: boolean;
-  mode: AuditMode;
-  running: boolean;
-  progress: string;
-  error: string;
-  report: MaterialVariableReport | null;
-  onRun: () => void;
-};
+type MaterialVariableExamplesProps = { mode: AuditMode };
 
-export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
-  disabled,
+export const MaterialVariableExamples: FC<MaterialVariableExamplesProps> = ({
   mode,
-  running,
-  progress,
-  error,
-  report,
-  onRun,
 }) => {
-  const failures = report?.results.filter((result) => !result.passed) ?? [];
   return (
     <section className="bench-section light">
       <h2 className="bench-heading">Public material variables</h2>
@@ -39,7 +19,7 @@ export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
         stylesheet.
       </p>
       <p className="bench-strong bench-small">
-        Preview and individual audit environment:{" "}
+        Preview environment:{" "}
         {mode === "tailwind" ? "With Tailwind" : "Without Tailwind"}. Both
         columns use the selected environment.
       </p>
@@ -87,46 +67,6 @@ export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
           </article>
         ))}
       </div>
-      <TestBenchButton
-        disabled={disabled || running}
-        className="bench-button"
-        onClick={onRun}
-      >
-        {running ? "Running material tests…" : "Run public-variable tests"}
-      </TestBenchButton>
-      {running && (
-        <p role="status" className="bench-small">
-          {progress}
-        </p>
-      )}
-      {error && (
-        <p role="alert" className="bench-fail">
-          {error}
-        </p>
-      )}
-      {report && (
-        <>
-          <p role="status" className="bench-strong">
-            {report.passed} of {report.total} public-variable checks passed ·{" "}
-            {report.failures} failed
-          </p>
-          <p className="bench-small">
-            Results are included in the main bench’s combined report download.
-          </p>
-          {failures.map((result, index) => (
-            <details key={index} className="bench-failure">
-              <summary className="bench-fail bench-summary">
-                {result.name} · {result.theme} · {result.scope} · {result.layer}{" "}
-                CSS · {result.order} library
-              </summary>
-              <p className="bench-code">
-                {result.property}: expected {result.expected || "unsupported"};
-                actual {result.actual || "unsupported"}
-              </p>
-            </details>
-          ))}
-        </>
-      )}
     </section>
   );
 };

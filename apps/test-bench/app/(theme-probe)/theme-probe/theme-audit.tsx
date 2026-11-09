@@ -25,17 +25,10 @@ import {
 } from "../../(test-bench)/test-bench/preview-config";
 import PropertyOverrides from "../../(test-bench)/test-bench/property-overrides";
 import { type AuditMode } from "./audit-environment";
-import { MaterialVariableAudit } from "./material-variable-audit";
-import type { MaterialVariableReport } from "./material-variable-cases";
+import { MaterialVariableExamples } from "./material-variable-examples";
 import { runMaterialVariableAudit } from "./run-material-variable-audit";
 import { runThemeAudit } from "./run-theme-audit";
-import {
-  auditValues,
-  type Theme,
-  type ThemeReport,
-  THEMES,
-  tokenNames,
-} from "./theme-cases";
+import { auditValues, type Theme, THEMES, tokenNames } from "./theme-cases";
 import { ThemeFixtures } from "./theme-fixtures";
 import { usePreviewEnvironment } from "./use-preview-environment";
 
@@ -48,23 +41,11 @@ const THEME_PREVIEW_CSS = `
 
 export const ThemeAudit: FC = () => {
   const [activeSuite, setActiveSuite] = useState<RemoteSuite | null>(null);
-  const [lastSuite, setLastSuite] = useState<RemoteSuite>("themes");
   const [batchLocked, setBatchLocked] = useState(false);
-  const running = activeSuite === "themes";
-  const materialRunning = activeSuite === "materials";
   const controller = useRef<AbortController | null>(null);
-  const [progress, setProgress] = useState("");
   const [auditMode, setAuditMode] = useState<AuditMode>("tailwind");
   const environment = usePreviewEnvironment(auditMode);
   const busy = activeSuite !== null || batchLocked || !environment.ready;
-  const [reports, setReports] = useState<
-    Partial<Record<AuditMode, ThemeReport>>
-  >({});
-  const report = reports[auditMode] ?? null;
-  const [materialReports, setMaterialReports] = useState<
-    Partial<Record<AuditMode, MaterialVariableReport>>
-  >({});
-  const [error, setError] = useState("");
   const [outerTheme, setOuterTheme] = useState<Theme>("light");
   const canvas = useRef<HTMLDivElement>(null);
 
@@ -94,52 +75,32 @@ export const ThemeAudit: FC = () => {
       const cancel = () => current.abort();
       signal.addEventListener("abort", cancel, { once: true });
       setActiveSuite(suite);
-      setLastSuite(suite);
-      setError("");
-      setProgress("");
       window.parent.postMessage(
         { type: "jellyfy-audit-busy", busy: true },
         window.location.origin,
       );
-      const progress = (message: string) => {
-        setProgress(message);
-        onProgress(message);
-      };
       try {
         if (suite === "themes") {
           if (!canvas.current)
             throw new Error("Theme fixtures are unavailable");
-          setReports((previous) => ({ ...previous, [mode]: undefined }));
           const result = await runThemeAudit(
             canvas.current,
-            progress,
+            onProgress,
             current.signal,
             mode,
           );
           if (current.signal.aborted)
             throw new DOMException("Audit cancelled", "AbortError");
-          setReports((previous) => ({ ...previous, [mode]: result }));
           return { suite, report: result };
         }
-        setMaterialReports((previous) => ({ ...previous, [mode]: undefined }));
         const result = await runMaterialVariableAudit(
-          progress,
+          onProgress,
           current.signal,
           mode,
         );
         if (current.signal.aborted)
           throw new DOMException("Audit cancelled", "AbortError");
-        setMaterialReports((previous) => ({ ...previous, [mode]: result }));
         return { suite, report: result };
-      } catch (cause) {
-        setError(
-          current.signal.aborted
-            ? "Audit cancelled"
-            : cause instanceof Error
-              ? cause.message
-              : "Audit failed",
-        );
-        throw cause;
       } finally {
         signal.removeEventListener("abort", cancel);
         controller.current = null;
@@ -188,29 +149,11 @@ export const ThemeAudit: FC = () => {
     };
   }, [runSuite]);
 
-  const runLocal = (suite: RemoteSuite) => {
-    void runSuite(suite, auditMode, () => {}, new AbortController().signal)
-      .then((result) =>
-        window.parent.postMessage(
-          {
-            type:
-              result.suite === "themes"
-                ? "jellyfy-theme-report"
-                : "jellyfy-material-report",
-            report: result.report,
-          },
-          window.location.origin,
-        ),
-      )
-      .catch(() => {});
-  };
-
   const selectTheme = (theme: Theme) => {
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
     setOuterTheme(theme);
   };
-  const failures = report?.results.filter((result) => !result.passed) ?? [];
   return (
     <div className="bench-visual">
       {!environment.ready && (
@@ -361,25 +304,6 @@ export const ThemeAudit: FC = () => {
           and ordinary local CSS overrides. Hover and native picker appearance
           remain manual checks.
         </p>
-        <TestBenchButton
-          type="button"
-          className="bench-button"
-          disabled={busy}
-          onClick={() => runLocal("themes")}
-        >
-          {" "}
-          {running ? "Running theme audit…" : "Run nested-theme tests"}
-        </TestBenchButton>
-        {running && (
-          <p role="status" className="bench-small">
-            {progress}
-          </p>
-        )}
-        {lastSuite === "themes" && error && (
-          <p role="alert" className="bench-fail">
-            {error}
-          </p>
-        )}
         <div
           ref={canvas}
           aria-hidden="true"
@@ -394,48 +318,8 @@ export const ThemeAudit: FC = () => {
         >
           <ThemeFixtures />
         </div>
-        {report && (
-          <>
-            <p role="status" className="bench-strong">
-              {auditMode === "tailwind" ? "With Tailwind" : "Without Tailwind"}:{" "}
-              {report.passed} of {report.total} theme cases passed ·{" "}
-              {report.failures} failed ·{" "}
-              {report.propertyChecks.toLocaleString()} property checks
-            </p>
-            <p className="bench-small">
-              Results are included in the main bench’s Download report. Each
-              comparison uses a standalone reference with the same intended
-              inner theme.
-            </p>
-            {failures.slice(0, 100).map((result, index) => (
-              <details key={index} className="bench-failure">
-                <summary className="bench-fail bench-summary">
-                  {result.component} · {result.slot} · {result.profile} ·{" "}
-                  {result.frame} · outer {result.outerTheme} · {result.state}
-                </summary>
-                <pre className="bench-code">
-                  {JSON.stringify(result.differences, null, 2)}
-                </pre>
-              </details>
-            ))}
-            {failures.length > 100 && (
-              <p className="bench-small">
-                Showing the first 100 failures. The report contains every
-                result.
-              </p>
-            )}
-          </>
-        )}
       </section>
-      <MaterialVariableAudit
-        disabled={busy}
-        mode={auditMode}
-        running={materialRunning}
-        progress={progress}
-        error={lastSuite === "materials" ? error : ""}
-        report={materialReports[auditMode] ?? null}
-        onRun={() => runLocal("materials")}
-      />
+      <MaterialVariableExamples mode={auditMode} />
     </div>
   );
 };

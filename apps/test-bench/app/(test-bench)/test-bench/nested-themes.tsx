@@ -137,11 +137,7 @@ export const NestedThemes: FC<NestedThemesProps> = ({
         return;
       if (event.data?.type === "jellyfy-audit-busy")
         onBusyChange(event.data.busy === true);
-      if (
-        event.data?.type === "jellyfy-material-report" &&
-        Array.isArray(event.data.report?.results)
-      )
-        onMaterialReport(event.data.report);
+
       if (
         event.data?.type === "jellyfy-theme-height" &&
         Number.isFinite(event.data.height)
@@ -149,11 +145,6 @@ export const NestedThemes: FC<NestedThemesProps> = ({
         if (frame.current)
           frame.current.style.height = `${Math.max(500, event.data.height)}px`;
       }
-      if (
-        event.data?.type === "jellyfy-theme-report" &&
-        Array.isArray(event.data.report?.results)
-      )
-        onReport(event.data.report);
     };
     window.addEventListener("message", receive);
     return () => window.removeEventListener("message", receive);
