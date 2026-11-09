@@ -452,6 +452,8 @@ The focus gap is a 2px spread shadow drawn before the thickness and the drop sha
 
 ## 11. Themes
 
+Supported browser minimums are Chrome and Edge 123, Firefox 120, and Safari / iOS Safari 17.5. Native `light-dark()` is required. Foreground defaults are declared once inside `@supports (color: light-dark(white, black))` so CSS compilers preserve local theme selection. Compiler settings do not need to change.
+
 The dark theme uses the same mixes, the same thickness distances, the same elevations, the same motion, and the same opacity and blur. Every slot, including Neutral, keeps those mixes. A plain element, one with no slot, keeps them too, and uses the surface tone as its solid.
 
 Dark changes only the neutral step fed into a recipe, the content color step, the focus-gap tone, and the grain.

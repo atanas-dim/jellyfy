@@ -1,7 +1,8 @@
 "use client";
 
-import type { FC } from "react";
+import { type FC, useState } from "react";
 
+import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import {
   Close,
   Info,
@@ -10,9 +11,11 @@ import {
   Plus,
   Range,
 } from "./demo-parts";
+import { NestedThemes } from "./nested-themes";
 import PropertyOverrides from "./property-overrides";
 
 const Customize: FC = () => {
+  const [themeReport, setThemeReport] = useState<ThemeReport | null>(null);
   return (
     <main className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-10">
       <header className="grid gap-4">
@@ -225,7 +228,8 @@ const Customize: FC = () => {
           </OverrideExample>
         </div>
       </section>
-      <PropertyOverrides />
+      <PropertyOverrides themeReport={themeReport} />
+      <NestedThemes onReport={setThemeReport} />
     </main>
   );
 };

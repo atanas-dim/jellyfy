@@ -1,5 +1,6 @@
 import { type FC, useEffect, useRef, useState } from "react";
 
+import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import { measureOverride, type OverrideMeasurement } from "./measure-override";
 import { AUDIT_CASES, getOverrideClasses } from "./property-cases";
 import { renderSample } from "./property-sample";
@@ -14,7 +15,9 @@ type AuditResult = OverrideMeasurement & {
 
 type AuditReport = { state: string; results: AuditResult[] };
 
-const PropertyAudit: FC = () => {
+const PropertyAudit: FC<{ themeReport: ThemeReport | null }> = ({
+  themeReport,
+}) => {
   const canvas = useRef<HTMLDivElement>(null);
   const [running, setRunning] = useState(false);
   const [report, setReport] = useState<AuditReport | null>(null);
@@ -70,6 +73,7 @@ const PropertyAudit: FC = () => {
         passed,
         failures: failures.length,
         unsupported: unsupported.length,
+        nestedThemes: themeReport,
       },
       null,
       2,
@@ -83,6 +87,14 @@ const PropertyAudit: FC = () => {
             total: report?.results.length ?? 0,
             failures,
             unsupported,
+            nestedThemes: themeReport
+              ? {
+                  ...themeReport,
+                  results: themeReport.results.filter(
+                    (result) => !result.passed,
+                  ),
+                }
+              : null,
           },
           null,
           2,
@@ -122,7 +134,7 @@ const PropertyAudit: FC = () => {
         >
           {running ? "Running…" : "Run all tests"}
         </button>
-        {report && (
+        {(report || themeReport) && (
           <>
             <button
               type="button"
@@ -146,6 +158,12 @@ const PropertyAudit: FC = () => {
           {copyStatus}
         </p>
       )}
+      <p className="text-sm">
+        Nested-theme report:{" "}
+        {themeReport
+          ? `${themeReport.passed}/${themeReport.total} passed; included in downloads`
+          : "not run yet"}
+      </p>
       {running && (
         <div
           ref={canvas}

@@ -24,6 +24,7 @@ export function renderSample(
   test: OverrideTest,
   part: TestPart,
   instanceId = "interactive-property",
+  slot = "secondary",
 ): ReactNode {
   const props = (id: string, base = "") => ({
     className: [
@@ -34,7 +35,7 @@ export function renderSample(
       .join(" "),
     "data-part": id,
   });
-  const root = props("surface", `${kind} secondary`);
+  const root = props("surface", `${kind} ${slot}`);
   switch (kind) {
     case "btn":
       return (
