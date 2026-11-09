@@ -1,5 +1,6 @@
 "use client";
 
+import { CheckIcon, MoonIcon, SunIcon } from "lucide-react";
 import {
   type CSSProperties,
   type FC,
@@ -7,6 +8,9 @@ import {
   useRef,
   useState,
 } from "react";
+import { twJoin } from "tailwind-merge";
+
+import { TestBenchButton } from "@/components/test-bench-button";
 
 import { runThemeAudit } from "./run-theme-audit";
 import {
@@ -18,9 +22,6 @@ import {
   tokenNames,
 } from "./theme-cases";
 import { ThemeFixtures } from "./theme-fixtures";
-
-const BUTTON =
-  "rounded-lg border border-neutral-400 px-4 py-2 disabled:opacity-50";
 
 export const ThemeAudit: FC = () => {
   const [running, setRunning] = useState(false);
@@ -35,7 +36,7 @@ export const ThemeAudit: FC = () => {
       window.parent.postMessage(
         {
           type: "jellyfy-theme-height",
-          height: Math.ceil(document.body.getBoundingClientRect().height) + 16,
+          height: Math.ceil(document.body.getBoundingClientRect().height),
         },
         window.location.origin,
       );
@@ -76,52 +77,88 @@ export const ThemeAudit: FC = () => {
   };
   const failures = report?.results.filter((result) => !result.passed) ?? [];
   return (
-    <div className="grid gap-5 rounded-xl bg-white p-4 text-neutral-950">
+    <div className="grid min-w-0 gap-5">
       <p>
         Library defaults and explicit per-theme customization run in a separate
         document so the earlier global overrides cannot mask a failure.
       </p>
-      <div className="flex flex-wrap gap-3">
+      <div
+        role="group"
+        aria-label="Outer page theme"
+        className="flex flex-wrap gap-3"
+      >
         {THEMES.map((theme) => (
-          <button
+          <TestBenchButton
             key={theme}
             type="button"
-            className={BUTTON}
+            variant={outerTheme === theme ? "primary" : "secondary"}
             disabled={running}
             aria-pressed={outerTheme === theme}
             onClick={() => selectTheme(theme)}
           >
-            {theme} outer page
-          </button>
+            {theme === "light" ? (
+              <SunIcon aria-hidden="true" className="size-4" />
+            ) : (
+              <MoonIcon aria-hidden="true" className="size-4" />
+            )}
+            {theme === "light" ? "Light" : "Dark"} outer page
+            {outerTheme === theme && (
+              <CheckIcon aria-hidden="true" className="size-4" />
+            )}
+          </TestBenchButton>
         ))}
       </div>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {THEMES.map((theme) => (
-          <section
-            key={theme}
-            className={`${theme} grid gap-4 rounded-xl p-5 ${theme === "light" ? "bg-neutral-100 text-neutral-950" : "bg-neutral-900 text-neutral-100"}`}
-          >
-            <h3 className="font-semibold">Fixed {theme} section</h3>
-            <button type="button" className="btn primary">
-              Default primary
-            </button>
-            <div
-              style={
-                Object.fromEntries(
-                  tokenNames("primary").map((token, index) => [
-                    token,
-                    customValues("theme-custom", theme)![index],
-                  ]),
-                ) as CSSProperties
-              }
+      <div
+        className={twJoin(
+          "grid min-w-0 gap-6 rounded-2xl border p-[1.5rem] sm:p-[2rem]",
+          outerTheme === "light"
+            ? "border-neutral-300 bg-neutral-100 text-neutral-950"
+            : "border-neutral-700 bg-neutral-950 text-white",
+        )}
+      >
+        <div>
+          <h3 className="text-lg font-semibold">
+            Outer page: {outerTheme === "light" ? "Light" : "Dark"}
+          </h3>
+          <p className="mt-1 text-sm">
+            The background around these sections follows your selection. Each
+            inner section keeps its own theme.
+          </p>
+        </div>
+        <div className="grid gap-6 sm:grid-cols-2">
+          {THEMES.map((theme) => (
+            <section
+              key={theme}
+              className={twJoin(
+                theme,
+                "grid min-w-0 content-start gap-4 rounded-xl border p-[1.25rem]",
+                theme === "light"
+                  ? "border-neutral-300 bg-white text-neutral-950"
+                  : "border-neutral-600 bg-neutral-800 text-neutral-100",
+              )}
             >
+              <h3 className="font-semibold">Fixed {theme} section</h3>
               <button type="button" className="btn primary">
-                Blue {theme === "light" ? "600" : "400"}
+                Default primary
               </button>
-              <div className="card primary mt-4">Custom surface text</div>
-            </div>
-          </section>
-        ))}
+              <div
+                style={
+                  Object.fromEntries(
+                    tokenNames("primary").map((token, index) => [
+                      token,
+                      customValues("theme-custom", theme)![index],
+                    ]),
+                  ) as CSSProperties
+                }
+              >
+                <button type="button" className="btn primary">
+                  Blue {theme === "light" ? "600" : "400"}
+                </button>
+                <div className="card primary mt-4">Custom surface text</div>
+              </div>
+            </section>
+          ))}
+        </div>
       </div>
       <details>
         <summary className="cursor-pointer font-medium">
@@ -138,9 +175,9 @@ export const ThemeAudit: FC = () => {
         temporarily switches this document’s root theme and restores it
         afterward. Hover and native picker appearance remain manual checks.
       </p>
-      <button
+      <TestBenchButton
         type="button"
-        className={`${BUTTON} justify-self-start bg-neutral-900 font-semibold text-white`}
+        className="justify-self-start"
         disabled={running}
         onClick={() => {
           setError("");
@@ -150,7 +187,7 @@ export const ThemeAudit: FC = () => {
       >
         {" "}
         {running ? "Running theme audit…" : "Run nested-theme tests"}
-      </button>
+      </TestBenchButton>
       {running && (
         <p role="status" className="text-sm">
           {progress}

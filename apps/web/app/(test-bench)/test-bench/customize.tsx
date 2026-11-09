@@ -2,6 +2,8 @@
 
 import { type FC, useState } from "react";
 
+import { TestBenchButton } from "@/components/test-bench-button";
+
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import {
   Close,
@@ -12,6 +14,7 @@ import {
   Range,
 } from "./demo-parts";
 import { NestedThemes } from "./nested-themes";
+import PropertyAudit from "./property-audit";
 import PropertyOverrides from "./property-overrides";
 
 const Customize: FC = () => {
@@ -203,13 +206,14 @@ const Customize: FC = () => {
             name="Dialog panel"
             classes="modal-panel secondary text-red-500"
           >
-            <button
+            <TestBenchButton
               type="button"
-              className="rounded-lg border px-3 py-2 text-sm"
+              variant="secondary"
+              className="text-sm"
               onClick={() => openDialog("dialog-local-text-override")}
             >
               Open dialog test
-            </button>
+            </TestBenchButton>
             <dialog id="dialog-local-text-override" className="modal">
               <div className="modal-panel secondary text-red-500">
                 <form method="dialog">
@@ -228,8 +232,9 @@ const Customize: FC = () => {
           </OverrideExample>
         </div>
       </section>
-      <PropertyOverrides themeReport={themeReport} />
+      <PropertyOverrides />
       <NestedThemes onReport={setThemeReport} />
+      <PropertyAudit themeReport={themeReport} />
     </main>
   );
 };

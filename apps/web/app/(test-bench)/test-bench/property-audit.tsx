@@ -1,5 +1,7 @@
 import { type FC, useEffect, useRef, useState } from "react";
 
+import { TestBenchButton } from "@/components/test-bench-button";
+
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import { measureOverride, type OverrideMeasurement } from "./measure-override";
 import { AUDIT_CASES, getOverrideClasses } from "./property-cases";
@@ -118,38 +120,37 @@ const PropertyAudit: FC<{ themeReport: ThemeReport | null }> = ({
 
   return (
     <section className="grid gap-4 border-t border-neutral-300 pt-8">
-      <h3 className="text-xl font-semibold">Full override audit</h3>
+      <h2 className="text-2xl font-semibold">Audit and combined report</h2>
       <p>
         Run all {AUDIT_CASES.length} component-part/property combinations in
         this browser. This checks resting and checked states; use the
-        interactive examples above for hover and focus. A failure is a finding
-        to investigate, not automatically a library bug.
+        interactive examples above for hover and focus. Run the nested-theme
+        tests in the section above, then download both results here.
       </p>
       <div className="flex flex-wrap gap-3">
-        <button
+        <TestBenchButton
           type="button"
           disabled={running}
           onClick={() => setRunning(true)}
-          className="rounded-lg bg-neutral-900 px-4 py-2 font-semibold text-white disabled:opacity-50"
         >
-          {running ? "Running…" : "Run all tests"}
-        </button>
+          {running ? "Running override tests…" : "Run override tests"}
+        </TestBenchButton>
         {(report || themeReport) && (
           <>
-            <button
+            <TestBenchButton
               type="button"
               onClick={copyFailures}
-              className="rounded-lg border border-neutral-400 px-4 py-2"
+              variant="secondary"
             >
               Copy failures
-            </button>
-            <button
+            </TestBenchButton>
+            <TestBenchButton
               type="button"
               onClick={download}
-              className="rounded-lg border border-neutral-400 px-4 py-2"
+              variant="secondary"
             >
               Download report
-            </button>
+            </TestBenchButton>
           </>
         )}
       </div>

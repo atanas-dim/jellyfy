@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 const ThemeProbeLayout: FC<{ children: ReactNode }> = ({ children }) => (
   <html lang="en" className="light">
-    <body>
+    <body className="m-0 min-w-0 bg-white p-[1rem] text-neutral-950">
       <JellyfyBoot />
       {children}
     </body>

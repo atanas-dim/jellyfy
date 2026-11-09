@@ -1,8 +1,6 @@
 import { type FC, useEffect, useRef, useState } from "react";
 
-import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import { measureOverride, type OverrideMeasurement } from "./measure-override";
-import PropertyAudit from "./property-audit";
 import {
   getDefaultPart,
   getOverrideClasses,
@@ -143,9 +141,7 @@ export const PropertyExample: FC<PropertyExampleProps> = ({
   );
 };
 
-const PropertyOverrides: FC<{ themeReport: ThemeReport | null }> = ({
-  themeReport,
-}) => {
+const PropertyOverrides: FC = () => {
   const [selected, setSelected] = useState<keyof typeof TESTS>("background");
   const test = TESTS[selected];
   return (
@@ -191,7 +187,6 @@ const PropertyOverrides: FC<{ themeReport: ThemeReport | null }> = ({
           />
         ))}
       </div>
-      <PropertyAudit themeReport={themeReport} />
     </section>
   );
 };

@@ -34,12 +34,14 @@ export const NestedThemes: FC<NestedThemesProps> = ({ onReport }) => {
       <h2 className="text-2xl font-semibold">
         Nested themes and per-theme customization
       </h2>
-      <iframe
-        ref={frame}
-        src="/theme-probe"
-        title="Nested theme and color customization tests"
-        className="h-[1000px] w-full rounded-xl border border-neutral-300"
-      />
+      <div className="min-w-0 overflow-hidden rounded-xl border border-neutral-300 bg-white">
+        <iframe
+          ref={frame}
+          src="/theme-probe"
+          title="Nested theme and color customization tests"
+          className="block h-[1000px] w-full border-0 bg-white"
+        />
+      </div>
     </section>
   );
 };
