@@ -2,13 +2,19 @@ import type { ReactNode } from "react";
 
 import { Contents } from "@/components/contents";
 import { COMPONENT_DOCS, GUIDE_LINKS } from "@/resources/component-docs";
+import { JELLYFY_VERSION } from "@/resources/package-version";
 
 export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col pt-16 pb-10 md:pt-20 lg:flex-row lg:items-start lg:gap-10">
       <Contents
+        caption={`Jellyfy ${JELLYFY_VERSION}`}
         groups={[
           { title: "Getting started", items: [...GUIDE_LINKS] },
+          {
+            title: "Releases",
+            items: [{ href: "/changelog", label: "Changelog" }],
+          },
           {
             title: "Components",
             items: COMPONENT_DOCS.map((doc) => ({

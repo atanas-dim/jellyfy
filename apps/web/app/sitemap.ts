@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     "/set",
     "/design-system",
+    "/changelog",
     ...DOC_LINKS.map((link) => link.href),
   ];
 
