@@ -1,4 +1,4 @@
-import { type CSSProperties, type FC, useEffect, useState } from "react";
+import { type CSSProperties, type FC } from "react";
 
 import { TestBenchButton } from "@/components/test-bench-button";
 
@@ -7,55 +7,26 @@ import {
   MATERIAL_VARIABLE_CASES,
   type MaterialVariableReport,
 } from "./material-variable-cases";
-import { runMaterialVariableAudit } from "./run-material-variable-audit";
 
 type MaterialVariableAuditProps = {
   disabled: boolean;
   mode: AuditMode;
-  onRunningChange: (running: boolean) => void;
+  running: boolean;
+  progress: string;
+  error: string;
+  report: MaterialVariableReport | null;
+  onRun: () => void;
 };
 
 export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
   disabled,
   mode,
-  onRunningChange,
+  running,
+  progress,
+  error,
+  report,
+  onRun,
 }) => {
-  const [running, setRunning] = useState(false);
-  const [progress, setProgress] = useState("");
-  const [reports, setReports] = useState<
-    Partial<Record<AuditMode, MaterialVariableReport>>
-  >({});
-  const report = reports[mode] ?? null;
-  const [error, setError] = useState("");
-  useEffect(() => {
-    if (!running) return;
-    const controller = new AbortController();
-    onRunningChange(true);
-    runMaterialVariableAudit(setProgress, controller.signal, mode)
-      .then((result) => {
-        if (controller.signal.aborted) return;
-        setReports((previous) => ({ ...previous, [mode]: result }));
-        window.parent.postMessage(
-          { type: "jellyfy-material-report", report: result },
-          window.location.origin,
-        );
-      })
-      .catch((cause: unknown) => {
-        if (!controller.signal.aborted)
-          setError(
-            cause instanceof Error
-              ? cause.message
-              : "Material variable audit failed",
-          );
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) {
-          onRunningChange(false);
-          setRunning(false);
-        }
-      });
-    return () => controller.abort();
-  }, [running, mode, onRunningChange]);
   const failures = report?.results.filter((result) => !result.passed) ?? [];
   return (
     <section className="light grid gap-5 border-t border-neutral-300 pt-8">
@@ -101,11 +72,7 @@ export const MaterialVariableAudit: FC<MaterialVariableAuditProps> = ({
       <TestBenchButton
         disabled={disabled || running}
         className="justify-self-start"
-        onClick={() => {
-          setError("");
-          setReports((previous) => ({ ...previous, [mode]: undefined }));
-          setRunning(true);
-        }}
+        onClick={onRun}
       >
         {running ? "Running material tests…" : "Run public-variable tests"}
       </TestBenchButton>

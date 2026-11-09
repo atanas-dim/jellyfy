@@ -1,31 +1,46 @@
 "use client";
 
-import { type FC, useCallback, useState } from "react";
-
-import { TestBenchButton } from "@/components/test-bench-button";
+import { type FC, useCallback, useRef, useState } from "react";
 
 import type { AuditMode } from "../../(theme-probe)/theme-probe/audit-environment";
 import type { MaterialVariableReport } from "../../(theme-probe)/theme-probe/material-variable-cases";
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
-import {
-  Close,
-  Info,
-  openDialog,
-  OverrideExample,
-  Plus,
-  Range,
-} from "./demo-parts";
-import { NestedThemes } from "./nested-themes";
+import type { AuditJob, RemoteAuditRunner } from "./audit-plan";
+import { type NestedAuditHandle, NestedThemes } from "./nested-themes";
 import PropertyAudit from "./property-audit";
 import PropertyOverrides from "./property-overrides";
 
 const Customize: FC = () => {
+  const remote = useRef<NestedAuditHandle>(null);
+  const [batchBusy, setBatchBusy] = useState(false);
+  const [remoteBusy, setRemoteBusy] = useState(false);
   const [themeReports, setThemeReports] = useState<
     Partial<Record<AuditMode, ThemeReport>>
   >({});
   const [materialReports, setMaterialReports] = useState<
     Partial<Record<AuditMode, MaterialVariableReport>>
   >({});
+  const runRemote: RemoteAuditRunner = useCallback(
+    (suite, mode, progress, signal) => {
+      if (!remote.current)
+        return Promise.reject(new Error("Theme audit frame is unavailable"));
+      return remote.current.run(suite, mode, progress, signal);
+    },
+    [],
+  );
+  const resetReports = useCallback((jobs: AuditJob[]) => {
+    setThemeReports((previous) => {
+      const next = { ...previous };
+      for (const job of jobs) if (job.suite === "themes") delete next[job.mode];
+      return next;
+    });
+    setMaterialReports((previous) => {
+      const next = { ...previous };
+      for (const job of jobs)
+        if (job.suite === "materials") delete next[job.mode];
+      return next;
+    });
+  }, []);
   const saveThemeReport = useCallback(
     (report: ThemeReport) =>
       setThemeReports((previous) => ({
@@ -87,180 +102,19 @@ const Customize: FC = () => {
         </div>
       </header>
 
-      <section id="local-text-overrides" className="grid scroll-mt-6 gap-5">
-        <h2 className="text-2xl font-semibold">
-          Local text overrides — all components
-        </h2>
-        <p>
-          The secondary control and surface text colours are green in @theme
-          inline. Every instance below adds text-red-500 directly to the
-          component. Its text or icon should be red; a green result reveals an
-          override conflict. Labels without a slot-specific text colour may
-          otherwise use the neutral default.
-        </p>
-        <div className="flex flex-wrap gap-5 text-sm">
-          <span className="text-secondary-content">
-            Theme control text: green
-          </span>
-          <span className="text-secondary-surface-content">
-            Theme surface text: green
-          </span>
-          <span className="text-red-500">Expected local text: red</span>
-        </div>
-        <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <OverrideExample name="Button" classes="btn secondary text-red-500">
-            <button type="button" className="btn secondary text-red-500">
-              Button text
-            </button>
-          </OverrideExample>
-          <OverrideExample
-            name="Icon button"
-            classes="btn-icon secondary text-red-500"
-          >
-            <button
-              type="button"
-              className="btn-icon secondary text-red-500"
-              aria-label="Add item"
-            >
-              <Plus />
-            </button>
-          </OverrideExample>
-          <OverrideExample
-            name="Bump button"
-            classes="btn-bump secondary text-red-500"
-          >
-            <button
-              type="button"
-              className="btn-bump secondary text-red-500"
-              aria-label="Close"
-            >
-              <Close />
-            </button>
-          </OverrideExample>
-          <OverrideExample name="Badge" classes="badge secondary text-red-500">
-            <span className="badge secondary text-red-500">Badge text</span>
-          </OverrideExample>
-          <OverrideExample name="Input" classes="input secondary text-red-500">
-            <label className="input secondary text-red-500">
-              <input placeholder=" " defaultValue="Input value" />
-              <span>Input label</span>
-            </label>
-          </OverrideExample>
-          <OverrideExample
-            name="Textarea"
-            classes="textarea secondary text-red-500"
-          >
-            <label className="textarea secondary text-red-500">
-              <textarea placeholder=" " defaultValue="Textarea value" />
-              <span>Textarea label</span>
-            </label>
-          </OverrideExample>
-          <OverrideExample
-            name="Select"
-            classes="select secondary text-red-500"
-          >
-            <label className="select secondary text-red-500">
-              <select defaultValue="selected">
-                <option value="selected">Selected value</option>
-                <option>Another value</option>
-              </select>
-              <span>Select label</span>
-              <i className="picker-icon" />
-            </label>
-          </OverrideExample>
-          <OverrideExample
-            name="Checkbox"
-            classes="checkbox secondary text-red-500"
-          >
-            <label className="checkbox secondary text-red-500">
-              <input type="checkbox" defaultChecked />
-              <span className="checkbox-box" />
-              Checkbox label
-            </label>
-          </OverrideExample>
-          <OverrideExample name="Radio" classes="radio secondary text-red-500">
-            <label className="radio secondary text-red-500">
-              <input type="radio" name="local-text-radio" defaultChecked />
-              <span className="radio-ring" />
-              Radio label
-            </label>
-          </OverrideExample>
-          <OverrideExample
-            name="Switch"
-            classes="toggle secondary text-red-500"
-          >
-            <label className="toggle secondary text-red-500">
-              <input type="checkbox" role="switch" defaultChecked />
-              <span className="toggle-track">
-                <span className="toggle-thumb" />
-              </span>
-              Switch label
-            </label>
-          </OverrideExample>
-          <OverrideExample name="Range" classes="range secondary text-red-500">
-            <Range
-              className="range secondary text-red-500"
-              label="Range label"
-              value={62}
-            />
-          </OverrideExample>
-          <OverrideExample
-            name="Message"
-            classes="message secondary text-red-500"
-          >
-            <p className="message secondary text-red-500">Message text</p>
-          </OverrideExample>
-          <OverrideExample name="Alert" classes="alert secondary text-red-500">
-            <div className="alert secondary text-red-500">
-              <Info />
-              <div>
-                <p className="font-semibold">Alert title</p>
-                <p>Alert description</p>
-              </div>
-            </div>
-          </OverrideExample>
-          <OverrideExample name="Card" classes="card secondary text-red-500">
-            <section className="card secondary text-red-500">
-              <h3 className="font-semibold">Card title</h3>
-              <p className="mt-2">Card description</p>
-            </section>
-          </OverrideExample>
-          <OverrideExample
-            name="Dialog panel"
-            classes="modal-panel secondary text-red-500"
-          >
-            <TestBenchButton
-              type="button"
-              variant="secondary"
-              className="text-sm"
-              onClick={() => openDialog("dialog-local-text-override")}
-            >
-              Open dialog test
-            </TestBenchButton>
-            <dialog id="dialog-local-text-override" className="modal">
-              <div className="modal-panel secondary text-red-500">
-                <form method="dialog">
-                  <button
-                    type="submit"
-                    className="btn-bump"
-                    aria-label="Close dialog"
-                  >
-                    <Close />
-                  </button>
-                </form>
-                <h3 className="pe-8 text-lg font-semibold">Dialog title</h3>
-                <p className="mt-2">Dialog description</p>
-              </div>
-            </dialog>
-          </OverrideExample>
-        </div>
-      </section>
       <PropertyOverrides />
       <NestedThemes
+        ref={remote}
+        disabled={batchBusy}
+        onBusyChange={setRemoteBusy}
         onReport={saveThemeReport}
         onMaterialReport={saveMaterialReport}
       />
       <PropertyAudit
+        runRemote={runRemote}
+        remoteBusy={remoteBusy}
+        onBusyChange={setBatchBusy}
+        onResetReports={resetReports}
         themeReports={themeReports}
         materialReports={materialReports}
       />

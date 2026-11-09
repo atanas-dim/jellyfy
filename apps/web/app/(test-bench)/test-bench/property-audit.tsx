@@ -1,4 +1,4 @@
-import { type FC, useEffect, useRef, useState } from "react";
+import { type FC, useCallback, useEffect, useRef, useState } from "react";
 
 import { TestBenchButton } from "@/components/test-bench-button";
 
@@ -8,6 +8,17 @@ import {
 } from "../../(theme-probe)/theme-probe/audit-environment";
 import type { MaterialVariableReport } from "../../(theme-probe)/theme-probe/material-variable-cases";
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
+import {
+  AUDIT_SUITES,
+  type AuditJob,
+  auditJobLabel,
+  type AuditJobStatus,
+  type AuditSuite,
+  type AuditSummary,
+  createAuditPlan,
+  executeAuditPlan,
+  type RemoteAuditRunner,
+} from "./audit-plan";
 import { measureOverride, type OverrideMeasurement } from "./measure-override";
 import { AUDIT_CASES, getOverrideClasses } from "./property-cases";
 import { renderSample } from "./property-sample";
@@ -21,6 +32,16 @@ type AuditResult = OverrideMeasurement & {
 };
 
 type AuditReport = { state: string; results: AuditResult[] };
+type PendingOverride = {
+  resolve: (summary: AuditSummary) => void;
+  reject: (error: unknown) => void;
+  cleanup: () => void;
+};
+type BatchReport = {
+  startedAt: string;
+  finishedAt?: string;
+  jobs: AuditJobStatus[];
+};
 
 function failureReports<T extends { results: { passed: boolean }[] }>(
   reports: Partial<Record<AuditMode, T>>,
@@ -44,48 +65,165 @@ function failureReports<T extends { results: { passed: boolean }[] }>(
 }
 
 const PropertyAudit: FC<{
+  runRemote: RemoteAuditRunner;
+  remoteBusy: boolean;
+  onBusyChange: (busy: boolean) => void;
+  onResetReports: (jobs: AuditJob[]) => void;
   themeReports: Partial<Record<AuditMode, ThemeReport>>;
   materialReports: Partial<Record<AuditMode, MaterialVariableReport>>;
-}> = ({ themeReports, materialReports }) => {
+}> = ({
+  themeReports,
+  materialReports,
+  runRemote,
+  remoteBusy,
+  onBusyChange,
+  onResetReports,
+}) => {
   const canvas = useRef<HTMLDivElement>(null);
   const [running, setRunning] = useState(false);
+  const [overrideRunning, setOverrideRunning] = useState(false);
+  const [selectedSuites, setSelectedSuites] = useState<AuditSuite[]>(
+    AUDIT_SUITES.map((item) => item.suite),
+  );
+  const [selectedModes, setSelectedModes] = useState<AuditMode[]>(
+    AUDIT_MODES.map((item) => item.mode),
+  );
+  const [batchReport, setBatchReport] = useState<BatchReport | null>(null);
+  const [progress, setProgress] = useState("");
+  const batchController = useRef<AbortController | null>(null);
+  const pendingOverride = useRef<PendingOverride | null>(null);
+  const plan = createAuditPlan(selectedSuites, selectedModes);
+  const controlsDisabled = running || remoteBusy;
   const [report, setReport] = useState<AuditReport | null>(null);
   const [failuresOnly, setFailuresOnly] = useState(true);
   const [copyStatus, setCopyStatus] = useState("");
 
+  const runOverrides = useCallback(
+    (signal: AbortSignal): Promise<AuditSummary> =>
+      new Promise((resolve, reject) => {
+        if (pendingOverride.current) {
+          reject(new Error("Override audit is already running"));
+          return;
+        }
+        const cancel = () => {
+          if (pendingOverride.current !== operation) return;
+          pendingOverride.current = null;
+          operation.cleanup();
+          setOverrideRunning(false);
+          reject(new DOMException("Audit cancelled", "AbortError"));
+        };
+        const operation: PendingOverride = {
+          resolve,
+          reject,
+          cleanup: () => signal.removeEventListener("abort", cancel),
+        };
+        pendingOverride.current = operation;
+        signal.addEventListener("abort", cancel, { once: true });
+        if (signal.aborted) {
+          cancel();
+          return;
+        }
+        setOverrideRunning(true);
+      }),
+    [],
+  );
+
   useEffect(() => {
-    if (!running) return;
+    if (!overrideRunning) return;
     const timer = setTimeout(() => {
-      const canvasRoot = canvas.current;
-      if (!canvasRoot) return;
-      const results = AUDIT_CASES.map(
-        ({ id, kind, name, part, property, test }) => {
-          const root = canvasRoot.querySelector(`[data-audit-case="${id}"]`);
-          if (!root) throw new Error(`Missing audit case: ${id}`);
-          const target = root.querySelector(
-            `[data-part="${part.host ?? part.id}"]`,
-          );
-          const reference = root.querySelector("[data-audit-reference]");
-          return {
-            component: name,
-            part: part.name,
-            selector: part.selector ?? `.${kind}`,
-            property,
-            classes: getOverrideClasses(test, part),
-            ...measureOverride(target, reference, test, part),
-          };
-        },
-      );
-      setReport({
-        state:
-          "Resting controls; checkbox, radio and switch checked; slider at 62%",
-        results,
-      });
-      setRunning(false);
-      setCopyStatus("");
+      const pending = pendingOverride.current;
+      if (!pending) return;
+      try {
+        const canvasRoot = canvas.current;
+        if (!canvasRoot) throw new Error("Override fixtures are unavailable");
+        const results = AUDIT_CASES.map(
+          ({ id, kind, name, part, property, test }) => {
+            const root = canvasRoot.querySelector(`[data-audit-case="${id}"]`);
+            if (!root) throw new Error(`Missing override fixture: ${id}`);
+            const target = root.querySelector(
+              `[data-part="${part.host ?? part.id}"]`,
+            );
+            const reference = root.querySelector("[data-audit-reference]");
+            return {
+              component: name,
+              part: part.name,
+              selector: part.selector ?? `.${kind}`,
+              property,
+              classes: getOverrideClasses(test, part),
+              ...measureOverride(target, reference, test, part),
+            };
+          },
+        );
+        setReport({
+          state:
+            "Resting controls; checkbox, radio and switch checked; slider at 62%",
+          results,
+        });
+        pending.resolve({
+          total: results.length,
+          passed: results.filter((item) => item.passed).length,
+          failures: results.filter((item) => item.supported && !item.passed)
+            .length,
+          unsupported: results.filter((item) => !item.supported).length,
+        });
+      } catch (error) {
+        pending.reject(error);
+      } finally {
+        pending.cleanup();
+        pendingOverride.current = null;
+        setOverrideRunning(false);
+      }
     }, 500);
     return () => clearTimeout(timer);
-  }, [running]);
+  }, [overrideRunning]);
+
+  useEffect(() => () => batchController.current?.abort(), []);
+
+  const runSelected = async () => {
+    if (batchController.current || remoteBusy || !plan.length) return;
+    const controller = new AbortController();
+    batchController.current = controller;
+    setRunning(true);
+    onBusyChange(true);
+    onResetReports(plan);
+    if (plan.some((job) => job.suite === "overrides")) setReport(null);
+    setCopyStatus("");
+    const startedAt = new Date().toISOString();
+    setBatchReport({
+      startedAt,
+      jobs: plan.map((job) => ({ ...job, status: "queued" })),
+    });
+    try {
+      const jobs = await executeAuditPlan(
+        plan,
+        async (job) => {
+          const label = auditJobLabel(job);
+          setProgress(label);
+          if (job.suite === "overrides") return runOverrides(controller.signal);
+          return runRemote(
+            job.suite,
+            job.mode,
+            (message) => setProgress(`${label}: ${message}`),
+            controller.signal,
+          );
+        },
+        (jobs) => setBatchReport({ startedAt, jobs }),
+        controller.signal,
+      );
+      setBatchReport({ startedAt, finishedAt: new Date().toISOString(), jobs });
+      setProgress(
+        controller.signal.aborted
+          ? "Run cancelled"
+          : jobs.some((job) => job.status === "error")
+            ? "Run finished with execution errors"
+            : "Selected tests finished",
+      );
+    } finally {
+      batchController.current = null;
+      setRunning(false);
+      onBusyChange(false);
+    }
+  };
 
   const failures =
     report?.results.filter((result) => result.supported && !result.passed) ??
@@ -102,6 +240,7 @@ const PropertyAudit: FC<{
         passed,
         failures: failures.length,
         unsupported: unsupported.length,
+        lastRun: batchReport,
         overrideEnvironment: "tailwind",
         nestedThemes: themeReports,
         materialVariables: materialReports,
@@ -118,6 +257,7 @@ const PropertyAudit: FC<{
             total: report?.results.length ?? 0,
             failures,
             unsupported,
+            lastRun: batchReport,
             materialVariables: failureReports(materialReports),
             nestedThemes: failureReports(themeReports),
           },
@@ -145,19 +285,69 @@ const PropertyAudit: FC<{
     <section className="grid gap-4 border-t border-neutral-300 pt-8">
       <h2 className="text-2xl font-semibold">Audit and combined report</h2>
       <p>
-        Run all {AUDIT_CASES.length} component-part/property combinations in
-        this browser. This checks resting and checked states; use the
-        interactive examples above for hover and focus. Run the nested-theme
-        tests in the section above, then download both results here.
+        Choose the suites and environments to run. One action runs every
+        selected job in sequence; no separate buttons above are required. Hover
+        and native picker appearance remain manual checks.
       </p>
+      <fieldset disabled={controlsDisabled} className="grid gap-3">
+        <legend className="mb-2 font-semibold">Test suites</legend>
+        {AUDIT_SUITES.map(({ suite, label }) => (
+          <label key={suite} className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={selectedSuites.includes(suite)}
+              onChange={(event) =>
+                setSelectedSuites((previous) =>
+                  event.target.checked
+                    ? [...previous, suite]
+                    : previous.filter((value) => value !== suite),
+                )
+              }
+            />
+            {label}
+            {suite === "overrides"
+              ? ` (${AUDIT_CASES.length}, Tailwind only)`
+              : ""}
+          </label>
+        ))}
+      </fieldset>
+      <fieldset disabled={controlsDisabled} className="grid gap-3">
+        <legend className="mb-2 font-semibold">
+          Environments for themes and public variables
+        </legend>
+        {AUDIT_MODES.map(({ mode, label }) => (
+          <label key={mode} className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              checked={selectedModes.includes(mode)}
+              onChange={(event) =>
+                setSelectedModes((previous) =>
+                  event.target.checked
+                    ? [...previous, mode]
+                    : previous.filter((value) => value !== mode),
+                )
+              }
+            />
+            {label}
+          </label>
+        ))}
+      </fieldset>
       <div className="flex flex-wrap gap-3">
         <TestBenchButton
           type="button"
-          disabled={running}
-          onClick={() => setRunning(true)}
+          disabled={controlsDisabled || plan.length === 0}
+          onClick={() => void runSelected()}
         >
-          {running ? "Running override tests…" : "Run override tests"}
+          {running ? "Running selected tests…" : "Run selected tests"}
         </TestBenchButton>
+        {running && (
+          <TestBenchButton
+            variant="secondary"
+            onClick={() => batchController.current?.abort()}
+          >
+            Cancel run
+          </TestBenchButton>
+        )}
         {(report ||
           Object.keys(themeReports).length > 0 ||
           Object.keys(materialReports).length > 0) && (
@@ -165,6 +355,7 @@ const PropertyAudit: FC<{
             <TestBenchButton
               type="button"
               onClick={copyFailures}
+              disabled={running}
               variant="secondary"
             >
               Copy failures
@@ -172,6 +363,7 @@ const PropertyAudit: FC<{
             <TestBenchButton
               type="button"
               onClick={download}
+              disabled={running}
               variant="secondary"
             >
               Download report
@@ -179,6 +371,24 @@ const PropertyAudit: FC<{
           </>
         )}
       </div>
+      {batchReport && (
+        <div className="grid gap-2">
+          <p role="status" className="text-sm font-semibold">
+            {progress}
+          </p>
+          <ul className="grid gap-2 text-sm">
+            {batchReport.jobs.map((job) => (
+              <li key={`${job.suite}-${job.mode}`}>
+                <strong>{auditJobLabel(job)}</strong>: {job.status}
+                {job.summary
+                  ? ` · ${job.summary.passed}/${job.summary.total} passed · ${job.summary.failures} failed${job.summary.unsupported ? ` · ${job.summary.unsupported} unsupported` : ""}`
+                  : ""}
+                {job.error ? ` · ${job.error}` : ""}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {copyStatus && (
         <p role="status" className="text-sm">
           {copyStatus}
@@ -200,7 +410,7 @@ const PropertyAudit: FC<{
             : "not run"}
         </p>
       ))}
-      {running && (
+      {overrideRunning && (
         <div
           ref={canvas}
           aria-hidden="true"
@@ -223,8 +433,8 @@ const PropertyAudit: FC<{
       {report && (
         <>
           <p role="status">
-            {passed} of {report.results.length} tests passed · {failures.length}{" "}
-            failed · {unsupported.length} unsupported
+            Utility overrides: {passed} of {report.results.length} tests passed
+            · {failures.length} failed · {unsupported.length} unsupported
           </p>
           <label className="flex items-center gap-2 text-sm">
             <input
