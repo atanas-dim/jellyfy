@@ -77,7 +77,7 @@
     background-color: var(--fill-surface);
   }
 
-  .alert:is(
+  :where(.alert):where(
     .primary,
     .secondary,
     .tertiary,

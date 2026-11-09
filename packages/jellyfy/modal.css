@@ -88,7 +88,7 @@
     background-color: var(--fill-surface);
   }
 
-  .modal-panel:is(
+  :where(.modal-panel):where(
     .primary,
     .secondary,
     .tertiary,

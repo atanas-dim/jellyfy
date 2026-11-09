@@ -51,7 +51,7 @@
     background-color: var(--fill-surface);
   }
 
-  .card:is(
+  :where(.card):where(
     .primary,
     .secondary,
     .tertiary,
