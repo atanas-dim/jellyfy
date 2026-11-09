@@ -4,6 +4,7 @@ import { type FC, useState } from "react";
 
 import { TestBenchButton } from "@/components/test-bench-button";
 
+import type { MaterialVariableReport } from "../../(theme-probe)/theme-probe/material-variable-cases";
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import {
   Close,
@@ -19,6 +20,8 @@ import PropertyOverrides from "./property-overrides";
 
 const Customize: FC = () => {
   const [themeReport, setThemeReport] = useState<ThemeReport | null>(null);
+  const [materialReport, setMaterialReport] =
+    useState<MaterialVariableReport | null>(null);
   return (
     <main className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-10">
       <header className="grid gap-4">
@@ -233,8 +236,14 @@ const Customize: FC = () => {
         </div>
       </section>
       <PropertyOverrides />
-      <NestedThemes onReport={setThemeReport} />
-      <PropertyAudit themeReport={themeReport} />
+      <NestedThemes
+        onReport={setThemeReport}
+        onMaterialReport={setMaterialReport}
+      />
+      <PropertyAudit
+        themeReport={themeReport}
+        materialReport={materialReport}
+      />
     </main>
   );
 };

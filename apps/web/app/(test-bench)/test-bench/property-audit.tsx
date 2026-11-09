@@ -2,6 +2,7 @@ import { type FC, useEffect, useRef, useState } from "react";
 
 import { TestBenchButton } from "@/components/test-bench-button";
 
+import type { MaterialVariableReport } from "../../(theme-probe)/theme-probe/material-variable-cases";
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 import { measureOverride, type OverrideMeasurement } from "./measure-override";
 import { AUDIT_CASES, getOverrideClasses } from "./property-cases";
@@ -17,9 +18,10 @@ type AuditResult = OverrideMeasurement & {
 
 type AuditReport = { state: string; results: AuditResult[] };
 
-const PropertyAudit: FC<{ themeReport: ThemeReport | null }> = ({
-  themeReport,
-}) => {
+const PropertyAudit: FC<{
+  themeReport: ThemeReport | null;
+  materialReport: MaterialVariableReport | null;
+}> = ({ themeReport, materialReport }) => {
   const canvas = useRef<HTMLDivElement>(null);
   const [running, setRunning] = useState(false);
   const [report, setReport] = useState<AuditReport | null>(null);
@@ -76,6 +78,7 @@ const PropertyAudit: FC<{ themeReport: ThemeReport | null }> = ({
         failures: failures.length,
         unsupported: unsupported.length,
         nestedThemes: themeReport,
+        materialVariables: materialReport,
       },
       null,
       2,
@@ -89,6 +92,14 @@ const PropertyAudit: FC<{ themeReport: ThemeReport | null }> = ({
             total: report?.results.length ?? 0,
             failures,
             unsupported,
+            materialVariables: materialReport
+              ? {
+                  ...materialReport,
+                  results: materialReport.results.filter(
+                    (result) => !result.passed,
+                  ),
+                }
+              : null,
             nestedThemes: themeReport
               ? {
                   ...themeReport,
@@ -135,7 +146,7 @@ const PropertyAudit: FC<{ themeReport: ThemeReport | null }> = ({
         >
           {running ? "Running override tests…" : "Run override tests"}
         </TestBenchButton>
-        {(report || themeReport) && (
+        {(report || themeReport || materialReport) && (
           <>
             <TestBenchButton
               type="button"
@@ -163,6 +174,12 @@ const PropertyAudit: FC<{ themeReport: ThemeReport | null }> = ({
         Nested-theme report:{" "}
         {themeReport
           ? `${themeReport.passed}/${themeReport.total} passed; included in downloads`
+          : "not run yet"}
+      </p>
+      <p className="text-sm">
+        Public-variable report:{" "}
+        {materialReport
+          ? `${materialReport.passed}/${materialReport.total} passed; included in downloads`
           : "not run yet"}
       </p>
       {running && (

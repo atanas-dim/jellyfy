@@ -12,6 +12,7 @@ import { twJoin } from "tailwind-merge";
 
 import { TestBenchButton } from "@/components/test-bench-button";
 
+import { MaterialVariableAudit } from "./material-variable-audit";
 import { runThemeAudit } from "./run-theme-audit";
 import {
   CUSTOMIZATION_CSS,
@@ -25,6 +26,7 @@ import { ThemeFixtures } from "./theme-fixtures";
 
 export const ThemeAudit: FC = () => {
   const [running, setRunning] = useState(false);
+  const [materialRunning, setMaterialRunning] = useState(false);
   const [progress, setProgress] = useState("");
   const [report, setReport] = useState<ThemeReport | null>(null);
   const [error, setError] = useState("");
@@ -92,7 +94,7 @@ export const ThemeAudit: FC = () => {
             key={theme}
             type="button"
             variant={outerTheme === theme ? "primary" : "secondary"}
-            disabled={running}
+            disabled={running || materialRunning}
             aria-pressed={outerTheme === theme}
             onClick={() => selectTheme(theme)}
           >
@@ -178,7 +180,7 @@ export const ThemeAudit: FC = () => {
       <TestBenchButton
         type="button"
         className="justify-self-start"
-        disabled={running}
+        disabled={running || materialRunning}
         onClick={() => {
           setError("");
           setReport(null);
@@ -240,6 +242,10 @@ export const ThemeAudit: FC = () => {
           )}
         </>
       )}
+      <MaterialVariableAudit
+        disabled={running}
+        onRunningChange={setMaterialRunning}
+      />
     </div>
   );
 };

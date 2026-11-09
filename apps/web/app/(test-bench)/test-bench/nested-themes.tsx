@@ -1,10 +1,17 @@
 import { type FC, useEffect, useRef } from "react";
 
+import type { MaterialVariableReport } from "../../(theme-probe)/theme-probe/material-variable-cases";
 import type { ThemeReport } from "../../(theme-probe)/theme-probe/theme-cases";
 
-type NestedThemesProps = { onReport: (report: ThemeReport) => void };
+type NestedThemesProps = {
+  onReport: (report: ThemeReport) => void;
+  onMaterialReport: (report: MaterialVariableReport | null) => void;
+};
 
-export const NestedThemes: FC<NestedThemesProps> = ({ onReport }) => {
+export const NestedThemes: FC<NestedThemesProps> = ({
+  onReport,
+  onMaterialReport,
+}) => {
   const frame = useRef<HTMLIFrameElement>(null);
   useEffect(() => {
     const receive = (event: MessageEvent) => {
@@ -13,6 +20,12 @@ export const NestedThemes: FC<NestedThemesProps> = ({ onReport }) => {
         event.source !== frame.current?.contentWindow
       )
         return;
+      if (
+        event.data?.type === "jellyfy-material-report" &&
+        (event.data.report === null ||
+          Array.isArray(event.data.report?.results))
+      )
+        onMaterialReport(event.data.report);
       if (
         event.data?.type === "jellyfy-theme-height" &&
         Number.isFinite(event.data.height)
@@ -28,7 +41,7 @@ export const NestedThemes: FC<NestedThemesProps> = ({ onReport }) => {
     };
     window.addEventListener("message", receive);
     return () => window.removeEventListener("message", receive);
-  }, [onReport]);
+  }, [onReport, onMaterialReport]);
   return (
     <section className="grid gap-4 border-t border-neutral-300 pt-8">
       <h2 className="text-2xl font-semibold">
