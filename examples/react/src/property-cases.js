@@ -136,6 +136,11 @@ const fieldParts = (tag) => [
     id: "value",
     name: "Native value field",
     selector: `.${tag} > ${tag === "input" ? "input" : tag}`,
+    sizeClasses: tag === "textarea" ? "min-h-0" : "",
+    sizeNote:
+      tag === "textarea"
+        ? "min-h-0 removes the default minimum height so h-20 can set an 80px height."
+        : "",
     preferred: ["color", "padding", "typography", "size", "opacity"],
   },
   {
@@ -239,6 +244,9 @@ const PARTS = {
       id: "icon",
       name: "SVG symbol",
       selector: ".btn-icon > svg",
+      sizeClasses: "shrink-0",
+      sizeNote:
+        "shrink-0 preserves the requested SVG width inside the smaller button. Enlarge the button too for a usable icon size.",
       preferred: ["size", "opacity"],
     },
   ],
@@ -260,6 +268,9 @@ const PARTS = {
       id: "icon",
       name: "SVG symbol",
       selector: ".btn-bump > svg",
+      sizeClasses: "shrink-0",
+      sizeNote:
+        "shrink-0 preserves the requested SVG width inside the smaller button. Enlarge the button too for a usable icon size.",
       preferred: ["size", "opacity"],
     },
   ],
@@ -288,8 +299,12 @@ export const getDefaultPart = (kind, property) =>
   getParts(kind).find((part) => part.preferred.includes(property)) ??
   getParts(kind)[0];
 
-export const getOverrideClasses = (test, part) =>
-  part.pseudo ? test.afterClasses : test.classes;
+export const getOverrideClasses = (test, part) => {
+  const classes = part.pseudo ? test.afterClasses : test.classes;
+  return test === TESTS.size && part.sizeClasses
+    ? `${classes} ${part.sizeClasses}`
+    : classes;
+};
 
 export const AUDIT_CASES = SAMPLES.flatMap(([kind, name]) =>
   getParts(kind).flatMap((part) =>

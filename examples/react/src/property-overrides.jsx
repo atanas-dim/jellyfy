@@ -102,6 +102,9 @@ export function PropertyExample({ kind, name, test, property }) {
       <code className="text-sm break-words text-neutral-500">
         {part.selector ?? `.${kind}`} → {getOverrideClasses(test, part)}
       </code>
+      {test === TESTS.size && part.sizeNote && (
+        <p className="text-sm text-neutral-500">{part.sizeNote}</p>
+      )}
       <div className="min-w-0">{renderSample(kind, test, part)}</div>
       {result && (
         <details className="text-sm">
