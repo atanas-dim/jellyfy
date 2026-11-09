@@ -1,6 +1,12 @@
-import { getOverrideClasses } from "./property-cases.js";
+import type { FC, ReactNode, SVGProps } from "react";
 
-const PlusIcon = (props) => (
+import {
+  getOverrideClasses,
+  type OverrideTest,
+  type TestPart,
+} from "./property-cases";
+
+const PlusIcon: FC<SVGProps<SVGSVGElement>> = (props) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -14,12 +20,12 @@ const PlusIcon = (props) => (
 );
 
 export function renderSample(
-  kind,
-  test,
-  part,
+  kind: string,
+  test: OverrideTest,
+  part: TestPart,
   instanceId = "interactive-property",
-) {
-  const props = (id, base = "") => ({
+): ReactNode {
+  const props = (id: string, base = "") => ({
     className: [
       base,
       (part.host ?? part.id) === id ? getOverrideClasses(test, part) : "",

@@ -1,4 +1,11 @@
-export function measureOverride(target, reference, test, part) {
+import type { OverrideTest, TestPart } from "./property-cases";
+
+export function measureOverride(
+  target: Element | null,
+  reference: Element | null,
+  test: OverrideTest,
+  part: TestPart,
+) {
   if (!target || !reference)
     throw new Error("The selected test target is missing");
   const actual = getComputedStyle(target, part.pseudo ?? null);
@@ -39,3 +46,5 @@ export function measureOverride(target, reference, test, part) {
     context,
   };
 }
+
+export type OverrideMeasurement = ReturnType<typeof measureOverride>;

@@ -1,28 +1,42 @@
-import { useEffect, useRef, useState } from "react";
+import { type FC, useEffect, useRef, useState } from "react";
 
+import { measureOverride, type OverrideMeasurement } from "./measure-override";
+import PropertyAudit from "./property-audit";
 import {
-  SAMPLES,
-  TESTS,
-  getParts,
   getDefaultPart,
   getOverrideClasses,
-} from "./property-cases.js";
-import { renderSample } from "./property-sample.jsx";
-import { measureOverride } from "./measure-override.js";
-import PropertyAudit from "./property-audit.jsx";
+  getParts,
+  type OverrideTest,
+  SAMPLES,
+  TESTS,
+} from "./property-cases";
+import { renderSample } from "./property-sample";
 
-export function PropertyExample({ kind, name, test, property }) {
+type PropertyExampleProps = {
+  kind: string;
+  name: string;
+  test: OverrideTest;
+  property: string;
+};
+
+export const PropertyExample: FC<PropertyExampleProps> = ({
+  kind,
+  name,
+  test,
+  property,
+}) => {
   const parts = getParts(kind);
   const [partId, setPartId] = useState(() => getDefaultPart(kind, property).id);
-  const part = parts.find((item) => item.id === partId);
-  const container = useRef(null);
-  const reference = useRef(null);
-  const [result, setResult] = useState(null);
+  const part = parts.find((item) => item.id === partId) ?? parts[0];
+  const container = useRef<HTMLDivElement>(null);
+  const reference = useRef<HTMLSpanElement>(null);
+  const [result, setResult] = useState<OverrideMeasurement | null>(null);
 
   useEffect(() => {
     const root = container.current;
+    if (!root) return;
     const target = root.querySelector(`[data-part="${part.host ?? part.id}"]`);
-    let timer;
+    let timer: ReturnType<typeof setTimeout>;
     const schedule = () => {
       clearTimeout(timer);
       timer = setTimeout(
@@ -126,10 +140,10 @@ export function PropertyExample({ kind, name, test, property }) {
       )}
     </article>
   );
-}
+};
 
-export default function PropertyOverrides() {
-  const [selected, setSelected] = useState("background");
+const PropertyOverrides: FC = () => {
+  const [selected, setSelected] = useState<keyof typeof TESTS>("background");
   const test = TESTS[selected];
   return (
     <section id="local-property-overrides" className="grid scroll-mt-6 gap-5">
@@ -143,7 +157,9 @@ export default function PropertyOverrides() {
         Property
         <select
           value={selected}
-          onChange={(event) => setSelected(event.target.value)}
+          onChange={(event) =>
+            setSelected(event.target.value as keyof typeof TESTS)
+          }
           className="rounded-lg border border-neutral-400 bg-white p-3 text-neutral-950"
         >
           {Object.entries(TESTS).map(([key, value]) => (
@@ -175,4 +191,6 @@ export default function PropertyOverrides() {
       <PropertyAudit />
     </section>
   );
-}
+};
+
+export default PropertyOverrides;

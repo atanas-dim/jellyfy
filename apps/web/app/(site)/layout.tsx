@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../globals.css";
 
 import type { Metadata } from "next";
 import { Figtree, Geist_Mono, Rubik } from "next/font/google";

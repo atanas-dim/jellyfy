@@ -1,24 +1,35 @@
-import { useEffect, useRef, useState } from "react";
+import { type FC, useEffect, useRef, useState } from "react";
 
-import { AUDIT_CASES, getOverrideClasses } from "./property-cases.js";
-import { renderSample } from "./property-sample.jsx";
-import { measureOverride } from "./measure-override.js";
+import { measureOverride, type OverrideMeasurement } from "./measure-override";
+import { AUDIT_CASES, getOverrideClasses } from "./property-cases";
+import { renderSample } from "./property-sample";
 
-export default function PropertyAudit() {
-  const canvas = useRef(null);
+type AuditResult = OverrideMeasurement & {
+  component: string;
+  part: string;
+  selector: string;
+  property: string;
+  classes: string;
+};
+
+type AuditReport = { state: string; results: AuditResult[] };
+
+const PropertyAudit: FC = () => {
+  const canvas = useRef<HTMLDivElement>(null);
   const [running, setRunning] = useState(false);
-  const [report, setReport] = useState(null);
+  const [report, setReport] = useState<AuditReport | null>(null);
   const [failuresOnly, setFailuresOnly] = useState(true);
   const [copyStatus, setCopyStatus] = useState("");
 
   useEffect(() => {
     if (!running) return;
     const timer = setTimeout(() => {
+      const canvasRoot = canvas.current;
+      if (!canvasRoot) return;
       const results = AUDIT_CASES.map(
         ({ id, kind, name, part, property, test }) => {
-          const root = canvas.current.querySelector(
-            `[data-audit-case="${id}"]`,
-          );
+          const root = canvasRoot.querySelector(`[data-audit-case="${id}"]`);
+          if (!root) throw new Error(`Missing audit case: ${id}`);
           const target = root.querySelector(
             `[data-part="${part.host ?? part.id}"]`,
           );
@@ -55,7 +66,7 @@ export default function PropertyAudit() {
     JSON.stringify(
       {
         ...report,
-        total: report.results.length,
+        total: report?.results.length ?? 0,
         passed,
         failures: failures.length,
         unsupported: unsupported.length,
@@ -68,8 +79,8 @@ export default function PropertyAudit() {
       await navigator.clipboard.writeText(
         JSON.stringify(
           {
-            state: report.state,
-            total: report.results.length,
+            state: report?.state,
+            total: report?.results.length ?? 0,
             failures,
             unsupported,
           },
@@ -237,4 +248,6 @@ export default function PropertyAudit() {
       )}
     </section>
   );
-}
+};
+
+export default PropertyAudit;

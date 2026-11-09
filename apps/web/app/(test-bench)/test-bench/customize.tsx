@@ -1,24 +1,29 @@
+"use client";
+
+import type { FC } from "react";
+
 import {
   Close,
   Info,
+  openDialog,
+  OverrideExample,
   Plus,
   Range,
-  OverrideExample,
-  openDialog,
-} from "./demo-parts.jsx";
-import PropertyOverrides from "./property-overrides.jsx";
+} from "./demo-parts";
+import PropertyOverrides from "./property-overrides";
 
-export default function Customize() {
+const Customize: FC = () => {
   return (
     <main className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-10">
       <header className="grid gap-4">
         <h1 className="text-3xl font-semibold tracking-tight">
-          Jellyfy customization
+          Jellyfy test bench
         </h1>
         <p>
           Primary, secondary, and tertiary solids are green, blue, and purple,
           with control text and surface text configured separately. All nine
-          colour settings are configured through @theme inline in src/index.css.
+          colour settings are configured through @theme inline in
+          test-bench.css.
         </p>
         <pre className="overflow-x-auto rounded-xl bg-neutral-950 p-4 text-sm text-neutral-100">
           <code>{`@theme inline {
@@ -223,4 +228,6 @@ export default function Customize() {
       <PropertyOverrides />
     </main>
   );
-}
+};
+
+export default Customize;

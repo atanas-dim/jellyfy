@@ -49,14 +49,6 @@ export const Section = ({ title, children }) => (
   </section>
 );
 
-export const OverrideExample = ({ name, classes, children }) => (
-  <article className="grid content-start gap-3 rounded-xl border border-neutral-300 p-4">
-    <h3 className="font-semibold">{name}</h3>
-    <code className="text-sm break-words text-neutral-500">{classes}</code>
-    {children}
-  </article>
-);
-
 export const Range = ({ className, label, value }) => (
   <label className={className}>
     {label}

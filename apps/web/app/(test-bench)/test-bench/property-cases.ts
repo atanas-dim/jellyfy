@@ -1,4 +1,22 @@
-export const SAMPLES = [
+export type OverrideTest = {
+  label: string;
+  classes: string;
+  afterClasses: string;
+  properties: string[];
+};
+
+export type TestPart = {
+  id: string;
+  name: string;
+  selector?: string;
+  host?: string;
+  pseudo?: string;
+  sizeClasses?: string;
+  sizeNote?: string;
+  preferred: string[];
+};
+
+export const SAMPLES: [string, string][] = [
   ["btn", "Button"],
   ["btn-icon", "Icon button"],
   ["btn-bump", "Bump button"],
@@ -113,19 +131,19 @@ const MATERIAL = [
   "texture",
   "blur",
 ];
-const LABEL = {
+const LABEL: TestPart = {
   id: "label",
   name: "Label text",
   selector: "[data-part=label]",
   preferred: ["color", "typography", "opacity"],
 };
-const SURFACE = {
+const SURFACE: TestPart = {
   id: "surface",
   name: "Component surface",
   preferred: Object.keys(TESTS),
 };
 const DEFAULT_PARTS = [SURFACE];
-const fieldParts = (tag) => [
+const fieldParts = (tag: string): TestPart[] => [
   {
     id: "surface",
     name: "Field surface",
@@ -150,13 +168,13 @@ const fieldParts = (tag) => [
     preferred: ["color", "typography", "opacity"],
   },
 ];
-const OUTER = {
+const OUTER: TestPart = {
   id: "surface",
   name: "Outer label/layout",
   preferred: ["padding"],
 };
 
-const PARTS = {
+const PARTS: Record<string, TestPart[]> = {
   input: fieldParts("input"),
   textarea: fieldParts("textarea"),
   select: fieldParts("select"),
@@ -294,12 +312,16 @@ const PARTS = {
   ],
 };
 
-export const getParts = (kind) => PARTS[kind] ?? DEFAULT_PARTS;
-export const getDefaultPart = (kind, property) =>
+export const getParts = (kind: string): TestPart[] =>
+  PARTS[kind] ?? DEFAULT_PARTS;
+export const getDefaultPart = (kind: string, property: string): TestPart =>
   getParts(kind).find((part) => part.preferred.includes(property)) ??
   getParts(kind)[0];
 
-export const getOverrideClasses = (test, part) => {
+export const getOverrideClasses = (
+  test: OverrideTest,
+  part: TestPart,
+): string => {
   const classes = part.pseudo ? test.afterClasses : test.classes;
   return test === TESTS.size && part.sizeClasses
     ? `${classes} ${part.sizeClasses}`
