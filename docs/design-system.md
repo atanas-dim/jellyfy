@@ -216,7 +216,7 @@ Press light is a pair of soft ellipses. The lower ellipse is a translucent white
 
 | Ellipse | Light | Dark | Place |
 | --- | --- | --- | --- |
-| Highlight | White at 26% opacity | White at 4% opacity | 70% of the width, 1.75rem tall, 1rem below the bottom edge, shifted up by 40% of its own height |
+| Highlight | White at 28% opacity | White at 4% opacity | 70% of the width, 1.75rem tall, 1rem below the bottom edge, shifted up by 40% of its own height |
 | Shade | Black at 14% opacity | Black at 16% opacity | 90% of the width, 2.1rem tall, 1.4rem from the top, shifted up by 75% of its own height |
 
 Enabled controls use the same neutral lighting with or without a color slot. Changing only `background-color` changes the fill; the highlight and shade remain neutral overlays.
