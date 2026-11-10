@@ -180,7 +180,7 @@
     );
     --control-shade: color-mix(in oklab, var(--color-black) 30%, transparent);
     --field-highlight: light-dark(
-      color-mix(in oklab, var(--color-white) 36%, transparent),
+      color-mix(in oklab, var(--color-white) 26%, transparent),
       color-mix(in oklab, var(--color-white) 4%, transparent)
     );
     --field-shade: light-dark(
