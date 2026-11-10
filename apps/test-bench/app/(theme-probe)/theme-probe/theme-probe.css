@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "jellyfy/jellyfy.css";
+
+@source inline(
+  "bg-blue-600 bg-blue-400 text-blue-950 text-blue-100 text-blue-800 text-blue-200 bg-green-700 text-red-500 text-purple-500 bg-orange-500 border-red-500"
+);
+
+/* Stable comparison snapshots; visible controls keep their normal interactions. */
+[data-auditing] *,
+[data-auditing] *::before,
+[data-auditing] *::after {
+  transition: none !important;
+  animation: none !important;
+}

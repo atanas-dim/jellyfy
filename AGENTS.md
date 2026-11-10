@@ -4,6 +4,7 @@ Jellyfy is a pnpm workspace.
 
 - `packages/jellyfy` is the CSS and `index.js` that npm publishes. Controls are classes on the element the page already has. Do not add a React component for a control.
 - `apps/web` is the Next.js site. It is private.
+- `apps/test-bench` is the private Next.js test bench. Run `pnpm dev:test-bench` on port 3001. Keep audit fixtures and reports here, separate from the public docs.
 - `examples/html`, `examples/react`, and `examples/vue` are private proofs. They depend on `jellyfy` with `workspace:*`.
 - `docs/design-system.md` is the specification. The site reads it. `docs/turborepo.md` records when a task runner would earn a place here. `docs/git.md` is how a change reaches `main`.
 - The workspace root, the site, and the examples stay `"private": true`. Only `packages/jellyfy` is published, and only the files in its `files` list.

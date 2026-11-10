@@ -56,3 +56,7 @@ Also `--radius-surface`, `--radius-field`, `--radius-control`, `--radius-mark`, 
 With Tailwind, set all three slot colors in `@theme` (or `@theme inline` when referencing other variables). Set the other options on `:root`. Without Tailwind, set them all on `:root`.
 
 Changing a solid does not change its content color or its surface content color. Set those yourself.
+
+## Browser support
+
+Chrome and Edge 123+, Firefox 120+, and Safari / iOS Safari 17.5+. Jellyfy uses native `light-dark()` for theme-aware foreground colors. Older browsers are outside the supported baseline.

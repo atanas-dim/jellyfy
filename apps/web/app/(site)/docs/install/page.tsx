@@ -26,6 +26,17 @@ export default function InstallPage() {
       </p>
 
       <h2 className="mt-12 text-xl font-semibold tracking-tight">
+        Browser support
+      </h2>
+      <p className="mt-3 max-w-2xl leading-7 text-neutral-600 dark:text-neutral-300">
+        Chrome and Edge 123+, Firefox 120+, and Safari / iOS Safari 17.5+.
+        Jellyfy uses native{" "}
+        <code className="font-mono text-sm">light-dark()</code> for theme-aware
+        foreground colors. Older browsers are outside the supported baseline.
+        Keep your build tool’s default CSS compiler settings.
+      </p>
+
+      <h2 className="mt-12 text-xl font-semibold tracking-tight">
         Install the package
       </h2>
       <CodeBlock lang="bash" code={`npm install jellyfy`} />

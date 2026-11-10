@@ -1406,8 +1406,6 @@ const CustomizationSamples = () => (
               {
                 ...customStyle,
                 "--elevation": "2",
-                boxShadow:
-                  "var(--thickness-control), 0 12px 16px -14px rgb(from var(--color-neutral-950, #0a0a0a) r g b / calc(0.55 * var(--elevation)))",
               } as CSSProperties
             }
           >

@@ -159,7 +159,7 @@ Option text stays the plain content color.
 
 Slot classes are `primary`, `secondary`, `tertiary`, `neutral`, `success`, `warning`, `error`, and `info`. They set the solid, the content color, and the surface content color. Content colors are paired variables, named with the daisyUI suffix `content` (`--color-primary-content`, and the same for the other slots). Surface content colors use the suffix `surface-content` (`--color-primary-surface-content`, and the same for the other slots).
 
-With Tailwind, configure all three color tokens for each slot in `@theme`, or `@theme inline` when referencing other variables. Configure non-color options on `:root`. Without Tailwind, configure both colors and non-color options on `:root`. Library slot-color defaults belong to the theme layer with zero selector specificity so consumer settings take priority.
+With Tailwind, configure all three color tokens for each slot in `@theme`, or `@theme inline` when referencing other variables. Configure non-color options on `:root`. Without Tailwind, configure both colors and non-color options on `:root`. Public color and material defaults belong to the theme layer with zero selector specificity so consumer settings take priority.
 
 Plain content is `--color-plain-content`. The menu fill is `--color-menu`. The mark color is `--color-mark`. It mixes `--color-white` into `--color-plain` at `--percent-mark-lift`.
 
@@ -203,32 +203,32 @@ The track and the fill of a range slider are both jelly. Only the color differs.
 
 ### Press light
 
-Press light is a pair of soft ellipses, derived from the solid. The lower ellipse is the highlight. The upper ellipse is the shade. They are not the loading sheen.
+Press light is a pair of soft ellipses. The lower ellipse is a translucent white highlight; the upper ellipse is a translucent black shade. They blend with the face fill rather than deriving their colors from the slot solid. Their strengths are tuned separately for light and dark themes. They are not the loading sheen, which still derives its tones from the solid.
 
 **Control light** is hidden at rest and fully visible while the control is pressed. The transition is 300ms. Both ellipses are centered and fade out at 60% of the gradient radius.
 
-| Ellipse   | Light                            | Dark                             | Place                                                                                        |
-| --------- | -------------------------------- | -------------------------------- | -------------------------------------------------------------------------------------------- |
-| Highlight | White mixed at 90%, shown at 36% | White mixed at 10%, shown at 36% | 90% of the width, 60% tall, starts at 60% of the height, shifted up by 40% of its own height |
-| Shade     | Black mixed at 90%, shown at 20% | Black mixed at 90%, shown at 20% | 90% of the width, 50% tall, starts at 42% of the height, shifted up by 75% of its own height |
+| Ellipse | Light | Dark | Place |
+| --- | --- | --- | --- |
+| Highlight | White at 22% opacity | White at 12% opacity | 90% of the width, 60% tall, starts at 60% of the height, shifted up by 40% of its own height |
+| Shade | Black at 30% opacity | Black at 30% opacity | 90% of the width, 50% tall, starts at 42% of the height, shifted up by 75% of its own height |
 
 **Field light** uses a different strength, because a field is a recess. It is hidden at rest and fully visible while the field is focused, including when focus arrives by click. The transition is 300ms.
 
-| Ellipse   | Light                            | Dark                             | Place                                                                                           |
-| --------- | -------------------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Highlight | White mixed at 90%, shown at 60% | White mixed at 40%, shown at 10% | 70% of the width, 1.75rem tall, 1rem below the bottom edge, shifted up by 40% of its own height |
-| Shade     | Black mixed at 25%, shown at 20% | Black mixed at 90%, shown at 20% | 90% of the width, 2.1rem tall, 1.4rem from the top, shifted up by 75% of its own height         |
+| Ellipse | Light | Dark | Place |
+| --- | --- | --- | --- |
+| Highlight | White at 28% opacity | White at 4% opacity | 70% of the width, 1.75rem tall, 1rem below the bottom edge, shifted up by 40% of its own height |
+| Shade | Black at 14% opacity | Black at 16% opacity | 90% of the width, 2.1rem tall, 1.4rem from the top, shifted up by 75% of its own height |
 
-An object with no slot builds the same mixes from the surface tone.
+Enabled controls use the same neutral lighting with or without a color slot. Changing only `background-color` changes the fill; the highlight and shade remain neutral overlays.
 
 ### Bump
 
-The bump button is always lit. It uses the mark light, not the control light. Each ellipse is 1.75rem wide and 1rem tall, centered, and fades out at 70% of the gradient radius. While pressed, the two ellipses exchange places. The exchange takes 200ms.
+The bump button is always lit. It uses its own highlight and shade strengths, not the control press light. Each ellipse is 87.5% of the button width and 50% of its height, centered horizontally, and fades out at 70% of the gradient radius. While pressed, the two ellipses exchange places. The exchange takes 200ms.
 
-| Ellipse   | Light                            | Dark                             | Place                |
-| --------- | -------------------------------- | -------------------------------- | -------------------- |
-| Highlight | White mixed at 95%, shown at 70% | White mixed at 20%, shown at 20% | 0.15rem from the top |
-| Shade     | Black mixed at 40%, shown at 15% | Black mixed at 80%, shown at 20% | 0.85rem from the top |
+| Ellipse | Light | Dark | Place |
+| --- | --- | --- | --- |
+| Highlight | White at 42% opacity | White at 12% opacity | 7.5% from the top |
+| Shade | Black at 25% opacity | Black at 25% opacity | 42.5% from the top |
 
 ### Implementation notes
 
@@ -451,6 +451,8 @@ Keyboard focus is `:focus-visible`. Field focus is `:focus-within`. Disabled but
 The focus gap is a 2px spread shadow drawn before the thickness and the drop shadow. The outline is a 1px transparent outline that takes the solid color when focused, with a 2px offset.
 
 ## 11. Themes
+
+Supported browser minimums are Chrome and Edge 123, Firefox 120, and Safari / iOS Safari 17.5. Native `light-dark()` is required. Foreground defaults are declared once inside `@supports (color: light-dark(white, black))` so CSS compilers preserve local theme selection. Compiler settings do not need to change.
 
 The dark theme uses the same mixes, the same thickness distances, the same elevations, the same motion, and the same opacity and blur. Every slot, including Neutral, keeps those mixes. A plain element, one with no slot, keeps them too, and uses the surface tone as its solid.
 
@@ -705,7 +707,7 @@ Jellyfy is not a Tailwind plugin. It stays compatible with Tailwind. Color and s
 
 The material recipes are variables in one material file: opacity, blur, grain, the four thicknesses, the press lights, and black and white. The dark theme overrides those variables. It does not restyle each component.
 
-One rule declares the six fills on `:root`, the theme classes, the eight slots, and the faces, so `--material-opacity` and `--solid` resolve on the face. A plain face then follows a local opacity the way a slotted face does. That rule sets only the fills. Another rule paints the jelly material. It sets the grain, the blur, and `box-shadow: var(--jelly-thickness)`. The selectors are the component faces and the thickness classes: `btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, `modal-panel`, `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The radio bullet is not in this rule. It uses the grain, it is opaque, and it has no blur and no thickness. `.noise` sets the grain and the tile size alone.
+One rule declares the six fills on `:root`, the theme classes, the eight slots, and the faces, so `--material-opacity` and `--solid` resolve on the face. A plain face then follows a local opacity the way a slotted face does. That rule also resolves the elevation recipes on each face, so a local `--elevation` override changes its shadows. Another rule paints the jelly material. It sets the grain, the blur, and `box-shadow: var(--jelly-thickness)`. The selectors are the component faces and the thickness classes: `btn`, `btn-icon`, `btn-bump`, `input`, `textarea`, `select`, `checkbox-box`, `radio-ring`, `toggle-track`, `toggle-thumb`, `range-track`, `range-fill`, `range-thumb`, `alert`, `badge`, `card`, `modal-panel`, `thickness-surface`, `thickness-field`, `thickness-control`, and `thickness-mark`. The radio bullet is not in this rule. It uses the grain, it is opaque, and it has no blur and no thickness. `.noise` sets the grain and the tile size alone.
 
 Each component is its own stylesheet. A product imports the components it uses, or imports `jellyfy.css` for the whole library. That file imports the material, the motion, and every component. A component file that is not imported is not in the build. The material file ships once. A component name left in the shared selector does nothing when that component's file is absent.
 
