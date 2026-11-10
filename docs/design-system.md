@@ -203,32 +203,32 @@ The track and the fill of a range slider are both jelly. Only the color differs.
 
 ### Press light
 
-Press light is a pair of soft ellipses, derived from the solid. The lower ellipse is the highlight. The upper ellipse is the shade. They are not the loading sheen.
+Press light is a pair of soft ellipses. The lower ellipse is a translucent white highlight; the upper ellipse is a translucent black shade. They blend with the face fill rather than deriving their colors from the slot solid. Their strengths are tuned separately for light and dark themes. They are not the loading sheen, which still derives its tones from the solid.
 
 **Control light** is hidden at rest and fully visible while the control is pressed. The transition is 300ms. Both ellipses are centered and fade out at 60% of the gradient radius.
 
-| Ellipse   | Light                            | Dark                             | Place                                                                                        |
-| --------- | -------------------------------- | -------------------------------- | -------------------------------------------------------------------------------------------- |
-| Highlight | White mixed at 90%, shown at 36% | White mixed at 10%, shown at 36% | 90% of the width, 60% tall, starts at 60% of the height, shifted up by 40% of its own height |
-| Shade     | Black mixed at 90%, shown at 20% | Black mixed at 90%, shown at 20% | 90% of the width, 50% tall, starts at 42% of the height, shifted up by 75% of its own height |
+| Ellipse | Light | Dark | Place |
+| --- | --- | --- | --- |
+| Highlight | White at 22% opacity | White at 12% opacity | 90% of the width, 60% tall, starts at 60% of the height, shifted up by 40% of its own height |
+| Shade | Black at 30% opacity | Black at 30% opacity | 90% of the width, 50% tall, starts at 42% of the height, shifted up by 75% of its own height |
 
 **Field light** uses a different strength, because a field is a recess. It is hidden at rest and fully visible while the field is focused, including when focus arrives by click. The transition is 300ms.
 
-| Ellipse   | Light                            | Dark                             | Place                                                                                           |
-| --------- | -------------------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Highlight | White mixed at 90%, shown at 60% | White mixed at 40%, shown at 10% | 70% of the width, 1.75rem tall, 1rem below the bottom edge, shifted up by 40% of its own height |
-| Shade     | Black mixed at 25%, shown at 20% | Black mixed at 90%, shown at 20% | 90% of the width, 2.1rem tall, 1.4rem from the top, shifted up by 75% of its own height         |
+| Ellipse | Light | Dark | Place |
+| --- | --- | --- | --- |
+| Highlight | White at 26% opacity | White at 4% opacity | 70% of the width, 1.75rem tall, 1rem below the bottom edge, shifted up by 40% of its own height |
+| Shade | Black at 14% opacity | Black at 16% opacity | 90% of the width, 2.1rem tall, 1.4rem from the top, shifted up by 75% of its own height |
 
-An object with no slot builds the same mixes from the surface tone.
+Enabled controls use the same neutral lighting with or without a color slot. Changing only `background-color` changes the fill; the highlight and shade remain neutral overlays.
 
 ### Bump
 
-The bump button is always lit. It uses the mark light, not the control light. Each ellipse is 1.75rem wide and 1rem tall, centered, and fades out at 70% of the gradient radius. While pressed, the two ellipses exchange places. The exchange takes 200ms.
+The bump button is always lit. It uses its own highlight and shade strengths, not the control press light. Each ellipse is 87.5% of the button width and 50% of its height, centered horizontally, and fades out at 70% of the gradient radius. While pressed, the two ellipses exchange places. The exchange takes 200ms.
 
-| Ellipse   | Light                            | Dark                             | Place                |
-| --------- | -------------------------------- | -------------------------------- | -------------------- |
-| Highlight | White mixed at 95%, shown at 70% | White mixed at 20%, shown at 20% | 0.15rem from the top |
-| Shade     | Black mixed at 40%, shown at 15% | Black mixed at 80%, shown at 20% | 0.85rem from the top |
+| Ellipse | Light | Dark | Place |
+| --- | --- | --- | --- |
+| Highlight | White at 42% opacity | White at 12% opacity | 7.5% from the top |
+| Shade | Black at 25% opacity | Black at 25% opacity | 42.5% from the top |
 
 ### Implementation notes
 
